@@ -35,7 +35,7 @@ const Dashboard = () => {
                 
                 
                 />
-                <button id="submit-button">Groa</button>
+                {/* <button id="submit-button">Groa</button> */}
             </form>
             <p className="form-directions">upload your letterboxd csv file here to get unique movie recommendations</p>
             </div>
