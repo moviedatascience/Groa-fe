@@ -1,5 +1,6 @@
-import { combineReducers } from 'redux'; 
-import { backendUserReducer } from './backendUserReducer';
-import { dsUserReducer } from './dsUserReducer'; 
+import { combineReducers } from "redux";
+import { watchListReducer } from "./watchListReducer.js";
 
-export const reducer = combineReducers({dsUserReducer: dsUserReducer, backendUserReducer: backendUserReducer})
+export const reducer = combineReducers({
+  watchListReducer: watchListReducer
+});
