@@ -46,62 +46,71 @@ loginUser = e => {
 
   return (
     <div className='LoginPage'>
-    
-      <div className='textMottoBoxes'>
-        <h1>Your movies,<br/> your way.</h1>
-
-        {/* <div className='box1'>picture</div>
-        <div className='box2'>Groa Helps</div> */}
+      {/* Container - ENTIRE PAGE */}
+      <div className='container'>
+        <div className='bartop'>
+          <div className='Logo'>Logo</div>
+          <div className='Register'>Register</div>
         </div>
-
-      <form className='LoginForm' onSubmit={this.loginUser}>
-      <h1 className='textlogin'>Log in</h1>
-        <input className='input1'
-          type="text"
-          name="username"
-          onChange={this.handleChange}
-          placeholder="Username"
-          value={this.username}
-        />
-
-        <input className='input1'
-          type="text"
-          name="password"
-          onChange={this.handleChange}
-          placeholder="Password"
-          value={this.password}
-        />
         
-        <h4 className='textOr'>or</h4>
-
-        {/* USER NAME */}
-        <input className='input2'
-          type="text"
-          name="username"
-          onChange={this.handleChange}
-          placeholder="Username"
-          value={this.username}
-        />
-        {/* PASSWORD */}
-        <input className='input2'
-          type="text"
-          name="password"
-          onChange={this.handleChange}
-          placeholder="Password"
-          value={this.password}
-        /> 
-        <div className='Bottom'>
-
-        <div className='textBot'>
-          <h4>Remember me</h4>
-          <h4>Forgot password?</h4>
-        </div> 
+        {/* <div className='Middle'>
+          
+          <h1>Your movies,<br/> your way.</h1>
         
+          <div className='box1'>picture</div>
+          <div className='box2'>Groa Helps</div>
+        </div> */}
 
-        <button className='BtnLogin'>Log in</button>
-        </div> 
-      </form>
-    </div> 
+        <form className='LoginForm' onSubmit={this.loginUser}>
+        <h1 className='textlogin'>Log in</h1>
+
+          <input className='input1'
+            type="text"
+            name="username"
+            onChange={this.handleChange}
+            placeholder="Emal"
+            value={this.username}
+          />
+
+          <input className='input1'
+            type="text"
+            name="password"
+            onChange={this.handleChange}
+            placeholder="Password"
+            value={this.password}
+          />
+          
+          <div className='text'>
+                  <input className='Checkbox' type="checkbox"/>
+                  <h5> Remember me</h5>
+                  <h5>Forgot password?</h5>
+          </div>
+
+          <h4 className='textOr'>or</h4>
+
+          {/* USER NAME */}
+          <input className='input2'
+            type="text"
+            name="username"
+            onChange={this.handleChange}
+            placeholder="Email"
+            value={this.username}
+          />
+          {/* PASSWORD */}
+          <input className='input2'
+            type="text"
+            name="password"
+            onChange={this.handleChange}
+            placeholder="Log in with"
+            value={this.password}
+          /> 
+           
+                 
+              <button className='BtnLogin'>Log in</button>
+           
+          </form>
+        </div>
+      </div>
    )
  };
 }
@@ -118,3 +127,4 @@ export default connect(
     mapStateToProps,
     {loginAction}
 )(LoginPage);
+
