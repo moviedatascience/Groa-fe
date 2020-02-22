@@ -53,64 +53,62 @@ loginUser = e => {
           <div className='Register'>Register</div>
         </div>
         
-        {/* <div className='Middle'>
+        <div className='Middle'>
+          <div className='boxLeft'>
+            
+            <h1>Your movies,<br/> your way.</h1>
           
-          <h1>Your movies,<br/> your way.</h1>
-        
-          <div className='box1'>picture</div>
-          <div className='box2'>Groa Helps</div>
-        </div> */}
-
-        <form className='LoginForm' onSubmit={this.loginUser}>
-        <h1 className='textlogin'>Log in</h1>
-
-          <input className='input1'
-            type="text"
-            name="username"
-            onChange={this.handleChange}
-            placeholder="Emal"
-            value={this.username}
-          />
-
-          <input className='input1'
-            type="text"
-            name="password"
-            onChange={this.handleChange}
-            placeholder="Password"
-            value={this.password}
-          />
-          
-          <div className='text'>
-                  <input className='Checkbox' type="checkbox"/>
-                  <h5> Remember me</h5>
-                  <h5>Forgot password?</h5>
+            {/* <div className='box1'>picture</div>
+            <div className='box2'>Groa Helps</div> */}
           </div>
 
-          <h4 className='textOr'>or</h4>
+          <form className='LoginForm' onSubmit={this.loginUser}>
+          <h1 className='textlogin'>Log in</h1>
 
-          {/* USER NAME */}
-          <input className='input2'
-            type="text"
-            name="username"
-            onChange={this.handleChange}
-            placeholder="Email"
-            value={this.username}
-          />
-          {/* PASSWORD */}
-          <input className='input2'
-            type="text"
-            name="password"
-            onChange={this.handleChange}
-            placeholder="Log in with"
-            value={this.password}
-          /> 
-           
-                 
-              <button className='BtnLogin'>Log in</button>
-           
-          </form>
-        </div>
+            <input className='input1'
+              type="text"
+              name="username"
+              onChange={this.handleChange}
+              placeholder="Emal"
+              value={this.username}
+            />
+
+            <input className='input1'
+              type="text"
+              name="password"
+              onChange={this.handleChange}
+              placeholder="Password"
+              value={this.password}
+            />
+            
+            <div className='text'>
+                    <div className='CheckBoxContainer'>
+                    <input className='Checkbox' type="checkbox"/>
+                    </div>
+                    <h5> Remember me</h5>
+                    <h5>Forgot password?</h5>
+            </div>
+
+            <h4 className='textOr'>or</h4>
+
+            {/* Log in Google */}
+            <button className='BtnLoginWith'>Log in with Google</button>
+            {/* Log in Facebook */}
+            <button className='BtnLoginWith'>Log in with Facebook</button>
+            {/* Log in Reddit */}
+            <button className='BtnLoginWith'>Log in with Reddit</button>
+
+            <div className='BtnContainer'>
+            <button className='BtnLogin'>Log in</button>
+            </div>
+
+            </form>
+          </div> 
+          {/* END MIDDLE */}
       </div>
+      {/* END CONTAINER */}
+    </div>
+    // END LOGIN PAGE
    )
  };
 }
