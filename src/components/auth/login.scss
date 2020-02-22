@@ -3,71 +3,100 @@
 .LoginPage{
     display: flex;
     justify-content: space-between;
-    padding:  3%;
+    padding: 0 3% 0 0;
     min-height: 100vh;  
     background-image: linear-gradient(to bottom, black 0%,  rgba(0, 0, 0, .9),
     rgba(0, 0, 0, .70),rgba(0, 0, 0, .85));
 }
 
 .container{
-    border: 2px solid red;
+    //border: 2px solid red;
     width: 100%;
 }
 
 .bartop{
     display: flex;
     justify-content: space-between;
-    border: 2px solid orange;
+    padding: 0 0 0 3%;
+    //border: 2px solid orange;
     height: 110px;
 
-    .Logo{
-        color: white;
-        font-size: 200%;
-        padding: 2%;
-        // border: 2px solid red;
+   
+        .Logo{
+            color: white;
+            padding-top: 3%;
+            border: 2px solid red;
+        }
+        .Register{
+            color: white;
+            //padding-top: 3%;
+            border: 2px solid red;
+        }
     }
-    .Register{
-        color: white;
-        padding: 3%;
-        // border: 2px solid red;
-    }
-}
+    
 
 .Middle{
     display: flex;
-    justify-content: space-evenly;
+    //justify-content: space-around;
+    // justify-content: space-evenly;
+    //border: 3px solid yellow;
   
-
+//Text Motto
     .boxLeft{
         color: white;
-        font-size: 250%;
-        //width: 500px;
-        //margin-right: 15%;
-        border: 2px solid blue;
-        
-            // .box1{
-            //     background:rgb(97, 97, 97);
-            
-            //     width: 407px;
-            //     height: 436px;
-            // }
-            // .box2{
-            // background: #C4C4C4;
-            // width: 407px;
-            // height: 288px;
-            // }
+        font-size: 300%;
+        //border: 4px solid blue;
+        width: 50%;
+        //padding: 5px 5px 0 5px;
+    
+        .Text{
+            margin: 0 0 0 13%;
+            border: 2px solid red;
         }
+
+
+        }
+        .box1{
+            margin: -12% 2% 2% 0;
+            background:rgb(97, 97, 97);
+            width: 407px;
+            height: 436px;
+        }
+        .box2{
+            margin: -30% 0 0 27%;
+            color: black;
+            background: #C4C4C4;
+            width: 407px;
+            height: 288px;
+
+            .h6text{
+                padding: 0 5% 0 5%;
+                border: 2px solid rgb(183, 0, 255);
+            }
+
+           
+        }
+
 }
 
-//////// Login Form /////////////////
+.boxRight{
+    border: 4px solid green;
+    width: 50%;
+    display: flex;
+    justify-content: flex-end;
+    
+    //////// Login Form /////////////////
     .LoginForm{
         display: flex;
         flex-direction: column;
-        //justify-content: center;
         width:518px;
         height:589px;
         background: #FFFFFF;
     }
+
+}
+    
+          
 
 .textlogin{
     margin: 2% 8% 2% 8%;

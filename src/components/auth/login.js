@@ -49,19 +49,26 @@ loginUser = e => {
       {/* Container - ENTIRE PAGE */}
       <div className='container'>
         <div className='bartop'>
-          <div className='Logo'>Logo</div>
-          <div className='Register'>Register</div>
+          
+            <div className='Logo'>Logo</div>
+            <div className='Register'>Register</div>
+        
         </div>
         
         <div className='Middle'>
           <div className='boxLeft'>
-            
-            <h1>Your movies,<br/> your way.</h1>
+            <h1 className='Text'>Your movies,<br/> your way.</h1>
           
-            {/* <div className='box1'>picture</div>
-            <div className='box2'>Groa Helps</div> */}
+            <div className='box1'/>
+            <div className='box2'>
+           
+              <h6 className='h6text'>Groa Helps you pick the perfect film,</h6>
+              <h6  className='h6text'>So you can save your popcorn for the good stuff.</h6>
+              
+            </div>
           </div>
 
+          <div className='boxRight'>
           <form className='LoginForm' onSubmit={this.loginUser}>
           <h1 className='textlogin'>Log in</h1>
 
@@ -103,6 +110,8 @@ loginUser = e => {
             </div>
 
             </form>
+            </div>
+            {/* END BOX RIGHT */}
           </div> 
           {/* END MIDDLE */}
       </div>
