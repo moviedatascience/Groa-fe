@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 class Register extends React.Component {
@@ -8,10 +7,10 @@ class Register extends React.Component {
 
         this.state = {
             user: {
-                firstName: '',
-                lastName: '',
-                username: '',
-                password: ''
+               
+                email: '',
+                password: '',
+                confirmPassword: ''
             },
             submitted: false
         };
@@ -36,7 +35,7 @@ class Register extends React.Component {
 
         this.setState({ submitted: true });
         const { user } = this.state;
-        if (user.firstName && user.lastName && user.username && user.password) {
+        if (user.email && user.password && user.confirmPassword) {
             this.props.register(user);
         }
     }
@@ -45,56 +44,106 @@ class Register extends React.Component {
         const { registering  } = this.props;
         const { user, submitted } = this.state;
         return (
-            <div className="header"> 
-                <h2>Register</h2>
-                <form name="form" onSubmit={this.handleSubmit}>
-                    <div className={'forms' + (submitted && !user.firstName ? ' has-error' : '')}>
-                        <label htmlFor="firstName">First Name</label>
-                        <input type="text" className="form-control" name="firstName" value={user.firstName} onChange={this.handleChange} />
-                        {submitted && !user.firstName &&
-                            <div className="callingError">First Name is required</div>
-                        }
+            <div className="container"> 
+
+                <h3>Login</h3>
+                    
+                <div className="H1">
+                    
+                            <div className="boxLeft">
+                                    <div className="text">
+                                        <h1>Your movies,  your way. </h1>
+                                    </div>
+
+                                    <div className="box1"/> 
+                                <div className="box2">
+                                <h5 className='h5text'>Groa Helps you pick the perfect film,</h5>
+                                <h5  className='h5text'>So you can save your popcorn for the good stuff.</h5>
+                                </div> 
+                            </div>
+                        
+                     <div className="boxRight">
+                        <form  className="form" onSubmit={this.handleSubmit}> 
+                            <h2>Register</h2>
+
+                            <div className={'forms' + (submitted && !user.email ? ' has-error' : '')}></div>
+                            <input className="form-control" 
+                            type="text" 
+                            name="Email" 
+                            value={user.Email} 
+                            onChange={this.handleChange} 
+                            placeholder='Email'
+                            />
+                            {submitted && !user.Email &&
+                                <div className="callingError">Email is required</div>
+                            }
+                        
+                            <div className={'forms' + (submitted && !user.password ? ' has-error' : '')}></div>
+                            <input className="form-control" 
+                            type="password" 
+                            name="password" 
+                            value={user.password} 
+                            onChange={this.handleChange} 
+                            placeholder='Password'
+                            />
+                            {submitted && !user.password &&
+                                <div className="callingError">Password is required</div>
+                            }
+                        
+                    
+                            <div className={'forms' + (submitted && !user.ConfirmPassword ? ' has-error' : '')}></div>
+                            <input className="form-control" 
+                            type="Confirm Password" 
+                            name="Confirm Password" 
+                            value={user.ConfirmPassword} 
+                            onChange={this.handleChange} 
+                            placeholder='Confirm Password'
+                            />
+                            {submitted && !user.ConfirmPassword &&
+                                <div className="callingError">Confirm Password is required</div>
+                            }
+                            <div className="checkBox">
+                                <div className="CheckB">
+                                <input  type="checkbox"/>
+                                </div> 
+                            
+                            <h5>Remember me</h5>
+                            </div>
+            
+                            <h4> _________________________  or  ________________________</h4>
+
+                            <button className="LogBtn">Login with Google</button>
+                            <button className="LogBtn">Login with Facebook</button>
+                            <button className="LogBtn">Login with Reddit</button>
+                            
+                            <div className="BottomLogin">
+                                <button className="LoginBtn">Login </button>
+                                {registering}
+                            </div>
+                    
+                        </form>
+                    
                     </div>
-                    <div className={'forms' + (submitted && !user.lastName ? ' has-error' : '')}>
-                        <label htmlFor="lastName">Last Name</label>
-                        <input type="text" className="form-control" name="lastName" value={user.lastName} onChange={this.handleChange} />
-                        {submitted && !user.lastName &&
-                            <div className="callingError">Last Name is required</div>
-                        }
-                    </div>
-                    <div className={'forms' + (submitted && !user.username ? ' has-error' : '')}>
-                        <label htmlFor="username">Username</label>
-                        <input type="text" className="form-control" name="username" value={user.username} onChange={this.handleChange} />
-                        {submitted && !user.username &&
-                            <div className="callingError">Username is required</div>
-                        }
-                    </div>
-                    <div className={'forms' + (submitted && !user.password ? ' has-error' : '')}>
-                        <label htmlFor="password">Password</label>
-                        <input type="password" className="form-control" name="password" value={user.password} onChange={this.handleChange} />
-                        {submitted && !user.password &&
-                            <div className="callingError">Password is required</div>
-                        }
-                    </div>
-                    <div className="forms">
-                        <button className="regBtn">Register</button>
-                        {registering}
-                        <Link to="/login" className="btnlink">Cancel</Link>
-                    </div>
-                </form>
+                    {/* end box right */}
+                </div> 
+                {/*ends H1*/}
             </div>
         );
     }
 }
 
-function mapState(state) {
-    const { registering } = state.registration;
-    return { registering };
-}
+// function mapStateToProps(state) {
+//     const { registering } = state.registration;
+//     return { registering };
+// }
 
-const actionCreators = {
-    register: userActions.register
-}
+const mapStateToProps = state => {
+    return {
+        userData: state.userData,
+        isFetching: state.isFetching,
+        error: state.error
+    };
+};
 
-const connectedRegister = connect(mapState, actionCreators)(Register);
-export { connectedRegister as Register };
+export default connect
+(mapStateToProps)(Register);
