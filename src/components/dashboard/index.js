@@ -4,18 +4,13 @@ import axios from 'axios';
 
 
 const Dashboard = () => {
-    
+    const [input, setInput] = useState({file:''})
     const changeHandler = e => { 
         
-        e.preventDefault();
         let data = new FormData()
-       
-        
         data.append('movies', e.target.files[0] , e.target.files[0].name)
-        
-        console.log('data', data)
         //change user/1/ to be :id number
-        axios.post('http://localhost:4000/api/users/1/upload', data,{
+        axios.post('http://localhost:4000/api/users/2/upload', data,{
             headers:{
                 'Content-Type':'multipart/form-data'
             }
@@ -25,12 +20,24 @@ const Dashboard = () => {
         }).catch(err => { 
             console.log(err)
         })
-        
-        
+        data = new FormData()
+       
     }
     const handleSubmit = e => { 
         e.preventDefault();
-        
+        console.log(input);
+        //change user/1/ to be :id number handle submit currently does
+        axios.post('http://localhost:4000/api/users/1/upload', input,{
+            headers:{
+                'Content-Type':'multipart/form-data'
+            }
+        })
+        .then(res => { 
+            console.log(res);
+        }).catch(err => { 
+            console.log(err)
+        })
+       
     }
 
 
@@ -38,9 +45,7 @@ const Dashboard = () => {
         <div className='DB-Container'>
             <div className="h2-p"><h2>Welcome to the dashboard.</h2></div>
             <div className="form-hover">
-            <form id="zip-form" 
-            
-            
+            <form id="zip-form"           
             onSubmit = {handleSubmit}>
                 <input
                     id="zip-input"
@@ -48,12 +53,13 @@ const Dashboard = () => {
                     type='file'
                     placeholder='letterbox csv file here'
                     name = 'movies'
+                    value={input.movieName}  // im not sure why this works but it does.
                     onChange={changeHandler}
-                    value = ""
+                
                 
                 />
                 
-                <button id="submit-button">Clear</button>
+                <button id="submit-button">Groa</button>
             </form>
             <p className="form-directions">upload your letterboxd csv file here to get unique movie recommendations</p>
             </div>
