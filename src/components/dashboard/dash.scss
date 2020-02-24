@@ -74,6 +74,7 @@
                 width: 100px;
                 height: 200px;
                 margin: auto;
+                margin-top: 40px;
                 h2{
                     margin-left: -50px;
                     font-size: 1rem;
@@ -92,6 +93,7 @@
             }
             .checkboxes{
                 margin-left: -50px;
+                
                 width: 150px;
                 height: 120px;
                 // border: 1px solid red;
@@ -123,12 +125,12 @@
             visibility: hidden;
             text-align: center;
             transition: .5s;
-            margin-left:920px;
+            margin-right: 50px;
             height: 100px;
         }
 
         #zip-input{
-            margin-left: 400px;
+            margin-left: 600px;
             width: 400px;
             height: 40px;
             font-size: 1.3rem;
@@ -142,12 +144,15 @@
             
         }
         #submit-button{
-            margin:0px;
-            margin-bottom:400px;
-            margin-left: 350px;
+            // margin:0px;
+            display:none;
+            margin-top: -200px;
+            // margin-bottom:600px;
+            margin-left: 490px;
             height: 40px;
             width: 100px;
             font-size: 1.2rem;
+            border-radius:1.3rem;
             &:hover{
                 box-shadow: -5px 0px 30px  white;
                 transition: 0.2s;

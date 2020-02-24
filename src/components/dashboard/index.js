@@ -4,18 +4,18 @@ import axios from 'axios';
 
 
 const Dashboard = () => {
-    const [input, setInput] = useState({file:''})
+    
     const changeHandler = e => { 
-        // setInput({
-        //     ...input, 
-        //     [e.target.name]:e.target.value
-        // })
+        
+        e.preventDefault();
         let data = new FormData()
-        console.log(e.target.files[0])
-
-        setInput(e.target.files[0])
+       
+        
         data.append('movies', e.target.files[0] , e.target.files[0].name)
-        axios.post('http://localhost:4000/api/users/upload', data,{
+        
+        console.log('data', data)
+        //change user/1/ to be :id number
+        axios.post('http://localhost:4000/api/users/1/upload', data,{
             headers:{
                 'Content-Type':'multipart/form-data'
             }
@@ -25,23 +25,12 @@ const Dashboard = () => {
         }).catch(err => { 
             console.log(err)
         })
-       
+        
+        
     }
     const handleSubmit = e => { 
         e.preventDefault();
-        console.log(input);
         
-        axios.post('http://localhost:4000/api/users/upload', input,{
-            headers:{
-                'Content-Type':'multipart/form-data'
-            }
-        })
-        .then(res => { 
-            console.log(res);
-        }).catch(err => { 
-            console.log(err)
-        })
-       
     }
 
 
@@ -51,13 +40,6 @@ const Dashboard = () => {
             <div className="form-hover">
             <form id="zip-form" 
             
-            // ref='uploadForm' 
-             
-            // action='http://localhost:4000/api/users/upload' 
-            // method='post' 
-            // encType="multipart/form-data"
-            
-           
             
             onSubmit = {handleSubmit}>
                 <input
@@ -66,13 +48,12 @@ const Dashboard = () => {
                     type='file'
                     placeholder='letterbox csv file here'
                     name = 'movies'
-                    value={input.movieName}
                     onChange={changeHandler}
-                
+                    value = ""
                 
                 />
-                <input type='submit' value='Upload!' />
-                <button id="submit-button">Groa</button>
+                
+                <button id="submit-button">Clear</button>
             </form>
             <p className="form-directions">upload your letterboxd csv file here to get unique movie recommendations</p>
             </div>
