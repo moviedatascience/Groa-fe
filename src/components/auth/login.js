@@ -4,9 +4,11 @@ import axiosWithAuth from '../../utils/axiosWithAuth'
 import { connect } from 'react-redux';
 import {loginAction} from '../../store/actions/loginAction';
 import './login.scss';
+import GroaLogo from '../../GroaLogo.png'
 
 class LoginPage extends React.Component {
  
+  
         state = {
           credentials: {
             username: '',
@@ -21,10 +23,10 @@ class LoginPage extends React.Component {
           [e.target.name]: e.target.value
           }
       });
-  
+     
   };
 
-
+  
   
 loginUser = e => {
     e.preventDefault();
@@ -50,7 +52,9 @@ loginUser = e => {
       <div className='container'>
         <div className='bartop'>
           
-            <div className='Logo'>Logo</div>
+            
+            <img className='Logo' src={GroaLogo} alt='GroaLogo'/>
+           
             <div className='Register'>Register</div>
         
         </div>
@@ -58,20 +62,21 @@ loginUser = e => {
         <div className='Middle'>
           <div className='boxLeft'>
             <h1 className='Text'>Your movies,<br/> your way.</h1>
-          
-            <div className='box1'/>
-            <div className='box2'>
-           
-              <h6 className='h6text'>Groa Helps you pick the perfect film,</h6>
-              <h6  className='h6text'>So you can save your popcorn for the good stuff.</h6>
-              
-            </div>
+                <div className='box1'/>
+                <div className='box2'>
+                  <div className='box2b'>
+                    <div className='h6text1'>Groa helps you pick the perfect film.</div>
+                    <div className='h6text2'>So you can save your popcorn for the good stuff.</div>
+                    {/* <h6 className='h6text1'>Groa helps you pick the perfect film.</h6>
+                    <h6  className='h6text2'>So you can save your popcorn for the good stuff.</h6> */}
+                  </div>
+                </div>
           </div>
 
           <div className='boxRight'>
           <form className='LoginForm' onSubmit={this.loginUser}>
           <h1 className='textlogin'>Log in</h1>
-
+          
             <input className='input1'
               type="text"
               name="username"
@@ -79,6 +84,10 @@ loginUser = e => {
               placeholder="Emal"
               value={this.username}
             />
+            
+            {/* {touched.username && errors.username && (
+          <p className="error">{errors.username}</p>
+          )} */}
 
             <input className='input1'
               type="text"
@@ -104,7 +113,7 @@ loginUser = e => {
             <button className='BtnLoginWith'>Log in with Facebook</button>
             {/* Log in Reddit */}
             <button className='BtnLoginWith'>Log in with Reddit</button>
-
+            
             <div className='BtnContainer'>
             <button className='BtnLogin'>Log in</button>
             </div>
