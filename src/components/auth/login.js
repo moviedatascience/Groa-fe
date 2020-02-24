@@ -10,25 +10,35 @@ class LoginPage extends React.Component {
  
   
         state = {
+          errors:[],
           credentials: {
-            username: '',
+            email: '',
             password: '',
           }
       }
   
     handleChange = e => {
+
       this.setState({
           credentials: {
           ...this.state.credentials,
           [e.target.name]: e.target.value
           }
+          
       });
-     
+  
   };
 
+  validate(email, password) {
+    const errors = [];
+    if (email.length === 0) {
+      errors.push("Name can't be empty");
+    }
+    return errors;
+  }
   
   
-loginUser = e => {
+  loginUser = e => {
     e.preventDefault();
     //console.log(user)
       axiosWithAuth()
@@ -47,16 +57,14 @@ loginUser = e => {
   render() {
 
   return (
+   
     <div className='LoginPage'>
       {/* Container - ENTIRE PAGE */}
       <div className='container'>
         <div className='bartop'>
-          
-            
-            <img className='Logo' src={GroaLogo} alt='GroaLogo'/>
            
-            <div className='Register'>Register</div>
-        
+              <img className='Logo' src={GroaLogo} alt='GroaLogo'/>
+              <h2 className='Register'>Register</h2>     
         </div>
         
         <div className='Middle'>
@@ -79,14 +87,16 @@ loginUser = e => {
           
             <input className='input1'
               type="text"
-              name="username"
+              name="email"
               onChange={this.handleChange}
-              placeholder="Emal"
-              value={this.username}
+              placeholder="Email"
+              value={this.email}
             />
+           
             
-            {/* {touched.username && errors.username && (
-          <p className="error">{errors.username}</p>
+            {/* <p className="error">er{this.error}</p>
+            {this.email && this.errors.email && (
+          <p className="error">{this.errors.email}</p>
           )} */}
 
             <input className='input1'
@@ -97,15 +107,20 @@ loginUser = e => {
               value={this.password}
             />
             
-            <div className='text'>
+            <div className='TextandCheck'>
                     <div className='CheckBoxContainer'>
-                    <input className='Checkbox' type="checkbox"/>
+                        <input className='Checkbox' type="checkbox"/>
                     </div>
                     <h5> Remember me</h5>
-                    <h5>Forgot password?</h5>
+                     
+                    {/* <h5>Forgot password?</h5> */}
+                    <div className='TextandCheck2'>
+                      <h5>Forgot password?</h5>
+                    </div>
             </div>
-
-            <h4 className='textOr'>or</h4>
+            
+              <h4 className='textOr'>or</h4>
+            
 
             {/* Log in Google */}
             <button className='BtnLoginWith'>Log in with Google</button>
