@@ -35,7 +35,7 @@ class Register extends React.Component {
 
         this.setState({ submitted: true });
         const { user } = this.state;
-        if (user.email && user.password && user.confirmPassword) {
+        if (user.email && user.password && user.ConfirmPassword) {
             this.props.register(user);
         }
     }
@@ -93,8 +93,8 @@ class Register extends React.Component {
                     
                             <div className={'forms' + (submitted && !user.ConfirmPassword ? ' has-error' : '')}></div>
                             <input className="form-control" 
-                            type="Confirm Password" 
-                            name="Confirm Password" 
+                            type="password" 
+                            name="ConfirmPassword" 
                             value={user.ConfirmPassword} 
                             onChange={this.handleChange} 
                             placeholder='Confirm Password'
@@ -102,6 +102,8 @@ class Register extends React.Component {
                             {submitted && !user.ConfirmPassword &&
                                 <div className="callingError">Confirm Password is required</div>
                             }
+
+
                             <div className="checkBox">
                                 <div className="CheckB">
                                 <input  type="checkbox"/>
