@@ -11,9 +11,8 @@ export default function LoadingScreen() {
   return (
     <div>
       <p>"{movieQuote.quote}"</p>
-      <p>
-        -{movieQuote.movie} Year: {movieQuote.year}
-      </p>
+      <p>-{movieQuote.movie}</p>
+      <p>Year: {movieQuote.year}</p>
     </div>
   );
 }
