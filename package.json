@@ -9,6 +9,7 @@
     "axios": "^0.19.2",
     "dotenv": "^8.2.0",
     "node-sass": "^4.13.1",
+    "popular-movie-quotes": "^1.2.4",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-hook-form": "^4.9.6",
