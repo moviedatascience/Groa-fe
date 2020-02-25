@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+
 class Register extends React.Component {
     constructor(props) {
         super(props);
@@ -134,6 +135,7 @@ class Register extends React.Component {
         );
     }
 }
+  
 
 const mapStateToProps = state => {
     return {
