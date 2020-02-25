@@ -6,30 +6,51 @@ import axios from 'axios';
 const Dashboard = () => {
     const [input, setInput] = useState({file:''})
     const [ratings, setRatings] = useState({})
+    const [loading, setLoading] = useState()
     const changeHandler = e => { 
         
         let data = new FormData()
         data.append('movies', e.target.files[0] , e.target.files[0].name)
         //change user/1/ to be :id number
-        axios.post('http://localhost:4000/api/users/2/upload', data,{
+        //Groabe-env.v3umry9g8h.us-east-1.elasticbeanstalk.com/
+        axios.post('http://localhost:4000/api/users/1/upload', data,{
             headers:{
                 'Content-Type':'multipart/form-data'
             }
         })
         .then(res => { 
             console.log(res);
-            setRatings(res.data.data)
+            setRatings(res.data)
         }).catch(err => { 
             console.log(err)
         })
         data = new FormData()
+        
+        setTimeout(() => {
+            setLoading(<h2 className = 'loading' style={{paddingLeft:'5px'}}>.loading</h2>)
+        }, 1000);
+        setTimeout(() => {
+            setLoading(<h2 className = 'loading' style={{paddingLeft:'10px'}}>..loading</h2>)
+        }, 2000);
+        setTimeout(() => {
+            setLoading(<h2 className = 'loading' style={{paddingLeft:'15px'}}>...loading</h2>)
+        }, 3000);
+        setTimeout(() => {
+            setLoading(<h2 className = 'loading' style={{paddingLeft:'20px'}}>....loading</h2>)
+        }, 4000);
+        // setTimeout(() => {
+        //     setLoading('..loading')
+        // }, 4000);
+        // setTimeout(() => {
+        //     setLoading('.loading')
+        // }, 5000);
        
     }
     const handleSubmit = e => { 
         e.preventDefault();
         console.log(input);
         //change user/1/ to be :id number handle submit currently does
-        axios.post('http://localhost:4000/api/users/1/upload', input,{
+        axios.post('https://groa-be.herokuapp.com/api/users/1/upload', input,{
             headers:{
                 'Content-Type':'multipart/form-data'
             }
@@ -41,12 +62,17 @@ const Dashboard = () => {
         })
        
     }
-
+    const flash = () => {
+        setTimeout(() => {
+            return "flash"
+        }, 1000);
+    }
 
     return (
         
         <div className='DB-Container'>
-            <div className="h2-p"><h2>Welcome to the dashboard.</h2></div>
+            <div className='h2-p' ><h2>Welcome to the dashboard.</h2></div>
+            
             <div className="form-hover">
             <form id="zip-form"           
             onSubmit = {handleSubmit}>
@@ -64,7 +90,8 @@ const Dashboard = () => {
                 
                 <button id="submit-button">Groa</button>
             </form>
-            <p className="form-directions">upload your letterboxd csv file here to get unique movie recommendations</p>
+            {/* <p className="form-directions">upload your letterboxd csv file here to get unique movie recommendations</p> */}
+            <p className="form-directions">upload your letterboxd csv file here to get all past movie ratings</p>
             </div>
             {/* <div className='settings-container'>Container for settings</div> */}
             <div className='box-container'>
@@ -90,7 +117,7 @@ const Dashboard = () => {
                             </div>
                         )
                     }
-                }) : '...loading'}
+                }) : loading}
                 
 
 
