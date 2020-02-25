@@ -102,7 +102,8 @@ class Register extends React.Component {
                             {submitted && !user.ConfirmPassword &&
                                 <div className="callingError">Confirm Password is required</div>
                             }
-
+                            
+                            
 
                             <div className="checkBox">
                                 <div className="CheckB">
@@ -133,11 +134,6 @@ class Register extends React.Component {
         );
     }
 }
-
-// function mapStateToProps(state) {
-//     const { registering } = state.registration;
-//     return { registering };
-// }
 
 const mapStateToProps = state => {
     return {
