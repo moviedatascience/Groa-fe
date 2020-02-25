@@ -1,0 +1,89 @@
+.PostLoginPage{
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;  
+    background-image: linear-gradient(to bottom, black 0%,  rgba(0, 0, 0, .9),
+    rgba(0, 0, 0, .70),rgba(0, 0, 0, .85));
+}
+
+
+
+.container{
+    display: flex;
+    flex-direction: column; 
+    margin-top: 2%;
+    h1{
+        display: flex;
+        justify-content: center; 
+        color: white;
+        
+    }
+
+    h2{
+        display: flex;
+        justify-content: center; 
+        color: white;
+    }
+
+    h3{
+        display: flex;
+        justify-content: center; 
+    }
+
+
+}
+.boxContainer{
+    display: flex;
+    margin-top: 5%;
+
+    .boxLeft{
+        background: white;
+        width:  500px;
+        height: 256px;
+       margin-right: 4%;
+
+       .boxInside{
+            display: flex;
+            flex-direction: column;
+            padding: 25px;   
+
+            .holder{
+                display: flex;
+                justify-content: center;
+                padding-top: 50px;
+            }
+            
+        }
+    }
+    
+    .boxRight{
+        background: white;
+        width:  500px;
+        height: 256px;
+        margin-left: 4%;
+
+        .boxInside{
+            display: flex;
+            flex-direction: column;
+            padding: 25px;
+
+            .holder{
+                display: flex;
+                justify-content: center;
+            }
+        }
+    }
+
+}
+
+.movie-input{     
+    padding: 10px;
+    background: gray;
+    width: 300px;
+}
+
+.btnQuiz{
+    padding: 10px;
+    background: gray;
+    width: 256px;
+}

@@ -49,29 +49,47 @@ const [input, setInput] = useState({file:''})
 
 return (
 <div className='PostLoginPage'>
-    <div>
-        <form >
-            {/* <select>
-                <option>Please Choose an Option</option>
-                <option>movie1</option>
-                <option>movie2</option>
-                <option>movie3</option>
-            </select> */}
-        <input
-            id="zip-input"
-            className='movie-input'
-            type='file'
-            placeholder='letterbox csv file here'
-            name = 'movies'
-            value={input.movieName}  // im not sure why this works but it does.
-            onChange={handleChange}
-        />
+    <div className='container'>
+            <h1>Welcome to Groa</h1>
+
+            <h2>As you give us more data, the richer the experience we can deliver.</h2>
+            <h2>Show, don't just tell</h2>
+        <div className='boxContainer'> 
+    <div className='boxLeft'>
+        <form className='boxInside'>
+        
+        <h3>Upload your letterboxd csv file here.</h3>
+        <div className='holder'>
+            <input className='movie-input'
+                type='file'
+                placeholder='letterbox csv file here'
+                name = 'movies'
+                value={input.movieName}  // im not sure why this works but it does.
+                onChange={handleChange}
+            /> 
+        </div>
         {/* <button id="submit-button">Groa</button> */}
         </form>
+ {/* END FORM */}        
+    </div> 
+ {/* END BOX LEFT */}   
+    <div className='boxRight'>
+        <div className='boxInside'>
+        
+        <h3>If you dont have a Letterboxd Account take our quiz, so we can get a
+        recommenation of movies for you.</h3>
+        
+        <div className='holder'>
+        <button className='btnQuiz'>Take Quiz</button>
+        </div>
+        
+        </div>
     </div>
-    {/* END FORM */}
-    <h1>If you dont have a Letterboxd Account take our quiz, so we can get a
-        recommenation of movies for you.</h1>
+{/* END BOX RIGHT */}
+    </div>
+{/* END BOX CONTAINER */}
+    </div>
+{/* END CONTAINER */}
 </div>
    )
  

@@ -4,6 +4,7 @@ import Dashboard from "./components/dashboard/index.js";
 // import Login from './auth/Login';
 // import Register from './auth/Register';
 import PostLogin from './components/auth/postLogin';
+import './components/auth/postLogin.scss';
 
 function App() {
   return (
