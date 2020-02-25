@@ -7,47 +7,76 @@ import './login.scss';
 import GroaLogo from '../../GroaLogo.png'
 
 class LoginPage extends React.Component {
- 
   
-        state = {
-          errors:[],
-          credentials: {
-            email: '',
-            password: '',
-          }
-      }
-  
-    handleChange = e => {
+  constructor(props) {
+    super(props);
 
-      this.setState({
-          credentials: {
-          ...this.state.credentials,
-          [e.target.name]: e.target.value
-          }
-          
-      });
-  
+    this.state = {
+      user: {
+        email: '',
+        password: ''
+      },
+      errors: {
+        email: '',
+        password: '' 
+      }
+      
   };
 
-  validate(email, password) {
-    const errors = [];
-    if (email.length === 0) {
-      errors.push("Name can't be empty");
-    }
-    return errors;
+
   }
+     
   
+    handleChange = e => {
+      const { name, value} = e.target;
+      let errors = this.state.errors;
+      e.preventDefault();
+      this.setState({
+          user: {
+          ...this.state.user,
+          [e.target.name]: e.target.value
+          },
+      });
+      switch (name) {
+        case 'email' :
+          errors.email =
+        value.length < 5
+        ? 'must be a valid email address'
+        : '';
+        break;
+        case 'password':
+          errors.password =
+          value.length < 4
+          ? 'Password must be more than 4 characters long'
+          : '';
+          break;
+          default:
+            break;
+      }
+  
+      this.setState({errors, [name]: value}, ()=> {
+        console.log(errors)
+      })
+  };
+  
+ 
   
   loginUser = e => {
     e.preventDefault();
     //console.log(user)
+
       axiosWithAuth()
-      .post("/api/login", this.state.credentials)
+      .post("/api/login", this.state.user)
       .then(res => {
+
         localStorage.setItem('token', res.data.payload);
         console.log(res.data.payload)
         // redirect to Groas dashboard page
-        this.props.history.push('/');
+        this.setState({submitted: true});
+        if (this.user.email && this.user.password) {
+          this.props.history.push('/');
+        }
+    
       })
       .catch(err => console.log(err));
       console.log('Login error post')
@@ -55,7 +84,7 @@ class LoginPage extends React.Component {
   
 
   render() {
-
+    const {errors} = this.state;
   return (
    
     <div className='LoginPage'>
@@ -75,8 +104,7 @@ class LoginPage extends React.Component {
                   <div className='box2b'>
                     <div className='h6text1'>Groa helps you pick the perfect film.</div>
                     <div className='h6text2'>So you can save your popcorn for the good stuff.</div>
-                    {/* <h6 className='h6text1'>Groa helps you pick the perfect film.</h6>
-                    <h6  className='h6text2'>So you can save your popcorn for the good stuff.</h6> */}
+                    
                   </div>
                 </div>
           </div>
@@ -84,28 +112,31 @@ class LoginPage extends React.Component {
           <div className='boxRight'>
           <form className='LoginForm' onSubmit={this.loginUser}>
           <h1 className='textlogin'>Log in</h1>
-          
-            <input className='input1'
+        
+          <div className={'a' + (this.submitted && !this.user.email ? 'error' : '')}/>
+          <input className='input1'  
               type="text"
               name="email"
+              value={this.email}
               onChange={this.handleChange}
               placeholder="Email"
-              value={this.email}
+              errorMessage='email required'
             />
-           
-            
-            {/* <p className="error">er{this.error}</p>
-            {this.email && this.errors.email && (
-          <p className="error">{this.errors.email}</p>
-          )} */}
+{/* ERROR MESSAGE */}
 
+      {errors.email.length > 0 && 
+        <span className='error'>{errors.email}</span>}
+  
             <input className='input1'
               type="text"
               name="password"
+              value={this.password}
               onChange={this.handleChange}
               placeholder="Password"
-              value={this.password}
             />
+
+      {errors.password.length > 0 && 
+        <span className='error'>{errors.password}</span>}
             
             <div className='TextandCheck'>
                     <div className='CheckBoxContainer'>
