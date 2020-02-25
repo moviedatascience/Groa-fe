@@ -4,7 +4,7 @@ import axiosWithAuth from '../../utils/axiosWithAuth'
 import { connect } from 'react-redux';
 import {loginAction} from '../../store/actions/loginAction';
 import './login.scss';
-import GroaLogo from '../../GroaLogo.png'
+import GroaLogoBen from '../../GroaLogoBen.png'
 
 class LoginPage extends React.Component {
   
@@ -92,7 +92,7 @@ class LoginPage extends React.Component {
       <div className='container'>
         <div className='bartop'>
            
-              <img className='Logo' src={GroaLogo} alt='GroaLogo'/>
+              <img className='Logo' src={GroaLogoBen} alt='GroaLogo'/>
               <h2 className='Register'>Register</h2>     
         </div>
         
