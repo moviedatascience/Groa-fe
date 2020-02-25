@@ -2,7 +2,7 @@ import React from "react";
 import { Route, Switch } from "react-router-dom";
 import Dashboard from "./components/dashboard/index.js";
 // import Login from './auth/Login';
-import Register from "./components/auth/register.js";
+import Register from "../src/components/auth/register.js";
 import './components/auth/register.scss'
 function App() {
   return (
