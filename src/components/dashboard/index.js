@@ -7,6 +7,7 @@ const Dashboard = () => {
     const [input, setInput] = useState({file:''})
     const [ratings, setRatings] = useState({})
     const [loading, setLoading] = useState()
+    const [toggle, setToggle] = useState(true);
     const changeHandler = e => { 
         
         let data = new FormData()
@@ -47,6 +48,7 @@ const Dashboard = () => {
        
     }
     const handleSubmit = e => { 
+        setToggle(!toggle)
         e.preventDefault();
         console.log(input);
         //change user/1/ to be :id number handle submit currently does
@@ -88,104 +90,120 @@ const Dashboard = () => {
                 
                 />
                 
-                <button id="submit-button">Groa</button>
+                {/* <button id="submit-button">Groa</button> */}
             </form>
             {/* <p className="form-directions">upload your letterboxd csv file here to get unique movie recommendations</p> */}
             <p className="form-directions">upload your letterboxd csv file here to get all past movie ratings</p>
             </div>
             {/* <div className='settings-container'>Container for settings</div> */}
             <div className='box-container'>
-               
+                
                 {ratings.length > 0 ? ratings.map((x, index) => {
-                    if(index < 400){
+                        if(index < 200){
 
-                    
-                        return (
+                        
+                            return (
 
-                            <div className="box" key={index}>
-                                <div className="movie-poster"></div>
-                                <div className="text-container">    
-                                    <h2>{x.Name}</h2>
-                                    <h2>{x.Year}</h2>
-                                    <h2>Rating: {x.Rating}</h2>
-                                    {/* <h2>{x.Letterboxd_URI}</h2> */}
-                                    {/* <div className="checkboxes">
-                                        <input type="checkbox" className="textboxsize" />
-                                        <input type="checkbox" className="textboxsize" />
-                                    </div> */}
+                                <div className="box" key={index}>
+                                    <div className="movie-poster"></div>
+                                    <div className="text-container">    
+                                        <h2>{x.Name}</h2>
+                                        <h2>{x.Year}</h2>
+                                        <h2>Rating: {x.Rating}</h2>
+                                        {/* <h2>{x.Letterboxd_URI}</h2> */}
+                                        {/* <div className="checkboxes">
+                                            <input type="checkbox" className="textboxsize" />
+                                            <input type="checkbox" className="textboxsize" />
+                                        </div> */}
+                                    </div>
+                                </div>
+                            )
+                        }
+                    }) 
+                : loading}   
+                {/* //loading} */}
+                {/* {toggle == true ? 
+                    <div className = 'box-container2'>
+                        <div className="box">
+                            <div className="movie-poster"></div>
+                            <div className="text-container">    
+                                <h2>alskdjflsjadf</h2>
+                                <h2>asldkfljsfd</h2>
+                                <h2>oweriuoiw</h2>
+                                <h2>x,cvn,mncvx</h2>
+                                <div className="checkboxes">
+                                    <input type="checkbox" className="textboxsize" />
+                                    <input type="checkbox" className="textboxsize" />
                                 </div>
                             </div>
-                        )
-                    }
-                }) : loading}
-                
-
-
-                {/* <div className="box">
-                    <div className="movie-poster"></div>
-                    <div className="text-container">    
-                        <h2>alskdjflsjadf</h2>
-                        <h2>asldkfljsfd</h2>
-                        <h2>oweriuoiw</h2>
-                        <h2>x,cvn,mncvx</h2>
-                        <div className="checkboxes">
-                            <input type="checkbox" className="textboxsize" />
-                            <input type="checkbox" className="textboxsize" />
                         </div>
-                    </div>
-                </div>
-                <div className="box">
-                    <div className="movie-poster"></div>
-                    <div className="text-container">    
-                        <h2>alskdjflsjadf</h2>
-                        <h2>asldkfljsfd</h2>
-                        <h2>oweriuoiw</h2>
-                        <h2>x,cvn,mncvx</h2>
-                        <div className="checkboxes">
-                            <input type="checkbox" className="textboxsize" />
-                            <input type="checkbox" className="textboxsize" />
+                        <div className="box">
+                            <div className="movie-poster"></div>
+                            <div className="text-container">    
+                                <h2>alskdjfsdflsjadf</h2>
+                                <h2>asldkfljsfd</h2>
+                                <h2>oweriuoiw</h2>
+                                <h2>x,cvn,mncvx</h2>
+                                <div className="checkboxes">
+                                    <input type="checkbox" className="textboxsize" />
+                                    <input type="checkbox" className="textboxsize" />
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div className="box">
-                    <div className="movie-poster"></div>
-                    <div className="text-container">    
-                        <h2>alskdjflsjadf</h2>
-                        <h2>asldkfljsfd</h2>
-                        <h2>oweriuoiw</h2>
-                        <h2>x,cvn,mncvx</h2>
-                        <div className="checkboxes">
-                            <input type="checkbox" className="textboxsize" />
-                            <input type="checkbox" className="textboxsize" />
+                        <div className="box">
+                            <div className="movie-poster"></div>
+                            <div className="text-container">    
+                                <h2>alskdjflsjadf</h2>
+                                <h2>asldkfsdfljsfd</h2>
+                                <h2>oweriuoiw</h2>
+                                <h2>x,cvn,mncvx</h2>
+                                <div className="checkboxes">
+                                    <input type="checkbox" className="textboxsize" />
+                                    <input type="checkbox" className="textboxsize" />
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div className="box">
-                    <div className="movie-poster"></div>
-                    <div className="text-container">    
-                        <h2>alskdjflsjadf</h2>
-                        <h2>asldkfljsfd</h2>
-                        <h2>oweriuoiw</h2>
-                        <h2>x,cvn,mncvx</h2>
-                        <div className="checkboxes">
-                            <input type="checkbox" className="textboxsize" />
-                            <input type="checkbox" className="textboxsize" />
+                        <div className="box">
+                            <div className="movie-poster"></div>
+                            <div className="text-container">    
+                                <h2>alskdjflsjadf</h2>
+                                <h2>asldkfljsfd</h2>
+                                <h2>owerisdfuoiw</h2>
+                                <h2>x,cvn,mncvx</h2>
+                                <div className="checkboxes">
+                                    <input type="checkbox" className="textboxsize" />
+                                    <input type="checkbox" className="textboxsize" />
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div className="box">
-                    <div className="movie-poster"></div>
-                    <div className="text-container">    
-                        <h2>alskdjflsjadf</h2>
-                        <h2>asldkfljsfd</h2>
-                        <h2>oweriuoiw</h2>
-                        <h2>x,cvn,mncvx</h2>
-                        <div className="checkboxes">
-                            <input type="checkbox" className="textboxsize" />
-                            <input type="checkbox" className="textboxsize" />
+                        <div className="box">
+                            <div className="movie-poster"></div>
+                            <div className="text-container">    
+                                <h2>alskdjflsjadf</h2>
+                                <h2>asldksdffljsfd</h2>
+                                <h2>oweriuoiw</h2>
+                                <h2>x,cvn,mncvx</h2>
+                                <div className="checkboxes">
+                                    <input type="checkbox" className="textboxsize" />
+                                    <input type="checkbox" className="textboxsize" />
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div> */}
+                        <div className="box">
+                            <div className="movie-poster"></div>
+                            <div className="text-container">    
+                                <h2>alskdjflsjadf</h2>
+                                <h2>asldksdffljsfd</h2>
+                                <h2>oweriuoiw</h2>
+                                <h2>x,cvn,mncvx</h2>
+                                <div className="checkboxes">
+                                    <input type="checkbox" className="textboxsize" />
+                                    <input type="checkbox" className="textboxsize" />
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div> : true} */}
             
                 
             </div>

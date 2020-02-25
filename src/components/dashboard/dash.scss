@@ -9,7 +9,9 @@
     flex-direction: column;
     justify-content: space-around;
     overflow-y: hidden;
-    overflow: scroll;
+    overflow: hidden scroll;
+  
+   
     background-size: contain;
     
     // overflow-x: hidden;
@@ -46,6 +48,7 @@
         text-shadow: 0px 0px 10px  white;
     }
     .loading{
+        text-align: center;
         transition:1.3s;
         text-shadow: 0px 0px 10px  white;
     }
@@ -59,14 +62,31 @@
         // border: 2px solid blue;
         display: flex;
         flex-direction:row;
-        justify-content: space-around;
+        // justify-content: space-around;
+        margin-left: 300px;
+        margin-right: 400px;
         flex-wrap: wrap;
+
+        .box-container2{
+            height: 1000px;
+            width:90%;
+            // border: 2px solid blue;
+            display: flex;
+            flex-direction:row;
+            // justify-content: space-around;
+            margin-right: 300px;
+            padding-right: 0px;
+           
+            flex-wrap: wrap;
+            // border: 2px solid red;
+
+        }
 
         .box{
             margin-top: auto;
             margin-bottom: auto;
-            height: 372px;
-            width: 469px;
+            height: 356px;
+            width: 356px;
             // border: 2px solid white;
             display: flex; 
             border-radius: .1rem;
@@ -80,16 +100,26 @@
             .movie-poster{
                 width: 200px;
                 height: 296px;
-                border: 2px solid lightGrey;
-                margin:  auto;
+                // border: 2px solid lightGrey;
+                //margin:  auto;
+                margin-left:0px;
+                margin-top: 30px;
+                margin-bottom:30px;
+                // position: absolute;
+                // left: 0%;
+                // right: 54.76%;
+                // top: 17.13%;
+                // bottom: 18.82%;
+                background: #FFFFFF; //url(Image.png),
                 &:hover{
                     box-shadow: 0px 0px 3px  white;
                 }
             }
             .text-container{
-                width: 100px;
+                width: 80px;
                 height: 200px;
                 margin: auto;
+                margin-left:100px;
                 margin-top: 40px;
                 h2{
                     margin-left: -50px;
