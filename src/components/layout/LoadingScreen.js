@@ -9,7 +9,7 @@ export default function LoadingScreen() {
   }, []);
 
   return (
-    <div>
+    <div data-test="loading-screen">
       <p>"{movieQuote.quote}"</p>
       <p>-{movieQuote.movie}</p>
       <p>Year: {movieQuote.year}</p>
