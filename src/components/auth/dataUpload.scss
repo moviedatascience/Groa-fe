@@ -1,0 +1,86 @@
+.DataUploadPage{
+    display: flex;
+    justify-content: center;
+}
+
+.textholder1{
+    
+   justify-content: center;
+   
+        h1{
+            display: flex;
+            justify-content: center;
+            font-size: 350%;
+        }
+
+        h2{
+            display: flex;
+            justify-content: center;
+        }
+
+        h3{
+            display: flex;
+            justify-content: center;
+        }     
+}
+
+.ptext{
+font-weight: 500;
+}
+
+.DboxContainer{
+    display: flex;
+    justify-content: center;
+    margin-top: 2%;
+
+    .DboxLeft{
+        width:  285px;
+        height: 500px;
+        margin-right: 20%;
+
+       .boxInside{
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            padding: 25px;   
+        }
+
+    }
+    
+    .DboxRight{
+        width:  285px;
+        height: 500px;
+
+        .boxInside{
+            display: flex;
+            flex-direction: column;
+            padding: 25px;
+        }
+    }
+
+}
+
+////////////////////UPLOAD DATA BOX///////////////////
+.UploadContainer{
+    // padding-top: 25px;
+    display: flex;
+    justify-content: center;
+    .inputholder{
+        display: flex;
+        justify-content: center;
+        padding: 10px;
+        width: 420px;
+        height: 120px;
+        border: 2px dashed black;
+
+        .uploadData{ 
+            margin-top: 45px;
+            height: 50px;
+        }
+    }
+   
+
+    .inputholder:hover{
+        border: 2px solid red;
+    }
+}
