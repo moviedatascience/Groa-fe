@@ -22,7 +22,7 @@ export default function reactGAinitialization() {
   // can add modalviews
   // ReactGA.modalview({route uri})
 
-  // loading times of js libraries?
+  // loading times of js libraries? <-- waiting to hook up to proper domain name for google analytics.
   ReactGA.timing({
     category: "JS Libraries",
     variable: "load",
