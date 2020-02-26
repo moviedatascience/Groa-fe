@@ -3,13 +3,19 @@ import { createBrowserHistory } from "history";
 
 // article source: https://levelup.gitconnected.com/using-google-analytics-with-react-3d98d709399b
 
+function logPageView() {
+  ReactGA.set({ page: window.location.pathname });
+  ReactGA.pageview(window.location.pathname);
+}
+
 export default function reactGAinitialization() {
-  console.log(process.env.REACT_APP_ANALYTICS_ID_TEST);
   ReactGA.initialize(process.env.REACT_APP_ANALYTICS_ID_TEST);
   // , {
   // debug: true // please take me out when debugging is done.
   // standardImplementation: true
   // });
+
+  logPageView();
 
   // sets any user spefic data that we might want to track.
   // ReactGA.set({
