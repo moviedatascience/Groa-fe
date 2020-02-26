@@ -8,7 +8,7 @@ import App from "./App.js";
 // creating a mock function to test if GA initialization was called.
 import reactGAinitialization from "./config/analytics.js";
 jest.mock("./config/analytics.js");
-reactGAinitialization.mockImplementation(() => true);
+reactGAinitialization.mockImplementation(() => () => null);
 
 it("renders App component", () => {
   const { container } = render(<App />);
