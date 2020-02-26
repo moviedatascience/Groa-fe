@@ -14,9 +14,9 @@ const Dashboardv1 = () => {
         data.append('movies', e.target.files[0] , e.target.files[0].name)
         //change user/1/ to be :id number
         //Groabe-env.v3umry9g8h.us-east-1.elasticbeanstalk.com/
-        axios.post('http://localhost:4000/api/users/1/upload', data,{
+        axios.post('http://groabe-env.v3umry9g8h.us-east-1.elasticbeanstalk.com/api/users/1/upload', data,{
             headers:{
-                'Content-Type':'multipart/form-data'
+                'Content-Type':'multipart/form-data'  
             }
         })
         .then(res => { 
