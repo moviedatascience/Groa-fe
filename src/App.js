@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 // local imports
 // import Dashboard from "./components/dashboard/index.js";
@@ -12,16 +12,18 @@ import reactGAinitialization from "./config/analytics.js";
 
 function App() {
   reactGAinitialization();
-  
+
   return (
-    <div className="App">
-      <Switch>
-        {/* <Route exact path="/" component={Dashboard} /> */}
-        {/* <Route path='/login' component = {Login}/>
+    <Router>
+      <div className="App" data-test="App-component">
+        <Switch>
+          {/* <Route exact path="/" component={Dashboard} /> */}
+          {/* <Route path='/login' component = {Login}/>
       <Route path='/register' component = {Register}/> */}
-        <Route exact path="/" component={LoadingScreen} />
-      </Switch>
-    </div>
+          <Route exact path="/" component={LoadingScreen} />
+        </Switch>
+      </div>
+    </Router>
   );
 }
 
