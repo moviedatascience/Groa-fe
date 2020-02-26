@@ -17,7 +17,6 @@
     "react-hook-form": "^4.9.6",
     "react-redux": "^7.2.0",
     "react-router-dom": "^5.1.2",
-    "react-router-ga": "^1.2.2",
     "react-scripts": "3.4.0",
     "redux": "^4.0.5",
     "redux-logger": "^3.0.6",
