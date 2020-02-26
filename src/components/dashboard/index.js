@@ -105,17 +105,26 @@ const Dashboard = () => {
                             return (
 
                                 <div className="box" key={index}>
-                                    <div className="movie-poster"></div>
-                                    <div className="text-container">    
-                                        <h2>{x.Name}</h2>
-                                        <h2>{x.Year}</h2>
-                                        <h2>Rating: {x.Rating}</h2>
-                                        {/* <h2>{x.Letterboxd_URI}</h2> */}
-                                        {/* <div className="checkboxes">
-                                            <input type="checkbox" className="textboxsize" />
-                                            <input type="checkbox" className="textboxsize" />
-                                        </div> */}
-                                    </div>
+                                    {/* <div className='thumbsUpDown'>
+                                        <span role='img'>Looks Cool  👎</span>
+                                        <span role='img'> Not interested 👍</span>
+                                    </div> */}
+                                    
+                                        <div className="movie-poster"></div>
+                                        
+                                        <div className="text-container">    
+                                            <h2>{x.Name}</h2>
+                                            <h2>{x.Year}</h2>
+                                            <h2>Rating: {x.Rating}</h2>
+                                            <h2>Votes:</h2>
+                                            <h2>Like by fans of: </h2>
+                                            {/* <h2>{x.Letterboxd_URI}</h2> */}
+                                            {/* <div className="checkboxes">
+                                                <input type="checkbox" className="textboxsize" />
+                                                <input type="checkbox" className="textboxsize" />
+                                            </div> */}
+                                        </div>
+                                    
                                 </div>
                             )
                         }

@@ -58,13 +58,13 @@
     }
     .box-container{
         height: 1000px;
-        width:100%;
+        width:90%;
         // border: 2px solid blue;
         display: flex;
         flex-direction:row;
         // justify-content: space-around;
         margin-left: 300px;
-        margin-right: 400px;
+        margin-right: 600px;
         flex-wrap: wrap;
 
         .box-container2{
@@ -84,9 +84,9 @@
 
         .box{
             margin-top: auto;
-            margin-bottom: auto;
-            height: 356px;
-            width: 356px;
+            // margin-bottom: auto;
+            height: 380px;
+            width: 347px;
             // border: 2px solid white;
             display: flex; 
             border-radius: .1rem;
@@ -98,13 +98,13 @@
                 -10px -0px 20px #ffffff;
             }
             .movie-poster{
-                width: 200px;
-                height: 296px;
+                width:164px;
+                height: 246px;
                 // border: 2px solid lightGrey;
                 //margin:  auto;
                 margin-left:0px;
-                margin-top: 30px;
-                margin-bottom:30px;
+                margin-top: 68px;
+                margin-bottom:66px;
                 // position: absolute;
                 // left: 0%;
                 // right: 54.76%;
@@ -119,8 +119,8 @@
                 width: 80px;
                 height: 200px;
                 margin: auto;
-                margin-left:100px;
-                margin-top: 40px;
+                margin-left:75px;
+                margin-top: 70px;
                 h2{
                     margin-left: -50px;
                     font-size: 1rem;
