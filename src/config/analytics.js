@@ -6,6 +6,7 @@ import { createBrowserHistory } from "history";
 export default function reactGAinitialization() {
   ReactGA.initialize(process.env.REACT_APP_ANALYTICS_ID_TEST, {
     // debug: true // please take me out when debugging is done.
+    standardImplementation: true
   });
 
   // sets any user spefic data that we might want to track.
