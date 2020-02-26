@@ -13,11 +13,11 @@ class LoginPage extends React.Component {
 
     this.state = {
       user: {
-        email: '',
+        username: '',
         password: ''
       },
       errors: {
-        email: '',
+        username: '',
         password: '' 
       }
       
@@ -38,10 +38,10 @@ class LoginPage extends React.Component {
           },
       });
       switch (name) {
-        case 'email' :
-          errors.email =
+        case 'username' :
+          errors.username =
         value.length < 5
-        ? 'must be a valid email address'
+        ? 'must be a valid username'
         : '';
         break;
         case 'password':
@@ -66,14 +66,14 @@ class LoginPage extends React.Component {
     //console.log(user)
 
       axiosWithAuth()
-      .post("/api/login", this.state.user)
+      .post("/api/users/login", this.state.user)
       .then(res => {
 
         localStorage.setItem('token', res.data.payload);
         console.log(res.data.payload)
         // redirect to Groas dashboard page
         this.setState({submitted: true});
-        if (this.user.email && this.user.password) {
+        if (this.user.username && this.user.password) {
           this.props.history.push('/');
         }
     
@@ -113,19 +113,19 @@ class LoginPage extends React.Component {
           <form className='LoginForm' onSubmit={this.loginUser}>
           <h1 className='textlogin'>Log in</h1>
         
-          <div className={'a' + (this.submitted && !this.user.email ? 'error' : '')}/>
+          <div className={'a' + (this.submitted && !this.user.username ? 'error' : '')}/>
           <input className='input1'  
               type="text"
-              name="email"
-              value={this.email}
+              name="username"
+              value={this.username}
               onChange={this.handleChange}
-              placeholder="Email"
-              errorMessage='email required'
+              placeholder="Username or email required"
+              errorMessage='username required'
             />
 {/* ERROR MESSAGE */}
 
-      {errors.email.length > 0 && 
-        <span className='error'>{errors.email}</span>}
+      {errors.username.length > 0 && 
+        <span className='error'>{errors.username}</span>}
   
             <input className='input1'
               type="text"
