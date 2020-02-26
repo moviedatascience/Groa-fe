@@ -4,10 +4,12 @@ import { createBrowserHistory } from "history";
 // article source: https://levelup.gitconnected.com/using-google-analytics-with-react-3d98d709399b
 
 export default function reactGAinitialization() {
-  ReactGA.initialize(process.env.REACT_APP_ANALYTICS_ID_TEST, {
-    // debug: true // please take me out when debugging is done.
-    standardImplementation: true
-  });
+  console.log(process.env.REACT_APP_ANALYTICS_ID_TEST);
+  ReactGA.initialize(process.env.REACT_APP_ANALYTICS_ID_TEST);
+  // , {
+  // debug: true // please take me out when debugging is done.
+  // standardImplementation: true
+  // });
 
   // sets any user spefic data that we might want to track.
   // ReactGA.set({
@@ -15,10 +17,10 @@ export default function reactGAinitialization() {
   // });
 
   // initialize google analytics page view tracking
-  createBrowserHistory().listen(location => {
-    ReactGA.set({ page: location.pathname }); // Update the user's current page
-    ReactGA.pageview(location.pathname); // Record a pageview for the given page
-  });
+  // createBrowserHistory().listen(location => {
+  //   ReactGA.set({ page: location.pathname }); // Update the user's current page
+  //   ReactGA.pageview(location.pathname); // Record a pageview for the given page
+  // });
 
   // can add modalviews
   // ReactGA.modalview({route uri})
