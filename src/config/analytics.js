@@ -4,7 +4,7 @@ import { createBrowserHistory } from "history";
 // article source: https://levelup.gitconnected.com/using-google-analytics-with-react-3d98d709399b
 
 export default function reactGAinitialization() {
-  ReactGA.initialize(process.env.REACT_APP_ANALYTICS_ID, {
+  ReactGA.initialize(process.env.REACT_APP_ANALYTICS_ID_TEST, {
     debug: true // please take me out when debugging is done.
   });
 
