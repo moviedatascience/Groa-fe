@@ -13,11 +13,11 @@ class LoginPage extends React.Component {
 
     this.state = {
       user: {
-        username: '',
+        user_name: '',
         password: ''
       },
       errors: {
-        username: '',
+        user_name: '',
         password: '' 
       }
       
@@ -38,10 +38,10 @@ class LoginPage extends React.Component {
           },
       });
       switch (name) {
-        case 'username' :
-          errors.username =
+        case 'user_name' :
+          errors.user_name =
         value.length < 5
-        ? 'must be a valid username'
+        ? 'must be a valid user name'
         : '';
         break;
         case 'password':
@@ -72,8 +72,7 @@ class LoginPage extends React.Component {
         localStorage.setItem('token', res.data.payload);
         console.log(res.data.payload)
         // redirect to Groas dashboard page
-        this.setState({submitted: true});
-        if (this.user.username && this.user.password) {
+        if (this.user.user_name && this.user.password) {
           this.props.history.push('/');
         }
     
@@ -113,19 +112,19 @@ class LoginPage extends React.Component {
           <form className='LoginForm' onSubmit={this.loginUser}>
           <h1 className='textlogin'>Log in</h1>
         
-          <div className={'a' + (this.submitted && !this.user.username ? 'error' : '')}/>
+          <div className={'a' + (this.submitted && !this.user.user_name ? 'error' : '')}/>
           <input className='input1'  
               type="text"
-              name="username"
-              value={this.username}
+              name="user_name"
+              value={this.user_name}
               onChange={this.handleChange}
               placeholder="Username or email required"
               errorMessage='username required'
             />
 {/* ERROR MESSAGE */}
 
-      {errors.username.length > 0 && 
-        <span className='error'>{errors.username}</span>}
+      {errors.user_name.length > 0 && 
+        <span className='error'>{errors.user_name}</span>}
   
             <input className='input1'
               type="text"
