@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { createBrowserHistory } from "history";
 
 // local imports
 // import Dashboard from "./components/dashboard/index.js";
@@ -15,7 +16,7 @@ function App() {
   reactGAinitialization();
 
   return (
-    <Router>
+    <Router history={createBrowserHistory()}>
       <div className="App" data-test="App-component">
         <Switch>
           {/* <Route exact path="/" component={Dashboard} /> */}
