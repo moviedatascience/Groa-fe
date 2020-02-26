@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-// import { createBrowserHistory } from "history";
 
 // local imports
 // import Dashboard from "./components/dashboard/index.js";
