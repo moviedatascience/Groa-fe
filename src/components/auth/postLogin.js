@@ -50,37 +50,47 @@ const [input, setInput] = useState({file:''})
 return (
 <div className='PostLoginPage'>
     <div className='container'>
-            <h1>Welcome to Groa</h1>
+            <div className='textholder1'> 
+                    <h1>Groa grows with you.</h1>
+                    <h3>The more movies your rate, 
+                        <br/>
+                    the better your recommenations.</h3>
 
-            <h2>As you give us more data, the richer the experience we can deliver.</h2>
-            <h2>Show, don't just tell</h2>
+                    <h2>Select how you'd like to join:</h2>
+            </div>
         <div className='boxContainer'> 
     <div className='boxLeft'>
         <form className='boxInside'>
-        
-        <h3>Upload your letterboxd csv file here.</h3>
+        <div className='image1'/>
+        <div className='image2'/>
+        <h3>Upload ratings from Letterboxd or IMDb</h3>
+        <h4>For users who already have accounts on these popular film rating sites.</h4>
+
         <div className='holder'>
-            <input className='movie-input'
+        <button className='btn'>Select</button>
+        </div>
+
+        {/* UPLOAD FILE */}
+            {/* <input className='movie-input'
                 type='file'
                 placeholder='letterbox csv file here'
                 name = 'movies'
                 value={input.movieName}  // im not sure why this works but it does.
                 onChange={handleChange}
-            /> 
-        </div>
-        {/* <button id="submit-button">Groa</button> */}
+            />  */}
+    
         </form>
  {/* END FORM */}        
     </div> 
  {/* END BOX LEFT */}   
     <div className='boxRight'>
         <div className='boxInside'>
-        
-        <h3>If you dont have a Letterboxd Account take our quiz, so we can get a
-        recommenation of movies for you.</h3>
+        <div className='image2'/>
+        <h3>Recommendation <br/> setup wizard</h3>
+        <h4>For users who want to use Groa without uploading data.</h4>
         
         <div className='holder'>
-        <button className='btnQuiz'>Take Quiz</button>
+        <button className='btn'>Select</button>
         </div>
         
         </div>

@@ -1,66 +1,84 @@
 .PostLoginPage{
     display: flex;
     justify-content: center;
-    min-height: 100vh;  
-    background-image: linear-gradient(to bottom, black 0%,  rgba(0, 0, 0, .9),
-    rgba(0, 0, 0, .70),rgba(0, 0, 0, .85));
+    border: 2px solid blue;
 }
 
+.textholder1{
+    
+   justify-content: center;
+   border: 2px solid green;
+   
+        h1{
+            display: flex;
+            justify-content: center;
+            font-size: 350%;
+        }
+
+        h2{
+            display: flex;
+            justify-content: center;
+        }z
+
+        h3{
+            display: flex;
+            justify-content: center;
+        }
+}
+
+.image1{
+    display: flex;
+    justify-content: center;
+    height: 100px;
+    width: 200px;
+    background: gray;
+    margin-bottom: 8%;
+}
+
+.image2{
+    height: 100px;
+    width: 200px;
+    background: gray;
+}
 
 
 .container{
     display: flex;
     flex-direction: column; 
-    margin-top: 2%;
-    h1{
-        display: flex;
-        justify-content: center; 
-        color: white;
-        
-    }
-
-    h2{
-        display: flex;
-        justify-content: center; 
-        color: white;
-    }
-
-    h3{
-        display: flex;
-        justify-content: center; 
-    }
-
-
+    width: 90%;
+    border: 2px solid red;
 }
+
 .boxContainer{
     display: flex;
+    justify-content: center;
     margin-top: 5%;
+   border: 2px solid blue;
 
     .boxLeft{
-        background: white;
-        width:  500px;
-        height: 256px;
-       margin-right: 4%;
+        width:  285px;
+        height: 500px;
+        margin-right: 20%;
+        border: 2px solid black;
 
        .boxInside{
             display: flex;
+            justify-content: center;
             flex-direction: column;
             padding: 25px;   
-
-            .holder{
-                display: flex;
-                justify-content: center;
-                padding-top: 50px;
-            }
-            
         }
+
+        .holder{
+            display: flex;
+            justify-content: center;
+        }   
     }
     
     .boxRight{
-        background: white;
-        width:  500px;
-        height: 256px;
-        margin-left: 4%;
+        width:  285px;
+        height: 400px;
+        // margin-left: 40%;
+        border: 2px solid black;
 
         .boxInside{
             display: flex;
@@ -82,8 +100,10 @@
     width: 300px;
 }
 
-.btnQuiz{
-    padding: 10px;
-    background: gray;
-    width: 256px;
+.btn{
+    color: white;
+    font-size: 25px;
+    background: black;
+    height: 51px;
+    width: 255px;
 }
