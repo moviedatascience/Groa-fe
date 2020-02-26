@@ -9,10 +9,7 @@ function logPageView() {
 }
 
 export default function reactGAinitialization() {
-  ReactGA.initialize(process.env.REACT_APP_ANALYTICS_ID_TEST, {
-    // debug: true // please take me out when debugging is done.
-    standardImplementation: true
-  });
+  ReactGA.initialize(process.env.REACT_APP_ANALYTICS_ID_TEST);
 
   logPageView();
 
