@@ -10,7 +10,7 @@ class Register extends React.Component {
             user: {
                
                 email: '',
-                username:'',
+                user_name:'',
                 password: '',
                 confirmPassword: ''
             },
@@ -80,16 +80,16 @@ class Register extends React.Component {
                                 <div className="callingError">Email is required</div>
                             }
 
-                            <div className={'forms' + (submitted && !user.username ? ' has-error' : '')}></div>
+                            <div className={'forms' + (submitted && !user.user_name ? ' has-error' : '')}></div>
                             <input className="form-control" 
                             type="text" 
-                            name="Username" 
-                            value={user.Username} 
+                            name="User_name" 
+                            value={user.User_name} 
                             onChange={this.handleChange} 
                             placeholder='Username'
                             />
-                            {submitted && !user.Username &&
-                                <div className="callingError">Username is required</div>
+                            {submitted && !user.User_name &&
+                                <div className="callingError">User_name is required</div>
                             }
                         
                             <div className={'forms' + (submitted && !user.password ? ' has-error' : '')}></div>
