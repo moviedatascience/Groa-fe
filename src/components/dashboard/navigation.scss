@@ -1,0 +1,41 @@
+.mainContainer{
+    border: 2px solid red;
+    background: #373737;
+    margin: 30px;
+    display: flex;
+    justify-content: space-evenly;
+    
+    
+    .Links{
+        width: 75%;
+        display: flex;
+        justify-content: space-evenly;
+
+        .NavLink{
+            color: white;
+            text-decoration: none;
+        }
+    }
+
+    .searchContainer {
+        border: 1px solid black;
+        border-radius: 5px;
+        width: 200px;
+        padding-left: 15px;
+        background:white ;
+        
+        .search-icon{
+            padding-left: 10px;
+        }
+
+        .searchBox {
+            padding: 0.5rem;
+        }  
+    }   
+    
+    .bell-icon, .question-icon, .user-circle-icon, .angle-down-icon{
+        color: white;
+        
+    }
+
+}    
