@@ -1,5 +1,6 @@
 import React from 'react';
 import axiosWithAuth from '../../utils/axiosWithAuth'
+import { NavLink } from "react-router-dom";
 
 import { connect } from 'react-redux';
 import {loginAction} from '../../store/actions/loginAction';
@@ -55,7 +56,7 @@ class LoginPage extends React.Component {
       }
   
       this.setState({errors, [name]: value}, ()=> {
-        console.log(errors)
+        
       })
   };
   
@@ -69,16 +70,15 @@ class LoginPage extends React.Component {
       .post("/api/users/login", this.state.user)
       .then(res => {
 
-        localStorage.setItem('token', res.data.payload);
-        console.log(res.data.payload)
-        // redirect to Groas dashboard page
+        localStorage.setItem('token', res.data.token);
+        //redirect to Groas dashboard page
         if (this.user.user_name && this.user.password) {
           this.props.history.push('/');
         }
     
       })
       .catch(err => console.log(err));
-      console.log('Login error post')
+      
   };
   
 
@@ -92,20 +92,21 @@ class LoginPage extends React.Component {
         <div className='bartop'>
            
               <img className='Logo' src={GroaLogoBen} alt='GroaLogo'/>
-              <h2 className='Register'>Register</h2>     
+              {/* <h2 className='Register'>Register</h2> */}
+              {/* <NavLink to='/register'><h2 className='Register'>Register</h2></NavLink>     */}
         </div>
         
         <div className='Middle'>
           <div className='boxLeft'>
             <h1 className='Text'>Your movies,<br/> your way.</h1>
-                <div className='box1'/>
+                {/* <div className='box1'/>
                 <div className='box2'>
                   <div className='box2b'>
                     <div className='h6text1'>Groa helps you pick the perfect film.</div>
                     <div className='h6text2'>So you can save your popcorn for the good stuff.</div>
                     
                   </div>
-                </div>
+                </div> */}
           </div>
 
           <div className='boxRight'>
@@ -127,7 +128,7 @@ class LoginPage extends React.Component {
         <span className='error'>{errors.user_name}</span>}
   
             <input className='input1'
-              type="text"
+              type="password"
               name="password"
               value={this.password}
               onChange={this.handleChange}
@@ -149,18 +150,31 @@ class LoginPage extends React.Component {
                     </div>
             </div>
             
-              <h4 className='textOr'>or</h4>
+            {/* <div class="searchContainer"> */}
+            <i class="fa fa-search searchIcon"></i>
+            <input className='input1'
+              type="password"
+              name="password"
+              value={this.password}
+              onChange={this.handleChange}
+              placeholder="Search..."
+            />
+            {/* </div> */}
+
+              {/* <h4 className='textOr'>or</h4> */}
             
 
-            {/* Log in Google */}
-            <button className='BtnLoginWith'>Log in with Google</button>
-            {/* Log in Facebook */}
-            <button className='BtnLoginWith'>Log in with Facebook</button>
-            {/* Log in Reddit */}
-            <button className='BtnLoginWith'>Log in with Reddit</button>
+          {/* Log in Google */}
+            {/* <button className='BtnLoginWith'>Log in with Google</button> */}
+          {/* Log in Facebook */}
+            {/* <button className='BtnLoginWith'>Log in with Facebook</button> */}
+          {/* Log in Reddit */}
+            {/* <button className='BtnLoginWith'>Log in with Reddit</button> */}
             
             <div className='BtnContainer'>
             <button className='BtnLogin'>Log in</button>
+            
+           
             </div>
 
             </form>
