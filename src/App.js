@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { ifDev } from "./utils/removeAttribute.js";
 
 // local imports
 // import Dashboard from "./components/dashboard/index.js";
@@ -16,7 +17,7 @@ function App() {
 
   return (
     <Router>
-      <div className="App" data-test="App-component">
+      <div className="App" data-test={ifDev("App-component")}>
         <Switch>
           {/* <Route exact path="/" component={Dashboard} /> */}
           {/* <Route path='/login' component = {Login}/>
