@@ -1,8 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
-
-
+import './register.scss'
+import { axiosWithAuth } from '../../utils/axiosWithAuth.js';
+import { withRouter } from 'react-router-dom'; 
+import axios from 'axios';
 class Register extends React.Component {
+
     constructor(props) {
         super(props);
 
@@ -12,16 +15,22 @@ class Register extends React.Component {
                 email: '',
                 user_name:'',
                 password: '',
-                confirmPassword: ''
+                confirmpassword: ''
             },
-            submitted: false
+            submitted: false,
+            input: {
+                file:"",
+                movies:""
+            },
         };
 
         this.handleChange = this.handleChange.bind(this);
+        this.changeHandler = this.changeHandler.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     handleChange(event) {
+        console.log(event.target.value)
         const { name, value } = event.target;
         const { user } = this.state;
         this.setState({
@@ -29,22 +38,86 @@ class Register extends React.Component {
                 ...user,
                 [name]: value
             }
+            
+            
+        });
+    }
+   
+    changeHandler(e) { 
+        
+        let data = new FormData()
+        data.append('movies', e.target.files[0] , e.target.files[0].name)
+
+        console.log('data change handler', data);
+        const { input } = this.state;
+        this.setState({
+            input: {
+                
+                [e.target.name]: data
+            }
+            
+            
         });
     }
 
     handleSubmit(event) {
         event.preventDefault();
-
+        
         this.setState({ submitted: true });
-        const { user } = this.state;
-        if (user.email && user.username && user.password && user.ConfirmPassword) {
-            this.props.register(user);
+        console.log('username, and password', this.state.user.username, this.state.user.password)
+        // const { user } = this.state;
+        if (this.state.user.email && this.state.user.username && this.state.user.password && this.state.user.confirmpassword) {
+            // this.props.register(user);
+            console.log('username, and password', this.state.user.username, this.state.user.password)
+            
+            axiosWithAuth()
+            .post('/register', {username: this.state.user.username, password: this.state.user.password})
+            .then(res => {
+                axiosWithAuth()
+                .post('/login', {username: this.state.user.username, password: this.state.user.password})
+                .then(res2 => { 
+                    console.log('nested login successful', res)
+                    localStorage.setItem('token', res.data.token)
+                    const userid = res.data.id;
+                    this.props.history.push('/dashboard')
+                    
+                    
+                    console.log('form data', this.state.input.movies)
+                  
+
+                    axios.post(`https://stylingbranch-groa-be.herokuapp.com/api/users/${userid}/upload`, this.state.input.movies, {
+                        headers:{
+                            'Content-Type':'multipart/form-data'  
+                        }
+                    })
+                    .then(res => { 
+                        console.log(res);
+                        
+                    }).catch(err => { 
+                        console.log(err)
+                    })
+                    
+                })
+                .catch(err2 => { 
+                    console.log(err2)
+                    this.props.history.push('/Error')
+                })
+                
+            })
+            .catch(err => {
+                console.log('Registration Error', err)
+                this.props.history.push('/Error')
+            })
+
+            
+
         }
     }
 
     render() {
         const { registering  } = this.props;
         const { user, submitted } = this.state;
+        const { location, history } = this.props;
         return (
             <div className="container"> 
 
@@ -71,25 +144,25 @@ class Register extends React.Component {
                             <div className={'forms' + (submitted && !user.email ? ' has-error' : '')}></div>
                             <input className="form-control" 
                             type="text" 
-                            name="Email" 
-                            value={user.Email} 
+                            name="email" 
+                            value={user.email} 
                             onChange={this.handleChange} 
                             placeholder='Email'
                             />
-                            {submitted && !user.Email &&
+                            {submitted && !user.email &&
                                 <div className="callingError">Email is required</div>
                             }
 
                             <div className={'forms' + (submitted && !user.user_name ? ' has-error' : '')}></div>
                             <input className="form-control" 
                             type="text" 
-                            name="User_name" 
-                            value={user.User_name} 
+                            name="username" 
+                            value={user.username} 
                             onChange={this.handleChange} 
                             placeholder='Username'
                             />
-                            {submitted && !user.User_name &&
-                                <div className="callingError">User_name is required</div>
+                            {submitted && !user.username &&
+                                <div className="callingError">Username is required</div>
                             }
                         
                             <div className={'forms' + (submitted && !user.password ? ' has-error' : '')}></div>
@@ -105,15 +178,15 @@ class Register extends React.Component {
                             }
                         
                     
-                            <div className={'forms' + (submitted && !user.ConfirmPassword ? ' has-error' : '')}></div>
-                            <input className="form-control" 
+                            <div className={'forms' + (submitted && !user.confirmpassword ? ' has-error' : '')}></div>
+                            <input className ="confirmPass" className="form-control" 
                             type="password" 
-                            name="ConfirmPassword" 
-                            value={user.ConfirmPassword} 
+                            name="confirmpassword" 
+                            value={user.confirmpassword} 
                             onChange={this.handleChange} 
                             placeholder='Confirm Password'
                             />
-                            {submitted && !user.ConfirmPassword &&
+                            {submitted && !user.confirmpassword &&
                                 <div className="callingError">Confirm Password is required</div>
                             }
                             
@@ -129,10 +202,30 @@ class Register extends React.Component {
             
                             <h4> _________________________  or  ________________________</h4>
 
-                            <button className="LogBtn">Login with Google</button>
+                            {/* <button className="LogBtn">Login with Google</button>
                             <button className="LogBtn">Login with Facebook</button>
                             <button className="LogBtn">Login with Reddit</button>
-                            
+                             */}
+                            {/* <div className="form-hover">
+                                <form className="LogBtn" //id="zip-form"           
+                                onSubmit = {this.handleSubmit}> */}
+                                    <input
+                                        className="LogBtn"
+                                        id="zip-input"
+                                        // className='movie-input'
+                                        type='file'
+                                        placeholder='letterbox csv file here'
+                                        name = 'movies'
+                                        value= {this.state.input.movieName}  // im not sure why this works but it does.
+                                        onChange={this.changeHandler}
+                                    
+                                    
+                                    />
+                                    
+                                    
+                                    <p className="LogBtn">upload your letterboxd csv file here to get all past movie ratings</p>
+                                {/* </form>
+                            </div> */}
                             <div className="BottomLogin">
                                 <button className="LoginBtn">Login </button>
                                 {registering}
@@ -158,5 +251,5 @@ const mapStateToProps = state => {
     };
 };
 
-export default connect
-(mapStateToProps)(Register);
+export default withRouter(connect
+(mapStateToProps)(Register));
