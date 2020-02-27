@@ -14,7 +14,7 @@ const Dashboardv1 = () => {
         data.append('movies', e.target.files[0] , e.target.files[0].name)
         //change user/1/ to be :id number
         //Groabe-env.v3umry9g8h.us-east-1.elasticbeanstalk.com/
-        axios.post('https://stylingbranch-groa-be.herokuapp.com/api/users/3/upload', data,{
+        axios.post('https://stylingbranch-groa-be.herokuapp.com/api/users/1/upload', data,{
             headers:{
                 'Content-Type':'multipart/form-data'  
             }
@@ -72,7 +72,7 @@ const Dashboardv1 = () => {
 
     return (
         
-        <div className='DB-Container'>
+        <div data-test="dashboard-screen" className='DB-Container'>
             <div className='h2-p' ><h2>Welcome to the dashboard.</h2></div>
             
             <div className="form-hover">
@@ -96,15 +96,15 @@ const Dashboardv1 = () => {
             <p className="form-directions">upload your letterboxd csv file here to get all past movie ratings</p>
             </div>
             {/* <div className='settings-container'>Container for settings</div> */}
-            <div className='box-container'>
+            <div data-test="box-container" className='box-container'>
                 
                 {ratings.length > 0 ? ratings.map((x, index) => {
-                        if(index < 200){
+                        if(index < 201){
 
                         
                             return (
 
-                                <div className="box" key={index}>
+                                <div data-test="box" className="box" key={index}>
                                     {/* <div className='thumbsUpDown'>
                                         <span role='img'>Looks Cool  👎</span>
                                         <span role='img'> Not interested 👍</span>
