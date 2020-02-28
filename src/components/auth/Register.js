@@ -130,11 +130,11 @@ class Register extends React.Component {
                                         <h1>Your movies,  your way. </h1>
                                     </div>
 
-                                    <div className="box1"/> 
+                                    {/* <div className="box1"/> 
                                 <div className="box2">
                                 <h5 className='h5text'>Groa Helps you pick the perfect film,</h5>
                                 <h5  className='h5text'>So you can save your popcorn for the good stuff.</h5>
-                                </div> 
+                                </div>  */}
                             </div>
                         
                      <div className="boxRight">
