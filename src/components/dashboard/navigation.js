@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { NavLink } from "react-router-dom";
-import { faSearch,faUserCircle,faAngleDown } from '@fortawesome/free-solid-svg-icons';
+import { faSearch,faUserCircle,faAngleDown,faBars } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import "../dashboard/navigation.scss";
 import {faBell, faQuestionCircle} from '@fortawesome/free-regular-svg-icons';
@@ -22,10 +22,18 @@ class Navigation extends Component {
         return(
 
             <div className="mainContainer">
+                <div className="Bars">
+                <FontAwesomeIcon 
+                className='bars-icon' 
+                icon={faBars}
+              />
+              <i class="far fa-bars"></i>
+               </div>
 
+        
                 <div className="Links">
                     
-                <NavLink className='NavLink' to="/">
+                <NavLink className='Groa' to="/">
                     Groa 
                 </NavLink>
 
@@ -84,6 +92,8 @@ class Navigation extends Component {
                 icon={faAngleDown}
               />
                <i class="far fa-angle-down"></i>
+
+
             </div>
         )
     }
