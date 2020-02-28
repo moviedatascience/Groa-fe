@@ -92,21 +92,21 @@ class LoginPage extends React.Component {
         <div className='bartop'>
            
               <img className='Logo' src={GroaLogoBen} alt='GroaLogo'/>
-              {/* <h2 className='Register'>Register</h2> */}
+              <h2 className='Register'>Register</h2>
               {/* <NavLink to='/register'><h2 className='Register'>Register</h2></NavLink>     */}
         </div>
         
         <div className='Middle'>
           <div className='boxLeft'>
             <h1 className='Text'>Your movies,<br/> your way.</h1>
-                {/* <div className='box1'/>
+                <div className='box1'/>
                 <div className='box2'>
                   <div className='box2b'>
                     <div className='h6text1'>Groa helps you pick the perfect film.</div>
                     <div className='h6text2'>So you can save your popcorn for the good stuff.</div>
                     
                   </div>
-                </div> */}
+                </div>
           </div>
 
           <div className='boxRight'>
