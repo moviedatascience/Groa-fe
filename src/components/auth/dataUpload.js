@@ -1,13 +1,43 @@
 import React, {useState} from 'react';
 import axios from 'axios';
+import './dataUpload.scss'
 
 export default function DataUpload() {
-
 
 
 const [input, setInput] = useState({file:''})
     const [ratings, setRatings] = useState({})
     const [loading, setLoading] = useState()
+
+  
+
+
+function clikL() {
+    document.getElementById("myDropdownL").classList.toggle("show");
+  }
+
+function clikR() {
+    document.getElementById("myDropdownR").classList.toggle("show");
+  }  
+
+  window.onclick = function(event) {
+    if (!event.target.matches('.dropbtn')) {
+      var dropdowns = document.getElementsByClassName("dropdown-content");
+      var i;
+      for (i = 0; i < dropdowns.length; i++) {
+        var openDropdown = dropdowns[i];
+        if (openDropdown.classList.contains('show')) {
+          openDropdown.classList.remove('show');
+        }
+      }
+    }
+  }
+
+
+
+
+
+ 
 
     const handleChange = e => { 
         let data = new FormData()
@@ -22,6 +52,7 @@ const [input, setInput] = useState({file:''})
         .then(res => { 
             console.log(res);
             setRatings(res.data)
+            // this.props.history.push('/dashboard');
         }).catch(err => { 
             console.log(err)
         })
@@ -58,28 +89,56 @@ return (
                     either LetterBoxd or IMDb:</h3>
 
             </div>
-        <div className='DboxContainer'> 
-    <div className='DboxLeft'>
-        <form className='boxInside'>
-        <div className='image1'/>
-        <p className='ptext'>1.Log in to Letterboxd</p>
-        <p className='ptext'>2.Click on your username and select SETTINGS from the dropdown menu.</p>
-        <p className='ptext'>3.Go to the IMPORT and XPORT tab, then click EXPORT YOUR DATA. Save the ratings.csv file somwhere
-            convenient like your desktop or downloads folder.</p>
-        <p className='ptext'>4.Click to browse or simply drop your .csv file below</p>
+
+        {/* <div className="dropdown">
+        <button onClick={clik1} className="dropbtn">Expand</button>
+            <div id="myDropdown" className="dropdown-content">
+                <a href="#home">Home</a>
+                <a href="#about">About</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </div> */}
+                        
+            
+        <div className='DboxContainer'>
+        
+        <div className="dropdown">
+        <button onClick={clikL} className="dropbtn">Instructions LetterBoxd</button>
+            <div id="myDropdownL" className="dropdown-content">
+                <div className='DboxLeft'>
+                    <form className='boxInside'>
+                        <p className='ptext'>1.Log in to Letterboxd</p>
+                        <p className='ptext'>2.Click on your username and select SETTINGS from the dropdown menu.</p>
+                        <p className='ptext'>3.Go to the IMPORT and XPORT tab, then click EXPORT YOUR DATA. Save the ratings.csv file somwhere
+                            convenient like your desktop or downloads folder.</p>
+                        <p className='ptext'>4.Click to browse or simply drop your .csv file below</p>
+                    </form>
+                </div>
+            </div>
+        </div>
 
 
-        </form>
- {/* END FORM */}        
-    </div> 
- {/* END BOX LEFT */}   
+        <div className="dropdown">
+        <button onClick={clikR} className="dropbtn">Instructions IMDb</button>
+            <div id="myDropdownR" className="dropdown-content">
+                <div className='DboxRight'>
+                    <form className='boxInside'>
+                        <p className='ptext'>1.Log in to IMDb</p>
+                        <p className='ptext'>2.Click on your username and select YOUR RATINGS fromthe dropdown menu.</p>
+                        <p className='ptext'>3.Click on the icon and select Export. Save the ratings.csv file somwhere convenient like your desktop or downloads folder.</p>
+                        <p className='ptext'>4.Click to browse or simply drop your .csv file below</p>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+     
+   
+
     <div className='DboxRight'>
         <div className='boxInside'>
-        <div className='image2'/>
-        <p className='ptext'>1.Log in to IMDb</p>
-        <p className='ptext'>2.Click on your username and select YOUR RATINGS fromthe dropdown menu.</p>
-        <p className='ptext'>3.Click on the icon and select Export. Save the ratings.csv file somwhere convenient like your desktop or downloads folder.</p>
-        <p className='ptext'>4.Click to browse or simply drop your .csv file below</p>
+        
+        
         
         </div>
     </div>

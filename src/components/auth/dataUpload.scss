@@ -32,9 +32,9 @@ font-weight: 500;
     display: flex;
     justify-content: center;
     margin-top: 2%;
-
+    border:2px solid blue;
     .DboxLeft{
-        width:  285px;
+        width:  300px;
         height: 500px;
         margin-right: 20%;
 
@@ -48,17 +48,73 @@ font-weight: 500;
     }
     
     .DboxRight{
-        width:  285px;
+        width:  300px;
         height: 500px;
-
+        
         .boxInside{
             display: flex;
             flex-direction: column;
             padding: 25px;
         }
     }
+  
 
 }
+
+/////////////////////////HIDE/SHOW TEXT INFO/////////////////
+//////////////////////////////////////////////////////////
+
+.dropbtn {
+    background-color: rgb(0, 123, 206);
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .dropbtn:hover, .dropbtn:focus {
+    background-color: rgb(0, 153, 255);
+  }
+  
+  .dropdown {
+      
+    // width: 50%;
+    position: relative;
+    display: inline-block;
+    border:2px solid red;
+  }
+  
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    overflow: auto;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+
+  .dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+
+  .dropdown-content p {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+
+  .dropdown a:hover {background-color: #ddd;}
+
+.show {display: block;}
+
+
 
 ////////////////////UPLOAD DATA BOX///////////////////
 .UploadContainer{
