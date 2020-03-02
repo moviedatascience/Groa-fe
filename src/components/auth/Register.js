@@ -73,10 +73,29 @@ class Register extends React.Component {
             // this.props.register(user);
             console.log('username, and password', this.state.user.user_name, this.state.user.password)
             
-            axios.post('http://groabe-env.v3umry9g8h.us-east-1.elasticbeanstalk.com/api/users/register', {user_name: this.state.user.user_name, password: this.state.user.password})
+            axios.post('http://groabe-env.v3umry9g8h.us-east-1.elasticbeanstalk.com/api/users/register', {
+            
+                headers: {
+                    "Pragma": "public",
+                    "Expires": 0,
+                    "Cache-Control": "must-revalidate, post-check=0, pre=check=0",
+                    "Cache-Control": "public",
+                    "Content-description": "File Transfer",
+                    "Content-type": "application/octet-stream",
+                }},
+            {user_name: this.state.user.user_name, password: this.state.user.password})
             .then(res => {
                 localStorage.setItem('token', res.data.token)
-                axios.post('http://groabe-env.v3umry9g8h.us-east-1.elasticbeanstalk.com/api/users/login', {user_name: this.state.user.user_name, password: this.state.user.password})
+                axios.post('http://groabe-env.v3umry9g8h.us-east-1.elasticbeanstalk.com/api/users/login', {
+                    headers: {
+                        "Pragma": "public",
+                        "Expires": 0,
+                        "Cache-Control": "must-revalidate, post-check=0, pre=check=0",
+                        "Cache-Control": "public",
+                        "Content-description": "File Transfer",
+                        "Content-type": "application/octet-stream",
+                    }},
+                {user_name: this.state.user.user_name, password: this.state.user.password})
                 .then(res2 => { 
                     console.log('nested login successful', res)
                     
