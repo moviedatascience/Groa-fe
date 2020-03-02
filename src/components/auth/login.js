@@ -5,7 +5,7 @@ import { NavLink } from "react-router-dom";
 import { connect } from 'react-redux';
 import {loginAction} from '../../store/actions/loginAction';
 import './login.scss';
-import GroaLogoBen from '../../GroaLogoBen.png'
+import Groa from '../auth/Groa-logo-B2.png'
 
 class LoginPage extends React.Component {
   
@@ -91,22 +91,23 @@ class LoginPage extends React.Component {
       <div className='container'>
         <div className='bartop'>
            
-              <img className='Logo' src={GroaLogoBen} alt='GroaLogo'/>
+              <img className='Logo' src={Groa} alt='GroaLogo'/>
               <h2 className='Register'>Register</h2>
               {/* <NavLink to='/register'><h2 className='Register'>Register</h2></NavLink>     */}
         </div>
         
         <div className='Middle'>
           <div className='boxLeft'>
-            <h1 className='Text'>Your movies,<br/> your way.</h1>
-                <div className='box1'/>
+          <img className='Logo2' src={Groa} alt='GroaLogo'/>
+            {/* <h1 className='Text'>Your movies,<br/> your way.</h1> */}
+                {/* <div className='box1'/>
                 <div className='box2'>
                   <div className='box2b'>
                     <div className='h6text1'>Groa helps you pick the perfect film.</div>
                     <div className='h6text2'>So you can save your popcorn for the good stuff.</div>
-                    
+                   
                   </div>
-                </div>
+                </div> */}
           </div>
 
           <div className='boxRight'>
@@ -152,13 +153,13 @@ class LoginPage extends React.Component {
             
             {/* <div class="searchContainer"> */}
             <i class="fa fa-search searchIcon"></i>
-            <input className='input1'
+            {/* <input className='input1'
               type="password"
               name="password"
               value={this.password}
               onChange={this.handleChange}
               placeholder="Search..."
-            />
+            /> */}
             {/* </div> */}
 
               {/* <h4 className='textOr'>or</h4> */}
