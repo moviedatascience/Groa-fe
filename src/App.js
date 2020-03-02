@@ -5,7 +5,7 @@ import Dashboard from "./components/dashboard/index.js";
 import Register from './components/auth/Register';
 import LoadingScreen from "./components/layout/LoadingScreen.js";
 import { PrivateRoute } from './utils/privateRoute.js'; 
-
+import Navigation from "./components/dashboard/navigation.js";
 
 
 
@@ -20,6 +20,7 @@ function App() {
         {/* <Route path='/login' component = {Login}/> */}
       
         {/* <Route exact path="/" component={LoadingScreen} /> */}
+        <Route exact path="/navigation" component={Navigation} />
       </Switch>
     </div>
   );

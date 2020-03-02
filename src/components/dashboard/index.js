@@ -8,9 +8,10 @@ const Dashboard = () => {
 
     return (
         
-        <div >
-            <Dashboardv1/>
+        <div style={{marginTop:"-30px", marginBottom:"-50px", backgroundColor:"#7A7A7A", zIndex: "1"}}>
             <Navigation/>
+            <Dashboardv1 style={{zIndex:"10"}}/>
+            
 
             
         </div>
