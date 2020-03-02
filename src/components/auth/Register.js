@@ -81,7 +81,9 @@ class Register extends React.Component {
                     console.log('nested login successful', res)
                     
                     const userid = res.data.id;
-                    
+                    localStorage.setItem('token', res.data.token)
+                        
+                    this.props.history.push('/dashboard')
                     console.log('form data', this.state.input.movies)
                   
 
@@ -92,9 +94,7 @@ class Register extends React.Component {
                     })
                     .then(res => { 
                         console.log(res);
-                        localStorage.setItem('token', res.data.token)
                         
-                        this.props.history.push('/dashboard')
                         
                     }).catch(err => { 
                         console.log(err)
