@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import {loginAction} from '../../store/actions/loginAction';
 import './login.scss';
 import Groa from '../auth/Groa-logo-B2.png'
+import Groa2 from '../auth/Groa-logo-B2AA.png'
 
 class LoginPage extends React.Component {
   
@@ -98,7 +99,8 @@ class LoginPage extends React.Component {
         
         <div className='Middle'>
           <div className='boxLeft'>
-          <img className='Logo2' src={Groa} alt='GroaLogo'/>
+          {/* <img className='Logo2' src={Groa} alt='GroaLogo'/> */}
+          <img className='Logo2' src={Groa2} alt='GroaLogo'/>
             {/* <h1 className='Text'>Your movies,<br/> your way.</h1> */}
                 {/* <div className='box1'/>
                 <div className='box2'>
