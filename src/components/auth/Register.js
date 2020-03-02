@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import './register.scss'
-import { axiosWithAuth } from '../../utils/axiosWithAuth.js';
 import { withRouter } from 'react-router-dom'; 
 import axios from 'axios';
 import Groa from './Groa-logo-B2.png';
@@ -74,12 +73,10 @@ class Register extends React.Component {
             // this.props.register(user);
             console.log('username, and password', this.state.user.user_name, this.state.user.password)
             
-            axiosWithAuth()
-            .post('/register', {user_name: this.state.user.user_name, password: this.state.user.password})
+            axios.post('http://groabe-env.v3umry9g8h.us-east-1.elasticbeanstalk.com/api/users/register', {user_name: this.state.user.user_name, password: this.state.user.password})
             .then(res => {
                 localStorage.setItem('token', res.data.token)
-                axiosWithAuth()
-                .post('/login', {user_name: this.state.user.user_name, password: this.state.user.password})
+                axios.post('http://groabe-env.v3umry9g8h.us-east-1.elasticbeanstalk.com/api/users/login', {user_name: this.state.user.user_name, password: this.state.user.password})
                 .then(res2 => { 
                     console.log('nested login successful', res)
                     
