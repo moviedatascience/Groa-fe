@@ -6,7 +6,7 @@ import { ifDev } from "./utils/removeAttribute.js";
 // import Dashboard from "./components/dashboard/index.js";
 import Login from './components/auth/login';
 // import Register from './auth/Register';
-import LoadingScreen from "./components/layout/LoadingScreen.js";
+// import LoadingScreen from "./components/layout/LoadingScreen.js";
 import WatchList from "./components/movies/WatchList.js";
 
 // config imports
@@ -20,10 +20,10 @@ function App() {
       <div className="App" data-test={ifDev("App-component")}>
         <Switch>
           {/* <Route exact path="/" component={Dashboard} /> */}
-          {/* <Route path='/login' component = {Login}/>
-      <Route path='/register' component = {Register}/> */}
+          <Route path='/login' component = {Login}/>
+      {/* <Route path='/register' component = {Register}/>  */}
           <Route path="/watch-list" component={WatchList} />
-          <Route exact path="/" component={LoadingScreen} />
+          {/* <Route exact path="/" component={LoadingScreen} /> */}
         </Switch>
       </div>
     </Router>
