@@ -86,45 +86,48 @@ class Register extends React.Component {
             {user_name: this.state.user.user_name, password: this.state.user.password})
             .then(res => {
                 localStorage.setItem('token', res.data.token)
-                axios.post('http://groabe-env.v3umry9g8h.us-east-1.elasticbeanstalk.com/api/users/login', {
-                    headers: {
-                        "Pragma": "public",
-                        "Expires": 0,
-                        "Cache-Control": "must-revalidate, post-check=0, pre=check=0",
-                        "Cache-Control": "public",
-                        "Content-description": "File Transfer",
-                        "Content-type": "application/octet-stream",
-                    }},
-                {user_name: this.state.user.user_name, password: this.state.user.password})
-                .then(res2 => { 
-                    console.log('nested login successful', res)
+                const userid = res.data.id;
+                this.props.Login(userid);
+                this.props.history.push('/dashboard')
+                // axios.post('http://groabe-env.v3umry9g8h.us-east-1.elasticbeanstalk.com/api/users/login', {
+                //     headers: {
+                //         "Pragma": "public",
+                //         "Expires": 0,
+                //         "Cache-Control": "must-revalidate, post-check=0, pre=check=0",
+                //         "Cache-Control": "public",
+                //         "Content-description": "File Transfer",
+                //         "Content-type": "application/octet-stream",
+                //     }},
+                // {user_name: this.state.user.user_name, password: this.state.user.password})
+                // .then(res2 => { 
+                //     console.log('nested login successful', res)
                     
-                    const userid = res.data.id;
-                    this.props.Login(userid);
-                    localStorage.setItem('token', res.data.token)
+                //     const userid = res.data.id;
+                //     this.props.Login(userid);
+                //     localStorage.setItem('token', res.data.token)
                         
-                    this.props.history.push('/dashboard')
-                    console.log('form data', this.state.input.movies)
+                //     this.props.history.push('/dashboard')
+                //     console.log('form data', this.state.input.movies)
                   
 
-                    // axios.post(`http://groabe-env.v3umry9g8h.us-east-1.elasticbeanstalk.com/api/users/${userid}/upload`, this.state.input.movies, {
-                    //     headers:{
-                    //         'Content-Type':'multipart/form-data'  
-                    //     }
-                    // })
-                    // .then(res => { 
-                    //     console.log(res);
+                //     // axios.post(`http://groabe-env.v3umry9g8h.us-east-1.elasticbeanstalk.com/api/users/${userid}/upload`, this.state.input.movies, {
+                //     //     headers:{
+                //     //         'Content-Type':'multipart/form-data'  
+                //     //     }
+                //     // })
+                //     // .then(res => { 
+                //     //     console.log(res);
                         
                         
-                    // }).catch(err => { 
-                    //     console.log(err)
-                    // })
+                //     // }).catch(err => { 
+                //     //     console.log(err)
+                //     // })
                     
-                })
-                .catch(err2 => { 
-                    console.log(err2)
-                    // this.props.history.push('/Error')
-                })
+                // })
+                // .catch(err2 => { 
+                //     console.log(err2)
+                //     // this.props.history.push('/Error')
+                // })
                 
             })
             .catch(err => {
