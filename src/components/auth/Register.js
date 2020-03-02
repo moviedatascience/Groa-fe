@@ -73,16 +73,7 @@ class Register extends React.Component {
             // this.props.register(user);
             console.log('username, and password', this.state.user.user_name, this.state.user.password)
             
-            axios.post('http://groabe-env.v3umry9g8h.us-east-1.elasticbeanstalk.com/api/users/register', {
-            
-                headers: {
-                    "Pragma": "public",
-                    "Expires": 0,
-                    "Cache-Control": "must-revalidate, post-check=0, pre=check=0",
-                    "Cache-Control": "public",
-                    "Content-description": "File Transfer",
-                    "Content-type": "application/octet-stream",
-                }},
+            axios.post('http://groabe-env.v3umry9g8h.us-east-1.elasticbeanstalk.com/api/users/register', 
             {user_name: this.state.user.user_name, password: this.state.user.password})
             .then(res => {
                 localStorage.setItem('token', res.data.token)
@@ -225,10 +216,7 @@ class Register extends React.Component {
                                 </div> 
                             
                             <h5>Remember me</h5>
-                            <div className="BottomLogin">
-                                <button className="LoginBtn" >Login </button>
-                                {registering}
-                            </div>
+                            
                             </div>
                             
                             {/* <h4> _________________________  or  ________________________</h4> */}
@@ -257,7 +245,10 @@ class Register extends React.Component {
                                     {/* <p className="LogBtn">upload your letterboxd csv file here to get all past movie ratings</p> */}
                                 {/* </form>
                             </div> */}
-                            
+                            <div className="BottomLogin">
+                                <button className="LoginBtn" >Login </button>
+                                {registering}
+                            </div>
                     
                         </form>
                     
