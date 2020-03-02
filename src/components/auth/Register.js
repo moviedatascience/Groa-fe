@@ -85,7 +85,7 @@ class Register extends React.Component {
                     console.log('form data', this.state.input.movies)
                   
 
-                    axios.post(`https://stylingbranch-groa-be.herokuapp.com/api/users/${userid}/upload`, this.state.input.movies, {
+                    axios.post(`http://groabe-env.v3umry9g8h.us-east-1.elasticbeanstalk.com/api/users/${userid}/uploading`, this.state.input.movies, {
                         headers:{
                             'Content-Type':'multipart/form-data'  
                         }
@@ -134,9 +134,12 @@ class Register extends React.Component {
                                 <div className="box2">
                                 <h5 className='h5text'>Groa Helps you pick the perfect film,</h5>
                                 <h5  className='h5text'>So you can save your popcorn for the good stuff.</h5>
-                                </div>  */}
+                                </div>  */} 
+                                
                             </div>
-                        
+
+                        {/* the input boxes  */}
+
                      <div className="boxRight">
                         <form  className="form" onSubmit={this.handleSubmit}> 
                             <h2>Register</h2>
