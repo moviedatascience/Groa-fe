@@ -6,7 +6,6 @@ function logPageView() {
 }
 
 export default function reactGAinitialization() {
-  ReactGA.initialize(process.env.REACT_APP_ANALYTICS_ID_TEST);
-
+  ReactGA.initialize(process.env.REACT_APP_ANALYTICS_ID);
   logPageView();
 }
