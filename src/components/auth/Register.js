@@ -127,7 +127,7 @@ class Register extends React.Component {
                     
                             <div className="boxLeft">
                                     <div className="text">
-                                        <h1>Your movies,  your way. </h1>
+                                        {/* <h1>Your movies,  your way. </h1> */}
                                     </div>
 
                                     {/* <div className="box1"/> 
@@ -203,7 +203,7 @@ class Register extends React.Component {
                             <h5>Remember me</h5>
                             </div>
             
-                            <h4> _________________________  or  ________________________</h4>
+                            {/* <h4> _________________________  or  ________________________</h4> */}
 
                             {/* <button className="LogBtn">Login with Google</button>
                             <button className="LogBtn">Login with Facebook</button>
