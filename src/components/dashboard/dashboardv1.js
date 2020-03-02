@@ -1,6 +1,6 @@
 import React, {useState} from 'react'; 
 import './dash.scss'
-import axios from 'axios'; 
+import { axiosWithAuth } from '../../utils/axiosWithAuth.js';
 import { connect } from 'react-redux';
 
 
@@ -17,7 +17,7 @@ const Dashboardv1 = (props) => {
         data.append('movies', e.target.files[0] , e.target.files[0].name)
         //change user/1/ to be :id number
         //Groabe-env.v3umry9g8h.us-east-1.elasticbeanstalk.com/
-        axios.post(`http://groabe-env.v3umry9g8h.us-east-1.elasticbeanstalk.com/api/users/${props.userData}/upload`, data,{
+        axiosWithAuth().post(`/${props.userid}/upload`, data,{
             headers:{
                 'Content-Type':'multipart/form-data'  
             }
@@ -50,16 +50,16 @@ const Dashboardv1 = (props) => {
         console.log(input);
         //handle submit not being used this is depreciated code.
         //change user/1/ to be :id number handle submit currently does
-        axios.post('https://groa-be.herokuapp.com/api/users/1/upload', input,{
-            headers:{
-                'Content-Type':'multipart/form-data'
-            }
-        })
-        .then(res => { 
-            console.log(res);
-        }).catch(err => { 
-            console.log(err)
-        })
+        // axios.post('https://groa-be.herokuapp.com/api/users/1/upload', input,{
+        //     headers:{
+        //         'Content-Type':'multipart/form-data'
+        //     }
+        // })
+        // .then(res => { 
+        //     console.log(res);
+        // }).catch(err => { 
+        //     console.log(err)
+        // })
        
     }
     const flash = () => {
