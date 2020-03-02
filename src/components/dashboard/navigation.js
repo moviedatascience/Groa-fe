@@ -36,6 +36,9 @@ class Navigation extends Component {
                 <NavLink className='Groa' to="/">
                     Groa 
                 </NavLink>
+                <NavLink className='NavLink' to="/dairies"> 
+                     Dairies
+                 </NavLink>
 
                 <NavLink className='NavLink' to="/trending">
                     Trending

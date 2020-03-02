@@ -79,21 +79,22 @@ class Register extends React.Component {
                 .post('/login', {username: this.state.user.username, password: this.state.user.password})
                 .then(res2 => { 
                     console.log('nested login successful', res)
-                    localStorage.setItem('token', res.data.token)
-                    const userid = res.data.id;
-                    this.props.history.push('/dashboard')
                     
+                    const userid = res.data.id;
                     
                     console.log('form data', this.state.input.movies)
                   
 
-                    axios.post(`https://stylingbranch-groa-be.herokuapp.com/api/users/${userid}/upload`, this.state.input.movies, {
+                    axios.post(`http://groabe-env.v3umry9g8h.us-east-1.elasticbeanstalk.com/api/users/${userid}/upload`, this.state.input.movies, {
                         headers:{
                             'Content-Type':'multipart/form-data'  
                         }
                     })
                     .then(res => { 
                         console.log(res);
+                        localStorage.setItem('token', res.data.token)
+                        
+                        this.props.history.push('/dashboard')
                         
                     }).catch(err => { 
                         console.log(err)
