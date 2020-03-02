@@ -262,11 +262,11 @@ class Register extends React.Component {
 }
   
 
-const mapStateToProps = state => {
+const mapStateToProps = ({ dashboardMain }) => {
     return {
-        userData: state.userData,
-        isFetching: state.isFetching,
-        error: state.error
+        userData: dashboardMain.userid,
+        isFetching: dashboardMain.isPostingUser,
+        error: dashboardMain.isPostingUserError
     };
 };
 
