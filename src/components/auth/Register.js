@@ -6,6 +6,8 @@ import { withRouter } from 'react-router-dom';
 import axios from 'axios';
 import Groa from './Groa-logo-B2.png';
 import GroaWhite from './GroaWhite.png'
+import { Login } from '../../store/actions'
+
 class Register extends React.Component {
 
     constructor(props) {
@@ -15,7 +17,7 @@ class Register extends React.Component {
             user: {
                
                 email: '',
-                username:'',
+                user_name:'',
                 password: '',
                 confirmpassword: ''
             },
@@ -66,39 +68,41 @@ class Register extends React.Component {
         event.preventDefault();
         
         this.setState({ submitted: true });
-        console.log('username, and password', this.state.user.username, this.state.user.password)
+        console.log('username, and password', this.state.user.user_name, this.state.user.password)
         // const { user } = this.state;
-        if (this.state.user.email && this.state.user.username && this.state.user.password && this.state.user.confirmpassword) {
+        if (this.state.user.email && this.state.user.user_name && this.state.user.password && this.state.user.confirmpassword) {
             // this.props.register(user);
-            console.log('username, and password', this.state.user.username, this.state.user.password)
+            console.log('username, and password', this.state.user.user_name, this.state.user.password)
             
             axiosWithAuth()
-            .post('/register', {username: this.state.user.username, password: this.state.user.password})
+            .post('/register', {user_name: this.state.user.user_name, password: this.state.user.password})
             .then(res => {
+                localStorage.setItem('token', res.data.token)
                 axiosWithAuth()
-                .post('/login', {username: this.state.user.username, password: this.state.user.password})
+                .post('/login', {user_name: this.state.user.user_name, password: this.state.user.password})
                 .then(res2 => { 
                     console.log('nested login successful', res)
                     
                     const userid = res.data.id;
+                    this.props.Login(userid);
                     localStorage.setItem('token', res.data.token)
                         
                     this.props.history.push('/dashboard')
                     console.log('form data', this.state.input.movies)
                   
 
-                    axios.post(`http://groabe-env.v3umry9g8h.us-east-1.elasticbeanstalk.com/api/users/${userid}/upload`, this.state.input.movies, {
-                        headers:{
-                            'Content-Type':'multipart/form-data'  
-                        }
-                    })
-                    .then(res => { 
-                        console.log(res);
+                    // axios.post(`http://groabe-env.v3umry9g8h.us-east-1.elasticbeanstalk.com/api/users/${userid}/upload`, this.state.input.movies, {
+                    //     headers:{
+                    //         'Content-Type':'multipart/form-data'  
+                    //     }
+                    // })
+                    // .then(res => { 
+                    //     console.log(res);
                         
                         
-                    }).catch(err => { 
-                        console.log(err)
-                    })
+                    // }).catch(err => { 
+                    //     console.log(err)
+                    // })
                     
                 })
                 .catch(err2 => { 
@@ -109,7 +113,7 @@ class Register extends React.Component {
             })
             .catch(err => {
                 console.log('Registration Error', err)
-                this.props.history.push('/Error')
+                // this.props.history.push('/Error')
             })
 
             
@@ -157,15 +161,15 @@ class Register extends React.Component {
                                 <div className="callingError">Email is required</div>
                             }
 
-                            <div className={'forms' + (submitted && !user.username ? ' has-error' : '')}></div>
+                            <div className={'forms' + (submitted && !user.user_name ? ' has-error' : '')}></div>
                             <input className="form-control" 
                             type="text" 
-                            name="username" 
-                            value={user.username} 
+                            name="user_name" 
+                            value={user.user_name} 
                             onChange={this.handleChange} 
                             placeholder='Username'
                             />
-                            {submitted && !user.username &&
+                            {submitted && !user.user_name &&
                                 <div className="callingError">Username is required</div>
                             }
                         
@@ -257,4 +261,6 @@ const mapStateToProps = state => {
 };
 
 export default withRouter(connect
-(mapStateToProps)(Register));
+(mapStateToProps, {
+    Login,
+})(Register));

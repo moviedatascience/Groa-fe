@@ -27,7 +27,7 @@ class Navigation extends Component {
                 className='bars-icon' 
                 icon={faBars}
               />
-              <i class="far fa-bars"></i>
+              <i className="far fa-bars"></i>
                </div>
 
         
@@ -76,25 +76,25 @@ class Navigation extends Component {
                 className='bell-icon' 
                 icon={faBell}
               />
-                <i class="far fa-bell"></i>
+                <i className="far fa-bell"></i>
                 
                 <FontAwesomeIcon 
                 className='question-icon' 
                 icon={faQuestionCircle}
               />
-                <i class="far fa-question-circle"></i>
+                <i className="far fa-question-circle"></i>
 
                 <FontAwesomeIcon 
                 className='user-circle-icon' 
                 icon={faUserCircle}
               />
-                <i class="far fa-user-circle"></i>
+                <i className="far fa-user-circle"></i>
 
                 <FontAwesomeIcon 
                 className='angle-down-icon' 
                 icon={faAngleDown}
               />
-               <i class="far fa-angle-down"></i>
+               <i className="far fa-angle-down"></i>
 
 
             </div>

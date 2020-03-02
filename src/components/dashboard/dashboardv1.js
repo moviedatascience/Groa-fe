@@ -1,20 +1,23 @@
 import React, {useState} from 'react'; 
 import './dash.scss'
 import axios from 'axios'; 
+import { connect } from 'react-redux';
 
 
-const Dashboardv1 = () => {
+const Dashboardv1 = (props) => {
     const [input, setInput] = useState({file:''})
     const [ratings, setRatings] = useState({})
     const [loading, setLoading] = useState()
     const [toggle, setToggle] = useState(true);
+
+    console.log('user data here', props.userid)
     const changeHandler = e => { 
-        
+        // new FormData() needs to be used for the file upload to work.
         let data = new FormData()
         data.append('movies', e.target.files[0] , e.target.files[0].name)
         //change user/1/ to be :id number
         //Groabe-env.v3umry9g8h.us-east-1.elasticbeanstalk.com/
-        axios.post('https://stylingbranch-groa-be.herokuapp.com/api/users/1/upload', data,{
+        axios.post(`http://groabe-env.v3umry9g8h.us-east-1.elasticbeanstalk.com/api/users/${props.userData}/upload`, data,{
             headers:{
                 'Content-Type':'multipart/form-data'  
             }
@@ -26,7 +29,7 @@ const Dashboardv1 = () => {
             console.log(err)
         })
         data = new FormData()
-        
+        // do something when loading add loading paremeter in jsx where the turnery operator ends. right now set to true.
         setTimeout(() => {
             setLoading(<h2 className = 'loading' style={{paddingLeft:'5px'}}>.loading</h2>)
         }, 1000);
@@ -39,18 +42,13 @@ const Dashboardv1 = () => {
         setTimeout(() => {
             setLoading(<h2 className = 'loading' style={{paddingLeft:'20px'}}>....loading</h2>)
         }, 4000);
-        // setTimeout(() => {
-        //     setLoading('..loading')
-        // }, 4000);
-        // setTimeout(() => {
-        //     setLoading('.loading')
-        // }, 5000);
-       
+        
     }
     const handleSubmit = e => { 
         setToggle(!toggle)
         e.preventDefault();
         console.log(input);
+        //handle submit not being used this is depreciated code.
         //change user/1/ to be :id number handle submit currently does
         axios.post('https://groa-be.herokuapp.com/api/users/1/upload', input,{
             headers:{
@@ -212,4 +210,9 @@ const Dashboardv1 = () => {
     )
 }
 
-export default Dashboardv1;
+const mapStateToProps = ({dashboardMain}) => {
+    return {
+        userid: dashboardMain.userid
+    };
+};
+export default connect(mapStateToProps)(Dashboardv1);
