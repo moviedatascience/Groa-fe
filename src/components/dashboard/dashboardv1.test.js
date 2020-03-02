@@ -18,12 +18,12 @@ it("renders dashboardv1", () => {
   const component = getAllByTestId(container, "box-container");
   expect(component.length).toBe(1);
 });
-it("renders dashboardv1", () => {
-  const { container } = render(<Dashboardv1 />);
+// it("renders dashboardv1", () => {
+//   const { container } = render(<Dashboardv1 />);
 
-  const component = getAllByTestId(container, "box");
-  expect(component.length).toBe(200);
-});
+//   const component = getAllByTestId(container, "box");
+//   expect(component.length).toBe(200);
+// });
 
 //------------puppeteer 
 test('Validating movie form button', async() => { 
@@ -45,7 +45,7 @@ test('Validating movie form button', async() => {
   await page.keyboard.type('puppeteertj123@gmail.com');
   await page.waitFor(300);
   await page.click('input[name=username]')
-  await page.keyboard.type('puppeteer8');
+  await page.keyboard.type('puppeteer10');
   await page.waitFor(300);
   await page.click('input[name=password]')
   await page.keyboard.type('Groa123');
@@ -53,21 +53,16 @@ test('Validating movie form button', async() => {
   await page.click('input[name=confirmpassword]')
   await page.keyboard.type('Groa123');
 
-  const movieInput = await page.$eval('input#confirmPass', (input) => input.className);
+  const movieInput = await page.$eval('input[name=confirmpassword]', (input) => input.className);
   expect(movieInput).toBe('form-control')
 
   await page.waitFor(1500);
-  
 
-  
   // const inputUploadHandle = await page.$('.form .LogBtn input[type=file]');
   // const fileToUpload = './Users/thomaskatalenas/Labs/Groa-fe-copy-tests/src/zipfile-testing/cooper.zip';
   
   // await inputUploadHandle.uploadFile(fileToUpload);
-
-
-
-  // await page.click('.LoginBtn');
+  await page.click('.LoginBtn');
 
 
   
@@ -75,5 +70,5 @@ test('Validating movie form button', async() => {
 
 
   
-},20000)
+},40000)
 
