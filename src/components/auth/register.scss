@@ -1,8 +1,9 @@
 .container{
+  margin-top: -50px;
   min-height: 100vh;  
   background-image: linear-gradient(to bottom, black 0%,  rgba(0, 0, 0, .9),
   rgba(0, 0, 0, .70),rgba(0, 0, 0, .85));
-
+    
     h3{
       color:white;
       display: flex;
@@ -13,18 +14,25 @@
        display: flex;
 
       .boxLeft{
+        height: 30%;
         width: 50%;
         padding: 1px 20px;
-      }
-        .text{
-          font-size:320%;
-          color: white;
-          margin: 0 0 0 15%;
-          display: flex;
-          flex-direction: column;
-          justify-content: flex-start;
-
+        .logo{
+          height: 600px;
+          margin-left:100px;;
+          object-fit: contain;
+          // border: 2px solid red;
         }
+      }
+        // .text{
+        //   font-size:320%;
+        //   color: white;
+        //   margin: 0 0 0 15%;
+        //   display: flex;
+        //   flex-direction: column;
+        //   justify-content: flex-start;
+
+        // }
 
       .box1{
         margin: -15% 2% 2% 0;
@@ -100,6 +108,9 @@
           .BottomLogin {
             display: flex;
             justify-content: flex-end;
+            
+            
+            margin-left: 100px;
             .LoginBtn{
               margin: 4% 12% 0 0;
               width: 115px;

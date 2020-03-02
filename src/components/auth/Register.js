@@ -4,6 +4,8 @@ import './register.scss'
 import { axiosWithAuth } from '../../utils/axiosWithAuth.js';
 import { withRouter } from 'react-router-dom'; 
 import axios from 'axios';
+import Groa from './Groa-logo-B2.png';
+import GroaWhite from './GroaWhite.png'
 class Register extends React.Component {
 
     constructor(props) {
@@ -100,7 +102,7 @@ class Register extends React.Component {
                 })
                 .catch(err2 => { 
                     console.log(err2)
-                    this.props.history.push('/Error')
+                    // this.props.history.push('/Error')
                 })
                 
             })
@@ -125,16 +127,17 @@ class Register extends React.Component {
                     
                 <div className="H1">
                     
-                            <div className="boxLeft">
-                                    <div className="text">
-                                        <h1>Your movies,  your way. </h1>
-                                    </div>
+                                <div className="boxLeft">
+                                 
+                                        <img className="logo " src={GroaWhite}   alt="groa logo"/>
+                                        {/* <h1 style={{textAlign: 'center'}}>Your movies,  your way. </h1> */}
+                                 
 
-                                    <div className="box1"/> 
-                                <div className="box2">
+                                    {/* <div className="box1"/>  */}
+                                {/* <div className="box2">
                                 <h5 className='h5text'>Groa Helps you pick the perfect film,</h5>
                                 <h5  className='h5text'>So you can save your popcorn for the good stuff.</h5>
-                                </div> 
+                                </div>  */}
                             </div>
                         
                      <div className="boxRight">
@@ -198,9 +201,13 @@ class Register extends React.Component {
                                 </div> 
                             
                             <h5>Remember me</h5>
+                            <div className="BottomLogin">
+                                <button className="LoginBtn" >Login </button>
+                                {registering}
                             </div>
-            
-                            <h4> _________________________  or  ________________________</h4>
+                            </div>
+                            
+                            {/* <h4> _________________________  or  ________________________</h4> */}
 
                             {/* <button className="LogBtn">Login with Google</button>
                             <button className="LogBtn">Login with Facebook</button>
@@ -209,7 +216,7 @@ class Register extends React.Component {
                             {/* <div className="form-hover">
                                 <form className="LogBtn" //id="zip-form"           
                                 onSubmit = {this.handleSubmit}> */}
-                                    <input
+                                    {/* <input
                                         className="LogBtn"
                                         id="zip-input"
                                         // className='movie-input'
@@ -220,16 +227,13 @@ class Register extends React.Component {
                                         onChange={this.changeHandler}
                                     
                                     
-                                    />
+                                    /> */}
                                     
                                     
-                                    <p className="LogBtn">upload your letterboxd csv file here to get all past movie ratings</p>
+                                    {/* <p className="LogBtn">upload your letterboxd csv file here to get all past movie ratings</p> */}
                                 {/* </form>
                             </div> */}
-                            <div className="BottomLogin">
-                                <button className="LoginBtn">Login </button>
-                                {registering}
-                            </div>
+                            
                     
                         </form>
                     
