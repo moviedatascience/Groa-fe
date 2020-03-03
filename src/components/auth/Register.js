@@ -28,7 +28,7 @@ class Register extends React.Component {
         };
 
         this.handleChange = this.handleChange.bind(this);
-        this.changeHandler = this.changeHandler.bind(this);
+        // this.changeHandler = this.changeHandler.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
@@ -46,22 +46,22 @@ class Register extends React.Component {
         });
     }
    
-    changeHandler(e) { 
+    // changeHandler(e) { 
         
-        let data = new FormData()
-        data.append('movies', e.target.files[0] , e.target.files[0].name)
+    //     let data = new FormData()
+    //     data.append('movies', e.target.files[0] , e.target.files[0].name)
 
-        console.log('data change handler', data);
-        const { input } = this.state;
-        this.setState({
-            input: {
+    //     console.log('data change handler', data);
+    //     const { input } = this.state;
+    //     this.setState({
+    //         input: {
                 
-                [e.target.name]: data
-            }
+    //             [e.target.name]: data
+    //         }
             
             
-        });
-    }
+    //     });
+    // }
 
     handleSubmit(event) {
         event.preventDefault();
@@ -76,6 +76,7 @@ class Register extends React.Component {
             axios.post('http://groabe-env.v3umry9g8h.us-east-1.elasticbeanstalk.com/api/users/register', 
             {user_name: this.state.user.user_name, password: this.state.user.password})
             .then(res => {
+                console.log('token: ', res.data.token)
                 localStorage.setItem('token', res.data.token)
                 const userid = res.data.id;
                 this.props.Login(userid);
@@ -123,6 +124,7 @@ class Register extends React.Component {
             })
             .catch(err => {
                 console.log('Registration Error', err)
+                
                 // this.props.history.push('/Error')
             })
 
