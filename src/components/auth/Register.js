@@ -4,6 +4,7 @@ import './register.scss'
 import { axiosWithAuth } from '../../utils/axiosWithAuth.js';
 import { withRouter } from 'react-router-dom'; 
 import axios from 'axios';
+
 class Register extends React.Component {
 
     constructor(props) {
