@@ -128,14 +128,12 @@ class Register extends React.Component {
                     
                             <div className="boxLeft">
                                     <div className="text">
-                                        {/* <h1>Your movies,  your way. </h1> */}
+                                        
                                     </div>
 
-                                    {/* <div className="box1"/> 
+                                    <div className="box1"/> 
                                 <div className="box2">
-                                <h5 className='h5text'>Groa Helps you pick the perfect film,</h5>
-                                <h5  className='h5text'>So you can save your popcorn for the good stuff.</h5>
-                                </div>  */} 
+                                </div>  
                                 
                             </div>
 
@@ -201,18 +199,10 @@ class Register extends React.Component {
                                 <input  type="checkbox"/>
                                 </div> 
                             
-                            <h5>Remember me</h5>
-                            </div>
+                                <h5>Remember me</h5>
+                                </div>
             
-                            {/* <h4> _________________________  or  ________________________</h4> */}
-
-                            {/* <button className="LogBtn">Login with Google</button>
-                            <button className="LogBtn">Login with Facebook</button>
-                            <button className="LogBtn">Login with Reddit</button>
-                             */}
-                            {/* <div className="form-hover">
-                                <form className="LogBtn" //id="zip-form"           
-                                onSubmit = {this.handleSubmit}> */}
+                
                                     <input
                                         className="LogBtn"
                                         id="zip-input"
@@ -228,12 +218,12 @@ class Register extends React.Component {
                                     
                                     
                                     <p className="LogBtn">upload your letterboxd csv file here to get all past movie ratings</p>
-                                {/* </form>
-                            </div> */}
-                            <div className="BottomLogin">
-                                <button className="LoginBtn">Login </button>
-                                {registering}
-                            </div>
+                               
+                        
+                                <div className="BottomLogin">
+                                    <button className="LoginBtn">Login </button>
+                                    {registering}
+                                </div>
                     
                         </form>
                     
