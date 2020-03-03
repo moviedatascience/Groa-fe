@@ -2,7 +2,7 @@ import React from 'react';
 import { render } from '@testing-library/react';
 
 import Login from './login';
-
+import { clikLogin } from "../../utils/test-utils";
 
 
 describe('Button', () => {
@@ -18,5 +18,8 @@ describe('Button', () => {
   });
  });
 
+ test('adds properly', () => {
+  expect(clikLogin.sum(0, 1)).toBe(1)
+})
 
  
