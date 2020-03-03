@@ -1,7 +1,7 @@
 import React from "react";
 import { render } from "@testing-library/react";
 import postLogin from './postLogin';
-
+import { clikpostLogin } from "../../utils/test-utils";
 
 
 describe('Button postlogin', () => {
@@ -16,3 +16,8 @@ describe('Button postlogin', () => {
     expect(tree).toMatchSnapshot();
   });
  });
+
+ test('adds properly', () => {
+    expect(clikpostLogin.sum(0, 1)).toBe(1)
+})
+

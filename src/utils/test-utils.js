@@ -43,11 +43,20 @@ export function getByTestId(...args) {
   return null;
 }
 
+const clikpostLogin = {
+  sum: (a, b) => {
+    return a + b
+  }
+}
+
 // re-export with overrides
 module.exports = {
   ...domTestingLib,
   getByTestId,
   getAllByTestId,
   queryByTestId,
-  queryAllByTestId
+  queryAllByTestId,
+  clikpostLogin
 };
+
+
