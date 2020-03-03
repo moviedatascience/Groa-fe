@@ -17,13 +17,12 @@
     display: flex;
     justify-content: space-between;
     height: 150px;
-    //border: 2px solid green;
    
         .Logo{
             color: white;
             padding: 3% 0 0 0%;
             height: 60%;
-            //border: 2px solid red;
+            
             
         }
         .Register{
@@ -34,8 +33,6 @@
         }
     }
  
-    
-
 .Middle{
     display: flex;
     // border: 2px solid blue;
@@ -45,63 +42,13 @@
     .boxLeft{
         margin-top: 3%;
         color: white;
-        // font-size: 300%;
         width: 70%;
-        // border: 2px solid blue;
-
-// LOGO BIG   
-        .Logo2{
-            
-            height: 40%;
-            // border: 2px solid red;
-            
-        }
-        .Text{
-            margin: 0 0 0 1px;
-            //margin: 0 0 0 13%;
-        }
-
-
-        }
-// 2 GRAY BOXES - needs work, changes location per monitor size.
       
-        .box1{
-            //margin: -12% 2% 2% 0;
-            background:rgb(97, 97, 97);
-            width: 407px;
-            //width:536px;
-            height: 436px;
-        }
-        .box2{
-            margin: -30% 0 0 27%;
-            color: black;
-            background: #C4C4C4;
-            width: 407px;
-            height: 284px;
-
-
-//TEXT- Groa Helps you....So you can...
-            .box2b{
-               
-                justify-content: center;
-                padding: 35px 15px 15px 15px;
-                
-            }
-            .h6text1{
-                padding:0 8px 30px 8px;
-                font-size: 35px;
-                font-weight: normal;
-                text-align: center;
-                
-            }
-
-            .h6text2{
-                font-size: 30px;
-                font-weight: 640;
-                text-align: center;
-               
-            }
-        }
+// LOGO BIG   
+        .Logo2{  
+            height: 40%;
+        }       
+    } 
 }
 
 // BOX RIGHT SIDE OF SCREEN - Login form
@@ -110,7 +57,7 @@
     display: flex;
     justify-content: flex-end;
     margin-top: 3%;
-    // border: 2px solid red;
+
 
     //////// Login Form /////////////////
     .LoginForm{
@@ -118,7 +65,6 @@
         flex-direction: column;
         width:518px;
         height:310px;
-        // height:589px;
         background: #FFFFFF;
     }
 
@@ -133,34 +79,25 @@
 //TEXT REMEMBER, FORGOT PASSWORD?
 .TextandCheck{
     display: flex;
-    // justify-content: space-evenly;
     
     .TextandCheck2{
-        padding-left: 145px;
-        
+        padding-left: 145px;     
     }
+
     .CheckBoxContainer{
         padding: 20px 15px 0 60px;
-        padding-top: 20px;
-        
+        padding-top: 20px;  
     }
 
     .Checkbox{
         width: 20px;
         height: 20px;
         }
-
 }
 
-// .textOr{
-// display: flex;
-// justify-content: center;
-// }
 
 
-
-
-//input fields
+//input fields///////////////////////
 .input1{
     padding: 7px;
     margin: 2% 12% 2% 12%;
@@ -186,7 +123,6 @@ justify-content: flex-end;
 // justify-content: center;
 }
 
-
 .BtnLoginWith{
     margin: 1% 12% 3% 12%;
     padding: 8px;
@@ -195,8 +131,7 @@ justify-content: flex-end;
     color: white;
 }
 
-.BtnLogin{
-    
+.BtnLogin{ 
     margin: 4% 12% 0 0;
     width: 115px;
     height:36px;

@@ -99,20 +99,12 @@ class LoginPage extends React.Component {
         
         <div className='Middle'>
           <div className='boxLeft'>
-          {/* <img className='Logo2' src={Groa} alt='GroaLogo'/> */}
+          
           <img className='Logo2' src={Groa2} alt='GroaLogo'/>
-            {/* <h1 className='Text'>Your movies,<br/> your way.</h1> */}
-                {/* <div className='box1'/>
-                <div className='box2'>
-                  <div className='box2b'>
-                    <div className='h6text1'>Groa helps you pick the perfect film.</div>
-                    <div className='h6text2'>So you can save your popcorn for the good stuff.</div>
-                   
-                  </div>
-                </div> */}
+           
           </div>
-
-          <div className='boxRight'>
+{/* END BOX LEFT */}
+        <div className='boxRight'>
           <form className='LoginForm' onSubmit={this.loginUser}>
           <h1 className='textlogin'>Log in</h1>
         
@@ -126,10 +118,9 @@ class LoginPage extends React.Component {
               errorMessage='username required'
             />
 {/* ERROR MESSAGE */}
-
       {errors.user_name.length > 0 && 
         <span className='error'>{errors.user_name}</span>}
-  
+
             <input className='input1'
               type="password"
               name="password"
@@ -146,43 +137,21 @@ class LoginPage extends React.Component {
                         <input className='Checkbox' type="checkbox"/>
                     </div>
                     <h5> Remember me</h5>
-                     
-                    {/* <h5>Forgot password?</h5> */}
                     <div className='TextandCheck2'>
                       <h5>Forgot password?</h5>
                     </div>
             </div>
             
-            {/* <div class="searchContainer"> */}
             <i class="fa fa-search searchIcon"></i>
-            {/* <input className='input1'
-              type="password"
-              name="password"
-              value={this.password}
-              onChange={this.handleChange}
-              placeholder="Search..."
-            /> */}
-            {/* </div> */}
-
-              {/* <h4 className='textOr'>or</h4> */}
-            
-
-          {/* Log in Google */}
-            {/* <button className='BtnLoginWith'>Log in with Google</button> */}
-          {/* Log in Facebook */}
-            {/* <button className='BtnLoginWith'>Log in with Facebook</button> */}
-          {/* Log in Reddit */}
-            {/* <button className='BtnLoginWith'>Log in with Reddit</button> */}
             
             <div className='BtnContainer'>
             <button className='BtnLogin' >Log in</button>
             
-           
             </div>
 
             </form>
-            </div>
-            {/* END BOX RIGHT */}
+          </div>
+          {/* END BOX RIGHT */}
           </div> 
           {/* END MIDDLE */}
       </div>
