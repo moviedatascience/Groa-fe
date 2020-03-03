@@ -175,7 +175,7 @@ class LoginPage extends React.Component {
             {/* <button className='BtnLoginWith'>Log in with Reddit</button> */}
             
             <div className='BtnContainer'>
-            <button className='BtnLogin'>Log in</button>
+            <button className='BtnLogin' >Log in</button>
             
            
             </div>

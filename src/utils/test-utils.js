@@ -51,3 +51,9 @@ module.exports = {
   queryByTestId,
   queryAllByTestId
 };
+
+//Login button clicked
+
+export const addClick = clik => {
+  return clik + 1;
+}

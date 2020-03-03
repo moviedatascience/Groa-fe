@@ -21,3 +21,4 @@ it("calls reactGAinitialization once", () => {
   render(<App />);
   expect(reactGAinitialization).toBeCalled();
 });
+
