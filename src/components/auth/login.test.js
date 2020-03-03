@@ -22,4 +22,11 @@ describe('Button', () => {
   expect(clikLogin.sum(0, 1)).toBe(1)
 })
 
+// it("renders Login Component", () => {
+//   const { container } = render(<Login />);
+
+//   const component = clikLogin(container, "App-component");
+//   expect(component.length).toBe(1);
+// });
+
  

@@ -5,7 +5,7 @@ const axiosWithAuth = () => {
     //need env file for line 6?
     //var key = process.env.REACT_APP_KEY
     return axios.create({
-        baseURL:'http://groabe-env.v3umry9g8h.us-east-1.elasticbeanstalk.com/',
+        baseURL:'https://api.groa.us/',
         headers: {
             Authorization: token 
         }
