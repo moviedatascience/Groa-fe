@@ -25,6 +25,7 @@ class Register extends React.Component {
                 file:"",
                 movies:""
             },
+            errorStatus: false,
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -124,7 +125,7 @@ class Register extends React.Component {
             })
             .catch(err => {
                 console.log('Registration Error', err)
-                
+                this.setState({errorStatus:true})
                 // this.props.history.push('/Error')
             })
 
@@ -186,6 +187,7 @@ class Register extends React.Component {
                             }
                         
                             <div className={'forms' + (submitted && !user.password ? ' has-error' : '')}></div>
+                        
                             <input className="form-control" 
                             type="password" 
                             name="password" 
@@ -198,7 +200,7 @@ class Register extends React.Component {
                             }
                         
                     
-                            <div className={'forms' + (submitted && !user.confirmpassword ? ' has-error' : '')}></div>
+                            <div className={'forms' + (submitted && !user.confirmpassword && user.confirmpassword.length <= 4 ? ' has-error' : '')}></div>
                             <input className ="confirmPass" className="form-control" 
                             type="password" 
                             name="confirmpassword" 
@@ -250,6 +252,7 @@ class Register extends React.Component {
                             <div className="BottomLogin">
                                 <button className="LoginBtn" >Login </button>
                                 {registering}
+                                {this.state.errorStatus ? <h3>Login Error, try again</h3> : <h3>Success</h3>}
                             </div>
                     
                         </form>
