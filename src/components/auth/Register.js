@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import "./register.scss";
 import { withRouter } from "react-router-dom";
 import axios from "axios";
-
 import GroaWhite from "./GroaWhite.png";
 import { Login } from "../../store/actions";
 
@@ -28,6 +27,7 @@ class Register extends React.Component {
 
     this.handleChange = this.handleChange.bind(this);
     // this.changeHandler = this.changeHandler.bind(this);
+
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -67,11 +67,11 @@ class Register extends React.Component {
         this.state.user.user_name,
         this.state.user.password
       );
+
     //   https://api.groa.us/
     //   "http://groabe-env.v3umry9g8h.us-east-1.elasticbeanstalk.com/
       axios.post("https://api.groa.us/api/users/register",{user_name: this.state.user.user_name, password: this.state.user.password}).then(res => {
           console.log("token: ", res.data.token);
-          
           
           
           axios.post('https://api.groa.us/api/users/login', 
@@ -95,6 +95,7 @@ class Register extends React.Component {
         .catch(err => {
           console.log("Registration Error", err);
           this.setState({ errorStatus: true });
+
           // this.props.history.push('/Error')
         });
     }
@@ -170,14 +171,7 @@ class Register extends React.Component {
               )}
 
               <div
-                className={
-                  "forms" +
-                  (submitted &&
-                  !user.confirmpassword &&
-                  user.confirmpassword.length <= 4
-                    ? " has-error"
-                    : "")
-                }
+                className={ "forms" +    (submitted && !user.confirmpassword ? " has-error" : "")}
               ></div>
               <input
                 className="confirmPass"
@@ -198,7 +192,9 @@ class Register extends React.Component {
                 </div>
 
                 <h5>Remember me</h5>
+
               </div>
+            
 
               <div className="BottomLogin">
                 <button className="LoginBtn">Login </button>
@@ -209,6 +205,7 @@ class Register extends React.Component {
                   <h3>Success</h3>
                 )}
               </div>
+
             </form>
           </div>
           {/* end box right */}
@@ -218,6 +215,7 @@ class Register extends React.Component {
     );
   }
 }
+
 
 const mapStateToProps = ({ dashboardMain }) => {
   return {

@@ -125,7 +125,7 @@ const Dashboardv1 = (props) => {
                         }) 
                     : true}   
                     
-                    {toggle === true ? 
+                    {toggle == true ? 
                         <div className = 'box-container2'>
                             <div className="box">
                                 <div className="movie-poster"></div>

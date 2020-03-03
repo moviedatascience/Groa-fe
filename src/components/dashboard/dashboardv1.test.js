@@ -1,7 +1,7 @@
 import React from "react";
 import { render } from "@testing-library/react";
 import { getAllByTestId } from "../../utils/test-utils.js";
-import puppeteer from 'puppeteer';
+import puppeteer from "puppeteer";
 
 // component to be tested.
 import Dashboardv1 from "./dashboardv1.js";
@@ -12,12 +12,12 @@ it("renders dashboardv1", () => {
   const component = getAllByTestId(container, "dashboard-screen");
   expect(component.length).toBe(1);
 });
-it("renders dashboardv1", () => {
-  const { container } = render(<Dashboardv1 />);
+// it("renders dashboardv1", () => {
+//   const { container } = render(<Dashboardv1 />);
 
-  const component = getAllByTestId(container, "box-container");
-  expect(component.length).toBe(1);
-});
+//   const component = getAllByTestId(container, "box-container");
+//   expect(component.length).toBe(1);
+// });
 // it("renders dashboardv1", () => {
 //   const { container } = render(<Dashboardv1 />);
 
@@ -57,11 +57,15 @@ it("renders dashboardv1", () => {
 //   // await inputUploadHandle.uploadFile(fileToUpload);
 //   await page.click('.LoginBtn');
 
+//   const movieInput = await page.$eval('input[name=confirmpassword]', (input) => input.className);
+//   expect(movieInput).toBe('form-control')
 
-  
-  
+//   await page.waitFor(1500);
 
+//   // const inputUploadHandle = await page.$('.form .LogBtn input[type=file]');
+//   // const fileToUpload = './Users/thomaskatalenas/Labs/Groa-fe-copy-tests/src/zipfile-testing/cooper.zip';
 
   
 // },40000)
+
 
