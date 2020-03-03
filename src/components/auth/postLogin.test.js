@@ -1,7 +1,7 @@
 import React from "react";
 import { render } from "@testing-library/react";
 import postLogin from './postLogin';
-import { clikpostLogin } from "../../utils/test-utils";
+import { clikPostLogin } from "../../utils/test-utils";
 
 
 describe('Button postlogin', () => {
@@ -17,7 +17,7 @@ describe('Button postlogin', () => {
   });
  });
 
- test('adds properly', () => {
-    expect(clikpostLogin.sum(0, 1)).toBe(1)
+ test('click post login', () => {
+    expect(clikPostLogin.sum(0, 1)).toBe(1)
 })
 
