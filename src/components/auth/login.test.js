@@ -25,7 +25,7 @@ describe('Button', () => {
 // it("renders Login Component", () => {
 //   const { container } = render(<Login />);
 
-//   const component = clikLogin(container, "App-component");
+//   const component = clikLogin(container, "login-component");
 //   expect(component.length).toBe(1);
 // });
 
