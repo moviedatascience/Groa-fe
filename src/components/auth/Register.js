@@ -3,13 +3,18 @@ import { connect } from "react-redux";
 import "./register.scss";
 import { withRouter } from "react-router-dom";
 import axios from "axios";
+<<<<<<< HEAD
 // import Groa from './Groa-logo-B2.png';
+=======
+import Groa from "./Groa-logo-B2.png";
+>>>>>>> f9f430ff29ed3e75a2f7a9598d8eb2a4f539083a
 import GroaWhite from "./GroaWhite.png";
 import { Login } from "../../store/actions";
 
 class Register extends React.Component {
   constructor(props) {
     super(props);
+<<<<<<< HEAD
 
     this.state = {
       user: {
@@ -27,6 +32,26 @@ class Register extends React.Component {
 
     this.handleChange = this.handleChange.bind(this);
     this.changeHandler = this.changeHandler.bind(this);
+=======
+
+    this.state = {
+      user: {
+        email: "",
+        user_name: "",
+        password: "",
+        confirmpassword: ""
+      },
+      submitted: false,
+      input: {
+        file: "",
+        movies: ""
+      },
+      errorStatus: false
+    };
+
+    this.handleChange = this.handleChange.bind(this);
+    // this.changeHandler = this.changeHandler.bind(this);
+>>>>>>> f9f430ff29ed3e75a2f7a9598d8eb2a4f539083a
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -42,6 +67,7 @@ class Register extends React.Component {
     });
   }
 
+<<<<<<< HEAD
   changeHandler(e) {
     let data = new FormData();
     data.append("movies", e.target.files[0], e.target.files[0].name);
@@ -54,6 +80,9 @@ class Register extends React.Component {
       }
     });
   }
+=======
+
+>>>>>>> f9f430ff29ed3e75a2f7a9598d8eb2a4f539083a
 
   handleSubmit(event) {
     event.preventDefault();
@@ -77,10 +106,15 @@ class Register extends React.Component {
         this.state.user.user_name,
         this.state.user.password
       );
+<<<<<<< HEAD
+=======
+
+>>>>>>> f9f430ff29ed3e75a2f7a9598d8eb2a4f539083a
       axios
         .post(
           "http://groabe-env.v3umry9g8h.us-east-1.elasticbeanstalk.com/api/users/register",
           {
+<<<<<<< HEAD
             headers: {
               Pragma: "public",
               Expires: 0,
@@ -93,11 +127,14 @@ class Register extends React.Component {
             }
           },
           {
+=======
+>>>>>>> f9f430ff29ed3e75a2f7a9598d8eb2a4f539083a
             user_name: this.state.user.user_name,
             password: this.state.user.password
           }
         )
         .then(res => {
+<<<<<<< HEAD
           localStorage.setItem("token", res.data.token);
           const userid = res.data.id;
           this.props.Login(userid);
@@ -142,6 +179,34 @@ class Register extends React.Component {
         })
         .catch(err => {
           console.log("Registration Error", err);
+=======
+        //   console.log("token: ", res.data.token);
+          
+          
+          
+          axios.post('http://groabe-env.v3umry9g8h.us-east-1.elasticbeanstalk.com/api/users/login', 
+          {user_name: this.state.user.user_name, password: this.state.user.password})
+          .then(res2 => {
+              console.log('nested login successful', res2)
+
+              const userid = res2.data.id;
+              this.props.Login(userid);
+              console.log('token: ', res2.data.token);
+              localStorage.setItem('token', res2.data.token)
+
+              this.props.history.push('/dashboard')
+              
+
+          })
+          .catch(err2 => {
+              console.log(err2)
+              // this.props.history.push('/Error')
+          })
+        })
+        .catch(err => {
+          console.log("Registration Error", err);
+          this.setState({ errorStatus: true });
+>>>>>>> f9f430ff29ed3e75a2f7a9598d8eb2a4f539083a
           // this.props.history.push('/Error')
         });
     }
@@ -158,6 +223,7 @@ class Register extends React.Component {
         <div className="H1">
           <div className="boxLeft">
             <img className="logo " src={GroaWhite} alt="groa logo" />
+<<<<<<< HEAD
             {/* <h1 style={{textAlign: 'center'}}>Your movies,  your way. </h1> */}
 
             {/* <div className="box1"/>  */}
@@ -165,6 +231,8 @@ class Register extends React.Component {
                                 <h5 className='h5text'>Groa Helps you pick the perfect film,</h5>
                                 <h5  className='h5text'>So you can save your popcorn for the good stuff.</h5>
                                 </div>  */}
+=======
+>>>>>>> f9f430ff29ed3e75a2f7a9598d8eb2a4f539083a
           </div>
 
           <div className="boxRight">
@@ -210,6 +278,10 @@ class Register extends React.Component {
                   "forms" + (submitted && !user.password ? " has-error" : "")
                 }
               ></div>
+<<<<<<< HEAD
+=======
+
+>>>>>>> f9f430ff29ed3e75a2f7a9598d8eb2a4f539083a
               <input
                 className="form-control"
                 type="password"
@@ -225,7 +297,15 @@ class Register extends React.Component {
               <div
                 className={
                   "forms" +
+<<<<<<< HEAD
                   (submitted && !user.confirmpassword ? " has-error" : "")
+=======
+                  (submitted &&
+                  !user.confirmpassword &&
+                  user.confirmpassword.length <= 4
+                    ? " has-error"
+                    : "")
+>>>>>>> f9f430ff29ed3e75a2f7a9598d8eb2a4f539083a
                 }
               ></div>
               <input
@@ -247,6 +327,7 @@ class Register extends React.Component {
                 </div>
 
                 <h5>Remember me</h5>
+<<<<<<< HEAD
                 <div className="BottomLogin">
                   <button className="LoginBtn">Login </button>
                   {registering}
@@ -278,6 +359,19 @@ class Register extends React.Component {
               {/* <p className="LogBtn">upload your letterboxd csv file here to get all past movie ratings</p> */}
               {/* </form>
                             </div> */}
+=======
+              </div>
+
+              <div className="BottomLogin">
+                <button className="LoginBtn">Login </button>
+                {registering}
+                {this.state.errorStatus ? (
+                  <h3>Login Error, try again</h3>
+                ) : (
+                  <h3>Success</h3>
+                )}
+              </div>
+>>>>>>> f9f430ff29ed3e75a2f7a9598d8eb2a4f539083a
             </form>
           </div>
           {/* end box right */}
@@ -288,6 +382,7 @@ class Register extends React.Component {
   }
 }
 
+<<<<<<< HEAD
 const mapStateToProps = state => {
   return {
     userData: state.userData,
@@ -296,6 +391,16 @@ const mapStateToProps = state => {
   };
 };
 
+=======
+const mapStateToProps = ({ dashboardMain }) => {
+  return {
+    userData: dashboardMain.userid,
+    isFetching: dashboardMain.isPostingUser,
+    error: dashboardMain.isPostingUserError
+  };
+};
+// with withRouter allowd this.props.history.push() to work.
+>>>>>>> f9f430ff29ed3e75a2f7a9598d8eb2a4f539083a
 export default withRouter(
   connect(mapStateToProps, {
     Login
