@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import "./register.scss";
 import { withRouter } from "react-router-dom";
 import axios from "axios";
-import Groa from "./Groa-logo-B2.png";
+
 import GroaWhite from "./GroaWhite.png";
 import { Login } from "../../store/actions";
 
@@ -67,23 +67,15 @@ class Register extends React.Component {
         this.state.user.user_name,
         this.state.user.password
       );
-
-      axios
-        .post(
-          "http://groabe-env.v3umry9g8h.us-east-1.elasticbeanstalk.com/api/users/register",
-          {
-            user_name: this.state.user.user_name,
-            password: this.state.user.password
-          }
-        )
-        .then(res => {
-        //   console.log("token: ", res.data.token);
+    //   https://api.groa.us/
+    //   "http://groabe-env.v3umry9g8h.us-east-1.elasticbeanstalk.com/
+      axios.post("https://api.groa.us/api/users/register",{user_name: this.state.user.user_name, password: this.state.user.password}).then(res => {
+          console.log("token: ", res.data.token);
           
           
           
-          axios.post('http://groabe-env.v3umry9g8h.us-east-1.elasticbeanstalk.com/api/users/login', 
-          {user_name: this.state.user.user_name, password: this.state.user.password})
-          .then(res2 => {
+          axios.post('https://api.groa.us/api/users/login', 
+          {user_name: this.state.user.user_name, password: this.state.user.password}).then(res2 => {
               console.log('nested login successful', res2)
 
               const userid = res2.data.id;
@@ -111,7 +103,7 @@ class Register extends React.Component {
   render() {
     const { registering } = this.props;
     const { user, submitted } = this.state;
-    const { location, history } = this.props;
+    // const { location, history } = this.props;
     return (
       <div className="container">
         <h3>Login</h3>
@@ -234,7 +226,7 @@ const mapStateToProps = ({ dashboardMain }) => {
     error: dashboardMain.isPostingUserError
   };
 };
-// with withRouter allowd this.props.history.push() to work.
+
 export default withRouter(
   connect(mapStateToProps, {
     Login

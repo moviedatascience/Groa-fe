@@ -62,11 +62,7 @@ const Dashboardv1 = (props) => {
         // })
        
     }
-    const flash = () => {
-        setTimeout(() => {
-            return "flash"
-        }, 1000);
-    }
+   
 
     return (
         <div className="bigContainer">
@@ -129,7 +125,7 @@ const Dashboardv1 = (props) => {
                         }) 
                     : true}   
                     
-                    {toggle == true ? 
+                    {toggle === true ? 
                         <div className = 'box-container2'>
                             <div className="box">
                                 <div className="movie-poster"></div>

@@ -5,7 +5,7 @@ import { getAllByTestId } from "./utils/test-utils.js";
 // component to be tested.
 import App from "./App.js";
 
-// creating a mock function to test if GA initialization was called.
+//creating a mock function to test if GA initialization was called.
 import reactGAinitialization from "./config/analytics.js";
 jest.mock("./config/analytics.js");
 reactGAinitialization.mockImplementation(() => () => null);

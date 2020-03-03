@@ -27,6 +27,7 @@ function App() {
           <Route path="/watch-list" component={WatchList} />
           {/* <Route exact path="/" component={LoadingScreen} /> */}
           <Route exact path="/navigation" component={Navigation} />
+
         </Switch>
       </div>
     </Router>
