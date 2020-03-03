@@ -17,7 +17,7 @@ const Dashboardv1 = (props) => {
         data.append('movies', e.target.files[0] , e.target.files[0].name)
         //change user/1/ to be :id number
         //Groabe-env.v3umry9g8h.us-east-1.elasticbeanstalk.com/
-        axiosWithAuth().post(`/${props.userid}/upload`, data,{
+        axiosWithAuth().post(`/${props.userid}/uploading`, data,{
             headers:{
                 'Content-Type':'multipart/form-data'  
             }
