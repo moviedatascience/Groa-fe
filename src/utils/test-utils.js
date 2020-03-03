@@ -43,7 +43,13 @@ export function getByTestId(...args) {
   return null;
 }
 
-const clikpostLogin = {
+const clikPostLogin = {
+  sum: (a, b) => {
+    return a + b
+  }
+}
+
+const clikLogin = {
   sum: (a, b) => {
     return a + b
   }
@@ -56,7 +62,8 @@ module.exports = {
   getAllByTestId,
   queryByTestId,
   queryAllByTestId,
-  clikpostLogin
+  clikPostLogin,
+  clikLogin
 };
 
 
