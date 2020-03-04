@@ -61,7 +61,12 @@ class Register extends React.Component {
             .then(res2 => {
               const userid = res2.data.id;
               localStorage.setItem("token", res2.data.token);
-              this.props.history.push("/dashboard", { userid: userid });
+              this.props.updateToken(localStorage.getItem("token"));
+              this.props.history.push(
+                "/dashboard",
+                { userid: userid },
+                { pathname: "/dashboard" }
+              );
             })
             .catch(err2 => {
               console.log(err2);

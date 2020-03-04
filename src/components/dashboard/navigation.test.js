@@ -14,6 +14,6 @@ it("renders navigation component", () => {
   );
 
   // the uri when this component renders is "/" so it'll go to the RegisterNavLinks component
-  const component = getAllByTestId(container, "register-nav-component");
+  const component = getAllByTestId(container, "navigation");
   expect(component.length).toBe(1);
 });

@@ -11,32 +11,20 @@ import "../dashboard/_Navigation.scss";
 import { faBell, faQuestionCircle } from "@fortawesome/free-regular-svg-icons";
 
 import { ifDev } from "../../utils/removeAttribute.js";
-import RegisterNavLinks from "../layout/nav-layouts/RegisterNavLinks";
 
 class Navigation extends Component {
-  state = {
-    search: "",
-    pathname: ""
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      search: ""
+    };
+  }
 
   handleChange = e => {
     this.setState({ search: e.target.value });
   };
 
-  componentDidMount() {
-    console.log("mounted nav");
-    this.setState({ pathname: window.location.pathname });
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-    console.log("did update");
-    console.log(prevState);
-    if (this.state.pathname !== prevState.pathname)
-      this.setState({ pathname: window.location.pathname });
-  }
-
   render() {
-    if (this.state.pathname === "/") return <RegisterNavLinks />;
     return (
       <div className="mainContainer" data-test={ifDev("navigation")}>
         <div className="Bars">
