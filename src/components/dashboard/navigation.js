@@ -24,16 +24,19 @@ class Navigation extends Component {
   };
 
   componentDidMount() {
+    console.log("mounted nav");
     this.setState({ pathname: window.location.pathname });
   }
 
   componentDidUpdate(prevProps, prevState) {
+    console.log("did update");
+    console.log(prevState);
     if (this.state.pathname !== prevState.pathname)
       this.setState({ pathname: window.location.pathname });
   }
 
   render() {
-    if (window.location.pathname === "/") return <RegisterNavLinks />;
+    if (this.state.pathname === "/") return <RegisterNavLinks />;
     return (
       <div className="mainContainer" data-test={ifDev("navigation")}>
         <div className="Bars">
