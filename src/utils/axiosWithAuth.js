@@ -6,6 +6,7 @@ export const axiosWithAuth = () => {
   return axios.create({
     baseURL: "https://api.groa.us/api/users",
     headers: {
+      "Content-type": "application/json",
       Authorization: `${token}`
     }
   });
