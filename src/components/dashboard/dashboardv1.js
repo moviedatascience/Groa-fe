@@ -2,8 +2,6 @@ import React, { useState, useEffect } from "react";
 import { axiosWithAuth } from "../../utils/axiosWithAuth.js";
 import { useHistory } from "react-router-dom";
 
-import axios from "axios";
-
 // local imports
 import "./_Dashboard.scss";
 import MovieCard from "../movies/MovieCard.js";
@@ -31,7 +29,7 @@ const Dashboardv1 = () => {
         }
       })
       .then(res => {
-        setRatings(res.data);
+        setTimeout(() => setRatings(res.data), 200);
       })
       .catch(err => {
         console.log(err);
@@ -41,18 +39,23 @@ const Dashboardv1 = () => {
   };
 
   useEffect(() => {
-    axios
-      .get(`https://api.groa.us/api/users/1111/recommendations`)
-      .then(res => setRecommendations(res.data.recommendation_json))
+    if (!history?.location?.state?.userid) return () => null;
+    axiosWithAuth()
+      .get(
+        `https://api.groa.us/api/users/${history.location.state.userid}/recommendations`
+      )
+      .then(res => {
+        setRecommendations(res.data.recommendation_json);
+      })
       .catch(err =>
         console.log("Something went wrong in fetching recommendations.", err)
       );
-  }, []);
+  }, [ratings, history]);
 
   switch (true) {
     case !history?.location?.state?.userid:
       return <LoadingScreen />;
-    case !ratings && !recommendations?.length:
+    case !recommendations?.length:
       return (
         <div className="bigContainer" data-test="dashboard-screen">
           <div className="form-hover">
