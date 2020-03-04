@@ -3,13 +3,10 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { ifDev } from "./utils/removeAttribute.js";
 
 // local imports
+import PrivateRoute from "./utils/privateRoute.js";
 import Dashboard from "./components/dashboard/index.js";
-// import Login from './auth/Login';
-import Register from "./components/auth/Register";
-import LoadingScreen from "./components/layout/LoadingScreen.js";
-import { PrivateRoute } from "./utils/privateRoute.js";
 import Navigation from "./components/dashboard/navigation.js";
-import WatchList from "./components/movies/WatchList.js";
+import Register from "./components/auth/Register";
 
 // config imports
 import reactGAinitialization from "./config/analytics.js";
@@ -35,12 +32,9 @@ function App() {
       <Router>
         <div className="App" data-test={ifDev("App-component")}>
           <Switch>
-            <Route exact path="/" component={Register} />
-            <PrivateRoute exact path="/dashboard" component={Dashboard} />
-            {/* <Route path='/login' component = {Login}/> */}
-            <Route path="/watch-list" component={WatchList} />
-            {/* <Route exact path="/" component={LoadingScreen} /> */}
+            <PrivateRoute path="/dashboard" component={Dashboard} />
             <Route exact path="/navigation" component={Navigation} />
+            <Route exact path="/" component={Register} />
           </Switch>
         </div>
       </Router>
