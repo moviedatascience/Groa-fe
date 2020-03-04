@@ -21,30 +21,29 @@ const Dashboardv1 = () => {
     data.append("movies", e.target.files[0], e.target.files[0].name);
 
     // history.location.state.userid is just where I am holding userid for now from the Register page so I do not need to implment redux.
-    const ratingsResponse = await axiosWithAuth()
+    axiosWithAuth()
       // this is insantiated when a file is added to input
       .post(`/${history.location.state.userid}/uploading`, data, {
         headers: {
           "Content-Type": "multipart/form-data"
         }
+      })
+      .then(res => {
+        console.log("Ratings res: ", res);
+        // waiting to set ratings var for 10 seconds.
+        setTimeout(() => setRatings(res.data), 10 * 1000);
+      })
+      .catch(err => {
+        console.log(err);
       });
-
-    console.log("ratingsResponse: ", ratingsResponse);
-    setRatings(ratingsResponse.data);
-
-    // .then(res => {
-    //   console.log("Ratings res: ", res);
-    //   setTimeout(() => setRatings(res.data), 60 * 1000);
-    // })
-    // .catch(err => {
-    //   console.log(err);
-    // });
     // clears out previous uploaded file
     data = new FormData();
   };
 
   useEffect(() => {
     if (!history?.location?.state?.userid) return () => null;
+
+    // when ratings is updated this call to recommendations will be called
     axiosWithAuth()
       .get(`/${history.location.state.userid}/recommendations`)
       .then(res => {
