@@ -3,7 +3,7 @@ import { axiosWithAuth } from "../../utils/axiosWithAuth.js";
 import { useHistory } from "react-router-dom";
 
 // local imports
-import "./dash.scss";
+import "./Dashboard.scss";
 import MovieCard from "../movies/MovieCard.js";
 import LoadingScreen from "../layout/LoadingScreen.js";
 

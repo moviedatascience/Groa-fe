@@ -3,9 +3,9 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { ifDev } from "./utils/removeAttribute.js";
 
 // local imports
-import PrivateRoute from "./utils/privateRoute.js";
+import PrivateRoute from "./utils/PrivateRoute.js";
 import Dashboard from "./components/dashboard/index.js";
-import Navigation from "./components/dashboard/navigation.js";
+import Navigation from "./components/dashboard/Navigation.js";
 import Register from "./components/auth/Register";
 
 // config imports

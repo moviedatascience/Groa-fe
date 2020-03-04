@@ -1,6 +1,6 @@
 import React from "react";
 
-import Dashboardv1 from "./dashboardv1";
+import Dashboardv1 from "./Dashboardv1";
 import Navigation from "./Navigation.js";
 
 const Dashboard = () => {

@@ -7,7 +7,7 @@ import {
   faBars
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import "../dashboard/navigation.scss";
+import "../dashboard/Navigation.scss";
 import { faBell, faQuestionCircle } from "@fortawesome/free-regular-svg-icons";
 
 import { ifDev } from "../../utils/removeAttribute.js";
