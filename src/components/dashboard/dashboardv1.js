@@ -1,26 +1,25 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { axiosWithAuth } from "../../utils/axiosWithAuth.js";
 import { useHistory } from "react-router-dom";
 
+import axios from "axios";
+
 // local imports
-import "./Dashboard.scss";
+import "./_Dashboard.scss";
 import MovieCard from "../movies/MovieCard.js";
+// temp import to verify switch statement
 import LoadingScreen from "../layout/LoadingScreen.js";
 
-// dashboard could become a place where we store all of our other layouts.
 const Dashboardv1 = () => {
   let history = useHistory();
-  const [input] = useState({ file: "" }); // if we're never using setInput, do we need this useState?
-  const [ratings, setRatings] = useState([]); // maybe this should updated to recommendations? -- are we expecting an array?
-  // const [toggle, setToggle] = useState(true);
+  const [input] = useState({ file: "" });
+  const [ratings, setRatings] = useState({});
+  const [recommendations, setRecommendations] = useState([]);
 
   const changeHandler = e => {
-    // maybe document this some where??? https://developer.mozilla.org/en-US/docs/Web/API/FormData/FormData
+    // https://developer.mozilla.org/en-US/docs/Web/API/FormData/FormData
     // packages up form to make it able to send over https
-    // new FormData() needs to be used for the file upload to work. // why?
     let data = new FormData();
-
-    // have to read more on new FormData to understand why appending "movies" works here with the input attribute
     data.append("movies", e.target.files[0], e.target.files[0].name);
 
     // history.location.state.userid is just where I am holding userid for now from the Register page so I do not need to implment redux.
@@ -38,82 +37,86 @@ const Dashboardv1 = () => {
       .catch(err => {
         console.log(err);
       });
-
     // clears out previous uploaded file
     data = new FormData();
   };
 
-  // const handleSubmit = e => {
-  //   setToggle(!toggle);
-  //   e.preventDefault();
-  //   console.log(input);
-  // };
+  useEffect(() => {
+    axios
+      .get(`https://api.groa.us/api/users/1111/recommendations`)
+      .then(res => setRecommendations(res.data.recommendation_json))
+      .catch(err =>
+        console.log("Something went wrong in fetching recommendations.", err)
+      );
+  }, []);
 
   switch (true) {
     case !history?.location?.state?.userid:
-      return <LoadingScreen />; // redirect to login/register
-    case !ratings?.length:
+      return <LoadingScreen />;
+    case !ratings && !recommendations?.length:
       return (
         <div className="bigContainer" data-test="dashboard-screen">
-          <div className="DB-Container">
-            <div className="form-hover">
-              {/* keep create component? */}
-              <form id="zip-form">
-                <input
-                  id="zip-input"
-                  className="movie-input"
-                  type="file"
-                  placeholder="letterbox csv file here"
-                  name="movies" // name of file / name of obj?  used in key field for postman to upload a file too
-                  value={input.movieName} // im not sure why this works but it does.  // document this portion out as well
-                  onChange={changeHandler}
-                />
-              </form>
-              <p className="form-directions">
-                upload your letterboxd csv file here to get all past movie
-                ratings
-              </p>
-            </div>
+          <div className="form-hover">
+            {/* will create a component in the future*/}
+            <form id="zip-form">
+              <input
+                id="zip-input"
+                className="movie-input"
+                type="file"
+                placeholder="letterbox csv file here"
+                name="movies"
+                value={input.movieName}
+                onChange={changeHandler}
+              />
+            </form>
+            <p className="form-directions">
+              upload your letterboxd csv file here to get all past movie ratings
+            </p>
           </div>
         </div>
       );
     default:
       return (
         <div className="bigContainer" data-test="dashboard-screen">
-          <div data-test="dashboard-screen" className="DB-Container">
-            <div className="form-hover">
-              {/* keep create component? */}
-              <form id="zip-form">
-                <input
-                  id="zip-input"
-                  className="movie-input"
-                  type="file"
-                  placeholder="letterbox csv file here"
-                  name="movies" // name of file / name of obj?  used in key field for postman to upload a file too
-                  value={input.movieName} // im not sure why this works but it does.  // document this portion out as well
-                  onChange={changeHandler}
-                />
-              </form>
+          <div className="form-hover">
+            <form id="zip-form">
+              <input
+                id="zip-input"
+                className="movie-input"
+                type="file"
+                placeholder="letterbox csv file here"
+                name="movies" // name of file / name of obj?  used in key field for postman to upload a file too
+                value={input.movieName} // im not sure why this works but it does.  // document this portion out as well
+                onChange={changeHandler}
+              />
+            </form>
+            {Object.keys(ratings).length === 0 ? (
               <p className="form-directions">
                 upload your letterboxd csv file here to get all past movie
                 ratings
               </p>
-            </div>
+            ) : (
+              <p className="upload-successful">
+                <strong>{ratings.message}</strong>
+              </p>
+            )}
+          </div>
 
-            {/* this shows the recommendations movie cards */}
-            <div data-test="box-container" className="box-container">
-              {/* should off set up to 200 and then retun nothing */}
-              {ratings.map((x, index) =>
-                index < 201 ? (
-                  <MovieCard
-                    key={index}
-                    name={x.Name}
-                    year={x.Year}
-                    rating={x.Rating}
-                  />
-                ) : null
-              )}
-            </div>
+          {/* this shows the recommendations movie cards */}
+          <h2>Your Recommendations</h2>
+          <div data-test="box-container" className="box-container">
+            {/* should off set up to 200 and then retun nothing */}
+            {recommendations.map((x, index) =>
+              index < 201 ? (
+                <MovieCard
+                  key={index}
+                  name={x.Title}
+                  year={x.Year}
+                  rating={x["Average Rating"]}
+                  image="https://source.unsplash.com/collection/2047031/500x500"
+                />
+              ) : null
+            )}
           </div>
         </div>
       );

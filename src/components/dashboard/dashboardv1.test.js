@@ -4,7 +4,7 @@ import { getAllByTestId } from "../../utils/test-utils.js";
 import { BrowserRouter as Router } from "react-router-dom";
 
 // component to be tested.
-import Dashboardv1 from "./dashboardv1.js";
+import Dashboardv1 from "./Dashboardv1.js";
 
 it("renders dashboardv1", () => {
   const { container } = render(
