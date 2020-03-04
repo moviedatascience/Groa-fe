@@ -59,7 +59,7 @@ class LoginPage extends React.Component {
         localStorage.setItem("token", res.data.token);
         //redirect to Groas dashboard page
         if (this.state.user.user_name && this.state.user.password) {
-          this.props.history.push("/dashboard");
+          this.props.history.push("/dashboard", {userid: res.data.id});
         }
       })
       .catch(err => console.log(err));
