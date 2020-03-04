@@ -14,26 +14,31 @@ const Dashboardv1 = () => {
   const [ratings, setRatings] = useState({});
   const [recommendations, setRecommendations] = useState([]);
 
-  const changeHandler = e => {
+  const changeHandler = async e => {
     // https://developer.mozilla.org/en-US/docs/Web/API/FormData/FormData
     // packages up form to make it able to send over https
     let data = new FormData();
     data.append("movies", e.target.files[0], e.target.files[0].name);
 
     // history.location.state.userid is just where I am holding userid for now from the Register page so I do not need to implment redux.
-    axiosWithAuth()
+    const ratingsResponse = await axiosWithAuth()
       // this is insantiated when a file is added to input
       .post(`/${history.location.state.userid}/uploading`, data, {
         headers: {
           "Content-Type": "multipart/form-data"
         }
-      })
-      .then(res => {
-        setTimeout(() => setRatings(res.data), 60 * 1000);
-      })
-      .catch(err => {
-        console.log(err);
       });
+
+    console.log("ratingsResponse: ", ratingsResponse);
+    setRatings(ratingsResponse.data);
+
+    // .then(res => {
+    //   console.log("Ratings res: ", res);
+    //   setTimeout(() => setRatings(res.data), 60 * 1000);
+    // })
+    // .catch(err => {
+    //   console.log(err);
+    // });
     // clears out previous uploaded file
     data = new FormData();
   };
