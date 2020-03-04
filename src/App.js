@@ -4,7 +4,7 @@ import { ifDev } from "./utils/removeAttribute.js";
 
 // local imports
 import PrivateRoute from "./utils/PrivateRoute.js";
-import Dashboard from "./components/dashboard/index.js";
+import Dashboardv1 from "./components/dashboard/Dashboardv1.js";
 import Navigation from "./components/dashboard/Navigation.js";
 import Register from "./components/auth/Register";
 
@@ -31,8 +31,9 @@ function App() {
     <Provider store={store}>
       <Router>
         <div className="App" data-test={ifDev("App-component")}>
+          <Navigation />
           <Switch>
-            <PrivateRoute path="/dashboard" component={Dashboard} />
+            <PrivateRoute path="/dashboard" component={Dashboardv1} />
             <Route exact path="/navigation" component={Navigation} />
             <Route exact path="/" component={Register} />
           </Switch>
