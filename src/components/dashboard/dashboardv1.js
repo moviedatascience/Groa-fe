@@ -29,7 +29,7 @@ const Dashboardv1 = () => {
         }
       })
       .then(res => {
-        setTimeout(() => setRatings(res.data), 200);
+        setTimeout(() => setRatings(res.data), 2000);
       })
       .catch(err => {
         console.log(err);
@@ -41,9 +41,7 @@ const Dashboardv1 = () => {
   useEffect(() => {
     if (!history?.location?.state?.userid) return () => null;
     axiosWithAuth()
-      .get(
-        `https://api.groa.us/api/users/${history.location.state.userid}/recommendations`
-      )
+      .get(`${history.location.state.userid}/recommendations`)
       .then(res => {
         setRecommendations(res.data.recommendation_json);
       })
