@@ -31,7 +31,6 @@ const Dashboardv1 = () => {
         }
       })
       .then(res => {
-        console.log(res);
         setRatings(res.data);
       })
       .catch(err => {

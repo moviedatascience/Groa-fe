@@ -71,7 +71,6 @@ class Navigation extends Component {
           <input
             className="searchBox"
             type="text"
-            //type='search'
             name="search"
             value={this.search}
             onChange={this.handleChange}
