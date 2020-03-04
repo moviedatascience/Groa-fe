@@ -5,7 +5,6 @@ import { NavLink } from "react-router-dom";
 import { connect } from 'react-redux';
 import {loginAction} from '../../store/actions/loginAction';
 import './login.scss';
-// import Groa from '../auth/Groa-logo-B2.png'
 import Groa2 from '../auth/Groa-logo-B2AA.png'
 
 class LoginPage extends React.Component {
@@ -65,7 +64,7 @@ class LoginPage extends React.Component {
   
   loginUser = e => {
     e.preventDefault();
-    //console.log(user)
+
 
       axiosWithAuth()
       .post("/login", this.state.user)
@@ -92,7 +91,7 @@ class LoginPage extends React.Component {
       <div className='container'>
         <div className='bartop'>
            
-              {/* <img className='Logo' src={Groa} alt='GroaLogo'/> */}
+           
               <NavLink to='/register'><h2 className='Register'>Register</h2></NavLink>    
         </div>
         
