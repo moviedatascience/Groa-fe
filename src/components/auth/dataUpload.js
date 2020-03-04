@@ -42,10 +42,8 @@ function clikR() {
     const handleChange = e => { 
         let data = new FormData()
         data.append('movies', e.target.files[0] , e.target.files[0].name)
-        //change user/1/ to be :id number
         // NOT USING CORRECT? -> //Groabe-env.v3umry9g8h.us-east-1.elasticbeanstalk.com/
-        // THINK LINE 48 should be this -> //https://api.groa.us/api/users/:id/uploading
-        axios.post('http://localhost:4000/api/users/1/upload', data,{
+        axios.post('https://api.groa.us/api/users/:id/uploading', data,{
             headers:{
                 'Content-Type':'multipart/form-data'
             }
