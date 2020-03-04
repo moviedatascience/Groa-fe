@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { ifDev } from "./utils/removeAttribute.js";
 
 // local imports
-import PrivateRoute from "./utils/PrivateRoute.js";
+import PrivateRoute from "./utils/privateRoute.js";
 import Dashboardv1 from "./components/dashboard/Dashboardv1.js";
 import Navigation from "./components/dashboard/Navigation.js";
 import Register from "./components/auth/Register";
