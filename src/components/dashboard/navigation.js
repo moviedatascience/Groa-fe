@@ -9,6 +9,8 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "../dashboard/navigation.scss";
 import { faBell, faQuestionCircle } from "@fortawesome/free-regular-svg-icons";
+
+import { ifDev } from "../../utils/removeAttribute.js";
 import RegisterNavLinks from "../layout/nav-layouts/RegisterNavLinks";
 
 class Navigation extends Component {
@@ -23,7 +25,7 @@ class Navigation extends Component {
   render() {
     if (window.location.pathname === "/") return <RegisterNavLinks />;
     return (
-      <div className="mainContainer">
+      <div className="mainContainer" data-test={ifDev("navigation")}>
         <div className="Bars">
           <FontAwesomeIcon className="bars-icon" icon={faBars} />
           <i className="far fa-bars"></i>
@@ -33,8 +35,8 @@ class Navigation extends Component {
           <NavLink className="Groa" to="/">
             Groa
           </NavLink>
-          <NavLink className="NavLink" to="/dairies">
-            Dairies
+          <NavLink className="NavLink" to="/diary">
+            Diary
           </NavLink>
 
           <NavLink className="NavLink" to="/trending">

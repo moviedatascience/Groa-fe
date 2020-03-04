@@ -54,8 +54,8 @@ const Dashboardv1 = () => {
       return <LoadingScreen />; // redirect to login/register
     case !ratings?.length:
       return (
-        <div className="bigContainer">
-          <div data-test="dashboard-screen" className="DB-Container">
+        <div className="bigContainer" data-test="dashboard-screen">
+          <div className="DB-Container">
             <div className="form-hover">
               {/* keep create component? */}
               <form id="zip-form">
@@ -79,7 +79,7 @@ const Dashboardv1 = () => {
       );
     default:
       return (
-        <div className="bigContainer">
+        <div className="bigContainer" data-test="dashboard-screen">
           <div data-test="dashboard-screen" className="DB-Container">
             <div className="form-hover">
               {/* keep create component? */}

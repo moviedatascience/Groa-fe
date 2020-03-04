@@ -1,7 +1,5 @@
+import constants from "../constants";
 
-import constants from '../constants';
-
-export const Login = (Id) => { 
-    return {type: constants.USER_LOGIN , payload: Id}
-}
-
+export const Login = Id => {
+  return { type: constants.USER_LOGIN, payload: Id };
+};

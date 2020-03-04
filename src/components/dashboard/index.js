@@ -1,7 +1,7 @@
 import React from "react";
 
 import Dashboardv1 from "./dashboardv1";
-import Navigation from "./navigation.js";
+import Navigation from "./Navigation.js";
 
 const Dashboard = () => {
   return (

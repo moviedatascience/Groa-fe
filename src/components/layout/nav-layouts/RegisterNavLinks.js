@@ -5,7 +5,7 @@ import "./RegisterNavLinks.scss";
 
 export default function RegisterNavLinks() {
   return (
-    <div className="register-nav" data-test={ifDev("loading-screen")}>
+    <div className="register-nav" data-test={ifDev("register-nav-component")}>
       <Link className="login-link" to="/login">
         Log in
       </Link>
