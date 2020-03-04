@@ -1,11 +1,4 @@
-import {
-    Login,
-} from './backendUserActions.js';
+import { Login } from "./backendUserActions.js";
 
-import{
-    setLogin,
-} from './backendUserActions'
-export {
-    Login,
-    setLogin
-}
+import { setLogin } from "./dsUserActions";
+export { Login, setLogin };
