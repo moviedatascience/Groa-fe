@@ -41,7 +41,7 @@ const Dashboardv1 = () => {
   useEffect(() => {
     if (!history?.location?.state?.userid) return () => null;
     axiosWithAuth()
-      .get(`${history.location.state.userid}/recommendations`)
+      .get(`/${history.location.state.userid}/recommendations`)
       .then(res => {
         setRecommendations(res.data.recommendation_json);
       })
