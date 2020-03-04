@@ -69,9 +69,16 @@ const Dashboardv1 = () => {
                 onChange={changeHandler}
               />
             </form>
-            <p className="form-directions">
-              upload your letterboxd csv file here to get all past movie ratings
-            </p>
+            {Object.keys(ratings).length === 0 ? (
+              <p className="form-directions">
+                upload your letterboxd csv file here to get all past movie
+                ratings
+              </p>
+            ) : (
+              <p className="upload-successful">
+                <strong>{ratings.message}</strong>
+              </p>
+            )}
           </div>
         </div>
       );
