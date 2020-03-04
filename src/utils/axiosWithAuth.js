@@ -5,7 +5,7 @@ const axiosWithAuth = () => {
     //need env file for line 6?
     //var key = process.env.REACT_APP_KEY
     return axios.create({
-        baseURL:'https://api.groa.us/',
+        baseURL:'https://api.groa.us/api/users',
         headers: {
             Authorization: token 
         }
