@@ -1,5 +1,4 @@
 import React from "react";
-import "./MovieCard.scss";
 
 // more fields will be appearing according to the Figma file
 export default function MovieCard({ name, year, rating, image }) {
