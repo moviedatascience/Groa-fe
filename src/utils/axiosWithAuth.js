@@ -5,7 +5,7 @@ export const axiosWithAuth = () => {
 
   return axios.create({
     baseURL:
-      "http://groaberecommendations-env.eba-jm9gzcte.us-east-1.elasticbeanstalk.com/",
+      "https://groaberecommendations-env.eba-jm9gzcte.us-east-1.elasticbeanstalk.com/",
     headers: {
       "Content-type": "application/json",
       Authorization: `${token}`
