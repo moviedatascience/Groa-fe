@@ -51,7 +51,6 @@ const Dashboardv1 = () => {
         console.log("Something went wrong in fetching recommendations.", err)
       );
   }, [ratings, history]);
-
   switch (true) {
     case !history?.location?.state?.userid:
       return <LoadingScreen />;
