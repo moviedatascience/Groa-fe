@@ -29,7 +29,7 @@ const Dashboardv1 = () => {
         }
       })
       .then(res => {
-        setTimeout(() => setRatings(res.data), 2000);
+        setTimeout(() => setRatings(res.data), 60 * 1000);
       })
       .catch(err => {
         console.log(err);
