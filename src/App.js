@@ -4,8 +4,8 @@ import { ifDev } from "./utils/removeAttribute.js";
 
 // local imports
 import PrivateRoute from "./utils/privateRoute.js";
-import Dashboardv1 from "./components/dashboard/Dashboardv1.js";
-import Navigation from "./components/dashboard/Navigation.js";
+import Dashboardv1 from "./components/dashboard/dashboardv1.js";
+import Navigation from "./components/dashboard/navigation.js";
 import Register from "./components/auth/Register";
 
 // config imports
