@@ -12,7 +12,7 @@ const Dashboardv1 = () => {
   const [ratings, setRatings] = useState({});
   const [recommendations, setRecommendations] = useState([]);
 
-  const changeHandler = async e => {
+  const changeHandler = e => {
     // https://developer.mozilla.org/en-US/docs/Web/API/FormData/FormData
     // packages up form to make it able to send over https
     let data = new FormData();
