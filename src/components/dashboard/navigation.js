@@ -27,13 +27,14 @@ class Navigation extends Component {
   render() {
     return (
       <div className="mainContainer" data-test={ifDev("navigation")}>
+        <div className='navContainer'>
         <div className="Bars">
           <FontAwesomeIcon className="bars-icon" icon={faBars} />
           <i className="far fa-bars"></i>
         </div>
 
         <div className="Links">
-          <NavLink className="Groa NavLink" to="/">
+          <NavLink className="Groa-NavLink" to="/">
             Groa
           </NavLink>
           <NavLink className="NavLink" to="/diary">
@@ -82,6 +83,8 @@ class Navigation extends Component {
           <FontAwesomeIcon className="angle-down-icon" icon={faAngleDown} />
           <i className="far fa-angle-down"></i>
         </div>
+        </div>
+        {/* END navContainer */}
       </div>
     );
   }
