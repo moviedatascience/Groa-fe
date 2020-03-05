@@ -31,7 +31,7 @@ const Dashboardv1 = () => {
       .then(res => {
         console.log("ratings res: ", ratings);
         // waiting to set ratings var for 10 seconds.
-        setTimeout(() => setRatings(res.data), 30 * 1000);
+        setTimeout(() => setRatings(res.data), 45 * 1000);
       })
       .catch(err => {
         console.log(err);
@@ -56,7 +56,7 @@ const Dashboardv1 = () => {
       .catch(err =>
         console.log("Something went wrong in fetching recommendations.", err)
       );
-  }, [ratings]);
+  }, [ratings, history]);
 
   console.log("history obj before rendering: ", history);
   console.log("ratings obj before attempting to render: ", ratings);
