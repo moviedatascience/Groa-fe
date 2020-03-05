@@ -42,6 +42,7 @@ const Dashboardv1 = () => {
 
   useEffect(() => {
     console.log("running useEffect!!!");
+    console.log("history obj in useEffect: ", history);
     if (!history?.location?.state?.userid) return () => null;
 
     // when ratings is updated this call to recommendations will be called
@@ -57,6 +58,7 @@ const Dashboardv1 = () => {
       );
   }, [ratings]);
 
+  console.log("history obj before rendering: ", history);
   console.log("ratings obj before attempting to render: ", ratings);
   switch (true) {
     case !history?.location?.state?.userid:
