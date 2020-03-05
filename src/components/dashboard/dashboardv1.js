@@ -7,6 +7,8 @@ import "./_Dashboard.scss";
 import MovieCard from "../movies/MovieCard.js";
 // temp import to verify switch statement
 import LoadingScreen from "../layout/LoadingScreen.js";
+// Navbar 
+import Navigation from "../dashboard/navigation";
 
 const Dashboardv1 = () => {
   let history = useHistory();
@@ -57,6 +59,7 @@ const Dashboardv1 = () => {
     case !recommendations?.length:
       return (
         <div className="bigContainer" data-test="dashboard-screen">
+          <Navigation/>
           <div className="form-hover">
             {/* will create a component in the future*/}
             <form id="zip-form">

@@ -5,9 +5,11 @@ import { ifDev } from "./utils/removeAttribute.js";
 // local imports
 import PrivateRoute from "./utils/privateRoute.js";
 import Dashboardv1 from "./components/dashboard/dashboardv1.js";
-import Navigation from "./components/dashboard/navigation.js";
+//TOOK OUT Navigation in Dashboardv1 now.
+// import Navigation from "./components/dashboard/navigation.js";
 import Register from "./components/auth/Register";
-import RegisterNavLinks from "./components/layout/nav-layouts/RegisterNavLinks.js";
+//TOOK OUT RegisterNavlinks - in Register now.
+// import RegisterNavLinks from "./components/layout/nav-layouts/RegisterNavLinks.js";
 
 // config imports
 import reactGAinitialization from "./config/analytics.js";
@@ -29,14 +31,21 @@ function App() {
   const [token, setToken] = useState(localStorage.getItem("token"));
   useEffect(() => reactGAinitialization(), []);
 
+
+  const home = <Route exact path="/"/> 
+  const dash = <Route path="/diary"/>
+
+
   return (
     <Provider store={store}>
       <Router>
         <div className="App" data-test={ifDev("App-component")}>
-          {token === null ? <RegisterNavLinks /> : <Navigation />}
+
+          {/* {token === null ? <Register /> : <Dashboardv1 /> } */}
+          {/* {token === null ? <RegisterNavLinks /> : <Navigation /> } */}
           <Switch>
             <PrivateRoute path="/dashboard" component={Dashboardv1} />
-            <Route exact path="/navigation" component={Navigation} />
+            {/* <Route exact path="/navigation" component={Navigation} /> */}
             <Route
               exact
               path="/"
