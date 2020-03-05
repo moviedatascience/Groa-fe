@@ -29,9 +29,9 @@ const Dashboardv1 = () => {
         }
       })
       .then(res => {
-        console.log("Ratings res: ", res);
+        console.log("ratings res: ", ratings);
         // waiting to set ratings var for 10 seconds.
-        setTimeout(() => setRatings(res.data), 10 * 1000);
+        setTimeout(() => setRatings(res.data), 30 * 1000);
       })
       .catch(err => {
         console.log(err);
@@ -41,19 +41,23 @@ const Dashboardv1 = () => {
   };
 
   useEffect(() => {
+    console.log("running useEffect!!!");
     if (!history?.location?.state?.userid) return () => null;
 
     // when ratings is updated this call to recommendations will be called
     axiosWithAuth()
       .get(`/${history.location.state.userid}/recommendations`)
       .then(res => {
+        console.log("ran recommendations call.");
+        console.log("recommendations res: ", res);
         setRecommendations(res.data.recommendation_json);
       })
       .catch(err =>
         console.log("Something went wrong in fetching recommendations.", err)
       );
-  }, [ratings, history]);
+  }, [ratings]);
 
+  console.log("ratings obj before attempting to render: ", ratings);
   switch (true) {
     case !history?.location?.state?.userid:
       return <LoadingScreen />;
