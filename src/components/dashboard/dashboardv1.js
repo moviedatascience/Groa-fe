@@ -43,7 +43,8 @@ const Dashboardv1 = () => {
   useEffect(() => {
     console.log("running useEffect!!!");
     console.log("history obj in useEffect: ", history);
-    if (!history?.location?.state?.userid) return () => null;
+    if (Object.keys(ratings).length === 0 || !history?.location?.state?.userid)
+      return () => null;
 
     // when ratings is updated this call to recommendations will be called
     axiosWithAuth()
