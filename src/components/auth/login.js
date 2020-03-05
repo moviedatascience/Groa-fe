@@ -6,6 +6,7 @@ import { connect } from "react-redux";
 import { loginAction } from "../../store/actions/loginAction";
 import "./login.scss";
 import Groa2 from "../auth/Groa-logo-B2AA.png";
+import { ifDev } from "../../utils/removeAttribute.js";
 
 class LoginPage extends React.Component {
   constructor(props) {
@@ -68,7 +69,7 @@ class LoginPage extends React.Component {
   render() {
     const { errors } = this.state;
     return (
-      <div className="LoginPage">
+      <div className="LoginPage" data-test={ifDev("login")}>
         {/* Container - ENTIRE PAGE */}
         <div className="containerLogin">
           <div className="bartop">
@@ -128,7 +129,7 @@ class LoginPage extends React.Component {
                 </div>
 
                 <div className="BtnContainer">
-                  <button className="BtnLogin">Log in</button>
+                  <button className="BtnLogin" data-test={ifDev("BtnLoginTest")}>Log in</button>
                 </div>
               </form>
             </div>
