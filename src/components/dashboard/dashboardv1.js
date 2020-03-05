@@ -27,7 +27,7 @@ const Dashboardv1 = () => {
       })
       .then(res => {
         // waiting to set ratings var for 45 seconds.
-        setTimeout(() => setRatings(res.data), 45 * 1000);
+        setTimeout(() => setRatings(res.data), 60 * 1000);
       })
       .catch(err => {
         console.log(err); // --> I think these errors we should be sending to an error page.
@@ -73,8 +73,11 @@ const Dashboardv1 = () => {
             </form>
             {Object.keys(ratings).length === 0 ? (
               <p className="form-directions">
-                upload your letterboxd csv file here to get all past movie
-                ratings
+                Upload your letterboxd ZIP file here to get all past movie
+                ratings.
+                <br />
+                After you upload, it should take a full minute to give you a
+                success message
               </p>
             ) : (
               <p className="upload-successful">
