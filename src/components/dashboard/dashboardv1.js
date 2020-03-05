@@ -5,8 +5,6 @@ import { useHistory } from "react-router-dom";
 // local imports
 import "./_Dashboard.scss";
 import MovieCard from "../movies/MovieCard.js";
-// temp import to verify switch statement
-import LoadingScreen from "../layout/LoadingScreen.js";
 
 const Dashboardv1 = () => {
   let history = useHistory();
@@ -19,7 +17,6 @@ const Dashboardv1 = () => {
     // packages up form to make it able to send over https
     let data = new FormData();
     data.append("movies", e.target.files[0], e.target.files[0].name);
-
     // history.location.state.userid is just where I am holding userid for now from the Register page so I do not need to implment redux.
     axiosWithAuth()
       // this is insantiated when a file is added to input
@@ -29,20 +26,18 @@ const Dashboardv1 = () => {
         }
       })
       .then(res => {
-        console.log("ratings res: ", ratings);
-        // waiting to set ratings var for 10 seconds.
+        // waiting to set ratings var for 45 seconds.
         setTimeout(() => setRatings(res.data), 45 * 1000);
       })
       .catch(err => {
-        console.log(err);
+        console.log(err); // --> I think these errors we should be sending to an error page.
       });
     // clears out previous uploaded file
     data = new FormData();
   };
 
   useEffect(() => {
-    console.log("running useEffect!!!");
-    console.log("history obj in useEffect: ", history);
+    // only if ratings has data in it, and the necessary parts of the history object to run the recommendations call
     if (Object.keys(ratings).length === 0 || !history?.location?.state?.userid)
       return () => null;
 
@@ -50,8 +45,6 @@ const Dashboardv1 = () => {
     axiosWithAuth()
       .get(`/${history.location.state.userid}/recommendations`)
       .then(res => {
-        console.log("ran recommendations call.");
-        console.log("recommendations res: ", res);
         setRecommendations(res.data.recommendation_json);
       })
       .catch(err =>
@@ -59,11 +52,9 @@ const Dashboardv1 = () => {
       );
   }, [ratings, history]);
 
-  console.log("history obj before rendering: ", history);
-  console.log("ratings obj before attempting to render: ", ratings);
   switch (true) {
     case !history?.location?.state?.userid:
-      return <LoadingScreen />;
+      return (window.location.pathname = "/");
     case !recommendations?.length:
       return (
         <div className="bigContainer" data-test="dashboard-screen">
