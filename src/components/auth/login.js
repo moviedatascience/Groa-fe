@@ -1,6 +1,5 @@
 import React from "react";
 import { axiosWithAuth } from "../../utils/axiosWithAuth";
-import { NavLink } from "react-router-dom";
 
 import { connect } from "react-redux";
 import { loginAction } from "../../store/actions/loginAction";
@@ -58,9 +57,11 @@ class LoginPage extends React.Component {
       .post("/login", this.state.user)
       .then(res => {
         localStorage.setItem("token", res.data.token);
+        // updates token to refresh navbar
+        this.props.updateToken(localStorage.getItem("token"));
         //redirect to Groas dashboard page
         if (this.state.user.user_name && this.state.user.password) {
-          this.props.history.push("/dashboard", {userid: res.data.id});
+          this.props.history.push("/dashboard", { userid: res.data.id });
         }
       })
       .catch(err => console.log(err));
@@ -72,9 +73,7 @@ class LoginPage extends React.Component {
       <div className="LoginPage" data-test={ifDev("login")}>
         {/* Container - ENTIRE PAGE */}
         <div className="containerLogin">
-          <div className="bartop">
-                
-          </div>
+          <div className="bartop"></div>
 
           <div className="Middle">
             <div className="boxLeft">
@@ -129,7 +128,12 @@ class LoginPage extends React.Component {
                 </div>
 
                 <div className="BtnContainer">
-                  <button className="BtnLogin" data-test={ifDev("BtnLoginTest")}>Log in</button>
+                  <button
+                    className="BtnLogin"
+                    data-test={ifDev("BtnLoginTest")}
+                  >
+                    Log in
+                  </button>
                 </div>
               </form>
             </div>

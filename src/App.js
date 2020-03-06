@@ -33,11 +33,15 @@ function App() {
   return (
     <Provider store={store}>
       <Router>
-      
         <div className="App" data-test={ifDev("App-component")}>
           {token === null ? <RegisterNavLinks /> : <Navigation />}
           <Switch>
-          <Route path="/login" component={Login} />
+            <Route
+              path="/login"
+              render={props => (
+                <Login {...props} token={token} updateToken={setToken} />
+              )}
+            />
             <PrivateRoute path="/dashboard" component={Dashboardv1} />
             <Route exact path="/navigation" component={Navigation} />
             <Route
