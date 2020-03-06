@@ -32,9 +32,7 @@ function App() {
   useEffect(() => reactGAinitialization(), []);
 
 
-  const home = <Route exact path="/"/> 
-  const dash = <Route path="/diary"/>
-
+ 
 
   return (
     <Provider store={store}>
