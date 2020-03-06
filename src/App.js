@@ -39,7 +39,7 @@ function App() {
       <Router>
         <div className="App" data-test={ifDev("App-component")}>
 
-          {/* {token === null ? <Register /> : <Dashboardv1 /> } */}
+         
           {/* {token === null ? <RegisterNavLinks /> : <Navigation /> } */}
           <Switch>
             <PrivateRoute path="/dashboard" component={Dashboardv1} />

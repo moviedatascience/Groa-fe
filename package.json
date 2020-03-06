@@ -12,6 +12,7 @@
     "@testing-library/user-event": "^7.1.2",
     "axios": "^0.19.2",
     "dotenv": "^8.2.0",
+    "history": "^4.10.1",
     "node-sass": "^4.13.1",
     "popular-movie-quotes": "^1.2.4",
     "puppeteer": "^2.1.1",
