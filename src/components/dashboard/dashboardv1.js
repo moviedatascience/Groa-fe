@@ -5,7 +5,7 @@ import { useHistory } from "react-router-dom";
 // local imports
 import "./_Dashboard.scss";
 import MovieCard from "../movies/MovieCard.js";
-import Navigation from './navigation';
+
 const Dashboardv1 = () => {
   let history = useHistory();
   const [input] = useState({ file: "" });
@@ -53,12 +53,11 @@ const Dashboardv1 = () => {
   }, [ratings, history]);
 
   switch (true) {
-    case !history?.location?.state?.userid:
-      return (window.location.pathname = "/");
+   
     case !recommendations?.length:
       return (
         <div className="bigContainer" data-test="dashboard-screen">
-          <Navigation/>
+         
           <div className="form-hover">
             {/* will create a component in the future*/}
             <form id="zip-form">

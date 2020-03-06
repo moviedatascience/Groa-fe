@@ -37,8 +37,9 @@ class Navigation extends Component {
           <NavLink className="Groa-NavLink" to="/">
             Groa
           </NavLink>
-          <NavLink className="NavLink" to="/diary">
-            Diary
+          <NavLink className="NavLink" to="/dashboard">
+            {/* Diary */}
+            Dashboard
           </NavLink>
 
           <NavLink className="NavLink" to="/trending">

@@ -5,8 +5,8 @@ import { ifDev } from "./utils/removeAttribute.js";
 // local imports
 import PrivateRoute from "./utils/privateRoute.js";
 import Dashboardv1 from "./components/dashboard/dashboardv1.js";
-//TOOK OUT Navigation in Dashboardv1 now.
-// import Navigation from "./components/dashboard/navigation.js";
+
+import Navigation from "./components/dashboard/navigation.js";
 import Register from "./components/auth/Register";
 import RegisterNavLinks from "./components/layout/nav-layouts/RegisterNavLinks.js";
 import Login from "./components/auth/login";
@@ -41,15 +41,13 @@ function App() {
 
          
           {/* {token === null ? <RegisterNavLinks /> : <Navigation /> } */}
-          <Switch>
+          {/* <Switch> */}
             <Route
               path="/login"
               render={props => (
                 <Login {...props} token={token} updateToken={setToken} />
               )}
             />
-            <PrivateRoute path="/dashboard" component={Dashboardv1} />
-            {/* <Route exact path="/navigation" component={Navigation} /> */}
             <Route
               exact
               path="/"
@@ -57,7 +55,11 @@ function App() {
                 <Register {...props} token={token} updateToken={setToken} />
               )}
             />
-          </Switch>
+            <Route exact path={["/dashboard", "/trending", "/recommended", "/watchlist", "/explore"]} component={Navigation} />
+            <PrivateRoute exact path="/dashboard" component={Dashboardv1} />
+            
+            
+          {/* </Switch> */}
         </div>
       </Router>
     </Provider>
