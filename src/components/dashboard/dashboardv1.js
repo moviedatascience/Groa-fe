@@ -5,7 +5,7 @@ import { useHistory } from "react-router-dom";
 // local imports
 import "./_Dashboard.scss";
 import MovieCard from "../movies/MovieCard.js";
-
+import Navigation from './navigation';
 const Dashboardv1 = () => {
   let history = useHistory();
   const [input] = useState({ file: "" });
