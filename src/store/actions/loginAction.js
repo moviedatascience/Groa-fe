@@ -15,7 +15,7 @@ function login(username, password) {
                 (username, password)
                     .then(res => {
                         console.log(res)
-                            dispatch({ type: FETCHING_USER_LOGIN_SUCCESS });
+                            dispatch({ type: FETCHING_USER_LOGIN_SUCCESS, payload: res.data });
                             
                         })
                     .catch(err => {
