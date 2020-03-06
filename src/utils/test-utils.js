@@ -27,7 +27,7 @@ export const queryAllByTestId = queryHelpers.queryAllByAttribute.bind(
 export function getAllByTestId(container, id, ...rest) {
   const els = queryAllByTestId(container, id, ...rest);
   if (!els.length) {
-    throw queryHelpers.getElementError(
+    throw queryHelpers.getMultipleElementsFoundError(
       `Unable to find an element by: [data-test="${id}"]`,
       container
     );
