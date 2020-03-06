@@ -5,8 +5,6 @@ import { useHistory } from "react-router-dom";
 // local imports
 import "./_Dashboard.scss";
 import MovieCard from "../movies/MovieCard.js";
-// temp import to verify switch statement
-import LoadingScreen from "../layout/LoadingScreen.js";
 
 const Dashboardv1 = () => {
   let history = useHistory();
@@ -19,7 +17,6 @@ const Dashboardv1 = () => {
     // packages up form to make it able to send over https
     let data = new FormData();
     data.append("movies", e.target.files[0], e.target.files[0].name);
-
     // history.location.state.userid is just where I am holding userid for now from the Register page so I do not need to implment redux.
     axiosWithAuth()
       // this is insantiated when a file is added to input
@@ -29,21 +26,24 @@ const Dashboardv1 = () => {
         }
       })
       .then(res => {
-        setTimeout(() => setRatings(res.data), 200);
+        // waiting to set ratings var for 45 seconds.
+        setTimeout(() => setRatings(res.data), 60 * 1000);
       })
       .catch(err => {
-        console.log(err);
+        console.log(err); // --> I think these errors we should be sending to an error page.
       });
     // clears out previous uploaded file
     data = new FormData();
   };
 
   useEffect(() => {
-    if (!history?.location?.state?.userid) return () => null;
+    // only if ratings has data in it, and the necessary parts of the history object to run the recommendations call
+    if (Object.keys(ratings).length === 0 || !history?.location?.state?.userid)
+      return () => null;
+
+    // when ratings is updated this call to recommendations will be called
     axiosWithAuth()
-      .get(
-        `https://api.groa.us/api/users/${history.location.state.userid}/recommendations`
-      )
+      .get(`/${history.location.state.userid}/recommendations`)
       .then(res => {
         setRecommendations(res.data.recommendation_json);
       })
@@ -51,9 +51,10 @@ const Dashboardv1 = () => {
         console.log("Something went wrong in fetching recommendations.", err)
       );
   }, [ratings, history]);
+
   switch (true) {
     case !history?.location?.state?.userid:
-      return <LoadingScreen />;
+      return (window.location.pathname = "/");
     case !recommendations?.length:
       return (
         <div className="bigContainer" data-test="dashboard-screen">
@@ -70,9 +71,19 @@ const Dashboardv1 = () => {
                 onChange={changeHandler}
               />
             </form>
-            <p className="form-directions">
-              upload your letterboxd csv file here to get all past movie ratings
-            </p>
+            {Object.keys(ratings).length === 0 ? (
+              <p className="form-directions">
+                Upload your letterboxd ZIP file here to get all past movie
+                ratings.
+                <br />
+                After you upload, it should take a full minute to give you a
+                success message
+              </p>
+            ) : (
+              <p className="upload-successful">
+                <strong>{ratings.message}</strong>
+              </p>
+            )}
           </div>
         </div>
       );

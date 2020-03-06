@@ -1,20 +1,24 @@
 import React from "react";
 import { render } from "@testing-library/react";
+import { Router } from "react-router-dom";
 import { getAllByTestId } from "../../utils/test-utils.js";
-import { BrowserRouter as Router } from "react-router-dom";
 
 // component to be tested.
 import Dashboardv1 from "./Dashboardv1.js";
+import { createMemoryHistory } from "history";
 
-it("renders dashboardv1", () => {
+it("renders dashboardv1 if there is a history object", () => {
+  let history = createMemoryHistory();
+  const route = "/dashboard";
+  let userid = 2394572390487239458732957324985723497;
+  history.push(route, { userid: userid });
+
   const { container } = render(
-    <Router>
+    <Router history={history}>
       <Dashboardv1 />
     </Router>
   );
 
-  // currently have it set up so that if there is no user id it goes to loading screen.
-  // should change to login or a 403 or some thing else.
-  const component = getAllByTestId(container, "loading-screen");
+  const component = getAllByTestId(container, "dashboard-screen");
   expect(component.length).toBe(1);
 });
