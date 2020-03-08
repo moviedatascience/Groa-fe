@@ -10,12 +10,6 @@ const store = createStore(
  (applyMiddleware)
 );
 
-describe('Button', () => {
-  it('should be defined', () => {
-    expect(Login).toBeDefined();
-  });
-})
-
 it("renders login component", () => {
   const { container } = render(
     <Provider store={store}>
@@ -27,3 +21,9 @@ it("renders login component", () => {
   const component = getAllByTestId(container, "login-component");
   expect(component.length).toBe(1);
 });
+
+describe('Button', () => {
+  it('should be defined', () => {
+    expect(Login).toBeDefined();
+  });
+})

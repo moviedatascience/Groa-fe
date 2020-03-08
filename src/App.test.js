@@ -3,8 +3,6 @@ import '@testing-library/jest-dom/extend-expect'
 import { render, fireEvent } from "@testing-library/react";
 import { getByTestId, getAllByTestId } from "./utils/test-utils.js";
 
-
-
 // component to be tested.
 import App from "./App.js";
 import Login from "../src/components/auth/login";
