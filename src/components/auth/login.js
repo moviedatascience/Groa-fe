@@ -26,7 +26,7 @@ class LoginPage extends React.Component {
   handleChange = e => {
     const { name, value } = e.target;
     let errors = this.state.errors;
-    e.preventDefault();
+    // e.preventDefault();
     this.setState({
       user: {
         ...this.state.user,
@@ -70,7 +70,7 @@ class LoginPage extends React.Component {
   render() {
     const { errors } = this.state;
     return (
-      <div className="LoginPage" data-test={ifDev("login")}>
+      <div className="LoginPage" data-test={ifDev("login-component")}>
         {/* Container - ENTIRE PAGE */}
         <div className="containerLogin">
           <div className="bartop"></div>
@@ -94,10 +94,10 @@ class LoginPage extends React.Component {
                   className="input1"
                   type="text"
                   name="user_name"
+                  id="user_name"
                   value={this.user_name}
                   onChange={this.handleChange}
                   placeholder="Username or email required"
-                  errorMessage="username required"
                 />
                 {/* ERROR MESSAGE */}
                 {errors.user_name.length > 0 && (
@@ -108,6 +108,7 @@ class LoginPage extends React.Component {
                   className="input1"
                   type="password"
                   name="password"
+                  id="password"
                   value={this.password}
                   onChange={this.handleChange}
                   placeholder="Password"

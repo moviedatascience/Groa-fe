@@ -53,7 +53,6 @@ const Dashboardv1 = () => {
   }, [ratings, history]);
 
   switch (true) {
-   
     case !recommendations?.length:
       return (
         <div className="bigContainer" data-test="dashboard-screen">

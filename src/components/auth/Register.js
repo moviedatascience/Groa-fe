@@ -1,5 +1,6 @@
 import React from "react";
 import { axiosWithAuth } from "../../utils/axiosWithAuth.js";
+import { ifDev } from "../../utils/removeAttribute.js";
 
 // styling imports
 import "./_Register.scss";
@@ -84,7 +85,7 @@ class Register extends React.Component {
   render() {
     const { user, submitted } = this.state;
     return (
-      <div className="container">
+      <div className="container" data-test={ifDev("register-component")}>
         <div className='registerNav'><RegisterNavLinks/></div>
           <div className='boxHolder'>
           <div className="boxLeft">
