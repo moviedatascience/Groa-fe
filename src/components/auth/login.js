@@ -1,5 +1,6 @@
 import React from "react";
 import { axiosWithAuth } from "../../utils/axiosWithAuth";
+import { Link } from "react-router-dom";
 
 import { connect } from "react-redux";
 import { loginAction } from "../../store/actions/loginAction";
@@ -132,6 +133,7 @@ class LoginPage extends React.Component {
                 </div>
 
                 <div className="BtnContainer">
+                  <Link to="/register">Already have an account?</Link>
                   <button
                     className="BtnLogin"
                     data-test={ifDev("BtnLoginTest")}

@@ -86,7 +86,8 @@ function App() {
                   <Dashboardv1 />
                 </>
               ) : (
-                <Login
+                // Register for presentation
+                <Register
                   {...props}
                   token={token}
                   updateToken={setToken}

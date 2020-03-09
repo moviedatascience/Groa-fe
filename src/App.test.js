@@ -8,9 +8,15 @@ import { Router } from "react-router-dom";
 // component to be tested.
 import App from "./App.js";
 import Register from "./components/auth/Register.js";
+import Login from "./components/auth/login.js";
 
 //creating a mock function to test if GA initialization was called.
 import reactGAinitialization from "./config/analytics.js";
+
+// redux testing
+import { Provider } from "react-redux";
+import configureStore from "redux-mock-store";
+const mockStore = configureStore([]);
 
 jest.mock("./config/analytics.js");
 reactGAinitialization.mockImplementation(() => () => null);
@@ -20,7 +26,7 @@ it("calls reactGAinitialization once", () => {
   expect(reactGAinitialization).toBeCalled();
 });
 
-it("renders App component, register component and register navigation component", () => {
+it("renders register component and register navigation component when the route is directed to '/register'", () => {
   let history = createMemoryHistory();
   history.push("/register");
   const { container } = render(
@@ -29,9 +35,6 @@ it("renders App component, register component and register navigation component"
     </Router>
   );
 
-  // let component = getAllByTestId(container, "App-component");
-  // expect(component.length).toBe(1);
-
   let component = getAllByTestId(container, "register-component");
   expect(component.length).toBe(1);
 
@@ -39,13 +42,29 @@ it("renders App component, register component and register navigation component"
   expect(component.length).toBe(1);
 });
 
-it("renders link to login which onClick renders login component", () => {
-  const { container } = render(<App />);
+describe("login component", () => {
+  let store;
+  beforeEach(() => {
+    store = mockStore({
+      myState: "sample test"
+    });
+  });
+  it("renders Login component when the application route is directed to '/login'", () => {
+    let history = createMemoryHistory();
+    history.push("/login");
+    const { container } = render(
+      <Provider store={store}>
+        <Router history={history}>
+          <Login />
+        </Router>
+      </Provider>
+    );
 
-  let link = getAllByTestId(container, "BtnLoginTest");
-  expect(link.length).toBe(1);
-  fireEvent.click(getByTestId(container, "BtnLoginTest"));
+    let link = getAllByTestId(container, "BtnLoginTest");
+    expect(link.length).toBe(1);
+    fireEvent.click(getByTestId(container, "BtnLoginTest"));
 
-  let component = getAllByTestId(container, "login-component");
-  expect(component.length).toBe(1);
+    let component = getAllByTestId(container, "login-component");
+    expect(component.length).toBe(1);
+  });
 });
