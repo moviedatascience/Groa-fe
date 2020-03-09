@@ -65,11 +65,10 @@ class Register extends React.Component {
               const userid = res2.data.id;
               localStorage.setItem("token", res2.data.token);
               this.props.updateToken(localStorage.getItem("token"));
-              this.props.history.push(
-                "/dashboard",
-                { userid: userid },
-                { pathname: "/dashboard" }
-              );
+              this.props.updateUserid(res2.data.id);
+              this.props.history.push(`/${res2.data.id}/recommended`, {
+                userid: userid
+              });
             })
             .catch(err2 => {
               console.log(err2);
@@ -86,8 +85,10 @@ class Register extends React.Component {
     const { user, submitted } = this.state;
     return (
       <div className="container" data-test={ifDev("register-component")}>
-        <div className='registerNav'><RegisterNavLinks/></div>
-          <div className='boxHolder'>
+        <div className="registerNav">
+          <RegisterNavLinks />
+        </div>
+        <div className="boxHolder">
           <div className="boxLeft">
             <img className="logo" src={GroaWhite} alt="groa logo" />
           </div>
@@ -171,8 +172,8 @@ class Register extends React.Component {
             </form>
           </div>
           {/* end box right */}
-          </div>
-          {/* END boxHolder */}
+        </div>
+        {/* END boxHolder */}
       </div>
       //END CONTAINER
     );

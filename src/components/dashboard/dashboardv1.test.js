@@ -9,8 +9,8 @@ import { createMemoryHistory } from "history";
 
 it("renders dashboardv1 if there is a history object", () => {
   let history = createMemoryHistory();
-  const route = "/dashboard";
   let userid = 2394572390487239458732957324985723497;
+  const route = `/${userid}/recommended`;
   history.push(route, { userid: userid });
 
   const { container } = render(

@@ -58,9 +58,13 @@ class LoginPage extends React.Component {
         localStorage.setItem("token", res.data.token);
         // updates token to refresh navbar
         this.props.updateToken(localStorage.getItem("token"));
+        // sets up userid in app
+        this.props.updateUserid(res.data.id);
         //redirect to Groas dashboard page
         if (this.state.user.user_name && this.state.user.password) {
-          this.props.history.push("/dashboard", { userid: res.data.id });
+          this.props.history.push(`/${res.data.id}/recommended`, {
+            userid: res.data.id
+          });
         }
       })
       .catch(err => console.log(err));
