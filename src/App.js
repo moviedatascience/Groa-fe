@@ -32,7 +32,6 @@ function App() {
   const [userid, setUserid] = useState();
   useEffect(() => reactGAinitialization(), [userid]);
 
-  console.log("userid: ", userid);
   return (
     <Provider store={store}>
       <Router>
@@ -60,7 +59,8 @@ function App() {
               />
             )}
           />
-          <PrivateRoute
+          {/* this is fine as a route because all of the routes that will have display their component will only be avalible on a private route */}
+          <Route
             exact
             path={[
               "/:userid/recommended",
@@ -86,7 +86,7 @@ function App() {
                   <Dashboardv1 />
                 </>
               ) : (
-                <Register
+                <Login
                   {...props}
                   token={token}
                   updateToken={setToken}
