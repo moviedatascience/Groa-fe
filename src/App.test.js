@@ -68,3 +68,22 @@ describe("login component", () => {
     expect(component.length).toBe(1);
   });
 });
+
+it("renders navigation and recommendation components when pathname is '/:userid/recommended and a token is in localStorage", () => {
+  let history = createMemoryHistory();
+  let userid = 6485746;
+  history.push(`/${userid}/recommended`);
+  localStorage.setItem("token", "buttons");
+
+  const { container } = render(
+    <Router history={history}>
+      <App />
+    </Router>
+  );
+
+  let component = getAllByTestId(container, "navigation");
+  expect(component.length).toBe(1);
+
+  component = getAllByTestId(container, "dashboard-screen");
+  expect(component.length).toBe(1);
+});
