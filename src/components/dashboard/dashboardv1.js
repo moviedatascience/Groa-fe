@@ -53,11 +53,10 @@ const Dashboardv1 = () => {
   }, [ratings, history]);
 
   switch (true) {
-    case !history?.location?.state?.userid:
-      return (window.location.pathname = "/");
     case !recommendations?.length:
       return (
         <div className="bigContainer" data-test="dashboard-screen">
+         
           <div className="form-hover">
             {/* will create a component in the future*/}
             <form id="zip-form">
