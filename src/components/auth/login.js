@@ -7,6 +7,9 @@ import "./login.scss";
 import Groa2 from "../auth/Groa-logo-B2AA.png";
 import { ifDev } from "../../utils/removeAttribute.js";
 
+
+
+
 class LoginPage extends React.Component {
   constructor(props) {
     super(props);
@@ -19,28 +22,29 @@ class LoginPage extends React.Component {
       errors: {
         user_name: "",
         password: ""
-      }
+      },
+      submitted: false,
     };
   }
 
   handleChange = e => {
     const { name, value } = e.target;
     let errors = this.state.errors;
+    
     this.setState({
       user: {
         ...this.state.user,
         [e.target.name]: e.target.value
-      }
+      },
+      
     });
     switch (name) {
+     
       case "user_name":
-        errors.user_name = value.length < 5 ? "must be a valid user name" : "";
+        errors.user_name = value.length < 6 ? "User name must be 6 or more characters long" : "";    
         break;
       case "password":
-        errors.password =
-          value.length < 4
-            ? "Password must be more than 4 characters long"
-            : "";
+        errors.password = value.length < 6 ? "Password must be 6 or more characters long" : "";
         break;
       default:
         break;
@@ -49,25 +53,45 @@ class LoginPage extends React.Component {
     this.setState({ errors, [name]: value }, () => {});
   };
 
+
+
   loginUser = e => {
     e.preventDefault();
-
-    axiosWithAuth()
+    if (this.state.user.user_name && this.state.user.password) {
+      axiosWithAuth()
       .post("/login", this.state.user)
       .then(res => {
         localStorage.setItem("token", res.data.token);
         // updates token to refresh navbar
         this.props.updateToken(localStorage.getItem("token"));
         //redirect to Groas dashboard page
-        if (this.state.user.user_name && this.state.user.password) {
-          this.props.history.push("/dashboard", { userid: res.data.id });
-        }
+        this.props.history.push("/dashboard", { userid: res.data.id }); 
       })
-      .catch(err => console.log(err));
+      .catch(err => console.log(err,'errr'));
+    }else{
+      console.log('need user name')
+      const { name, value } = e.target;
+      let errors = this.state.errors;
+      switch (name) {
+     
+        case "user_name":
+          errors.user_name = value.length < 6 ? "User name must be 6 or more characters long" : "";    
+          break;
+        case "password":
+          errors.password = value.length < 6 ? "Password must be 6 or more characters long" : "";
+          break;
+        default:
+          break;
+      }
+      this.setState({ errors, [name]: value }, () => {});
+  
+
+    }
+      
   };
 
   render() {
-    const { errors } = this.state;
+    const { errors} = this.state;
     return (
       <div className="LoginPage" data-test={ifDev("login-component")}>
         {/* Container - ENTIRE PAGE */}
@@ -80,15 +104,9 @@ class LoginPage extends React.Component {
             </div>
             {/* END BOX LEFT */}
             <div className="boxRight">
-              <form className="LoginForm" onSubmit={this.loginUser}>
-                <h1 className="textlogin">Log in</h1>
+              <form className="LoginForm" onSubmit={this.loginUser} >
 
-                <div
-                  className={
-                    "a" +
-                    (this.submitted && !this.user.user_name ? "error" : "")
-                  }
-                />
+                <h1 className="textlogin">Log in</h1>
                 <input
                   className="input1"
                   type="text"
@@ -99,7 +117,8 @@ class LoginPage extends React.Component {
                   placeholder="Username or email required"
                 />
                 {/* ERROR MESSAGE */}
-                {errors.user_name.length > 0 && (
+
+                {errors.user_name && (
                   <span className="error">{errors.user_name}</span>
                 )}
 
@@ -113,7 +132,7 @@ class LoginPage extends React.Component {
                   placeholder="Password"
                 />
 
-                {errors.password.length > 0 && (
+                {errors.password && (
                   <span className="error">{errors.password}</span>
                 )}
 
@@ -134,6 +153,11 @@ class LoginPage extends React.Component {
                   >
                     Log in
                   </button>
+
+                  {/* {this.state.errors != null ?(
+                  <div>try again</div>
+                  ):(<div>succes</div>)} */}
+
                 </div>
               </form>
             </div>
