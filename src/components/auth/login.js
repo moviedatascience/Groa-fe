@@ -26,7 +26,6 @@ class LoginPage extends React.Component {
   handleChange = e => {
     const { name, value } = e.target;
     let errors = this.state.errors;
-    // e.preventDefault();
     this.setState({
       user: {
         ...this.state.user,
