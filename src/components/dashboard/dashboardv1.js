@@ -10,8 +10,7 @@ const Dashboardv1 = props => {
   const [ratings, setRatings] = useState({});
   const [recommendations, setRecommendations] = useState([]);
 
-  let userid = props.match.params.id;
-
+  let { userid } = props.match.params;
   const changeHandler = e => {
     // https://developer.mozilla.org/en-US/docs/Web/API/FormData/FormData
     // packages up form to make it able to send over https
