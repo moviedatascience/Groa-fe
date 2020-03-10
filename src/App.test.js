@@ -42,7 +42,6 @@ it("renders register component and register navigation component when the route 
   expect(component.length).toBe(1);
 });
 
-// test became obsolte  when I changed the Groa link to go to /:userid/recommended
 it("renders navigation and recommendation components when pathname is '/:userid/recommended and a token is in localStorage", () => {
   let history = createMemoryHistory();
   const { container } = render(
