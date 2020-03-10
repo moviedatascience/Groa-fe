@@ -138,6 +138,7 @@ class LoginPage extends React.Component {
                   onChange={this.handleChange}
                   placeholder="Password"
                 />
+                {/* ERROR MESSAGES */}
                   {/* Submit Error */}
                 {submitted && !errors.user_name && (
                 <div className="error">Password is required</div>
