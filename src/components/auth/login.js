@@ -131,7 +131,7 @@ class LoginPage extends React.Component {
                 </div>
 
                 <div className="BtnContainer">
-                  <Link to="/register">Already have an account?</Link>
+                  <Link to="/register">Don't have an account?</Link>
                   <button
                     className="BtnLogin"
                     data-test={ifDev("BtnLoginTest")}
