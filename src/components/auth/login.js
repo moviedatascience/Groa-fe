@@ -9,7 +9,6 @@ import { ifDev } from "../../utils/removeAttribute.js";
 
 
 
-
 class LoginPage extends React.Component {
   constructor(props) {
     super(props);
@@ -87,7 +86,6 @@ class LoginPage extends React.Component {
             {/* END BOX LEFT */}
             <div className="boxRight">
               <form className="LoginForm" onSubmit={this.loginUser} data-test={ifDev("loginForm")} >
-              
               
                 <h1 className="textlogin">Log in</h1>
                 <input
