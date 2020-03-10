@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { Route } from "react-router-dom";
-import { ifDev } from "./utils/removeAttribute.js";
 
 // local imports
 import PrivateRoute from "./utils/privateRoute.js";
 import Dashboardv1 from "./components/dashboard/dashboardv1.js";
-
 import Navigation from "./components/dashboard/navigation.js";
 import Register from "./components/auth/Register";
 import Login from "./components/auth/login";
-
+// for testing
+import { ifDev } from "./utils/removeAttribute.js";
 // config imports
 import reactGAinitialization from "./config/analytics.js";
 
@@ -28,37 +27,15 @@ const store = createStore(
 );
 
 function App() {
-  const [token, setToken] = useState(localStorage.getItem("token"));
+  const [hasToken, setHasToken] = useState(localStorage.getItem("token"));
   const [userid, setUserid] = useState();
   useEffect(() => reactGAinitialization(), [userid]);
 
+  console.log(userid);
   return (
     <Provider store={store}>
       <Router>
         <div className="App" data-test={ifDev("App-component")}>
-          <Route
-            path="/login"
-            render={props => (
-              <Login
-                {...props}
-                token={token}
-                updateToken={setToken}
-                updateUserid={setUserid}
-              />
-            )}
-          />
-          <Route
-            exact
-            path="/register"
-            render={props => (
-              <Register
-                {...props}
-                token={token}
-                updateToken={setToken}
-                updateUserid={setUserid}
-              />
-            )}
-          />
           {/* this is fine as a route because all of the routes that will have display their component will only be avalible on a private route */}
           <Route
             exact
@@ -77,24 +54,27 @@ function App() {
             data-test={ifDev("dash-component")}
           />
           <Route
+            path="/login"
+            render={props => (
+              <Login
+                {...props}
+                hasToken={hasToken}
+                updateToken={setHasToken}
+                updateUserid={setUserid}
+              />
+            )}
+          />
+          <Route
             exact
-            path="/"
-            render={props =>
-              token ? (
-                <>
-                  <Navigation {...props} userid={userid} />
-                  <Dashboardv1 />
-                </>
-              ) : (
-                // Register for presentation
-                <Register
-                  {...props}
-                  token={token}
-                  updateToken={setToken}
-                  updateUserid={setUserid}
-                />
-              )
-            }
+            path={["/", "/register"]}
+            render={props => (
+              <Register
+                {...props}
+                hasToken={hasToken}
+                updateToken={setHasToken}
+                updateUserid={setUserid}
+              />
+            )}
           />
         </div>
       </Router>

@@ -69,11 +69,12 @@ describe("login component", () => {
   });
 });
 
+// test became obsolte  when I changed the Groa link to go to /:userid/recommended
 it("renders navigation and recommendation components when pathname is '/:userid/recommended and a token is in localStorage", () => {
   let history = createMemoryHistory();
   let userid = 6485746;
   history.push(`/${userid}/recommended`);
-  localStorage.setItem("token", "buttons");
+  localStorage.setItem("token", "randomtestword");
 
   const { container } = render(
     <Router history={history}>
@@ -81,6 +82,7 @@ it("renders navigation and recommendation components when pathname is '/:userid/
     </Router>
   );
 
+  console.log(window.location.pathname);
   let component = getAllByTestId(container, "navigation");
   expect(component.length).toBe(1);
 
