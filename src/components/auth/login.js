@@ -23,6 +23,7 @@ class LoginPage extends React.Component {
         password: ""
       },
       submitted: false,
+      errorStatus: false,
     };
   }
 
@@ -67,12 +68,14 @@ class LoginPage extends React.Component {
         //redirect to Groas dashboard page
         this.props.history.push("/dashboard", { userid: res.data.id }); 
       })
-      .catch(err => console.log(err,'errr'));
+      .catch(err => {console.log(err.response.data.errorMessage,'errr')
+      this.setState({errorStatus : true})
+    });
     }     
   };
 
   render() {
-    const { errors,submitted,user} = this.state;
+    const { errors,submitted,user,errorStatus} = this.state;
     return (
       <div className="LoginPage" data-test={ifDev("login-component")}>
         {/* Container - ENTIRE PAGE */}
@@ -100,6 +103,10 @@ class LoginPage extends React.Component {
                 {/* ERROR MESSAGES */}
                   {/* Submit Error */}
                   
+                {errorStatus && user.user_name && (
+                <div className="error">Invalid Credentials</div>
+                )}
+
                 {submitted && !user.user_name && (
                 <div className="error">Username is required</div>
                 )}
