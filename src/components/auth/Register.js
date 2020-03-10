@@ -62,13 +62,10 @@ class Register extends React.Component {
           axiosWithAuth()
             .post("https://api.groa.us/api/users/login", user)
             .then(res2 => {
-              const userid = res2.data.id;
               localStorage.setItem("token", res2.data.token);
               this.props.updateToken(localStorage.getItem("token"));
               this.props.updateUserid(res2.data.id);
-              this.props.history.push(`/${res2.data.id}/recommended`, {
-                userid: userid
-              });
+              this.props.history.push(`/${res2.data.id}/recommended`);
             })
             .catch(err2 => {
               console.log(err2);

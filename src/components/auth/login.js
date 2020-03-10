@@ -63,9 +63,7 @@ class LoginPage extends React.Component {
         this.props.updateUserid(res.data.id);
         //redirect to Groas dashboard page
         if (this.state.user.user_name && this.state.user.password) {
-          this.props.history.push(`/${res.data.id}/recommended`, {
-            userid: res.data.id
-          });
+          this.props.history.push(`/${res.data.id}/recommended`);
         }
       })
       .catch(err => console.log(err));
