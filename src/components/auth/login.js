@@ -95,13 +95,13 @@ class LoginPage extends React.Component {
                   id="user_name"
                   value={this.user_name}
                   onChange={this.handleChange}
-                  placeholder="Username or email required"
+                  placeholder="Username"
                 />
                 {/* ERROR MESSAGES */}
                   {/* Submit Error */}
                   
                 {submitted && !user.user_name && (
-                <div className="error">Email is required</div>
+                <div className="error">Username is required</div>
                 )}
                   {/* Length of username */}
                 {errors.user_name && (
