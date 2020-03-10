@@ -121,7 +121,7 @@ class LoginPage extends React.Component {
                 />
                 {/* ERROR MESSAGES */}
                   {/* Submit Error */}
-                {submitted && !user.user_name && (
+                {submitted && !user.password && (
                 <div className="error">Password is required</div>
                 )}
                   {/* Length of password */}
