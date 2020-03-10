@@ -7,7 +7,7 @@ import { getAllByTestId } from "../../utils/test-utils.js";
 import Dashboardv1 from "./Dashboardv1.js";
 import { createMemoryHistory } from "history";
 
-it("renders dashboardv1 if there is a history object", () => {
+it("renders dashboardv1 component on the path '/:userid/recommendations", () => {
   let userid = 2394572390487239458732957324985723497;
   const route = `/${userid}/recommended`;
   let history = createMemoryHistory({ initialEntries: [route] });
