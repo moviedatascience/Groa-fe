@@ -69,31 +69,11 @@ class LoginPage extends React.Component {
         this.props.history.push("/dashboard", { userid: res.data.id }); 
       })
       .catch(err => console.log(err,'errr'));
-    }else{
-      console.log('need user name')
-    
-      // const { name, value } = e.target;
-      // let errors = this.state.errors;
-      // switch (name) {
-     
-      //   case "user_name":
-      //     errors.user_name = value.length < 6 ? "User name must be 6 or more characters long" : "";    
-      //     break;
-      //   case "password":
-      //     errors.password = value.length < 6 ? "Password must be 6 or more characters long" : "";
-      //     break;
-      //   default:
-      //     break;
-      // }
-      // this.setState({ errors, [name]: value }, () => {});
-  
-
-    }
-      
+    }     
   };
 
   render() {
-    const { errors,submitted} = this.state;
+    const { errors,submitted,user} = this.state;
     return (
       <div className="LoginPage" data-test={ifDev("login-component")}>
         {/* Container - ENTIRE PAGE */}
@@ -121,7 +101,8 @@ class LoginPage extends React.Component {
                 />
                 {/* ERROR MESSAGES */}
                   {/* Submit Error */}
-                {submitted && !errors.user_name && (
+                  
+                {submitted && !user.user_name && (
                 <div className="error">Email is required</div>
                 )}
                   {/* Length of username */}
@@ -140,12 +121,12 @@ class LoginPage extends React.Component {
                 />
                 {/* ERROR MESSAGES */}
                   {/* Submit Error */}
-                {submitted && !errors.user_name && (
+                {submitted && !user.user_name && (
                 <div className="error">Password is required</div>
                 )}
                   {/* Length of password */}
                 {errors.password && (
-                  <span className="error">{errors.password}</span>
+                  <span className="error" data-test={ifDev("ErrorPassword")}>{errors.password}</span>
                 )}
 
                 <div className="TextandCheck">
@@ -165,10 +146,6 @@ class LoginPage extends React.Component {
                   >
                     Log in
                   </button>
-
-                  {/* {this.state.errors != null ?(
-                  <div>try again</div>
-                  ):(<div>succes</div>)} */}
 
                 </div>
               </form>

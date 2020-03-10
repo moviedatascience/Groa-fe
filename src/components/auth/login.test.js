@@ -27,3 +27,14 @@ describe('Button', () => {
     expect(Login).toBeDefined();
   });
 })
+
+it("renders errors to login on Click if info not filled out", () => {
+  const { container } = render(<Login />);
+
+  let link = getAllByTestId(container, "BtnLoginTest");
+  expect(link.length).toBe(1);
+  fireEvent.click(getByTestId(container, "BtnLoginTest"))
+
+  let component = getAllByTestId(container, "login-component");
+  expect(component.length).toBe(1);  
+});
