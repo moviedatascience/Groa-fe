@@ -8,6 +8,7 @@ import GroaWhite from "./GroaWhite.png";
 // Navbar Register
 import RegisterNavLinks from "../layout/nav-layouts/RegisterNavLinks";
 
+
 class Register extends React.Component {
   constructor(props) {
     super(props);
@@ -93,7 +94,7 @@ class Register extends React.Component {
             <img className="logo" src={GroaWhite} alt="groa logo" />
           </div>
           <div className="boxRight">
-            <form className="form" onSubmit={this.handleSubmit}>
+            <form className="form" data-test={ifDev("registerForm")} onSubmit={this.handleSubmit}>
               <h2>Register</h2>
               {/* divs with changing classnames updates error handling for form */}
               <div
