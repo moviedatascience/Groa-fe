@@ -86,7 +86,7 @@ class LoginPage extends React.Component {
             </div>
             {/* END BOX LEFT */}
             <div className="boxRight">
-              <form className="LoginForm" onSubmit={this.loginUser} >
+              <form className="LoginForm" onSubmit={this.loginUser} data-test={ifDev("loginForm")} >
               
               
                 <h1 className="textlogin">Log in</h1>
@@ -107,7 +107,7 @@ class LoginPage extends React.Component {
                 )}
                   {/* Length of username */}
                 {errors.user_name && (
-                  <span className="error">{errors.user_name}</span>
+                  <span className="error" data-test={ifDev("ErrorUsername")}>{errors.user_name}</span>
                 )}
 
                 <input
