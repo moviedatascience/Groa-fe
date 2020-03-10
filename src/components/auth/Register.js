@@ -49,9 +49,9 @@ class Register extends React.Component {
     this.setState({ submitted: true });
     if (
       this.state.user.email &&
-      this.state.user.user_name &&
-      this.state.user.password &&
-      this.state.user.confirmpassword
+      this.state.user.user_name.length >= 6 &&
+      this.state.user.password.length >= 6 &&
+      this.state.user.confirmpassword === this.state.user.password
     ) {
       axiosWithAuth()
         .post("https://api.groa.us/api/users/register", user)
