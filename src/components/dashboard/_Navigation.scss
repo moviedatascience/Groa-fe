@@ -1,0 +1,63 @@
+.mainContainer {
+  background: gray;
+  padding: 1.1% 1%;
+  .navContainer{
+    display: flex;
+    justify-content: space-between;
+    
+  
+  
+  .Bars {
+    padding-top: 5px;
+    .bars-icon {
+      color: white;
+      font-size: 1.4rem;
+    }
+  }
+ 
+  .Links {
+    width: 60%;
+    display: flex;
+    justify-content: space-evenly;
+    padding-top: 7px;
+
+    .Groa-NavLink{
+      color: white;
+      font-weight: 600;
+      text-decoration: none;
+      
+      &:hover {
+        color: rebeccapurple;
+        text-decoration: underline;
+      }
+    }
+    .NavLink {
+      color: white;
+      text-decoration: none;
+      &:hover {
+        color: rebeccapurple;
+        text-decoration: underline;
+      }
+    }
+  }
+
+  .searchContainer {
+    width: 11.5%;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .searchBox{
+    padding: 7px;
+    border-radius: 5px;
+  }
+  .fa-icons {
+    padding-top: 5px;
+    width: 14%;
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.4rem;
+    color: white;
+  }
+ }
+}

@@ -1,0 +1,63 @@
+.bigContainer {
+  font-family: lato;
+  background: whitesmoke;
+  display: flex;
+  flex-direction: column;
+
+  .form-hover {
+    margin: 2% auto;
+    input {
+      font-size: 1.3rem;
+    }
+    #zip-input {
+      margin: 3% auto;
+      padding: 15%;
+      background: white;
+      border: 3px dashed grey;
+      border-radius: 4px;
+    }
+    .form-directions {
+      font-size: 1.1rem;
+      margin: 2% auto;
+    }
+    .upload-successful {
+      font-size: 1.2rem;
+      margin: 2% auto;
+      color: green;
+    }
+  }
+  h2 {
+    font-size: 24px;
+    text-align: center;
+    margin: 2% auto;
+  }
+  .box-container {
+    width: 80%;
+    margin: 3% auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    .box {
+      width: 100%;
+      max-width: 347px;
+      height: auto;
+      margin: 3% auto;
+      display: flex;
+      flex-direction: row;
+      img {
+        width: 100%;
+        max-width: 164px;
+        height: auto;
+        max-height: 246px;
+      }
+      .text-container {
+        color: black;
+        margin-left: 5%;
+        p {
+          padding: 10% 0%;
+          font-size: 1.1rem;
+        }
+      }
+    }
+  }
+}

@@ -1,226 +1,137 @@
-import React, {useState} from 'react'; 
-import './dash.scss'
-import axios from 'axios'; 
+import React, { useState, useEffect } from "react";
+import { axiosWithAuth } from "../../utils/axiosWithAuth.js";
+import { useHistory } from "react-router-dom";
 
+// local imports
+import "./_Dashboard.scss";
+import MovieCard from "../movies/MovieCard.js";
 
 const Dashboardv1 = () => {
-    const [input, setInput] = useState({file:''})
-    const [ratings, setRatings] = useState({})
-    const [loading, setLoading] = useState()
-    const [toggle, setToggle] = useState(true);
-    const changeHandler = e => { 
-        
-        let data = new FormData()
-        data.append('movies', e.target.files[0] , e.target.files[0].name)
-        //change user/1/ to be :id number
-        //Groabe-env.v3umry9g8h.us-east-1.elasticbeanstalk.com/
-        axios.post('https://stylingbranch-groa-be.herokuapp.com/api/users/1/upload', data,{
-            headers:{
-                'Content-Type':'multipart/form-data'  
-            }
-        })
-        .then(res => { 
-            console.log(res);
-            setRatings(res.data)
-        }).catch(err => { 
-            console.log(err)
-        })
-        data = new FormData()
-        
-        setTimeout(() => {
-            setLoading(<h2 className = 'loading' style={{paddingLeft:'5px'}}>.loading</h2>)
-        }, 1000);
-        setTimeout(() => {
-            setLoading(<h2 className = 'loading' style={{paddingLeft:'10px'}}>..loading</h2>)
-        }, 2000);
-        setTimeout(() => {
-            setLoading(<h2 className = 'loading' style={{paddingLeft:'15px'}}>...loading</h2>)
-        }, 3000);
-        setTimeout(() => {
-            setLoading(<h2 className = 'loading' style={{paddingLeft:'20px'}}>....loading</h2>)
-        }, 4000);
-        // setTimeout(() => {
-        //     setLoading('..loading')
-        // }, 4000);
-        // setTimeout(() => {
-        //     setLoading('.loading')
-        // }, 5000);
-       
-    }
-    const handleSubmit = e => { 
-        setToggle(!toggle)
-        e.preventDefault();
-        console.log(input);
-        //change user/1/ to be :id number handle submit currently does
-        axios.post('https://groa-be.herokuapp.com/api/users/1/upload', input,{
-            headers:{
-                'Content-Type':'multipart/form-data'
-            }
-        })
-        .then(res => { 
-            console.log(res);
-        }).catch(err => { 
-            console.log(err)
-        })
-       
-    }
-    const flash = () => {
-        setTimeout(() => {
-            return "flash"
-        }, 1000);
-    }
+  let history = useHistory();
+  const [input] = useState({ file: "" });
+  const [ratings, setRatings] = useState({});
+  const [recommendations, setRecommendations] = useState([]);
 
-    return (
-        
-        <div data-test="dashboard-screen" className='DB-Container'>
-            <div className='h2-p' ><h2>Welcome to the dashboard.</h2></div>
-            
-            <div className="form-hover">
-            <form id="zip-form"           
-            onSubmit = {handleSubmit}>
-                <input
-                    id="zip-input"
-                    className='movie-input'
-                    type='file'
-                    placeholder='letterbox csv file here'
-                    name = 'movies'
-                    value={input.movieName}  // im not sure why this works but it does.
-                    onChange={changeHandler}
-                
-                
-                />
-                
-                {/* <button id="submit-button">Groa</button> */}
+  const changeHandler = e => {
+    // https://developer.mozilla.org/en-US/docs/Web/API/FormData/FormData
+    // packages up form to make it able to send over https
+    let data = new FormData();
+    data.append("movies", e.target.files[0], e.target.files[0].name);
+    // history.location.state.userid is just where I am holding userid for now from the Register page so I do not need to implment redux.
+    axiosWithAuth()
+      // this is insantiated when a file is added to input
+      .post(`/${history.location.state.userid}/uploading`, data, {
+        headers: {
+          "Content-Type": "multipart/form-data"
+        }
+      })
+      .then(res => {
+        // waiting to set ratings var for 45 seconds.
+        setTimeout(() => setRatings(res.data), 60 * 1000);
+      })
+      .catch(err => {
+        console.log(err); // --> I think these errors we should be sending to an error page.
+      });
+    // clears out previous uploaded file
+    data = new FormData();
+  };
+
+  useEffect(() => {
+    // only if ratings has data in it, and the necessary parts of the history object to run the recommendations call
+    if (Object.keys(ratings).length === 0 || !history?.location?.state?.userid)
+      return () => null;
+
+    // when ratings is updated this call to recommendations will be called
+    axiosWithAuth()
+      .get(`/${history.location.state.userid}/recommendations`)
+      .then(res => {
+        setRecommendations(res.data.recommendation_json);
+      })
+      .catch(err =>
+        console.log("Something went wrong in fetching recommendations.", err)
+      );
+  }, [ratings, history]);
+
+  switch (true) {
+    case !recommendations?.length:
+      return (
+        <div className="bigContainer" data-test="dashboard-screen">
+         
+          <div className="form-hover">
+            {/* will create a component in the future*/}
+            <form id="zip-form">
+              <input
+                id="zip-input"
+                className="movie-input"
+                type="file"
+                placeholder="letterbox csv file here"
+                name="movies"
+                value={input.movieName}
+                onChange={changeHandler}
+              />
             </form>
-            {/* <p className="form-directions">upload your letterboxd csv file here to get unique movie recommendations</p> */}
-            <p className="form-directions">upload your letterboxd csv file here to get all past movie ratings</p>
-            </div>
-            {/* <div className='settings-container'>Container for settings</div> */}
-            <div data-test="box-container" className='box-container'>
-                
-                {ratings.length > 0 ? ratings.map((x, index) => {
-                        if(index < 201){
-
-                        
-                            return (
-
-                                <div data-test="box" className="box" key={index}>
-                                    {/* <div className='thumbsUpDown'>
-                                        <span role='img'>Looks Cool  👎</span>
-                                        <span role='img'> Not interested 👍</span>
-                                    </div> */}
-                                    
-                                        <div className="movie-poster"></div>
-                                        
-                                        <div className="text-container">    
-                                            <h2>{x.Name}</h2>
-                                            <h2>{x.Year}</h2>
-                                            <h2>Rating: {x.Rating}</h2>
-                                            <h2>Votes:</h2>
-                                            <h2>Like by fans of: </h2>
-                                            {/* <h2>{x.Letterboxd_URI}</h2> */}
-                                            {/* <div className="checkboxes">
-                                                <input type="checkbox" className="textboxsize" />
-                                                <input type="checkbox" className="textboxsize" />
-                                            </div> */}
-                                        </div>
-                                    
-                                </div>
-                            )
-                        }
-                    }) 
-                : loading}   
-                {/* //loading} */}
-                {/* {toggle == true ? 
-                    <div className = 'box-container2'>
-                        <div className="box">
-                            <div className="movie-poster"></div>
-                            <div className="text-container">    
-                                <h2>alskdjflsjadf</h2>
-                                <h2>asldkfljsfd</h2>
-                                <h2>oweriuoiw</h2>
-                                <h2>x,cvn,mncvx</h2>
-                                <div className="checkboxes">
-                                    <input type="checkbox" className="textboxsize" />
-                                    <input type="checkbox" className="textboxsize" />
-                                </div>
-                            </div>
-                        </div>
-                        <div className="box">
-                            <div className="movie-poster"></div>
-                            <div className="text-container">    
-                                <h2>alskdjfsdflsjadf</h2>
-                                <h2>asldkfljsfd</h2>
-                                <h2>oweriuoiw</h2>
-                                <h2>x,cvn,mncvx</h2>
-                                <div className="checkboxes">
-                                    <input type="checkbox" className="textboxsize" />
-                                    <input type="checkbox" className="textboxsize" />
-                                </div>
-                            </div>
-                        </div>
-                        <div className="box">
-                            <div className="movie-poster"></div>
-                            <div className="text-container">    
-                                <h2>alskdjflsjadf</h2>
-                                <h2>asldkfsdfljsfd</h2>
-                                <h2>oweriuoiw</h2>
-                                <h2>x,cvn,mncvx</h2>
-                                <div className="checkboxes">
-                                    <input type="checkbox" className="textboxsize" />
-                                    <input type="checkbox" className="textboxsize" />
-                                </div>
-                            </div>
-                        </div>
-                        <div className="box">
-                            <div className="movie-poster"></div>
-                            <div className="text-container">    
-                                <h2>alskdjflsjadf</h2>
-                                <h2>asldkfljsfd</h2>
-                                <h2>owerisdfuoiw</h2>
-                                <h2>x,cvn,mncvx</h2>
-                                <div className="checkboxes">
-                                    <input type="checkbox" className="textboxsize" />
-                                    <input type="checkbox" className="textboxsize" />
-                                </div>
-                            </div>
-                        </div>
-                        <div className="box">
-                            <div className="movie-poster"></div>
-                            <div className="text-container">    
-                                <h2>alskdjflsjadf</h2>
-                                <h2>asldksdffljsfd</h2>
-                                <h2>oweriuoiw</h2>
-                                <h2>x,cvn,mncvx</h2>
-                                <div className="checkboxes">
-                                    <input type="checkbox" className="textboxsize" />
-                                    <input type="checkbox" className="textboxsize" />
-                                </div>
-                            </div>
-                        </div>
-                        <div className="box">
-                            <div className="movie-poster"></div>
-                            <div className="text-container">    
-                                <h2>alskdjflsjadf</h2>
-                                <h2>asldksdffljsfd</h2>
-                                <h2>oweriuoiw</h2>
-                                <h2>x,cvn,mncvx</h2>
-                                <div className="checkboxes">
-                                    <input type="checkbox" className="textboxsize" />
-                                    <input type="checkbox" className="textboxsize" />
-                                </div>
-                            </div>
-                        </div>
-                        
-                    </div> : true} */}
-            
-                
-            </div>
-            
+            {Object.keys(ratings).length === 0 ? (
+              <p className="form-directions">
+                Upload your letterboxd ZIP file here to get all past movie
+                ratings.
+                <br />
+                After you upload, it should take a full minute to give you a
+                success message
+              </p>
+            ) : (
+              <p className="upload-successful">
+                <strong>{ratings.message}</strong>
+              </p>
+            )}
+          </div>
         </div>
-        
-        
-    )
-}
+      );
+    default:
+      return (
+        <div className="bigContainer" data-test="dashboard-screen">
+          <div className="form-hover">
+            <form id="zip-form">
+              <input
+                id="zip-input"
+                className="movie-input"
+                type="file"
+                placeholder="letterbox csv file here"
+                name="movies" // name of file / name of obj?  used in key field for postman to upload a file too
+                value={input.movieName} // im not sure why this works but it does.  // document this portion out as well
+                onChange={changeHandler}
+              />
+            </form>
+            {Object.keys(ratings).length === 0 ? (
+              <p className="form-directions">
+                upload your letterboxd csv file here to get all past movie
+                ratings
+              </p>
+            ) : (
+              <p className="upload-successful">
+                <strong>{ratings.message}</strong>
+              </p>
+            )}
+          </div>
+
+          {/* this shows the recommendations movie cards */}
+          <h2>Your Recommendations</h2>
+          <div data-test="box-container" className="box-container">
+            {/* should off set up to 200 and then retun nothing */}
+            {recommendations.map((x, index) =>
+              index < 201 ? (
+                <MovieCard
+                  key={index}
+                  name={x.Title}
+                  year={x.Year}
+                  rating={x["Average Rating"]}
+                  image="https://source.unsplash.com/collection/2047031/500x500"
+                />
+              ) : null
+            )}
+          </div>
+        </div>
+      );
+  }
+};
 
 export default Dashboardv1;
