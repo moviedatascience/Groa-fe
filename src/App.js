@@ -31,7 +31,6 @@ function App() {
   const [userid, setUserid] = useState();
   useEffect(() => reactGAinitialization(), [userid]);
 
-  console.log(userid);
   return (
     <Provider store={store}>
       <Router>

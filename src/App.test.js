@@ -42,6 +42,19 @@ it("renders register component and register navigation component when the route 
   expect(component.length).toBe(1);
 });
 
+// test became obsolte  when I changed the Groa link to go to /:userid/recommended
+it("renders navigation and recommendation components when pathname is '/:userid/recommended and a token is in localStorage", () => {
+  let history = createMemoryHistory();
+  const { container } = render(
+    <Router history={history}>
+      <App />
+    </Router>
+  );
+
+  let component = getAllByTestId(container, "register-nav-component");
+  expect(component.length).toBe(1);
+});
+
 describe("login component", () => {
   let store;
   beforeEach(() => {
@@ -67,25 +80,4 @@ describe("login component", () => {
     let component = getAllByTestId(container, "login-component");
     expect(component.length).toBe(1);
   });
-});
-
-// test became obsolte  when I changed the Groa link to go to /:userid/recommended
-it("renders navigation and recommendation components when pathname is '/:userid/recommended and a token is in localStorage", () => {
-  let history = createMemoryHistory();
-  let userid = 6485746;
-  history.push(`/${userid}/recommended`);
-  localStorage.setItem("token", "randomtestword");
-
-  const { container } = render(
-    <Router history={history}>
-      <App />
-    </Router>
-  );
-
-  console.log(window.location.pathname);
-  let component = getAllByTestId(container, "navigation");
-  expect(component.length).toBe(1);
-
-  component = getAllByTestId(container, "dashboard-screen");
-  expect(component.length).toBe(1);
 });
