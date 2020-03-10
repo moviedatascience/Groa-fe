@@ -57,6 +57,7 @@ class LoginPage extends React.Component {
 
   loginUser = e => {
     e.preventDefault();
+    this.setState({ submitted: true });
     if (this.state.user.user_name && this.state.user.password) {
       axiosWithAuth()
       .post("/login", this.state.user)
@@ -70,20 +71,21 @@ class LoginPage extends React.Component {
       .catch(err => console.log(err,'errr'));
     }else{
       console.log('need user name')
-      const { name, value } = e.target;
-      let errors = this.state.errors;
-      switch (name) {
+    
+      // const { name, value } = e.target;
+      // let errors = this.state.errors;
+      // switch (name) {
      
-        case "user_name":
-          errors.user_name = value.length < 6 ? "User name must be 6 or more characters long" : "";    
-          break;
-        case "password":
-          errors.password = value.length < 6 ? "Password must be 6 or more characters long" : "";
-          break;
-        default:
-          break;
-      }
-      this.setState({ errors, [name]: value }, () => {});
+      //   case "user_name":
+      //     errors.user_name = value.length < 6 ? "User name must be 6 or more characters long" : "";    
+      //     break;
+      //   case "password":
+      //     errors.password = value.length < 6 ? "Password must be 6 or more characters long" : "";
+      //     break;
+      //   default:
+      //     break;
+      // }
+      // this.setState({ errors, [name]: value }, () => {});
   
 
     }
@@ -91,7 +93,7 @@ class LoginPage extends React.Component {
   };
 
   render() {
-    const { errors} = this.state;
+    const { errors,submitted} = this.state;
     return (
       <div className="LoginPage" data-test={ifDev("login-component")}>
         {/* Container - ENTIRE PAGE */}
@@ -105,7 +107,8 @@ class LoginPage extends React.Component {
             {/* END BOX LEFT */}
             <div className="boxRight">
               <form className="LoginForm" onSubmit={this.loginUser} >
-
+              
+              
                 <h1 className="textlogin">Log in</h1>
                 <input
                   className="input1"
@@ -116,8 +119,12 @@ class LoginPage extends React.Component {
                   onChange={this.handleChange}
                   placeholder="Username or email required"
                 />
-                {/* ERROR MESSAGE */}
-
+                {/* ERROR MESSAGES */}
+                  {/* Submit Error */}
+                {submitted && !errors.user_name && (
+                <div className="error">Email is required</div>
+                )}
+                  {/* Length of username */}
                 {errors.user_name && (
                   <span className="error">{errors.user_name}</span>
                 )}
@@ -131,7 +138,11 @@ class LoginPage extends React.Component {
                   onChange={this.handleChange}
                   placeholder="Password"
                 />
-
+                  {/* Submit Error */}
+                {submitted && !errors.user_name && (
+                <div className="error">Password is required</div>
+                )}
+                  {/* Length of password */}
                 {errors.password && (
                   <span className="error">{errors.password}</span>
                 )}

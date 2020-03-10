@@ -108,9 +108,9 @@ class Register extends React.Component {
                 onChange={this.handleChange}
                 placeholder="Email"
               />
-              {submitted && !user.email && (
+              {/* {submitted && !user.email && (
                 <div className="callingError">Email is required</div>
-              )}
+              )} */}
 
               <div
                 className={
