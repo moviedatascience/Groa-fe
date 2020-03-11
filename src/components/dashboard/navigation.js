@@ -27,63 +27,68 @@ class Navigation extends Component {
   render() {
     return (
       <div className="mainContainer" data-test={ifDev("navigation")}>
-        <div className='navContainer'>
-        <div className="Bars">
-          <FontAwesomeIcon className="bars-icon" icon={faBars} />
-          <i className="far fa-bars"></i>
-        </div>
+        <div className="navContainer">
+          <div className="Bars">
+            <FontAwesomeIcon className="bars-icon" icon={faBars} />
+            <i className="far fa-bars"></i>
+          </div>
 
-        <div className="Links">
-          <NavLink className="Groa-NavLink" to="/">
-            Groa
-          </NavLink>
-          <NavLink className="NavLink" to="/dashboard">
-            {/* Diary */}
-            Dashboard
-          </NavLink>
+          <div className="Links">
+            <NavLink
+              className="Groa-NavLink"
+              to={`/${this.props.userid}/recommended`}
+            >
+              Groa
+            </NavLink>
 
-          <NavLink className="NavLink" to="/trending">
-            Trending
-          </NavLink>
+            <NavLink className="NavLink" to={`/${this.props.userid}/trending`}>
+              Trending
+            </NavLink>
 
-          <NavLink className="NavLink" to="/recommended">
-            Recommended
-          </NavLink>
+            <NavLink
+              className="NavLink"
+              to={`/${this.props.userid}/recommended`}
+            >
+              Recommended
+            </NavLink>
 
-          <NavLink className="NavLink" to="/watchlist">
-            Watchlist
-          </NavLink>
+            <NavLink className="NavLink" to={`/${this.props.userid}/watchlist`}>
+              Watchlist
+            </NavLink>
 
-          <NavLink className="NavLink" to="/explore">
-            Explore
-          </NavLink>
-        </div>
+            <NavLink className="NavLink" to={`/${this.props.userid}/explore`}>
+              Explore
+            </NavLink>
+          </div>
 
-        <div className="searchContainer">
-          <FontAwesomeIcon className="search-icon fa-icons" icon={faSearch} />
-          <input
-            className="searchBox"
-            type="text"
-            name="search"
-            value={this.search}
-            onChange={this.handleChange}
-            placeholder="search..."
-          />
-        </div>
+          <div className="searchContainer">
+            <FontAwesomeIcon className="search-icon fa-icons" icon={faSearch} />
+            <input
+              className="searchBox"
+              type="text"
+              name="search"
+              value={this.search}
+              onChange={this.handleChange}
+              placeholder="search..."
+            />
+          </div>
 
-        <div className="fa-icons">
-          <FontAwesomeIcon className="bell-icon" icon={faBell} />
-          <i className="far fa-bell"></i>
+          <div className="fa-icons">
+            <FontAwesomeIcon className="bell-icon" icon={faBell} />
+            <i className="far fa-bell"></i>
 
-          <FontAwesomeIcon className="question-icon" icon={faQuestionCircle} />
-          <i className="far fa-question-circle"></i>
+            <FontAwesomeIcon
+              className="question-icon"
+              icon={faQuestionCircle}
+            />
+            <i className="far fa-question-circle"></i>
 
-          <FontAwesomeIcon className="user-circle-icon" icon={faUserCircle} />
-          <i className="far fa-user-circle"></i>
+            <FontAwesomeIcon className="user-circle-icon" icon={faUserCircle} />
+            <i className="far fa-user-circle"></i>
 
-          <FontAwesomeIcon className="angle-down-icon" icon={faAngleDown} />
-          <i className="far fa-angle-down"></i>
-        </div>
+            <FontAwesomeIcon className="angle-down-icon" icon={faAngleDown} />
+            <i className="far fa-angle-down"></i>
+          </div>
         </div>
         {/* END navContainer */}
       </div>
