@@ -2,6 +2,8 @@ import React, {useState} from 'react';
 import { axiosWithAuth } from "../../utils/axiosWithAuth.js";
 import { ifDev } from "../../utils/removeAttribute.js";
 
+import IMDbImg from '../auth/images 2.png'
+import LetterboxdImg from '../auth/Letterboxd_logo_(2018) 3.png'
 import './dataUpload.scss'
 
 const DataUpload = props => {
@@ -79,6 +81,7 @@ return (
             <div id="myDropdownL" className="dropdown-content">
                 <div className='DboxLeft'>
                     <div className='boxInside'>
+                        <img src={LetterboxdImg}/>
                         <p className='ptext'>1.Log in to Letterboxd</p>
                         <p className='ptext'>2.Click on your username and select SETTINGS from the dropdown menu.</p>
                         <p className='ptext'>3.Go to the IMPORT and XPORT tab, then click EXPORT YOUR DATA. Save the ratings.csv file somwhere
@@ -97,6 +100,7 @@ return (
             <button onClick={clikR} data-test={ifDev("clickIMDb")} className="dropbtn">Instructions IMDb</button>
             <div id="myDropdownR" className="dropdown-content">
                 <div className='DboxRight'>
+                    <img src={IMDbImg}/>
                     <p className='ptext'>1.Log in to IMDb</p>
                     <p className='ptext'>2.Click on your username and select YOUR RATINGS fromthe dropdown menu.</p>
                     <p className='ptext'>3.Click on the icon and select Export. Save the ratings.csv file somwhere convenient like your desktop or downloads folder.</p>
