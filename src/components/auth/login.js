@@ -7,6 +7,8 @@ import "./login.scss";
 import Groa2 from "../auth/Groa-logo-B2AA.png";
 import { ifDev } from "../../utils/removeAttribute.js";
 
+
+
 class LoginPage extends React.Component {
   constructor(props) {
     super(props);
@@ -19,28 +21,30 @@ class LoginPage extends React.Component {
       errors: {
         user_name: "",
         password: ""
-      }
+      },
+      submitted: false,
+      errorStatus: false,
     };
   }
 
   handleChange = e => {
     const { name, value } = e.target;
     let errors = this.state.errors;
+    
     this.setState({
       user: {
         ...this.state.user,
         [e.target.name]: e.target.value
-      }
+      },
+      
     });
     switch (name) {
+     
       case "user_name":
-        errors.user_name = value.length < 5 ? "must be a valid user name" : "";
+        errors.user_name = value.length < 6 ? "User name must be 6 or more characters long" : "";    
         break;
       case "password":
-        errors.password =
-          value.length < 4
-            ? "Password must be more than 4 characters long"
-            : "";
+        errors.password = value.length < 6 ? "Password must be 6 or more characters long" : "";
         break;
       default:
         break;
@@ -49,25 +53,29 @@ class LoginPage extends React.Component {
     this.setState({ errors, [name]: value }, () => {});
   };
 
+
+
   loginUser = e => {
     e.preventDefault();
-
-    axiosWithAuth()
+    this.setState({ submitted: true });
+    if (this.state.user.user_name && this.state.user.password) {
+      axiosWithAuth()
       .post("/login", this.state.user)
       .then(res => {
         localStorage.setItem("token", res.data.token);
         // updates token to refresh navbar
         this.props.updateToken(localStorage.getItem("token"));
         //redirect to Groas dashboard page
-        if (this.state.user.user_name && this.state.user.password) {
-          this.props.history.push("/dashboard", { userid: res.data.id });
-        }
+        this.props.history.push("/dashboard", { userid: res.data.id }); 
       })
-      .catch(err => console.log(err));
+      .catch(err => {console.log(err.response.data.errorMessage,'errr')
+      this.setState({errorStatus : true})
+    });
+    }     
   };
 
   render() {
-    const { errors } = this.state;
+    const { errors,submitted,user,errorStatus} = this.state;
     return (
       <div className="LoginPage" data-test={ifDev("login-component")}>
         {/* Container - ENTIRE PAGE */}
@@ -80,15 +88,9 @@ class LoginPage extends React.Component {
             </div>
             {/* END BOX LEFT */}
             <div className="boxRight">
-              <form className="LoginForm" onSubmit={this.loginUser}>
+              <form className="LoginForm" onSubmit={this.loginUser} data-test={ifDev("loginForm")} >
+              
                 <h1 className="textlogin">Log in</h1>
-
-                <div
-                  className={
-                    "a" +
-                    (this.submitted && !this.user.user_name ? "error" : "")
-                  }
-                />
                 <input
                   className="input1"
                   type="text"
@@ -96,11 +98,21 @@ class LoginPage extends React.Component {
                   id="user_name"
                   value={this.user_name}
                   onChange={this.handleChange}
-                  placeholder="Username or email required"
+                  placeholder="Username"
                 />
-                {/* ERROR MESSAGE */}
-                {errors.user_name.length > 0 && (
-                  <span className="error">{errors.user_name}</span>
+                {/* ERROR MESSAGES */}
+                  {/* Submit Error */}
+                  
+                {errorStatus && user.user_name && (
+                <div className="error">Invalid Credentials</div>
+                )}
+
+                {submitted && !user.user_name && (
+                <div className="error">Username is required</div>
+                )}
+                  {/* Length of username */}
+                {errors.user_name && (
+                  <span className="error" data-test={ifDev("ErrorUsername")}>{errors.user_name}</span>
                 )}
 
                 <input
@@ -112,9 +124,14 @@ class LoginPage extends React.Component {
                   onChange={this.handleChange}
                   placeholder="Password"
                 />
-
-                {errors.password.length > 0 && (
-                  <span className="error">{errors.password}</span>
+                {/* ERROR MESSAGES */}
+                  {/* Submit Error */}
+                {submitted && !user.password && (
+                <div className="error">Password is required</div>
+                )}
+                  {/* Length of password */}
+                {errors.password && (
+                  <span className="error" data-test={ifDev("ErrorPassword")}>{errors.password}</span>
                 )}
 
                 <div className="TextandCheck">
@@ -134,6 +151,7 @@ class LoginPage extends React.Component {
                   >
                     Log in
                   </button>
+
                 </div>
               </form>
             </div>
