@@ -46,13 +46,8 @@
       "last 1 safari version"
     ]
   },
-<<<<<<< HEAD
   "devDependencies": {
     "history": "^4.10.1",
     "redux-mock-store": "^1.5.4"
   }
 }
-=======
-  "devDependencies": {}
-}
->>>>>>> ab234ad3cf5584ecc24de394e1c16d94cd5218b2
