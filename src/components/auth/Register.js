@@ -8,7 +8,6 @@ import GroaWhite from "./GroaWhite.png";
 // Navbar Register
 import RegisterNavLinks from "../layout/nav-layouts/RegisterNavLinks";
 
-
 class Register extends React.Component {
   constructor(props) {
     super(props);
