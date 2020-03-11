@@ -28,7 +28,7 @@ class Navigation extends Component {
     return (
       <div className="mainContainer" data-test={ifDev("navigation")}>
         <div className="navContainer">
-          <div className="Bars">
+          <div className="Bars hidden">
             <FontAwesomeIcon className="bars-icon" icon={faBars} />
             <i className="far fa-bars"></i>
           </div>
@@ -41,7 +41,10 @@ class Navigation extends Component {
               Groa
             </NavLink>
 
-            <NavLink className="NavLink" to={`/${this.props.userid}/trending`}>
+            <NavLink
+              className="NavLink  hidden"
+              to={`/${this.props.userid}/trending`}
+            >
               Trending
             </NavLink>
 
@@ -52,16 +55,22 @@ class Navigation extends Component {
               Recommended
             </NavLink>
 
-            <NavLink className="NavLink" to={`/${this.props.userid}/watchlist`}>
+            <NavLink
+              className="NavLink  hidden"
+              to={`/${this.props.userid}/watchlist`}
+            >
               Watchlist
             </NavLink>
 
-            <NavLink className="NavLink" to={`/${this.props.userid}/explore`}>
+            <NavLink
+              className="NavLink  hidden"
+              to={`/${this.props.userid}/explore`}
+            >
               Explore
             </NavLink>
           </div>
 
-          <div className="searchContainer">
+          <div className="searchContainer  hidden">
             <FontAwesomeIcon className="search-icon fa-icons" icon={faSearch} />
             <input
               className="searchBox"
@@ -74,16 +83,19 @@ class Navigation extends Component {
           </div>
 
           <div className="fa-icons">
-            <FontAwesomeIcon className="bell-icon" icon={faBell} />
+            <FontAwesomeIcon className="bell-icon  hidden" icon={faBell} />
             <i className="far fa-bell"></i>
 
             <FontAwesomeIcon
-              className="question-icon"
+              className="question-icon  hidden"
               icon={faQuestionCircle}
             />
-            <i className="far fa-question-circle"></i>
+            <i className="far fa-question-circle  hidden"></i>
 
-            <FontAwesomeIcon className="user-circle-icon" icon={faUserCircle} />
+            <FontAwesomeIcon
+              className="user-circle-icon  hidden"
+              icon={faUserCircle}
+            />
             <i className="far fa-user-circle"></i>
 
             <FontAwesomeIcon className="angle-down-icon" icon={faAngleDown} />
