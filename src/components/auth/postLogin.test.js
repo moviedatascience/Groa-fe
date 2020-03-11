@@ -1,23 +1,44 @@
 import React from "react";
 import { render } from "@testing-library/react";
-import postLogin from './postLogin';
-import { clikPostLogin } from "../../utils/test-utils";
+import { Router, Route } from "react-router-dom";
+import { getAllByTestId } from "../../utils/test-utils.js";
+import { createMemoryHistory } from "history";
 
+// component to be tested.
+import PostLogin from "./postLogin";
 
-describe('Button postlogin', () => {
-  it('postlogin be defined', () => {
-    expect(postLogin).toBeDefined();
-  });
+it("renders PostLogin component on the path '/setup-wizard'", () => {
+  let route = "/setup-wizard";
+  const { container } = render(
+    <Router history={createMemoryHistory({ initialEntries: [route] })}>
+      <Route path={route} component={PostLogin} />
+    </Router>
+  );
 
-  it('should render postlogin correctly', () => {
-    const tree = (
-      <postLogin name='post login button test' />
-    );
-    expect(tree).toMatchSnapshot();
-  });
- });
+  let component = getAllByTestId(container, "post-login-component");
+  expect(component.length).toBe(1);
+});
 
- test('click post login', () => {
-    expect(clikPostLogin.sum(0, 1)).toBe(1)
-})
+it("renders Upload from ratings header", () => {
+  let route = "/setup-wizard";
+  const { container } = render(
+    <Router history={createMemoryHistory({ initialEntries: [route] })}>
+      <Route path={route} component={PostLogin} />
+    </Router>
+  );
 
+  let component = getAllByTestId(container, "upload-ratings-header");
+  expect(component.length).toBe(1);
+});
+
+it("renders button to upload ratings", () => {
+  let route = "/setup-wizard";
+  const { container } = render(
+    <Router history={createMemoryHistory({ initialEntries: [route] })}>
+      <Route path={route} component={PostLogin} />
+    </Router>
+  );
+
+  let component = getAllByTestId(container, "upload-ratings-button");
+  expect(component.length).toBe(1);
+});
