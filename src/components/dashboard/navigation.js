@@ -34,32 +34,43 @@ class Navigation extends Component {
           </div>
 
           <div className="Links">
-            <NavLink className="Groa-NavLink" to="/">
+            <NavLink
+              className="Groa-NavLink"
+              to={`/${this.props.userid}/recommended`}
+            >
               Groa
             </NavLink>
-            <NavLink className="NavLink hidden" to="/dashboard">
-              {/* Diary */}
-              Dashboard
-            </NavLink>
 
-            <NavLink className="NavLink hidden" to="/trending">
+            <NavLink
+              className="NavLink  hidden"
+              to={`/${this.props.userid}/trending`}
+            >
               Trending
             </NavLink>
 
-            <NavLink className="NavLink " to="/recommended">
+            <NavLink
+              className="NavLink"
+              to={`/${this.props.userid}/recommended`}
+            >
               Recommended
             </NavLink>
 
-            <NavLink className="NavLink hidden" to="/watchlist">
+            <NavLink
+              className="NavLink  hidden"
+              to={`/${this.props.userid}/watchlist`}
+            >
               Watchlist
             </NavLink>
 
-            <NavLink className="NavLink hidden" to="/explore">
+            <NavLink
+              className="NavLink  hidden"
+              to={`/${this.props.userid}/explore`}
+            >
               Explore
             </NavLink>
           </div>
 
-          <div className="searchContainer hidden">
+          <div className="searchContainer  hidden">
             <FontAwesomeIcon className="search-icon fa-icons" icon={faSearch} />
             <input
               className="searchBox"
@@ -71,18 +82,18 @@ class Navigation extends Component {
             />
           </div>
 
-          <div className="fa-icons ">
-            <FontAwesomeIcon className="bell-icon hidden" icon={faBell} />
+          <div className="fa-icons">
+            <FontAwesomeIcon className="bell-icon  hidden" icon={faBell} />
             <i className="far fa-bell"></i>
 
             <FontAwesomeIcon
-              className="question-icon hidden"
+              className="question-icon  hidden"
               icon={faQuestionCircle}
             />
-            <i className="far fa-question-circle hidden"></i>
+            <i className="far fa-question-circle  hidden"></i>
 
             <FontAwesomeIcon
-              className="user-circle-icon hidden"
+              className="user-circle-icon  hidden"
               icon={faUserCircle}
             />
             <i className="far fa-user-circle"></i>

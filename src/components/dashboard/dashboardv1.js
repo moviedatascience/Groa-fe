@@ -1,17 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { axiosWithAuth } from "../../utils/axiosWithAuth.js";
-import { useHistory } from "react-router-dom";
 
 // local imports
 import "./_Dashboard.scss";
 import MovieCard from "../movies/MovieCard.js";
 
-const Dashboardv1 = () => {
-  let history = useHistory();
+const Dashboardv1 = props => {
   const [input] = useState({ file: "" });
   const [ratings, setRatings] = useState({});
   const [recommendations, setRecommendations] = useState([]);
 
+  let { userid } = props.match.params;
   const changeHandler = e => {
     // https://developer.mozilla.org/en-US/docs/Web/API/FormData/FormData
     // packages up form to make it able to send over https
@@ -20,7 +19,7 @@ const Dashboardv1 = () => {
     // history.location.state.userid is just where I am holding userid for now from the Register page so I do not need to implment redux.
     axiosWithAuth()
       // this is insantiated when a file is added to input
-      .post(`/${history.location.state.userid}/uploading`, data, {
+      .post(`/${userid}/uploading`, data, {
         headers: {
           "Content-Type": "multipart/form-data"
         }
@@ -38,25 +37,23 @@ const Dashboardv1 = () => {
 
   useEffect(() => {
     // only if ratings has data in it, and the necessary parts of the history object to run the recommendations call
-    if (Object.keys(ratings).length === 0 || !history?.location?.state?.userid)
-      return () => null;
+    if (Object.keys(ratings).length === 0 || !userid) return () => null;
 
     // when ratings is updated this call to recommendations will be called
     axiosWithAuth()
-      .get(`/${history.location.state.userid}/recommendations`)
+      .get(`/${userid}/recommendations`)
       .then(res => {
         setRecommendations(res.data.recommendation_json);
       })
       .catch(err =>
         console.log("Something went wrong in fetching recommendations.", err)
       );
-  }, [ratings, history]);
+  }, [ratings, userid]);
 
   switch (true) {
     case !recommendations?.length:
       return (
         <div className="bigContainer" data-test="dashboard-screen">
-         
           <div className="form-hover">
             {/* will create a component in the future*/}
             <form id="zip-form">
