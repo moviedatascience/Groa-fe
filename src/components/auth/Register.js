@@ -48,9 +48,9 @@ class Register extends React.Component {
     this.setState({ submitted: true });
     if (
       this.state.user.email &&
-      this.state.user.user_name &&
-      this.state.user.password &&
-      this.state.user.confirmpassword
+      this.state.user.user_name.length >= 6 &&
+      this.state.user.password.length >= 6 &&
+      this.state.user.confirmpassword === this.state.user.password
     ) {
       axiosWithAuth()
         .post("https://api.groa.us/api/users/register", user)
@@ -62,37 +62,36 @@ class Register extends React.Component {
           axiosWithAuth()
             .post("https://api.groa.us/api/users/login", user)
             .then(res2 => {
-              const userid = res2.data.id;
               localStorage.setItem("token", res2.data.token);
               this.props.updateToken(localStorage.getItem("token"));
-              this.props.history.push(
-                "/dashboard",
-                { userid: userid },
-                { pathname: "/dashboard" }
-              );
+              this.props.updateUserid(res2.data.id);
+              this.props.history.push(`/${res2.data.id}/recommended`);
             })
             .catch(err2 => {
-              console.log(err2);
+              console.log(err2, "Username already used");
             });
         })
         .catch(err => {
-          console.log("Registration Error", err);
+          console.log("Registration Error", err.response.data.errorMessage);
           this.setState({ errorStatus: true });
         });
     }
   }
 
   render() {
-    const { user, submitted } = this.state;
+    const { user, submitted, errorStatus } = this.state;
+
     return (
       <div className="container" data-test={ifDev("register-component")}>
-        <div className='registerNav'><RegisterNavLinks/></div>
-          <div className='boxHolder'>
+        <div className="registerNav">
+          <RegisterNavLinks />
+        </div>
+        <div className="boxHolder">
           <div className="boxLeft">
             <img className="logo" src={GroaWhite} alt="groa logo" />
           </div>
           <div className="boxRight">
-            <form className="form" onSubmit={this.handleSubmit}>
+            <form className="form" data-test={ifDev("registerForm")} onSubmit={this.handleSubmit}>
               <h2>Register</h2>
               {/* divs with changing classnames updates error handling for form */}
               <div
@@ -102,7 +101,7 @@ class Register extends React.Component {
               ></div>
               <input
                 className="form-control"
-                type="text"
+                type="email"
                 name="email"
                 value={user.email}
                 onChange={this.handleChange}
@@ -111,7 +110,7 @@ class Register extends React.Component {
               {submitted && !user.email && (
                 <div className="callingError">Email is required</div>
               )}
-
+              
               <div
                 className={
                   "forms" + (submitted && !user.user_name ? " has-error" : "")
@@ -127,6 +126,14 @@ class Register extends React.Component {
               />
               {submitted && !user.user_name && (
                 <div className="callingError">Username is required</div>
+              )}
+
+               {submitted && user.user_name.length < 6 && (
+                <div className="callingError">Username is required to be 6 characters or more </div>
+              )}
+              
+              {errorStatus && user.user_name && (
+                <div className="callingError">Username is already in use</div>
               )}
 
               <div
@@ -146,6 +153,9 @@ class Register extends React.Component {
               {submitted && !user.password && (
                 <div className="callingError">Password is required</div>
               )}
+              {submitted && user.password.length < 6 && (
+                <div className="callingError">Password is required to be 6 characters or more </div>
+              )}
 
               <div
                 className={
@@ -161,8 +171,8 @@ class Register extends React.Component {
                 onChange={this.handleChange}
                 placeholder="Confirm Password"
               />
-              {submitted && !user.confirmpassword && (
-                <div className="callingError">Confirm Password is required</div>
+              {submitted && user.confirmpassword !== user.password && (
+                <div className="callingError">Passwords do not match</div>
               )}
 
               <div className="BottomLogin">
@@ -171,8 +181,8 @@ class Register extends React.Component {
             </form>
           </div>
           {/* end box right */}
-          </div>
-          {/* END boxHolder */}
+        </div>
+        {/* END boxHolder */}
       </div>
       //END CONTAINER
     );

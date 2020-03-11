@@ -33,12 +33,6 @@ function clikR() {
     }
   }
 
-
-
-
-
- 
-
     const handleChange = e => { 
         let data = new FormData()
         data.append('movies', e.target.files[0] , e.target.files[0].name)

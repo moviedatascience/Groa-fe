@@ -8,17 +8,16 @@ import { Route, Switch } from "react-router-dom";
 import DataUpload from './components/auth/dataUpload';
 =======
 import React, { useState, useEffect } from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
-import { ifDev } from "./utils/removeAttribute.js";
+import { Route } from "react-router-dom";
 
 // local imports
 import PrivateRoute from "./utils/privateRoute.js";
 import Dashboardv1 from "./components/dashboard/dashboardv1.js";
-
 import Navigation from "./components/dashboard/navigation.js";
 import Register from "./components/auth/Register";
 import Login from "./components/auth/login";
-
+// for testing
+import { ifDev } from "./utils/removeAttribute.js";
 // config imports
 import reactGAinitialization from "./config/analytics.js";
 
@@ -28,6 +27,7 @@ import { createStore, compose, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
 import logger from "redux-logger";
 import { reducer } from "./store/reducers";
+import { BrowserRouter as Router } from "react-router-dom";
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(
@@ -37,8 +37,9 @@ const store = createStore(
 >>>>>>> 058f81acdd0305d2f2b5926da0c56b45cf92918a
 
 function App() {
-  const [token, setToken] = useState(localStorage.getItem("token"));
-  useEffect(() => reactGAinitialization(), []);
+  const [hasToken, setHasToken] = useState(localStorage.getItem("token"));
+  const [userid, setUserid] = useState();
+  useEffect(() => reactGAinitialization(), [userid]);
 
   return (
 <<<<<<< HEAD
@@ -55,21 +56,46 @@ function App() {
     <Provider store={store}>
       <Router>
         <div className="App" data-test={ifDev("App-component")}>
-            <Route
-              path="/login"
-              render={props => (
-                <Login {...props} token={token} updateToken={setToken}/>
-              )}
-            />
-            <Route
-              exact
-              path="/"
-              render={props => (
-                <Register {...props} token={token} updateToken={setToken}/>
-              )}
-            />
-            <Route exact path={["/dashboard", "/trending", "/recommended", "/watchlist", "/explore"]} component={Navigation} />
-            <PrivateRoute exact path="/dashboard" component={Dashboardv1} data-test={ifDev("dash-component")}/>
+          {/* this is fine as a route because all of the routes that will have display their component will only be avalible on a private route */}
+          <Route
+            exact
+            path={[
+              "/:userid/recommended",
+              "/:userid/trending",
+              "/:userid/watchlist",
+              "/:userid/explore"
+            ]}
+            render={props => <Navigation {...props} userid={userid} />}
+          />
+          <PrivateRoute
+            exact
+            path="/:userid/recommended"
+            component={Dashboardv1}
+            data-test={ifDev("dash-component")}
+          />
+          <Route
+            path="/login"
+            render={props => (
+              <Login
+                {...props}
+                hasToken={hasToken}
+                updateToken={setHasToken}
+                updateUserid={setUserid}
+              />
+            )}
+          />
+          <Route
+            exact
+            path={["/", "/register"]}
+            render={props => (
+              <Register
+                {...props}
+                hasToken={hasToken}
+                updateToken={setHasToken}
+                updateUserid={setUserid}
+              />
+            )}
+          />
         </div>
       </Router>
     </Provider>
