@@ -43,11 +43,16 @@ export function getByTestId(...args) {
   return null;
 }
 
+<<<<<<< HEAD
 const clikDataUpload = {
   sum: (a, b) => {
     return a + b
   }
 }
+=======
+
+
+>>>>>>> 2f8ee237e994ec10c556bd876784ee3b55d3b389
 
 // re-export with overrides
 module.exports = {
@@ -59,4 +64,8 @@ module.exports = {
   clikDataUpload
 };
 
+<<<<<<< HEAD
+=======
+//Login button clicked
+>>>>>>> 2f8ee237e994ec10c556bd876784ee3b55d3b389
 

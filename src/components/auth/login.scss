@@ -1,0 +1,134 @@
+//BACKGROUND - App2
+
+.LoginPage{
+    display: flex;
+    justify-content: space-between;
+    padding: 0 10% 0 10%;
+    min-height: 100vh;  
+    background-image: linear-gradient(to bottom, black 0%,  rgba(0, 0, 0, .9),
+    rgba(0, 0, 0, .70),rgba(0, 0, 0, .85));
+}
+
+.containerLogin{
+    width: 100%;
+}
+
+.bartop{
+    display: flex;
+    justify-content: space-between;
+    height: 150px;
+
+        .Register{
+            color: white;
+            padding: 3% 0 0 4%;
+            text-decoration: none;
+            
+        }
+    }
+ 
+.Middle{
+    display: flex;
+ 
+//Text Motto - your movies your way.
+    .boxLeft{
+        margin-top: 3%;
+        color: white;
+        width: 70%;
+      
+// LOGO BIG   
+        .Logo2{  
+            height: 40%;
+        }       
+    } 
+}
+
+// BOX RIGHT SIDE OF SCREEN - Login form
+.boxRight{
+    width: 50%;
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 3%;
+
+
+    //////// Login Form /////////////////
+    .LoginForm{
+        display: flex;
+        flex-direction: column;
+        width:518px;
+        height:310px;
+        background: #FFFFFF;
+    }
+
+}
+    
+          
+
+.textlogin{
+    margin: 2% 8% 2% 8%;
+}
+
+//TEXT REMEMBER, FORGOT PASSWORD?
+.TextandCheck{
+    display: flex;
+    
+    .TextandCheck2{
+        padding-left: 145px;     
+    }
+
+    .CheckBoxContainer{
+        padding: 20px 15px 0 60px;
+        padding-top: 20px;  
+    }
+
+    .Checkbox{
+        width: 20px;
+        height: 20px;
+        }
+}
+
+
+
+//input fields///////////////////////
+.input1{
+    padding: 7px;
+    margin: 2% 12% 2% 12%;
+    border: 1px solid black;
+    border-radius: 4px;
+}
+
+.input2{
+    padding: 7px;
+    margin: 2% 12% 2% 12%;
+    color: white;
+}
+.error{
+    display: flex;
+    justify-content: center;
+    font-weight: 650;
+    color: red;
+}
+
+.BtnContainer{
+display: flex;
+justify-content: flex-end;
+
+}
+
+.BtnLoginWith{
+    margin: 1% 12% 3% 12%;
+    padding: 8px;
+    background:#7A7A7A;
+    border-radius: 4px;
+    color: white;
+}
+
+.BtnLogin{ 
+    margin: 4% 12% 0 0;
+    width: 115px;
+    height:36px;
+    background:#21242C;
+    color: white;
+    border-radius: 4px;
+}
+
+
