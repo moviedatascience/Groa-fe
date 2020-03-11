@@ -1,7 +1,8 @@
 import React from "react";
-import { render } from "@testing-library/react";
+import { render,fireEvent, } from "@testing-library/react";
+import { getAllByTestId, getAllByText, getByTestId } from "../../utils/test-utils.js";
 import DataUpload from './dataUpload';
-import { clikDataUpload } from "../../utils/test-utils.js";
+
 
 describe('dataupload', () => {
     it('dataupload be defined', () => {
@@ -16,20 +17,20 @@ describe('dataupload', () => {
     });
    });
   
-   test('drop dataupload file at upload spot', () => {
-      expect(clikDataUpload.sum(0, 1)).toBe(1)
-  })
 
-  it("renders errors to register on Click if info not filled out", () => {
+  it("renders errors to DataUpload on click", () => {
     const { container } = render(
         <Router>
-        <Register />
+        <DataUpload />
         </Router >
     );
+  
 
     let form = getAllByTestId(container, "registerForm");
     expect(form.length).toBe(1);
 
-    fireEvent.submit(getByTestId(container, "registerForm"))
-    let component = getAllByText(container, "Email is required");
+    fireEvent.submit(getByTestId(container, "clickLetterBoxd"))
+    let component = getAllByText(container, "Log in to Letterboxd");
     expect(component.length).toBe(1); 
+
+    })

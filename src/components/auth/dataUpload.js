@@ -47,8 +47,8 @@ function clikR() {
           .then(res => {
             // waiting to set ratings var for 45 seconds.
             setTimeout(() => setRatings(res.data), 60 * 1000);
-            //DIRECT TO UPLOADING SCREEN
-            //props.history.push(`/${res.data.id}/upload`);
+            //NEED to direct to uploading screen while retrieving file.
+            props.history.push(`/${res.data.id}/upload`);
           })
           .catch(err => {
             console.log(err); 
@@ -73,7 +73,7 @@ return (
     <div className='DboxContainer'>
         
         <div className="dropdown">
-            <button onClick={clikL} className="dropbtn">Instructions LetterBoxd</button>
+            <button onClick={clikL} data-test={ifDev("clickLetterBoxd")} className="dropbtn">Instructions LetterBoxd</button>
             <div id="myDropdownL" className="dropdown-content">
                 <div className='DboxLeft'>
                     <div className='boxInside'>
@@ -92,7 +92,7 @@ return (
 
         
         <div className="dropdown">
-            <button onClick={clikR} className="dropbtn">Instructions IMDb</button>
+            <button onClick={clikR} data-test={ifDev("clickIMDb")} className="dropbtn">Instructions IMDb</button>
             <div id="myDropdownR" className="dropdown-content">
                 <div className='DboxRight'>
                     <p className='ptext'>1.Log in to IMDb</p>
