@@ -66,4 +66,8 @@
       }
     }
   }
+  .hidden,
+  .setup-wizard.choice-box.hidden {
+    display: none;
+  }
 }
