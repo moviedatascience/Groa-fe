@@ -7,6 +7,7 @@ import Dashboardv1 from "./components/dashboard/dashboardv1.js";
 import Navigation from "./components/dashboard/navigation.js";
 import Register from "./components/auth/Register";
 import Login from "./components/auth/login";
+import PostLogin from "./components/auth/postLogin.js";
 // for testing
 import { ifDev } from "./utils/removeAttribute.js";
 // config imports
@@ -75,6 +76,7 @@ function App() {
               />
             )}
           />
+          <Route exact path="/setup-wizard" component={PostLogin} />
         </div>
       </Router>
     </Provider>
