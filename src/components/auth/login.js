@@ -8,8 +8,6 @@ import "./login.scss";
 import Groa2 from "../auth/Groa-logo-B2AA.png";
 import { ifDev } from "../../utils/removeAttribute.js";
 
-
-
 class LoginPage extends React.Component {
   constructor(props) {
     super(props);
@@ -24,28 +22,28 @@ class LoginPage extends React.Component {
         password: ""
       },
       submitted: false,
-      errorStatus: false,
+      errorStatus: false
     };
   }
 
   handleChange = e => {
     const { name, value } = e.target;
     let errors = this.state.errors;
-    
+
     this.setState({
       user: {
         ...this.state.user,
         [e.target.name]: e.target.value
-      },
-      
+      }
     });
     switch (name) {
-     
       case "user_name":
-        errors.user_name = value.length < 6 ? "User name must be 6 or more characters long" : "";    
+        errors.user_name =
+          value.length < 6 ? "User name must be 6 or more characters long" : "";
         break;
       case "password":
-        errors.password = value.length < 6 ? "Password must be 6 or more characters long" : "";
+        errors.password =
+          value.length < 6 ? "Password must be 6 or more characters long" : "";
         break;
       default:
         break;
@@ -54,37 +52,30 @@ class LoginPage extends React.Component {
     this.setState({ errors, [name]: value }, () => {});
   };
 
-
-
   loginUser = e => {
     e.preventDefault();
     this.setState({ submitted: true });
     if (this.state.user.user_name && this.state.user.password) {
       axiosWithAuth()
-      .post("/login", this.state.user)
-      .then(res => {
-        localStorage.setItem("token", res.data.token);
-        // updates token to refresh navbar
-        this.props.updateToken(localStorage.getItem("token"));
-        // sets up userid in app
-        this.props.updateUserid(res.data.id);
-        //redirect to Groas dashboard page
-<<<<<<< HEAD
-        if (this.state.user.user_name && this.state.user.password) {
+        .post("/login", this.state.user)
+        .then(res => {
+          localStorage.setItem("token", res.data.token);
+          // updates token to refresh navbar
+          this.props.updateToken(localStorage.getItem("token"));
+          // sets up userid in app
+          this.props.updateUserid(res.data.id);
+          //redirect to Groas dashboard page
           this.props.history.push(`/${res.data.id}/recommended`);
-        }
-=======
-        this.props.history.push("/dashboard", { userid: res.data.id }); 
->>>>>>> d2ef72b5a2665e03e9672658ade3eebccd055de6
-      })
-      .catch(err => {console.log(err.response.data.errorMessage,'errr')
-      this.setState({errorStatus : true})
-    });
-    }     
+        })
+        .catch(err => {
+          console.log(err.response.data.errorMessage, "errr");
+          this.setState({ errorStatus: true });
+        });
+    }
   };
 
   render() {
-    const { errors,submitted,user,errorStatus} = this.state;
+    const { errors, submitted, user, errorStatus } = this.state;
     return (
       <div className="LoginPage" data-test={ifDev("login-component")}>
         {/* Container - ENTIRE PAGE */}
@@ -97,8 +88,11 @@ class LoginPage extends React.Component {
             </div>
             {/* END BOX LEFT */}
             <div className="boxRight">
-              <form className="LoginForm" onSubmit={this.loginUser} data-test={ifDev("loginForm")} >
-              
+              <form
+                className="LoginForm"
+                onSubmit={this.loginUser}
+                data-test={ifDev("loginForm")}
+              >
                 <h1 className="textlogin">Log in</h1>
                 <input
                   className="input1"
@@ -110,18 +104,20 @@ class LoginPage extends React.Component {
                   placeholder="Username"
                 />
                 {/* ERROR MESSAGES */}
-                  {/* Submit Error */}
-                  
+                {/* Submit Error */}
+
                 {errorStatus && user.user_name && (
-                <div className="error">Invalid Credentials</div>
+                  <div className="error">Invalid Credentials</div>
                 )}
 
                 {submitted && !user.user_name && (
-                <div className="error">Username is required</div>
+                  <div className="error">Username is required</div>
                 )}
-                  {/* Length of username */}
+                {/* Length of username */}
                 {errors.user_name && (
-                  <span className="error" data-test={ifDev("ErrorUsername")}>{errors.user_name}</span>
+                  <span className="error" data-test={ifDev("ErrorUsername")}>
+                    {errors.user_name}
+                  </span>
                 )}
 
                 <input
@@ -134,13 +130,15 @@ class LoginPage extends React.Component {
                   placeholder="Password"
                 />
                 {/* ERROR MESSAGES */}
-                  {/* Submit Error */}
+                {/* Submit Error */}
                 {submitted && !user.password && (
-                <div className="error">Password is required</div>
+                  <div className="error">Password is required</div>
                 )}
-                  {/* Length of password */}
+                {/* Length of password */}
                 {errors.password && (
-                  <span className="error" data-test={ifDev("ErrorPassword")}>{errors.password}</span>
+                  <span className="error" data-test={ifDev("ErrorPassword")}>
+                    {errors.password}
+                  </span>
                 )}
 
                 <div className="TextandCheck">
@@ -161,7 +159,6 @@ class LoginPage extends React.Component {
                   >
                     Log in
                   </button>
-
                 </div>
               </form>
             </div>
