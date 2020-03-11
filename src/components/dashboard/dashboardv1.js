@@ -10,6 +10,20 @@ const Dashboardv1 = props => {
   const [ratings, setRatings] = useState({});
   const [recommendations, setRecommendations] = useState([]);
 
+  const config = {
+    headers: {
+      "Content-Type": "multipart/form-data"
+    },
+    onUploadProgress: (progressEvent) => {
+    let progress = Math.floor((progressEvent.loaded * 100) / progressEvent.total)
+    console.log("Progress", progress)
+    },
+    onDownloadProgress: (progressEvent) => {
+    let progress = Math.floor((progressEvent.loaded * 100) / progressEvent.total)
+    console.log("Progress", progress)
+    }
+  }
+
   let { userid } = props.match.params;
   const changeHandler = e => {
     // https://developer.mozilla.org/en-US/docs/Web/API/FormData/FormData
@@ -19,14 +33,9 @@ const Dashboardv1 = props => {
     // history.location.state.userid is just where I am holding userid for now from the Register page so I do not need to implment redux.
     axiosWithAuth()
       // this is insantiated when a file is added to input
-      .post(`/${userid}/uploading`, data, {
-        headers: {
-          "Content-Type": "multipart/form-data"
-        }
-      })
+      .post(`/${userid}/uploading`, data, config)
       .then(res => {
-        // waiting to set ratings var for 45 seconds.
-        setTimeout(() => setRatings(res.data), 60 * 1000);
+        setRatings(res.data)
       })
       .catch(err => {
         console.log(err); // --> I think these errors we should be sending to an error page.
