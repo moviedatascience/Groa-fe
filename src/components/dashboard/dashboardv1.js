@@ -16,11 +16,10 @@ const Dashboardv1 = props => {
     },
     onUploadProgress: (progressEvent) => {
     let progress = Math.floor((progressEvent.loaded * 100) / progressEvent.total)
-    console.log("Progress", progress)
+    console.log(`Upload progress: ${progress}%`);
     },
     onDownloadProgress: (progressEvent) => {
     let progress = Math.floor((progressEvent.loaded * 100) / progressEvent.total)
-    console.log("Progress", progress)
     }
   }
 
