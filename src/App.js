@@ -1,12 +1,3 @@
-<<<<<<< HEAD
-import React from "react";
-import { Route, Switch } from "react-router-dom";
-// import Dashboard from "./components/dashboard/index.js";
-// import Login from './auth/Login';
-// import Register from './auth/Register';
-// import LoadingScreen from "./components/layout/LoadingScreen.js";
-import DataUpload from './components/auth/dataUpload';
-=======
 import React, { useState, useEffect } from "react";
 import { Route } from "react-router-dom";
 
@@ -16,6 +7,7 @@ import Dashboardv1 from "./components/dashboard/dashboardv1.js";
 import Navigation from "./components/dashboard/navigation.js";
 import Register from "./components/auth/Register";
 import Login from "./components/auth/login";
+import DataUpload from "./components/auth/dataUpload";
 // for testing
 import { ifDev } from "./utils/removeAttribute.js";
 // config imports
@@ -34,7 +26,6 @@ const store = createStore(
   reducer,
   composeEnhancers(applyMiddleware(thunk, logger))
 );
->>>>>>> 058f81acdd0305d2f2b5926da0c56b45cf92918a
 
 function App() {
   const [hasToken, setHasToken] = useState(localStorage.getItem("token"));
@@ -42,17 +33,6 @@ function App() {
   useEffect(() => reactGAinitialization(), [userid]);
 
   return (
-<<<<<<< HEAD
-    <div className="App">
-      <Switch>
-        {/* <Route exact path="/" component={Dashboard} /> */}
-        {/* <Route path='/login' component = {Login}/>
-      <Route path='/register' component = {Register}/> */}
-        {/* <Route exact path="/" component={LoadingScreen} /> */}
-        <Route path='/dataupload' component = {DataUpload}/>
-      </Switch>
-    </div>
-=======
     <Provider store={store}>
       <Router>
         <div className="App" data-test={ifDev("App-component")}>
@@ -96,10 +76,15 @@ function App() {
               />
             )}
           />
+          {/* ADDED for dataUpload */}
+          <Route
+            exact
+            path={"/dataupload"}
+            component={DataUpload}
+          />
         </div>
       </Router>
     </Provider>
->>>>>>> 058f81acdd0305d2f2b5926da0c56b45cf92918a
   );
 }
 

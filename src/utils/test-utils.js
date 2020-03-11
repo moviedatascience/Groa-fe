@@ -57,6 +57,3 @@ module.exports = {
   clikDataUpload
 };
 
-
-//Login button clicked
-

@@ -19,3 +19,17 @@ describe('dataupload', () => {
    test('drop dataupload file at upload spot', () => {
       expect(clikDataUpload.sum(0, 1)).toBe(1)
   })
+
+  it("renders errors to register on Click if info not filled out", () => {
+    const { container } = render(
+        <Router>
+        <Register />
+        </Router >
+    );
+
+    let form = getAllByTestId(container, "registerForm");
+    expect(form.length).toBe(1);
+
+    fireEvent.submit(getByTestId(container, "registerForm"))
+    let component = getAllByText(container, "Email is required");
+    expect(component.length).toBe(1); 

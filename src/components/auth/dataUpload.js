@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
-import axios from 'axios';
+import { axiosWithAuth } from "../../utils/axiosWithAuth.js";
 import './dataUpload.scss'
 
-export default function DataUpload() {
+const DataUpload = props => {
 
 
 const [input, setInput] = useState({file:''})
@@ -32,30 +32,32 @@ function clikR() {
       }
     }
   }
-
+  let { userid } = props.match.params;
     const handleChange = e => { 
-        let data = new FormData()
-        data.append('movies', e.target.files[0] , e.target.files[0].name)
-        // NOT USING CORRECT? -> //Groabe-env.v3umry9g8h.us-east-1.elasticbeanstalk.com/
-        axios.post('https://api.groa.us/api/users/:id/uploading', data,{
-            headers:{
-                'Content-Type':'multipart/form-data'
+        let data = new FormData();
+        data.append("movies", e.target.files[0], e.target.files[0].name);
+        // history.location.state.userid is just where I am holding userid for now from the Register page so I do not need to implment redux.
+        axiosWithAuth()
+          // this is insantiated when a file is added to input
+          .post(`/${userid}/uploading`, data, {
+            headers: {
+              "Content-Type": "multipart/form-data"
             }
-        })
-        .then(res => { 
-            console.log(res);
-            setRatings(res.data)
-            // this.props.history.push('/dashboard');
-        }).catch(err => { 
-            console.log(err)
-        })
-        data = new FormData()
-        setTimeout(() => {
-            setLoading(<h2 className = 'loading' style={{paddingLeft:'5px'}}>.loading</h2>)
-        }, 3000);
-       
-   
+          })
+          .then(res => {
+            // waiting to set ratings var for 45 seconds.
+            setTimeout(() => setRatings(res.data), 60 * 1000);
+            //DIRECT TO UPLOADING SCREEN
+            //props.history.push(`/${res.data.id}/upload`);
+          })
+          .catch(err => {
+            console.log(err); 
+          });
+        // clears out previous uploaded file
+        data = new FormData();  
 }
+
+// DO we need the Use Effect from dashboardv1 - in (dataUpload?)
 
 return (
 <div className='DataUploadPage'>
@@ -131,6 +133,5 @@ return (
 </div>
 // END DataUploadPage
    )
- 
-
 }
+export default DataUpload;
