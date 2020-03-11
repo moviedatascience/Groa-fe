@@ -2,7 +2,7 @@ import React from 'react';
 import { Provider } from "react-redux";
 import { render, fireEvent } from '@testing-library/react';
 import Login from './login';
-import { getAllByTestId } from "../../utils/test-utils";
+import { getAllByTestId, getByTestId, getAllByText } from "../../utils/test-utils";
 import { BrowserRouter as Router } from "react-router-dom";
 import { createStore, applyMiddleware } from "redux";
 
@@ -27,3 +27,26 @@ describe('Button', () => {
     expect(Login).toBeDefined();
   });
 })
+
+it("renders errors to login on Click if info not filled out", () => {
+  const { container } = render(
+    <Provider store={store}>
+    <Router>
+      <Login />
+    </Router>
+    </Provider>
+  );
+
+  
+
+  let form = getAllByTestId(container, "loginForm");
+  expect(form.length).toBe(1);
+  fireEvent.submit(getByTestId(container, "loginForm"))
+
+  let component = getAllByText(container, "Email is required");
+  expect(component.length).toBe(1);  
+
+  component = getAllByText(container, "Password is required");
+  expect(component.length).toBe(1);  
+});
+
