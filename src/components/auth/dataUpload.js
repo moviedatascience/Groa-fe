@@ -1,5 +1,7 @@
 import React, {useState} from 'react';
 import { axiosWithAuth } from "../../utils/axiosWithAuth.js";
+import { ifDev } from "../../utils/removeAttribute.js";
+
 import './dataUpload.scss'
 
 const DataUpload = props => {

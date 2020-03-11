@@ -76,10 +76,10 @@ function App() {
               />
             )}
           />
-          {/* ADDED for dataUpload */}
+          {/* Data upload Route*/}
           <Route
             exact
-            path={"/dataupload"}
+            path={"/setup-wizard/dataupload"}
             component={DataUpload}
           />
         </div>
