@@ -28,12 +28,35 @@ class Navigation extends Component {
     return (
       <div className="mainContainer" data-test={ifDev("navigation")}>
         <div className="navContainer">
-          <div className="Bars hidden">
-            <FontAwesomeIcon className="bars-icon" icon={faBars} />
-            <i className="far fa-bars"></i>
+          <div className="Bars" > 
+          {/* hidden */}
+          
+          <a href="#main-menu" class="menu-toggle" aria-label= "Open main menu" 
+            id = "main-menu-toggle">
+            <FontAwesomeIcon className="bars-icon" icon={faBars} aria-label="main menu" />
+            
+              <span class = "sr-only"> Open main menu</span>
+              <i aria-hidden='true' className="far fa-bars"></i>
+          </a>
+
+          <nav id="main-menu" className = "main-menu">
+            <div className="title">
+            <h2>Filter Options</h2>
+            <a href="#main-menu-toggle" className="menu-close">X</a>
+            </div>
+            <ul>
+              <li><a href="#">By Provider</a></li>
+              <li><a href="#">Genre</a></li>
+              <li><a href="#">Theme</a></li>
+              <li><a href="#">By Date</a></li>
+              <li><a href="#">Black and White</a></li>
+              <li><a href="#">By actor, director, screenwriter, cigematographer(sort by tags)</a></li>
+            </ul>
+          </nav>
+          <a href= "#main-menu-toggle" class = "backdrop" hidden tabindex="-1"/>
           </div>
 
-          <div className="Links">
+          <div id="main-menu" className="Links">
             <NavLink
               className="Groa-NavLink"
               to={`/${this.props.userid}/recommended`}
@@ -42,9 +65,10 @@ class Navigation extends Component {
             </NavLink>
 
             <NavLink
-              className="NavLink  hidden"
+              className="NavLink"
               to={`/${this.props.userid}/trending`}
             >
+              {/* hidden */}
               Trending
             </NavLink>
 
@@ -56,20 +80,22 @@ class Navigation extends Component {
             </NavLink>
 
             <NavLink
-              className="NavLink  hidden"
+              className="NavLink"
               to={`/${this.props.userid}/watchlist`}
             >
+              {/* hidden */}
               Watchlist
             </NavLink>
 
             <NavLink
-              className="NavLink  hidden"
+              className="NavLink"
               to={`/${this.props.userid}/explore`}
             >
+              {/* hidden */}
               Explore
             </NavLink>
           </div>
-
+          
           <div className="searchContainer  hidden">
             <FontAwesomeIcon className="search-icon fa-icons" icon={faSearch} />
             <input
