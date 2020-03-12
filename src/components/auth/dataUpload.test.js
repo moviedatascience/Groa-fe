@@ -24,7 +24,7 @@ import DataUpload from './dataUpload.js';
     expect(button.length).toBe(1);
 
     fireEvent.click(getByTestId(container, "clickLetterBoxd"))
-    component = getAllByText(container, "Log in to Letterboxd");
+    component = getAllByText(container, "1.Log in to Letterboxd");
     expect(component.length).toBe(1); 
 
 
@@ -32,7 +32,7 @@ import DataUpload from './dataUpload.js';
     expect(button.length).toBe(1);
 
     fireEvent.click(getByTestId(container, "clickIMDb"))
-    component = getAllByText(container, "Log in to IMDb");
+    component = getAllByText(container, "1.Log in to IMDb");
     expect(component.length).toBe(1); 
 
     })
