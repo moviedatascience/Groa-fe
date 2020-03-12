@@ -9,9 +9,7 @@ export default function LoadingScreen() {
       className="container loading-screen"
       data-test={ifDev("loading-screen-component")}
     >
-      <header>
-        <h4>Loading recommendations</h4>
-      </header>
+      <h4>Loading recommendations</h4>
       <ReactLoading
         className="loading-component"
         data-test={ifDev("loading-object")}
