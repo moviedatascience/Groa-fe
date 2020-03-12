@@ -52,8 +52,7 @@ const Dashboardv1 = props => {
     axiosWithAuth()
       .get(`/${userid}/recommendations`)
       .then(res => {
-        console.log(res.data)
-        setRecommendations(res.data);
+        setRecommendations(res.data.recommendation_json);
       })
       .catch(err =>
         console.log("Something went wrong in fetching recommendations.", err)
