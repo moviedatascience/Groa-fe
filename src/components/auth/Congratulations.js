@@ -10,7 +10,7 @@ const Congrats = props => {
                     <div className='textHolder'>
                     <h1>Congratulations!</h1>
                         <h2>Your ratings have been successfully uploaded.</h2>
-                        <h3>Checkbox</h3>
+                       <img src="./public/success.png "/>
                         <button className='Btn'>Go to Dashboard</button>
                     </div>
                
