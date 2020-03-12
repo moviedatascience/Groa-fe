@@ -51,5 +51,3 @@ module.exports = {
   queryByTestId,
   queryAllByTestId
 };
-
-//Login button clicked
