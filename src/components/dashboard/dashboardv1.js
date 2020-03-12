@@ -51,7 +51,8 @@ const Dashboardv1 = props => {
     axiosWithAuth()
       .get(`/${userid}/recommendations`)
       .then(res => {
-        setRecommendations(res.data.recommendation_json);
+        console.log(res.data)
+        setRecommendations(res.data);
       })
       .catch(err =>
         console.log("Something went wrong in fetching recommendations.", err)
@@ -129,7 +130,7 @@ const Dashboardv1 = props => {
                   name={x.Title}
                   year={x.Year}
                   rating={x["Average Rating"]}
-                  image="https://source.unsplash.com/collection/2047031/500x500"
+                  image={`https://image.tmdb.org/t/p/w500/${x.Poster}?api_key=18814be112b8b0167bc919c307bd596e `}
                 />
               ) : null
             )}
