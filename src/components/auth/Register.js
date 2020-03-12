@@ -91,7 +91,11 @@ class Register extends React.Component {
             <img className="logo" src={GroaWhite} alt="groa logo" />
           </div>
           <div className="boxRight">
-            <form className="form" data-test={ifDev("registerForm")} onSubmit={this.handleSubmit}>
+            <form
+              className="form"
+              data-test={ifDev("registerForm")}
+              onSubmit={this.handleSubmit}
+            >
               <h2>Register</h2>
               {/* divs with changing classnames updates error handling for form */}
               <div
@@ -110,7 +114,7 @@ class Register extends React.Component {
               {submitted && !user.email && (
                 <div className="callingError">Email is required</div>
               )}
-              
+
               <div
                 className={
                   "forms" + (submitted && !user.user_name ? " has-error" : "")
@@ -128,10 +132,12 @@ class Register extends React.Component {
                 <div className="callingError">Username is required</div>
               )}
 
-               {submitted && user.user_name.length < 6 && (
-                <div className="callingError">Username is required to be 6 characters or more </div>
+              {submitted && user.user_name.length < 6 && (
+                <div className="callingError">
+                  Username is required to be 6 characters or more{" "}
+                </div>
               )}
-              
+
               {errorStatus && user.user_name && (
                 <div className="callingError">Username is already in use</div>
               )}
@@ -154,7 +160,9 @@ class Register extends React.Component {
                 <div className="callingError">Password is required</div>
               )}
               {submitted && user.password.length < 6 && (
-                <div className="callingError">Password is required to be 6 characters or more </div>
+                <div className="callingError">
+                  Password is required to be 6 characters or more{" "}
+                </div>
               )}
 
               <div
@@ -174,9 +182,15 @@ class Register extends React.Component {
               {submitted && user.confirmpassword !== user.password && (
                 <div className="callingError">Passwords do not match</div>
               )}
-
-              <div className="BottomLogin">
-                <button className="LoginBtn">Login </button>
+              <div className="bottom-form">
+                {/* todo: add Remember functionality */}
+                <div className="check-box-container">
+                  <input type="checkbox" />
+                  <h5>Remember me</h5>
+                </div>
+                <div className="signup-btn-container">
+                  <button className="signup-btn">Sign Up </button>
+                </div>
               </div>
             </form>
           </div>
