@@ -9,6 +9,7 @@ import Register from "./components/auth/Register";
 import Login from "./components/auth/login";
 import PostLogin from "./components/auth/postLogin.js";
 import LoadingScreen from "./components/layout/LoadingScreen.js";
+import Congrats from "./components/auth/Congratulations.js";
 // for testing
 import { ifDev } from "./utils/removeAttribute.js";
 // config imports
@@ -76,6 +77,10 @@ function App() {
                 updateUserid={setUserid}
               />
             )}
+          />
+          <Route
+           path="/congrats"
+           component={Congrats}
           />
           <Route exact path="/setup-wizard" component={PostLogin} />
           <Route exact path="/loading-screen" component={LoadingScreen} />
