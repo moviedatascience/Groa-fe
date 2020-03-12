@@ -1,0 +1,28 @@
+.CongratsPage{
+    border: 2px solid red;
+    background: #505050;
+    height: 100vh;
+    .CenterBox{
+        display:flex;
+        margin-top: 15%;
+        justify-content: center;
+        
+        .congratsForm{
+            display: flex;
+            justify-content: center;
+            background: white;
+            width: 600px;
+            height: 400px;
+            
+            .textHolder{
+                margin-top: 10%;
+                padding: 25px;
+                width: 300px;
+                height: 200px;
+                border: 2px solid green;
+            }
+        }
+    }
+
+
+}

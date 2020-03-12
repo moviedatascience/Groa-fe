@@ -7,6 +7,7 @@ import Dashboardv1 from "./components/dashboard/dashboardv1.js";
 import Navigation from "./components/dashboard/navigation.js";
 import Register from "./components/auth/Register";
 import Login from "./components/auth/login";
+import Congrats from './components/auth/Congratulations';
 // for testing
 import { ifDev } from "./utils/removeAttribute.js";
 // config imports
@@ -74,6 +75,10 @@ function App() {
                 updateUserid={setUserid}
               />
             )}
+          />
+          <Route
+           path="/congrats"
+           component={Congrats}
           />
         </div>
       </Router>
