@@ -9,7 +9,9 @@ export default function LoadingScreen() {
       className="container loading-screen"
       data-test={ifDev("loading-screen-component")}
     >
-      <h4>Loading recommendations</h4>
+      <header>
+        <h4>Loading recommendations</h4>
+      </header>
       <ReactLoading
         className="loading-component"
         data-test={ifDev("loading-object")}
@@ -18,6 +20,11 @@ export default function LoadingScreen() {
         height={"200px"}
         width={"200px"}
       />
+      <p>
+        Based on the connection to our server,
+        <br />
+        this process could take up to a minute.
+      </p>
     </div>
   );
 }
