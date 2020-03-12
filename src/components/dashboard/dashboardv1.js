@@ -34,6 +34,7 @@ const Dashboardv1 = props => {
       // this is insantiated when a file is added to input
       .post(`/${userid}/uploading`, data, config)
       .then(res => {
+        console.log(res)
         setRatings(res.data)
       })
       .catch(err => {
@@ -129,7 +130,8 @@ const Dashboardv1 = props => {
                   name={x.Title}
                   year={x.Year}
                   rating={x["Average Rating"]}
-                  image="https://source.unsplash.com/collection/2047031/500x500"
+                  image={ !x["Poster URL"] || x["Poster URL"] === "No poster" || x["Poster URL"] === "Not in table" ? "https://source.unsplash.com/collection/1736993/500x500"
+                  :`https://image.tmdb.org/t/p/w500/${x["Poster URL"]}?api_key=18814be112b8b0167bc919c307bd596e `}
                 />
               ) : null
             )}
