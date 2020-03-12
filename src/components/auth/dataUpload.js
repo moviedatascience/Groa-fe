@@ -40,7 +40,7 @@ function clikR() {
     const handleChange = e => { 
         let data = new FormData();
         data.append("movies", e.target.files[0], e.target.files[0].name);
-        // history.location.state.userid is just where I am holding userid for now from the Register page so I do not need to implment redux.
+        
         axiosWithAuth()
           // this is insantiated when a file is added to input
           .post(`/${userid}/uploading`, data, {
@@ -50,7 +50,7 @@ function clikR() {
           })
           .then(res => {
             // waiting to set ratings var for 45 seconds.
-            setTimeout(() => setRatings(res.data), 60 * 1000);
+           setRatings(res.data)
             //NEED to direct to uploading screen while retrieving file.
             props.history.push(`/${res.data.id}/upload`);
           })

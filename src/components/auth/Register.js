@@ -65,7 +65,7 @@ class Register extends React.Component {
               localStorage.setItem("token", res2.data.token);
               this.props.updateToken(localStorage.getItem("token"));
               this.props.updateUserid(res2.data.id);
-              this.props.history.push(`/${res2.data.id}/recommended`);
+              this.props.history.push(`/setup-wizard/dataupload`);
             })
             .catch(err2 => {
               console.log(err2, "Username already used");
