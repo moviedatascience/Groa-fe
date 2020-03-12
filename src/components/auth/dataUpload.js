@@ -64,7 +64,7 @@ function clikR() {
 // DO we need the Use Effect from dashboardv1 - in (dataUpload?)
 
 return (
-<div className='DataUploadPage'>
+<div className='DataUploadPage' data-test="DataUploadPage-test">
     <div>
             <div className='textholder1'> 
                     <h1>Already rated movies elsewhere?</h1>

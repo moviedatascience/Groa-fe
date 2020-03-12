@@ -1,44 +1,37 @@
 import React from "react";
-import { render,fireEvent, } from "@testing-library/react";
+import { render, fireEvent } from "@testing-library/react";
 import { getAllByTestId, getAllByText, getByTestId } from "../../utils/test-utils.js";
+import { Router, Route  } from "react-router-dom";
+import { createMemoryHistory } from "history";
 
-import DataUpload from './dataUpload';
+import DataUpload from './dataUpload.js';
 
 
-describe('dataupload', () => {
-    it('dataupload be defined', () => {
-      expect(DataUpload).toBeDefined();
-    });
-  
-    it('should render dataupload correctly', () => {
-      const tree = (
-        <DataUpload name='dataupload file test' />
-      );
-      expect(tree).toMatchSnapshot();
-    });
-   });
-  
 
-  it("renders to DataUpload", () => {
+  it("renders DataUpload component", () => {
+    let history = createMemoryHistory();
     const { container } = render(
-        <Router>
-        <DataUpload />
+        <Router history={history}>
+          <Route component={DataUpload} />
         </Router >
     );
-  
+    console.log(window.location.pathname)
+    let component = getAllByTestId(container, "DataUploadPage-test"); 
+    expect(component.length).toBe(1); 
+ 
 
     let button = getAllByTestId(container, "clickLetterBoxd");
     expect(button.length).toBe(1);
 
-    fireEvent.submit(getByTestId(container, "clickLetterBoxd"))
-    let component = getAllByText(container, "Log in to Letterboxd");
+    fireEvent.click(getByTestId(container, "clickLetterBoxd"))
+    component = getAllByText(container, "Log in to Letterboxd");
     expect(component.length).toBe(1); 
 
 
     button = getAllByTestId(container, "clickIMDb");
     expect(button.length).toBe(1);
 
-    fireEvent.submit(getByTestId(container, "clickIMDb"))
+    fireEvent.click(getByTestId(container, "clickIMDb"))
     component = getAllByText(container, "Log in to IMDb");
     expect(component.length).toBe(1); 
 

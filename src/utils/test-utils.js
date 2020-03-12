@@ -54,6 +54,6 @@ module.exports = {
   getAllByTestId,
   queryByTestId,
   queryAllByTestId,
-  clikDataUpload
+
 };
 
