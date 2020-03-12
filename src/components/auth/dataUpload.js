@@ -9,9 +9,8 @@ import './dataUpload.scss'
 const DataUpload = props => {
 
 
-const [input, setInput] = useState({file:''})
-    const [ratings, setRatings] = useState({})
-    const [loading, setLoading] = useState()
+const [input, setInput] = useState({file:''})   
+const [loading, setLoading] = useState()
 
   
 
@@ -50,9 +49,9 @@ function clikR() {
           })
           .then(res => {
             // waiting to set ratings var for 45 seconds.
-           setRatings(res.data)
+            props.setRatings(res.data)
             //NEED to direct to uploading screen while retrieving file.
-            props.history.push(`/${res.data.id}/upload`);
+            // props.history.push(`/${props.userid}/recommended`);
           })
           .catch(err => {
             console.log(err); 

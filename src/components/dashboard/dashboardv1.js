@@ -10,23 +10,23 @@ const Dashboardv1 = props => {
   const [ratings, setRatings] = useState({});
   const [recommendations, setRecommendations] = useState([]);
 
+  const config = {
+    headers: {
+      "Content-Type": "multipart/form-data"
+    }
+  };
+
   let { userid } = props.match.params;
   const changeHandler = e => {
     // https://developer.mozilla.org/en-US/docs/Web/API/FormData/FormData
     // packages up form to make it able to send over https
     let data = new FormData();
     data.append("movies", e.target.files[0], e.target.files[0].name);
-    // history.location.state.userid is just where I am holding userid for now from the Register page so I do not need to implment redux.
     axiosWithAuth()
-      // this is insantiated when a file is added to input
-      .post(`/${userid}/uploading`, data, {
-        headers: {
-          "Content-Type": "multipart/form-data"
-        }
-      })
+      // this is insantiated when a file is added to input --> we should think about adding a submit button
+      .post(`/${userid}/uploading`, data, config)
       .then(res => {
-        // waiting to set ratings var for 45 seconds.
-        setTimeout(() => setRatings(res.data), 60 * 1000);
+        setRatings(res.data);
       })
       .catch(err => {
         console.log(err); // --> I think these errors we should be sending to an error page.
@@ -121,7 +121,13 @@ const Dashboardv1 = props => {
                   name={x.Title}
                   year={x.Year}
                   rating={x["Average Rating"]}
-                  image="https://source.unsplash.com/collection/2047031/500x500"
+                  image={
+                    !x["Poster URL"] ||
+                    x["Poster URL"] === "No poster" ||
+                    x["Poster URL"] === "Not in table"
+                      ? "https://source.unsplash.com/collection/1736993/500x500"
+                      : `https://image.tmdb.org/t/p/w500/${x["Poster URL"]}?api_key=18814be112b8b0167bc919c307bd596e `
+                  }
                 />
               ) : null
             )}

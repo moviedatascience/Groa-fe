@@ -7,7 +7,9 @@ import Dashboardv1 from "./components/dashboard/dashboardv1.js";
 import Navigation from "./components/dashboard/navigation.js";
 import Register from "./components/auth/Register";
 import Login from "./components/auth/login";
-import DataUpload from "./components/auth/dataUpload";
+import PostLogin from "./components/auth/postLogin.js";
+import LoadingScreen from "./components/layout/LoadingScreen.js";
+import Congrats from "./components/auth/Congratulations.js";
 // for testing
 import { ifDev } from "./utils/removeAttribute.js";
 // config imports
@@ -76,12 +78,12 @@ function App() {
               />
             )}
           />
-          {/* Data upload Route*/}
           <Route
-            exact
-            path={"/setup-wizard/dataupload"}
-            component={DataUpload}
+           path="/congrats"
+           component={Congrats}
           />
+          <Route exact path="/setup-wizard" component={PostLogin} />
+          <Route exact path="/loading-screen" component={LoadingScreen} />
         </div>
       </Router>
     </Provider>
