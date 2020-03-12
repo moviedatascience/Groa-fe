@@ -9,12 +9,12 @@ export default function LoadingScreen() {
       className="container loading-screen"
       data-test={ifDev("loading-screen-component")}
     >
-      <h4>Loading Recommendations</h4>
+      <h4>Loading recommendations</h4>
       <ReactLoading
         className="loading-component"
         data-test={ifDev("loading-object")}
         type={"spinningBubbles"}
-        color={"#146ce0"}
+        color={"#00E6BC"}
         height={"200px"}
         width={"200px"}
       />
