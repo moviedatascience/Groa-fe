@@ -11,7 +11,7 @@ const DataUpload = props => {
 
 const [input, setInput] = useState({file:''})   
 const [loading, setLoading] = useState()
-
+const [ratings, setRatings] = useState()
   
 
 
@@ -35,7 +35,8 @@ function clikR() {
       }
     }
   }
-  let { userid } = props.match.params;
+  //let { userid } = props.match.params;
+  let {userid} = 1
     const handleChange = e => { 
         let data = new FormData();
         data.append("movies", e.target.files[0], e.target.files[0].name);
@@ -49,7 +50,7 @@ function clikR() {
           })
           .then(res => {
             // waiting to set ratings var for 45 seconds.
-            props.setRatings(res.data)
+            setRatings(res.data)
             //NEED to direct to uploading screen while retrieving file.
             // props.history.push(`/${props.userid}/recommended`);
           })
