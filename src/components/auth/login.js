@@ -1,9 +1,9 @@
 import React from "react";
-import { axiosWithAuth } from "../../utils/axiosWithAuth";
 import { Link } from "react-router-dom";
 
 import { connect } from "react-redux";
 import { loginAction } from "../../store/actions/loginAction";
+
 import "./login.scss";
 import Groa2 from "../auth/Groa-logo-B2AA.png";
 import { ifDev } from "../../utils/removeAttribute.js";
@@ -21,8 +21,7 @@ class LoginPage extends React.Component {
         user_name: "",
         password: ""
       },
-      submitted: false,
-      errorStatus: false
+      submitted: false
     };
   }
 
@@ -56,27 +55,12 @@ class LoginPage extends React.Component {
     e.preventDefault();
     this.setState({ submitted: true });
     if (this.state.user.user_name && this.state.user.password) {
-      axiosWithAuth()
-        .post("/login", this.state.user)
-        .then(res => {
-          console.log(res.data.id);
-          localStorage.setItem("token", res.data.token);
-          // updates token to refresh navbar
-          this.props.updateToken(localStorage.getItem("token"));
-          // sets up userid in app
-          this.props.updateUserid(res.data.id);
-          //redirect to Groas dashboard page
-          this.props.history.push(`/${res.data.id}/recommended`);
-        })
-        .catch(err => {
-          console.log(err.response.data.errorMessage, "errr");
-          this.setState({ errorStatus: true });
-        });
+      this.props.loginAction(this.state.user, this.props.history);
     }
   };
 
   render() {
-    const { errors, submitted, user, errorStatus } = this.state;
+    const { errors, submitted, user } = this.state;
     return (
       <div className="LoginPage" data-test={ifDev("login-component")}>
         {/* Container - ENTIRE PAGE */}
@@ -107,7 +91,7 @@ class LoginPage extends React.Component {
                 {/* ERROR MESSAGES */}
                 {/* Submit Error */}
 
-                {errorStatus && user.user_name && (
+                {this.props.errorStatus && user.user_name && (
                   <div className="error">Invalid Credentials</div>
                 )}
 
@@ -176,9 +160,8 @@ class LoginPage extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    userData: state.userData,
-    isFetching: state.isFetching,
-    error: state.error
+    userid: state.userid,
+    errorStatus: state.error
   };
 };
 

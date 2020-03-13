@@ -1,50 +1,30 @@
-import {FETCHING_USER_LOGIN,FETCHING_USER_LOGIN_SUCCESS, FETCHING_USER_LOGIN_FAIL, USER_LOGOUT } from '../actions/loginAction';
+import {
+  FETCHING_USER_LOGIN_SUCCESS,
+  FETCHING_USER_LOGIN_FAIL
+} from "../actions/loginAction";
 
 const initialState = {
-    userData:[],
-    isFetching: false,
-    error:''
-}
+  userid: "",
+  error: ""
+};
 
 export const loginReducer = (state = initialState, action) => {
-    switch (action.type) {
+  switch (action.type) {
+    //LOGIN SUCCESS
+    case FETCHING_USER_LOGIN_SUCCESS:
+      return {
+        ...state,
+        userid: action.payload
+      };
 
-        //FETCHING USER
-        case FETCHING_USER_LOGIN:
-            return {
-                ...state,
-                isFetching: true, 
-                error: ''
-            };
+    //LOGIN FAIL
+    case FETCHING_USER_LOGIN_FAIL:
+      return {
+        ...state,
+        error: action.payload
+      };
 
-         //LOGIN SUCCESS
-        case FETCHING_USER_LOGIN_SUCCESS:
-            return {
-                ...state,
-                userData: action.payload,
-                isFetching: false, 
-                error: ''
-            };
-        
-        //LOGIN FAIL
-        case FETCHING_USER_LOGIN_FAIL:
-            return {
-                ...state,
-                isFetching: false, 
-                error: action.payload
-            };    
-
-        //Not sure what to do with LOGOUT
-        case USER_LOGOUT:
-            return {
-                ...state,
-                isFetching: false, 
-                error: ''
-            };   
-            
-            
-        default:
-            return state; 
-
-    }
-}
+    default:
+      return state;
+  }
+};
