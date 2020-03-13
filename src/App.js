@@ -3,7 +3,7 @@ import { Route } from "react-router-dom";
 
 // local imports
 import PrivateRoute from "./utils/privateRoute.js";
-import Dashboardv1 from "./components/dashboard/dashboardv1.js";
+import Recommendations from "./components/dashboard/Recommendations.js";
 import Navigation from "./components/dashboard/navigation.js";
 import Register from "./components/auth/Register";
 import Login from "./components/auth/login";
@@ -54,7 +54,7 @@ function App() {
           <PrivateRoute
             exact
             path="/:userid/recommended"
-            component={Dashboardv1}
+            component={Recommendations}
             data-test={ifDev("dash-component")}
           />
           <Route
@@ -80,10 +80,7 @@ function App() {
               />
             )}
           />
-          <Route
-           path="/congrats"
-           component={Congrats}
-          />
+          <Route path="/congrats" component={Congrats} />
           <Route exact path="/setup-wizard" component={PostLogin} />
           <Route exact path="/setup-wizard/dataupload" component={DataUpload}/>
           <Route exact path="/loading-screen" component={LoadingScreen} />
