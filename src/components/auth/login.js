@@ -59,6 +59,7 @@ class LoginPage extends React.Component {
       axiosWithAuth()
         .post("/login", this.state.user)
         .then(res => {
+          console.log(res.data.id);
           localStorage.setItem("token", res.data.token);
           // updates token to refresh navbar
           this.props.updateToken(localStorage.getItem("token"));

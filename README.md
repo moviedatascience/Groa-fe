@@ -1,30 +1,20 @@
-🚫 Note: All lines that start with 🚫 are instructions and should be deleted before this is posted to your portfolio. This is intended to be a guideline, feel free to add your own flare to it.
-
-🚫 The numbers 1️⃣ through 5️⃣ next to each item represent the week that part of the docs needs to be comepleted by. Make sure to delete the numbers by the end of Labs.
-
-🚫 Each student has a required minimum number of meaningful PRs each week per the rubric. Contributing to docs does NOT count as a PR to meet your weekly requirements.
-
 # Gróa
 
 You can find the deployed project at [https://www.groa.us/](https://www.groa.us/).
 
 ## 4️⃣ Contributors
 
-🚫Add contributor info below, make sure add images and edit the social links for each member. Add to or delete these place-holders as needed
+|                                        [Brianna Keune](https://github.com/briannakeune)                                        |                                            [Benjamin Solt](https://github.com/bensolt)                                            |                                     [Mariela Gonzales](https://github.com/marielapg)                                      |
+| :----------------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------: |
+|   [<img src="https://avatars0.githubusercontent.com/u/42918544?s=460&v=4" width = "200" />](https://github.com/briannakeune)   |       [<img src="https://avatars0.githubusercontent.com/u/52627840?s=460&v=4" width = "200" />](https://github.com/bensolt)       |               [<img src="./public/img/marielaGonzales.png" width = "200" />](https://github.com/marielapg)                |
+|                   [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/briannakeune)                    |                       [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/bensolt)                        |                  [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/marielapg)                   |
+| [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/brianna-keune/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/ben-solt-8447bb94) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/marielapg) |
 
-|                                        [Brianna Keune](https://github.com/briannakeune)                                        |                                                           [Benjamin Solt](https://github.com/bensolt)                                                        |                                                      [Mariela Gonzales](https://github.com/marielapg)                                                       
-| :----------------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------------------------: |
-|   [<img src="https://avatars0.githubusercontent.com/u/42918544?s=460&v=4" width = "200" />](https://github.com/briannakeune)   | [<img src="https://avatars0.githubusercontent.com/u/52627840?s=460&v=4" width = "200" />](https://github.com/bensolt) | [<img src="./public/img/marielaGonzales.png" width = "200" />](https://github.com/marielapg) | 
-|                   [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/briannakeune)                    |                            [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/bensolt)                             |                          [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/marielapg)                           |
-| [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/brianna-keune/) |                 [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/ben-solt-8447bb94)                 |                [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/marielapg)                               |
-
-
-
-|[Billy Gingrich](https://github.com/bgingrich)                                                       |                                                       [TJ Katalenas](https://github.com/robomantis19)                                                        |                                                      [Cody M Russell](https://github.com/cmruss)                                                       |
-| :----------------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------------------------: |
-|[<img src="https://avatars0.githubusercontent.com/u/55961537?s=460&v=4%22" width = "200" />](https://github.com/bgingrich) | [<img src="https://avatars0.githubusercontent.com/u/53478285?s=460&v=4" width = "200" />](https://github.com/robomantis19) | [<img src="https://avatars3.githubusercontent.com/u/20331396?s=400&u=e9af72c7c779c5d658899024c05046f6500f9a93&v=4" width = "200" />](https://github.com/cmruss) |
-|                          [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/bgingrich)                           |                          [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/robomantis19)                           |                           [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/cmruss)                            |
-|                [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/whgingrich)                |                 [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/)                 |                [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/cm-russell)                |
+|                                       [Billy Gingrich](https://github.com/bgingrich)                                       |                                      [TJ Katalenas](https://github.com/robomantis19)                                       |                                                           [Cody M Russell](https://github.com/cmruss)                                                           |
+| :------------------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+| [<img src="https://avatars0.githubusercontent.com/u/55961537?s=460&v=4%22" width = "200" />](https://github.com/bgingrich) | [<img src="https://avatars0.githubusercontent.com/u/53478285?s=460&v=4" width = "200" />](https://github.com/robomantis19) | [<img src="https://avatars3.githubusercontent.com/u/20331396?s=400&u=e9af72c7c779c5d658899024c05046f6500f9a93&v=4" width = "200" />](https://github.com/cmruss) |
+|                   [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/bgingrich)                   |                 [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/robomantis19)                  |                                       [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/cmruss)                                       |
+| [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/whgingrich) |       [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/)        |                   [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/cm-russell)                    |
 
 <br>
 <br>
@@ -89,7 +79,8 @@ Gróa will use our Discovery Engine to present movies suited to your taste based
 
 In order for the app to function correctly, the user must set up their own environment variables. There should be a .env file containing the following:
 
-    *  REACT_APP_ANALYTICS_ID - this is your Google analytics key, which can be generated in the Google Analytics Console.
+    REACT_APP_ANALYTICS_ID - this is your Google analytics key, which can be generated in the Google Analytics Console.
+    REACT_APP_TMDB_API_KEY - this is your API key from TMDb it sources the movie posters we user.
 
 # 5️⃣ Content Licenses
 
