@@ -1,13 +1,13 @@
-.register-nav {
+.register.nav,
+.login.nav {
   font-family: lato;
   margin: 1% 5%;
-  
-  .login-link {
+
+  .link {
     width: 100%;
     max-width: 53px;
     height: auto;
     font-size: 22px;
-    
 
     color: white;
     text-decoration: none;
