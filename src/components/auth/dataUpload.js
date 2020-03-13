@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { axiosWithAuth } from "../../utils/axiosWithAuth.js";
 import { ifDev } from "../../utils/removeAttribute.js";
-
+import Congratulations from "./Congratulations.js";
 import "./dataUpload.scss";
 
 const DataUpload = ({ match, history }) => {
   const [input] = useState({ file: "" });
+  const [uploadSuccess, setUploadSuccess] = useState(false);
 
   function clikL() {
     document.getElementById("myDropdownL").classList.toggle("show");
@@ -40,7 +41,7 @@ const DataUpload = ({ match, history }) => {
         }
       })
       .then(() => {
-        history.push(`/${userid}/recommended`);
+        setUploadSuccess(true);
       })
       .catch(err => {
         console.log(err);
@@ -49,6 +50,8 @@ const DataUpload = ({ match, history }) => {
     data = new FormData();
   };
 
+  if (uploadSuccess === true)
+    return <Congratulations history={history} userid={userid} />;
   return (
     <div className="DataUploadPage" data-test="DataUploadPage-test">
       <div>

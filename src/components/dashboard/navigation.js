@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
+import { connect } from "react-redux";
 import {
   faSearch,
   faUserCircle,
@@ -22,6 +23,10 @@ class Navigation extends Component {
 
   handleChange = e => {
     this.setState({ search: e.target.value });
+  };
+
+  logout = () => {
+    localStorage.removeItem("token");
   };
 
   render() {
@@ -53,6 +58,19 @@ class Navigation extends Component {
               to={`/${this.props.userid}/recommended`}
             >
               Recommended
+            </NavLink>
+
+            {/* adding this here until all other nav functionality is added */}
+            <NavLink className="NavLink" to={`/${this.props.userid}/upload`}>
+              Upload Data
+            </NavLink>
+
+            <NavLink
+              className="NavLink"
+              to="/login"
+              onClick={this.state.logout}
+            >
+              Logout
             </NavLink>
 
             <NavLink
@@ -108,4 +126,10 @@ class Navigation extends Component {
   }
 }
 
-export default Navigation;
+function mapStateToProps({ loginReducer }) {
+  return {
+    userid: loginReducer.userid
+  };
+}
+
+export default connect(mapStateToProps, {})(Navigation);

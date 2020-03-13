@@ -7,23 +7,22 @@ import "./_Dashboard.scss";
 import LoadingScreen from "../layout/LoadingScreen.js";
 import MovieCard from "../movies/MovieCard.js";
 
-export default function Recommendations({ initialState = [] }) {
+export default function Recommendations({ initialState = [], match }) {
   const [recommendations, setRecommendations] = useState(initialState);
 
   useEffect(() => {
     axiosWithAuth()
-      // testing with userid 48485 until everything is integrated
-      // .get(`/${match.params.userid}/recommendations`)
-      .get("/48485/recommendations")
+      .get(`/${match.params.userid}/recommendations`)
       .then(res => setRecommendations(res.data.recommendation_json))
       .catch(() => (
         <h1>
           Sorry something went wrong while trying to get your recommendations
         </h1>
       ));
-  }, []);
+  }, [match.params.userid]);
 
-  if (!recommendations.length) return <LoadingScreen />;
+  if (!recommendations.length || recommendations === "")
+    return <LoadingScreen />;
   return (
     <div
       className="container recommendations"

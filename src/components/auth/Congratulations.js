@@ -1,7 +1,10 @@
 import React from "react";
 import "../auth/Congratulations.scss";
 
-const Congrats = () => {
+const Congrats = ({ history, userid }) => {
+  function pushToRecommended() {
+    history.push(`/${userid}/recommended`);
+  }
   return (
     <div className="CongratsPage" data-test="congrats-screen">
       <div className="CenterBox">
@@ -12,7 +15,7 @@ const Congrats = () => {
             <div className="image">
               <img src="./success.png" alt="Success png" />
             </div>
-            <button>Go to Dashboard</button>
+            <button onClick={pushToRecommended}>Go to Dashboard</button>
           </div>
         </div>
       </div>
