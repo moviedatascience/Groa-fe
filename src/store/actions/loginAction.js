@@ -21,4 +21,4 @@ export function loginAction(userCreds, history) {
         });
       });
   };
-}
+};

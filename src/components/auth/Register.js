@@ -1,5 +1,6 @@
 import React from "react";
-import { axiosWithAuth } from "../../utils/axiosWithAuth.js";
+import { connect } from "react-redux";
+import { registerAction, loginAction } from "../../store/actions";
 import { ifDev } from "../../utils/removeAttribute.js";
 
 // styling imports
@@ -20,7 +21,6 @@ class Register extends React.Component {
         confirmpassword: ""
       },
       submitted: false,
-      errorStatus: false
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -52,35 +52,12 @@ class Register extends React.Component {
       this.state.user.password.length >= 6 &&
       this.state.user.confirmpassword === this.state.user.password
     ) {
-      axiosWithAuth()
-        .post("https://api.groa.us/api/users/register", user)
-        .then(() => {
-          user = {
-            user_name: this.state.user.user_name,
-            password: this.state.user.password
-          };
-          axiosWithAuth()
-            .post("https://api.groa.us/api/users/login", user)
-            .then(res2 => {
-              localStorage.setItem("token", res2.data.token);
-              this.props.updateToken(localStorage.getItem("token"));
-              this.props.updateUserid(res2.data.id);
-              this.props.history.push(`/recommended`);
-            })
-            .catch(err2 => {
-              console.log(err2, "Username already used");
-            });
-        })
-        .catch(err => {
-          console.log("Registration Error", err.response.data.errorMessage);
-          this.setState({ errorStatus: true });
-        });
+        this.props.registerAction(user, this.props.history)
     }
   }
 
   render() {
-    const { user, submitted, errorStatus } = this.state;
-
+    const { user, submitted } = this.state;
     return (
       <div className="container" data-test={ifDev("register-component")}>
         <div className="registerNav">
@@ -138,7 +115,7 @@ class Register extends React.Component {
                 </div>
               )}
 
-              {errorStatus && user.user_name && (
+              {this.props.errorStatus && user.user_name && (
                 <div className="callingError">Username is already in use</div>
               )}
 
@@ -203,4 +180,12 @@ class Register extends React.Component {
   }
 }
 
-export default Register;
+const mapStateToProps = ({registerReducer, loginReducer }) => {
+  return {
+    registerSuccess: registerReducer.registerSuccess,
+    userid: loginReducer.userid,
+    errorStatus: registerReducer.error
+  };
+};
+
+export default connect(mapStateToProps, { registerAction, loginAction })(Register);
