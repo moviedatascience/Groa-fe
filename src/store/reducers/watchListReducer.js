@@ -5,7 +5,7 @@ const initialState = {
   isPostingUserError: null
 };
 
-export const watchListReducer = (state = initialState, { type, payload }) => {
+export const watchList = (state = initialState, { type, payload }) => {
   switch (type) {
     case constants.Post_USER:
       return {

@@ -160,8 +160,8 @@ class LoginPage extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    userid: state.userid,
-    errorStatus: state.error
+    userid: state.login.userid,
+    errorStatus: state.login.error
   };
 };
 

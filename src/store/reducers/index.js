@@ -1,12 +1,12 @@
 import { combineReducers } from "redux";
-import { watchListReducer } from "./watchListReducer.js";
+import { watchList } from "./watchListReducer.js";
 import { dashboardMain } from "./dashboardMain.js";
-import { loginReducer } from './loginReducer';
-import { registerReducer } from './registerReducer';
+import { login } from './loginReducer';
+import { register } from './registerReducer';
 
 export const reducer = combineReducers({
-  watchListReducer: watchListReducer,
-  dashboardMain: dashboardMain,
-  loginReducer: loginReducer,
-  registerReducer: registerReducer
+  watchList,
+  dashboardMain,
+  login,
+  register
 });

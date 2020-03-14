@@ -1,16 +1,26 @@
 import React from "react";
-import { Provider } from "react-redux";
 import { render, fireEvent } from "@testing-library/react";
-import Login from "./login";
+import { BrowserRouter as Router } from "react-router-dom";
 import {
   getAllByTestId,
   getByTestId,
   getAllByText
 } from "../../utils/test-utils";
-import { BrowserRouter as Router } from "react-router-dom";
-import { createStore, applyMiddleware } from "redux";
 
-const store = createStore(applyMiddleware);
+// component to be tested.
+import Login from "./login";
+
+// redux testing
+import { Provider } from "react-redux";
+import configureStore from "redux-mock-store";
+const mockStore = configureStore([]);
+
+let store;
+store = mockStore({
+  login: {
+    userid: null
+  }
+});
 
 it("renders login component", () => {
   const { container } = render(

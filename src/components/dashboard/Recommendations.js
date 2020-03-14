@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 // tools
+import { connect } from "react-redux";
 import { axiosWithAuth } from "../../utils/axiosWithAuth.js";
 import { ifDev } from "../../utils/removeAttribute.js";
 import "./_Dashboard.scss";
@@ -7,21 +8,21 @@ import "./_Dashboard.scss";
 import LoadingScreen from "../layout/LoadingScreen.js";
 import MovieCard from "../movies/MovieCard.js";
 
-export default function Recommendations({ initialState = [], match }) {
+function Recommendations({ initialState = [], userid }) {
   const [recommendations, setRecommendations] = useState(initialState);
 
   useEffect(() => {
     axiosWithAuth()
-      .get(`/${match.params.userid}/recommendations`)
+      .get(`/${userid}/recommendations`)
       .then(res => setRecommendations(res.data.recommendation_json))
       .catch(() => (
         <h1>
           Sorry something went wrong while trying to get your recommendations
         </h1>
       ));
-  }, [match.params.userid]);
+  }, [userid]);
 
-  if (!recommendations.length || recommendations === "")
+  if (!recommendations.length || recommendations === [""])
     return <LoadingScreen />;
   return (
     <div
@@ -43,6 +44,7 @@ export default function Recommendations({ initialState = [], match }) {
               year={x.Year}
               image={
                 !posterURI ||
+                posterURI === "No poster" ||
                 posterURI === "No Poster" ||
                 posterURI === "Not in table"
                   ? unsplashUrl
@@ -55,3 +57,12 @@ export default function Recommendations({ initialState = [], match }) {
     </div>
   );
 }
+
+const mapStateToProps = state => {
+  return {
+    userid: state.login.userid,
+    errorStatus: state.error
+  };
+};
+
+export default connect(mapStateToProps, {})(Recommendations);

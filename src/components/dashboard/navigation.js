@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
+import { loginAction } from "../../store/actions/loginAction";
 import {
   faSearch,
   faUserCircle,
@@ -126,10 +127,11 @@ class Navigation extends Component {
   }
 }
 
-function mapStateToProps({ loginReducer }) {
-  return {
-    userid: loginReducer.userid
-  };
-}
 
-export default connect(mapStateToProps, {})(Navigation);
+const mapStateToProps = state => {
+  return {
+    userid: state.login.userid
+  };
+};
+
+export default connect(mapStateToProps, { loginAction })(Navigation);

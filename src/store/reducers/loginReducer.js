@@ -8,7 +8,7 @@ const initialState = {
   error: ""
 };
 
-export const loginReducer = (state = initialState, action) => {
+export const login = (state = initialState, action) => {
   switch (action.type) {
     //LOGIN SUCCESS
     case FETCHING_USER_LOGIN_SUCCESS:

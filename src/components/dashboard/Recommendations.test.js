@@ -4,6 +4,20 @@ import { getAllByTestId } from "../../utils/test-utils.js";
 import { BrowserRouter as Router } from "react-router-dom";
 // component to be tested.
 import Recommendations from "./Recommendations.js";
+//  redux testing
+import { Provider } from "react-redux";
+import configureStore from "redux-mock-store";
+const mockStore = configureStore([]);
+
+let store = mockStore({
+  login: {
+    userid: 4
+  },
+  register: {
+    success: false,
+    error: ""
+  }
+});
 
 it("renders Recommendations with array has length.", async () => {
   const fakeRecommendations = [
@@ -13,9 +27,13 @@ it("renders Recommendations with array has length.", async () => {
   ];
 
   const { container } = render(
-    <Router>
-      <Recommendations initialState={fakeRecommendations} />
-    </Router>
+    <Provider store={store}>
+      <Router>
+        <Recommendations 
+          initialState={fakeRecommendations} 
+        />
+      </Router>
+    </Provider>
   );
 
   let component = getAllByTestId(container, "recommendations-component");
@@ -24,9 +42,11 @@ it("renders Recommendations with array has length.", async () => {
 
 it("renders LoadingScreen when recommendations array is empty", () => {
   const { container } = render(
-    <Router>
-      <Recommendations />
-    </Router>
+    <Provider store={store}>
+      <Router>
+        <Recommendations/>
+      </Router>
+    </Provider>
   );
 
   let component = getAllByTestId(container, "loading-screen-component");

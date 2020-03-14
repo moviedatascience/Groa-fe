@@ -1,20 +1,32 @@
 import React, { useState } from "react";
+// tools
+import { connect } from "react-redux";
 import { axiosWithAuth } from "../../utils/axiosWithAuth.js";
 import { ifDev } from "../../utils/removeAttribute.js";
-import Congratulations from "./Congratulations.js";
 import "./dataUpload.scss";
+import letterboxdLogo from "../../img/letterboxd-logo.svg";
+import imdbLogo from "../../img/imdb-logo.svg";
+// children components
+import Congratulations from "./Congratulations.js";
 
 const DataUpload = ({ match, history }) => {
   const [input] = useState({ file: "" });
   const [uploadSuccess, setUploadSuccess] = useState(false);
 
   function clikL() {
+    if (document.getElementById("myDropdownR").classList.contains("show")) {
+      document.getElementById("myDropdownR").classList.remove("show")
+    }
     document.getElementById("myDropdownL").classList.toggle("show");
   }
 
-  function clikR() {
-    document.getElementById("myDropdownR").classList.toggle("show");
+function clikR() {
+  if (document.getElementById("myDropdownL").classList.contains("show")) {
+    document.getElementById("myDropdownL").classList.remove("show")
   }
+    document.getElementById("myDropdownR").classList.toggle("show");
+  }  
+
 
   window.onclick = function(event) {
     if (!event.target.matches(".dropbtn")) {
@@ -76,7 +88,7 @@ const DataUpload = ({ match, history }) => {
             <div id="myDropdownL" className="dropdown-content">
               <div className="DboxLeft">
                 <div className="boxInside">
-                  <img src="./img/letterboxd-logo.svg" alt="Letterboxd Logo" />
+                  <img src={letterboxdLogo}alt="Letterboxd Logo" />
                   <p className="ptext">1.Log in to Letterboxd</p>
                   <p className="ptext">
                     2.Click on your username and select SETTINGS from the
@@ -108,7 +120,7 @@ const DataUpload = ({ match, history }) => {
             </button>
             <div id="myDropdownR" className="dropdown-content">
               <div className="DboxRight">
-                <img src="./img/imdb-logo.svg" alt="IMDb Logo" />
+                <img src={imdbLogo} alt="IMDb Logo" />
                 <p className="ptext">1.Log in to IMDb</p>
                 <p className="ptext">
                   2.Click on your username and select YOUR RATINGS fromthe
@@ -157,4 +169,11 @@ const DataUpload = ({ match, history }) => {
     // END DataUploadPage
   );
 };
-export default DataUpload;
+const mapStateToProps = state => {
+  return {
+    userid: state.login.userid,
+    errorStatus: state.error
+  };
+};
+
+export default connect(mapStateToProps, {})(DataUpload);

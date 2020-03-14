@@ -180,11 +180,11 @@ class Register extends React.Component {
   }
 }
 
-const mapStateToProps = ({registerReducer, loginReducer }) => {
+const mapStateToProps = state => {
   return {
-    registerSuccess: registerReducer.registerSuccess,
-    userid: loginReducer.userid,
-    errorStatus: registerReducer.error
+    registerSuccess: state.register.success,
+    userid: state.login.userid,
+    errorStatus: state.register.error
   };
 };
 

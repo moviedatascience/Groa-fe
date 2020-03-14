@@ -5,16 +5,16 @@ import {
   
   const initialState = {
     registerSuccess: false,
-    error: ""
+    registerError: ""
   };
   
-  export const registerReducer = (state = initialState, action) => {
+  export const register = (state = initialState, action) => {
     switch (action.type) {
       //LOGIN SUCCESS
       case FETCHING_USER_REGISTER_SUCCESS:
         return {
           ...state,
-          registerSuccess: true
+          success: true
         };
   
       //LOGIN FAIL
