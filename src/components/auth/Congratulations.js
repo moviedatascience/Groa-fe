@@ -1,11 +1,10 @@
 import React from "react";
+import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import "../auth/Congratulations.scss";
 import successImg from "../../img/success.png"
 
-const Congrats = ({ history, userid }) => {
-  function pushToRecommended() {
-    history.push(`/${userid}/recommended`);
-  }
+const Congrats = ({ userid }) => {
   return (
     <div className="CongratsPage" data-test="congrats-screen">
       <div className="CenterBox">
@@ -16,11 +15,18 @@ const Congrats = ({ history, userid }) => {
             <div className="image">
               <img src={successImg}alt="Success png" />
             </div>
-            <button onClick={pushToRecommended}>Go to Dashboard</button>
+            <button><Link to={`/${userid}/recommended`} >Go to Dashboard</Link></button>
           </div>
         </div>
       </div>
     </div>
   );
 };
-export default Congrats;
+
+const mapStateToProps = state => {
+  return {
+    userid: state.login.userid,
+    errorStatus: state.login.error
+  };
+};
+export default connect(mapStateToProps, {})(Congrats);

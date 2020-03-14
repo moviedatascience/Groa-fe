@@ -8,10 +8,10 @@ import Navigation from "./components/dashboard/navigation.js";
 import Register from "./components/auth/Register";
 import Login from "./components/auth/login";
 import DataUpload from "./components/auth/dataUpload";
-import Congrats from "./components/auth/Congratulations.js";
 
 // for testing
 import { ifDev } from "./utils/removeAttribute.js";
+
 // config imports
 import reactGAinitialization from "./config/analytics.js";
 
@@ -22,12 +22,18 @@ import thunk from "redux-thunk";
 import logger from "redux-logger";
 import { reducer } from "./store/reducers";
 import { BrowserRouter as Router } from "react-router-dom";
+import {loadState, saveState } from "./store/localStorage.js";
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(
   reducer,
-  composeEnhancers(applyMiddleware(thunk, logger))
+  loadState(),
+  composeEnhancers(applyMiddleware(thunk, logger)),
 );
+
+store.subscribe(() => {
+  saveState(store.getState())
+})
 
 function App() {
   useEffect(() => reactGAinitialization(), []);
@@ -54,11 +60,11 @@ function App() {
             component={Recommendations}
             data-test={ifDev("dash-component")}
           />
-          <PrivateRoute exact path="/:userid/upload" component={DataUpload} />
+          <Route exact path="/:userid/upload" component={DataUpload} />
           <Route path="/login" component={Login} />
           <Route exact path={["/", "/register"]} component={Register} />
           {/* this could be a modal */}
-          <Route path="/congrats" component={Congrats} />
+          {/* <Route path="/congrats" component={Congrats} /> */}
         </div>
       </Router>
     </Provider>

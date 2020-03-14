@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 // tools
 import { connect } from "react-redux";
-import { axiosWithAuth } from "../../utils/axiosWithAuth.js";
+import axiosWithAuth from "../../utils/axiosWithAuth.js";
 import { ifDev } from "../../utils/removeAttribute.js";
 import "./dataUpload.scss";
 import letterboxdLogo from "../../img/letterboxd-logo.svg";
@@ -9,7 +9,7 @@ import imdbLogo from "../../img/imdb-logo.svg";
 // children components
 import Congratulations from "./Congratulations.js";
 
-const DataUpload = ({ match, history }) => {
+const DataUpload = ({ userid }) => {
   const [input] = useState({ file: "" });
   const [uploadSuccess, setUploadSuccess] = useState(false);
 
@@ -40,7 +40,6 @@ function clikR() {
       }
     }
   };
-  let { userid } = match.params;
   const handleChange = e => {
     let data = new FormData();
     data.append("movies", e.target.files[0], e.target.files[0].name);
@@ -63,7 +62,8 @@ function clikR() {
   };
 
   if (uploadSuccess === true)
-    return <Congratulations history={history} userid={userid} />;
+    return <Congratulations/>;
+  else
   return (
     <div className="DataUploadPage" data-test="DataUploadPage-test">
       <div>

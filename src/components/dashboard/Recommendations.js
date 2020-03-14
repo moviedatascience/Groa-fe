@@ -1,21 +1,21 @@
 import React, { useState, useEffect } from "react";
 // tools
 import { connect } from "react-redux";
-import { axiosWithAuth } from "../../utils/axiosWithAuth.js";
+import axiosWithAuth from "../../utils/axiosWithAuth.js";
 import { ifDev } from "../../utils/removeAttribute.js";
 import "./_Dashboard.scss";
 // children components
 import LoadingScreen from "../layout/LoadingScreen.js";
 import MovieCard from "../movies/MovieCard.js";
 
-function Recommendations({ initialState = [], userid }) {
-  const [recommendations, setRecommendations] = useState(initialState);
+function Recommendations({  userid }) {
+  const [recommendations, setRecommendations] = useState([]);
 
   useEffect(() => {
     axiosWithAuth()
-      .get(`/${userid}/recommendations`)
-      .then(res => setRecommendations(res.data.recommendation_json))
-      .catch(() => (
+    .get(`${userid}/recommendations`)
+    .then(res => setRecommendations(res.data.recommendation_json))
+    .catch(() => (
         <h1>
           Sorry something went wrong while trying to get your recommendations
         </h1>
@@ -24,6 +24,7 @@ function Recommendations({ initialState = [], userid }) {
 
   if (!recommendations.length || recommendations === [""])
     return <LoadingScreen />;
+    else
   return (
     <div
       className="container recommendations"
@@ -61,8 +62,6 @@ function Recommendations({ initialState = [], userid }) {
 const mapStateToProps = state => {
   return {
     userid: state.login.userid,
-    errorStatus: state.error
   };
 };
-
 export default connect(mapStateToProps, {})(Recommendations);

@@ -1,5 +1,5 @@
 import { FETCHING_USER_LOGIN_SUCCESS } from "./loginAction";
-import { axiosWithAuth } from "../../utils/axiosWithAuth.js";
+import axiosWithAuth from "../../utils/axiosWithAuth.js";
 export const FETCHING_USER_REGISTER_SUCCESS = "FETCHING_USER_REGISTER_SUCCESS";
 export const FETCHING_USER_REGISTER_FAIL = "FETCHING_USER_REGISTER_FAIL";
 

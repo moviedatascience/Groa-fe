@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import { loginAction } from "../../store/actions/loginAction";
 
 import "./login.scss";
-import Groa2 from "../auth/Groa-logo-B2AA.png";
+import Groa2 from "./Groa-logo-B2AA.png";
 import { ifDev } from "../../utils/removeAttribute.js";
 
 class LoginPage extends React.Component {

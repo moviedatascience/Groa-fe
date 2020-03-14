@@ -1,4 +1,4 @@
-import { axiosWithAuth } from "../../utils/axiosWithAuth.js";
+import axiosWithAuth from "../../utils/axiosWithAuth.js";
 export const FETCHING_USER_LOGIN_SUCCESS = "FETCHING_USER_LOGIN_SUCCESS";
 export const FETCHING_USER_LOGIN_FAIL = "FETCHING_USER_LOGIN_FAIL";
 
