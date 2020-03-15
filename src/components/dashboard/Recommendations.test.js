@@ -7,31 +7,33 @@ import Recommendations from "./Recommendations.js";
 //  redux testing
 import { Provider } from "react-redux";
 import configureStore from "redux-mock-store";
-const mockStore = configureStore([]);
-
-let store = mockStore({
-  login: {
-    userid: 4
-  },
-  register: {
-    success: false,
-    error: ""
-  }
-});
+import thunk from "redux-thunk";
+const mockStore = configureStore([thunk]);
 
 it("renders Recommendations with array has length.", async () => {
-  const fakeRecommendations = [
-    { Title: "The Godfather", Year: "1972" },
-    { Title: "The Wizard of Oz", Year: "1939" },
-    { Title: "Citizen Kane", Year: "1941" }
-  ];
+
+  let store = mockStore({
+    login: {
+      userid: 4
+    },
+    register: {
+      success: false,
+      error: ""
+    },
+    recommendations: {
+      movies: [
+        { Title: "The Godfather", Year: "1972" },
+        { Title: "The Wizard of Oz", Year: "1939" },
+        { Title: "Citizen Kane", Year: "1941" }
+      ],
+      error: ""
+    }
+  });
 
   const { container } = render(
     <Provider store={store}>
       <Router>
-        <Recommendations 
-          initialState={fakeRecommendations} 
-        />
+        <Recommendations/>
       </Router>
     </Provider>
   );
@@ -41,6 +43,19 @@ it("renders Recommendations with array has length.", async () => {
 });
 
 it("renders LoadingScreen when recommendations array is empty", () => {
+  let store = mockStore({
+    login: {
+      userid: 4
+    },
+    register: {
+      success: false,
+      error: ""
+    },
+    recommendations: {
+      movies: [],
+      error: ""
+    }
+  });
   const { container } = render(
     <Provider store={store}>
       <Router>
