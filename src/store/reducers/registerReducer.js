@@ -4,8 +4,8 @@ import {
   } from "../actions/registerAction";
   
   const initialState = {
-    registerSuccess: false,
-    registerError: ""
+    success: false,
+    error: ""
   };
   
   export const register = (state = initialState, action) => {

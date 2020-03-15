@@ -5,5 +5,5 @@ import { recommendationAction } from "./recommendationAction.js"
 export { 
     loginAction, 
     registerAction,
-    recommendationAction
+    recommendationAction,
 };

@@ -15,7 +15,7 @@ function Recommendations({ recommendations,  userid, recommendationAction }) {
 
   if (recommendations.length === 0)
     return <LoadingScreen />;
-    else
+  else
   return (
     <div
       className="container recommendations"

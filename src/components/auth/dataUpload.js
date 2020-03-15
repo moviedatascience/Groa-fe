@@ -13,23 +13,7 @@ const DataUpload = ({ userid }) => {
   const [input] = useState({ file: "" });
   const [uploadSuccess, setUploadSuccess] = useState(false);
 
-  function clikL() {
-    if (document.getElementById("myDropdownR").classList.contains("show")) {
-      document.getElementById("myDropdownR").classList.remove("show")
-    }
-    document.getElementById("myDropdownL").classList.toggle("show");
-  }
-
-function clikR() {
-  if (document.getElementById("myDropdownL").classList.contains("show")) {
-    document.getElementById("myDropdownL").classList.remove("show")
-  }
-    document.getElementById("myDropdownR").classList.toggle("show");
-  }  
-
-
-  window.onclick = function(event) {
-    if (!event.target.matches(".dropbtn")) {
+  const toggleInstructions = window.onclick = function(event) {
       var dropdowns = document.getElementsByClassName("dropdown-content");
       var i;
       for (i = 0; i < dropdowns.length; i++) {
@@ -38,7 +22,9 @@ function clikR() {
           openDropdown.classList.remove("show");
         }
       }
-    }
+      if (event.target.matches(".dropbtn")) {
+        event.target.nextSibling.classList.toggle("show")
+      }
   };
   const handleChange = e => {
     let data = new FormData();
@@ -79,7 +65,7 @@ function clikR() {
         <div className="DboxContainer">
           <div className="dropdown">
             <button
-              onClick={clikL}
+              onClick={toggleInstructions}
               data-test={ifDev("clickLetterBoxd")}
               className="dropbtn"
             >
@@ -112,7 +98,7 @@ function clikR() {
 
           <div className="dropdown">
             <button
-              onClick={clikR}
+              onClick={toggleInstructions}
               data-test={ifDev("clickIMDb")}
               className="dropbtn"
             >
@@ -172,7 +158,6 @@ function clikR() {
 const mapStateToProps = state => {
   return {
     userid: state.login.userid,
-    errorStatus: state.error
   };
 };
 
