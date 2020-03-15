@@ -47,7 +47,6 @@ class LoginPage extends React.Component {
       default:
         break;
     }
-
     this.setState({ errors, [name]: value }, () => {});
   };
 

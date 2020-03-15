@@ -1,28 +1,19 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 // tools
 import { connect } from "react-redux";
-import axiosWithAuth from "../../utils/axiosWithAuth.js";
 import { ifDev } from "../../utils/removeAttribute.js";
+import { recommendationAction } from "../../store/actions/index.js";
 import "./_Dashboard.scss";
 // children components
 import LoadingScreen from "../layout/LoadingScreen.js";
 import MovieCard from "../movies/MovieCard.js";
 
-function Recommendations({  userid }) {
-  const [recommendations, setRecommendations] = useState([]);
-
+function Recommendations({ recommendations,  userid, recommendationAction }) {
   useEffect(() => {
-    axiosWithAuth()
-    .get(`${userid}/recommendations`)
-    .then(res => setRecommendations(res.data.recommendation_json))
-    .catch(() => (
-        <h1>
-          Sorry something went wrong while trying to get your recommendations
-        </h1>
-      ));
-  }, [userid]);
+    recommendationAction(userid)
+  }, [userid, recommendationAction]);
 
-  if (!recommendations.length || recommendations === [""])
+  if (recommendations.length === 0)
     return <LoadingScreen />;
     else
   return (
@@ -62,6 +53,8 @@ function Recommendations({  userid }) {
 const mapStateToProps = state => {
   return {
     userid: state.login.userid,
+    recommendations: state.recommendations.movies,
+    recommendationsError: state.recommendations.error
   };
 };
-export default connect(mapStateToProps, {})(Recommendations);
+export default connect(mapStateToProps, { recommendationAction })(Recommendations);
