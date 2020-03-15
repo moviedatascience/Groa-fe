@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 // tools
 import { connect } from "react-redux";
-import axiosWithAuth from "../../utils/axiosWithAuth.js";
+import { uploadAction } from "../../store/actions/index.js";
 import { ifDev } from "../../utils/removeAttribute.js";
 import "./dataUpload.scss";
 import letterboxdLogo from "../../img/letterboxd-logo.svg";
@@ -9,7 +9,7 @@ import imdbLogo from "../../img/imdb-logo.svg";
 // children components
 import Congratulations from "./Congratulations.js";
 
-const DataUpload = ({ userid }) => {
+const DataUpload = ({ userid, uploadAction }) => {
   const [input] = useState({ file: "" });
   const [uploadSuccess, setUploadSuccess] = useState(false);
 
@@ -29,21 +29,7 @@ const DataUpload = ({ userid }) => {
   const handleChange = e => {
     let data = new FormData();
     data.append("movies", e.target.files[0], e.target.files[0].name);
-
-    axiosWithAuth()
-      // this is insantiated when a file is added to input
-      .post(`/${userid}/uploading`, data, {
-        headers: {
-          "Content-Type": "multipart/form-data"
-        }
-      })
-      .then(() => {
-        setUploadSuccess(true);
-      })
-      .catch(err => {
-        console.log(err);
-      });
-    // clears out previous uploaded file
+    uploadAction(userid, data, setUploadSuccess)
     data = new FormData();
   };
 
@@ -158,7 +144,12 @@ const DataUpload = ({ userid }) => {
 const mapStateToProps = state => {
   return {
     userid: state.login.userid,
+    ratings: state.upload.ratings,
+    reviews: state.upload.reviews,
+    watched: state.upload.watched,
+    watchlist: state.upload.watchlist
+
   };
 };
 
-export default connect(mapStateToProps, {})(DataUpload);
+export default connect(mapStateToProps, { uploadAction })(DataUpload);

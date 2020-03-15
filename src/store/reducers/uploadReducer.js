@@ -2,7 +2,6 @@ import {
     UPLOADING_FILE_SUCCESS,
     UPLOADING_FILE_FAIL
   } from "../actions/uploadAction";
-  // UPLOAD WILL NEED STATE MANGEMENT WITH THE NEXT BACKEND FEATURE RELEASE
   const initialState = {
     ratings: [],
     reviews: [],
