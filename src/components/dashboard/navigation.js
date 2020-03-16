@@ -50,7 +50,8 @@ class Navigation extends Component {
               <li><a href="#">Theme</a></li>
               <li><a href="#">By Date</a></li>
               <li><a href="#">Black and White</a></li>
-              <li><a href="#">By actor, director, screenwriter, cigematographer(sort by tags)</a></li>
+              <li><a href="#">tags</a></li> 
+              {/* By actor, director, screenwriter, cigematographer(sort by  */}
             </ul>
           </nav>
           <a href= "#main-menu-toggle" class = "backdrop" hidden tabindex="-1"/>
