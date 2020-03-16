@@ -10,9 +10,8 @@ import imdbLogo from "../../img/imdb-logo.svg";
 import Congratulations from "./Congratulations.js";
 import LoadingScreen from "../layout/LoadingScreen.js";
 
-const DataUpload = ({ userid, uploadAction }) => {
+const DataUpload = ({ userid, uploadAction, isUploading }) => {
   const [input] = useState({ file: "" });
-  const [uploading, setUploading] = useState(false)
   const [uploadSuccess, setUploadSuccess] = useState(false);
 
   const toggleInstructions = window.onclick = function(event) {
@@ -31,11 +30,11 @@ const DataUpload = ({ userid, uploadAction }) => {
   const handleChange = e => {
     let data = new FormData();
     data.append("movies", e.target.files[0], e.target.files[0].name);
-    uploadAction(userid, data, setUploading, setUploadSuccess)
+    uploadAction(userid, data, setUploadSuccess)
     data = new FormData();
   };
 
-  if (uploading)
+  if (isUploading)
     return (<LoadingScreen/>) 
   else if (uploadSuccess)
     return <Congratulations/>;
@@ -148,10 +147,7 @@ const DataUpload = ({ userid, uploadAction }) => {
 const mapStateToProps = state => {
   return {
     userid: state.login.userid,
-    ratings: state.upload.ratings,
-    reviews: state.upload.reviews,
-    watched: state.upload.watched,
-    watchlist: state.upload.watchlist
+    isUploading: state.upload.isUploading,
   };
 };
 
