@@ -8,12 +8,12 @@ import "./_Dashboard.scss";
 import LoadingScreen from "../layout/LoadingScreen.js";
 import MovieCard from "../movies/MovieCard.js";
 
-function Recommendations({ recommendations,  userid, recommendationAction }) {
+function Recommendations({ isFetching, recommendations, userid, recommendationAction, isUploading }) {
   useEffect(() => {
     recommendationAction(userid)
-  }, [userid, recommendationAction]);
+  }, [userid, recommendationAction, isUploading]);
 
-  if (recommendations.length === 0)
+  if (isFetching)
     return <LoadingScreen />;
   else
   return (
@@ -54,8 +54,10 @@ function Recommendations({ recommendations,  userid, recommendationAction }) {
 const mapStateToProps = state => {
   return {
     userid: state.login.userid,
+    isFetching: state.recommendations.isFetching,
     recommendations: state.recommendations.movies,
-    recommendationsError: state.recommendations.error
+    recommendationsError: state.recommendations.error,
+    isUploading: state.upload.isUploading
   };
 };
 export default connect(mapStateToProps, { recommendationAction })(Recommendations);
