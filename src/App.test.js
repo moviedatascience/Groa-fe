@@ -28,11 +28,22 @@ it("calls reactGAinitialization once", () => {
 
 it("renders register component and register navigation component when the route is directed to '/register'", () => {
   let history = createMemoryHistory();
+  let store = mockStore({
+    login: {
+      userid: 4
+    },
+    register: {
+      success: false,
+      error: ""
+    }
+  });
   history.push("/register");
   const { container } = render(
-    <Router history={history}>
-      <Register />
-    </Router>
+    <Provider store={store}>
+      <Router history={history}>
+        <Register />
+      </Router>
+    </Provider>
   );
 
   let component = getAllByTestId(container, "register-component");
@@ -58,7 +69,13 @@ describe("login component", () => {
   let store;
   beforeEach(() => {
     store = mockStore({
-      myState: "sample test"
+      login: {
+        userid: 4
+      },
+      register: {
+        success: false,
+        error: ""
+      }
     });
   });
   it("renders Login component when the application route is directed to '/login'", () => {

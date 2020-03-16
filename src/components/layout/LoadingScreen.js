@@ -1,25 +1,38 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
+import ReactLoading from "react-loading";
+import { connect } from "react-redux";
 import { ifDev } from "../../utils/removeAttribute.js";
-import popMovieQuote from "popular-movie-quotes"; // src: https://www.npmjs.com/package/popular-movie-quotes
+import "./_LoadingScreen.scss";
 
-export default function LoadingScreen({ history }) {
-  const [movieQuote, setMovieQuote] = useState("Loading...");
-
-  const pushTo = () => {
-    history.push("/watch-list");
-  };
-
-  useEffect(() => {
-    setMovieQuote(popMovieQuote.getSomeRandom(1)[0]);
-  }, []);
-
+function LoadingScreen({ isUploading }) {
   return (
-    <div data-test={ifDev("loading-screen")}>
-      <p>"{movieQuote.quote}"</p>
-      <p>-{movieQuote.movie}</p>
-      <p>Year: {movieQuote.year}</p>
-
-      <button onClick={pushTo}>Go to '/watch-list' here</button>
+    <div
+      className="container loading-screen"
+      data-test={ifDev("loading-screen-component")}
+    >
+      {isUploading ?
+      <h4>Uploading files...</h4> :
+      <h4>Loading recommendations...</h4>}
+      <ReactLoading
+        className="loading-component"
+        data-test={ifDev("loading-object")}
+        type={"spinningBubbles"}
+        color={"#00E6BC"}
+        height={"200px"}
+        width={"200px"}
+      />
+      <p>
+        Based on the connection to our server,
+        <br />
+        this process could take up to a minute.
+      </p>
     </div>
   );
 }
+const mapStateToProps = state => {
+  return {
+    isUploading: state.upload.isUploading,
+  };
+};
+
+export default connect(mapStateToProps, {})(LoadingScreen);

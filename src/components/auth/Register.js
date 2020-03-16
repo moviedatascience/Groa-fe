@@ -1,10 +1,10 @@
 import React from "react";
-import { axiosWithAuth } from "../../utils/axiosWithAuth.js";
+import { connect } from "react-redux";
+import { registerAction, loginAction } from "../../store/actions";
 import { ifDev } from "../../utils/removeAttribute.js";
-
 // styling imports
 import "./_Register.scss";
-import GroaWhite from "./GroaWhite.png";
+import GroaLogo from "./Groa-logo-B2AA.png";
 // Navbar Register
 import RegisterNavLinks from "../layout/nav-layouts/RegisterNavLinks";
 
@@ -20,7 +20,6 @@ class Register extends React.Component {
         confirmpassword: ""
       },
       submitted: false,
-      errorStatus: false
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -52,46 +51,28 @@ class Register extends React.Component {
       this.state.user.password.length >= 6 &&
       this.state.user.confirmpassword === this.state.user.password
     ) {
-      axiosWithAuth()
-        .post("https://api.groa.us/api/users/register", user)
-        .then(() => {
-          user = {
-            user_name: this.state.user.user_name,
-            password: this.state.user.password
-          };
-          axiosWithAuth()
-            .post("https://api.groa.us/api/users/login", user)
-            .then(res2 => {
-              localStorage.setItem("token", res2.data.token);
-              this.props.updateToken(localStorage.getItem("token"));
-              this.props.updateUserid(res2.data.id);
-              this.props.history.push(`/${res2.data.id}/recommended`);
-            })
-            .catch(err2 => {
-              console.log(err2, "Username already used");
-            });
-        })
-        .catch(err => {
-          console.log("Registration Error", err.response.data.errorMessage);
-          this.setState({ errorStatus: true });
-        });
+        this.props.registerAction(user, this.props.history)
     }
   }
 
   render() {
-    const { user, submitted, errorStatus } = this.state;
-
+    const { user, submitted } = this.state;
     return (
       <div className="container" data-test={ifDev("register-component")}>
-        <div className="registerNav">
+        <div className="onboarding-nav registerNav">
           <RegisterNavLinks />
         </div>
-        <div className="boxHolder">
-          <div className="boxLeft">
-            <img className="logo" src={GroaWhite} alt="groa logo" />
+        <div className="boxHolder box-container">
+          <div className="box-left">
+            <img className="logo" src={GroaLogo} alt="Groa Loga" />
           </div>
-          <div className="boxRight">
-            <form className="form" data-test={ifDev("registerForm")} onSubmit={this.handleSubmit}>
+
+          <div className="box-right">
+            <form
+              className="form register-form"
+              data-test={ifDev("registerForm")}
+              onSubmit={this.handleSubmit}
+            >
               <h2>Register</h2>
               {/* divs with changing classnames updates error handling for form */}
               <div
@@ -110,7 +91,7 @@ class Register extends React.Component {
               {submitted && !user.email && (
                 <div className="callingError">Email is required</div>
               )}
-              
+
               <div
                 className={
                   "forms" + (submitted && !user.user_name ? " has-error" : "")
@@ -128,11 +109,13 @@ class Register extends React.Component {
                 <div className="callingError">Username is required</div>
               )}
 
-               {submitted && user.user_name.length < 6 && (
-                <div className="callingError">Username is required to be 6 characters or more </div>
+              {submitted && user.user_name.length < 6 && (
+                <div className="callingError">
+                  Username is required to be 6 characters or more{" "}
+                </div>
               )}
-              
-              {errorStatus && user.user_name && (
+
+              {this.props.errorStatus && user.user_name && (
                 <div className="callingError">Username is already in use</div>
               )}
 
@@ -154,7 +137,9 @@ class Register extends React.Component {
                 <div className="callingError">Password is required</div>
               )}
               {submitted && user.password.length < 6 && (
-                <div className="callingError">Password is required to be 6 characters or more </div>
+                <div className="callingError">
+                  Password is required to be 6 characters or more{" "}
+                </div>
               )}
 
               <div
@@ -174,9 +159,15 @@ class Register extends React.Component {
               {submitted && user.confirmpassword !== user.password && (
                 <div className="callingError">Passwords do not match</div>
               )}
-
-              <div className="BottomLogin">
-                <button className="LoginBtn">Login </button>
+              <div className="bottom-form">
+                {/* todo: add Remember functionality */}
+                <div className="check-box-container">
+                  <input type="checkbox" />
+                  <p>Remember me</p>
+                </div>
+                <div className="signup-btn-container btn-container">
+                  <button className="signup-btn">Sign Up </button>
+                </div>
               </div>
             </form>
           </div>
@@ -189,4 +180,11 @@ class Register extends React.Component {
   }
 }
 
-export default Register;
+const mapStateToProps = state => {
+  return {
+    registerSuccess: state.register.success,
+    userid: state.login.userid,
+    errorStatus: state.register.error
+  };
+};
+export default connect(mapStateToProps, { registerAction, loginAction })(Register);
