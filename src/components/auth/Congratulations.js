@@ -1,7 +1,10 @@
 import React from "react";
+import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import "../auth/Congratulations.scss";
+import successImg from "../../img/success.png"
 
-const Congrats = () => {
+const Congrats = ({ userid }) => {
   return (
     <div className="CongratsPage" data-test="congrats-screen">
       <div className="CenterBox">
@@ -10,13 +13,20 @@ const Congrats = () => {
             <h1>Congratulations!</h1>
             <h2>Your ratings have been successfully uploaded.</h2>
             <div className="image">
-              <img src="./success.png" alt="Success png" />
+              <img src={successImg}alt="Success png" />
             </div>
-            <button>Go to Dashboard</button>
+            <button><Link to={`/${userid}/recommended`} >Go to Dashboard</Link></button>
           </div>
         </div>
       </div>
     </div>
   );
 };
-export default Congrats;
+
+const mapStateToProps = state => {
+  return {
+    userid: state.login.userid,
+    errorStatus: state.login.error
+  };
+};
+export default connect(mapStateToProps, {})(Congrats);

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { Route } from "react-router-dom";
 
 // local imports
@@ -7,11 +7,11 @@ import Recommendations from "./components/dashboard/Recommendations.js";
 import Navigation from "./components/dashboard/navigation.js";
 import Register from "./components/auth/Register";
 import Login from "./components/auth/login";
-import PostLogin from "./components/auth/postLogin.js";
-import LoadingScreen from "./components/layout/LoadingScreen.js";
-import Congrats from "./components/auth/Congratulations.js";
+import DataUpload from "./components/auth/dataUpload";
+
 // for testing
 import { ifDev } from "./utils/removeAttribute.js";
+
 // config imports
 import reactGAinitialization from "./config/analytics.js";
 
@@ -22,17 +22,21 @@ import thunk from "redux-thunk";
 import logger from "redux-logger";
 import { reducer } from "./store/reducers";
 import { BrowserRouter as Router } from "react-router-dom";
+import {loadState, saveState } from "./store/localStorage.js";
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(
   reducer,
-  composeEnhancers(applyMiddleware(thunk, logger))
+  loadState(),
+  composeEnhancers(applyMiddleware(thunk, logger)),
 );
 
+store.subscribe(() => {
+  saveState(store.getState())
+})
+
 function App() {
-  const [hasToken, setHasToken] = useState(localStorage.getItem("token"));
-  const [userid, setUserid] = useState();
-  useEffect(() => reactGAinitialization(), [userid]);
+  useEffect(() => reactGAinitialization(), []);
 
   return (
     <Provider store={store}>
@@ -45,9 +49,10 @@ function App() {
               "/:userid/recommended",
               "/:userid/trending",
               "/:userid/watchlist",
-              "/:userid/explore"
+              "/:userid/explore",
+              "/:userid/upload"
             ]}
-            render={props => <Navigation {...props} userid={userid} />}
+            component={Navigation}
           />
           <PrivateRoute
             exact
@@ -55,32 +60,11 @@ function App() {
             component={Recommendations}
             data-test={ifDev("dash-component")}
           />
-          <Route
-            path="/login"
-            render={props => (
-              <Login
-                {...props}
-                hasToken={hasToken}
-                updateToken={setHasToken}
-                updateUserid={setUserid}
-              />
-            )}
-          />
-          <Route
-            exact
-            path={["/", "/register"]}
-            render={props => (
-              <Register
-                {...props}
-                hasToken={hasToken}
-                updateToken={setHasToken}
-                updateUserid={setUserid}
-              />
-            )}
-          />
-          <Route path="/congrats" component={Congrats} />
-          <Route exact path="/setup-wizard" component={PostLogin} />
-          <Route exact path="/loading-screen" component={LoadingScreen} />
+          <Route exact path="/:userid/upload" component={DataUpload} />
+          <Route path="/login" component={Login} />
+          <Route exact path={["/", "/register"]} component={Register} />
+          {/* this could be a modal */}
+          {/* <Route path="/congrats" component={Congrats} /> */}
         </div>
       </Router>
     </Provider>

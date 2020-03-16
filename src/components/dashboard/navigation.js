@@ -1,15 +1,11 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
-import {
-  faSearch,
-  faUserCircle,
-  faAngleDown,
-  faBars
-} from "@fortawesome/free-solid-svg-icons";
+import { connect } from "react-redux";
+import { loginAction } from "../../store/actions/loginAction";
+import { faSearch, faUserCircle, faAngleDown, faBars} from "@fortawesome/free-solid-svg-icons";
+import { faBell, faQuestionCircle } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "../dashboard/_Navigation.scss";
-import { faBell, faQuestionCircle } from "@fortawesome/free-regular-svg-icons";
-
 import { ifDev } from "../../utils/removeAttribute.js";
 
 class Navigation extends Component {
@@ -22,6 +18,10 @@ class Navigation extends Component {
 
   handleChange = e => {
     this.setState({ search: e.target.value });
+  };
+
+  logout = () => {
+    localStorage.removeItem("token");
   };
 
   render() {
@@ -53,6 +53,19 @@ class Navigation extends Component {
               to={`/${this.props.userid}/recommended`}
             >
               Recommended
+            </NavLink>
+
+            {/* adding this here until all other nav functionality is added */}
+            <NavLink className="NavLink" to={`/${this.props.userid}/upload`}>
+              Upload Data
+            </NavLink>
+
+            <NavLink
+              className="NavLink"
+              to="/login"
+              onClick={this.state.logout}
+            >
+              Logout
             </NavLink>
 
             <NavLink
@@ -108,4 +121,9 @@ class Navigation extends Component {
   }
 }
 
-export default Navigation;
+const mapStateToProps = state => {
+  return {
+    userid: state.login.userid
+  };
+};
+export default connect(mapStateToProps, { loginAction })(Navigation);

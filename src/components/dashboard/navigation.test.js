@@ -6,11 +6,24 @@ import { getAllByTestId } from "../../utils/test-utils.js";
 // component to be tested.
 import Navigation from "./navigation.js";
 
+// redux testing
+import { Provider } from "react-redux";
+import configureStore from "redux-mock-store";
+
 it("renders navigation component", () => {
+  const mockStore = configureStore([]);
+  let store;
+  store = mockStore({
+    login: {
+      userid: 4
+    }
+  });
   const { container } = render(
-    <Router>
-      <Navigation />
-    </Router>
+    <Provider store={store}>
+      <Router>
+        <Navigation />
+      </Router>
+    </Provider>
   );
 
   // the uri when this component renders is "/" so it'll go to the RegisterNavLinks component
