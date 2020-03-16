@@ -10,17 +10,18 @@
     rgba(0, 0, 0, 0.85)
   );
 
-  .registerNav {
+  .onboarding-nav {
     display: flex;
     justify-content: flex-end;
     padding: 0.5% 1%;
   }
 
-  .boxHolder {
+  .box-container {
     display: flex;
+    margin: 7% auto;
   }
 
-  .boxLeft {
+  .box-left {
     width: 40%;
     margin: auto;
     .logo {
@@ -30,7 +31,7 @@
     }
   }
 
-  .boxRight {
+  .box-right {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -51,7 +52,7 @@
     .form {
       margin: auto;
       padding: 3%;
-      max-width: 370px;
+      max-width: 393px;
       width: 100%;
     }
 
@@ -69,22 +70,27 @@
     }
 
     .bottom-form {
+      width: 100%;
       display: flex;
       justify-content: space-between;
-      margin: 3% auto;
+      margin: 3% 0;
       .check-box-container {
         display: flex;
-        h5 {
+        p {
           color: black;
         }
       }
 
-      .signup-btn-container {
+      .btn-container {
+        width: 100%;
         display: flex;
         justify-content: flex-end;
-        .signup-btn {
-          max-width: 215px;
+        .signup-btn,
+        button.login-btn {
+          align-self: end;
+          border: none;
           width: 100%;
+          max-width: 115px;
           height: 36px;
           border-radius: 4px;
           background: #21242c;

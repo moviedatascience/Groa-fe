@@ -4,7 +4,7 @@ import { ifDev } from "../../utils/removeAttribute.js";
 
 // styling imports
 import "./_Register.scss";
-import GroaWhite from "./GroaWhite.png";
+import GroaLogo from "./Groa-logo-B2AA.png";
 // Navbar Register
 import RegisterNavLinks from "../layout/nav-layouts/RegisterNavLinks";
 
@@ -83,16 +83,17 @@ class Register extends React.Component {
 
     return (
       <div className="container" data-test={ifDev("register-component")}>
-        <div className="registerNav">
+        <div className="onboarding-nav registerNav">
           <RegisterNavLinks />
         </div>
-        <div className="boxHolder">
-          <div className="boxLeft">
-            <img className="logo" src={GroaWhite} alt="groa logo" />
+        <div className="boxHolder box-container">
+          <div className="box-left">
+            <img className="logo" src={GroaLogo} alt="Groa Loga" />
           </div>
-          <div className="boxRight">
+
+          <div className="box-right">
             <form
-              className="form"
+              className="form register-form"
               data-test={ifDev("registerForm")}
               onSubmit={this.handleSubmit}
             >
@@ -186,9 +187,9 @@ class Register extends React.Component {
                 {/* todo: add Remember functionality */}
                 <div className="check-box-container">
                   <input type="checkbox" />
-                  <h5>Remember me</h5>
+                  <p>Remember me</p>
                 </div>
-                <div className="signup-btn-container">
+                <div className="signup-btn-container btn-container">
                   <button className="signup-btn">Sign Up </button>
                 </div>
               </div>
