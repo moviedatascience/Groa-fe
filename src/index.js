@@ -5,6 +5,7 @@ import * as serviceWorker from "./serviceWorker";
 
 // styling
 import "./scss/index.scss";
+import "./fonts/FivoSans/FivoSans-Regular.otf";
 
 ReactDOM.render(<App />, document.getElementById("root"));
 
