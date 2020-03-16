@@ -7,6 +7,7 @@ import { faBell, faQuestionCircle } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "../dashboard/_Navigation.scss";
 import { ifDev } from "../../utils/removeAttribute.js";
+import { setFilter } from "../../store/actions/filterActions"; 
 
 class Navigation extends Component {
   constructor(props) {
@@ -18,12 +19,20 @@ class Navigation extends Component {
 
   handleChange = e => {
     this.setState({ search: e.target.value });
+    this.props.setFilter(this.state.search);
+    console.log(this.props.searchTerm);
   };
 
+  submit2 = e => {
+    e.preventDefault();
+    this.props.setFilter(this.state.search);
+
+  };
+  
   logout = () => {
     localStorage.removeItem("token");
   };
-
+  
   render() {
     return (
       <div className="mainContainer" data-test={ifDev("navigation")}>
@@ -31,32 +40,42 @@ class Navigation extends Component {
           <div className="Bars" > 
           {/* hidden */}
           
-          <a href="#main-menu" class="menu-toggle" aria-label= "Open main menu" 
-            id = "main-menu-toggle">
-            <FontAwesomeIcon className="bars-icon" icon={faBars} aria-label="main menu" />
-            
-              <span class = "sr-only"> Open main menu</span>
-              <i aria-hidden='true' className="far fa-bars"></i>
-          </a>
+          {/* meunu start  ------------------------------------------*/}
+            <a href="#main-menu" class="menu-toggle" aria-label= "Open main menu" 
+              id = "main-menu-toggle">
+              <FontAwesomeIcon className="bars-icon" icon={faBars} aria-label="main menu" />
+              
+                <span class = "sr-only"> Open main menu</span>
+                <i aria-hidden='true' className="far fa-bars"></i>
+            </a>
 
-          <nav id="main-menu" className = "main-menu">
-            <div className="title">
-            <h2>Filter Options</h2>
-            <a href="#main-menu-toggle" className="menu-close">X</a>
-            </div>
-            <ul>
-              <li><a href="#">By Provider</a></li>
-              <li><a href="#">Genre</a></li>
-              <li><a href="#">Theme</a></li>
-              <li><a href="#">By Date</a></li>
-              <li><a href="#">Black and White</a></li>
-              <li><a href="#">tags</a></li> 
-              {/* By actor, director, screenwriter, cigematographer(sort by  */}
-            </ul>
-          </nav>
-          <a href= "#main-menu-toggle" class = "backdrop" hidden tabindex="-1"/>
+            <nav id="main-menu" className = "main-menu">
+              <div className="title">
+              <h2>Filter Results</h2>
+              <a href="#main-menu-toggle" className="menu-close">X</a>
+              </div>
+              <ul>
+                <li className = "Genre"><a href="#">Genre</a></li>
+                <li className= "Year"><a href="#">Year</a>
+                <ul className="dropdown">
+                  <li>2020</li>
+                  <li>2019</li>
+                  <li>2018</li>
+                  <li>2017</li>
+                </ul>
+                </li>
+
+                <li><a href="#">Decade</a></li>
+                <li><a href="#">MPAA Rating</a></li>
+                <li><a href="#">Language</a></li>
+                <li><a href="#">Streaming platform</a></li> 
+                <li><a href="#">Sort</a></li> 
+                {/* By actor, director, screenwriter, cigematographer(sort by  */}
+              </ul>
+            </nav>
+            <a href= "#main-menu-toggle" class = "backdrop" hidden tabindex="-1"/>
           </div>
-
+                  {/* menu end ------------------------------------------------------ */}
           <div id="main-menu" className="Links">
             <NavLink
               className="Groa-NavLink"
@@ -110,7 +129,7 @@ class Navigation extends Component {
             </NavLink>
           </div>
           
-          <div className="searchContainer  hidden">
+          <form  onSubmit={this.submit2} className="searchContainer">
             <FontAwesomeIcon className="search-icon fa-icons" icon={faSearch} />
             <input
               className="searchBox"
@@ -119,8 +138,9 @@ class Navigation extends Component {
               value={this.search}
               onChange={this.handleChange}
               placeholder="search..."
+             
             />
-          </div>
+          </form>
 
           <div className="fa-icons">
             <FontAwesomeIcon className="bell-icon  hidden" icon={faBell} />
@@ -150,7 +170,8 @@ class Navigation extends Component {
 
 const mapStateToProps = state => {
   return {
-    userid: state.login.userid
+    userid: state.login.userid,
+    searchTerm: state.filter.searchTerm
   };
 };
-export default connect(mapStateToProps, { loginAction })(Navigation);
+export default connect(mapStateToProps, { loginAction, setFilter })(Navigation);
