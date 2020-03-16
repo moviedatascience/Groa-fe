@@ -11,7 +11,6 @@ import thunk from "redux-thunk";
 const mockStore = configureStore([thunk]);
 
 it("renders Recommendations with array has length.", async () => {
-
   let store = mockStore({
     login: {
       userid: 4
@@ -27,13 +26,16 @@ it("renders Recommendations with array has length.", async () => {
         { Title: "Citizen Kane", Year: "1941" }
       ],
       error: ""
+    },
+    upload: {
+      isUploading: true
     }
   });
 
   const { container } = render(
     <Provider store={store}>
       <Router>
-        <Recommendations/>
+        <Recommendations />
       </Router>
     </Provider>
   );
@@ -52,14 +54,18 @@ it("renders LoadingScreen when recommendations array is empty", () => {
       error: ""
     },
     recommendations: {
+      isFetching: true,
       movies: [],
       error: ""
+    },
+    upload: {
+      isUploading: false
     }
   });
   const { container } = render(
     <Provider store={store}>
       <Router>
-        <Recommendations/>
+        <Recommendations />
       </Router>
     </Provider>
   );
