@@ -57,7 +57,10 @@ class Register extends React.Component {
   render() {
     const { user, submitted } = this.state;
     return (
-      <div className="container" data-test={ifDev("register-component")}>
+      <div
+        className="container register-component"
+        data-test={ifDev("register-component")}
+      >
         <div className="onboarding-nav registerNav">
           <RegisterNavLinks />
         </div>
