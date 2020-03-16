@@ -8,9 +8,11 @@ import letterboxdLogo from "../../img/letterboxd-logo.svg";
 import imdbLogo from "../../img/imdb-logo.svg";
 // children components
 import Congratulations from "./Congratulations.js";
+import LoadingScreen from "../layout/LoadingScreen.js";
 
 const DataUpload = ({ userid, uploadAction }) => {
   const [input] = useState({ file: "" });
+  const [uploading, setUploading] = useState(false)
   const [uploadSuccess, setUploadSuccess] = useState(false);
 
   const toggleInstructions = window.onclick = function(event) {
@@ -29,11 +31,13 @@ const DataUpload = ({ userid, uploadAction }) => {
   const handleChange = e => {
     let data = new FormData();
     data.append("movies", e.target.files[0], e.target.files[0].name);
-    uploadAction(userid, data, setUploadSuccess)
+    uploadAction(userid, data, setUploading, setUploadSuccess)
     data = new FormData();
   };
 
-  if (uploadSuccess === true)
+  if(uploading)
+    return (<LoadingScreen/>) 
+  else if (uploadSuccess)
     return <Congratulations/>;
   else
   return (
