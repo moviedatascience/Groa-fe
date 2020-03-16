@@ -41,6 +41,7 @@ function Recommendations({
                 year={x.Year}
                 image={
                   !posterURI ||
+                  posterURI === "None" ||
                   posterURI === "No poster" ||
                   posterURI === "No Poster" ||
                   posterURI === "Not in table"
