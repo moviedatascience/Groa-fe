@@ -1,0 +1,23 @@
+// colors
+$turqoise1: hsl(169, 100%, 50%);
+$turqoise2: hsl(169, 100%, 45%);
+$turqoise3: hsl(169, 100%, 35%);
+
+$gray1: hsl(0, 0%, 53%);
+$gray2: hsl(0, 0%, 33%);
+$gray3: hsl(207, 100%, 4%);
+
+$black: hsl(224, 14%, 15%);
+$white: hsl(0, 0%, 100%);
+
+// color purposes here
+
+// font
+$fivoRegular: "Fivo Sans";
+
+// font sizing
+$baseFontSize: 10px;
+$deskFontSize: $baseFontSize * 1.4rem; // 14px
+$deskHeaderFS: $baseFontSize * 6.4rem; // 64px
+$mobileFontSize: $baseFontSize * 1.2rem; // 12px
+$mobileHeaderFS: $baseFontSize * 3.2rem; // 32px
