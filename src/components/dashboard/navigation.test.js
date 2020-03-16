@@ -9,9 +9,9 @@ import Navigation from "./navigation.js";
 // redux testing
 import { Provider } from "react-redux";
 import configureStore from "redux-mock-store";
-const mockStore = configureStore([]);
 
 it("renders navigation component", () => {
+  const mockStore = configureStore([]);
   let store;
   store = mockStore({
     login: {

@@ -16,10 +16,10 @@ const DataUpload = ({ userid, uploadAction }) => {
   const [uploadSuccess, setUploadSuccess] = useState(false);
 
   const toggleInstructions = window.onclick = function(event) {
-      var dropdowns = document.getElementsByClassName("dropdown-content");
+      const dropdowns = document.getElementsByClassName("dropdown-content");
       var i;
       for (i = 0; i < dropdowns.length; i++) {
-        var openDropdown = dropdowns[i];
+        let openDropdown = dropdowns[i];
         if (openDropdown.classList.contains("show")) {
           openDropdown.classList.remove("show");
         }
@@ -35,7 +35,7 @@ const DataUpload = ({ userid, uploadAction }) => {
     data = new FormData();
   };
 
-  if(uploading)
+  if (uploading)
     return (<LoadingScreen/>) 
   else if (uploadSuccess)
     return <Congratulations/>;
@@ -152,7 +152,6 @@ const mapStateToProps = state => {
     reviews: state.upload.reviews,
     watched: state.upload.watched,
     watchlist: state.upload.watchlist
-
   };
 };
 

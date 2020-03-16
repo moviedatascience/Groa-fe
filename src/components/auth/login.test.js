@@ -1,11 +1,8 @@
 import React from "react";
-import { render, fireEvent } from "@testing-library/react";
 import { BrowserRouter as Router } from "react-router-dom";
-import {
-  getAllByTestId,
-  getByTestId,
-  getAllByText
-} from "../../utils/test-utils";
+import { render, fireEvent } from "@testing-library/react";
+import {getAllByText} from "@testing-library/dom";
+import { getAllByTestId, getByTestId } from "../../utils/test-utils";
 
 // component to be tested.
 import Login from "./login";

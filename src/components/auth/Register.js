@@ -2,7 +2,6 @@ import React from "react";
 import { connect } from "react-redux";
 import { registerAction, loginAction } from "../../store/actions";
 import { ifDev } from "../../utils/removeAttribute.js";
-
 // styling imports
 import "./_Register.scss";
 import GroaWhite from "./GroaWhite.png";
@@ -187,5 +186,4 @@ const mapStateToProps = state => {
     errorStatus: state.register.error
   };
 };
-
 export default connect(mapStateToProps, { registerAction, loginAction })(Register);

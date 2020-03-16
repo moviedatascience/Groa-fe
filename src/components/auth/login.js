@@ -163,5 +163,4 @@ const mapStateToProps = state => {
     errorStatus: state.login.error
   };
 };
-
 export default connect(mapStateToProps, { loginAction })(LoginPage);

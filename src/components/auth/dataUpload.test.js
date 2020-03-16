@@ -4,8 +4,10 @@ import {getAllByText} from "@testing-library/dom";
 import { Router, Route } from "react-router-dom";
 import { getAllByTestId, getByTestId } from "../../utils/test-utils.js";
 import { createMemoryHistory } from "history";
+
 // component to be tested.
 import DataUpload from "./dataUpload.js";
+
 // redux testing
 import { Provider } from "react-redux";
 import configureStore from "redux-mock-store";
