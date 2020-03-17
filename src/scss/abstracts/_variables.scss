@@ -20,6 +20,11 @@ $primary-accent: $turqoise1;
 $secondary-accent: $turqoise2;
 
 // font
+@font-face {
+  font-family: "FivoSans";
+  src: local("FivoSans"),
+    url("/assets/fonts/FivoSans-Regular.otf") format("opentype");
+}
 $fivoRegular: "FivoSans", regular;
 
 // font sizing
