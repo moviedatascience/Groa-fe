@@ -1,6 +1,6 @@
 /*creating a font-face for Fivo Sans from local files */
-@font-face {
+/* @font-face {
   font-family: "FivoSans";
   src: local("FivoSans"),
     url("/assets/fonts/FivoSans-Regular.otf") format("opentype");
-}
+} */
