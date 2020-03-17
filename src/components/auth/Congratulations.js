@@ -1,7 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import "../auth/Congratulations.scss";
 import successImg from "../../img/success.png";
 
 const Congrats = ({ userid }) => {

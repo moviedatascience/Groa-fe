@@ -4,7 +4,8 @@ import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 
 // styling
-import "./scss/index.scss";
+import "./index.css";
+import "./scss/main.scss";
 import "./fonts/FivoSans/FivoSans-Regular.otf";
 
 ReactDOM.render(<App />, document.getElementById("root"));
