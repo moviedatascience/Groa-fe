@@ -10,7 +10,8 @@ export function recommendationAction(id) {
       type: FETCHING_RECOMMENDATIONS_START
     });
     axiosWithAuth()
-    .get(`${id}/recommendations`)
+    .get(`${id}/recommended`)
+    //.get(`${id}/recommendations`)
     .then(res => {
         dispatch({
             type: FETCHING_RECOMMENDATIONS_SUCCESS,
