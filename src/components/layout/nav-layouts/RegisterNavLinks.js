@@ -1,7 +1,6 @@
 import React from "react";
 import { ifDev } from "../../../utils/removeAttribute.js";
 import { Link } from "react-router-dom";
-import "./RegisterNavLinks.scss";
 
 export default function RegisterNavLinks() {
   return (

@@ -1,5 +1,4 @@
 import React from "react";
-import "./postLogin.scss";
 import { ifDev } from "../../utils/removeAttribute";
 
 export default function PostLogin() {

@@ -1,0 +1,31 @@
+// colors
+$turqoise1: hsl(169, 100%, 50%);
+$turqoise2: hsl(169, 100%, 45%);
+$turqoise3: hsl(169, 100%, 35%);
+
+$gray1: hsl(0, 0%, 53%);
+$gray2: hsl(0, 0%, 33%);
+$gray3: hsl(207, 100%, 4%);
+
+$black: hsl(224, 14%, 15%);
+$white: hsl(0, 0%, 100%);
+
+// color purposes here (will have to ask Martin or dig into Figma more for this)
+//text
+$white-text: $white;
+$black-text: $black;
+
+// accent
+$primary-accent: $turqoise1;
+$secondary-accent: $turqoise2;
+
+// font
+@import url("https://fonts.googleapis.com/css?family=Work+Sans&display=swap");
+$workSans: "Work Sans", sans-serif;
+
+// font sizing
+$baseFontSize: 10px;
+$deskFontSize: $baseFontSize * 1.4; // 14px
+$deskHeaderFS: $baseFontSize * 6.4; // 64px
+$mobileFontSize: $baseFontSize * 1.2; // 12px
+$mobileHeaderFS: $baseFontSize * 3.2; // 32px

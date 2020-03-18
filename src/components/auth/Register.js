@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { registerAction, loginAction } from "../../store/actions";
 import { ifDev } from "../../utils/removeAttribute.js";
 // styling imports
-import "./_Register.scss";
 import GroaLogo from "./Groa-logo-B2AA.png";
 // Navbar Register
 import RegisterNavLinks from "../layout/nav-layouts/RegisterNavLinks";
@@ -19,7 +18,7 @@ class Register extends React.Component {
         password: "",
         confirmpassword: ""
       },
-      submitted: false,
+      submitted: false
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -51,14 +50,17 @@ class Register extends React.Component {
       this.state.user.password.length >= 6 &&
       this.state.user.confirmpassword === this.state.user.password
     ) {
-        this.props.registerAction(user, this.props.history)
+      this.props.registerAction(user, this.props.history);
     }
   }
 
   render() {
     const { user, submitted } = this.state;
     return (
-      <div className="container" data-test={ifDev("register-component")}>
+      <div
+        className="container register-component"
+        data-test={ifDev("register-component")}
+      >
         <div className="onboarding-nav registerNav">
           <RegisterNavLinks />
         </div>
@@ -187,4 +189,6 @@ const mapStateToProps = state => {
     errorStatus: state.register.error
   };
 };
-export default connect(mapStateToProps, { registerAction, loginAction })(Register);
+export default connect(mapStateToProps, { registerAction, loginAction })(
+  Register
+);

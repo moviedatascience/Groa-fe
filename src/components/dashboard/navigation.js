@@ -10,7 +10,6 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { faBell, faQuestionCircle } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import "../dashboard/_Navigation.scss";
 import { ifDev } from "../../utils/removeAttribute.js";
 
 class Navigation extends Component {
