@@ -29,7 +29,6 @@ class Navigation extends Component {
 
   logout = () => {
     localStorage.removeItem("token");
-    this.props.history.push("/login");
   };
 
   render() {
@@ -68,13 +67,14 @@ class Navigation extends Component {
               Upload Data
             </NavLink>
 
-            <button
+            <NavLink
               className="NavLink"
               onClick={this.logout}
               data-test={ifDev("logoutBtn")}
+              to="/login"
             >
               Logout
-            </button>
+            </NavLink>
 
             <NavLink
               className="NavLink  hidden"

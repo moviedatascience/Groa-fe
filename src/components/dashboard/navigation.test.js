@@ -30,3 +30,26 @@ it("renders navigation component", () => {
   const component = getAllByTestId(container, "navigation");
   expect(component.length).toBe(1);
 });
+
+it("logout button renders", () => {
+  const mockStore = configureStore([]);
+  let store = mockStore({
+    login: {
+      userid: 4
+    }
+  });
+
+  localStorage.setItem("token", "asdfioeOIEUfhw9ef8hw9e8f234rh");
+
+  const { container } = render(
+    <Provider store={store}>
+      <Router>
+        <Navigation />
+      </Router>
+    </Provider>
+  );
+
+  console.log(localStorage.token);
+  let logoutBtn = getAllByTestId(container, "logoutBtn");
+  expect(logoutBtn.length).toBe(1);
+});
