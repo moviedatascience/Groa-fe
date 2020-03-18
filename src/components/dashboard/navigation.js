@@ -2,10 +2,14 @@ import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
 import { loginAction } from "../../store/actions/loginAction";
-import { faSearch, faUserCircle, faAngleDown, faBars} from "@fortawesome/free-solid-svg-icons";
+import {
+  faSearch,
+  faUserCircle,
+  faAngleDown,
+  faBars
+} from "@fortawesome/free-solid-svg-icons";
 import { faBell, faQuestionCircle } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import "../dashboard/_Navigation.scss";
 import { ifDev } from "../../utils/removeAttribute.js";
 
 class Navigation extends Component {
@@ -14,6 +18,8 @@ class Navigation extends Component {
     this.state = {
       search: ""
     };
+    this.handleChange = this.handleChange.bind(this);
+    this.logout = this.logout.bind(this);
   }
 
   handleChange = e => {
@@ -62,8 +68,9 @@ class Navigation extends Component {
 
             <NavLink
               className="NavLink"
+              onClick={this.logout}
+              data-test={ifDev("logoutBtn")}
               to="/login"
-              onClick={this.state.logout}
             >
               Logout
             </NavLink>

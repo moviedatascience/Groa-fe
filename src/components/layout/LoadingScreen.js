@@ -2,7 +2,6 @@ import React from "react";
 import ReactLoading from "react-loading";
 import { connect } from "react-redux";
 import { ifDev } from "../../utils/removeAttribute.js";
-import "./_LoadingScreen.scss";
 
 function LoadingScreen({ isUploading }) {
   return (
@@ -10,9 +9,11 @@ function LoadingScreen({ isUploading }) {
       className="container loading-screen"
       data-test={ifDev("loading-screen-component")}
     >
-      {isUploading ?
-      <h4>Uploading files...</h4> :
-      <h4>Loading recommendations...</h4>}
+      {isUploading ? (
+        <h4>Uploading files...</h4>
+      ) : (
+        <h4>Loading recommendations...</h4>
+      )}
       <ReactLoading
         className="loading-component"
         data-test={ifDev("loading-object")}
@@ -31,7 +32,7 @@ function LoadingScreen({ isUploading }) {
 }
 const mapStateToProps = state => {
   return {
-    isUploading: state.upload.isUploading,
+    isUploading: state.upload.isUploading
   };
 };
 

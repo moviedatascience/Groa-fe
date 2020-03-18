@@ -3,7 +3,6 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { ifDev } from "../../utils/removeAttribute.js";
 import { recommendationAction } from "../../store/actions/index.js";
-import "./_Dashboard.scss";
 // children components
 import LoadingScreen from "../layout/LoadingScreen.js";
 import MovieCard from "../movies/MovieCard.js";

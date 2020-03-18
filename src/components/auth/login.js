@@ -4,7 +4,6 @@ import { loginAction } from "../../store/actions/loginAction";
 import GroaLogo from "../auth/Groa-logo-B2AA.png";
 import { ifDev } from "../../utils/removeAttribute.js";
 import LoginNavLinks from "../layout/nav-layouts/LoginNavLinks.js";
-import "./_Register.scss";
 
 class LoginPage extends React.Component {
   constructor(props) {
