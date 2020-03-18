@@ -2,7 +2,12 @@ import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
 import { loginAction } from "../../store/actions/loginAction";
-import { faSearch, faUserCircle, faAngleDown, faBars} from "@fortawesome/free-solid-svg-icons";
+import {
+  faSearch,
+  faUserCircle,
+  faAngleDown,
+  faBars
+} from "@fortawesome/free-solid-svg-icons";
 import { faBell, faQuestionCircle } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "../dashboard/_Navigation.scss";
@@ -14,6 +19,8 @@ class Navigation extends Component {
     this.state = {
       search: ""
     };
+    this.handleChange = this.handleChange.bind(this);
+    this.logout = this.logout.bind(this);
   }
 
   handleChange = e => {
@@ -22,6 +29,7 @@ class Navigation extends Component {
 
   logout = () => {
     localStorage.removeItem("token");
+    this.props.history.push("/login");
   };
 
   render() {
@@ -60,13 +68,13 @@ class Navigation extends Component {
               Upload Data
             </NavLink>
 
-            <NavLink
+            <button
               className="NavLink"
-              to="/login"
-              onClick={this.state.logout}
+              onClick={this.logout}
+              data-test={ifDev("logoutBtn")}
             >
               Logout
-            </NavLink>
+            </button>
 
             <NavLink
               className="NavLink  hidden"
