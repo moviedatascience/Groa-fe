@@ -5,14 +5,7 @@ import Stars from "@material-ui/lab/Rating";
 export default function MovieCard({ name, year, image }) {
   
   const [value, setValue] = useState(0);
-  // const [value, setValue] = useState({
-  //   rating: 0
-  // })
 
-  // const handleChange = e => {
-  //   // e.preventDefault();
-  //   setValue({...value, rating:e.target.value})
-  // }
 
   return (
     <div data-test="box" className="box">
@@ -23,9 +16,8 @@ export default function MovieCard({ name, year, image }) {
         <p>{year}</p>
 
         <Stars
-          name="rating"
-          value={value.rating}
-          // onChange={handleChange}
+          name={name}
+          value={value}
           onChange={(event, newValue) => {
             setValue(newValue);
           }}
