@@ -20,12 +20,8 @@ $primary-accent: $turqoise1;
 $secondary-accent: $turqoise2;
 
 // font
-@font-face {
-  font-family: "FivoSans";
-  src: local("FivoSans"),
-    url("/assets/fonts/FivoSans-Regular.otf") format("opentype");
-}
-$fivoRegular: "FivoSans", regular;
+@import url("https://fonts.googleapis.com/css?family=Work+Sans&display=swap");
+$workSans: "Work Sans", sans-serif;
 
 // font sizing
 $baseFontSize: 10px;
