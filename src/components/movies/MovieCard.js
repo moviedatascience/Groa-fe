@@ -16,6 +16,7 @@ export default function MovieCard({ name, year, image }) {
         <p>{year}</p>
 
         <Stars
+        precision={0.5}
           name={name}
           value={value}
           onChange={(event, newValue) => {
