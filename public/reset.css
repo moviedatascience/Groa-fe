@@ -127,9 +127,3 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
 }
-
-/* @font-face {
-  font-family: "FivoSans";
-  src: local("FivoSans"),
-    url("./assets/fonts/FivoSans-Regular.otf") format("opentype");
-} */
