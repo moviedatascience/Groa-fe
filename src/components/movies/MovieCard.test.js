@@ -12,7 +12,7 @@ import MovieCard from "./MovieCard.js";
 
 let store = mockStore()
 
-it("renders stars with array has length", () => {
+it("renders movieCard with array has length", () => {
 
     const fakemovies = 
         {name:'a', Year: '1000'}
