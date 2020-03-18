@@ -2,9 +2,10 @@ import React, {useState} from "react";
 import Stars from "@material-ui/lab/Rating";
 
 // more fields will be appearing according to the Figma file
-export default function MovieCard({ name, year, image }) {
+export default function MovieCard({ name, year, image}) {
   
   const [value, setValue] = useState(0);
+
 
 
   return (
@@ -15,7 +16,7 @@ export default function MovieCard({ name, year, image }) {
         <h3>{name}</h3>
         <p>{year}</p>
 
-        <Stars
+        <Stars data-test="star"
         precision={0.5}
           name={name}
           value={value}
