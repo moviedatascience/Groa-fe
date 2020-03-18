@@ -11,7 +11,7 @@ export function recommendationAction(id) {
     });
     axiosWithAuth()
     .get(`/${id}/recommended`)
-    //.get(`${id}/recommendations`)
+    //.get(`/${id}/recommendations`)
     .then(res => {
         dispatch({
             type: FETCHING_RECOMMENDATIONS_SUCCESS,
