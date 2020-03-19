@@ -22,13 +22,8 @@ import thunk from "redux-thunk";
 import logger from "redux-logger";
 import { reducer } from "./store/reducers";
 import { BrowserRouter as Router } from "react-router-dom";
-<<<<<<< HEAD
-import {loadState, saveState } from "./store/localStorage.js";
-import MovieCard from './components/movies/MovieCard';
-=======
 import { loadState, saveState } from "./store/localStorage.js";
 
->>>>>>> 19483886e492b2a202ef1098d2178edaa452d0eb
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(
   reducer,
