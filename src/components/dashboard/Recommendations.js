@@ -47,6 +47,7 @@ function Recommendations({
                     ? unsplashUrl
                     : moviePoster
                 }
+                
               />
             );
           })}

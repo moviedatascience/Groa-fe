@@ -42,6 +42,8 @@ function App() {
     <Provider store={store}>
       <Router>
         <div className="App" data-test={ifDev("App-component")}>
+         
+          
           {/* this is fine as a route because all of the routes that will have display their component will only be avalible on a private route */}
           <Route
             exact
