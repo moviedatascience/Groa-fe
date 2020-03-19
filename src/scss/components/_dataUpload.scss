@@ -1,7 +1,13 @@
 .DataUploadPage{
     display: flex;
     justify-content: center;
+
+    @media only screen and (max-width: 500px) {
+      background-color: lightblue;
+    }
+
 }
+
 
 .textholder1{
     
@@ -13,10 +19,25 @@
         }
 
         h2,  h3{
+          display: flex;
+          justify-content: center;
+        }
+
+        @media only screen and (max-width: 500px) {
+
+          h1{
             display: flex;
             justify-content: center;
-        }
-   
+            font-size: 200%;
+            margin-top: 4%;  
+          }
+
+          h2,  h3{
+            margin-top: 15px;
+            display: flex;
+            justify-content: center;
+          }
+        }            
 }
 
 .ptext{

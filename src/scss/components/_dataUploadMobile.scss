@@ -1,0 +1,137 @@
+// MOBILE STYLING
+
+@media only screen and (max-width: 500px) {
+  .DataUploadPage {
+    background-color: lightblue;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .textholder1 {
+    
+    h1{
+      display: flex;
+      justify-content: center;
+      font-size: 200%;
+      margin-top: 4%;  
+    }
+  
+
+  h2,  h3{
+      margin-top: 15px;
+      display: flex;
+      justify-content: center;
+  }
+
+  }
+}
+
+.ptext{
+font-weight: 500;
+
+}
+@media only screen and (max-width: 500px) {
+  .DboxContainer{
+    display: flex;
+    // justify-content: center;
+    flex-direction: column;
+    margin-top: 2%;
+    height: 450px;
+    .DboxLeft, .DboxRight{
+      
+        width:  300px;
+        height: 300px;
+        Img{
+          width:  150px;
+          height: auto;
+        }
+    }
+}
+   
+}
+
+//////////////////HIDE/SHOW INSTRUCTION INFO- LETTERBOX/IMDB/////////////////////////
+////////////////////////////////////////////////////////////////////////////////////
+@media only screen and (max-width: 500px) {
+.dropbtn {
+  // background: red;
+  background-color: rgb(0, 93, 155);
+  color: white;
+  padding: 16px;
+  font-size: 22px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  outline: inherit;
+  }
+  
+  .dropbtn:hover, .dropbtn:focus {
+    background-color: rgb(0, 153, 255);
+  }
+
+  .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    min-width: 160px;
+  }
+
+  .dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+
+  .dropdown-content p {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+
+  .dropdown a:hover {background-color: #ddd;}
+
+.show {display: block;}
+
+}
+////////////////////UPLOAD DATA BOX///////////////////
+@media only screen and (max-width: 500px) {
+
+.UploadContainer{
+  display: flex;
+  justify-content: center;
+    .inputholder{
+      // display: flex;
+      // justify-content: center;
+      padding: 10px;
+      width: 232px;
+      height: 66px;
+      border: 2px dashed black;
+
+        .uploadData{ 
+          
+          margin-top: 15px;
+          height: 50px;
+        }
+    }
+   
+    .inputholder:hover{
+        border: 2px solid red;
+    }
+}
+
+// TEXT BOTTOM SCREEN
+.textholder2{
+  padding: 5px;
+  margin-top: 12px;
+  display: flex;
+  justify-content: center;
+  
+}
+
+}
