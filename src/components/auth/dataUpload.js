@@ -59,22 +59,22 @@ const DataUpload = ({ userid, uploadAction, isUploading }) => {
               </button>
               <div id="myDropdownL" className="dropdown-content">
                 <div className="DboxLeft">
-                  <div className="boxInside">
+                 
                     <img src={letterboxdLogo} alt="Letterboxd Logo" />
                     <p className="ptext">1.Log in to Letterboxd</p>
                     <p className="ptext">
-                      2.Click on your username and select SETTINGS from the
+                      2.Click on your username and select settings from the
                       dropdown menu.
                     </p>
                     <p className="ptext">
-                      3.Go to the IMPORT and XPORT tab, then click EXPORT YOUR
-                      DATA. Save the ratings.csv file somwhere convenient like
+                      3.Go to the import and xport tab, then click export your
+                      data. Save the ratings.csv file somwhere convenient like
                       your desktop or downloads folder.
                     </p>
                     <p className="ptext">
                       4.Click to browse or simply drop your .csv file below
                     </p>
-                  </div>
+                  
                 </div>
                 {/* END  DboxLeft*/}
               </div>
@@ -95,7 +95,7 @@ const DataUpload = ({ userid, uploadAction, isUploading }) => {
                   <img src={imdbLogo} alt="IMDb Logo" />
                   <p className="ptext">1.Log in to IMDb</p>
                   <p className="ptext">
-                    2.Click on your username and select YOUR RATINGS fromthe
+                    2.Click on your username and select your ratings fromthe
                     dropdown menu.
                   </p>
                   <p className="ptext">
