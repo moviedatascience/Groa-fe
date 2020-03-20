@@ -59,22 +59,23 @@ const DataUpload = ({ userid, uploadAction, isUploading }) => {
               </button>
               <div id="myDropdownL" className="dropdown-content">
                 <div className="DboxLeft">
-                  <div className="boxInside">
+                 
                     <img src={letterboxdLogo} alt="Letterboxd Logo" />
-                    <p className="ptext">1.Log in to Letterboxd</p>
-                    <p className="ptext">
-                      2.Click on your username and select SETTINGS from the
-                      dropdown menu.
-                    </p>
-                    <p className="ptext">
-                      3.Go to the IMPORT and XPORT tab, then click EXPORT YOUR
-                      DATA. Save the ratings.csv file somwhere convenient like
-                      your desktop or downloads folder.
-                    </p>
-                    <p className="ptext">
-                      4.Click to browse or simply drop your .csv file below
-                    </p>
-                  </div>
+                    <div>
+                      <p className="ptext">1.Log in to Letterboxd</p>
+                      <p className="ptext">
+                        2.Click on your username and select settings from the
+                        dropdown menu.
+                      </p>
+                      <p className="ptext">
+                        3.Go to the import and xport tab, then click export your
+                        data. Save the ratings.csv file somwhere convenient like
+                        your desktop or downloads folder.
+                      </p>
+                      <p className="ptext">
+                        4.Click to browse or simply drop your .csv file below
+                      </p>
+                    </div>
                 </div>
                 {/* END  DboxLeft*/}
               </div>
@@ -93,19 +94,21 @@ const DataUpload = ({ userid, uploadAction, isUploading }) => {
               <div id="myDropdownR" className="dropdown-content">
                 <div className="DboxRight">
                   <img src={imdbLogo} alt="IMDb Logo" />
-                  <p className="ptext">1.Log in to IMDb</p>
-                  <p className="ptext">
-                    2.Click on your username and select YOUR RATINGS fromthe
-                    dropdown menu.
-                  </p>
-                  <p className="ptext">
-                    3.Click on the icon and select Export. Save the ratings.csv
-                    file somwhere convenient like your desktop or downloads
-                    folder.
-                  </p>
-                  <p className="ptext">
+                  <div>
+                    <p className="ptext">1.Log in to IMDb</p>
+                    <p className="ptext">
+                      2.Click on your username and select your ratings fromthe
+                      dropdown menu.
+                    </p>
+                    <p className="ptext">
+                      3.Click on the icon and select Export. Save the ratings.csv
+                      file somwhere convenient like your desktop or downloads
+                      folder.
+                    </p>
+                    <p className="ptext">
                     4.Click to browse or simply drop your .csv file below
-                  </p>
+                    </p>
+                  </div>
                 </div>
                 {/* END DboxRight*/}
               </div>
@@ -116,6 +119,8 @@ const DataUpload = ({ userid, uploadAction, isUploading }) => {
           {/* END DboxContainer */}
 
           {/* ///////////////UPLOAD FILE //////////////////// */}
+          <div className='empty'></div>
+          
           <div className="UploadContainer">
             <div className="inputholder">
               <input
@@ -129,12 +134,10 @@ const DataUpload = ({ userid, uploadAction, isUploading }) => {
             </div>
           </div>
           <div className="textholder2">
-            <h5>
-              Groa values your privacy strives to be transparent to all users.
-              <br />
-              Your data will be kept strictly confidential-you're the only one
-              who will be able to view or access it.
-            </h5>
+            <p>
+              We value your privacy and strive to be transparent. Your data
+              is kept strickly confidental: only you can view or acess it.
+            </p>
           </div>
         </div>
       </div>
