@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { loginAction } from "../../store/actions/loginAction";
+import { loginAction } from "../../store/actions";
 import GroaLogo from "../auth/Groa-logo-B2AA.png";
 import { ifDev } from "../../utils/removeAttribute.js";
 import LoginNavLinks from "../layout/nav-layouts/LoginNavLinks.js";
