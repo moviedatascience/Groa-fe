@@ -83,18 +83,17 @@ const DataUpload = ({ userid, uploadAction, isUploading }) => {
                 <div className="DboxLeft">
                     {/* <img src={letterboxdLogo} alt="Letterboxd Logo" /> */}
                     <div>
-                      <p className="ptext">1. Log in to Letterboxd</p>
+                      <p className="ptext">1. Log in to Letterboxd.</p>
                       <p className="ptext">
-                        2. Click on your username and select settings from the
+                        2. Click on your username and select Settings from the
                         dropdown menu.
                       </p>
                       <p className="ptext">
-                        3. Go to the import and xport tab, then click export your
-                        data. Save the ratings.csv file somwhere convenient like
-                        your desktop or downloads folder.
+                        3. Navigate to the Import & Export tab and select
+                        Export Your Data.
                       </p>
                       <p className="ptext">
-                        4. Click to browse or simply drop your .csv file below
+                        4. Tap to browse and attach the .csv file below.
                       </p>
                     </div>
                 </div>
