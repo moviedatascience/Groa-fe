@@ -68,10 +68,11 @@ font-weight: 500;
 
 
     @media only screen and (max-width: 500px) {
-    
+      
       .DboxLeft{
       display: flex;
       width:  360px;
+      height: 300px; 
       // border: 2px solid purple;
           img{
             width:  100px;
@@ -98,7 +99,7 @@ font-weight: 500;
   position: relative;
   // display: inline-block;
   flex-direction: column;
-  border: 2px solid blue;
+
   @media only screen and (max-width: 500px) {
     display: flex;
     flex-direction: column;
@@ -156,7 +157,6 @@ font-weight: 500;
 .dropdown-content2 {
   display: block;
   height: 290px;
-  // position: absolute;
   position: relative;
   padding-bottom: 30px;
   @media only screen and (max-width: 500px) {
@@ -167,7 +167,6 @@ font-weight: 500;
   @media only screen and (max-width: 375px) {
     display: block;
     height: 340px;
-    // position: absolute;
     position: relative;
     
   } 
