@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import successImg from "../../img/success.png";
+import successImg from "../../img/success_ 5.png";
 
 const Congrats = ({ userid }) => {
   return (
@@ -15,7 +15,7 @@ const Congrats = ({ userid }) => {
               <img src={successImg} alt="Success png" />
             </div>
             <button>
-              <Link to={`/${userid}/recommended`}>Go to Dashboard</Link>
+              <Link to={`/${userid}/recommended`} style={{color: "white",textDecoration: "none"}}>Go to Dashboard</Link>
             </button>
           </div>
         </div>
