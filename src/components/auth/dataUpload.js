@@ -51,7 +51,7 @@ const DataUpload = ({ userid, uploadAction, isUploading }) => {
           <div className="DboxContainer">
           
             <div className="dropdown">
-            {/* <img src={letterboxdLogo} alt="Letterboxd Logo" /> */}
+            <img  src={letterboxdLogo} alt="Letterboxd Logo" />
               <button
                 onClick={toggleInstructions}
                 data-test={ifDev("clickLetterBoxd")}
@@ -62,7 +62,7 @@ const DataUpload = ({ userid, uploadAction, isUploading }) => {
               <div id="myDropdownL" className="dropdown-content">
                 <div className="DboxLeft">
                  
-                    <img src={letterboxdLogo} alt="Letterboxd Logo" />
+                    {/* <img src={letterboxdLogo} alt="Letterboxd Logo" /> */}
                     <div>
                       <p className="ptext">1. Log in to Letterboxd</p>
                       <p className="ptext">
