@@ -34,6 +34,7 @@ class Navigation extends Component {
   };
 
   getNewRecommendations = (id) => {
+    // Gets new recommendations for account, if applicible
     this.props.recommendationAction(id)
   }
 

@@ -7,6 +7,7 @@ export const FETCHING_RECOMMENDED_SUCCESS = "FETCHING_RECOMMENDED_SUCCESS";
 export const FETCHING_RECOMMENDED_FAIL = "FETCHING_RECOMMENDED_FAIL";
 
 // RECOMMENDATIONS
+// this call requests new recommendations be inserted into the database, then returns latest
 export function recommendationAction(id) {
   return dispatch => {
     dispatch({
@@ -30,6 +31,7 @@ export function recommendationAction(id) {
   };
 }
 // RECOMMENDED
+// this call retrieves the latest recommendations in the database
 export function recommendedAction(id) {
   return dispatch => {
     dispatch({

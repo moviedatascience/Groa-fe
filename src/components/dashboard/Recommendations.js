@@ -15,6 +15,7 @@ function Recommendations({
   isUploading
 }) {
   useEffect(() => {
+    // Returns the most recent recommendations from the database
     recommendedAction(userid);
   }, [userid, recommendedAction, recommendations, isUploading]);
 
