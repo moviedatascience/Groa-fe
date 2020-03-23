@@ -15,7 +15,10 @@ const DataUpload = ({ userid, uploadAction, isUploading }) => {
 
   const toggleInstructions = (window.onclick = function(event) {
     const dropdowns = document.getElementsByClassName("dropdown-content");
+    const dropdowns2 = document.getElementsByClassName("dropdown-content2");
     var i;
+    
+  
     for (i = 0; i < dropdowns.length; i++) {
       let openDropdown = dropdowns[i];
       if (openDropdown.classList.contains("show")) {
@@ -24,8 +27,22 @@ const DataUpload = ({ userid, uploadAction, isUploading }) => {
     }
     if (event.target.matches(".dropbtn")) {
       event.target.nextSibling.classList.toggle("show");
+    } 
+    //
+    for (i = 0; i < dropdowns2.length; i++) {
+      let openDropdown2 = dropdowns2[i];
+      if (openDropdown2.classList.contains("show2")) {
+        openDropdown2.classList.remove("show2");
+      }
     }
+    if (event.target.matches(".dropbtn")) {
+      event.target.nextSibling.classList.toggle("show2");
+      event.target.nextSibling.nextSibling.classList.toggle("show2");
+    } 
   });
+
+
+
   const handleChange = e => {
     let data = new FormData();
     data.append("movies", e.target.files[0], e.target.files[0].name);
@@ -51,7 +68,7 @@ const DataUpload = ({ userid, uploadAction, isUploading }) => {
           <div className="DboxContainer">
           
             <div className="dropdown">
-            <img  src={letterboxdLogo} alt="Letterboxd Logo" />
+              <img  src={letterboxdLogo} alt="Letterboxd Logo" />
               <button
                 onClick={toggleInstructions}
                 data-test={ifDev("clickLetterBoxd")}
@@ -59,9 +76,11 @@ const DataUpload = ({ userid, uploadAction, isUploading }) => {
               >
                 LetterBoxd Instructions 
               </button>
+              
+              
               <div id="myDropdownL" className="dropdown-content">
+              
                 <div className="DboxLeft">
-                 
                     {/* <img src={letterboxdLogo} alt="Letterboxd Logo" /> */}
                     <div>
                       <p className="ptext">1. Log in to Letterboxd</p>
@@ -82,6 +101,8 @@ const DataUpload = ({ userid, uploadAction, isUploading }) => {
                 {/* END  DboxLeft*/}
               </div>
               {/* END dropdown-content*/}
+          {/* EMPTY DIV - Postions Upload Box to bottom of screen */}
+              <div className="dropdown-content2"></div>
             </div>
             {/* END DROPDOWN */}
 
@@ -121,7 +142,7 @@ const DataUpload = ({ userid, uploadAction, isUploading }) => {
           {/* END DboxContainer */}
 
           {/* ///////////////UPLOAD FILE //////////////////// */}
-          <div className='empty'></div>
+          {/* <div className='empty'></div> */}
           
           <div className="UploadContainer">
             <div className="inputholder">
