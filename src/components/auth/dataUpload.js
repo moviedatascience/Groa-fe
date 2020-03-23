@@ -49,31 +49,33 @@ const DataUpload = ({ userid, uploadAction, isUploading }) => {
           </div>
 
           <div className="DboxContainer">
+          
             <div className="dropdown">
+            {/* <img src={letterboxdLogo} alt="Letterboxd Logo" /> */}
               <button
                 onClick={toggleInstructions}
                 data-test={ifDev("clickLetterBoxd")}
                 className="dropbtn"
               >
-                Instructions LetterBoxd
+                LetterBoxd Instructions 
               </button>
               <div id="myDropdownL" className="dropdown-content">
                 <div className="DboxLeft">
                  
                     <img src={letterboxdLogo} alt="Letterboxd Logo" />
                     <div>
-                      <p className="ptext">1.Log in to Letterboxd</p>
+                      <p className="ptext">1. Log in to Letterboxd</p>
                       <p className="ptext">
-                        2.Click on your username and select settings from the
+                        2. Click on your username and select settings from the
                         dropdown menu.
                       </p>
                       <p className="ptext">
-                        3.Go to the import and xport tab, then click export your
+                        3. Go to the import and xport tab, then click export your
                         data. Save the ratings.csv file somwhere convenient like
                         your desktop or downloads folder.
                       </p>
                       <p className="ptext">
-                        4.Click to browse or simply drop your .csv file below
+                        4. Click to browse or simply drop your .csv file below
                       </p>
                     </div>
                 </div>
@@ -83,13 +85,13 @@ const DataUpload = ({ userid, uploadAction, isUploading }) => {
             </div>
             {/* END DROPDOWN */}
 
-            <div className="dropdown">
+            {/* <div className="dropdown">
               <button
                 onClick={toggleInstructions}
                 data-test={ifDev("clickIMDb")}
                 className="dropbtn"
               >
-                Instructions IMDb
+                IMDb Instructions 
               </button>
               <div id="myDropdownR" className="dropdown-content">
                 <div className="DboxRight">
@@ -109,11 +111,11 @@ const DataUpload = ({ userid, uploadAction, isUploading }) => {
                     4.Click to browse or simply drop your .csv file below
                     </p>
                   </div>
-                </div>
+                </div> */}
                 {/* END DboxRight*/}
-              </div>
+              {/* </div> */}
               {/* END dropdown-content*/}
-            </div>
+            {/* </div> */}
             {/* END DROPDOWN */}
           </div>
           {/* END DboxContainer */}
@@ -135,7 +137,7 @@ const DataUpload = ({ userid, uploadAction, isUploading }) => {
           </div>
           <div className="textholder2">
             <p>
-              We value your privacy and strive to be transparent. Your data
+              We value your privacy and strive to be transparent. Your data<p/>
               is kept strickly confidental: only you can view or acess it.
             </p>
           </div>
