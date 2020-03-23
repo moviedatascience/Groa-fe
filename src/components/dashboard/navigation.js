@@ -2,11 +2,13 @@ import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
 import { loginAction } from "../../store/actions/loginAction";
+import { recommendationAction } from "../../store/actions/recommendationActions";
 import {
   faSearch,
   faUserCircle,
   faAngleDown,
-  faBars
+  faBars,
+  faSyncAlt
 } from "@fortawesome/free-solid-svg-icons";
 import { faBell, faQuestionCircle } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -20,6 +22,7 @@ class Navigation extends Component {
     };
     this.handleChange = this.handleChange.bind(this);
     this.logout = this.logout.bind(this);
+    this.getNewRecommendations = this.getNewRecommendations.bind(this);
   }
 
   handleChange = e => {
@@ -29,6 +32,10 @@ class Navigation extends Component {
   logout = () => {
     localStorage.removeItem("token");
   };
+
+  getNewRecommendations = (id) => {
+    this.props.recommendationAction(id)
+  }
 
   render() {
     return (
@@ -89,6 +96,11 @@ class Navigation extends Component {
               Explore
             </NavLink>
           </div>
+          
+          <button className="recommendations-button" onClick={()=>this.getNewRecommendations(this.props.userid)}>
+              <FontAwesomeIcon className="sync-icon" icon={faSyncAlt} />
+                <i className="fas fa-sync"></i> Update your recs
+          </button>
 
           <div className="searchContainer  hidden">
             <FontAwesomeIcon className="search-icon fa-icons" icon={faSearch} />
@@ -133,4 +145,5 @@ const mapStateToProps = state => {
     userid: state.login.userid
   };
 };
-export default connect(mapStateToProps, { loginAction })(Navigation);
+export default connect(mapStateToProps, { loginAction, recommendationAction,
+})(Navigation);
