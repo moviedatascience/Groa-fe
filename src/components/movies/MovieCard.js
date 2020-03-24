@@ -1,12 +1,27 @@
 import React, {useState} from "react";
+import { connect } from "react-redux";
+import { ratingAction } from "../../store/actions";
 import Stars from "@material-ui/lab/Rating";
 
 // more fields will be appearing according to the Figma file
-export default function MovieCard({ name, year, image}) {
-  
-  const [value, setValue] = useState(0);
+function MovieCard({ userid, name, year, image, ratingAction }) {
+  const [rating, setRating] = useState(0);
 
+  let newRating = {
+    name: name,
+    year: year,
+    rating: rating,
+  }
 
+  const handleChange = (event, newValue) => {
+    /* Sets rating for the star value */
+    setRating(newValue);
+    /* Sets rating for the POST request */
+    newRating = {
+      ...newRating, rating: newValue
+    }
+    ratingAction(userid, newRating)
+  }
 
   return (
     <div data-test="box" className="box">
@@ -19,16 +34,21 @@ export default function MovieCard({ name, year, image}) {
         <Stars data-test="star"
         precision={0.5}
           name={name}
-          value={value}
-          onChange={(event, newValue) => {
-            setValue(newValue);
-          }}
+          value={rating}
+          onChange={handleChange}
         />
          
-        <p>{value}</p>
+        <p>{rating}</p>
 
   
       </div>
     </div>
   );
 }
+const mapStateToProps = state => {
+  return {
+    userid: state.login.userid,
+    errorStatus: state.rating.error
+  };
+};
+export default connect(mapStateToProps, { ratingAction })(MovieCard);
