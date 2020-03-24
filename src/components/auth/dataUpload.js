@@ -74,8 +74,7 @@ const DataUpload = ({ userid, uploadAction, isUploading }) => {
               <button
                 onClick={toggleInstructions}
                 data-test={ifDev("clickLetterBoxd")}
-                className="dropBtn centerBtn"
-                
+                className="dropBtn centerBtn" 
               >
                 Show Letterboxd Instructions
               </button>
@@ -83,16 +82,16 @@ const DataUpload = ({ userid, uploadAction, isUploading }) => {
               <div id="myDropdownL" className="dropdown-content">
                 <div className="DboxLeft">
                     <div>
-                      <p className="ptext">1. Log in to Letterboxd.</p>
-                      <p className="ptext">
+                      <p>1. Log in to Letterboxd.</p>
+                      <p>
                         2. Click on your username and select Settings from the
                         dropdown menu.
                       </p>
-                      <p className="ptext">
+                      <p>
                         3. Navigate to the Import & Export tab and select
                         Export Your Data.
                       </p>
-                      <p className="ptext">
+                      <p>
                         4. Tap to browse and attach the .csv file below.
                       </p>
                     </div>
@@ -118,17 +117,17 @@ const DataUpload = ({ userid, uploadAction, isUploading }) => {
                 <div className="DboxRight">
                   <img src={imdbLogo} alt="IMDb Logo" />
                   <div>
-                    <p className="ptext">1.Log in to IMDb</p>
-                    <p className="ptext">
+                    <p>1.Log in to IMDb</p>
+                    <p>
                       2.Click on your username and select your ratings fromthe
                       dropdown menu.
                     </p>
-                    <p className="ptext">
+                    <p>
                       3.Click on the icon and select Export. Save the ratings.csv
                       file somwhere convenient like your desktop or downloads
                       folder.
                     </p>
-                    <p className="ptext">
+                    <p>
                     4.Click to browse or simply drop your .csv file below
                     </p>
                   </div>
@@ -155,7 +154,7 @@ const DataUpload = ({ userid, uploadAction, isUploading }) => {
             </div>
           </div>
           <div className="textholder2">
-            <p>
+            <p className='ptext'>
               We value your privacy and strive to be transparent. Your data<p/>
               is kept strickly confidental: only you can view or acess it.
             </p>

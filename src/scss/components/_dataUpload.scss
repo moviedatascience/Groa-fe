@@ -53,7 +53,11 @@
 }
 
 .ptext{
-font-weight: 500;
+  font-size: 14px;
+  @media only screen and (max-width: 375px) {
+    padding-top: 25px;
+    font-size: 10px;
+  }
 }
 
 .DboxContainer{
@@ -146,9 +150,7 @@ font-weight: 500;
 
 // SIZE 500 or less
   @media only screen and (max-width: 500px) {
-    display: flex;
-    flex-direction: column;
-
+    
     .dropBtn {
       width: 197px;
       height: 80px;
@@ -236,7 +238,6 @@ font-weight: 500;
             margin-top: 25px;
             height: 50px;  
         }
-          
       }
     }
 }
