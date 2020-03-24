@@ -15,32 +15,31 @@ const DataUpload = ({ userid, uploadAction, isUploading }) => {
 
   const toggleInstructions = (window.onclick = function(event) {
     const dropdowns = document.getElementsByClassName("dropdown-content");
-    const dropdowns2 = document.getElementsByClassName("dropdown-content2");
+    const dropdowns2 = document.getElementsByClassName("dropdown-content-Empty");
     var i;
     
-  
     for (i = 0; i < dropdowns.length; i++) {
       let openDropdown = dropdowns[i];
       if (openDropdown.classList.contains("show")) {
         openDropdown.classList.remove("show");
       }
     }
-    if (event.target.matches(".dropbtn")) {
+    if (event.target.matches(".dropBtn")) {
       event.target.nextSibling.classList.toggle("show");
+    
     } 
-    //
     for (i = 0; i < dropdowns2.length; i++) {
       let openDropdown2 = dropdowns2[i];
       if (openDropdown2.classList.contains("show2")) {
         openDropdown2.classList.remove("show2");
       }
     }
-    if (event.target.matches(".dropbtn")) {
+    if (event.target.matches(".dropBtn")) {
       event.target.nextSibling.classList.toggle("show2");
       event.target.nextSibling.nextSibling.classList.toggle("show2");
+     
     } 
   });
-
 
 
   const handleChange = e => {
@@ -60,28 +59,29 @@ const DataUpload = ({ userid, uploadAction, isUploading }) => {
             <h1>Already rated movies elsewhere?</h1>
             <h3>
               Groa lets you easily upload your ratings from
-              <br />
-              either LetterBoxd or IMDb:
             </h3>
+            <h3>
+            either LetterBoxd or IMDb:
+            </h3>
+           
           </div>
 
           <div className="DboxContainer">
           
             <div className="dropdown">
-              <img  src={letterboxdLogo} alt="Letterboxd Logo" />
+              
+              <img  className="centerBtn" src={letterboxdLogo} alt="Letterboxd Logo" />
               <button
                 onClick={toggleInstructions}
                 data-test={ifDev("clickLetterBoxd")}
-                className="dropbtn"
+                className="dropBtn centerBtn"
+                
               >
-                LetterBoxd Instructions 
+                Show Letterboxd Instructions
               </button>
-              
-              
+
               <div id="myDropdownL" className="dropdown-content">
-              
                 <div className="DboxLeft">
-                    {/* <img src={letterboxdLogo} alt="Letterboxd Logo" /> */}
                     <div>
                       <p className="ptext">1. Log in to Letterboxd.</p>
                       <p className="ptext">
@@ -101,10 +101,11 @@ const DataUpload = ({ userid, uploadAction, isUploading }) => {
               </div>
               {/* END dropdown-content*/}
           {/* EMPTY DIV - Postions Upload Box to bottom of screen */}
-              <div className="dropdown-content2"></div>
+              <div className="dropdown-content-Empty"></div>
             </div>
             {/* END DROPDOWN */}
 
+  {/* RIGHT SIDE DIV - IMDB UPLOAD */}
             {/* <div className="dropdown">
               <button
                 onClick={toggleInstructions}
@@ -141,8 +142,6 @@ const DataUpload = ({ userid, uploadAction, isUploading }) => {
           {/* END DboxContainer */}
 
           {/* ///////////////UPLOAD FILE //////////////////// */}
-          {/* <div className='empty'></div> */}
-          
           <div className="UploadContainer">
             <div className="inputholder">
               <input
