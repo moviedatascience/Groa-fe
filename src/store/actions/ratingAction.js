@@ -12,6 +12,7 @@ export function ratingAction(id, rating) {
     axiosWithAuth()
     .post(`/${id}/add-movie-rating`, rating)
     .then(res => {
+      console.log(res)
         dispatch({
             type: ADDING_RATING_SUCCESS,
             payload: res.data
