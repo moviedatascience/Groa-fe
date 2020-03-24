@@ -59,10 +59,9 @@ const DataUpload = ({ userid, uploadAction, isUploading }) => {
             <h1>Already rated movies elsewhere?</h1>
             <h3>
               Groa lets you easily upload your ratings from
+              either LetterBoxd or IMDb:
             </h3>
-            <h3>
-            either LetterBoxd or IMDb:
-            </h3>
+           
            
           </div>
 

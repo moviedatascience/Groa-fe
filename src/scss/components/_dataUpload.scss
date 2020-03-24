@@ -20,34 +20,39 @@
         }
 
         @media only screen and (max-width: 500px) {
-
+          text-align: center;
+          padding-top: 25px;
           h1{
             display: flex;
             justify-content: center;
-            font-size: 150%;
+            font-size: 180%;
             margin-top: 4%;
+           
           }
 
           h2,  h3 {
             margin-top: 15px;
             display: flex;
             justify-content: center;
+            padding: 0 35px 0 35px; 
           }
         }     
         // PHONE IPHONE X (10)
         @media only screen and (max-width: 375px) {
-          text-align: center;
+        
           h1{
             display: flex;
             justify-content: center;
             font-size: 180%;
             padding: 0 50px 0 50px; 
+           
           }
 
           h2,  h3 {
-            margin-top: 15px;
+            margin-top: 25px;
             display: flex;
             justify-content: center;
+            padding: 0 13px 0 13px; 
           }
         }   
 }
@@ -163,13 +168,21 @@
       cursor: pointer;
       outline: inherit;
     }
-      img{
+
+    .dropdown-content {
+      height: 280px;
+    }
+    img{
         width:  100px;
         height: auto;
       } 
   }
 
-
+  @media only screen and (max-width: 375px) {
+      .dropdown-content {
+      height: 320px;
+    }
+  }
 
 
 }
@@ -178,22 +191,18 @@
 //EMPTY DIV - Postions Upload Box to bottom of screen
 .dropdown-content-Empty {
   display: block;
-  height: 280px;
+  height: 310px;
   position: relative;
-  padding-bottom: 30px;
   @media only screen and (max-width: 500px) {
     display: block;
-    height: 330px;
+    height: 280px;
     position: relative;
   } 
   @media only screen and (max-width: 375px) {
     display: block;
-    // height: 340px;
-    height: 280px;
+    height: 320px;
     position: relative;
-    
-  } 
-
+  }
 }
 
 .show2 {
