@@ -4,6 +4,7 @@
   .navContainer {
     display: flex;
     justify-content: space-between;
+    align-items: center;
 
     .Bars {
       padding-top: 5px;
@@ -38,7 +39,13 @@
         }
       }
     }
-
+    button {
+      white-space: nowrap;
+      font-size: 1rem;
+      padding: 0.6rem 1.2rem;
+      margin: 0 5%;
+      border-radius: 5px;
+    }
     .searchContainer {
       width: 11.5%;
       display: flex;
