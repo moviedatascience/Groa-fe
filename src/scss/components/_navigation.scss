@@ -19,12 +19,13 @@
       width: 60%;
       display: flex;
       justify-content: space-evenly;
-      padding-top: 7px;
-
+      
       .Groa-NavLink {
-        color: white;
-        font-weight: 600;
-        text-decoration: none;
+    
+          img{
+            width: 120px;
+            height: auto;
+          }
 
         &:hover {
           color: rebeccapurple;
@@ -34,6 +35,7 @@
       .NavLink {
         color: white;
         text-decoration: none;
+        padding-top: 1%;
         &:hover {
           color: rebeccapurple;
           text-decoration: underline;

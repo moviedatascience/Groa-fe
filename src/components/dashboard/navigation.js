@@ -13,6 +13,7 @@ import {
 import { faBell, faQuestionCircle } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { ifDev } from "../../utils/removeAttribute.js";
+import GroaLogo from "../auth/Groa-logo-B2AA.png";
 
 class Navigation extends Component {
   constructor(props) {
@@ -52,7 +53,8 @@ class Navigation extends Component {
               className="Groa-NavLink"
               to={`/${this.props.userid}/recommended`}
             >
-              Groa
+              {/* Groa */}
+              <img src={GroaLogo} alt="Groa Logo" />
             </NavLink>
 
             <NavLink
