@@ -3,7 +3,7 @@
     background: black;
     display: flex;
     flex-direction: column;
-    color: black;
+    color: white;
     h2 {
       font-size: 24px;
       text-align: center;
@@ -13,18 +13,17 @@
         width: 70%;
         margin: 3% auto;
         display: flex;
-        // flex-direction: row;
+        flex-direction: row;
         flex-wrap: wrap;
    
         .box {
            
           border-radius: 10px;
           background: white;
-        //   width: 100%;
+          width: 100%;
           max-width: 347px;
           height: auto;
-        //   margin: 3% auto;
-          margin: 1%;
+          margin: 3% auto;
           display: flex;
           flex-direction: row;
           img {
@@ -42,10 +41,7 @@
             p {
               font-size: 1.1rem;
             }
-          // HIDE STARS
-          // .hidestars{
-          //   display: none;
-          // }
+         
         }
       }
     }

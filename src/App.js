@@ -54,9 +54,8 @@ function App() {
               "/:userid/trending",
               "/:userid/watchlist",
               "/:userid/explore",
-              "/:userid/upload"
-              ,
-              "/ratings"
+              "/:userid/upload",
+              "/:userid/ratings"
             ]}
             component={Navigation}
           />
@@ -71,7 +70,7 @@ function App() {
           <Route exact path={["/", "/register"]} component={Register} />
           {/* this could be a modal */}
           {/* <Route path="/congrats" component={Congrats} /> */}
-          <Route exact path="/:userid/ratings" component={Ratings}/> 
+          <Route exact path="/:userid/ratings" component={Ratings}/>
         </div>
       </Router>
     </Provider>

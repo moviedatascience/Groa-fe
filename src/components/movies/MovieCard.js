@@ -38,7 +38,7 @@ function MovieCard({ userid, name, year, image, ratingAction, rated }) {
           onChange={handleChange}
         />
          
-        <p>{rating}</p>
+        <p>{rated ? rated : rating}</p>
         </div>
   
       </div>
