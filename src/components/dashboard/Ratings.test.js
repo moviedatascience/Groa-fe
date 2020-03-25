@@ -22,7 +22,7 @@ it("renders Ratings with array has length.", async () => {
       success: false,
       error: ""
     },
-    recommendations: {
+    rating: {
       movies: [
         { Title: "The Godfather", Year: "1972" },
         { Title: "The Wizard of Oz", Year: "1939" },
@@ -47,7 +47,7 @@ it("renders Ratings with array has length.", async () => {
   expect(component.length).toBe(1);
 });
 
-it("renders LoadingScreen when recommendations array is empty", () => {
+it("renders LoadingScreen when ratings array is empty", () => {
   let store = mockStore({
     login: {
       userid: 4
@@ -56,7 +56,7 @@ it("renders LoadingScreen when recommendations array is empty", () => {
       success: false,
       error: ""
     },
-    recommendations: {
+    rating: {
       isFetching: true,
       movies: [],
       error: ""

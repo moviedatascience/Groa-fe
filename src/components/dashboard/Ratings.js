@@ -12,23 +12,14 @@ function Ratings({
     ratings,
     userid,
     getRatingAction,
-    recommendations
-   
   }) {
 
-    // useEffect(()=> {
-    //     axiosWithAuth()
-    // .get(`/${id}/get-ratings`)
-    // .then(res => {
-    //   console.log(res, "res!")
-    // })}
     useEffect(() => {
-      // Returns the most recent recommendations from the database
+      // Returns the ratings
       getRatingAction(userid);
     }, []);
-    console.log(ratings, "ratings!")
     if (isFetching) return  <LoadingScreen />;
- 
+
     else
     
       return (
@@ -72,8 +63,6 @@ function Ratings({
   const mapStateToProps = state => {
       
     return {
-        // recommendations: state.recommendations.movies,
-        // isFetching: state.recommendations.isFetching,
       userid: state.login.userid,
       isFetching: state.rating.isFetching,
       ratings: state.rating.movies,
