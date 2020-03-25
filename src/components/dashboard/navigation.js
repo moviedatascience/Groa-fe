@@ -53,7 +53,7 @@ class Navigation extends Component {
               className="Groa-NavLink"
               to={`/${this.props.userid}/recommended`}
             >
-              {/* Groa */}
+              
               <img src={GroaLogo} alt="Groa Logo" />
             </NavLink>
 

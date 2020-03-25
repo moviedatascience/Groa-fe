@@ -19,7 +19,9 @@
       width: 60%;
       display: flex;
       justify-content: space-evenly;
-      
+      a.active{
+        border-bottom: 3px solid #00E6BC;
+      }
       .Groa-NavLink {
     
           img{
@@ -36,11 +38,13 @@
         color: white;
         text-decoration: none;
         padding-top: 1%;
+    
         &:hover {
           color: rebeccapurple;
           text-decoration: underline;
         }
       }
+       
     }
     button {
       white-space: nowrap;
