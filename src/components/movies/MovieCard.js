@@ -4,7 +4,7 @@ import { ratingAction } from "../../store/actions";
 import Stars from "@material-ui/lab/Rating";
 
 // more fields will be appearing according to the Figma file
-function MovieCard({ userid, name, year, image, ratingAction }) {
+function MovieCard({ userid, name, year, image, ratingAction, rated }) {
   const [rating, setRating] = useState(0);
 
   let newRating = {
@@ -34,7 +34,7 @@ function MovieCard({ userid, name, year, image, ratingAction }) {
         <Stars data-test="star"
           precision={0.5}
           name={name}
-          value={rating}
+          value={rated ? rated : rating }
           onChange={handleChange}
         />
          

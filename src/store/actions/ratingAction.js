@@ -43,9 +43,10 @@ export function getRatingAction(id) {
     axiosWithAuth()
     .get(`/${id}/get-ratings`)
     .then(res => {
+      console.log(res, "res!")
         dispatch({
             type: FETCHING_RATINGS_SUCCESS,
-            payload: res.data.recommendation_json // RATING JSON HERE
+            payload: res.data
         })
     })
     .catch(err => {
