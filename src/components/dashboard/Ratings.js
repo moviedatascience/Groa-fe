@@ -26,7 +26,7 @@ function Ratings({
       return (
         <div
           className="container ratings"
-          data-test={ifDev("recommendations-component")}
+          data-test={ifDev("ratings-component")} 
         >
           <h2>Your Ratings</h2>
           <div className="movie-cards">
