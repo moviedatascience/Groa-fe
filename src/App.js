@@ -9,6 +9,8 @@ import Register from "./components/auth/Register";
 import Login from "./components/auth/login";
 import DataUpload from "./components/auth/dataUpload";
 
+import Ratings from './components/dashboard/Ratings';
+
 // for testing
 import { ifDev } from "./utils/removeAttribute.js";
 
@@ -53,6 +55,8 @@ function App() {
               "/:userid/watchlist",
               "/:userid/explore",
               "/:userid/upload"
+              ,
+              "/ratings"
             ]}
             component={Navigation}
           />
@@ -67,6 +71,7 @@ function App() {
           <Route exact path={["/", "/register"]} component={Register} />
           {/* this could be a modal */}
           {/* <Route path="/congrats" component={Congrats} /> */}
+          <Route exact path="/ratings" component={Ratings}/>
         </div>
       </Router>
     </Provider>
