@@ -3,6 +3,7 @@ import { ratingAction } from "./ratingAction.js"
 import { registerAction } from "./registerAction.js"
 import { recommendationAction, recommendedAction } from "./recommendationActions.js"
 import { uploadAction } from "./uploadAction.js"
+import { addToWatchlistAction, getWatchlistAction } from "./watchlistActions.js"
 
 export { 
     loginAction, 
@@ -10,5 +11,7 @@ export {
     registerAction,
     recommendationAction,
     recommendedAction,
-    uploadAction
+    uploadAction,
+    addToWatchlistAction,
+    getWatchlistAction
 };
