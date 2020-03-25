@@ -30,16 +30,16 @@ function MovieCard({ userid, name, year, image, ratingAction }) {
       <div className="text-container">
         <h3>{name}</h3>
         <p>{year}</p>
-
+      <div className="hidestars">
         <Stars data-test="star"
-        precision={0.5}
+          precision={0.5}
           name={name}
           value={rating}
           onChange={handleChange}
         />
          
         <p>{rating}</p>
-
+        </div>
   
       </div>
     </div>

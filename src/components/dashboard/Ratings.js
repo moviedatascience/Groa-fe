@@ -40,8 +40,8 @@ function Ratings({
               return (
                 <MovieCard
                   key={index}
-                  name={x.Title}
-                  year={x.Year}
+                //   name={x.Title}
+                //   year={x.Year}
                   image={
                     !posterURI ||
                     posterURI === "None" ||

@@ -71,7 +71,7 @@ function App() {
           <Route exact path={["/", "/register"]} component={Register} />
           {/* this could be a modal */}
           {/* <Route path="/congrats" component={Congrats} /> */}
-          <Route exact path="/ratings" component={Ratings}/>
+          <Route exact path="/ratings" component={Ratings}/> 
         </div>
       </Router>
     </Provider>

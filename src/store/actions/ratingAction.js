@@ -41,7 +41,7 @@ export function getRatingAction(id) {
       type: FETCHING_RATINGS_START
     });
     axiosWithAuth()
-    .get(`/${id}/ratings`)
+    .get(`/${id}/get-ratings`)
     .then(res => {
         dispatch({
             type: FETCHING_RATINGS_SUCCESS,
