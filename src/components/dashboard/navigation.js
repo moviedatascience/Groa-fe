@@ -69,6 +69,13 @@ class Navigation extends Component {
               Recommended
             </NavLink>
 
+            <NavLink
+              className="NavLink"
+              to={`/${this.props.userid}/ratings`}
+            >
+              Ratings
+            </NavLink>
+
             {/* adding this here until all other nav functionality is added */}
             <NavLink className="NavLink" to={`/${this.props.userid}/upload`}>
               Upload Data
