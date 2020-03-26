@@ -2,7 +2,11 @@ import React, { useEffect } from "react";
 // tools
 import { connect } from "react-redux";
 import { ifDev } from "../../utils/removeAttribute.js";
-import { recommendedAction } from "../../store/actions/index.js";
+import {
+  recommendedAction,
+  recommendationAction,
+  toggleIsUploaded
+} from "../../store/actions/index.js";
 // children components
 import LoadingScreen from "../layout/LoadingScreen.js";
 import MovieCard from "../movies/MovieCard.js";
@@ -11,12 +15,19 @@ function Recommendations({
   isFetching,
   recommendations,
   userid,
-  recommendedAction
+  recommendedAction,
+  recommendationAction,
+  isUploaded
 }) {
   useEffect(() => {
+    // returns initial recommendations after uploading a file
+    if (isUploaded === true) {
+      recommendationAction(userid);
+      toggleIsUploaded();
+    }
     // Returns the most recent recommendations from the database
     recommendedAction(userid);
-  }, [recommendedAction, userid]);
+  }, [recommendedAction, userid, isUploaded, recommendationAction]);
 
   if (isFetching) return <LoadingScreen />;
   else
@@ -56,15 +67,17 @@ function Recommendations({
 }
 
 const mapStateToProps = state => {
-  console.log("COMPONENT STATE: ", state);
   return {
     userid: state.login.userid,
     isFetching: state.recommendations.isFetching,
     recommendations: state.recommendations.movies,
     recommendationsError: state.recommendations.error,
-    isUploading: state.upload.isUploading
+    isUploaded: state.upload.isUploaded
   };
 };
+
 export default connect(mapStateToProps, {
-  recommendedAction
+  recommendedAction,
+  recommendationAction,
+  toggleIsUploaded
 })(Recommendations);
