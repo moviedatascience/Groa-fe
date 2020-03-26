@@ -20,6 +20,9 @@ it("renders loading screen and displays a movie quote in a paragraph", () => {
     },
     recommendations: {
       isFetching: false
+    },
+    rating: {
+      isFetching: false
     }
   });
   const { container } = render(
