@@ -32,7 +32,14 @@ it("renders Ratings with array has length.", async () => {
     },
     upload: {
       isUploading: true
-    }
+    },
+    watchlist: {
+      movies: [],
+      isFetching: true
+    },
+    recommendations: {
+      isfetching: false,
+    },
   });
 
   const { container } = render(
@@ -56,6 +63,9 @@ it("renders LoadingScreen when ratings array is empty", () => {
       success: false,
       error: ""
     },
+    recommendations: {
+      isfetching: false,
+    },
     rating: {
       isFetching: true,
       movies: [],
@@ -63,6 +73,10 @@ it("renders LoadingScreen when ratings array is empty", () => {
     },
     upload: {
       isUploading: false
+    },
+    watchlist: {
+      movies: [],
+      isFetching: true
     }
   });
   const { container } = render(

@@ -41,13 +41,7 @@ it("renders DataUpload component", () => {
   expect(button.length).toBe(1);
 
   fireEvent.click(getByTestId(container, "clickLetterBoxd"));
-  component = getAllByText(container, "1.Log in to Letterboxd");
+  component = getAllByText(container, "4. Tap to browse and attach the .zip file below.");
   expect(component.length).toBe(1);
 
-  button = getAllByTestId(container, "clickIMDb");
-  expect(button.length).toBe(1);
-
-  fireEvent.click(getByTestId(container, "clickIMDb"));
-  component = getAllByText(container, "1.Log in to IMDb");
-  expect(component.length).toBe(1);
 });
