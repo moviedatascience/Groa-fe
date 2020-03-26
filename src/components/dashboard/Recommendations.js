@@ -2,10 +2,7 @@ import React, { useEffect } from "react";
 // tools
 import { connect } from "react-redux";
 import { ifDev } from "../../utils/removeAttribute.js";
-import {
-  recommendedAction,
-  recommendationAction
-} from "../../store/actions/index.js";
+import { recommendedAction } from "../../store/actions/index.js";
 // children components
 import LoadingScreen from "../layout/LoadingScreen.js";
 import MovieCard from "../movies/MovieCard.js";
@@ -14,11 +11,8 @@ function Recommendations({
   isFetching,
   recommendations,
   userid,
-  recommendedAction,
-  recommendationAction,
-  isUploading
+  recommendedAction
 }) {
-  console.log("recommendations: ", recommendations);
   useEffect(() => {
     // Returns the most recent recommendations from the database
     recommendedAction(userid);
@@ -72,6 +66,5 @@ const mapStateToProps = state => {
   };
 };
 export default connect(mapStateToProps, {
-  recommendedAction,
-  recommendationAction
+  recommendedAction
 })(Recommendations);
