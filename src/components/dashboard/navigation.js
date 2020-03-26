@@ -75,15 +75,6 @@ class Navigation extends Component {
               Upload Data
             </NavLink>
 
-            <NavLink
-              className="NavLink"
-              onClick={this.logout}
-              data-test={ifDev("logoutBtn")}
-              to="/login"
-            >
-              Logout
-            </NavLink>
-
             <NavLink className="NavLink" to={`/${this.props.userid}/watchlist`}>
               Watchlist
             </NavLink>
@@ -132,8 +123,20 @@ class Navigation extends Component {
             />
             <i className="far fa-user-circle"></i>
 
-            <FontAwesomeIcon className="angle-down-icon" icon={faAngleDown} />
-            <i className="far fa-angle-down"></i>
+            <div className="dropdown-hover">
+              <FontAwesomeIcon className="angle-down-icon" icon={faAngleDown} />
+              <i className="far fa-angle-down"></i>
+              <div className="dropdown-content">
+                <NavLink
+                className="NavLink"
+                onClick={this.logout}
+                data-test={ifDev("logoutBtn")}
+                to="/login"
+                >
+                  Logout
+               </NavLink>              
+               </div>
+             </div>
           </div>
         </div>
         {/* END navContainer */}

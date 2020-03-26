@@ -76,5 +76,32 @@
   .searchContainer.hidden {
     display: none;
   }
-  
+  .dropdown-hover {
+    display:flex;
+    flex-direction: column;
+    align-items: flex-end;
+    position: relative;
+    cursor: pointer;
+    .dropdown-content {
+      display: none;
+    }
+    &:hover {
+      .dropdown-content{
+        display: block;
+        position: absolute;
+        bottom: -15px;
+        .NavLink {
+          text-align: end;
+          color: white;
+          text-decoration: none;
+          font-size: 1.1rem;
+          &:hover {
+            color: white;
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+  }
+
 }
