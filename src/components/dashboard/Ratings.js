@@ -41,7 +41,7 @@ function Ratings({
                   key={index}
                   name={x.name}
                   year={x.year}
-                  rated={x.rating}
+                  rated={x.rating}z
                   image={
                     !posterURI ||
                     posterURI === "None" ||

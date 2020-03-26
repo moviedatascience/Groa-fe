@@ -10,7 +10,7 @@
 }
 
 // great to use on images or general containers you'd like to be responsive
-@mixin responsive-container($mwidth: 500px, $width: 100%, $height: auto) {
+@mixin responsive-container($mwidth: 500px, $height: auto, $width: 100%) {
   width: $width;
   max-width: $mwidth;
   height: $height;

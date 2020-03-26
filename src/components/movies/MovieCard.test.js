@@ -17,6 +17,9 @@ let store = mockStore({
     },
     rating: {
         error: ""
+    },
+    watchlist: {
+        movies: []
     }
 });
 
