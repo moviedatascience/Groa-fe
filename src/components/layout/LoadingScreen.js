@@ -3,7 +3,12 @@ import ReactLoading from "react-loading";
 import { connect } from "react-redux";
 import { ifDev } from "../../utils/removeAttribute.js";
 
-function LoadingScreen({ isUploading, isFetchingRecommendations, isFetchingWatchlist }) {
+function LoadingScreen({ 
+  isUploading, 
+  isFetchingRecommendations, 
+  isFetchingWatchlist,
+  isFetchingRatings 
+  }) {
   return (
     <div
       className="container loading-screen"
@@ -17,6 +22,9 @@ function LoadingScreen({ isUploading, isFetchingRecommendations, isFetchingWatch
       ) :
       isFetchingRecommendations ? (
         <h4>Loading recommendations...</h4>
+      ) : 
+      isFetchingRatings ? (
+        <h4>Loading ratings...</h4>
       ) : 
       null}
       <ReactLoading
@@ -39,7 +47,8 @@ const mapStateToProps = state => {
   return {
     isUploading: state.upload.isUploading,
     isFetchingWatchlist: state.watchlist.isFetching,
-    isFetchingRecommendations: state.recommendations.isFetching
+    isFetchingRecommendations: state.recommendations.isFetching,
+    isFetchingRatings: state.rating.isFetching
   };
 };
 

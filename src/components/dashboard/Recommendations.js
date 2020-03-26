@@ -17,7 +17,7 @@ function Recommendations({
   useEffect(() => {
     // Returns the most recent recommendations from the database
     recommendedAction(userid);
-  }, [userid, recommendedAction, recommendations, isUploading]);
+  }, [userid, recommendedAction, recommendations, isUploading, isFetching]);
 
   if (isFetching) return <LoadingScreen />;
   else
@@ -26,7 +26,6 @@ function Recommendations({
         className="container recommendations"
         data-test={ifDev("recommendations-component")}
       >
-        <h2>Your recommendations</h2>
         <div className="movie-cards">
           {recommendations.map((x, index) => {
             let posterURI = x["Poster URL"];

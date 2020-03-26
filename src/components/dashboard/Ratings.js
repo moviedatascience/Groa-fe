@@ -27,7 +27,6 @@ function Ratings({
           className="container ratings"
           data-test={ifDev("ratings-component")} 
         >
-          <h2>Your Ratings</h2>
           <div className="movie-cards">
             {ratings.map((x, index) => {
                 
