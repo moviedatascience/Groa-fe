@@ -7,8 +7,6 @@ export const FETCHING_RATINGS_START = "FETCHING_RATINGS_START";
 export const FETCHING_RATINGS_SUCCESS = "FETCHING_RATINGS_SUCCESS";
 export const FETCHING_RATINGS_FAIL = "FETCHING_RATINGS_FAIL";
 
-
-
 // RATINGS
 export function ratingAction(id, rating) {
   return dispatch => {
@@ -16,21 +14,20 @@ export function ratingAction(id, rating) {
       type: ADDING_RATING_START
     });
     axiosWithAuth()
-    .post(`/${id}/add-movie-rating`, rating)
-    .then(res => {
-      console.log(res)
+      .post(`/${id}/add-movie-rating`, rating)
+      .then(res => {
         dispatch({
-            type: ADDING_RATING_SUCCESS,
-            payload: res.data
-        })
-    })
-    .catch(err => {
+          type: ADDING_RATING_SUCCESS,
+          payload: res.data
+        });
+      })
+      .catch(err => {
         console.log("ERROR: ", err);
         dispatch({
           type: ADDING_RATING_FAIL,
           payload: err
         });
-    });
+      });
   };
 }
 
@@ -41,19 +38,19 @@ export function getRatingAction(id) {
       type: FETCHING_RATINGS_START
     });
     axiosWithAuth()
-    .get(`/${id}/get-ratings`)
-    .then(res => {
+      .get(`/${id}/get-ratings`)
+      .then(res => {
         dispatch({
-            type: FETCHING_RATINGS_SUCCESS,
-            payload: res.data
-        })
-    })
-    .catch(err => {
+          type: FETCHING_RATINGS_SUCCESS,
+          payload: res.data
+        });
+      })
+      .catch(err => {
         console.log("ERROR: ", err);
         dispatch({
           type: FETCHING_RATINGS_FAIL,
           payload: err
         });
-    });
+      });
   };
 }
