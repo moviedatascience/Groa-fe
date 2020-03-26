@@ -35,7 +35,6 @@ function Watchlist({
         className="watchlist-container"
         data-test={ifDev("watchlist-component")}
       >
-        <h2>Watchlist</h2>
         <div className="movie-cards">
           {watchlist.map((movie, index) => {
             let posterURI = movie.poster_url;
