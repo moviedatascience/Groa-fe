@@ -32,12 +32,13 @@ class Navigation extends Component {
 
   logout = () => {
     localStorage.removeItem("token");
+    localStorage.removeItem("state");
   };
 
-  getNewRecommendations = (id) => {
+  getNewRecommendations = id => {
     // Gets new recommendations for account, if applicible
-    this.props.recommendationAction(id)
-  }
+    this.props.recommendationAction(id);
+  };
 
   render() {
     return (
@@ -49,9 +50,8 @@ class Navigation extends Component {
           </div>
 
           <div className="Links">
-              
             <img src={GroaLogo} alt="Groa Logo" />
-            
+
             <NavLink
               className="NavLink  hidden"
               to={`/${this.props.userid}/trending`}
@@ -66,10 +66,7 @@ class Navigation extends Component {
               Recommended
             </NavLink>
 
-            <NavLink
-              className="NavLink"
-              to={`/${this.props.userid}/ratings`}
-            >
+            <NavLink className="NavLink" to={`/${this.props.userid}/ratings`}>
               Ratings
             </NavLink>
 
@@ -87,10 +84,7 @@ class Navigation extends Component {
               Logout
             </NavLink>
 
-            <NavLink
-              className="NavLink"
-              to={`/${this.props.userid}/watchlist`}
-            >
+            <NavLink className="NavLink" to={`/${this.props.userid}/watchlist`}>
               Watchlist
             </NavLink>
 
@@ -101,10 +95,13 @@ class Navigation extends Component {
               Explore
             </NavLink>
           </div>
-          
-          <button className="recommendations-button" onClick={()=>this.getNewRecommendations(this.props.userid)}>
-              <FontAwesomeIcon className="sync-icon" icon={faSync} />
-                <i className="fas fa-sync"></i> Update your recs
+
+          <button
+            className="recommendations-button"
+            onClick={() => this.getNewRecommendations(this.props.userid)}
+          >
+            <FontAwesomeIcon className="sync-icon" icon={faSync} />
+            <i className="fas fa-sync"></i> Update your recs
           </button>
 
           <div className="searchContainer  hidden">
@@ -150,5 +147,6 @@ const mapStateToProps = state => {
     userid: state.login.userid
   };
 };
-export default connect(mapStateToProps, { loginAction, recommendationAction,
-})(Navigation);
+export default connect(mapStateToProps, { loginAction, recommendationAction })(
+  Navigation
+);
