@@ -30,7 +30,7 @@ function Ratings({
           <h2>Your Ratings</h2>
           <div className="movie-cards">
             {ratings.map((x, index) => {
-                console.log(x, "X")
+                
               let posterURI = x["poster_url"];
               let unsplashUrl =
                 "https://source.unsplash.com/collection/1736993/500x650";
