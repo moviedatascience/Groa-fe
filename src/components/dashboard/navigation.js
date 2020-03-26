@@ -66,14 +66,10 @@ class Navigation extends Component {
               Recommended
             </NavLink>
 
-            <NavLink className="NavLink" to={`/${this.props.userid}/ratings`}>
-              Ratings
-            </NavLink>
+       
 
             {/* adding this here until all other nav functionality is added */}
-            <NavLink className="NavLink" to={`/${this.props.userid}/upload`}>
-              Upload Data
-            </NavLink>
+          
 
             <NavLink className="NavLink" to={`/${this.props.userid}/watchlist`}>
               Watchlist
@@ -117,26 +113,40 @@ class Navigation extends Component {
             />
             <i className="far fa-question-circle  hidden"></i>
 
-            <FontAwesomeIcon
-              className="user-circle-icon  hidden"
-              icon={faUserCircle}
-            />
-            <i className="far fa-user-circle"></i>
-
+    
             <div className="dropdown-hover">
-              <FontAwesomeIcon className="angle-down-icon" icon={faAngleDown} />
-              <i className="far fa-angle-down"></i>
+              <FontAwesomeIcon
+                className="user-circle-icon"
+                icon={faUserCircle}
+              />
+              <i className="far fa-user-circle"></i>
               <div className="dropdown-content">
+                <NavLink 
+                  className="NavLink" to={`/${this.props.userid}/ratings`}
+                >
+                  Ratings
+                </NavLink>
+
+                <NavLink 
+                  className="NavLink" to={`/${this.props.userid}/upload`}
+                >
+                  Upload data
+                </NavLink>
+
                 <NavLink
                 className="NavLink"
                 onClick={this.logout}
                 data-test={ifDev("logoutBtn")}
                 to="/login"
                 >
-                  Logout
+                  Log out
                </NavLink>              
                </div>
              </div>
+
+             <FontAwesomeIcon className="angle-down-icon hidden" icon={faAngleDown} />
+              <i className="far fa-angle-down"></i>
+                
           </div>
         </div>
         {/* END navContainer */}
