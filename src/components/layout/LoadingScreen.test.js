@@ -14,6 +14,12 @@ it("renders loading screen and displays a movie quote in a paragraph", () => {
   let store = mockStore({
     upload: {
       isUploading: true
+    },
+    watchlist: {
+      isFetching: false
+    },
+    recommendations: {
+      isFetching: false
     }
   });
   const { container } = render(
