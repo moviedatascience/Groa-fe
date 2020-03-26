@@ -36,7 +36,6 @@ function Recommendations({
         className="container recommendations"
         data-test={ifDev("recommendations-component")}
       >
-        <h2>Your recommendations</h2>
         <div className="movie-cards">
           {recommendations.map((x, index) => {
             let posterURI = x["Poster URL"];

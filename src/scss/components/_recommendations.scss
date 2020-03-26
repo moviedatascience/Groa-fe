@@ -1,20 +1,9 @@
 .container.recommendations {
   font-family: $workSans;
-  background: linear-gradient(
-    to bottom,
-    black 0%,
-    rgba(0, 0, 0, 0.9),
-    rgba(0, 0, 0, 0.7),
-    rgba(0, 0, 0, 0.85)
-  );
+  background: $black;
   display: flex;
   flex-direction: column;
-  color: black;
-  h2 {
-    font-size: 24px;
-    text-align: center;
-    margin: 2% auto;
-  }
+  min-height: 100vh;
   .movie-cards {
     width: 70%;
     margin: 3% auto;
