@@ -10,6 +10,8 @@ import Login from "./components/auth/login";
 import DataUpload from "./components/auth/dataUpload";
 import Watchlist from "./components/dashboard/Watchlist.js";
 
+import Ratings from './components/dashboard/Ratings';
+
 // for testing
 import { ifDev } from "./utils/removeAttribute.js";
 
@@ -53,7 +55,8 @@ function App() {
               "/:userid/trending",
               "/:userid/watchlist",
               "/:userid/explore",
-              "/:userid/upload"
+              "/:userid/upload",
+              "/:userid/ratings"
             ]}
             component={Navigation}
           />
@@ -73,6 +76,7 @@ function App() {
           <Route exact path={["/", "/register"]} component={Register} />
           {/* this could be a modal */}
           {/* <Route path="/congrats" component={Congrats} /> */}
+          <PrivateRoute exact path="/:userid/ratings" component={Ratings}/>
         </div>
       </Router>
     </Provider>
