@@ -5,7 +5,7 @@ import Stars from "@material-ui/lab/Rating";
 import StarBorderIcon from '@material-ui/icons/StarBorder';
 
 // more fields will be appearing according to the Figma file
-function MovieCard({ userid, name, year, image, ratingAction, watchlist, addToWatchlistAction, removeFromWatchlistAction }) {
+function MovieCard({ userid, name, year, image, ratingAction, watchlist, addToWatchlistAction, removeFromWatchlistAction, rated }) {
   /* Used for the star rating */
   const [rating, setRating] = useState(0);
   /* Used for dynamically rendering the "Add to watchlist" button and if it's disabled */
@@ -66,7 +66,7 @@ function MovieCard({ userid, name, year, image, ratingAction, watchlist, addToWa
             />
           }
           name={name}
-          value={rating}
+          value={rated ? rated : rating }
           onChange={handleChange}
         />
       </div>
