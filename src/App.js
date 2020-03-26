@@ -8,6 +8,7 @@ import Navigation from "./components/dashboard/navigation.js";
 import Register from "./components/auth/Register";
 import Login from "./components/auth/login";
 import DataUpload from "./components/auth/dataUpload";
+import Watchlist from "./components/dashboard/Watchlist.js";
 
 // for testing
 import { ifDev } from "./utils/removeAttribute.js";
@@ -61,6 +62,11 @@ function App() {
             path="/:userid/recommended"
             component={Recommendations}
             data-test={ifDev("dash-component")}
+          />
+             <PrivateRoute
+            exact
+            path="/:userid/watchlist"
+            component={Watchlist}
           />
           <Route exact path="/:userid/upload" component={DataUpload} />
           <Route path="/login" component={Login} />

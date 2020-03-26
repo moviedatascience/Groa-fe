@@ -22,14 +22,17 @@
     flex-direction: row;
     flex-wrap: wrap;
     .box {
-      border-radius: 10px;
-      background: white;
+      border-radius: 5px;
+      overflow: hidden;
       width: 100%;
       max-width: 347px;
       height: auto;
       margin: 3% auto;
       display: flex;
-      flex-direction: row;
+      flex-direction: column;
+      .top-content {
+        display: flex;
+      }
       img {
         width: 100%;
         max-width: 164px;
@@ -38,12 +41,42 @@
       }
       .text-container {
         color: black;
+        background-color: $white;
         width: 100%;
-        max-width: 40%;
         height: auto;
-        margin: 1% auto;
+        padding: .5rem;
         p {
           font-size: 1.1rem;
+          padding: .5rem 0;
+        }
+      }
+      .action-panel {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        height: 100%;
+        width: 100%;
+        padding: 1rem 0;
+        background-color: $gray2;
+        >* {
+          width: 50%;
+          text-align: left;
+          margin: 1rem 0;
+
+        }
+        .watchlist-button {
+          background-color: inherit;
+          color: inherit;
+          border: none;
+          padding: 0;
+          font: inherit;
+          cursor: pointer;
+          outline: inherit;
+          color: $turqoise2;
+          font-size: 1.1rem;
+          &:hover {
+            text-decoration: underline;
+          }
         }
       }
     }

@@ -8,7 +8,7 @@ import {
   faUserCircle,
   faAngleDown,
   faBars,
-  faSyncAlt
+  faSync
 } from "@fortawesome/free-solid-svg-icons";
 import { faBell, faQuestionCircle } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -84,7 +84,7 @@ class Navigation extends Component {
             </NavLink>
 
             <NavLink
-              className="NavLink  hidden"
+              className="NavLink"
               to={`/${this.props.userid}/watchlist`}
             >
               Watchlist
@@ -99,7 +99,7 @@ class Navigation extends Component {
           </div>
           
           <button className="recommendations-button" onClick={()=>this.getNewRecommendations(this.props.userid)}>
-              <FontAwesomeIcon className="sync-icon" icon={faSyncAlt} />
+              <FontAwesomeIcon className="sync-icon" icon={faSync} />
                 <i className="fas fa-sync"></i> Update your recs
           </button>
 
