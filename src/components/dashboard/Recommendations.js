@@ -17,7 +17,7 @@ function Recommendations({
   useEffect(() => {
     // Returns the most recent recommendations from the database
     recommendedAction(userid);
-  }, [userid, recommendedAction, recommendations, isUploading]);
+  }, [userid, recommendedAction, recommendations, isUploading, isFetching]);
 
   if (isFetching) return <LoadingScreen />;
   else
