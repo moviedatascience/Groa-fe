@@ -8,11 +8,10 @@
     max-width: 53px;
     height: auto;
     font-size: 22px;
-
-    color: white;
+    color: black;
     text-decoration: none;
     &:hover {
-      color: aqua;
+      color: $turqoise3;
       text-decoration: underline;
     }
   }
