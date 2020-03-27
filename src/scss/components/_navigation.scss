@@ -1,12 +1,13 @@
 .mainContainer {
-  background: #000A12;
-  padding: 1.1% 1%;
+  background: #000a12;
+  padding: 1.1rem 0;
   font-family: $workSans;
+  // min-width: 100vw;
   .navContainer {
     display: flex;
     justify-content: space-between;
     align-items: center;
-
+    padding-right: 1rem;
     .Bars {
       padding-top: 5px;
       .bars-icon {
@@ -44,12 +45,18 @@
           text-decoration: underline;
         }
       }
+
+      @media only screen and (max-width: 500px) {
+        .watchlist, .recommended  {
+          display: none; 
+        }
+      }
        
     }
     button {
       white-space: nowrap;
       font-size: 1rem;
-      padding: 0.6rem 1.2rem;
+      padding: 0.6rem 1rem;
       margin: 0 5%;
       border-radius: 5px;
     }
@@ -58,7 +65,6 @@
       display: flex;
       justify-content: space-between;
     }
-
     .searchBox {
       padding: 7px;
       border-radius: 5px;
@@ -85,52 +91,52 @@
     .dropdown-content {
       display: none;
     }
-    @media(hover: hover) and (pointer: fine) {
-      &:hover {
-        .dropdown-content{
-          display: flex;
-          flex-direction: column;
-          position: absolute;
-          bottom: -9.6rem;
-          right: 0;
-          border-radius: 5px;
-          overflow: hidden;
-          z-index: 5;
-          border: 1px solid $gray1;
+    // @media(hover: hover) and (pointer: fine) {
+    //   &:hover {
+    //     .dropdown-content{
+    //       display: flex;
+    //       flex-direction: column;
+    //       position: absolute;
+    //       bottom: 15;
+    //       right: 0;
+    //       border-radius: 5px;
+    //       overflow: hidden;
+    //       z-index: 5;
+    //       border: 1px solid $gray1;
           
-          .NavLink {
-            border-top: 1px solid $gray1;
-            color: $black;
-            text-decoration: none;
-            font-size: 1.1rem;
-            padding: 1rem 1.5rem;
-            background: $white;
-            white-space: nowrap;
-            text-align: center;
-            &:hover {
-              background-color: $gray1;
-            }
-            @media(hover: hover) and (pointer: fine) {
-              &:hover {
-                background-color: $gray1;
-              }
-            }
-          }
-        }
-      }
-    }
+    //       .NavLink {
+    //         border-top: 1px solid $gray1;
+    //         color: $black;
+    //         text-decoration: none;
+    //         font-size: 1.1rem;
+    //         padding: 1rem 1.5rem;
+    //         background: $white;
+    //         white-space: nowrap;
+    //         text-align: center;
+    //         &:hover {
+    //           background-color: $gray1;
+    //         }
+    //         @media(hover: hover) and (pointer: fine) {
+    //           &:hover {
+    //             background-color: $gray1;
+    //           }
+    //         }
+    //       }
+    //     }
+    //   }
+    // }
     &:hover {
       .dropdown-content{
         display: flex;
         flex-direction: column;
         position: absolute;
-        bottom: -9.6rem;
-        right: 0;
+        top: 2rem;
+        right: .4rem;
         border-radius: 5px;
         overflow: hidden;
         z-index: 5;
         border: 1px solid $gray1;
-        
+          
         .NavLink {
           border-top: 1px solid $gray1;
           color: $black;
@@ -147,6 +153,15 @@
             &:hover {
               background-color: $gray1;
             }
+          }
+        }
+        .watchlist-menu, .recommended-menu {
+          display: none;
+        }
+        @media only screen and (max-width: 500px) {
+          .watchlist-menu, .recommended-menu  {
+            display: block;
+            
           }
         }
       }
