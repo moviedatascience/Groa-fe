@@ -66,6 +66,9 @@ it("renders LoadingScreen when the watchlist array is empty", () => {
     },
     upload: {
       isUploading: false
+    },
+    rating: {
+      isFetching: false
     }
   });
   const { container } = render(
