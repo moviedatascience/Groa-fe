@@ -1,6 +1,6 @@
 import React from "react";
 import { render, fireEvent } from "@testing-library/react";
-import {getAllByText} from "@testing-library/dom";
+import { getAllByText } from "@testing-library/dom";
 import { Router, Route } from "react-router-dom";
 import { getAllByTestId, getByTestId } from "../../utils/test-utils.js";
 import { createMemoryHistory } from "history";
@@ -24,7 +24,7 @@ it("renders DataUpload component", () => {
       ratings: [],
       reviews: [],
       watched: [],
-      watchlist: [] 
+      watchlist: []
     }
   });
   const { container } = render(
@@ -35,19 +35,5 @@ it("renders DataUpload component", () => {
     </Provider>
   );
   let component = getAllByTestId(container, "DataUploadPage-test");
-  expect(component.length).toBe(1);
-
-  let button = getAllByTestId(container, "clickLetterBoxd");
-  expect(button.length).toBe(1);
-
-  fireEvent.click(getByTestId(container, "clickLetterBoxd"));
-  component = getAllByText(container, "1.Log in to Letterboxd");
-  expect(component.length).toBe(1);
-
-  button = getAllByTestId(container, "clickIMDb");
-  expect(button.length).toBe(1);
-
-  fireEvent.click(getByTestId(container, "clickIMDb"));
-  component = getAllByText(container, "1.Log in to IMDb");
   expect(component.length).toBe(1);
 });
