@@ -3,12 +3,12 @@ import ReactLoading from "react-loading";
 import { connect } from "react-redux";
 import { ifDev } from "../../utils/removeAttribute.js";
 
-function LoadingScreen({ 
-  isUploading, 
-  isFetchingRecommendations, 
+function LoadingScreen({
+  isUploading,
+  isFetchingRecommendations,
   isFetchingWatchlist,
-  isFetchingRatings 
-  }) {
+  isFetchingRatings
+}) {
   return (
     <div
       className="container loading-screen"
@@ -16,17 +16,13 @@ function LoadingScreen({
     >
       {isUploading ? (
         <h4>Uploading files...</h4>
-      ) : 
-      isFetchingWatchlist ? (
+      ) : isFetchingWatchlist ? (
         <h4>Loading watchlist...</h4>
-      ) :
-      isFetchingRecommendations ? (
+      ) : isFetchingRecommendations ? (
         <h4>Loading recommendations...</h4>
-      ) : 
-      isFetchingRatings ? (
+      ) : isFetchingRatings ? (
         <h4>Loading ratings...</h4>
-      ) : 
-      null}
+      ) : null}
       <ReactLoading
         className="loading-component"
         data-test={ifDev("loading-object")}
