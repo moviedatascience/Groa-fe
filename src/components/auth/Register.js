@@ -84,7 +84,7 @@ class Register extends React.Component {
                   "forms" + (submitted && !user.email ? " has-error" : "")
                 }
               >
-                <h3> Email</h3>
+                <h3>Email</h3>
               </div>
               <input
                 className="form-control"
@@ -103,7 +103,7 @@ class Register extends React.Component {
                   "forms" + (submitted && !user.user_name ? " has-error" : "")
                 }
               >
-                <h3> Username </h3>
+                <h3>Username </h3>
               </div>
               <input
                 className="form-control"
@@ -132,7 +132,7 @@ class Register extends React.Component {
                   "forms" + (submitted && !user.password ? " has-error" : "")
                 }
               >
-                <h3> Password</h3>
+                <h3>Password</h3>
               </div>
 
               <input
@@ -158,7 +158,7 @@ class Register extends React.Component {
                   (submitted && !user.confirmpassword ? " has-error" : "")
                 }
               >
-                <h3> Confirm Password</h3>
+                <h3>Confirm Password</h3>
               </div>
               <input
                 className="confirmPass form-control"
@@ -180,14 +180,15 @@ class Register extends React.Component {
                 <div className="signup-btn-container btn-container">
                   <button className="signup-btn">Sign Up </button>
                 </div>
-              </div>
-              <div className="bottomAccount">
-              <Link className="loginAccount"
-              onClick={this.login}
-              data-test={ifDev("loginBtn")}
-              to="/login">
-              Already have an account? </Link>
-              </div>
+                </div>
+                <div className="bottomAccount">
+                  <Link className="loginAccount"
+                    onClick={this.login}
+                    data-test={ifDev("loginBtn")}
+                    to="/login">
+                    Already have an account? 
+                  </Link>
+                </div>
             </form>
           </div>
           {/* end box right */}
