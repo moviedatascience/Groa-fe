@@ -78,14 +78,16 @@ class Navigation extends Component {
               Explore
             </NavLink>
           </div>
-
+          {/* If the path is recommended show update recommendations button */
+            window.location.pathname === `/${this.props.userid}/recommended` ?
           <button
             className="recommendations-button"
             onClick={() => this.getNewRecommendations(this.props.userid)}
-          >
+          > 
             <FontAwesomeIcon className="sync-icon" icon={faSync} />
             <i className="fas fa-sync"></i> Update your recs
           </button>
+          : <span>Update your recscomendations</span> }
 
           <div className="searchContainer  hidden">
             <FontAwesomeIcon className="search-icon fa-icons" icon={faSearch} />
