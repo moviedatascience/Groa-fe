@@ -121,6 +121,8 @@ class Navigation extends Component {
               />
             <i className="far fa-user-circle"></i>
 
+            <FontAwesomeIcon className="angle-down-icon" icon={faAngleDown} />
+
               <div className="dropdown-content">
 
                 <NavLink
@@ -162,7 +164,7 @@ class Navigation extends Component {
                </div>
              </div>
 
-             <FontAwesomeIcon className="angle-down-icon hidden" icon={faAngleDown} />                
+          
           </div>
         </div>
         {/* END navContainer */}

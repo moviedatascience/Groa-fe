@@ -45,13 +45,15 @@
           text-decoration: underline;
         }
       }
-
-      @media only screen and (max-width: 500px) {
-        .watchlist, .recommended  {
-          display: none; 
-        }
+    }
+    @media only screen and (max-width: 500px) {
+      .watchlist, .recommended {
+        display: none; 
       }
-       
+      .dropdown-hover .angle-down-icon {
+        display: none;
+
+      }
     }
     button {
       white-space: nowrap;
@@ -61,7 +63,7 @@
       border-radius: 5px;
     }
     span {
-      padding: 0.25rem 3.15rem;
+      padding: 0.715rem 2.725rem;
     }
     .searchContainer {
       width: 11.5%;
@@ -86,10 +88,12 @@
     display: none;
   }
   .dropdown-hover {
+    padding: .5rem;
     position: relative;
     cursor: pointer;
-    .user-circle-icon {
-      font-size: 2rem;
+
+    .angle-down-icon {
+      padding: .5rem .5rem 0 .5rem;
     }
     .dropdown-content {
       display: none;
@@ -163,8 +167,7 @@
         }
         @media only screen and (max-width: 500px) {
           .watchlist-menu, .recommended-menu  {
-            display: block;
-            
+            display: block; 
           }
         }
       }
