@@ -4,7 +4,6 @@ import { registerAction, loginAction } from "../../store/actions";
 import { ifDev } from "../../utils/removeAttribute.js";
 import {Link} from "react-router-dom";
 // styling imports
-// import GroaLogo from "./Groa-logo-B2AA.png";
 import Picture3 from "./Group 3.png";
 // Navbar Register
 import RegisterNavLinks from "../layout/nav-layouts/RegisterNavLinks";
