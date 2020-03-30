@@ -76,6 +76,9 @@ it("renders LoadingScreen when recommendations array is empty", () => {
     watchlist: {
       movies: [],
       isFetching: false
+    },
+    rating: {
+      isFetching: false
     }
   });
   const { container } = render(

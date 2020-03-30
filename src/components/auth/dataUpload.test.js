@@ -1,6 +1,6 @@
 import React from "react";
 import { render, fireEvent } from "@testing-library/react";
-import {getAllByText} from "@testing-library/dom";
+import { getAllByText } from "@testing-library/dom";
 import { Router, Route } from "react-router-dom";
 import { getAllByTestId, getByTestId } from "../../utils/test-utils.js";
 import { createMemoryHistory } from "history";
@@ -24,7 +24,7 @@ it("renders DataUpload component", () => {
       ratings: [],
       reviews: [],
       watched: [],
-      watchlist: [] 
+      watchlist: []
     }
   });
   const { container } = render(
@@ -36,12 +36,4 @@ it("renders DataUpload component", () => {
   );
   let component = getAllByTestId(container, "DataUploadPage-test");
   expect(component.length).toBe(1);
-
-  let button = getAllByTestId(container, "clickLetterBoxd");
-  expect(button.length).toBe(1);
-
-  fireEvent.click(getByTestId(container, "clickLetterBoxd"));
-  component = getAllByText(container, "4. Tap to browse and attach the .zip file below.");
-  expect(component.length).toBe(1);
-
 });
