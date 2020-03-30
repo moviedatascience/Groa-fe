@@ -54,6 +54,7 @@ function MovieCard({ userid, name, year, image, ratingAction, watchlist, addToWa
         >
           { !added && !inWatchlist ? "Add to watchlist" : "In your watchlist" }
         </button>
+        {rated ? <p>Your rating:</p> : null }
         <Stars 
           className="stars"
           data-test="star"
