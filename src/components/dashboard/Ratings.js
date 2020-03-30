@@ -8,6 +8,7 @@ import MovieCard from "../movies/MovieCard.js";
 import LoadingScreen from "../layout/LoadingScreen.js";
 
 function Ratings({ isFetching, ratings, userid, getRatingAction }) {
+  console.log(ratings)
   useEffect(() => {
     // Returns the ratings
     getRatingAction(userid);
@@ -29,7 +30,6 @@ function Ratings({ isFetching, ratings, userid, getRatingAction }) {
                 name={x.name}
                 year={x.year}
                 rated={x.rating}
-                z
                 image={
                   !posterURI ||
                   posterURI === "None" ||
@@ -48,6 +48,7 @@ function Ratings({ isFetching, ratings, userid, getRatingAction }) {
 }
 
 const mapStateToProps = state => {
+  console.log(state.rating.movies)
   return {
     userid: state.login.userid,
     isFetching: state.rating.isFetching,
