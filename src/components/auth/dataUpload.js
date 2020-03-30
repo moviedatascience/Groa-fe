@@ -160,7 +160,8 @@ const DataUpload = ({ userid, uploadAction, isUploading }) => {
 
           {/* ///////////////UPLOAD FILE //////////////////// */}
           <div className="UploadContainer">
-            <div
+            <form 
+              encType='multipart/form-data'
               className="inputholder"
               onDragEnter={onDragStart}
               onDragOver={onDragOver}
@@ -177,7 +178,7 @@ const DataUpload = ({ userid, uploadAction, isUploading }) => {
                 <p>Drag files here or click to browse</p>
                 <img src={fileAlt} alt="File icon" />
               </label>
-            </div>
+            </form>
           </div>
           <div className="textholder2">
             <p className="ptext">
