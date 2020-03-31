@@ -33,7 +33,8 @@ it("renders Watchlist with array has length.", async () => {
       isUploading: false
     },
     rating: {
-      error: ""
+      error: "",
+      isFetching: false
     }
   });
 

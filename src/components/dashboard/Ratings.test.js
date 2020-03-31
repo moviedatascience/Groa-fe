@@ -61,6 +61,10 @@ it("renders LoadingScreen when ratings array is empty", () => {
       success: false,
       error: ""
     },
+    recommendations: {
+      isfetching: false,
+      movies: []
+    },
     rating: {
       isFetching: true,
       movies: [],
@@ -73,10 +77,7 @@ it("renders LoadingScreen when ratings array is empty", () => {
       isFetching: false,
       movies: []
     },
-    recommendations: {
-      isFetching: false,
-      movies: []
-    }
+
   });
   const { container } = render(
     <Provider store={store}>
