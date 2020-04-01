@@ -1,39 +1,59 @@
 .container.register-component,
 .container.login-component {
   font-family: $workSans;
-  height: 102vh;
-  color: black;
-  background: #F4F4F4;
-
-  .onboarding-nav {
-    display: flex;
-    justify-content: flex-end;
-    padding: 0.5% 1%;
-  }
+  min-height: 100%;
+  color: $white;
+  background: $black;
+  margin: 0 auto;
+  width: 100%;
+  min-height: 100vh;
 
   .box-container {
     display: flex;
-    margin: 7% auto;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin: 0 auto;
+    width: 80%;
+    .onboarding-nav {
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
+      padding: 0.5% 1%;
+      color: $white
+    }
   }
 
   .box-left {
     width: 40%;
-    margin: auto;
-    
-    h1{
-      font-size: 80px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    @include display-flex();
+    flex-direction: column;
+    align-items: center;
+    text-align: left;
+    max-width: 100%;
+
+    .text-container {
+      white-space: nowrap;
+      h1 {
+        font-size: 3rem;
+      }
+      h5 {
+        font-size: 1rem;
+        font-weight: normal;
+        padding-top: 2rem;
+      }
     }
-     h5{
-      padding: 15px;
-      font-size: 28px;
-      padding-top: 40px;
-     }
+ 
+     .image-wrapper {
+       width: 75%;
+       padding: 5% 0;
+     
       .logo {
         width: 100%;
-        max-width: 530px;
-        height: 378px;
-        padding-top: 35px;
+
       }
+    }
   }
 
   .box-right {
@@ -50,21 +70,21 @@
 
     .form {
       margin: auto;
-      padding: 3%;
-      max-width: 393px;
+      padding: 3% 0;
+      max-width: 320px;
       width: 100%;
+      color: $black;
     }
 
     .form-control {
       border-radius: 4px;
       border: 1px solid #D8D8D8;
-      max-width: 370px;
+      max-width: 320px;
       width: 100%;
       height: auto;
-      padding: 2.7%;
+      padding: 2.7% 1.7%;
       margin: 2.6% auto;
-      margin-bottom: 30px;
-      color: black
+      margin-bottom: 1rem;
     }
     input::placeholder {
       font-size: 1.1rem;
@@ -80,9 +100,11 @@
       .check-box-container {
        display: flex;
        flex-direction: row;
-        align-items: center;
+       padding-top: 13px;
+       align-items: center;
         p {
           color:black;
+          white-space: nowrap;
         }
       }
 
@@ -123,4 +145,34 @@
       justify-content: center;
     }
   }
+
+  @media (max-width: 500px) {  
+    .box-container {
+      flex-direction: column;
+
+      .box-left {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        .text-container{
+          margin: 0 auto;
+          width: 100%;
+          h1 {
+            font-size: 2.5rem;
+          }
+          h5 {
+            font-size: .8rem;
+          }
+        }
+      }
+      .box-right {
+        padding: 0;
+        .form {
+          width: 80%;
+        }
+      }
+    }
+  
+  }
+
 }

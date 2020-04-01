@@ -61,14 +61,18 @@ class Register extends React.Component {
         className="container register-component"
         data-test={ifDev("register-component")}
       >
-        <div className="onboarding-nav registerNav">
-          <RegisterNavLinks />
-        </div>
         <div className="boxHolder box-container">
+          <div className="onboarding-nav registerNav">
+            <RegisterNavLinks />
+          </div>
           <div className="box-left">
-          <h1>Your movies, your way.</h1>
-          <h5> Groa helps you pick the perfect film... so you can save your popcorn for the good stuff.</h5>
-            <img className="logo" src={Picture3} alt="Groa Logo" />
+            <div className="text-container">
+              <h1>Your movies, <br/> your way.</h1>
+              <h5> Groa helps you pick the perfect film... so you <br/> can save your popcorn for the good stuff.</h5>
+            </div>
+            <div className="image-wrapper">
+              <img className="logo" src={Picture3} alt="Graphic" />
+            </div>
           </div>
 
           <div className="box-right">

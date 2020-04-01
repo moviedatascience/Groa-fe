@@ -1,8 +1,10 @@
 import React from "react";
 import { connect } from "react-redux";
 import { loginAction } from "../../store/actions";
-import GroaLogo from "../auth/Groa-logo-B2AA.png";
 import { ifDev } from "../../utils/removeAttribute.js";
+// styling imports
+import Picture1 from "./Group 1.png";
+// Navbar Login
 import LoginNavLinks from "../layout/nav-layouts/LoginNavLinks.js";
 
 class LoginPage extends React.Component {
@@ -62,12 +64,18 @@ class LoginPage extends React.Component {
         className="container login-component"
         data-test={ifDev("login-component")}
       >
-        <div className="onboarding-nav login-nav">
-          <LoginNavLinks />
-        </div>
         <div className="box-container">
+          <div className="onboarding-nav login-nav">
+            <LoginNavLinks />
+          </div>
           <div className="box-left">
-            <img className="logo" src={GroaLogo} alt="Groa Logo" />
+          <div className="text-container">
+              <h1>Welcome <br/> back.</h1>
+              <h5> Groa makes it easy to find a film you’ll love. <br/> What new favorite will you discover today?</h5>
+            </div>
+            <div className="image-wrapper">
+              <img className="logo" src={Picture1} alt="Graphic" />
+            </div>
           </div>
           {/* END BOX LEFT */}
           <div className="box-right">
@@ -76,7 +84,7 @@ class LoginPage extends React.Component {
               onSubmit={this.loginUser}
               data-test={ifDev("loginForm")}
             >
-              <h2>Log in</h2>
+              <h2>Username</h2>
               <input
                 className="form-control"
                 type="text"
@@ -105,7 +113,7 @@ class LoginPage extends React.Component {
                   {errors.user_name}
                 </span>
               )}
-
+              <h2>Password</h2>
               <input
                 className="form-control"
                 type="password"
@@ -136,11 +144,7 @@ class LoginPage extends React.Component {
                     <input className="checkbox" type="checkbox" />
                     <p>Remember me</p>
                   </div>
-                  <div className="forgot-password">
-                    <h5>Forgot password?</h5>
-                  </div>
                 </div>
-
                 <div className="login-btn-container btn-container">
                   <button
                     className="login-btn"
@@ -148,8 +152,13 @@ class LoginPage extends React.Component {
                   >
                     Log in
                   </button>
+                  </div>
                 </div>
-              </div>
+                <div className="bottomAccount">
+                  <a className="loginAccount">
+                    Forgot password? 
+                  </a>
+                </div>
             </form>
           </div>
           {/* END BOX RIGHT */}
