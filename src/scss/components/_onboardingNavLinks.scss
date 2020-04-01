@@ -1,19 +1,29 @@
-.register.nav,
-.login.nav {
-  font-family: $workSans;
-  margin: 1% 5%;
-
-  .link {
+  .register.nav,
+  .login.nav {
+    font-family: $workSans;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     width: 100%;
-    max-width: 53px;
-    height: auto;
-    font-size: 22px;
+    text-align: center;
 
-    color: white;
-    text-decoration: none;
-    &:hover {
-      color: aqua;
-      text-decoration: underline;
+    img{
+      height: 2.5rem;
+      width: auto;
+    }
+    .link {
+      display: flex;
+      width: 100%;
+      height: auto;
+      font-size: 1rem;
+      text-decoration: none;
+      justify-content: flex-end;
+      align-items: center;
+      color: $white;
+    
+      &:hover {
+        color: $turqoise3;
+        font-weight: bold;        
+      }
     }
   }
-}

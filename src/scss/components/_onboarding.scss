@@ -1,33 +1,53 @@
 .container.register-component,
 .container.login-component {
   font-family: $workSans;
+  color: $white;
+  background: $black;
+  margin: 0 auto;
+  width: 100%;
   min-height: 100vh;
-  color: white;
-  background-image: linear-gradient(
-    to bottom,
-    black 0%,
-    rgba(0, 0, 0, 0.9),
-    rgba(0, 0, 0, 0.7),
-    rgba(0, 0, 0, 0.85)
-  );
-  .onboarding-nav {
-    display: flex;
-    justify-content: flex-end;
-    padding: 0.5% 1%;
-  }
 
+  .onboarding-nav {
+    color: $white;
+    display: flex;
+    width: 95%;
+    margin: 0 auto;
+    justify-content: flex-end;
+    padding: 1.1% 1%;
+  }
   .box-container {
     display: flex;
-    margin: 7% auto;
+    justify-content: space-between;
+    margin: 0 auto;
+    width: 85%;
   }
-
   .box-left {
-    width: 40%;
-    margin: auto;
-    .logo {
-      width: 100%;
-      max-width: 926px;
-      height: auto;
+    width: 45%;
+    margin: 0 1%;
+    @include display-flex();
+    flex-direction: column;
+    align-items: center;
+    text-align: left;
+    max-width: 100%;
+    box-sizing: border-box;
+
+    .text-container {
+      white-space: nowrap;
+      h1 {
+        font-size: 5vw;
+      }
+      h5 {
+        font-size: 1.5vw;
+        font-weight: normal;
+        padding-top: 2rem;
+      }
+    }
+     .image-wrapper {
+       width: 75%;
+       padding: 5% 0;
+      .logo {
+        width: 100%;
+      }
     }
   }
 
@@ -41,32 +61,29 @@
     background: white;
     width: 100%;
     max-width: 518px;
-    height: auto;
+    height: 550px;
 
-    h2 {
-      color: black;
-      margin-bottom: 30px;
-      font-style: normal;
-      font-size: 20px;
-    }
     .form {
       margin: auto;
-      padding: 3%;
-      max-width: 393px;
+      padding: 3% 0;
+      max-width: 320px;
       width: 100%;
+      color: $black;
     }
 
     .form-control {
       border-radius: 4px;
-      border: 1px solid black;
-      max-width: 370px;
+      border: 1px solid #D8D8D8;
+      max-width: 320px;
       width: 100%;
       height: auto;
-      padding: 2.7%;
+      padding: 2.7% 1.7%;
       margin: 2.6% auto;
+      margin-bottom: 1rem;
     }
     input::placeholder {
       font-size: 1.1rem;
+      color:#D8D8D8;
     }
 
     .bottom-form {
@@ -74,17 +91,24 @@
       display: flex;
       justify-content: space-between;
       margin: 3% 0;
+    
       .check-box-container {
-        display: flex;
+       display: flex;
+       flex-direction: row;
+       padding-top: 13px;
+       align-items: center;
         p {
-          color: black;
+          color:black;
+          white-space: nowrap;
         }
       }
 
       .btn-container {
-        width: 100%;
+        width: 60%;
         display: flex;
         justify-content: flex-end;
+        padding-bottom: 15px;
+        
         .signup-btn,
         button.login-btn {
           align-self: end;
@@ -93,14 +117,21 @@
           max-width: 115px;
           height: 36px;
           border-radius: 4px;
-          background: #21242c;
-          color: white;
+          background: #00E6BC;
+          color: black;
           font-size: 14px;
-          &:hover {
-            background: gray;
-            color: #21242c;
-          }
         }
+      }
+    }
+    .bottomAccount{
+      display: flex;
+      flex-direction: column;
+      padding: 30px;
+      
+      .loginAccount {
+        text-align: center;
+        color: #2477E5;
+        font-size: 18px;
       }
     }
     .callingError {
@@ -108,5 +139,41 @@
       display: flex;
       justify-content: center;
     }
+  }
+
+  @media (max-width: 1068px) {  
+    .box-container {
+      flex-direction: column;
+      align-items: center;
+      .box-left {
+        width: 80%;
+        margin: 0;
+        padding: 0;
+        .text-container{
+          margin: 0 auto;
+          width: 100%;
+          h1 {
+            font-size: 10vw;
+          }
+          h5 {
+            font-size: 3vw;
+            font-weight: normal;
+            padding-top: 2rem;
+          }
+        }
+        .image-wrapper {
+          width: 100%;
+        }
+      }
+      .box-right {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        .form {
+          width: 80%;
+        }
+      }
+    }
+  
   }
 }

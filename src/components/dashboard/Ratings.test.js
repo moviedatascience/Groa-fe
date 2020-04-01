@@ -15,6 +15,9 @@ it("renders Ratings with array has length.", async () => {
     login: {
       userid: 4
     },
+    rating: {
+      error: ""
+    },
     register: {
       success: false,
       error: ""

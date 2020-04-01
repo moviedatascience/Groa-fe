@@ -1,8 +1,7 @@
 .mainContainer {
-  background: #000a12;
-  padding: 1.1rem 0;
+  background: #000A12;
+  padding: 1.1% 1%;
   font-family: $workSans;
-  // min-width: 100vw;
   .navContainer {
     display: flex;
     justify-content: space-between;
@@ -32,7 +31,6 @@
 
         &:hover {
           color:white;
-          text-decoration: underline;
         }
       }
       .NavLink {
@@ -42,9 +40,9 @@
     
         &:hover {
           color:white;
-          text-decoration: underline;
         }
       }
+       
     }
     @media only screen and (max-width: 750px) {
       .watchlist, .recommended {

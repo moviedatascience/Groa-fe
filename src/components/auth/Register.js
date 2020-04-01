@@ -2,15 +2,15 @@ import React from "react";
 import { connect } from "react-redux";
 import { registerAction, loginAction } from "../../store/actions";
 import { ifDev } from "../../utils/removeAttribute.js";
+import {Link} from "react-router-dom";
 // styling imports
-import GroaLogo from "./Groa-logo-B2AA.png";
+import Picture3 from "./Group 3.png";
 // Navbar Register
 import RegisterNavLinks from "../layout/nav-layouts/RegisterNavLinks";
 
 class Register extends React.Component {
   constructor(props) {
     super(props);
-
     this.state = {
       user: {
         email: "",
@@ -66,7 +66,13 @@ class Register extends React.Component {
         </div>
         <div className="boxHolder box-container">
           <div className="box-left">
-            <img className="logo" src={GroaLogo} alt="Groa Loga" />
+            <div className="text-container">
+              <h1>Your movies, <br/> your way.</h1>
+              <h5> Groa helps you pick the perfect film... so you <br/> can save your popcorn for the good stuff.</h5>
+            </div>
+            <div className="image-wrapper">
+              <img className="logo" src={Picture3} alt="Graphic" />
+            </div>
           </div>
 
           <div className="box-right">
@@ -75,20 +81,21 @@ class Register extends React.Component {
               data-test={ifDev("registerForm")}
               onSubmit={this.handleSubmit}
             >
-              <h2>Register</h2>
               {/* divs with changing classnames updates error handling for form */}
               <div
                 className={
                   "forms" + (submitted && !user.email ? " has-error" : "")
                 }
-              ></div>
+              >
+                <h3>Email</h3>
+              </div>
               <input
                 className="form-control"
                 type="email"
                 name="email"
                 value={user.email}
                 onChange={this.handleChange}
-                placeholder="Email"
+                placeholder="Enter your email"
               />
               {submitted && !user.email && (
                 <div className="callingError">Email is required</div>
@@ -98,14 +105,16 @@ class Register extends React.Component {
                 className={
                   "forms" + (submitted && !user.user_name ? " has-error" : "")
                 }
-              ></div>
+              >
+                <h3>Username </h3>
+              </div>
               <input
                 className="form-control"
                 type="text"
                 name="user_name"
                 value={user.user_name}
                 onChange={this.handleChange}
-                placeholder="Username"
+                placeholder="Enter your username"
               />
               {submitted && !user.user_name && (
                 <div className="callingError">Username is required</div>
@@ -125,7 +134,9 @@ class Register extends React.Component {
                 className={
                   "forms" + (submitted && !user.password ? " has-error" : "")
                 }
-              ></div>
+              >
+                <h3>Password</h3>
+              </div>
 
               <input
                 className="form-control"
@@ -133,7 +144,7 @@ class Register extends React.Component {
                 name="password"
                 value={user.password}
                 onChange={this.handleChange}
-                placeholder="Password"
+                placeholder=" Enter your password"
               />
               {submitted && !user.password && (
                 <div className="callingError">Password is required</div>
@@ -149,14 +160,16 @@ class Register extends React.Component {
                   "forms" +
                   (submitted && !user.confirmpassword ? " has-error" : "")
                 }
-              ></div>
+              >
+                <h3>Confirm Password</h3>
+              </div>
               <input
                 className="confirmPass form-control"
                 type="password"
                 name="confirmpassword"
                 value={user.confirmpassword}
                 onChange={this.handleChange}
-                placeholder="Confirm Password"
+                placeholder="Enter your password again"
               />
               {submitted && user.confirmpassword !== user.password && (
                 <div className="callingError">Passwords do not match</div>
@@ -165,12 +178,20 @@ class Register extends React.Component {
                 {/* todo: add Remember functionality */}
                 <div className="check-box-container">
                   <input type="checkbox" />
-                  <p>Remember me</p>
+                  <p>Remember me </p>
                 </div>
                 <div className="signup-btn-container btn-container">
                   <button className="signup-btn">Sign Up </button>
                 </div>
-              </div>
+                </div>
+                <div className="bottomAccount">
+                  <Link className="loginAccount"
+                    onClick={this.login}
+                    data-test={ifDev("loginBtn")}
+                    to="/login">
+                    Already have an account? 
+                  </Link>
+                </div>
             </form>
           </div>
           {/* end box right */}
