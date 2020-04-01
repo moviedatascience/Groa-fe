@@ -61,10 +61,10 @@ class Register extends React.Component {
         className="container register-component"
         data-test={ifDev("register-component")}
       >
+        <div className="onboarding-nav registerNav">
+          <RegisterNavLinks />
+        </div>
         <div className="boxHolder box-container">
-          <div className="onboarding-nav registerNav">
-            <RegisterNavLinks />
-          </div>
           <div className="box-left">
             <div className="text-container">
               <h1>Your movies, <br/> your way.</h1>

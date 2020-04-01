@@ -1,57 +1,52 @@
 .container.register-component,
 .container.login-component {
   font-family: $workSans;
-  min-height: 100%;
   color: $white;
   background: $black;
   margin: 0 auto;
   width: 100%;
   min-height: 100vh;
 
+  .onboarding-nav {
+    color: $white;
+    display: flex;
+    width: 95%;
+    margin: 0 auto;
+    justify-content: flex-end;
+    padding: 1.1% 1%;
+  }
   .box-container {
     display: flex;
     justify-content: space-between;
-    flex-wrap: wrap;
     margin: 0 auto;
-    width: 80%;
-    .onboarding-nav {
-      width: 100%;
-      display: flex;
-      justify-content: flex-end;
-      padding: 0.5% 1%;
-      color: $white
-    }
+    width: 85%;
   }
-
   .box-left {
-    width: 40%;
-    margin: 0 auto;
-    padding: 0 2rem;
+    width: 45%;
+    margin: 0 1%;
     @include display-flex();
     flex-direction: column;
     align-items: center;
     text-align: left;
     max-width: 100%;
+    box-sizing: border-box;
 
     .text-container {
       white-space: nowrap;
       h1 {
-        font-size: 3rem;
+        font-size: 5vw;
       }
       h5 {
-        font-size: 1rem;
+        font-size: 1.5vw;
         font-weight: normal;
         padding-top: 2rem;
       }
     }
- 
      .image-wrapper {
        width: 75%;
        padding: 5% 0;
-     
       .logo {
         width: 100%;
-
       }
     }
   }
@@ -146,26 +141,33 @@
     }
   }
 
-  @media (max-width: 500px) {  
+  @media (max-width: 1068px) {  
     .box-container {
       flex-direction: column;
-
+      align-items: center;
       .box-left {
-        width: 100%;
+        width: 80%;
         margin: 0;
         padding: 0;
         .text-container{
           margin: 0 auto;
           width: 100%;
           h1 {
-            font-size: 2.5rem;
+            font-size: 10vw;
           }
           h5 {
-            font-size: .8rem;
+            font-size: 3vw;
+            font-weight: normal;
+            padding-top: 2rem;
           }
+        }
+        .image-wrapper {
+          width: 100%;
         }
       }
       .box-right {
+        width: 100%;
+        margin: 0;
         padding: 0;
         .form {
           width: 80%;
@@ -174,5 +176,4 @@
     }
   
   }
-
 }

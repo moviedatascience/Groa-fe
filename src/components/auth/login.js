@@ -64,10 +64,10 @@ class LoginPage extends React.Component {
         className="container login-component"
         data-test={ifDev("login-component")}
       >
+        <div className="onboarding-nav login-nav">
+          <LoginNavLinks />
+        </div>
         <div className="box-container">
-          <div className="onboarding-nav login-nav">
-            <LoginNavLinks />
-          </div>
           <div className="box-left">
           <div className="text-container">
               <h1>Welcome <br/> back.</h1>
