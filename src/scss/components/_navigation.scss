@@ -18,7 +18,7 @@
     .Links {
       width: 60%;
       display: flex;
-      justify-content: space-evenly;
+      justify-content: space-between;
       a.active{
         border-bottom: 3px solid #00E6BC;
       }
@@ -48,9 +48,8 @@
       .watchlist, .recommended {
         display: none; 
       }
-      .dropdown-hover .angle-down-icon {
+      .dropdown-hover .angle-down-icon{
         display: none;
-
       }
     }
     button {
@@ -61,9 +60,15 @@
       border-radius: 5px;
       background-color: $white;
     }
-    span {
-      padding: 0.715rem 2.725rem;
+    @media only screen and (max-width: 750px) {
+      button {
+        font-size: 0;
+      }
+      .sync-icon {
+        font-size: initial;
+      }
     }
+
     .searchContainer {
       width: 11.5%;
       display: flex;
