@@ -10,7 +10,7 @@ import configureStore from "redux-mock-store";
 import thunk from "redux-thunk";
 const mockStore = configureStore([thunk]);
 
-it("renders loading screen and displays a movie quote in a paragraph", () => {
+it("renders loading screen", () => {
   let store = mockStore({
     upload: {
       isUploading: true
@@ -19,6 +19,9 @@ it("renders loading screen and displays a movie quote in a paragraph", () => {
       isFetching: false
     },
     recommendations: {
+      isFetching: false
+    },
+    rating: {
       isFetching: false
     }
   });

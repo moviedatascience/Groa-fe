@@ -32,12 +32,13 @@ class Navigation extends Component {
 
   logout = () => {
     localStorage.removeItem("token");
+    localStorage.removeItem("state");
   };
 
-  getNewRecommendations = (id) => {
+  getNewRecommendations = id => {
     // Gets new recommendations for account, if applicible
-    this.props.recommendationAction(id)
-  }
+    this.props.recommendationAction(id);
+  };
 
   render() {
     return (
@@ -49,9 +50,8 @@ class Navigation extends Component {
           </div>
 
           <div className="Links">
-              
             <img src={GroaLogo} alt="Groa Logo" />
-            
+
             <NavLink
               className="NavLink  hidden"
               to={`/${this.props.userid}/trending`}
@@ -60,11 +60,12 @@ class Navigation extends Component {
             </NavLink>
 
             <NavLink
-              className="NavLink"
+              className="NavLink recommended"
               to={`/${this.props.userid}/recommended`}
             >
               Recommended
             </NavLink>
+          
 
             <NavLink
               className="NavLink"
@@ -101,14 +102,21 @@ class Navigation extends Component {
               Explore
             </NavLink>
           </div>
-          
-          <button className="recommendations-button" onClick={()=>this.getNewRecommendations(this.props.userid)}>
-              <FontAwesomeIcon className="sync-icon" icon={faSync} />
-                <i className="fas fa-sync"></i> Update your recs
+          {/* If the path is recommended show update recommendations button */
+            window.location.pathname === `/${this.props.userid}/recommended` ?
+          <button
+            className="recommendations-button"
+            onClick={() => this.getNewRecommendations(this.props.userid)}
+          > 
+            <FontAwesomeIcon className="sync-icon" icon={faSync} />
+            <i className="fas fa-sync"></i> Update your recs
           </button>
+          : <span>Update your recscomendations</span> }
 
           <div className="searchContainer  hidden">
             <FontAwesomeIcon className="search-icon fa-icons" icon={faSearch} />
+            <i className="far fa-search"></i>
+
             <input
               className="searchBox"
               type="text"
@@ -129,14 +137,58 @@ class Navigation extends Component {
             />
             <i className="far fa-question-circle  hidden"></i>
 
-            <FontAwesomeIcon
-              className="user-circle-icon  hidden"
-              icon={faUserCircle}
-            />
+    
+            <div className="dropdown-hover">
+              <FontAwesomeIcon
+                className="user-circle-icon"
+                icon={faUserCircle}
+              />
             <i className="far fa-user-circle"></i>
 
             <FontAwesomeIcon className="angle-down-icon" icon={faAngleDown} />
-            <i className="far fa-angle-down"></i>
+
+              <div className="dropdown-content">
+
+                <NavLink
+                  className="NavLink recommended-menu"
+                  to={`/${this.props.userid}/recommended`}
+                >
+                  Recommended
+                </NavLink>
+
+                <NavLink 
+                  className="NavLink ratings-menu" 
+                  to={`/${this.props.userid}/ratings`}
+                >
+                  Ratings
+                </NavLink>
+
+                <NavLink 
+                  className="NavLink upload-menu" 
+                  to={`/${this.props.userid}/upload`}
+                >
+                  Upload data
+                </NavLink>
+
+                <NavLink 
+                  className="NavLink watchlist-menu" 
+                  to={`/${this.props.userid}/watchlist`}
+                >
+                  Watchlist
+                </NavLink>
+
+                <NavLink
+                  className="NavLink logout-menu"
+                  onClick={this.logout}
+                  data-test={ifDev("logoutBtn")}
+                  to="/login"
+                >
+                  Log out
+               </NavLink>              
+               </div>
+             </div>
+
+          
           </div>
         </div>
         {/* END navContainer */}
@@ -150,5 +202,6 @@ const mapStateToProps = state => {
     userid: state.login.userid
   };
 };
-export default connect(mapStateToProps, { loginAction, recommendationAction,
-})(Navigation);
+export default connect(mapStateToProps, { loginAction, recommendationAction })(
+  Navigation
+);

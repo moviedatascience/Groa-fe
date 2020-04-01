@@ -228,19 +228,15 @@
 */
 .UploadContainer {
   @include display-flex();
-  .uploadData {
-    width: 0.1px;
-    height: 0.1px;
-    opacity: 0;
-    overflow: hidden;
+  position: relative;
+  .inputholder input[type="file"] {
+    font-size: 100px;
     position: absolute;
-    z-index: -1;
-
-    .uploadData:focus + label#uploadLabel,
-    .uploadData + label#uploadLabel:hover {
-      background-color: red;
-    }
+    left: 0;
+    top: 0;
+    opacity: 0;
   }
+
   label#uploadLabel {
     width: 420px;
     text-align: center;

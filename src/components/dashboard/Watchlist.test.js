@@ -33,7 +33,8 @@ it("renders Watchlist with array has length.", async () => {
       isUploading: false
     },
     rating: {
-      error: ""
+      error: "",
+      isFetching: false
     }
   });
 
@@ -66,6 +67,9 @@ it("renders LoadingScreen when the watchlist array is empty", () => {
     },
     upload: {
       isUploading: false
+    },
+    rating: {
+      isFetching: false
     }
   });
   const { container } = render(

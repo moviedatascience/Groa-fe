@@ -1,14 +1,9 @@
 .watchlist-container {
     font-family: $workSans;
-    background:#000A12;
+    background:$black;
     display: flex;
     flex-direction: column;
-    color: black;
-    h2 {
-      font-size: 24px;
-      text-align: center;
-      margin: 2% auto;
-    }
+    min-height: 100vh;
     .movie-cards {
       width: 70%;
       margin: 3% auto;
@@ -24,6 +19,7 @@
         width: 100%;
         max-width: 347px;
         height: auto;
+        max-height: 521px;
         margin: 3% auto;
         display: flex;
         flex-direction: column;

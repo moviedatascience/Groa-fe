@@ -4,14 +4,13 @@ import { connect } from "react-redux";
 import { uploadAction } from "../../store/actions/index.js";
 import { ifDev } from "../../utils/removeAttribute.js";
 import letterboxdLogo from "../../img/letterboxd-logo.svg";
-import imdbLogo from "../../img/imdb-logo.svg";
+// import imdbLogo from "../../img/imdb-logo.svg";
 import fileAlt from "../../img/file-alt.svg";
 // children components
 import Congratulations from "./Congratulations.js";
 import LoadingScreen from "../layout/LoadingScreen.js";
 
 const DataUpload = ({ userid, uploadAction, isUploading }) => {
-  const [input] = useState({ file: "" });
   const [uploadSuccess, setUploadSuccess] = useState(false);
 
   const toggleInstructions = (window.onclick = function(event) {
@@ -42,13 +41,26 @@ const DataUpload = ({ userid, uploadAction, isUploading }) => {
     }
   });
 
-  const handleChange = e => {
+  const handleChange = file => {
     let data = new FormData();
-    data.append("movies", e.target.files[0], e.target.files[0].name);
+    data.append("movies", file, file.name);
     uploadAction(userid, data, setUploadSuccess);
     data = new FormData();
   };
 
+  const onDragStart = e => {
+    e.preventDefault();
+  };
+
+  const onDragOver = e => {
+    e.preventDefault();
+  };
+
+  const onFileDrop = e => {
+    e.preventDefault();
+    let files = e.dataTransfer.files;
+    handleChange(files[0]);
+  };
   if (isUploading) return <LoadingScreen />;
   else if (uploadSuccess) return <Congratulations />;
   else
@@ -148,20 +160,25 @@ const DataUpload = ({ userid, uploadAction, isUploading }) => {
 
           {/* ///////////////UPLOAD FILE //////////////////// */}
           <div className="UploadContainer">
-            <div className="inputholder">
+            <form 
+              encType='multipart/form-data'
+              className="inputholder"
+              onDragEnter={onDragStart}
+              onDragOver={onDragOver}
+              onDrop={onFileDrop}
+            >
               <input
                 className="uploadData"
                 type="file"
                 name="movies"
                 id="movies"
-                value={input.movieName}
                 onChange={handleChange}
               />
               <label id="uploadLabel" htmlFor="movies">
-                <p>Click to browse</p>
+                <p>Drag files here or click to browse</p>
                 <img src={fileAlt} alt="File icon" />
               </label>
-            </div>
+            </form>
           </div>
           <div className="textholder2">
             <p className="ptext">

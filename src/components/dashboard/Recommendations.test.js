@@ -16,7 +16,8 @@ it("renders Recommendations with array has length.", async () => {
       userid: 4
     },
     rating: {
-      error: ""
+      error: "",
+      isFetching: false
     },
     register: {
       success: false,
@@ -65,11 +66,18 @@ it("renders LoadingScreen when recommendations array is empty", () => {
       movies: [],
       error: ""
     },
+    rating: {
+      error: "",
+      isFetching: false
+    },
     upload: {
       isUploading: false
     },
     watchlist: {
       movies: [],
+      isFetching: false
+    },
+    rating: {
       isFetching: false
     }
   });
