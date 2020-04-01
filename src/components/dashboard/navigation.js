@@ -67,31 +67,7 @@ class Navigation extends Component {
             </NavLink>
           
 
-            <NavLink
-              className="NavLink"
-              to={`/${this.props.userid}/ratings`}
-            >
-              Ratings
-            </NavLink>
-
-            {/* adding this here until all other nav functionality is added */}
-            <NavLink className="NavLink" to={`/${this.props.userid}/upload`}>
-              Upload Data
-            </NavLink>
-
-            <NavLink
-              className="NavLink"
-              onClick={this.logout}
-              data-test={ifDev("logoutBtn")}
-              to="/login"
-            >
-              Logout
-            </NavLink>
-
-            <NavLink
-              className="NavLink"
-              to={`/${this.props.userid}/watchlist`}
-            >
+            <NavLink className="NavLink  watchlist" to={`/${this.props.userid}/watchlist`}>
               Watchlist
             </NavLink>
 
