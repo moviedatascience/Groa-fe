@@ -8,7 +8,7 @@ import { Router } from "react-router-dom";
 // component to be tested.
 import App from "./App.js";
 import Register from "./components/auth/Register.js";
-import Login from "./components/auth/login.js";
+import Login from "./components/auth/Login.js";
 
 //creating a mock function to test if GA initialization was called.
 import reactGAinitialization from "./config/analytics.js";
