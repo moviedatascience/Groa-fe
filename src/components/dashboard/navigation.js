@@ -13,7 +13,7 @@ import {
 import { faBell, faQuestionCircle } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { ifDev } from "../../utils/removeAttribute.js";
-import GroaLogo from "../auth/Groa-logo-B2AA.png";
+import GroaLogo from "../../img/groa-logo-nav.png";
 
 class Navigation extends Component {
   constructor(props) {
@@ -97,7 +97,6 @@ class Navigation extends Component {
               className="searchBox"
               type="text"
               name="search"
-              value={this.search}
               onChange={this.handleChange}
               placeholder="search..."
             />

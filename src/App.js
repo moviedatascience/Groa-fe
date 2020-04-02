@@ -4,12 +4,11 @@ import { Route } from "react-router-dom";
 // local imports
 import PrivateRoute from "./utils/privateRoute.js";
 import Recommendations from "./components/dashboard/Recommendations.js";
-import Navigation from "./components/dashboard/navigation.js";
+import Navigation from "./components/dashboard/Navigation.js";
 import Register from "./components/auth/Register";
-import Login from "./components/auth/login";
-import DataUpload from "./components/auth/dataUpload";
+import Login from "./components/auth/Login";
+import DataUpload from "./components/auth/DataUpload";
 import Watchlist from "./components/dashboard/Watchlist.js";
-
 import Ratings from './components/dashboard/Ratings';
 
 // for testing

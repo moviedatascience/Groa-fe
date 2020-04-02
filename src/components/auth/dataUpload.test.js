@@ -6,7 +6,7 @@ import { getAllByTestId, getByTestId } from "../../utils/test-utils.js";
 import { createMemoryHistory } from "history";
 
 // component to be tested.
-import DataUpload from "./dataUpload.js";
+import DataUpload from "./DataUpload.js";
 
 // redux testing
 import { Provider } from "react-redux";
