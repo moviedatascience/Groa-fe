@@ -39,8 +39,7 @@
         &:hover {
           color:white;
         }
-      }
-       
+      } 
     }
     @media only screen and (max-width: 750px) {
       .watchlist, .recommended {
@@ -60,6 +59,9 @@
     }
     
     @media only screen and (max-width: 750px) {
+      .Links {
+        justify-content: space-between;
+      }
       button {
         font-size: 0;
       }
