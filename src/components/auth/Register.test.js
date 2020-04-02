@@ -1,6 +1,6 @@
 import React from "react";
 import { render,fireEvent, } from "@testing-library/react";
-import {getAllByText} from "@testing-library/dom";
+import { getAllByText } from "@testing-library/dom";
 import { getAllByTestId, getByTestId } from "../../utils/test-utils.js";
 import { BrowserRouter as Router } from "react-router-dom";
 

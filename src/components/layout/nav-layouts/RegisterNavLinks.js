@@ -2,7 +2,7 @@ import React from "react";
 import { ifDev } from "../../../utils/removeAttribute.js";
 import { Link } from "react-router-dom";
 // styling imports
-import GroaLogo from "../../auth/Groa-logo-B2AA.png";
+import GroaLogo from "../../../img/groa-logo-nav.png";
 
 export default function RegisterNavLinks() {
   return (

@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { loginAction } from "../../store/actions";
 import { ifDev } from "../../utils/removeAttribute.js";
 // styling imports
-import Picture1 from "./Group 1.png";
+import Picture1 from "../../img/watching-tv.png";
 // Navbar Login
 import LoginNavLinks from "../layout/nav-layouts/LoginNavLinks.js";
 

@@ -5,7 +5,7 @@ import { getAllByTestId } from "../../utils/test-utils.js";
 import { createMemoryHistory } from "history";
 
 // component to be tested.
-import PostLogin from "./postLogin";
+import PostLogin from "./PostLogin";
 
 it("renders PostLogin component on the path '/setup-wizard'", () => {
   let route = "/setup-wizard";

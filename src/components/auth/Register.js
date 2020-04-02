@@ -3,8 +3,10 @@ import { connect } from "react-redux";
 import { registerAction, loginAction } from "../../store/actions";
 import { ifDev } from "../../utils/removeAttribute.js";
 import {Link} from "react-router-dom";
+
 // styling imports
-import Picture3 from "./Group 3.png";
+import Picture3 from "../../img/couch-popcorn.png";
+
 // Navbar Register
 import RegisterNavLinks from "../layout/nav-layouts/RegisterNavLinks";
 
@@ -186,7 +188,7 @@ class Register extends React.Component {
                 </div>
                 <div className="bottomAccount">
                   <Link className="loginAccount"
-                    onClick={this.login}
+                    onClick={this.handleSubmit}
                     data-test={ifDev("loginBtn")}
                     to="/login">
                     Already have an account? 

@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import successImg from "../../img/success_ 5.png";
+import SuccessImg from "../../img/success-man.png";
 
 const Congrats = ({ userid }) => {
   return (
@@ -12,7 +12,7 @@ const Congrats = ({ userid }) => {
             <h1>Congratulations!</h1>
             <h2>Your ratings have been successfully uploaded.</h2>
             <div className="image">
-              <img src={successImg} alt="Success png" />
+              <img src={SuccessImg} alt="Success png" />
             </div>
             <button>
               <Link to={`/${userid}/recommended`} style={{color: "white",textDecoration: "none"}}>Go to Dashboard</Link>
