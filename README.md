@@ -2,11 +2,11 @@
 
 You can find the deployed project at [https://www.groa.us/](https://www.groa.us/).
 
-## 4️⃣ Contributors
+## Contributors
 
 |                                        [Brianna Keune](https://github.com/briannakeune)                                        |                                            [Benjamin Solt](https://github.com/bensolt)                                            |                                     [Mariela Gonzales](https://github.com/marielapg)                                      |
 | :----------------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------: |
-|   [<img src="https://avatars0.githubusercontent.com/u/42918544?s=460&v=4" width = "200" />](https://github.com/briannakeune)   |       [<img src="https://avatars0.githubusercontent.com/u/52627840?s=460&v=4" width = "200" />](https://github.com/bensolt)       |               [<img src="./public/img/marielaGonzales.png" width = "200" />](https://github.com/marielapg)                |
+|   [<img src="https://avatars0.githubusercontent.com/u/42918544?s=460&v=4" width = "200" />](https://github.com/briannakeune)   |       [<img src="https://avatars0.githubusercontent.com/u/52627840?s=460&v=4" width = "200" />](https://github.com/bensolt)       |            [<img src="./public/assets/img/marielaGonzales.png" width = "200" />](https://github.com/marielapg)            |
 |                   [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/briannakeune)                    |                       [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/bensolt)                        |                  [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/marielapg)                   |
 | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/brianna-keune/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/ben-solt-8447bb94) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/marielapg) |
 
@@ -19,17 +19,14 @@ You can find the deployed project at [https://www.groa.us/](https://www.groa.us/
 <br>
 <br>
 
-🚫 4️⃣ Optional examples of using images with links for your tech stack, make sure to change these to fit your project
-
 ![MIT](https://img.shields.io/packagist/l/doctrine/orm.svg)
 ![React](https://img.shields.io/badge/react-v16.7.0--alpha.2-blue.svg)
 ![Typescript](https://img.shields.io/npm/types/typescript.svg?style=flat)
-[![Netlify Status](https://api.netlify.com/api/v1/badges/b5c4db1c-b10d-42c3-b157-3746edd9e81d/deploy-status)](netlify link goes in these parenthesis)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 [![Maintainability](https://api.codeclimate.com/v1/badges/a99a88d28ad37a79dbf6/maintainability)](https://codeclimate.com/github/codeclimate/codeclimate/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/a99a88d28ad37a79dbf6/test_coverage)](https://codeclimate.com/github/codeclimate/codeclimate/test_coverage)
 
-🚫 more info on using badges [here](https://github.com/badges/shields)
+more info on using badges [here](https://github.com/badges/shields)
 
 ## Project Overview
 
@@ -41,15 +38,15 @@ You can find the deployed project at [https://www.groa.us/](https://www.groa.us/
 
 Gróa will use our Discovery Engine to present movies suited to your taste based upon the way in which you talk about movies.
 
-### 4️⃣ Key Features
+### Key Features
 
-- feature one
-- feature two
-- feature three
-- feature four
-- feature five
+- Uploading Letterboxd ZIP file
+- Receiving movie recommendations from Letterboxd data
+- Rating movies
+- Receiving new more fine tuned recommendations based on what you've recently rated.
+- Adding movies to your watchlist
 
-## 1️⃣ Tech Stack
+## Tech Stack
 
 ### Front end built using:
 
@@ -59,7 +56,44 @@ Gróa will use our Discovery Engine to present movies suited to your taste based
 - 99% backwards compatibility compared to Vues's 90%.
 - In consideration of who will most likely work on Groa in the future, we thought React would be easy to jump in the code base.
 
-🚫List the rest of the front end features and libraries in the same format as the framework above.
+---
+
+#####Libraries and Packages
+
+[axios](https://www.npmjs.com/package/axios)
+
+- for easier to read responses than _fetch_
+
+[@fortawesome/fontawesome-svg-core](https://www.npmjs.com/package/@fortawesome/fontawesome-svg-core) |
+[@fortawesome/free-regular-svg-icons](https://www.npmjs.com/package/@fortawesome/free-regular-svg-icons) |
+[@fortawesome/free-solid-svg-icons](https://www.npmjs.com/package/@fortawesome/free-solid-svg-icons) |
+[@fortawesome/react-fontawesome](https://www.npmjs.com/package/@fortawesome/react-fontawesome)
+
+- for all fontawesome icons
+
+[@material-ui/core](https://www.npmjs.com/package/@material-ui/core) |
+[@material-ui/icons](https://www.npmjs.com/package/@material-ui/icons) |
+[@material-ui/lab](https://www.npmjs.com/package/@material-ui/lab) |
+
+- for the stars on movie cards
+
+[@node-sass](https://www.npmjs.com/package/node-sass)
+
+- drier styling
+
+[react-ga](https://www.npmjs.com/package/react-ga)
+
+- google analytics
+
+[react-loading](https://www.npmjs.com/package/react-loading)
+
+- for loading screen animation
+
+[react-redux](https://www.npmjs.com/search?q=react-redux) |
+[redux-logger](https://www.npmjs.com/package/react-logger) |
+[redux-thunk](https://www.npmjs.com/package/redux-thunk)
+
+- for global statemangement
 
 #### Front end deployed to `AWS Amplify`
 
@@ -71,7 +105,40 @@ Gróa will use our Discovery Engine to present movies suited to your taste based
 - Good error handling
 - Faster to implement than vanilla Node.js
 
-🚫 List the rest of the back end end features and libraries in the same format as the framework above
+---
+
+######Libraries and Packages
+
+[apidoc](https://www.npmjs.com/package/apidoc)
+
+- to create easy to read API docs with inline comments
+
+[axios](https://www.npmjs.com/package/axios)
+
+- for easier to read responses than _fetch_
+
+[cors](https://www.npmjs.com/search?q=cors)
+
+- allows us to configure to avoid cors issues
+
+[body-parser](https://www.npmjs.com/package/body-parser) |
+[csv-parser](https://www.npmjs.com/package/csv-parser) |
+[express-fileupload](https://www.npmjs.com/package/express-fileupload) |
+[unzipper](https://www.npmjs.com/package/unzipper)
+
+- to handle uploaded file information
+
+[dotenv](https://www.npmjs.com/package/dotenv)
+
+- allows node to read our .env files
+
+[standard](https://www.npmjs.com/package/standard)
+
+[pg](https://www.npmjs.com/package/pg)
+
+[pg-format](https://www.npmjs.com/package/pg-format)
+
+[nodemon](https://www.npmjs.com/search?q=nodemon)
 
 #### Back end deployed to `AWS Elastic Beanstalk`
 
@@ -82,24 +149,46 @@ In order for the app to function correctly, the user must set up their own envir
     REACT_APP_ANALYTICS_ID - this is your Google analytics key, which can be generated in the Google Analytics Console.
     REACT_APP_TMDB_API_KEY - this is your API key from TMDb it sources the movie posters we user.
 
-# 5️⃣ Content Licenses
+# Content Licenses
 
-🚫For all content - images, icons, etc, use this table to document permission of use. Remove the two placeholders and add you content to this table
+| Image Filename      | Source / Creator          | License                                                                                  |
+| ------------------- | ------------------------- | ---------------------------------------------------------------------------------------- |
+| imdb-logo.svg       | unbekanntAmazon.com, Inc. | [Creative Commons](https://commons.wikimedia.org/wiki/File:New-imdb-logo.png)            |
+| letterboxd-logo.svg | Matthewbuchanan           | [Creative Commons](<https://commons.wikimedia.org/wiki/File:Letterboxd_logo_(2018).png>) |
+| success_5.svg       | -------------             | [Creative Commons](https://www.manypixels.co/gallery/)                                   |
+| Groa-logo-B2AA.png  | -------------             | [Creative Commons](https://www.manypixels.co/gallery/)                                   |
 
-| Image Filename | Source / Creator | License                                                                      |
-| -------------- | ---------------- | ---------------------------------------------------------------------------- |
-| doodles.png    | Nicole Bennett   | [Creative Commons](https://www.toptal.com/designers/subtlepatterns/doodles/) |
-| rings.svg      | Sam Herbert      | [MIT](https://github.com/SamHerbert/SVG-Loaders)                             |
+# Testing
 
-# 4️⃣ Testing
+#### Client Testing Libraries
 
-🚫Document what you used for testing and why
+[Jest](https://jestjs.io/)
+
+[React Testing Library](https://testing-library.com/docs/react-testing-library/intro)
+
+[history](https://www.npmjs.com/package/history)
+
+[redux-mock-store](https://www.npmjs.com/package/redux-mock-store)
+
+####API Testing Libraries
+
+[Jest](https://jestjs.io/)
+
+[@types/jest](https://www.npmjs.com/package/@types/jest)
+
+[cross-env](https://www.npmjs.com/package/cross-env)
+
+[supertest](https://www.npmjs.com/package/supertest)
+
+[knex-cleaner](https://www.npmjs.com/package/knex-cleaner)
+
+[knex](https://www.npmjs.com/package/knex)
 
 # Installation Instructions
 
     Clone this repo to your local machine.
 
-    Run yarn or npm i
+    Run npm i
 
 ## Other Scripts
 

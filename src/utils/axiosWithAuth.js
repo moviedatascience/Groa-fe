@@ -4,7 +4,7 @@ const axiosWithAuth = () => {
   const token = localStorage.getItem("token");
 
   return axios.create({
-    baseURL: "https://api.groa.us/api/users",
+    baseURL: "https://dev.groa.us/api/users",
     headers: {
       Authorization: token
     }

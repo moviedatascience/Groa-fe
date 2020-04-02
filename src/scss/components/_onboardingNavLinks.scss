@@ -1,0 +1,29 @@
+  .register.nav,
+  .login.nav {
+    font-family: $workSans;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    text-align: center;
+
+    img{
+      height: 2.5rem;
+      width: auto;
+    }
+    .link {
+      display: flex;
+      width: 100%;
+      height: auto;
+      font-size: 1rem;
+      text-decoration: none;
+      justify-content: flex-end;
+      align-items: center;
+      color: $white;
+    
+      &:hover {
+        color: $turqoise3;
+        font-weight: bold;        
+      }
+    }
+  }

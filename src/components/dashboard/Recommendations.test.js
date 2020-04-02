@@ -15,6 +15,10 @@ it("renders Recommendations with array has length.", async () => {
     login: {
       userid: 4
     },
+    rating: {
+      error: "",
+      isFetching: false
+    },
     register: {
       success: false,
       error: ""
@@ -29,6 +33,10 @@ it("renders Recommendations with array has length.", async () => {
     },
     upload: {
       isUploading: true
+    },
+    watchlist: {
+      movies: [],
+      isFetching: false
     }
   });
 
@@ -58,8 +66,19 @@ it("renders LoadingScreen when recommendations array is empty", () => {
       movies: [],
       error: ""
     },
+    rating: {
+      error: "",
+      isFetching: false
+    },
     upload: {
       isUploading: false
+    },
+    watchlist: {
+      movies: [],
+      isFetching: false
+    },
+    rating: {
+      isFetching: false
     }
   });
   const { container } = render(

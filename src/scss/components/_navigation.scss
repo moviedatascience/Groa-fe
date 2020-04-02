@@ -1,0 +1,166 @@
+.mainContainer {
+  background: #000A12;
+  padding: 1.1% 1%;
+  font-family: $workSans;
+  .navContainer {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    padding-right: 1rem;
+    .Bars {
+      padding-top: 5px;
+      .bars-icon {
+        color: white;
+        font-size: 1.4rem;
+      }
+    }
+    .Links {
+      width: 60%;
+      display: flex;
+      justify-content: space-evenly;
+      a.active{
+        border-bottom: 3px solid #00E6BC;
+      }
+      img{
+        height: 2rem;
+        width: auto;
+      }
+      .Groa-NavLink {
+        &:hover {
+          color:white;
+        }
+      }
+      .NavLink {
+        color: white;
+        text-decoration: none;
+        padding-top: 1%;
+        margin: 0 1%;
+    
+        &:hover {
+          color:white;
+        }
+      } 
+    }
+    @media only screen and (max-width: 750px) {
+      .watchlist, .recommended {
+        display: none; 
+      }
+      .dropdown-hover .angle-down-icon{
+        display: none;
+      }
+    }
+    button {
+      white-space: nowrap;
+      font-size: 1rem;
+      padding: 0.6rem 1.8rem;
+      margin: 0 5%;
+      border-radius: 5px;
+      background-color: $white;
+    }
+    
+    @media only screen and (max-width: 750px) {
+      .Links {
+        justify-content: space-between;
+      }
+      button {
+        font-size: 0;
+        padding: .2rem;
+        border-radius: 100%;
+        background-color: rgba(28,28,28,0);
+        border: none;
+      }
+      .sync-icon {
+        font-size: initial;
+        color: $white;
+      }
+    }
+    .fa-icons {
+      padding-top: 5px;
+      width: 14%;
+      display: flex;
+      justify-content: space-between;
+      font-size: 1.4rem;
+      color: white;
+    }
+    .searchContainer {
+      background-color: $gray2;
+      padding: .4rem .4rem;
+      display: flex;
+      justify-content: space-between;
+      border-radius: 5px;
+      .search-icon {
+        color: white;
+        opacity: .4;
+        font-size: 1.2rem;
+        padding: .2rem;
+      }
+      .searchBox {
+        font-size: 1rem;
+        width: 100%;
+        background-color: $gray2;
+        border: none;
+        color: $white;
+      }
+      input:focus{
+        outline: none;
+      }
+    }
+  }
+  .hidden,
+  .searchContainer.hidden {
+    display: none;
+    white-space: pre;
+  }
+  .dropdown-hover {
+    padding: .5rem;
+    position: relative;
+    cursor: pointer;
+    .angle-down-icon {
+      padding: .5rem .5rem 0 .5rem;
+    }
+    .dropdown-content {
+      display: none;
+    }
+    &:hover {
+      .dropdown-content{
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 2rem;
+        right: .4rem;
+        border-radius: 5px;
+        overflow: hidden;
+        z-index: 5;
+        border: 1px solid $gray1;
+          
+        .NavLink {
+          border-top: 1px solid $gray1;
+          color: $black;
+          text-decoration: none;
+          font-size: 1.1rem;
+          padding: 1rem 1.5rem;
+          background: $white;
+          white-space: nowrap;
+          text-align: center;
+          &:hover {
+            background-color: $gray1;
+          }
+          @media(hover: hover) and (pointer: fine) {
+            &:hover {
+              background-color: $gray1;
+            }
+          }
+        }
+        .watchlist-menu, .recommended-menu {
+          display: none;
+        }
+        @media only screen and (max-width: 750px) {
+          .watchlist-menu, .recommended-menu  {
+            display: block; 
+          }
+        }
+      }
+    }
+  }
+
+}

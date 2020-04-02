@@ -1,4 +1,3 @@
-
 export const SET_FILTER_ITEM = "SET_FILTER_ITEM";
 
 export const setFilter = (item) => { 

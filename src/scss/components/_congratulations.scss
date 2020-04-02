@@ -1,0 +1,55 @@
+.CongratsPage{
+    border: 2px solid #000A12;
+    background:#000A12;
+    height: 100vh;
+    font-family: $workSans;
+
+    .CenterBox{
+        display:flex;
+        margin-top: 10%;
+        justify-content: center;
+    
+        .congratsForm{
+            display: flex;
+            justify-content: center;
+            background: white;
+            width: 600px;
+            height: 600px;
+
+            .textHolder{
+                text-align: center;
+                margin-top: 10%;
+                width: 550px;
+                height: 350px;
+                
+                h1{
+                    font-size: 35px;
+                    padding-left: 80px; 
+                    padding-right: 50px;
+                    margin-top: 10px;
+                    font-weight: 400px;
+                }
+                h2{
+                    font-size: 20px;
+                    padding-top: 15px;
+                    padding-bottom: 15px;
+                    padding-left: 9px;
+                }
+                .image{
+                    display: flex;
+                    justify-content: center;
+                    margin: 16px;
+                }
+                button{
+                    font-size: 20px;
+                    width: 220px;
+                    height: 51px;
+                    margin-top: 43px;
+                    background:#00B392;               
+                    border-radius: 5px;
+                    border:none;
+                }    
+            }
+        } 
+    }
+}
