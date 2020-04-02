@@ -4,7 +4,7 @@
   font-family: $workSans;
   .navContainer {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
     align-items: center;
     padding-right: 1rem;
     .Bars {
@@ -14,7 +14,6 @@
         font-size: 1.4rem;
       }
     }
-
     .Links {
       width: 60%;
       display: flex;
@@ -22,13 +21,11 @@
       a.active{
         border-bottom: 3px solid #00E6BC;
       }
-
       img{
         height: 2rem;
         width: auto;
       }
       .Groa-NavLink {
-
         &:hover {
           color:white;
         }
@@ -37,20 +34,19 @@
         color: white;
         text-decoration: none;
         padding-top: 1%;
+        margin: 0 1%;
     
         &:hover {
           color:white;
         }
-      }
-       
+      } 
     }
     @media only screen and (max-width: 750px) {
       .watchlist, .recommended {
         display: none; 
       }
-      .dropdown-hover .angle-down-icon {
+      .dropdown-hover .angle-down-icon{
         display: none;
-
       }
     }
     button {
@@ -61,8 +57,17 @@
       border-radius: 5px;
       background-color: $white;
     }
-    span {
-      padding: 0.715rem 2.725rem;
+    
+    @media only screen and (max-width: 750px) {
+      .Links {
+        justify-content: space-between;
+      }
+      button {
+        font-size: 0;
+      }
+      .sync-icon {
+        font-size: initial;
+      }
     }
     .searchContainer {
       width: 11.5%;
