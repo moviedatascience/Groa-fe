@@ -4,7 +4,7 @@
   font-family: $workSans;
   .navContainer {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
     align-items: center;
     padding-right: 1rem;
     .Bars {
@@ -14,21 +14,18 @@
         font-size: 1.4rem;
       }
     }
-
     .Links {
       width: 60%;
       display: flex;
-      justify-content: space-between;
+      justify-content: space-evenly;
       a.active{
         border-bottom: 3px solid #00E6BC;
       }
-
       img{
         height: 2rem;
         width: auto;
       }
       .Groa-NavLink {
-
         &:hover {
           color:white;
         }
@@ -37,6 +34,7 @@
         color: white;
         text-decoration: none;
         padding-top: 1%;
+        margin: 0 1%;
     
         &:hover {
           color:white;
