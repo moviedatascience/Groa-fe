@@ -10,7 +10,6 @@ import {
   faBars,
   faSync
 } from "@fortawesome/free-solid-svg-icons";
-import { faBell, faQuestionCircle } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { ifDev } from "../../utils/removeAttribute.js";
 import GroaLogo from "../../img/groa-logo-nav.png";
@@ -78,6 +77,7 @@ class Navigation extends Component {
             </NavLink>
           </div>
 
+          {/* If the path is upload hide the search container */}
           {window.location.pathname === `/${this.props.userid}/upload` ? null :
           <form className="searchContainer">
             <FontAwesomeIcon className="search-icon" icon={faSearch} />
@@ -98,32 +98,25 @@ class Navigation extends Component {
             onClick={() => this.getNewRecommendations(this.props.userid)}
           > 
             <FontAwesomeIcon className="sync-icon" icon={faSync} />
-            <i className="fas fa-sync"></i> Update your recs
+            <i className="fas fa-sync"></i> 
+            Update your recs
           </button>
           : null }
 
           <div className="fa-icons">
-            <FontAwesomeIcon className="bell-icon  hidden" icon={faBell} />
-            <i className="far fa-bell"></i>
-
-            <FontAwesomeIcon
-              className="question-icon  hidden"
-              icon={faQuestionCircle}
-            />
-            <i className="far fa-question-circle  hidden"></i>
-
-    
+            {/* This is the container for the user-icon and the arrow */}
             <div className="dropdown-hover">
               <FontAwesomeIcon
                 className="user-circle-icon"
                 icon={faUserCircle}
               />
-            <i className="far fa-user-circle"></i>
+              <i className="far fa-user-circle"></i>
 
-            <FontAwesomeIcon className="angle-down-icon" icon={faAngleDown} />
+              <FontAwesomeIcon className="angle-down-icon" icon={faAngleDown} />
+              <i className="fas fa-angle-down"></i>
 
               <div className="dropdown-content">
-
+              {/* This is the dropdown menu, links display based on media query */}
                 <NavLink
                   className="NavLink recommended-menu"
                   to={`/${this.props.userid}/recommended`}
@@ -161,9 +154,11 @@ class Navigation extends Component {
                   Log out
                </NavLink>              
                </div>
+               {/* END dropdown-content */}
              </div>
-
+            {/* END dropdown-hover */}
           </div>
+          {/* END fa-icons */}
         </div>
         {/* END navContainer */}
       </div>
