@@ -98,7 +98,6 @@
       background-color: $white;
       cursor: pointer;
       transition: all 500ms linear;
-
     }
     
     @media only screen and (max-width: 750px) {
@@ -159,7 +158,7 @@
         overflow: hidden;
         z-index: 5;
         border: 1px solid $gray1;
-          
+        
         .NavLink {
           border-top: 1px solid $gray1;
           color: $black;
@@ -189,5 +188,5 @@
       }
     }
   }
-
+  
 }
