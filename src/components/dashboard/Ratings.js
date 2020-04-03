@@ -7,8 +7,14 @@ import { getRatingAction } from "../../store/actions/index.js";
 import MovieCard from "../movies/MovieCard.js";
 import LoadingScreen from "../layout/LoadingScreen.js";
 
-function Ratings({ isFetching, ratings, userid, getRatingAction }) {
-  console.log(ratings)
+function Ratings({ 
+  userid, 
+  isFetching,
+  getRatingAction,
+  ratings, 
+  searchTerm
+}) {
+
   useEffect(() => {
     // Returns the ratings
     getRatingAction(userid);
@@ -18,8 +24,17 @@ function Ratings({ isFetching, ratings, userid, getRatingAction }) {
     return (
       <div className="container ratings" data-test={ifDev("ratings-component")}>
         <div className="movie-cards">
-          {ratings.map((x, index) => {
-            let posterURI = x["poster_url"];
+          {ratings.filter(movie =>
+            searchTerm !== '' ? 
+              movie.name
+              .toString()
+              .toLowerCase()
+              .includes(
+                searchTerm
+                .toLowerCase()
+              ) : true
+            ).map((movie, index) => {
+            let posterURI = movie.poster_url;
             let unsplashUrl =
               "https://source.unsplash.com/collection/1736993/500x650";
             let moviePoster = `https://image.tmdb.org/t/p/w500${posterURI}?api_key=${process.env.REACT_APP_TMDB_API_KEY}`;
@@ -27,9 +42,9 @@ function Ratings({ isFetching, ratings, userid, getRatingAction }) {
             return (
               <MovieCard
                 key={index}
-                name={x.name}
-                year={x.year}
-                rated={x.rating}
+                name={movie.name}
+                year={movie.year}
+                rated={movie.rating}
                 image={
                   !posterURI ||
                   posterURI === "None" ||
@@ -53,7 +68,8 @@ const mapStateToProps = state => {
     userid: state.login.userid,
     isFetching: state.rating.isFetching,
     ratings: state.rating.movies,
-    ratingsError: state.rating.error
+    ratingsError: state.rating.error,
+    searchTerm: state.filter.searchTerm
   };
 };
 export default connect(mapStateToProps, { getRatingAction })(Ratings);

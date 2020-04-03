@@ -8,6 +8,8 @@ import {
   removeFromWatchlistAction,
   getWatchlistAction
 } from "./watchlistActions.js";
+import { setFilter } from "./filterActions.js"; 
+
 
 export {
   loginAction,
@@ -20,5 +22,6 @@ export {
   getRatingAction,
   addToWatchlistAction,
   removeFromWatchlistAction,
-  getWatchlistAction
+  getWatchlistAction,
+  setFilter
 };
