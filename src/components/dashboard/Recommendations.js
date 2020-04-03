@@ -38,9 +38,9 @@ function Recommendations({
         data-test={ifDev("recommendations-component")}
       >
         <div className="movie-cards">
-        {recommendations.filter(post =>
-        searchTerm !== '' ? post.Title.toString().toLowerCase().includes(searchTerm.toLowerCase()) : true).map((x, index) =>{
-            let posterURI = x["Poster URL"];
+        {recommendations.filter(movie =>
+        searchTerm !== '' ? movie.Title.toString().toLowerCase().includes(searchTerm.toLowerCase()) : true).map((movie, index) =>{
+            let posterURI = movie["Poster URL"];
             let unsplashUrl =
               "https://source.unsplash.com/collection/1736993/500x650";
             let moviePoster = `https://image.tmdb.org/t/p/w500${posterURI}?api_key=${process.env.REACT_APP_TMDB_API_KEY}`;
@@ -48,8 +48,9 @@ function Recommendations({
             return (
               <MovieCard
                 key={index}
-                name={x.Title}
-                year={x.Year}
+                rated={null}
+                name={movie.Title}
+                year={movie.Year}
                 image={
                   !posterURI ||
                   posterURI === "None" ||
