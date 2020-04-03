@@ -10,6 +10,7 @@ import Login from "./components/auth/Login";
 import DataUpload from "./components/auth/DataUpload";
 import Watchlist from "./components/dashboard/Watchlist.js";
 import Ratings from './components/dashboard/Ratings';
+import Explore from "./components/dashboard/Explore.js";
 
 // for testing
 import { ifDev } from "./utils/removeAttribute.js";
@@ -51,7 +52,6 @@ function App() {
             exact
             path={[
               "/:userid/recommended",
-              "/:userid/trending",
               "/:userid/watchlist",
               "/:userid/explore",
               "/:userid/upload",
@@ -76,6 +76,7 @@ function App() {
           {/* this could be a modal */}
           {/* <Route path="/congrats" component={Congrats} /> */}
           <PrivateRoute exact path="/:userid/ratings" component={Ratings}/>
+          <PrivateRoute exact path="/:userid/explore" component={Explore}/>
         </div>
       </Router>
     </Provider>

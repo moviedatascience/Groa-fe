@@ -5,6 +5,7 @@ import { register } from './registerReducer';
 import { recommendations } from './recommendationReducer';
 import { upload } from './uploadReducer';
 import { watchlist } from './watchlistReducer';
+import { movie } from './movieReducer';
 
 export const reducer = combineReducers({
   login,
@@ -12,5 +13,6 @@ export const reducer = combineReducers({
   register,
   recommendations,
   upload,
-  watchlist
+  watchlist,
+  movie
 });

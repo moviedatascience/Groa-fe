@@ -5,7 +5,7 @@ import { ifDev } from "../../utils/removeAttribute.js";
 import {
   recommendedAction,
   recommendationAction,
-  toggleIsUploaded
+  toggleIsUploaded,
 } from "../../store/actions/index.js";
 // children components
 import LoadingScreen from "../layout/LoadingScreen.js";
@@ -27,6 +27,7 @@ function Recommendations({
     }
     // Returns the most recent recommendations from the database
     recommendedAction(userid);
+
   }, [recommendedAction, userid, isUploaded, recommendationAction]);
 
   if (isFetching) return <LoadingScreen />;
@@ -71,12 +72,12 @@ const mapStateToProps = state => {
     isFetching: state.recommendations.isFetching,
     recommendations: state.recommendations.movies,
     recommendationsError: state.recommendations.error,
-    isUploaded: state.upload.isUploaded
+    isUploaded: state.upload.isUploaded,
   };
 };
 
 export default connect(mapStateToProps, {
   recommendedAction,
   recommendationAction,
-  toggleIsUploaded
+  toggleIsUploaded,
 })(Recommendations);

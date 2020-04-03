@@ -53,13 +53,6 @@ class Navigation extends Component {
             <img src={GroaLogo} alt="Groa Logo" />
 
             <NavLink
-              className="NavLink  hidden"
-              to={`/${this.props.userid}/trending`}
-            >
-              Trending
-            </NavLink>
-
-            <NavLink
               className="NavLink recommended"
               to={`/${this.props.userid}/recommended`}
             >
@@ -72,7 +65,7 @@ class Navigation extends Component {
             </NavLink>
 
             <NavLink
-              className="NavLink  hidden"
+              className="NavLink explore"
               to={`/${this.props.userid}/explore`}
             >
               Explore
