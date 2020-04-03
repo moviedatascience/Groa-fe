@@ -51,13 +51,6 @@ class Navigation extends Component {
             <img src={GroaLogo} alt="Groa Logo" />
 
             <NavLink
-              className="NavLink  hidden"
-              to={`/${this.props.userid}/trending`}
-            >
-              Trending
-            </NavLink>
-
-            <NavLink
               className="NavLink recommended"
               to={`/${this.props.userid}/recommended`}
             >
@@ -78,8 +71,7 @@ class Navigation extends Component {
           </div>
 
           {/* If the path is upload hide the search container */}
-          {window.location.pathname === `/${this.props.userid}/upload` ? null :
-          <form className="searchContainer">
+          <form className={`searchContainer ${window.location.pathname === `/${this.props.userid}/upload` ? `hidden` : null }`}>
             <FontAwesomeIcon className="search-icon" icon={faSearch} />
             <input
               className="searchBox"
@@ -89,19 +81,18 @@ class Navigation extends Component {
               onChange={this.handleChange}
               placeholder="Search..."
             />
-          </form> }
+          </form>
 
-          {/* If the path is recommended show update recommendations button */
-            window.location.pathname === `/${this.props.userid}/recommended` ?
+          {/* If the path is recommended show update recommendations button */}
           <button
-            className="recommendations-button"
+            className={`recommendations-button ${window.location.pathname === `/${this.props.userid}/recommended` ? null : ` hidden` }`}
             onClick={() => this.getNewRecommendations(this.props.userid)}
           > 
             <FontAwesomeIcon className="sync-icon" icon={faSync} />
             <i className="fas fa-sync"></i> 
             Update your recs
           </button>
-          : null }
+       
 
           <div className="fa-icons">
             {/* This is the container for the user-icon and the arrow */}

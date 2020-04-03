@@ -36,18 +36,22 @@
         color: white;
         text-decoration: none;
         margin: 0 1%;
-    
+        transition: all 500ms linear;
+  
         &:hover {
           color:white;
         }
       } 
     }
     @media only screen and (max-width: 750px) {
-      .watchlist, .recommended {
-        display: none; 
-      }
+      .watchlist, .recommended, 
       .dropdown-hover .angle-down-icon{
-        display: none;
+        flex: .000000001;
+        white-space: pre;
+        padding: 0;
+        font-size: 0;
+        margin: 0;
+        opacity: 0;      
       }
     }
     .searchContainer {
@@ -55,7 +59,11 @@
       padding: .4rem;
       border-radius: 5px;
       display: flex;
+      flex: 1;
       overflow: hidden;
+      transition: all 500ms linear;
+      min-width: 28vw;
+
       .search-icon {
         color: white;
         opacity: .4;
@@ -89,6 +97,8 @@
       border-radius: 5px;
       background-color: $white;
       cursor: pointer;
+      transition: all 500ms linear;
+
     }
     
     @media only screen and (max-width: 750px) {
@@ -98,7 +108,6 @@
       button {
         font-size: 0;
         padding: .2rem;
-        border-radius: 100%;
         background-color: rgba(28,28,28,0);
         border: none;
       }
@@ -117,9 +126,16 @@
     }
    
   }
+  button.hidden,
+  .searchContainer.hidden,
   .hidden {
-    display: none;
+    // display: none;
+    flex: .000000001;
     white-space: pre;
+    padding: 0;
+    font-size: 0;
+    margin: 0;
+    opacity: 0;
   }
   .dropdown-hover {
     padding: .5rem;
