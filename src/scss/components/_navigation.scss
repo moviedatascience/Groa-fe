@@ -129,7 +129,7 @@
   button.hidden,
   .searchContainer.hidden,
   .hidden {
-    // display: none;
+    min-width: 0;
     flex: .000000001;
     white-space: pre;
     padding: 0;
