@@ -28,7 +28,7 @@ function Explore({ isFetching, movies, userid, getMoviesAction }) {
                 key={index}
                 name={movie.name}
                 year={movie.year}
-                rated={movie.average_rating}
+                rated={null}
                 image={
                   !posterURI ||
                   posterURI === "None" ||
