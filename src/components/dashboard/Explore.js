@@ -7,17 +7,30 @@ import { getMoviesAction } from "../../store/actions/index.js";
 import MovieCard from "../movies/MovieCard.js";
 import LoadingScreen from "../layout/LoadingScreen.js";
 
-function Explore({ isFetching, movies, userid, getMoviesAction }) {
+function Explore({ isFetching, movies, userid, getMoviesAction, searchTerm }) {
   useEffect(() => {
     // Returns the ratings
     getMoviesAction(userid);
   }, [getMoviesAction, userid]);
+  // How many movies render
+  const cardAmount = 25
+
   if (isFetching) return <LoadingScreen />;
   else
     return (
       <div className="container ratings" data-test={ifDev("ratings-component")}>
         <div className="movie-cards">
-          {movies.slice(0, 50).map((movie, index) => {
+          {movies.filter(movie =>
+            searchTerm !== '' ? 
+              movie.name
+              .toString()
+              .toLowerCase()
+              .includes(
+                searchTerm
+                .toLowerCase()
+              ) : true
+            ).slice(0, cardAmount)
+              .map((movie, index) => {
             let posterURI = movie.poster_url;
             let unsplashUrl =
               "https://source.unsplash.com/collection/1736993/500x650";
@@ -52,7 +65,8 @@ const mapStateToProps = state => {
     userid: state.login.userid,
     isFetching: state.movie.isFetching,
     movies: state.movie.movies,
-    moviesError: state.movie.error
+    moviesError: state.movie.error,
+    searchTerm: state.filter.searchTerm
   };
 };
 export default connect(mapStateToProps, { getMoviesAction })(Explore);

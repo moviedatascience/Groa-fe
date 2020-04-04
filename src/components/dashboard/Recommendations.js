@@ -17,6 +17,7 @@ function Recommendations({
   userid,
   recommendedAction,
   recommendationAction,
+  searchTerm, 
   isUploaded
 }) {
   useEffect(() => {
@@ -38,8 +39,9 @@ function Recommendations({
         data-test={ifDev("recommendations-component")}
       >
         <div className="movie-cards">
-          {recommendations.map((x, index) => {
-            let posterURI = x["Poster URL"];
+        {recommendations.filter(movie =>
+        searchTerm !== '' ? movie.Title.toString().toLowerCase().includes(searchTerm.toLowerCase()) : true).map((movie, index) =>{
+            let posterURI = movie["Poster URL"];
             let unsplashUrl =
               "https://source.unsplash.com/collection/1736993/500x650";
             let moviePoster = `https://image.tmdb.org/t/p/w500${posterURI}?api_key=${process.env.REACT_APP_TMDB_API_KEY}`;
@@ -47,8 +49,9 @@ function Recommendations({
             return (
               <MovieCard
                 key={index}
-                name={x.Title}
-                year={x.Year}
+                rated={null}
+                name={movie.Title}
+                year={movie.Year}
                 image={
                   !posterURI ||
                   posterURI === "None" ||
@@ -72,7 +75,8 @@ const mapStateToProps = state => {
     isFetching: state.recommendations.isFetching,
     recommendations: state.recommendations.movies,
     recommendationsError: state.recommendations.error,
-    isUploaded: state.upload.isUploaded,
+    searchTerm: state.filter.searchTerm,
+    isUploaded: state.upload.isUploaded
   };
 };
 
