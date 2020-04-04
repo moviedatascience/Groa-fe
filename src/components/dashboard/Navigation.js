@@ -63,7 +63,8 @@ class Navigation extends Component {
             </NavLink>
           
 
-            <NavLink className="NavLink  watchlist" to={`/${this.props.userid}/watchlist`}>
+            <NavLink className="NavLink  watchlist" 
+              to={`/${this.props.userid}/watchlist`}>
               Watchlist
             </NavLink>
 
@@ -118,6 +119,13 @@ class Navigation extends Component {
                   to={`/${this.props.userid}/recommended`}
                 >
                   Recommended
+                </NavLink>
+
+                <NavLink
+                  className="NavLink explore-menu"
+                  to={`/${this.props.userid}/explore`}
+                >
+                  Explore
                 </NavLink>
 
                 <NavLink 
