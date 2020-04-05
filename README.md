@@ -170,7 +170,7 @@ In order for the app to function correctly, the user must set up their own envir
 
 [redux-mock-store](https://www.npmjs.com/package/redux-mock-store)
 
-####API Testing Libraries
+#### API Testing Libraries
 
 [Jest](https://jestjs.io/)
 
