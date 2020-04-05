@@ -94,9 +94,9 @@ class Navigation extends Component {
             className={`recommendations-button ${window.location.pathname === `/${this.props.userid}/recommended` ? null : ` hidden` }`}
             onClick={() => this.getNewRecommendations(this.props.userid)}
           > 
-            <FontAwesomeIcon className="sync-icon" icon={faSync} />
+            <FontAwesomeIcon className="sync-icon fa-fw" icon={faSync} />
             <i className="fas fa-sync"></i> 
-            Update your recs
+             Update your recs
           </button>
        
 
