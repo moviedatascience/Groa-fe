@@ -14,7 +14,8 @@
       .box {
         border-radius: 5px;
         overflow: hidden;
-        width: 100%;
+        width: 30vw;
+        height: 30vw;
         max-width: 33%;
         margin: 2.5%;
         display: flex;
@@ -50,12 +51,12 @@
           align-items: flex-end;
           height: auto;
           width: 100%;
-          padding: 1rem 0;
+          padding: 1vw 0;
           background-color: $gray2;
           >* {
             width: 50%;
             text-align: left;
-            margin: 1rem;
+            margin: 1vw;
           }
           p{ 
             color: $turqoise2;
