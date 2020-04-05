@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
-import { loginAction } from "../../store/actions/loginAction";
-import { recommendationAction } from "../../store/actions/recommendationActions";
+import { loginAction, setFilter, recommendationAction } from "../../store/actions";
+import debounce from "../../utils/debounce";
 import {
   faSearch,
   faUserCircle,
@@ -13,20 +13,25 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { ifDev } from "../../utils/removeAttribute.js";
 import GroaLogo from "../../img/groa-logo-nav.png";
-import { setFilter } from "../../store/actions/"; 
 
 class Navigation extends Component {
   constructor(props) {
     super(props);
-
+    this.state ={
+      query: ""
+    }
+    this.sendChange = debounce(this.sendChange, 750);
     this.handleChange = this.handleChange.bind(this);
     this.logout = this.logout.bind(this);
     this.getNewRecommendations = this.getNewRecommendations.bind(this);
   }
-
   handleChange = e => {
-    this.props.setFilter(e.target.value);
+    this.setState({query: e.target.value})
+    this.sendChange(e.target.value.trim())
   };
+  sendChange = query => {
+    this.props.setFilter(query)
+  }
 
   logout = () => {
     localStorage.removeItem("token");
@@ -58,12 +63,13 @@ class Navigation extends Component {
             </NavLink>
           
 
-            <NavLink className="NavLink  watchlist" to={`/${this.props.userid}/watchlist`}>
+            <NavLink className="NavLink  watchlist" 
+              to={`/${this.props.userid}/watchlist`}>
               Watchlist
             </NavLink>
 
             <NavLink
-              className="NavLink  hidden"
+              className="NavLink explore"
               to={`/${this.props.userid}/explore`}
             >
               Explore
@@ -77,8 +83,8 @@ class Navigation extends Component {
               className="searchBox"
               type="text"
               name="search"
-              value={this.props.searchTerm}
-              onChange={this.handleChange}
+              value={this.state.query}
+              onChange={this.handleChange.bind(this)}
               placeholder="Search..."
             />
           </form>
@@ -88,9 +94,9 @@ class Navigation extends Component {
             className={`recommendations-button ${window.location.pathname === `/${this.props.userid}/recommended` ? null : ` hidden` }`}
             onClick={() => this.getNewRecommendations(this.props.userid)}
           > 
-            <FontAwesomeIcon className="sync-icon" icon={faSync} />
+            <FontAwesomeIcon className="sync-icon fa-fw" icon={faSync} />
             <i className="fas fa-sync"></i> 
-            Update your recs
+             Update your recs
           </button>
        
 
@@ -113,6 +119,13 @@ class Navigation extends Component {
                   to={`/${this.props.userid}/recommended`}
                 >
                   Recommended
+                </NavLink>
+
+                <NavLink
+                  className="NavLink explore-menu"
+                  to={`/${this.props.userid}/explore`}
+                >
+                  Explore
                 </NavLink>
 
                 <NavLink 

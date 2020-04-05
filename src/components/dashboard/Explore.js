@@ -2,29 +2,26 @@ import React, { useEffect } from "react";
 // tools
 import { connect } from "react-redux";
 import { ifDev } from "../../utils/removeAttribute.js";
-import { getRatingAction } from "../../store/actions/index.js";
+import { getMoviesAction } from "../../store/actions/index.js";
 // children components
 import MovieCard from "../movies/MovieCard.js";
 import LoadingScreen from "../layout/LoadingScreen.js";
 
-function Ratings({ 
-  userid, 
-  isFetching,
-  getRatingAction,
-  ratings, 
-  searchTerm
-}) {
-
+function Explore({ isFetching, movies, userid, getMoviesAction, searchTerm, ratings }) {
   useEffect(() => {
     // Returns the ratings
-    getRatingAction(userid);
-  }, [getRatingAction, userid]);
+    getMoviesAction(userid);
+  }, [getMoviesAction, userid]);
+  // How many movies render
+  const cardAmount = 25
+
   if (isFetching) return <LoadingScreen />;
   else
     return (
-      <div className="container ratings" data-test={ifDev("ratings-component")}>
+      <div className="container explore" data-test={ifDev("ratings-component")}>
         <div className="movie-cards">
-          {ratings.filter(movie =>
+          {movies
+          .filter( movie =>
             searchTerm !== '' ? 
               movie.name
               .toString()
@@ -32,8 +29,17 @@ function Ratings({
               .includes(
                 searchTerm
                 .toLowerCase()
-              ) : true
-            ).map((movie, index) => {
+              ) 
+            : true
+          )
+          .slice(0, cardAmount)
+          .map((movie, index) => {
+            /* Checks if the film is in ratings */
+            const isRated = film => {
+              return film.name === movie.name && film.year === movie.year
+            }
+            /* Returns the movie object if in ratings */
+            let rated = ratings.find(isRated)
             let posterURI = movie.poster_url;
             let unsplashUrl =
               "https://source.unsplash.com/collection/1736993/500x650";
@@ -44,7 +50,7 @@ function Ratings({
                 key={index}
                 name={movie.name}
                 year={movie.year}
-                rated={movie.rating}
+                rated={rated ? rated.rating : null}
                 image={
                   !posterURI ||
                   posterURI === "None" ||
@@ -56,19 +62,22 @@ function Ratings({
                 }
               />
             );
-          })}
-        </div>
+          })
+        }
       </div>
-    );
+    </div>
+  );
 }
 
 const mapStateToProps = state => {
   return {
     userid: state.login.userid,
-    isFetching: state.rating.isFetching,
-    ratings: state.rating.movies,
-    ratingsError: state.rating.error,
-    searchTerm: state.filter.searchTerm
+    isFetching: state.movie.isFetching,
+    movies: state.movie.movies,
+    moviesError: state.movie.error,
+    searchTerm: state.filter.searchTerm,
+    watchlist: state.watchlist.movies,
+    ratings: state.rating.movies
   };
 };
-export default connect(mapStateToProps, { getRatingAction })(Ratings);
+export default connect(mapStateToProps, { getMoviesAction })(Explore);

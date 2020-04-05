@@ -1,0 +1,86 @@
+.container.explore {
+    font-family: $workSans;
+    background: $black;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    .movie-cards {
+      width: 75%;
+      margin: 3% auto;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: space-evenly;
+      .box {
+        border-radius: 5px;
+        overflow: hidden;
+        width: 30vw;
+        height: 30vw;
+        max-width: 33%;
+        margin: 2.5%;
+        display: flex;
+        flex-direction: column;
+        .top-content {
+          display: flex;
+          position: relative;
+          .aspect-ratio-wrapper {
+            padding-bottom: 80%;
+            position: relative;
+            width: 60%;
+            overflow: hidden;
+            img {
+              height: 100%;
+              position: absolute;
+              right: 0;
+              object-fit: cover;
+            }
+          }
+          .text-container {
+            color: black;
+            background-color: $white;
+            width: 45%;
+            padding: 2.5%;
+            font-size: 1.5vw;
+            p {
+              padding: .5rem 0;
+            }
+          }
+        }
+        .action-panel {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-end;
+          height: auto;
+          width: 100%;
+          padding: 1vw 0;
+          background-color: $gray2;
+          >* {
+            width: 50%;
+            text-align: left;
+            margin: 1vw;
+          }
+          p{ 
+            color: $turqoise2;
+          }
+          .stars{
+            font-size: 2.5vw;
+          }
+          .watchlist-button {
+            background-color: inherit;
+            color: inherit;
+            border: none;
+            padding: 0;
+            font: inherit;
+            cursor: pointer;
+            outline: inherit;
+            color: $turqoise2;
+            font-size: 1.5vw;
+            &:hover {
+              text-decoration: underline;
+            }
+          }
+        }
+      }
+    }
+  }
+  

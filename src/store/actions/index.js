@@ -8,6 +8,7 @@ import {
   removeFromWatchlistAction,
   getWatchlistAction
 } from "./watchlistActions.js";
+import { getMoviesAction } from "./movieAction"
 import { setFilter } from "./filterActions.js"; 
 
 
@@ -23,5 +24,6 @@ export {
   addToWatchlistAction,
   removeFromWatchlistAction,
   getWatchlistAction,
+  getMoviesAction,
   setFilter
 };

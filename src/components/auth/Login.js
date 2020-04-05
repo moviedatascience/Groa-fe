@@ -155,9 +155,9 @@ class LoginPage extends React.Component {
                   </div>
                 </div>
                 <div className="bottomAccount">
-                  <a className="loginAccount">
+                  <p className="loginAccount">
                     Forgot password? 
-                  </a>
+                  </p>
                 </div>
             </form>
           </div>

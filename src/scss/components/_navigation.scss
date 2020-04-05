@@ -44,7 +44,7 @@
       } 
     }
     @media only screen and (max-width: 750px) {
-      .watchlist, .recommended, 
+      .watchlist, .recommended, .explore,
       .dropdown-hover .angle-down-icon{
         flex: .000000001;
         white-space: pre;
@@ -116,11 +116,10 @@
       }
     }
     .fa-icons {
-      padding-top: 5px;
       width: 14%;
       display: flex;
       justify-content: space-between;
-      font-size: 1.4rem;
+      font-size: 1.6rem;
       color: white;
     }
    
@@ -137,12 +136,14 @@
     opacity: 0;
   }
   .dropdown-hover {
-    padding: .5rem;
+    padding: .25rem .5rem;
     position: relative;
     white-space: nowrap;
     cursor: pointer;
+    display: flex;
+    align-items: center;
     .angle-down-icon {
-      padding: .5rem .5rem 0 .5rem;
+      padding-left: .5rem;
     }
     .dropdown-content {
       display: none;
@@ -177,11 +178,11 @@
             }
           }
         }
-        .watchlist-menu, .recommended-menu {
+        .watchlist-menu, .recommended-menu, .explore-menu {
           display: none;
         }
         @media only screen and (max-width: 750px) {
-          .watchlist-menu, .recommended-menu  {
+          .watchlist-menu, .recommended-menu, .explore-menu  {
             display: block; 
           }
         }
