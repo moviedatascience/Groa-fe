@@ -7,7 +7,8 @@ function LoadingScreen({
   isUploading,
   isFetchingRecommendations,
   isFetchingWatchlist,
-  isFetchingRatings
+  isFetchingRatings,
+  isFetchingExplore,
 }) {
   return (
     <div
@@ -22,7 +23,9 @@ function LoadingScreen({
         <h4>Loading recommendations...</h4>
       ) : isFetchingRatings ? (
         <h4>Loading ratings...</h4>
-      ) : null}
+      ) : isFetchingExplore ? (
+        <h4>Loading search results...</h4>
+      )  : null}
       <ReactLoading
         className="loading-component"
         data-test={ifDev("loading-object")}
@@ -34,7 +37,7 @@ function LoadingScreen({
       <p>
         Based on the connection to our server,
         <br />
-        this process could take up to a minute.
+        this process could take a few seconds.
       </p>
     </div>
   );
@@ -44,7 +47,8 @@ const mapStateToProps = state => {
     isUploading: state.upload.isUploading,
     isFetchingWatchlist: state.watchlist.isFetching,
     isFetchingRecommendations: state.recommendations.isFetching,
-    isFetchingRatings: state.rating.isFetching
+    isFetchingRatings: state.rating.isFetching,
+    isFetchingExplore: state.movie.isFetching
   };
 };
 

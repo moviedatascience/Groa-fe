@@ -34,11 +34,11 @@ function Explore({ isFetching, movies, userid, getMoviesAction, searchTerm, rati
           )
           .slice(0, cardAmount)
           .map((movie, index) => {
-            {/* Checks if the film is in ratings */}
+            /* Checks if the film is in ratings */
             const isRated = film => {
               return film.name === movie.name && film.year === movie.year
             }
-            {/* Returns the movie object if in ratings */}
+            /* Returns the movie object if in ratings */
             let rated = ratings.find(isRated)
             let posterURI = movie.poster_url;
             let unsplashUrl =

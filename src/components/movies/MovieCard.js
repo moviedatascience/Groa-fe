@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import { ratingAction, addToWatchlistAction, removeFromWatchlistAction } from "../../store/actions";
+import { ratingAction, addToWatchlistAction } from "../../store/actions";
 import Stars from "@material-ui/lab/Rating";
 import StarBorderIcon from '@material-ui/icons/StarBorder';
 
