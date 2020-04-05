@@ -63,7 +63,6 @@ function Ratings({
 }
 
 const mapStateToProps = state => {
-  console.log(state.rating.movies)
   return {
     userid: state.login.userid,
     isFetching: state.rating.isFetching,

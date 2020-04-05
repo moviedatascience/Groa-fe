@@ -7,7 +7,7 @@ import { getMoviesAction } from "../../store/actions/index.js";
 import MovieCard from "../movies/MovieCard.js";
 import LoadingScreen from "../layout/LoadingScreen.js";
 
-function Explore({ isFetching, movies, userid, getMoviesAction, searchTerm }) {
+function Explore({ isFetching, movies, userid, getMoviesAction, searchTerm, ratings }) {
   useEffect(() => {
     // Returns the ratings
     getMoviesAction(userid);
@@ -18,9 +18,10 @@ function Explore({ isFetching, movies, userid, getMoviesAction, searchTerm }) {
   if (isFetching) return <LoadingScreen />;
   else
     return (
-      <div className="container ratings" data-test={ifDev("ratings-component")}>
+      <div className="container explore" data-test={ifDev("ratings-component")}>
         <div className="movie-cards">
-          {movies.filter(movie =>
+          {movies
+          .filter( movie =>
             searchTerm !== '' ? 
               movie.name
               .toString()
@@ -28,9 +29,17 @@ function Explore({ isFetching, movies, userid, getMoviesAction, searchTerm }) {
               .includes(
                 searchTerm
                 .toLowerCase()
-              ) : true
-            ).slice(0, cardAmount)
-              .map((movie, index) => {
+              ) 
+            : true
+          )
+          .slice(0, cardAmount)
+          .map((movie, index) => {
+            {/* Checks if the film is in ratings */}
+            const isRated = film => {
+              return film.name === movie.name && film.year === movie.year
+            }
+            {/* Returns the movie object if in ratings */}
+            let rated = ratings.find(isRated)
             let posterURI = movie.poster_url;
             let unsplashUrl =
               "https://source.unsplash.com/collection/1736993/500x650";
@@ -41,7 +50,7 @@ function Explore({ isFetching, movies, userid, getMoviesAction, searchTerm }) {
                 key={index}
                 name={movie.name}
                 year={movie.year}
-                rated={null}
+                rated={rated ? rated.rating : null}
                 image={
                   !posterURI ||
                   posterURI === "None" ||
@@ -53,20 +62,22 @@ function Explore({ isFetching, movies, userid, getMoviesAction, searchTerm }) {
                 }
               />
             );
-          })}
-        </div>
+          })
+        }
       </div>
-    );
+    </div>
+  );
 }
 
 const mapStateToProps = state => {
-  console.log(state.rating.movies)
   return {
     userid: state.login.userid,
     isFetching: state.movie.isFetching,
     movies: state.movie.movies,
     moviesError: state.movie.error,
-    searchTerm: state.filter.searchTerm
+    searchTerm: state.filter.searchTerm,
+    watchlist: state.watchlist.movies,
+    ratings: state.rating.movies
   };
 };
 export default connect(mapStateToProps, { getMoviesAction })(Explore);

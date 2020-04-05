@@ -5,32 +5,32 @@
     flex-direction: column;
     min-height: 100vh;
     .movie-cards {
-      width: 70%;
+      width: 75%;
       margin: 3% auto;
       display: flex;
       flex-direction: row;
       flex-wrap: wrap;
       .movie-card-container {
         position: relative;
-        margin: 2rem;
+        margin: 2% auto;
       .box {
         border-radius: 5px;
         overflow: hidden;
         width: 100%;
-        max-width: 347px;
-        height: auto;
-        max-height: 521px;
-        margin: 3% auto;
         display: flex;
         flex-direction: column;
         .top-content {
           display: flex;
         }
         img {
-          width: 100%;
-          max-width: 347px;
-          height: auto;
-          max-height: 521px;
+          width: 20vw;
+          height: 33.33vw;
+        }
+        @media screen and (max-width: 500px) {
+          img {
+            width: 50vw;
+            height: 83.33vw;
+          }
         }
         .text-container {
             display: none;
@@ -41,16 +41,16 @@
       }
       .delete-button {
         position: absolute;
-        right: 7.5px;
-        top: 15px;
+        right: 1vw;
+        top: 2vw;
         border-radius: 100%;
-        height: 25px;
-        width: 25px;
+        height: 2vw;
+        width: 2vw;
         padding: 0;
         cursor: pointer;
         outline: inherit;
         white-space: nowrap;
-        font-size: 1.1rem;
+        font-size: 1vw;
         background-color: $gray2;
         color: $white;
         font-weight: bold;

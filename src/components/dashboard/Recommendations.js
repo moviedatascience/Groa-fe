@@ -39,12 +39,24 @@ function Recommendations({
         data-test={ifDev("recommendations-component")}
       >
         <div className="movie-cards">
-        {recommendations.filter(movie =>
-        searchTerm !== '' ? movie.Title.toString().toLowerCase().includes(searchTerm.toLowerCase()) : true).map((movie, index) =>{
+          {recommendations
+          .filter( movie => 
+            searchTerm !== '' ? 
+              movie.Title
+              .toString()
+              .toLowerCase()
+              .includes(
+                searchTerm
+                .toLowerCase()
+              ) 
+            : true 
+          )
+          .map((movie, index) => {
             let posterURI = movie["Poster URL"];
             let unsplashUrl =
               "https://source.unsplash.com/collection/1736993/500x650";
-            let moviePoster = `https://image.tmdb.org/t/p/w500${posterURI}?api_key=${process.env.REACT_APP_TMDB_API_KEY}`;
+            let moviePoster = 
+              `https://image.tmdb.org/t/p/w500${posterURI}?api_key=${process.env.REACT_APP_TMDB_API_KEY}`;
 
             return (
               <MovieCard
@@ -63,10 +75,11 @@ function Recommendations({
                 }
               />
             );
-          })}
-        </div>
+          })
+        }
       </div>
-    );
+    </div>
+  );
 }
 
 const mapStateToProps = state => {

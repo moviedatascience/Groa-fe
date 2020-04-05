@@ -75,6 +75,7 @@ function Watchlist({
                   className="delete-button"
                   onClick={()=>handleClick(movie.id)}
                   >
+                    x
                   </button>}
               </div>
               );

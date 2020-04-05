@@ -35,7 +35,12 @@ const store = createStore(
 );
 
 store.subscribe(() => {
-  saveState(store.getState());
+  saveState({
+    login: store.getState().login,
+    recommendations: store.getState().recommendations,
+    rating: store.getState().rating,
+    watchlist: store.getState().watchlist
+  });
 });
 
 function App() {
