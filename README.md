@@ -58,7 +58,7 @@ Gróa will use our Discovery Engine to present movies suited to your taste based
 
 ---
 
-#####Libraries and Packages
+##### Libraries and Packages
 
 [axios](https://www.npmjs.com/package/axios)
 
@@ -107,7 +107,7 @@ Gróa will use our Discovery Engine to present movies suited to your taste based
 
 ---
 
-######Libraries and Packages
+###### Libraries and Packages
 
 [apidoc](https://www.npmjs.com/package/apidoc)
 
