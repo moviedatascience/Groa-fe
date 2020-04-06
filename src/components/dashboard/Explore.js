@@ -2,13 +2,22 @@ import React, { useEffect } from "react";
 // tools
 import { connect } from "react-redux";
 import { ifDev } from "../../utils/removeAttribute.js";
-import { getMoviesAction } from "../../store/actions/index.js";
+import { getMoviesAction, setFilter } from "../../store/actions/index.js";
 // children components
 import MovieCard from "../movies/MovieCard.js";
 import LoadingScreen from "../layout/LoadingScreen.js";
 
-function Explore({ isFetching, movies, userid, getMoviesAction, searchTerm, ratings }) {
+function Explore({ 
+  isFetching, 
+  movies, 
+  userid, 
+  getMoviesAction, 
+  searchTerm, 
+  setFilter,
+  ratings 
+}) {
   useEffect(() => {
+    setFilter("")
     // Returns the ratings
     getMoviesAction(userid);
   }, [getMoviesAction, userid]);
@@ -45,6 +54,8 @@ function Explore({ isFetching, movies, userid, getMoviesAction, searchTerm, rati
               "https://source.unsplash.com/collection/1736993/500x650";
             let moviePoster = `https://image.tmdb.org/t/p/w500${posterURI}?api_key=${process.env.REACT_APP_TMDB_API_KEY}`;
 
+            if (rated) return null;
+            else
             return (
               <MovieCard
                 key={index}
@@ -80,4 +91,4 @@ const mapStateToProps = state => {
     ratings: state.rating.movies
   };
 };
-export default connect(mapStateToProps, { getMoviesAction })(Explore);
+export default connect(mapStateToProps, { getMoviesAction, setFilter })(Explore);

@@ -60,15 +60,24 @@
       border-radius: 5px;
       display: flex;
       flex: 1;
+      justify-content: space-between;
       overflow: hidden;
       transition: all 500ms linear;
-      min-width: 28vw;
-
-      .search-icon {
+      min-width: 20vw;
+      .search-wrapper {
+        display: flex;
+        align-items: center;
+        width: 75%;
+      }
+      .search-icon, 
+      .backspace-icon {
         color: white;
         opacity: .4;
         font-size: 1.2rem;
         padding: .2rem;
+      }
+      .backspace-icon {
+        cursor: pointer;
       }
       .searchBox {
         font-size: 1rem;
@@ -114,6 +123,9 @@
         font-size: initial;
         color: $white;
       }
+      .searchContainer {
+        min-width: 35vw;
+      }
     }
     .fa-icons {
       width: 14%;
@@ -122,7 +134,6 @@
       font-size: 1.6rem;
       color: white;
     }
-   
   }
   button.hidden,
   .searchContainer.hidden,

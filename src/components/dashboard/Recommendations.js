@@ -6,6 +6,7 @@ import {
   recommendedAction,
   recommendationAction,
   toggleIsUploaded,
+  setFilter
 } from "../../store/actions/index.js";
 // children components
 import LoadingScreen from "../layout/LoadingScreen.js";
@@ -18,9 +19,11 @@ function Recommendations({
   recommendedAction,
   recommendationAction,
   searchTerm, 
-  isUploaded
+  isUploaded,
+  setFilter
 }) {
   useEffect(() => {
+    setFilter("")
     // returns initial recommendations after uploading a file
     if (isUploaded === true) {
       recommendationAction(userid);
@@ -97,4 +100,5 @@ export default connect(mapStateToProps, {
   recommendedAction,
   recommendationAction,
   toggleIsUploaded,
+  setFilter
 })(Recommendations);

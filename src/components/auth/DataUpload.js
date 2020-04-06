@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 // tools
 import { connect } from "react-redux";
-import { uploadAction } from "../../store/actions/index.js";
+import { uploadAction, setFilter } from "../../store/actions/index.js";
 import { ifDev } from "../../utils/removeAttribute.js";
 import letterboxdLogo from "../../img/letterboxd-logo.svg";
 // import imdbLogo from "../../img/imdb-logo.svg";
@@ -10,8 +10,12 @@ import fileAlt from "../../img/file-alt.svg";
 import Congratulations from "./Congratulations.js";
 import LoadingScreen from "../layout/LoadingScreen.js";
 
-const DataUpload = ({ userid, uploadAction, isUploading }) => {
+const DataUpload = ({ userid, uploadAction, isUploading, setFilter }) => {
   const [uploadSuccess, setUploadSuccess] = useState(false);
+
+  useEffect(() => {
+    setFilter("")
+  })
 
   const toggleInstructions = (window.onclick = function(event) {
     const dropdowns = document.getElementsByClassName("dropdown-content");
@@ -198,4 +202,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, { uploadAction })(DataUpload);
+export default connect(mapStateToProps, { uploadAction, setFilter })(DataUpload);
