@@ -39,7 +39,7 @@ class Navigation extends Component {
   };
 
   handleSubmit = e => {
-    if (e.keyCode == 13)
+    if (e.keyCode == 13 && this.state.query !== "")
     this.props.setFilter(e.target.value)
   }
 
