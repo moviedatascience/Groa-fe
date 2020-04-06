@@ -18,9 +18,9 @@ function Explore({
 }) {
   useEffect(() => {
     setFilter("")
-    // Returns the ratings
+    // Returns the movies
     getMoviesAction(userid);
-  }, [getMoviesAction, userid]);
+  }, [getMoviesAction, userid, ratings, setFilter]);
   // How many movies render
   const cardAmount = 25
 

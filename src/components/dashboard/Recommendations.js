@@ -32,7 +32,7 @@ function Recommendations({
     // Returns the most recent recommendations from the database
     recommendedAction(userid);
 
-  }, [recommendedAction, userid, isUploaded, recommendationAction]);
+  }, [ recommendedAction, userid, isUploaded, recommendationAction, setFilter ]);
 
   if (isFetching) return <LoadingScreen />;
   else

@@ -20,7 +20,7 @@ function Ratings({
     setFilter("")
     // Returns the ratings
     getRatingAction(userid);
-  }, [getRatingAction, userid]);
+  }, [getRatingAction, userid, setFilter]);
   if (isFetching) return <LoadingScreen />;
   else
     return (

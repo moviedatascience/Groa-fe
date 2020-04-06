@@ -24,7 +24,7 @@ function Watchlist({
     setFilter("")
     // Returns the users watchlist from the database
     getWatchlistAction(userid);
-  }, [getWatchlistAction, userid,isDeleting]);
+  }, [ getWatchlistAction, userid, isDeleting, setFilter ]);
 
   function handleClick(id) {
     removeFromWatchlistAction(userid ,id)
