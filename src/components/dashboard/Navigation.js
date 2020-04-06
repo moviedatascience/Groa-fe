@@ -8,7 +8,8 @@ import {
   faUserCircle,
   faAngleDown,
   faBars,
-  faSync
+  faSync,
+  faBackspace
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { ifDev } from "../../utils/removeAttribute.js";
@@ -17,20 +18,34 @@ import GroaLogo from "../../img/groa-logo-nav.png";
 class Navigation extends Component {
   constructor(props) {
     super(props);
-    this.state ={
+    this.state = {
       query: ""
     }
-    this.sendChange = debounce(this.sendChange, 750);
     this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.sendChange = debounce(this.sendChange, 500);
+    this.clearInput = this.clearInput.bind(this)
     this.logout = this.logout.bind(this);
     this.getNewRecommendations = this.getNewRecommendations.bind(this);
-  }
+  };
+
   handleChange = e => {
     this.setState({query: e.target.value})
     this.sendChange(e.target.value.trim())
   };
+
   sendChange = query => {
     this.props.setFilter(query)
+  };
+
+  handleSubmit = e => {
+    if (e.keyCode === 13 && this.state.query !== "")
+    this.props.setFilter(e.target.value)
+  }
+
+  clearInput = e => {
+    this.setState({ query: "" });
+    this.props.setFilter("")
   }
 
   logout = () => {
@@ -77,17 +92,27 @@ class Navigation extends Component {
           </div>
 
           {/* If the path is upload hide the search container */}
-          <form className={`searchContainer ${window.location.pathname === `/${this.props.userid}/upload` ? `hidden` : null }`}>
-            <FontAwesomeIcon className="search-icon" icon={faSearch} />
-            <input
-              className="searchBox"
-              type="text"
-              name="search"
-              value={this.state.query}
-              onChange={this.handleChange.bind(this)}
-              placeholder="Search..."
+          <div
+            className={`searchContainer ${window.location.pathname === `/${this.props.userid}/upload` ? `hidden` : null }`}
+          >
+            <div className="search-wrapper">
+              <FontAwesomeIcon className="search-icon" icon={faSearch} />
+              <input
+                className="searchBox"
+                type="text"
+                name="search"
+                value={this.state.query}
+                onChange={this.handleChange.bind(this)}
+                placeholder="Search..."
+                onKeyDown={this.handleSubmit}
+              />
+            </div>
+            <FontAwesomeIcon 
+              className="backspace-icon" 
+              icon={faBackspace}
+              onClick={this.clearInput} 
             />
-          </form>
+          </div>
 
           {/* If the path is recommended show update recommendations button */}
           <button

@@ -2,16 +2,25 @@ import React, { useEffect } from "react";
 // tools
 import { connect } from "react-redux";
 import { ifDev } from "../../utils/removeAttribute.js";
-import { getMoviesAction } from "../../store/actions/index.js";
+import { getMoviesAction, setFilter } from "../../store/actions/index.js";
 // children components
 import MovieCard from "../movies/MovieCard.js";
 import LoadingScreen from "../layout/LoadingScreen.js";
 
-function Explore({ isFetching, movies, userid, getMoviesAction, searchTerm, ratings }) {
+function Explore({ 
+  isFetching, 
+  movies, 
+  userid, 
+  getMoviesAction, 
+  searchTerm, 
+  setFilter,
+  ratings 
+}) {
   useEffect(() => {
-    // Returns the ratings
+    setFilter("")
+    // Returns the movies
     getMoviesAction(userid);
-  }, [getMoviesAction, userid]);
+  }, [getMoviesAction, userid, ratings, setFilter]);
   // How many movies render
   const cardAmount = 25
 
@@ -22,6 +31,9 @@ function Explore({ isFetching, movies, userid, getMoviesAction, searchTerm, rati
         <div className="movie-cards">
           {movies
           .filter( movie =>
+            !ratings.includes(film => 
+              film.name === movie.name && film.year === movie.year
+            ).length &&
             searchTerm !== '' ? 
               movie.name
               .toString()
@@ -80,4 +92,4 @@ const mapStateToProps = state => {
     ratings: state.rating.movies
   };
 };
-export default connect(mapStateToProps, { getMoviesAction })(Explore);
+export default connect(mapStateToProps, { getMoviesAction, setFilter })(Explore);

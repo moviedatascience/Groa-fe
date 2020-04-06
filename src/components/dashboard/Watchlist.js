@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 // tools
 import { connect } from "react-redux";
 import { ifDev } from "../../utils/removeAttribute.js";
-import { removeFromWatchlistAction, getWatchlistAction } from "../../store/actions/index.js";
+import { removeFromWatchlistAction, getWatchlistAction, setFilter } from "../../store/actions/index.js";
 // children components
 import LoadingScreen from "../layout/LoadingScreen.js";
 import MovieCard from "../movies/MovieCard.js";
@@ -15,14 +15,16 @@ function Watchlist({
   watchlistError,
   getWatchlistAction,
   searchTerm, 
-  removeFromWatchlistAction
+  removeFromWatchlistAction,
+  setFilter
 }) {
   const [deleteMode, setDeleteMode] = useState(false)
 
   useEffect(() => {
+    setFilter("")
     // Returns the users watchlist from the database
     getWatchlistAction(userid);
-  }, [getWatchlistAction, userid,isDeleting]);
+  }, [ getWatchlistAction, userid, isDeleting, setFilter ]);
 
   function handleClick(id) {
     removeFromWatchlistAction(userid ,id)
@@ -95,6 +97,10 @@ const mapStateToProps = state => {
     searchTerm: state.filter.searchTerm
   };
 };
-export default connect(mapStateToProps, { getWatchlistAction, removeFromWatchlistAction })(
+export default connect(mapStateToProps, { 
+  getWatchlistAction, 
+  removeFromWatchlistAction, 
+  setFilter 
+})(
   Watchlist
 );

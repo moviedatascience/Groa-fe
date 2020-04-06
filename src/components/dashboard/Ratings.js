@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 // tools
 import { connect } from "react-redux";
 import { ifDev } from "../../utils/removeAttribute.js";
-import { getRatingAction } from "../../store/actions/index.js";
+import { getRatingAction, setFilter } from "../../store/actions/index.js";
 // children components
 import MovieCard from "../movies/MovieCard.js";
 import LoadingScreen from "../layout/LoadingScreen.js";
@@ -12,13 +12,15 @@ function Ratings({
   isFetching,
   getRatingAction,
   ratings, 
-  searchTerm
+  searchTerm,
+  setFilter
 }) {
 
   useEffect(() => {
+    setFilter("")
     // Returns the ratings
     getRatingAction(userid);
-  }, [getRatingAction, userid]);
+  }, [getRatingAction, userid, setFilter]);
   if (isFetching) return <LoadingScreen />;
   else
     return (
@@ -71,4 +73,4 @@ const mapStateToProps = state => {
     searchTerm: state.filter.searchTerm
   };
 };
-export default connect(mapStateToProps, { getRatingAction })(Ratings);
+export default connect(mapStateToProps, { getRatingAction, setFilter })(Ratings);
