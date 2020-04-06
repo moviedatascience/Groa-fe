@@ -31,6 +31,9 @@ function Explore({
         <div className="movie-cards">
           {movies
           .filter( movie =>
+            !ratings.includes(film => 
+              film.name === movie.name && film.year === movie.year
+            ).length &&
             searchTerm !== '' ? 
               movie.name
               .toString()
@@ -53,7 +56,7 @@ function Explore({
             let unsplashUrl =
               "https://source.unsplash.com/collection/1736993/500x650";
             let moviePoster = `https://image.tmdb.org/t/p/w500${posterURI}?api_key=${process.env.REACT_APP_TMDB_API_KEY}`;
-            
+
             return (
               <MovieCard
                 key={index}
