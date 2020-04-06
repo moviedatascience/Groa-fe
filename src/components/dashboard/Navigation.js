@@ -22,6 +22,7 @@ class Navigation extends Component {
       query: ""
     }
     this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
     this.sendChange = debounce(this.sendChange, 500);
     this.clearInput = this.clearInput.bind(this)
     this.logout = this.logout.bind(this);
@@ -36,6 +37,11 @@ class Navigation extends Component {
   sendChange = query => {
     this.props.setFilter(query)
   };
+
+  handleSubmit = e => {
+    if (e.keyCode == 13)
+    this.props.setFilter(e.target.value)
+  }
 
   clearInput = e => {
     this.setState({ query: "" });
@@ -86,7 +92,9 @@ class Navigation extends Component {
           </div>
 
           {/* If the path is upload hide the search container */}
-          <form className={`searchContainer ${window.location.pathname === `/${this.props.userid}/upload` ? `hidden` : null }`}>
+          <div
+            className={`searchContainer ${window.location.pathname === `/${this.props.userid}/upload` ? `hidden` : null }`}
+          >
             <div className="search-wrapper">
               <FontAwesomeIcon className="search-icon" icon={faSearch} />
               <input
@@ -96,6 +104,7 @@ class Navigation extends Component {
                 value={this.state.query}
                 onChange={this.handleChange.bind(this)}
                 placeholder="Search..."
+                onKeyDown={this.handleSubmit}
               />
             </div>
             <FontAwesomeIcon 
@@ -103,7 +112,7 @@ class Navigation extends Component {
               icon={faBackspace}
               onClick={this.clearInput} 
             />
-          </form>
+          </div>
 
           {/* If the path is recommended show update recommendations button */}
           <button
