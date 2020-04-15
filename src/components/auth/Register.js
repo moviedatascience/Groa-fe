@@ -118,16 +118,18 @@ class Register extends React.Component {
                       value={user.password}
                       onChange={this.handleChange}
                       required
+                      type="password"
                       label="Password"
                       variant="outlined"
                     />
                   </Grid>
                   <Grid container item xs={12}>
                     <TextField
-                      name="confirmPassword"
+                      name="confirmpassword"
                       value={user.confirmpassword}
                       onChange={this.handleChange}
                       required
+                      type="password"
                       label="Confirm Password"
                       variant="outlined"
                     />
