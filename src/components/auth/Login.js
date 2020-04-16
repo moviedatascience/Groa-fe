@@ -35,6 +35,7 @@ const LoginPage = (props) => {
       className="container login-component"
       data-test={ifDev("login-component")}
     >
+      {/* NAVIGATION */}
       <div className="onboarding-nav login-nav">
         <LoginNavLinks />
       </div>
@@ -54,7 +55,7 @@ const LoginPage = (props) => {
             <img className="logo" src={Picture1} alt="Graphic" />
           </div>
         </div>
-        {/* END BOX LEFT */}
+        {/* FORM START */}
         <div className="box-right">
           <form
             className="form login-form"
@@ -62,10 +63,10 @@ const LoginPage = (props) => {
             data-test={ifDev("loginForm")}
           >
             <TextField
-              name="email"
+              name="user_name"
               value={user.user_name}
               onChange={handleChange}
-              label="Email"
+              label="Username"
               variant="outlined"
             />
             <TextField
@@ -98,9 +99,9 @@ const LoginPage = (props) => {
             </div>
           </form>
         </div>
-        {/* END BOX RIGHT */}
+        {/* FORM ENDS */}
       </div>
-      {/* END MIDDLE */}
+      {/* END OF MAIN CONTENT */}
     </div>
     // END LOGIN PAGE
   );
