@@ -3,35 +3,42 @@ import { connect } from "react-redux";
 import { registerAction, loginAction } from "../../store/actions";
 import { ifDev } from "../../utils/removeAttribute.js";
 import { Link } from "react-router-dom";
+
 //For validation
 import { useForm } from "react-hook-form";
 import * as Yup from "yup";
+
 // styling imports
 import Picture3 from "../../img/couch-popcorn.png";
 import { TextField, Checkbox, Grid } from "@material-ui/core";
+
 // Navbar Register
 import RegisterNavLinks from "../layout/nav-layouts/RegisterNavLinks";
-const RegisterSchema = Yup.object().shape({
-  username: Yup.string().required("Username is required"),
-  email: Yup.string().email().required("email is required"),
-  password: Yup.string().min(6).required("password is required"),
-  confirmpassword: Yup.string().oneOf(
-    [Yup.ref("password"), null],
-    "Passwords must match"
-  ),
-});
+
 const initialUser = {
   user: {
     email: "",
     user_name: "",
     password: "",
+    confirmpassword: "",
   },
 };
+
+const RegisterSchema = Yup.object().shape({
+  user_name: Yup.string().required("Username is required"),
+  email: Yup.string().email().required("email is required"),
+  password: Yup.string().min(6).required("password is required"),
+  confirmpassword: Yup.string()
+    .oneOf([Yup.ref("password"), null], "Passwords must match")
+    .required(),
+});
+
 const Register = (props) => {
   const [users, setUsers] = useState(initialUser.user);
   const { register, handleSubmit, errors } = useForm({
     validationSchema: RegisterSchema,
   });
+
   const handleChange = (event) => {
     setUsers({
       user: {
@@ -40,10 +47,17 @@ const Register = (props) => {
       },
     });
   };
+
   const onSubmit = (event) => {
     event.preventDefault();
-    props.registerAction(users);
+    let user = {
+      user_name: users.user_name,
+      email: users.email,
+      password: users.password,
+    };
+    props.registerAction(user);
   };
+
   return (
     <div
       className="container register-component"
@@ -81,7 +95,6 @@ const Register = (props) => {
                     name="email"
                     value={users.email}
                     onChange={handleChange}
-                    required
                     label="Email"
                     variant="outlined"
                     inputRef={register}
@@ -95,7 +108,6 @@ const Register = (props) => {
                     name="user_name"
                     value={users.user_name}
                     onChange={handleChange}
-                    required
                     label="Username"
                     variant="outlined"
                     inputRef={register}
@@ -110,7 +122,6 @@ const Register = (props) => {
                     type="password"
                     value={users.password}
                     onChange={handleChange}
-                    required
                     label="Password"
                     variant="outlined"
                     inputRef={register}
@@ -128,13 +139,16 @@ const Register = (props) => {
                     type="password"
                     value={users.confirmpassword}
                     onChange={handleChange}
-                    required
                     label="Confirm Password"
                     variant="outlined"
                     inputRef={register}
                   />
                   {errors.confirmpassword &&
                     errors.confirmpassword.type === "required" && (
+                      <p>Password Confirmation Required</p>
+                    )}
+                  {errors.confirmpassword &&
+                    errors.confirmpassword.type === "oneOf" && (
                       <p>Password does not match</p>
                     )}
                 </Grid>
@@ -172,6 +186,7 @@ const Register = (props) => {
     //END CONTAINER
   );
 };
+
 const mapStateToProps = (state) => {
   return {
     registerSuccess: state.register.success,
@@ -179,6 +194,7 @@ const mapStateToProps = (state) => {
     errorStatus: state.register.error,
   };
 };
+
 export default connect(mapStateToProps, { registerAction, loginAction })(
   Register
 );
