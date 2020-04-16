@@ -39,17 +39,17 @@ const Register = (props) => {
     validationSchema: RegisterSchema,
   });
 
-  const handleChange = (event) => {
+  const handleChange = (e) => {
     setUsers({
       user: {
         ...users,
-        [event.target.name]: event.target.value,
+        [e.target.name]: e.target.value,
       },
     });
   };
 
-  const onSubmit = (event) => {
-    event.preventDefault();
+  const onSubmit = (e) => {
+    e.preventDefault();
     let user = {
       user_name: users.user_name,
       email: users.email,
