@@ -10,13 +10,26 @@ import { TextField, Checkbox } from "@material-ui/core";
 // Navbar Login
 import LoginNavLinks from "../layout/nav-layouts/LoginNavLinks.js";
 
+//For validation
+import { useForm } from "react-hook-form";
+import * as Yup from "yup";
+
 const initialUser = {
   user_name: "",
   password: "",
 };
 
+const RegisterSchema = Yup.object().shape({
+  user_name: Yup.string().required("Username is required"),
+  password: Yup.string().required("Password is required")
+})
+
+
 const LoginPage = (props) => {
   const [user, setUser] = useState(initialUser);
+  const { handleSubmit, errors} = useForm({
+    validationSchema: RegisterSchema
+  })
 
   const handleChange = (e) => {
     setUser({
@@ -59,7 +72,7 @@ const LoginPage = (props) => {
         <div className="box-right">
           <form
             className="form login-form"
-            onSubmit={loginUser}
+            onSubmit={handleSubmit(loginUser)}
             data-test={ifDev("loginForm")}
           >
             <TextField
@@ -69,6 +82,9 @@ const LoginPage = (props) => {
               label="Username"
               variant="outlined"
             />
+            {errors.user_name && errors.user_name.type === "required" && (
+              <p>A username is required</p>
+            )}
             <TextField
               name="password"
               type="password"
@@ -77,7 +93,9 @@ const LoginPage = (props) => {
               label="Password"
               variant="outlined"
             />
-
+            {errors.password && errors.password.type === "required" && (
+              <p>A password is required</p>
+            )}
             <div className="bottom-form">
               <div className="text-check">
                 <div className="check-box-container">
