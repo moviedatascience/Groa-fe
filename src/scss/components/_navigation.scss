@@ -14,6 +14,7 @@
         font-size: 1.4rem;
       }
     }
+
     .Links {
       width: 60%;
       display: flex;
@@ -91,9 +92,9 @@
       input:-webkit-autofill,
       input:-webkit-autofill:hover, 
       input:-webkit-autofill:focus, 
-      input:-webkit-autofill:active  {
-        -webkit-box-shadow: 0 0 0 30px $gray2 inset !important;
-      }
+      // input:-webkit-autofill:active  {
+      //   -webkit-box-shadow: 0 0 0 30px $gray2 inset !important;
+      // }
       input:-webkit-autofill {
         -webkit-text-fill-color: $white !important;
       }

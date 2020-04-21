@@ -1,29 +1,49 @@
-  .register.nav,
-  .login.nav {
-    font-family: $workSans;
+.register.nav,
+.login.nav {
+  font-family: $workSans;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  text-align: center;
+  @media (max-width: 600px) {
+    flex-direction: column;
+  }
+  img {
+    height: 2.5rem;
+    width: auto;
+  }
+  .link {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
     width: 100%;
-    text-align: center;
+    height: auto;
+    font-size: 1rem;
+    text-decoration: none;
+    justify-content: flex-end;
+    align-items: center;
+    color: $white;
 
-    img{
-      height: 2.5rem;
-      width: auto;
-    }
-    .link {
-      display: flex;
-      width: 100%;
-      height: auto;
-      font-size: 1rem;
-      text-decoration: none;
-      justify-content: flex-end;
-      align-items: center;
-      color: $white;
-    
-      &:hover {
-        color: $turqoise3;
-        font-weight: bold;        
-      }
+    &:hover {
+      color: $turqoise3;
+      font-weight: bold;
     }
   }
+  @media (max-width: 600px) {
+    img {
+      // position: absolute;
+      width: 136px;
+      height: 38px;
+      left: 130px;
+      top: 102px;
+    }
+    .link {
+      // flex-direction: column;
+      justify-content: flex-start;
+      // position: absolute;
+// width: 63px;
+height: 30px;
+left: 16px;
+top: 141px;
+    }
+  }
+}

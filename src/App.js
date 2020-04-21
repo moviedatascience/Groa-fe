@@ -27,6 +27,10 @@ import { reducer } from "./store/reducers";
 import { BrowserRouter as Router } from "react-router-dom";
 import { loadState, saveState } from "./store/localStorage.js";
 
+//for theme color change
+import { createMuiTheme } from "@material-ui/core/styles";
+import { ThemeProvider } from "@material-ui/core/styles";
+
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(
   reducer,
@@ -45,8 +49,26 @@ store.subscribe(() => {
 
 function App() {
   useEffect(() => reactGAinitialization(), []);
-
+  const theme = React.useMemo(
+    () =>
+      createMuiTheme({
+        palette: {
+          type: "dark",
+          primary: {
+            main: "#DBE0DF"
+          },
+          secondary: {
+            main: "#6E8B3D"
+          }
+        },
+        typography: {
+          fontFamily: "Mallanna, sans-serif"
+        }
+      }),
+    []
+  );
   return (
+    <ThemeProvider theme={theme}>
     <Provider store={store}>
       <Router>
         <div className="App" data-test={ifDev("App-component")}>
@@ -85,6 +107,7 @@ function App() {
         </div>
       </Router>
     </Provider>
+    </ThemeProvider>
   );
 }
 

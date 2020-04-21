@@ -6,6 +6,7 @@ import { ifDev } from "../../utils/removeAttribute.js";
 // styling imports
 import Picture1 from "../../img/watching-tv.png";
 import { TextField, Checkbox } from "@material-ui/core";
+import { makeStyles } from '@material-ui/core/styles';
 
 // Navbar Login
 import LoginNavLinks from "../layout/nav-layouts/LoginNavLinks.js";
@@ -13,6 +14,20 @@ import LoginNavLinks from "../layout/nav-layouts/LoginNavLinks.js";
 //For validation
 import { useForm } from "react-hook-form";
 import * as Yup from "yup";
+
+
+
+const useStyles = makeStyles((theme) => ({
+root:{
+  margin: theme.spacing(1),
+},
+textField:{
+margin: '2%',
+width: '90%',
+padding:'0',
+
+}
+}));
 
 const initialUser = {
   user_name: "",
@@ -30,7 +45,7 @@ const LoginPage = (props) => {
   const { handleSubmit, errors} = useForm({
     validationSchema: RegisterSchema
   })
-
+  const classes = useStyles();
   const handleChange = (e) => {
     setUser({
       ...user,
@@ -43,6 +58,8 @@ const LoginPage = (props) => {
     props.loginAction(user);
   };
 
+
+
   return (
     <div
       className="container login-component"
@@ -52,7 +69,7 @@ const LoginPage = (props) => {
       <div className="onboarding-nav login-nav">
         <LoginNavLinks />
       </div>
-      <div className="box-container">
+      <div className={"box-container"}>
         <div className="box-left">
           <div className="text-container">
             <h1>
@@ -71,27 +88,29 @@ const LoginPage = (props) => {
         {/* FORM START */}
         <div className="box-right">
           <form
-            className="form login-form"
+            // className="form login-form"
             onSubmit={handleSubmit(loginUser)}
             data-test={ifDev("loginForm")}
           >
-            <TextField
+            <TextField className={classes.textField}
               name="user_name"
               value={user.user_name}
               onChange={handleChange}
               label="Username"
               variant="outlined"
+
             />
             {errors.user_name && errors.user_name.type === "required" && (
               <p>A username is required</p>
             )}
-            <TextField
+            <TextField className={classes.textField} 
               name="password"
               type="password"
               value={user.password}
               onChange={handleChange}
               label="Password"
               variant="outlined"
+              
             />
             {errors.password && errors.password.type === "required" && (
               <p>A password is required</p>
@@ -100,7 +119,7 @@ const LoginPage = (props) => {
               <div className="text-check">
                 <div className="check-box-container">
                   <Checkbox
-                    color="primary"
+                    // color="primary"
                     inputProps={{ "aria-label": "secondary checkbox" }}
                   />
                   <p>Remember me</p>

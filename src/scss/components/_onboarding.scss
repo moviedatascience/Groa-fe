@@ -42,9 +42,9 @@
         padding-top: 2rem;
       }
     }
-     .image-wrapper {
-       width: 75%;
-       padding: 5% 0;
+    .image-wrapper {
+      width: 75%;
+      padding: 5% 0;
       .logo {
         width: 100%;
       }
@@ -58,7 +58,7 @@
     margin: auto;
     padding: 3%;
     border-radius: 4px;
-    background: white;
+    background: $black;
     width: 100%;
     max-width: 518px;
     height: 550px;
@@ -73,7 +73,7 @@
 
     .form-control {
       border-radius: 4px;
-      border: 1px solid #D8D8D8;
+      border: 1px solid #d8d8d8;
       max-width: 320px;
       width: 100%;
       height: auto;
@@ -83,7 +83,7 @@
     }
     input::placeholder {
       font-size: 1.1rem;
-      color:#D8D8D8;
+      color: #d8d8d8;
     }
 
     .bottom-form {
@@ -91,14 +91,14 @@
       display: flex;
       justify-content: space-between;
       margin: 3% 0;
-    
+
       .check-box-container {
-       display: flex;
-       flex-direction: row;
-       padding-top: 13px;
-       align-items: center;
+        display: flex;
+        flex-direction: row;
+        padding-top: 13px;
+        align-items: center;
         p {
-          color:black;
+          color: black;
           white-space: nowrap;
         }
       }
@@ -108,7 +108,7 @@
         display: flex;
         justify-content: flex-end;
         padding-bottom: 15px;
-        
+
         .signup-btn,
         button.login-btn {
           align-self: end;
@@ -117,20 +117,20 @@
           max-width: 115px;
           height: 36px;
           border-radius: 4px;
-          background: #00E6BC;
+          background: #00e6bc;
           color: black;
           font-size: 14px;
         }
       }
     }
-    .bottomAccount{
+    .bottomAccount {
       display: flex;
       flex-direction: column;
       padding: 30px;
-      
+
       .loginAccount {
         text-align: center;
-        color: #2477E5;
+        color: #2477e5;
         font-size: 18px;
       }
     }
@@ -141,7 +141,7 @@
     }
   }
 
-  @media (max-width: 1068px) {  
+  @media (max-width: 1068px) {
     .box-container {
       flex-direction: column;
       align-items: center;
@@ -149,7 +149,7 @@
         width: 80%;
         margin: 0;
         padding: 0;
-        .text-container{
+        .text-container {
           margin: 0 auto;
           width: 100%;
           h1 {
@@ -170,10 +170,58 @@
         margin: 0;
         padding: 0;
         .form {
-          width: 80%;
+          margin: 0 auto;
+          padding: 0;
+          max-width: 50%;
+          width: 100%;
+          color: $black;
         }
       }
     }
-  
+  }
+  @media (max-width: 600px) {
+    .box-container {
+      flex-direction: column;
+      align-items: center;
+      .box-left {
+        width: 80%;
+        margin: 0;
+        padding: 0;
+        .text-container {
+          margin: 0 auto;
+          width: 100%;
+          h1 {
+            display: none;
+          }
+          h5 {
+            display: none;
+          }
+        }
+        .image-wrapper {
+          display: none;
+          .logo {
+            display: none;
+          }
+        }
+      }
+      .box-right {
+        width: 100%;
+        margin: 2%;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        border-radius: 0;
+        background: #505050;
+
+        // max-width: 100%;
+        height: 100%;
+        .form {
+          max-width: 90%;
+          justify-content: center;
+        }
+        
+      }
+    }
   }
 }
