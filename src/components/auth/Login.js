@@ -29,7 +29,7 @@ const useStyles = makeStyles(theme => ({
     display: "flex",
     // justifyContent: "center",
     marginBottom: "2%",
-    width: "50%",
+    width: "100%",
     padding: "0"
     // display:'flex',
     // justifyContent:'center'

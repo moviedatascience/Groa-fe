@@ -108,8 +108,8 @@ const Register = (props) => {
               data-test={ifDev("registerForm")}
               onSubmit={handleSubmit(onSubmit)}
             >
-              <Grid className="register-inputs">
-                <Grid container item xs={12}>
+              {/* <Grid className="register-inputs"> */}
+                {/* <Grid container item xs={12}> */}
                   <TextField
                   className={classes.textField}
                     name="email"
@@ -122,8 +122,8 @@ const Register = (props) => {
                   {errors.email && errors.email.type === "required" && (
                     <p>An email is required</p>
                   )}
-                </Grid>
-                <Grid container item xs={12}>
+                {/* </Grid> */}
+                {/* <Grid container item xs={12}> */}
                   <TextField
                   className={classes.textField}
                     name="user_name"
@@ -136,8 +136,8 @@ const Register = (props) => {
                   {errors.user_name && errors.user_name.type === "required" && (
                     <p>Username is required</p>
                   )}
-                </Grid>
-                <Grid container item xs={12}>
+                {/* </Grid> */}
+                {/* <Grid container item xs={12}> */}
                   <TextField
                   className={classes.textField}
                     name="password"
@@ -154,8 +154,8 @@ const Register = (props) => {
                   {errors.password && errors.password.type === "min" && (
                     <p>Password must be at least 6 characters long</p>
                   )}
-                </Grid>
-                <Grid container item xs={12}>
+                {/* </Grid> */}
+                {/* <Grid container item xs={12}> */}
                   <TextField
                   className={classes.textField}
                     name="confirmpassword"
@@ -174,8 +174,8 @@ const Register = (props) => {
                     errors.confirmpassword.type === "oneOf" && (
                       <p>Password does not match</p>
                     )}
-                </Grid>
-              </Grid>
+                {/* </Grid> */}
+              {/* </Grid> */}
               <div className="bottom-form">
                 {/* todo: add Remember functionality */}
                 {/* <div className="check-box-container">
