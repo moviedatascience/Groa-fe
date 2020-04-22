@@ -18,15 +18,18 @@ import * as Yup from "yup";
 //link to register
 import { Link } from "react-router-dom";
 
+//google sign in
+import GoogleBtn from "../../img/x1_btn_google_signin_light_normal_web.png"
+
 const useStyles = makeStyles(theme => ({
   root: {
     margin: theme.spacing(1)
   },
   textField: {
     display: "flex",
-    justifyContent: "center",
+    // justifyContent: "center",
     marginBottom: "2%",
-    width: "100%",
+    width: "50%",
     padding: "0"
     // display:'flex',
     // justifyContent:'center'
@@ -70,7 +73,7 @@ const LoginPage = props => {
       <div className="onboarding-nav login-nav">
         <LoginNavLinks />
       </div>
-      <div className={"box-container"}>
+      <div className="box-container">
         <div className="box-left">
           <div className="text-container">
             <h1>
@@ -89,7 +92,7 @@ const LoginPage = props => {
         {/* FORM START */}
         <div className="box-right">
           <form
-            // className="form login-form"
+            className="form login-form"
             onSubmit={handleSubmit(loginUser)}
             data-test={ifDev("loginForm")}
           >
@@ -116,6 +119,7 @@ const LoginPage = props => {
             {errors.password && errors.password.type === "required" && (
               <p>A password is required</p>
             )}
+            
             <div className="bottom-form">
               <div className="text-check">
                 {/* <div className="check-box-container">
@@ -130,8 +134,15 @@ const LoginPage = props => {
                 <button className="login-btn" data-test={ifDev("BtnLoginTest")}>
                   Login
                 </button>
+                <div class="google-btn">
+                <div class="google-icon-wrapper">
+                     <img class="google-icon" src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg"/>
+                       </div>
+                    <p class="btn-text"><b>Sign in with Google</b></p>
+                    </div>
               </div>
             </div>
+            </form>
             <div className="bottomAccount">
               <p className="loginAccount">
                 <Link
@@ -143,7 +154,7 @@ const LoginPage = props => {
                 </Link>
               </p>
             </div>
-          </form>
+          
         </div>
         {/* FORM ENDS */}
       </div>

@@ -1,5 +1,5 @@
-@charset "UTF-8";
 @import url("https://fonts.googleapis.com/css?family=Work+Sans:400,700,900&display=swap");
+@import url(https://fonts.googleapis.com/css?family=Roboto:500);
 #root {
   /* 
   sources that helped me style the input
@@ -138,11 +138,11 @@
       height: 550px; }
       #root .container.register-component .box-right .form,
       #root .container.login-component .box-right .form {
-        margin: auto;
-        padding: 3% 0;
-        max-width: 320px;
         width: 100%;
-        color: #505050; }
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center; }
       #root .container.register-component .box-right .form-control,
       #root .container.login-component .box-right .form-control {
         border-radius: 4px;
@@ -177,7 +177,8 @@
         #root .container.login-component .box-right .bottom-form .btn-container {
           width: 100%;
           display: flex;
-          justify-content: center;
+          align-items: center;
+          flex-direction: column;
           padding-bottom: 15px; }
           #root .container.register-component .box-right .bottom-form .btn-container .signup-btn,
           #root .container.register-component .box-right .bottom-form .btn-container button.login-btn,
@@ -185,12 +186,49 @@
           #root .container.login-component .box-right .bottom-form .btn-container button.login-btn {
             border: none;
             width: 100%;
-            max-width: 100%;
-            height: 36px;
+            max-width: 50%;
+            height: 50px;
             border-radius: 4px;
             background: #00e6bc;
-            color: å white;
+            color: #505050;
             font-size: 14px; }
+          #root .container.register-component .box-right .bottom-form .btn-container .google-btn,
+          #root .container.login-component .box-right .bottom-form .btn-container .google-btn {
+            width: 50%;
+            height: 50px;
+            background-color: white;
+            border-radius: 4px;
+            box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.25);
+            margin-top: 2%; }
+            #root .container.register-component .box-right .bottom-form .btn-container .google-btn .google-icon-wrapper,
+            #root .container.login-component .box-right .bottom-form .btn-container .google-btn .google-icon-wrapper {
+              position: absolute;
+              margin-top: 4px;
+              margin-left: 1px;
+              width: 40px;
+              height: 40px;
+              border-radius: 2px;
+              background-color: white; }
+            #root .container.register-component .box-right .bottom-form .btn-container .google-btn .google-icon,
+            #root .container.login-component .box-right .bottom-form .btn-container .google-btn .google-icon {
+              position: absolute;
+              margin-top: 11px;
+              margin-left: 11px;
+              width: 18px;
+              height: 18px; }
+            #root .container.register-component .box-right .bottom-form .btn-container .google-btn .btn-text,
+            #root .container.login-component .box-right .bottom-form .btn-container .google-btn .btn-text {
+              margin: 18px 11px 0 80px;
+              color: #505050;
+              font-size: 14px;
+              letter-spacing: 0.2px;
+              font-family: "Roboto"; }
+            #root .container.register-component .box-right .bottom-form .btn-container .google-btn:hover,
+            #root .container.login-component .box-right .bottom-form .btn-container .google-btn:hover {
+              box-shadow: 0 0 6px #4285f4; }
+            #root .container.register-component .box-right .bottom-form .btn-container .google-btn:active,
+            #root .container.login-component .box-right .bottom-form .btn-container .google-btn:active {
+              background: white; }
       #root .container.register-component .box-right .bottomAccount,
       #root .container.login-component .box-right .bottomAccount {
         display: flex;
@@ -254,7 +292,7 @@
           #root .container.login-component .box-container .box-right .form {
             margin: 0 auto;
             padding: 0;
-            max-width: 50%;
+            max-width: 100%;
             width: 100%;
             color: #505050; } }
     @media (max-width: 600px) {
