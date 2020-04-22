@@ -1,179 +1,134 @@
-import React from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import { loginAction } from "../../store/actions";
 import { ifDev } from "../../utils/removeAttribute.js";
+
 // styling imports
 import Picture1 from "../../img/watching-tv.png";
+import { TextField, Checkbox } from "@material-ui/core";
+
 // Navbar Login
 import LoginNavLinks from "../layout/nav-layouts/LoginNavLinks.js";
 
-class LoginPage extends React.Component {
-  constructor(props) {
-    super(props);
+//For validation
+import { useForm } from "react-hook-form";
+import * as Yup from "yup";
 
-    this.state = {
-      user: {
-        user_name: "",
-        password: ""
-      },
-      errors: {
-        user_name: "",
-        password: ""
-      },
-      submitted: false
-    };
-  }
+const initialUser = {
+  user_name: "",
+  password: "",
+};
 
-  handleChange = e => {
-    const { name, value } = e.target;
-    let errors = this.state.errors;
+const RegisterSchema = Yup.object().shape({
+  user_name: Yup.string().required("Username is required"),
+  password: Yup.string().required("Password is required")
+})
 
-    this.setState({
-      user: {
-        ...this.state.user,
-        [e.target.name]: e.target.value
-      }
+
+const LoginPage = (props) => {
+  const [user, setUser] = useState(initialUser);
+  const { handleSubmit, errors} = useForm({
+    validationSchema: RegisterSchema
+  })
+
+  const handleChange = (e) => {
+    setUser({
+      ...user,
+      [e.target.name]: e.target.value,
     });
-    switch (name) {
-      case "user_name":
-        errors.user_name =
-          value.length < 6 ? "User name must be 6 or more characters long" : "";
-        break;
-      case "password":
-        errors.password =
-          value.length < 6 ? "Password must be 6 or more characters long" : "";
-        break;
-      default:
-        break;
-    }
-    this.setState({ errors, [name]: value }, () => {});
   };
 
-  loginUser = e => {
+  const loginUser = (e) => {
     e.preventDefault();
-    this.setState({ submitted: true });
-    if (this.state.user.user_name && this.state.user.password) {
-      this.props.loginAction(this.state.user, this.props.history);
-    }
+    props.loginAction(user);
   };
 
-  render() {
-    const { errors, submitted, user } = this.state;
-    return (
-      <div
-        className="container login-component"
-        data-test={ifDev("login-component")}
-      >
-        <div className="onboarding-nav login-nav">
-          <LoginNavLinks />
-        </div>
-        <div className="box-container">
-          <div className="box-left">
-          <div className="text-container">
-              <h1>Welcome <br/> back.</h1>
-              <h5> Groa makes it easy to find a film you’ll love. <br/> What new favorite will you discover today?</h5>
-            </div>
-            <div className="image-wrapper">
-              <img className="logo" src={Picture1} alt="Graphic" />
-            </div>
-          </div>
-          {/* END BOX LEFT */}
-          <div className="box-right">
-            <form
-              className="form login-form"
-              onSubmit={this.loginUser}
-              data-test={ifDev("loginForm")}
-            >
-              <h2>Username</h2>
-              <input
-                className="form-control"
-                type="text"
-                name="user_name"
-                id="user_name"
-                value={this.user_name}
-                onChange={this.handleChange}
-                placeholder="Username"
-              />
-              {/* ERROR MESSAGES */}
-              {/* Submit Error */}
-
-              {this.props.errorStatus && user.user_name && (
-                <div className="callingError">Invalid Credentials</div>
-              )}
-
-              {submitted && !user.user_name && (
-                <div className="callingError">Username is required</div>
-              )}
-              {/* Length of username */}
-              {errors.user_name && (
-                <span
-                  className="callingError"
-                  data-test={ifDev("ErrorUsername")}
-                >
-                  {errors.user_name}
-                </span>
-              )}
-              <h2>Password</h2>
-              <input
-                className="form-control"
-                type="password"
-                name="password"
-                id="password"
-                value={this.password}
-                onChange={this.handleChange}
-                placeholder="Password"
-              />
-              {/* ERROR MESSAGES */}
-              {/* Submit Error */}
-              {submitted && !user.password && (
-                <div className="callingError">Password is required</div>
-              )}
-              {/* Length of password */}
-              {errors.password && (
-                <span
-                  className="callingError"
-                  data-test={ifDev("ErrorPassword")}
-                >
-                  {errors.password}
-                </span>
-              )}
-
-              <div className="bottom-form">
-                <div className="text-check">
-                  <div className="check-box-container">
-                    <input className="checkbox" type="checkbox" />
-                    <p>Remember me</p>
-                  </div>
-                </div>
-                <div className="login-btn-container btn-container">
-                  <button
-                    className="login-btn"
-                    data-test={ifDev("BtnLoginTest")}
-                  >
-                    Log in
-                  </button>
-                  </div>
-                </div>
-                <div className="bottomAccount">
-                  <p className="loginAccount">
-                    Forgot password? 
-                  </p>
-                </div>
-            </form>
-          </div>
-          {/* END BOX RIGHT */}
-        </div>
-        {/* END MIDDLE */}
+  return (
+    <div
+      className="container login-component"
+      data-test={ifDev("login-component")}
+    >
+      {/* NAVIGATION */}
+      <div className="onboarding-nav login-nav">
+        <LoginNavLinks />
       </div>
-      // END LOGIN PAGE
-    );
-  }
-}
+      <div className="box-container">
+        <div className="box-left">
+          <div className="text-container">
+            <h1>
+              Welcome <br /> back.
+            </h1>
+            <h5>
+              {" "}
+              Groa makes it easy to find a film you’ll love. <br /> What new
+              favorite will you discover today?
+            </h5>
+          </div>
+          <div className="image-wrapper">
+            <img className="logo" src={Picture1} alt="Graphic" />
+          </div>
+        </div>
+        {/* FORM START */}
+        <div className="box-right">
+          <form
+            className="form login-form"
+            onSubmit={handleSubmit(loginUser)}
+            data-test={ifDev("loginForm")}
+          >
+            <TextField
+              name="user_name"
+              value={user.user_name}
+              onChange={handleChange}
+              label="Username"
+              variant="outlined"
+            />
+            {errors.user_name && errors.user_name.type === "required" && (
+              <p>A username is required</p>
+            )}
+            <TextField
+              name="password"
+              type="password"
+              value={user.password}
+              onChange={handleChange}
+              label="Password"
+              variant="outlined"
+            />
+            {errors.password && errors.password.type === "required" && (
+              <p>A password is required</p>
+            )}
+            <div className="bottom-form">
+              <div className="text-check">
+                <div className="check-box-container">
+                  <Checkbox
+                    color="primary"
+                    inputProps={{ "aria-label": "secondary checkbox" }}
+                  />
+                  <p>Remember me</p>
+                </div>
+              </div>
+              <div className="login-btn-container btn-container">
+                <button className="login-btn" data-test={ifDev("BtnLoginTest")}>
+                  Log in
+                </button>
+              </div>
+            </div>
+            <div className="bottomAccount">
+              <p className="loginAccount">Forgot password?</p>
+            </div>
+          </form>
+        </div>
+        {/* FORM ENDS */}
+      </div>
+      {/* END OF MAIN CONTENT */}
+    </div>
+    // END LOGIN PAGE
+  );
+};
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     userid: state.login.userid,
-    errorStatus: state.login.error
+    errorStatus: state.login.error,
   };
 };
 export default connect(mapStateToProps, { loginAction })(LoginPage);
