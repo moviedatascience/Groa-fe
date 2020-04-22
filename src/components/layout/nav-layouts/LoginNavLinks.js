@@ -8,7 +8,7 @@ export default function LoginNavLinks() {
   return (
     <div className="login nav" data-test={ifDev("login-nav-component")}>
       <img src={GroaLogo} alt="Groa Logo" />
-     <p className="signin-title">Sign In</p>
+     <h2 className="signin-title">Sign In</h2>
     </div>
   );
 }

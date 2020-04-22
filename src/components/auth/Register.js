@@ -11,9 +11,27 @@ import * as Yup from "yup";
 // styling imports
 import Picture3 from "../../img/couch-popcorn.png";
 import { TextField, Checkbox, Grid } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
+
 
 // Navbar Register
 import RegisterNavLinks from "../layout/nav-layouts/RegisterNavLinks";
+
+
+const useStyles = makeStyles(theme => ({
+  root: {
+    margin: theme.spacing(1)
+  },
+  textField: {
+    display: "flex",
+    justifyContent: "center",
+    marginBottom: "2%",
+    width: "100%",
+    padding: "0"
+    // display:'flex',
+    // justifyContent:'center'
+  }
+}));
 
 const initialUser = {
   user: {
@@ -38,6 +56,7 @@ const Register = (props) => {
   const { register, handleSubmit, errors } = useForm({
     validationSchema: RegisterSchema,
   });
+  const classes = useStyles();
 
   const handleChange = (event) => {
     setUsers({
@@ -92,6 +111,7 @@ const Register = (props) => {
               <Grid className="register-inputs">
                 <Grid container item xs={12}>
                   <TextField
+                  className={classes.textField}
                     name="email"
                     value={users.email}
                     onChange={handleChange}
@@ -105,6 +125,7 @@ const Register = (props) => {
                 </Grid>
                 <Grid container item xs={12}>
                   <TextField
+                  className={classes.textField}
                     name="user_name"
                     value={users.user_name}
                     onChange={handleChange}
@@ -118,6 +139,7 @@ const Register = (props) => {
                 </Grid>
                 <Grid container item xs={12}>
                   <TextField
+                  className={classes.textField}
                     name="password"
                     type="password"
                     value={users.password}
@@ -135,6 +157,7 @@ const Register = (props) => {
                 </Grid>
                 <Grid container item xs={12}>
                   <TextField
+                  className={classes.textField}
                     name="confirmpassword"
                     type="password"
                     value={users.confirmpassword}
@@ -155,25 +178,25 @@ const Register = (props) => {
               </Grid>
               <div className="bottom-form">
                 {/* todo: add Remember functionality */}
-                <div className="check-box-container">
+                {/* <div className="check-box-container">
                   <Checkbox
                     color="primary"
                     inputProps={{ "aria-label": "secondary checkbox" }}
                   />
                   <p>Remember me</p>
-                </div>
+                </div> */}
                 <div className="signup-btn-container btn-container">
                   <button className="signup-btn">Sign Up </button>
                 </div>
               </div>
               <div className="bottomAccount">
                 <Link
-                  className="loginAccount"
+                  className="register link"
                   onClick={handleSubmit}
                   data-test={ifDev("loginBtn")}
                   to="/login"
                 >
-                  Already have an account?
+                  Already have an account? Login
                 </Link>
               </div>
             </form>

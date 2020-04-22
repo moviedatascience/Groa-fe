@@ -1,3 +1,4 @@
+@charset "UTF-8";
 @import url("https://fonts.googleapis.com/css?family=Work+Sans:400,700,900&display=swap");
 #root {
   /* 
@@ -188,7 +189,7 @@
             height: 36px;
             border-radius: 4px;
             background: #00e6bc;
-            color: black;
+            color: å white;
             font-size: 14px; }
       #root .container.register-component .box-right .bottomAccount,
       #root .container.login-component .box-right .bottomAccount {
@@ -330,7 +331,7 @@
                 height: 36px;
                 border-radius: 4px;
                 background: #00e6bc;
-                color: black;
+                color: white;
                 font-size: 14px;
                 margin-top: 3%; }
           #root .container.register-component .box-container .box-right .bottomAccount,
@@ -362,18 +363,23 @@
         flex-direction: column; } }
     #root .register.nav img,
     #root .login.nav img {
+      align-items: center;
       height: 2.5rem;
       width: auto; }
     #root .register.nav .signin-title,
     #root .login.nav .signin-title {
       display: flex;
-      justify-content: flex-start; }
+      color: white; }
   @media (max-width: 600px) {
     #root img {
       width: 136px;
       height: 38px;
       left: 130px;
-      top: 102px; } }
+      top: 102px; }
+    #root .signin-title {
+      display: flex;
+      justify-content: flex-start;
+      margin-top: 2%; } }
   #root .mainContainer {
     background: #000A12;
     padding: 1.1% 1%;
