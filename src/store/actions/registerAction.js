@@ -5,7 +5,7 @@ export const FETCHING_USER_REGISTER_FAIL = "FETCHING_USER_REGISTER_FAIL";
 
 // REGISTER
 export function registerAction(userCreds, history) {
-  let newUser = {
+  let user = {
     user_name: userCreds.user_name,
     password: userCreds.password
   };
@@ -15,14 +15,16 @@ export function registerAction(userCreds, history) {
       .then(res => {
         dispatch({ type: FETCHING_USER_REGISTER_SUCCESS });
         axiosWithAuth()
-          .post("/login", newUser)
+          .post("/login", user)
           .then(res => {
             localStorage.setItem("token", res.data.token);
             dispatch({
               type: FETCHING_USER_LOGIN_SUCCESS,
               payload: res.data.id
             });
-            history.push(`/${res.data.id}/upload`);
+            history.push(`/${res.data.id}/recommendations`);
+          }).catch(err => {
+            console.log(err)
           });
       })
       .catch(err => {
