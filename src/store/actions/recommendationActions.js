@@ -18,7 +18,7 @@ export function recommendationAction(id) {
     .then(res => {
         dispatch({
             type: FETCHING_RECOMMENDATIONS_SUCCESS,
-            payload: res.data.recommendation_json
+            payload: res.data.data
         })
     })
     .catch(err => {
