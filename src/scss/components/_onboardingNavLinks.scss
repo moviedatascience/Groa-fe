@@ -1,29 +1,37 @@
-  .register.nav,
-  .login.nav {
-    font-family: $workSans;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    text-align: center;
-
-    img{
-      height: 2.5rem;
-      width: auto;
-    }
-    .link {
-      display: flex;
-      width: 100%;
-      height: auto;
-      font-size: 1rem;
-      text-decoration: none;
-      justify-content: flex-end;
-      align-items: center;
-      color: $white;
-    
-      &:hover {
-        color: $turqoise3;
-        font-weight: bold;        
-      }
-    }
+.register.nav,
+.login.nav {
+  font-family: $workSans;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  text-align: center;
+  @media (max-width: 600px) {
+    flex-direction: column;
   }
+  img {
+    align-items: center;
+    height: 2.5rem;
+    width: auto;
+  }
+  .signin-title {
+    display: flex;
+    color:white;
+    // align-items: flex-start;;
+  }
+}
+@media (max-width: 600px) {
+  img {
+    // position: absolute;
+    width: 136px;
+    height: 38px;
+    left: 130px;
+    top: 102px;
+  }
+  .signin-title {
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 2%;
+    
+  }
+}
