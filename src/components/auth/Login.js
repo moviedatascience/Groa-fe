@@ -19,49 +19,47 @@ import * as Yup from "yup";
 import { Link } from "react-router-dom";
 
 //google sign in
-import GoogleBtn from "../../img/x1_btn_google_signin_light_normal_web.png"
+import GoogleBtn from "../../img/x1_btn_google_signin_light_normal_web.png";
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
-    margin: theme.spacing(1)
+    margin: theme.spacing(1),
   },
   textField: {
     display: "flex",
     // justifyContent: "center",
     marginBottom: "2%",
     width: "100%",
-    padding: "0"
+    padding: "0",
     // display:'flex',
     // justifyContent:'center'
-  }
+  },
 }));
-
-const initialUser = {
-  user_name: "",
-  password: ""
-};
 
 const RegisterSchema = Yup.object().shape({
   user_name: Yup.string().required("Username is required"),
-  password: Yup.string().required("Password is required")
+  password: Yup.string().required("Password is required"),
 });
 
-const LoginPage = props => {
-  const [user, setUser] = useState(initialUser);
+const LoginPage = (props) => {
+  const [user, setUser] = useState({
+    user_name: "",
+    password: "",
+  });
   const { handleSubmit, errors } = useForm({
-    validationSchema: RegisterSchema
+    validationSchema: RegisterSchema,
   });
   const classes = useStyles();
-  const handleChange = e => {
+  const handleChange = (e) => {
     setUser({
       ...user,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
-  const loginUser = e => {
+  const loginUser = (e) => {
     e.preventDefault();
-    props.loginAction(user);
+    props.loginAction(user, props.history);
   };
 
   return (
@@ -119,7 +117,7 @@ const LoginPage = props => {
             {errors.password && errors.password.type === "required" && (
               <p>A password is required</p>
             )}
-            
+
             <div className="bottom-form">
               <div className="text-check">
                 {/* <div className="check-box-container">
@@ -134,27 +132,32 @@ const LoginPage = props => {
                 <button className="login-btn" data-test={ifDev("BtnLoginTest")}>
                   Login
                 </button>
-                <div class="google-btn">
-                <div class="google-icon-wrapper">
-                     <img class="google-icon" src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg"/>
-                       </div>
-                    <p class="btn-text"><b>Sign in with Google</b></p>
-                    </div>
+                <div className="google-btn">
+                  <div className="google-icon-wrapper">
+                    <img
+                      className="google-icon"
+                      src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg"
+                      alt="google logo"
+                    />
+                  </div>
+                  <p className="btn-text">
+                    <b>Sign in with Google</b>
+                  </p>
+                </div>
               </div>
             </div>
-            </form>
-            <div className="bottomAccount">
-              <p className="loginAccount">
-                <Link
-                  className="register link"
-                  to="/register"
-                  data-test={ifDev("register-link")}
-                >
-                  Don't have an account? Sign up
-                </Link>
-              </p>
-            </div>
-          
+          </form>
+          <div className="bottomAccount">
+            <p className="loginAccount">
+              <Link
+                className="register link"
+                to="/register"
+                data-test={ifDev("register-link")}
+              >
+                Don't have an account? Sign up
+              </Link>
+            </p>
+          </div>
         </div>
         {/* FORM ENDS */}
       </div>
@@ -164,10 +167,10 @@ const LoginPage = props => {
   );
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     userid: state.login.userid,
-    errorStatus: state.login.error
+    errorStatus: state.login.error,
   };
 };
 export default connect(mapStateToProps, { loginAction })(LoginPage);
