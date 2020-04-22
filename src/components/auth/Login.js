@@ -5,7 +5,7 @@ import { ifDev } from "../../utils/removeAttribute.js";
 
 // styling imports
 import Picture1 from "../../img/watching-tv.png";
-import { TextField, Checkbox } from "@material-ui/core";
+import { TextField } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
 // Navbar Login
@@ -19,7 +19,7 @@ import * as Yup from "yup";
 import { Link } from "react-router-dom";
 
 //google sign in
-import GoogleBtn from "../../img/x1_btn_google_signin_light_normal_web.png";
+// import GoogleBtn from "../../img/x1_btn_google_signin_light_normal_web.png";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -50,6 +50,7 @@ const LoginPage = (props) => {
     validationSchema: RegisterSchema,
   });
   const classes = useStyles();
+
   const handleChange = (e) => {
     setUser({
       ...user,
@@ -119,15 +120,7 @@ const LoginPage = (props) => {
             )}
 
             <div className="bottom-form">
-              <div className="text-check">
-                {/* <div className="check-box-container">
-                  <Checkbox
-                    color="primary"
-                    inputProps={{ "aria-label": "secondary checkbox" }}
-                  />
-                  <p>Remember me</p>
-                </div> */}
-              </div>
+              <div className="text-check"></div>
               <div className="login-btn-container btn-container">
                 <button className="login-btn" data-test={ifDev("BtnLoginTest")}>
                   Login

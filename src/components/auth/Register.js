@@ -10,7 +10,7 @@ import * as Yup from "yup";
 
 // styling imports
 import Picture3 from "../../img/couch-popcorn.png";
-import { TextField, Checkbox, Grid } from "@material-ui/core";
+import { TextField, Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
 // Navbar Register
@@ -173,14 +173,6 @@ const Register = (props) => {
               {/* </Grid> */}
               {/* </Grid> */}
               <div className="bottom-form">
-                {/* todo: add Remember functionality */}
-                {/* <div className="check-box-container">
-                  <Checkbox
-                    color="primary"
-                    inputProps={{ "aria-label": "secondary checkbox" }}
-                  />
-                  <p>Remember me</p>
-                </div> */}
                 <div className="signup-btn-container btn-container">
                   <button className="signup-btn">Sign Up </button>
                 </div>
