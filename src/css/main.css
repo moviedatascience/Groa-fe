@@ -160,8 +160,8 @@
       #root .container.login-component .box-right .bottom-form {
         width: 100%;
         display: flex;
-        justify-content: space-between;
-        margin: 3% 0; }
+        flex-direction: column-reverse;
+        margin: 0; }
         #root .container.register-component .box-right .bottom-form .check-box-container,
         #root .container.login-component .box-right .bottom-form .check-box-container {
           display: flex;
@@ -174,18 +174,17 @@
             white-space: nowrap; }
         #root .container.register-component .box-right .bottom-form .btn-container,
         #root .container.login-component .box-right .bottom-form .btn-container {
-          width: 60%;
+          width: 100%;
           display: flex;
-          justify-content: flex-end;
+          justify-content: center;
           padding-bottom: 15px; }
           #root .container.register-component .box-right .bottom-form .btn-container .signup-btn,
           #root .container.register-component .box-right .bottom-form .btn-container button.login-btn,
           #root .container.login-component .box-right .bottom-form .btn-container .signup-btn,
           #root .container.login-component .box-right .bottom-form .btn-container button.login-btn {
-            align-self: end;
             border: none;
             width: 100%;
-            max-width: 115px;
+            max-width: 100%;
             height: 36px;
             border-radius: 4px;
             background: #00e6bc;
@@ -195,12 +194,26 @@
       #root .container.login-component .box-right .bottomAccount {
         display: flex;
         flex-direction: column;
-        padding: 30px; }
+        padding: 5%; }
         #root .container.register-component .box-right .bottomAccount .loginAccount,
         #root .container.login-component .box-right .bottomAccount .loginAccount {
           text-align: center;
           color: #2477e5;
           font-size: 18px; }
+        #root .container.register-component .box-right .bottomAccount .link,
+        #root .container.login-component .box-right .bottomAccount .link {
+          display: flex;
+          width: 100%;
+          height: auto;
+          font-size: 1rem;
+          text-decoration: none;
+          flex-direction: column-reverse;
+          align-items: center;
+          color: white; }
+          #root .container.register-component .box-right .bottomAccount .link:hover,
+          #root .container.login-component .box-right .bottomAccount .link:hover {
+            color: #00b392;
+            font-weight: bold; }
       #root .container.register-component .box-right .callingError,
       #root .container.login-component .box-right .callingError {
         color: red;
@@ -271,18 +284,69 @@
               display: none; }
         #root .container.register-component .box-container .box-right,
         #root .container.login-component .box-container .box-right {
-          width: 100%;
-          margin: 2%;
-          padding: 0;
           display: flex;
           flex-direction: column;
           justify-content: center;
-          border-radius: 0;
+          margin: 2%;
+          padding: 0%;
+          border-radius: 4px;
           background: #505050;
+          width: 100%;
           height: 100%; }
           #root .container.register-component .box-container .box-right .form,
           #root .container.login-component .box-container .box-right .form {
-            max-width: 90%;
+            justify-content: center;
+            max-width: 100%; }
+          #root .container.register-component .box-container .box-right .bottom-form,
+          #root .container.login-component .box-container .box-right .bottom-form {
+            width: 100%;
+            display: flex;
+            flex-direction: column-reverse;
+            margin: 0; }
+            #root .container.register-component .box-container .box-right .bottom-form .check-box-container,
+            #root .container.login-component .box-container .box-right .bottom-form .check-box-container {
+              display: flex;
+              flex-direction: row;
+              padding-top: 13px;
+              align-items: center; }
+              #root .container.register-component .box-container .box-right .bottom-form .check-box-container p,
+              #root .container.login-component .box-container .box-right .bottom-form .check-box-container p {
+                color: black;
+                white-space: nowrap; }
+            #root .container.register-component .box-container .box-right .bottom-form .btn-container,
+            #root .container.login-component .box-container .box-right .bottom-form .btn-container {
+              width: 100%;
+              display: flex;
+              justify-content: center;
+              padding-bottom: 15px; }
+              #root .container.register-component .box-container .box-right .bottom-form .btn-container .signup-btn,
+              #root .container.register-component .box-container .box-right .bottom-form .btn-container button.login-btn,
+              #root .container.login-component .box-container .box-right .bottom-form .btn-container .signup-btn,
+              #root .container.login-component .box-container .box-right .bottom-form .btn-container button.login-btn {
+                align-items: center;
+                border: none;
+                width: 100%;
+                max-width: 100%;
+                height: 36px;
+                border-radius: 4px;
+                background: #00e6bc;
+                color: black;
+                font-size: 14px;
+                margin-top: 3%; }
+          #root .container.register-component .box-container .box-right .bottomAccount,
+          #root .container.login-component .box-container .box-right .bottomAccount {
+            display: flex;
+            flex-direction: column;
+            padding: 2%; }
+            #root .container.register-component .box-container .box-right .bottomAccount .loginAccount,
+            #root .container.login-component .box-container .box-right .bottomAccount .loginAccount {
+              text-align: center;
+              color: #2477e5;
+              font-size: 18px; }
+          #root .container.register-component .box-container .box-right .callingError,
+          #root .container.login-component .box-container .box-right .callingError {
+            color: red;
+            display: flex;
             justify-content: center; } }
   #root .register.nav,
   #root .login.nav {
@@ -300,33 +364,16 @@
     #root .login.nav img {
       height: 2.5rem;
       width: auto; }
-    #root .register.nav .link,
-    #root .login.nav .link {
+    #root .register.nav .signin-title,
+    #root .login.nav .signin-title {
       display: flex;
-      width: 100%;
-      height: auto;
-      font-size: 1rem;
-      text-decoration: none;
-      justify-content: flex-end;
-      align-items: center;
-      color: white; }
-      #root .register.nav .link:hover,
-      #root .login.nav .link:hover {
-        color: #00b392;
-        font-weight: bold; }
-    @media (max-width: 600px) {
-      #root .register.nav img,
-      #root .login.nav img {
-        width: 136px;
-        height: 38px;
-        left: 130px;
-        top: 102px; }
-      #root .register.nav .link,
-      #root .login.nav .link {
-        justify-content: flex-start;
-        height: 30px;
-        left: 16px;
-        top: 141px; } }
+      justify-content: flex-start; }
+  @media (max-width: 600px) {
+    #root img {
+      width: 136px;
+      height: 38px;
+      left: 130px;
+      top: 102px; } }
   #root .mainContainer {
     background: #000A12;
     padding: 1.1% 1%;

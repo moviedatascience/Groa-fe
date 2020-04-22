@@ -6,7 +6,7 @@ import { ifDev } from "../../utils/removeAttribute.js";
 // styling imports
 import Picture1 from "../../img/watching-tv.png";
 import { TextField, Checkbox } from "@material-ui/core";
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from "@material-ui/core/styles";
 
 // Navbar Login
 import LoginNavLinks from "../layout/nav-layouts/LoginNavLinks.js";
@@ -15,50 +15,51 @@ import LoginNavLinks from "../layout/nav-layouts/LoginNavLinks.js";
 import { useForm } from "react-hook-form";
 import * as Yup from "yup";
 
+//link to register
+import { Link } from "react-router-dom";
 
-
-const useStyles = makeStyles((theme) => ({
-root:{
-  margin: theme.spacing(1),
-},
-textField:{
-margin: '2%',
-width: '90%',
-padding:'0',
-
-}
+const useStyles = makeStyles(theme => ({
+  root: {
+    margin: theme.spacing(1)
+  },
+  textField: {
+    display: "flex",
+    justifyContent: "center",
+    marginBottom: "2%",
+    width: "100%",
+    padding: "0"
+    // display:'flex',
+    // justifyContent:'center'
+  }
 }));
 
 const initialUser = {
   user_name: "",
-  password: "",
+  password: ""
 };
 
 const RegisterSchema = Yup.object().shape({
   user_name: Yup.string().required("Username is required"),
   password: Yup.string().required("Password is required")
-})
+});
 
-
-const LoginPage = (props) => {
+const LoginPage = props => {
   const [user, setUser] = useState(initialUser);
-  const { handleSubmit, errors} = useForm({
+  const { handleSubmit, errors } = useForm({
     validationSchema: RegisterSchema
-  })
+  });
   const classes = useStyles();
-  const handleChange = (e) => {
+  const handleChange = e => {
     setUser({
       ...user,
-      [e.target.name]: e.target.value,
+      [e.target.name]: e.target.value
     });
   };
 
-  const loginUser = (e) => {
+  const loginUser = e => {
     e.preventDefault();
     props.loginAction(user);
   };
-
-
 
   return (
     <div
@@ -92,47 +93,55 @@ const LoginPage = (props) => {
             onSubmit={handleSubmit(loginUser)}
             data-test={ifDev("loginForm")}
           >
-            <TextField className={classes.textField}
+            <TextField
+              className={classes.textField}
               name="user_name"
               value={user.user_name}
               onChange={handleChange}
               label="Username"
               variant="outlined"
-
             />
             {errors.user_name && errors.user_name.type === "required" && (
               <p>A username is required</p>
             )}
-            <TextField className={classes.textField} 
+            <TextField
+              className={classes.textField}
               name="password"
               type="password"
               value={user.password}
               onChange={handleChange}
               label="Password"
               variant="outlined"
-              
             />
             {errors.password && errors.password.type === "required" && (
               <p>A password is required</p>
             )}
             <div className="bottom-form">
               <div className="text-check">
-                <div className="check-box-container">
+                {/* <div className="check-box-container">
                   <Checkbox
-                    // color="primary"
+                    color="primary"
                     inputProps={{ "aria-label": "secondary checkbox" }}
                   />
                   <p>Remember me</p>
-                </div>
+                </div> */}
               </div>
               <div className="login-btn-container btn-container">
                 <button className="login-btn" data-test={ifDev("BtnLoginTest")}>
-                  Log in
+                  Login
                 </button>
               </div>
             </div>
             <div className="bottomAccount">
-              <p className="loginAccount">Forgot password?</p>
+              <p className="loginAccount">
+                <Link
+                  className="register link"
+                  to="/register"
+                  data-test={ifDev("register-link")}
+                >
+                  Don't have an account? Sign up
+                </Link>
+              </p>
             </div>
           </form>
         </div>
@@ -144,10 +153,10 @@ const LoginPage = (props) => {
   );
 };
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
     userid: state.login.userid,
-    errorStatus: state.login.error,
+    errorStatus: state.login.error
   };
 };
 export default connect(mapStateToProps, { loginAction })(LoginPage);
