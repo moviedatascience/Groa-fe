@@ -55,15 +55,13 @@ const Register = (props) => {
 
   const handleChange = (e) => {
     setUsers({
-
       ...users,
-      [event.target.name]: event.target.value,
+      [e.target.name]: e.target.value,
 
     });
     console.log(users);
   };
 
-fixed-routes
   const onSubmit = (event) => {
 
     let user = {
