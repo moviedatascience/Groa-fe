@@ -6,8 +6,8 @@ const axiosWithAuth = () => {
   return axios.create({
     baseURL: "https://dev.groa.us/api/users",
     headers: {
-      Authorization: token
-    }
+      Authorization: token,
+    },
   });
 };
 

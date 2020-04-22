@@ -10,10 +10,11 @@ export function loginAction(userCreds, history) {
     axiosWithAuth()
       .post("/login", userCreds)
       .then(res => {
+        console.log(res)
         localStorage.setItem("token", res.data.token);
         dispatch({ 
           type: FETCHING_USER_LOGIN_SUCCESS, 
-          payload: res.data.id });
+          payload: res.data.user_id });
         dispatch({
           type: FETCHING_RATINGS_SUCCESS,
           payload: res.data.ratings
@@ -22,7 +23,7 @@ export function loginAction(userCreds, history) {
             type: FETCHING_WATCHLIST_SUCCESS,
             payload: res.data.watchlist
           });
-        history.push(`/${res.data.id}/recommendations`);
+        history.push(`/${res.data.user_id}/recommendations`);
       })
       .catch(err => {
         console.log("ERROR: ", err);
