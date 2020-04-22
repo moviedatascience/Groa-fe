@@ -75,7 +75,7 @@ Gróa will use our Discovery Engine to present movies suited to your taste based
 [@material-ui/icons](https://www.npmjs.com/package/@material-ui/icons) |
 [@material-ui/lab](https://www.npmjs.com/package/@material-ui/lab) |
 
-- for the stars on movie cards
+- for the stars on movie cards and form inputs
 
 [@node-sass](https://www.npmjs.com/package/node-sass)
 

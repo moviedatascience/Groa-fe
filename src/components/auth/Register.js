@@ -31,10 +31,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+// Validation Schema
 const RegisterSchema = Yup.object().shape({
   user_name: Yup.string().required("Username is required"),
-  email: Yup.string().email().required("email is required"),
-  password: Yup.string().min(6).required("password is required"),
+  email: Yup.string().email().required("Email is required"),
+  password: Yup.string().min(6).required("Password is required"),
   confirmpassword: Yup.string()
     .oneOf([Yup.ref("password"), null], "Passwords must match")
     .required(),
@@ -52,15 +53,19 @@ const Register = (props) => {
   });
   const classes = useStyles();
 
-  const handleChange = (event) => {
+  const handleChange = (e) => {
     setUsers({
+
       ...users,
       [event.target.name]: event.target.value,
+
     });
     console.log(users);
   };
 
+fixed-routes
   const onSubmit = (event) => {
+
     let user = {
       user_name: users.user_name,
       email: users.email,
@@ -75,9 +80,11 @@ const Register = (props) => {
       className="container register-component"
       data-test={ifDev("register-component")}
     >
+      {/* NAVIGATION */}
       <div className="onboarding-nav registerNav">
         <RegisterNavLinks />
       </div>
+      {/* MAIN PAGE CONTENT */}
       <div className="boxHolder box-container">
         <div className="box-left">
           <div className="text-container">
@@ -94,6 +101,7 @@ const Register = (props) => {
             <img className="logo" src={Picture3} alt="Graphic" />
           </div>
         </div>
+        {/* FORM STARTS */}
         <div className="box-right">
           <Grid container spacing={1}>
             <form
@@ -194,12 +202,11 @@ const Register = (props) => {
               </div>
             </form>
           </Grid>
+          {/* FORM ENDS */}
         </div>
-        {/* end box right */}
-      </div>
-      {/* END boxHolder */}
+      </div>{" "}
+      {/* PAGE CONTAINER */}
     </div>
-    //END CONTAINER
   );
 };
 
