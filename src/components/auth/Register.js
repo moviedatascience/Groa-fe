@@ -52,22 +52,21 @@ const Register = (props) => {
   });
   const classes = useStyles();
 
-  const handleChange = (event) => {
+  const handleChange = (e) => {
     setUsers({
       ...users,
-      [event.target.name]: event.target.value,
+      [e.target.name]: e.target.value,
     });
-    console.log(users);
   };
 
-  const onSubmit = (event) => {
+  const onSubmit = () => {
     let user = {
       user_name: users.user_name,
       email: users.email,
       password: users.password,
     };
     console.log("user before register button", user);
-    props.registerAction(user);
+    props.registerAction(user, props.history);
   };
 
   return (
