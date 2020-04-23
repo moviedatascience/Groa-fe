@@ -25,12 +25,7 @@ import { Link } from "react-router-dom";
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      <Link color="white" href="https://github.com/Lambda-School-Labs/Groa-fe">
-        Groá
-      </Link>{' '}
-      2020
-      {'.'}
+     {"© 2020 by GROÁ, All rights reserved"}
     </Typography>
   );
 }
@@ -177,13 +172,18 @@ const LoginPage = props => {
           
                 </Link>
               </p>
+             
             </div>
-           
+            {/* <div className='about-us'>
+                <div><a> A b o u t U s  </a> </div>
+                <div>T e r m s and C o n d i t i on s  </div>
+                <div>P r i v a c y</div>
+              </div> */}
         </div>
         {/* FORM ENDS */}
       </div>
       {/* END OF MAIN CONTENT */}
-      <Box mt={11}>
+      <Box mt={2}>
         <Copyright />
       </Box>
     </div>

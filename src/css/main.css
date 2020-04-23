@@ -408,7 +408,7 @@
       #root .container.login-component .box-container .box-right .bottom-form .btn-container .fancy span:before,
       #root .container.login-component .box-container .box-right .bottom-form .btn-container .fancy span:after {
         content: "";
-        width: 700%; }
+        width: 800%; }
       #root .container.register-component .box-container .box-right .bottom-form .btn-container .google-btn .btn-text,
       #root .container.login-component .box-container .box-right .bottom-form .btn-container .google-btn .btn-text {
         margin: 4% 2% 0 35%; }
