@@ -6,6 +6,7 @@ export const FETCHING_USER_LOGIN_FAIL = "FETCHING_USER_LOGIN_FAIL";
 
 // LOGIN
 export function loginAction(userCreds, history) {
+  console.log(userCreds)
   return dispatch => {
     axiosWithAuth()
       .post("/login", userCreds)
