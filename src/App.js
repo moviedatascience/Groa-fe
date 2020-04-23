@@ -78,32 +78,32 @@ function App() {
           <Route
             exact
             path={[
-              "/:userid/recommended",
-              "/:userid/watchlist",
-              "/:userid/explore",
-              "/:userid/upload",
-              "/:userid/ratings"
+              "/:user_id/recommendations",
+              "/:user_id/watchlist",
+              "/:user_id/explore",
+              "/:user_id/upload",
+              "/:user_id/ratings"
             ]}
             component={Navigation}
           />
           <PrivateRoute
             exact
-            path="/:userid/recommended"
+            path="/:user_id/recommendations"
             component={Recommendations}
             data-test={ifDev("dash-component")}
           />
              <PrivateRoute
             exact
-            path="/:userid/watchlist"
+            path="/:user_id/watchlist"
             component={Watchlist}
           />
-          <Route exact path="/:userid/upload" component={DataUpload} />
+          <Route exact path="/:user_id/upload" component={DataUpload} />
           <Route path="/login" component={Login} />
           <Route exact path={["/", "/register"]} component={Register} />
           {/* this could be a modal */}
           {/* <Route path="/congrats" component={Congrats} /> */}
-          <PrivateRoute exact path="/:userid/ratings" component={Ratings}/>
-          <PrivateRoute exact path="/:userid/explore" component={Explore}/>
+          <PrivateRoute exact path="/:user_id/ratings" component={Ratings}/>
+          <PrivateRoute exact path="/:user_id/explore" component={Explore}/>
         </div>
       </Router>
     </Provider>
