@@ -8,18 +8,68 @@ import {
 } from "../../store/actions";
 // import debounce from "../../utils/debounce";
 import {
-  faSearch,
+  // faSearch,
   faUserCircle,
   faAngleDown,
   faBars,
   faSync,
-  faBackspace
+  // faBackspace
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { ifDev } from "../../utils/removeAttribute.js";
 import GroaLogo from "../../img/groa-logo-nav.png";
 
+//for search bar 
+import { makeStyles, fade } from "@material-ui/core/styles";
+import SearchIcon from "@material-ui/icons/Search";
+import InputBase from "@material-ui/core/InputBase";
+
+
+const useStyles = makeStyles(theme => ({
+  searchContainer: {
+    width: "46%",
+    margin: "auto"
+  },
+  search: {
+    position: "relative",
+    borderRadius: theme.shape.borderRadius,
+    backgroundColor: 'white',
+    "&:hover": {
+      backgroundColor: '#00B392'
+    },
+    marginTop: 30,
+    marginLeft: 0,
+    width: "100%",
+    [theme.breakpoints.up("sm")]: {
+      width: "auto"
+    }
+  },
+  searchIcon: {
+    width: theme.spacing(7),
+    height: "100%",
+    position: "absolute",
+    pointerEvents: "none",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center"
+  },
+  inputRoot: {
+    color: "inherit"
+  },
+  inputInput: {
+    padding: theme.spacing(1, 1, 1, 7),
+    transition: theme.transitions.create("width"),
+    width: "100%",
+    [theme.breakpoints.up("md")]: {
+      width: 200
+    }
+  }
+}));
+
+
 const Navigation = props => {
+  const classes = useStyles();
+
   const [query, setQuery] = useState({
     query: ""
   });
@@ -80,33 +130,6 @@ const Navigation = props => {
           <NavLink className="NavLink explore" to={`/${props.userid}/explore`}>
             Explore
           </NavLink>
-        </div>
-
-        {/* If the path is upload hide the search container */}
-        <div
-          className={`searchContainer ${
-            window.location.pathname === `/${props.userid}/upload`
-              ? `hidden`
-              : null
-          }`}
-        >
-          <div className="search-wrapper">
-            <FontAwesomeIcon className="search-icon" icon={faSearch} />
-            <input
-              className="searchBox"
-              type="text"
-              name="search"
-              value={query.query}
-              onChange={handleChange}
-              placeholder="Search..."
-              onKeyDown={handleSubmit}
-            />
-          </div>
-          <FontAwesomeIcon
-            className="backspace-icon"
-            icon={faBackspace}
-            onClick={clearInput}
-          />
         </div>
 
         {/* If the path is recommended show update recommendations button */}
@@ -184,6 +207,50 @@ const Navigation = props => {
         </div>
         {/* END fa-icons */}
       </div>
+      {/* <div
+          className={`searchContainer ${
+            window.location.pathname === `/${props.userid}/upload`
+              ? `hidden`
+              : null
+          }`}
+        >
+          <div className="search-wrapper">
+            <FontAwesomeIcon className="search-icon" icon={faSearch} />
+            <input
+              className="searchBox"
+              type="text"
+              name="search"
+              value={query.query}
+              onChange={handleChange}
+              placeholder="Search..."
+              onKeyDown={handleSubmit}
+            />
+          </div>
+          <FontAwesomeIcon
+            className="backspace-icon"
+            icon={faBackspace}
+            onClick={clearInput}
+          />
+        </div> */}
+         <div className={classes.searchContainer}>
+              <div className={classes.search}>
+                <div className={classes.searchIcon}>
+                  <SearchIcon />
+                </div>
+                <InputBase
+                  placeholder="Search…"
+                  type='text'
+                  onChange={handleChange}
+                  value={query.query}
+                  classes={{
+                    root: classes.inputRoot,
+                    input: classes.inputInput
+                  }}
+                  inputProps={{ "aria-label": "search" }}
+                  onKeyDown={handleSubmit}
+                />
+              </div>
+            </div>
       {/* END navContainer */}
     </div>
   );

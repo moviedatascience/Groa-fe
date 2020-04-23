@@ -454,7 +454,7 @@
       margin-top: 2%;
       font-size: 20px; } }
   #root .mainContainer {
-    background: #000A12;
+    background: #505050;
     padding: 1.1% 1%;
     font-family: "Work Sans", sans-serif; }
     #root .mainContainer .navContainer {
@@ -488,7 +488,9 @@
           #root .mainContainer .navContainer .Links .NavLink:hover {
             color: white; }
       @media only screen and (max-width: 750px) {
-        #root .mainContainer .navContainer .watchlist, #root .mainContainer .navContainer .recommended, #root .mainContainer .navContainer .explore,
+        #root .mainContainer .navContainer .watchlist,
+        #root .mainContainer .navContainer .recommended,
+        #root .mainContainer .navContainer .explore,
         #root .mainContainer .navContainer .dropdown-hover .angle-down-icon {
           flex: .000000001;
           white-space: pre;
@@ -603,10 +605,14 @@
           @media (hover: hover) and (pointer: fine) {
             #root .mainContainer .dropdown-hover:hover .dropdown-content .NavLink:hover {
               background-color: #D8D8D8; } }
-        #root .mainContainer .dropdown-hover:hover .dropdown-content .watchlist-menu, #root .mainContainer .dropdown-hover:hover .dropdown-content .recommended-menu, #root .mainContainer .dropdown-hover:hover .dropdown-content .explore-menu {
+        #root .mainContainer .dropdown-hover:hover .dropdown-content .watchlist-menu,
+        #root .mainContainer .dropdown-hover:hover .dropdown-content .recommended-menu,
+        #root .mainContainer .dropdown-hover:hover .dropdown-content .explore-menu {
           display: none; }
         @media only screen and (max-width: 750px) {
-          #root .mainContainer .dropdown-hover:hover .dropdown-content .watchlist-menu, #root .mainContainer .dropdown-hover:hover .dropdown-content .recommended-menu, #root .mainContainer .dropdown-hover:hover .dropdown-content .explore-menu {
+          #root .mainContainer .dropdown-hover:hover .dropdown-content .watchlist-menu,
+          #root .mainContainer .dropdown-hover:hover .dropdown-content .recommended-menu,
+          #root .mainContainer .dropdown-hover:hover .dropdown-content .explore-menu {
             display: block; } }
   #root .container.post-login {
     background: white;
