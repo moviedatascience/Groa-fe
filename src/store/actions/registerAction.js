@@ -20,9 +20,9 @@ export function registerAction(userCreds, history) {
             localStorage.setItem("token", res.data.token);
             dispatch({
               type: FETCHING_USER_LOGIN_SUCCESS,
-              payload: res.data.id
+              payload: res.data.user_id
             });
-            history.push(`/${res.data.id}/recommendations`);
+            history.push(`/${res.data.user_id}/recommendations`);
           }).catch(err => {
             console.log(err)
           });

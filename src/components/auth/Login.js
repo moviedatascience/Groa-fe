@@ -21,7 +21,6 @@ import * as Yup from "yup";
 //link to register
 import { Link } from "react-router-dom";
 
-
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
@@ -31,45 +30,43 @@ function Copyright() {
 }
 const useStyles = makeStyles(theme => ({
   root: {
-    margin: theme.spacing(1)
+    margin: theme.spacing(1),
   },
   textField: {
     display: "flex",
     // justifyContent: "center",
     marginBottom: "2%",
     width: "100%",
-    padding: "0"
+    padding: "0",
     // display:'flex',
     // justifyContent:'center'
-  }
+  },
 }));
-
-const initialUser = {
-  user_name: "",
-  password: ""
-};
 
 const RegisterSchema = Yup.object().shape({
   user_name: Yup.string().required("Username is required"),
-  password: Yup.string().required("Password is required")
+  password: Yup.string().required("Password is required"),
 });
 
-const LoginPage = props => {
-  const [user, setUser] = useState(initialUser);
+const LoginPage = (props) => {
+  const [user, setUser] = useState({
+    user_name: "",
+    password: "",
+  });
   const { handleSubmit, errors } = useForm({
-    validationSchema: RegisterSchema
+    validationSchema: RegisterSchema,
   });
   const classes = useStyles();
-  const handleChange = e => {
+  const handleChange = (e) => {
     setUser({
       ...user,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
-  const loginUser = e => {
+  const loginUser = (e) => {
     e.preventDefault();
-    props.loginAction(user);
+    props.loginAction(user, props.history);
   };
 
   return (
@@ -127,7 +124,7 @@ const LoginPage = props => {
             {errors.password && errors.password.type === "required" && (
               <p>A password is required</p>
             )}
-            
+
             <div className="bottom-form">
               <div className="text-check">
                 {/* <div className="check-box-container">
@@ -142,6 +139,7 @@ const LoginPage = props => {
                 <button className="login-btn" data-test={ifDev("BtnLoginTest")}>
                   Login
                 </button>
+
                 <p className='subtitle fancy'><span>OR</span></p>
                 <div class="google-btn">
                 <div class="google-icon-wrapper">
@@ -179,6 +177,7 @@ const LoginPage = props => {
                 <div>T e r m s and C o n d i t i on s  </div>
                 <div>P r i v a c y</div>
               </div> */}
+
         </div>
         {/* FORM ENDS */}
       </div>
@@ -191,10 +190,10 @@ const LoginPage = props => {
   );
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     userid: state.login.userid,
-    errorStatus: state.login.error
+    errorStatus: state.login.error,
   };
 };
 export default connect(mapStateToProps, { loginAction })(LoginPage);
