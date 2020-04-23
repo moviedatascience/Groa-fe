@@ -46,7 +46,7 @@ const LoginPage = (props) => {
     user_name: "",
     password: "",
   });
-  const { handleSubmit, errors } = useForm({
+  const { register, handleSubmit, errors } = useForm({
     validationSchema: RegisterSchema,
   });
   const classes = useStyles();
@@ -56,10 +56,10 @@ const LoginPage = (props) => {
       ...user,
       [e.target.name]: e.target.value,
     });
+    console.log(user)
   };
 
-  const loginUser = (e) => {
-    e.preventDefault();
+  const onSubmit = () => {
     props.loginAction(user, props.history);
   };
 
@@ -92,7 +92,7 @@ const LoginPage = (props) => {
         <div className="box-right">
           <form
             className="form login-form"
-            onSubmit={handleSubmit(loginUser)}
+            onSubmit={handleSubmit(onSubmit)}
             data-test={ifDev("loginForm")}
           >
             <TextField
@@ -102,6 +102,7 @@ const LoginPage = (props) => {
               onChange={handleChange}
               label="Username"
               variant="outlined"
+              inputRef={register}
             />
             {errors.user_name && errors.user_name.type === "required" && (
               <p>A username is required</p>
@@ -114,6 +115,7 @@ const LoginPage = (props) => {
               onChange={handleChange}
               label="Password"
               variant="outlined"
+              inputRef={register}
             />
             {errors.password && errors.password.type === "required" && (
               <p>A password is required</p>
