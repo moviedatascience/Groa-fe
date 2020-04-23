@@ -190,9 +190,37 @@
             max-width: 100%;
             height: 50px;
             border-radius: 4px;
-            background: #00e6bc;
+            background: #00B392;
             color: #505050;
-            font-size: 14px; }
+            font-size: 14px;
+            margin-bottom: 2%; }
+          #root .container.register-component .box-right .bottom-form .btn-container .fancy,
+          #root .container.login-component .box-right .bottom-form .btn-container .fancy {
+            line-height: 0.5;
+            text-align: center;
+            margin: 1% 0; }
+          #root .container.register-component .box-right .bottom-form .btn-container .fancy span,
+          #root .container.login-component .box-right .bottom-form .btn-container .fancy span {
+            display: inline-block;
+            position: relative; }
+          #root .container.register-component .box-right .bottom-form .btn-container .fancy span:before,
+          #root .container.register-component .box-right .bottom-form .btn-container .fancy span:after,
+          #root .container.login-component .box-right .bottom-form .btn-container .fancy span:before,
+          #root .container.login-component .box-right .bottom-form .btn-container .fancy span:after {
+            content: "";
+            position: absolute;
+            height: 5px;
+            border-bottom: 1px solid white;
+            top: 0;
+            width: 104px; }
+          #root .container.register-component .box-right .bottom-form .btn-container .fancy span:before,
+          #root .container.login-component .box-right .bottom-form .btn-container .fancy span:before {
+            right: 100%;
+            margin-right: 15px; }
+          #root .container.register-component .box-right .bottom-form .btn-container .fancy span:after,
+          #root .container.login-component .box-right .bottom-form .btn-container .fancy span:after {
+            left: 100%;
+            margin-left: 15px; }
           #root .container.register-component .box-right .bottom-form .btn-container .google-btn,
           #root .container.login-component .box-right .bottom-form .btn-container .google-btn {
             width: 100%;
@@ -228,6 +256,41 @@
               box-shadow: 0 0 6px #4285f4; }
             #root .container.register-component .box-right .bottom-form .btn-container .google-btn:active,
             #root .container.login-component .box-right .bottom-form .btn-container .google-btn:active {
+              background: white; }
+          #root .container.register-component .box-right .bottom-form .btn-container .fb-btn,
+          #root .container.login-component .box-right .bottom-form .btn-container .fb-btn {
+            width: 100%;
+            height: 50px;
+            background-color: #3A5A97;
+            border-radius: 4px;
+            box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.25);
+            margin-top: 2%; }
+            #root .container.register-component .box-right .bottom-form .btn-container .fb-btn .fb-icon-wrapper,
+            #root .container.login-component .box-right .bottom-form .btn-container .fb-btn .fb-icon-wrapper {
+              position: absolute;
+              margin-top: 4px;
+              margin-left: 1px;
+              width: 40px;
+              height: 40px;
+              border-radius: 2px; }
+            #root .container.register-component .box-right .bottom-form .btn-container .fb-btn .fb-icon,
+            #root .container.login-component .box-right .bottom-form .btn-container .fb-btn .fb-icon {
+              margin-top: 11px;
+              margin-left: 11px;
+              width: 18px;
+              height: 18px; }
+            #root .container.register-component .box-right .bottom-form .btn-container .fb-btn .btn-text,
+            #root .container.login-component .box-right .bottom-form .btn-container .fb-btn .btn-text {
+              margin: 7% 2% 0 30%;
+              color: white;
+              font-size: 14px;
+              letter-spacing: 0.2px;
+              font-family: "Roboto"; }
+            #root .container.register-component .box-right .bottom-form .btn-container .fb-btn:hover,
+            #root .container.login-component .box-right .bottom-form .btn-container .fb-btn:hover {
+              box-shadow: 0 0 6px #4285f4; }
+            #root .container.register-component .box-right .bottom-form .btn-container .fb-btn:active,
+            #root .container.login-component .box-right .bottom-form .btn-container .fb-btn:active {
               background: white; }
       #root .container.register-component .box-right .bottomAccount,
       #root .container.login-component .box-right .bottomAccount {
@@ -277,9 +340,7 @@
               font-size: 10vw; }
             #root .container.register-component .box-container .box-left .text-container h5,
             #root .container.login-component .box-container .box-left .text-container h5 {
-              font-size: 3vw;
-              font-weight: normal;
-              padding-top: 2rem; }
+              font-size: 3vw; }
           #root .container.register-component .box-container .box-left .image-wrapper,
           #root .container.login-component .box-container .box-left .image-wrapper {
             width: 100%; }
@@ -294,9 +355,12 @@
             padding: 0;
             max-width: 100%;
             width: 100%;
-            color: #505050; }
+            color: white; }
           #root .container.register-component .box-container .box-right .btn-container .google-btn .btn-text,
           #root .container.login-component .box-container .box-right .btn-container .google-btn .btn-text {
+            margin: 4% 2% 0 38%; }
+          #root .container.register-component .box-container .box-right .btn-container .fb-btn .btn-text,
+          #root .container.login-component .box-container .box-right .btn-container .fb-btn .btn-text {
             margin: 4% 2% 0 38%; } }
 
 @media (max-width: 1068px) and (max-width: 600px) {
@@ -327,75 +391,36 @@
           display: none; }
     #root .container.register-component .box-container .box-right,
     #root .container.login-component .box-container .box-right {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
       margin: 2%;
       padding: 0%;
-      border-radius: 4px;
       background: #505050;
-      width: 100%;
       height: 100%; }
       #root .container.register-component .box-container .box-right .form,
       #root .container.login-component .box-container .box-right .form {
-        justify-content: center;
         max-width: 100%; }
-      #root .container.register-component .box-container .box-right .bottom-form,
-      #root .container.login-component .box-container .box-right .bottom-form {
-        width: 100%;
-        display: flex;
-        flex-direction: column-reverse;
-        margin: 0; }
-        #root .container.register-component .box-container .box-right .bottom-form .check-box-container,
-        #root .container.login-component .box-container .box-right .bottom-form .check-box-container {
-          display: flex;
-          flex-direction: row;
-          padding-top: 13px;
-          align-items: center; }
-          #root .container.register-component .box-container .box-right .bottom-form .check-box-container p,
-          #root .container.login-component .box-container .box-right .bottom-form .check-box-container p {
-            color: black;
-            white-space: nowrap; }
-        #root .container.register-component .box-container .box-right .bottom-form .btn-container,
-        #root .container.login-component .box-container .box-right .bottom-form .btn-container {
-          width: 100%;
-          display: flex;
-          justify-content: center;
-          padding-bottom: 15px; }
-          #root .container.register-component .box-container .box-right .bottom-form .btn-container .signup-btn,
-          #root .container.register-component .box-container .box-right .bottom-form .btn-container button.login-btn,
-          #root .container.login-component .box-container .box-right .bottom-form .btn-container .signup-btn,
-          #root .container.login-component .box-container .box-right .bottom-form .btn-container button.login-btn {
-            align-items: center;
-            border: none;
-            width: 100%;
-            max-width: 100%;
-            height: 50px;
-            border-radius: 4px;
-            background: #00e6bc;
-            font-size: 14px;
-            margin-top: 3%; }
-          #root .container.register-component .box-container .box-right .bottom-form .btn-container .google-btn,
-          #root .container.login-component .box-container .box-right .bottom-form .btn-container .google-btn {
-            width: 100%; }
-            #root .container.register-component .box-container .box-right .bottom-form .btn-container .google-btn .btn-text,
-            #root .container.login-component .box-container .box-right .bottom-form .btn-container .google-btn .btn-text {
-              margin: 4% 2% 0 35%; }
-        #root .container.register-component .box-container .box-right .bottom-form .bottomAccount,
-        #root .container.login-component .box-container .box-right .bottom-form .bottomAccount {
-          display: flex;
-          flex-direction: column;
-          padding: 2%; }
-          #root .container.register-component .box-container .box-right .bottom-form .bottomAccount .loginAccount,
-          #root .container.login-component .box-container .box-right .bottom-form .bottomAccount .loginAccount {
-            text-align: center;
-            color: #2477e5;
-            font-size: 18px; }
-        #root .container.register-component .box-container .box-right .bottom-form .callingError,
-        #root .container.login-component .box-container .box-right .bottom-form .callingError {
-          color: red;
-          display: flex;
-          justify-content: center; } }
+      #root .container.register-component .box-container .box-right .bottom-form .btn-container .signup-btn,
+      #root .container.register-component .box-container .box-right .bottom-form .btn-container button.login-btn,
+      #root .container.login-component .box-container .box-right .bottom-form .btn-container .signup-btn,
+      #root .container.login-component .box-container .box-right .bottom-form .btn-container button.login-btn {
+        margin-top: 3%; }
+      #root .container.register-component .box-container .box-right .bottom-form .btn-container .fancy span:before,
+      #root .container.register-component .box-container .box-right .bottom-form .btn-container .fancy span:after,
+      #root .container.login-component .box-container .box-right .bottom-form .btn-container .fancy span:before,
+      #root .container.login-component .box-container .box-right .bottom-form .btn-container .fancy span:after {
+        content: "";
+        width: 800%; }
+      #root .container.register-component .box-container .box-right .bottom-form .btn-container .google-btn .btn-text,
+      #root .container.login-component .box-container .box-right .bottom-form .btn-container .google-btn .btn-text {
+        margin: 4% 2% 0 35%; }
+      #root .container.register-component .box-container .box-right .bottom-form .btn-container .fb-btn .btn-text,
+      #root .container.login-component .box-container .box-right .bottom-form .btn-container .fb-btn .btn-text {
+        margin: 4% 2% 0 35%; }
+      #root .container.register-component .box-container .box-right .bottom-form .bottomAccount,
+      #root .container.login-component .box-container .box-right .bottom-form .bottomAccount {
+        padding: 2%; }
+        #root .container.register-component .box-container .box-right .bottom-form .bottomAccount .loginAccount,
+        #root .container.login-component .box-container .box-right .bottom-form .bottomAccount .loginAccount {
+          font-size: 9px; } }
   #root .register.nav,
   #root .login.nav {
     font-family: "Work Sans", sans-serif;
@@ -426,7 +451,8 @@
     #root .signin-title {
       display: flex;
       justify-content: flex-start;
-      margin-top: 2%; } }
+      margin-top: 2%;
+      font-size: 20px; } }
   #root .mainContainer {
     background: #000A12;
     padding: 1.1% 1%;
