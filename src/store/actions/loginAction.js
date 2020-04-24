@@ -24,7 +24,7 @@ export function loginAction(userCreds, history) {
             type: FETCHING_WATCHLIST_SUCCESS,
             payload: res.data.watchlist
           });
-        history.push(`/${res.data.user_id}/recommendations`);
+        history.push(`/${res.data.user_id}/explore`);
       })
       .catch(err => {
         console.log("ERROR: ", err);
