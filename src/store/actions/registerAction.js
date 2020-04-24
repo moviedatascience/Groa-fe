@@ -22,7 +22,7 @@ export function registerAction(userCreds, history) {
               type: FETCHING_USER_LOGIN_SUCCESS,
               payload: res.data.user_id
             });
-            history.push(`/${res.data.user_id}/recommendations`);
+            history.push(`/${res.data.user_id}/explore`);
           }).catch(err => {
             console.log(err)
           });
