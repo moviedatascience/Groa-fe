@@ -47,30 +47,39 @@ import MailIcon from '@material-ui/icons/Mail';
 import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
+//icons
 import PersonRoundedIcon from '@material-ui/icons/PersonRounded';
+import PublishRoundedIcon from '@material-ui/icons/PublishRounded';
+import SearchRoundedIcon from '@material-ui/icons/SearchRounded';
+import ThumbUpRoundedIcon from '@material-ui/icons/ThumbUpRounded';
+import PlaylistAddCheckRoundedIcon from '@material-ui/icons/PlaylistAddCheckRounded';
+import GradeRoundedIcon from '@material-ui/icons/GradeRounded';
 
 const drawerWidth = 240;
 
 
 const useStyles = makeStyles(theme => ({
   searchContainer: {
-    width: "70%",
-    margin: "auto"
+    width: "40%",
+    margin:'auto',
+    backgroundColor:'#505050',
+
   },
   [theme.breakpoints.down("xs")]: {
     searchContainer:{
-      width:"50%",
+      width:"80%",
     }
   },
   search: {
+    // display:'flex',
+    // alignItems:'center',
     position: "relative",
     borderRadius: theme.shape.borderRadius,
-    backgroundColor: 'white',
+    backgroundColor: '#ffffff',
     "&:hover": {
-      backgroundColor: '#00B392'
+      backgroundColor: '#5c5b5b',
+      color:'#ffffff',
     },
-    marginTop: 30,
-    marginLeft: 0,
     width: "100%",
     [theme.breakpoints.up("sm")]: {
       width: "auto"
@@ -83,10 +92,18 @@ const useStyles = makeStyles(theme => ({
     pointerEvents: "none",
     display: "flex",
     alignItems: "center",
-    justifyContent: "center"
+    justifyContent: "center",
+    color: '#505050',
+    "&:hover": {
+      // backgroundColor: '#5c5b5b',
+      color:'#D8D8D8',
+    },
   },
   inputRoot: {
-    color: "inherit"
+    color: "#505050",
+    "&:hover": {
+      color:'#ffffff',
+    },
   },
   inputInput: {
     padding: theme.spacing(1, 1, 1, 7),
@@ -153,19 +170,22 @@ const useStyles = makeStyles(theme => ({
     marginLeft: 0,
   },
   toolBar:{
-    backgroundColor:'#505050'
+    backgroundColor:'#505050',
+    display:'flex',
+    justifyContent:'space-between'
+  },
+  appBar:{
+    backgroundColor:'#5c5b5b'
   },
   groaLogo: {
     height:'2rem',
     width: 'auto',
   },
-  logoContainer:{
-    display:'flex',
-    flexDirection:'row'
-  },
+ 
   drawerContainer:{
     display:'flex',
     flexDirection:'column',
+    
   }
 }));
 
@@ -177,23 +197,23 @@ const Navigation = props => {
   // for side bar menu
   const linkAttributes = [{
     name: "Upload",
-    icon: <InboxIcon /> 
+    icon: <PublishRoundedIcon /> 
   },
   {
     name: "Explore",
-    icon: <MailIcon /> 
+    icon: <SearchRoundedIcon /> 
   },
   {
     name: "Recommended",
-    icon: <InboxIcon /> 
+    icon: <ThumbUpRoundedIcon /> 
   },
   {
     name: "Wishlist",
-    icon: <InboxIcon /> 
+    icon: <PlaylistAddCheckRoundedIcon /> 
   },
   {
     name: "Ratings",
-    icon: <InboxIcon /> 
+    icon: <GradeRoundedIcon />
   }];
 
   const handleDrawerOpen = () => {
@@ -252,7 +272,7 @@ const Navigation = props => {
     <div className={classes.root}>
       <div className={classes.drawerContainer}>
       <CssBaseline />
-      <AppBar
+      <AppBar className={classes.appBar}
         position="fixed"
         className={clsx(classes.appBar, {
           [classes.appBarShift]: open,
@@ -268,7 +288,6 @@ const Navigation = props => {
           >
             <MenuIcon />
           </IconButton>
-          <div className={classes.logoContainer}>
           <Typography variant="h6" noWrap>
           <img className={classes.groaLogo} src={GroaLogo} alt="Groa Logo" />
           </Typography>
@@ -288,9 +307,13 @@ const Navigation = props => {
         <MenuItem onClick={logout} button component="a" href={`/login`}>Logout</MenuItem>
       </Menu>
       
-    </div>
     
-    <div className={classes.searchContainer}>
+    
+   
+
+     
+        </Toolbar>
+        <div className={classes.searchContainer}>
               <div className={classes.search}>
                 <div className={classes.searchIcon}>
                   <SearchIcon />
@@ -310,10 +333,8 @@ const Navigation = props => {
               </div>
             
     </div>
-
-     
-        </Toolbar>
       </AppBar>
+      
       <Drawer
         className={classes.drawer}
         variant="persistent"
@@ -346,6 +367,7 @@ const Navigation = props => {
             </ListItem>
           ))}
         </List> */}
+        
       </Drawer>
       <main
         className={clsx(classes.content, {
@@ -353,8 +375,11 @@ const Navigation = props => {
         })}
       >
         <div className={classes.drawerHeader} />
+        
       </main>
+      
       </div>
+    
     </div>
   );
 };
