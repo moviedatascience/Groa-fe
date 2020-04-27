@@ -32,10 +32,10 @@ function Explore({
           {movies
           .filter( movie =>
             !ratings.includes(film => 
-              film.name === movie.name && film.year === movie.year
+              film.primary_title === movie.primary_title && film.start_year === movie.start_year
             ).length &&
             searchTerm !== '' ? 
-              movie.name
+              movie.primary_title
               .toString()
               .toLowerCase()
               .includes(
@@ -48,7 +48,7 @@ function Explore({
           .map((movie, index) => {
             /* Checks if the film is in ratings */
             const isRated = film => {
-              return film.name === movie.name && film.year === movie.year
+              return film.primary_title === movie.primary_title && film.start_year === movie.start_year
             }
             /* Returns the movie object if in ratings */
             let rated = ratings.find(isRated)
@@ -60,8 +60,8 @@ function Explore({
             return (
               <MovieCard
                 key={index}
-                name={movie.name}
-                year={movie.year}
+                name={movie.primary_title}
+                year={movie.start_year}
                 rated={rated ? rated.rating : null}
                 image={
                   !posterURI ||
