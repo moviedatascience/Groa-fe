@@ -2,45 +2,61 @@ import React, { useState } from "react";
 import { connect } from "react-redux";
 import { ratingAction, addToWatchlistAction } from "../../store/actions";
 import Stars from "@material-ui/lab/Rating";
-import StarBorderIcon from '@material-ui/icons/StarBorder';
+import StarBorderIcon from "@material-ui/icons/StarBorder";
 
 // more fields will be appearing according to the Figma file
-function MovieCard({ userid, name, year, image, ratingAction, watchlist, addToWatchlistAction, rated, ratings }) {
-  const [yourRating, setYourRating] = useState(false)
+function MovieCard({
+  userid,
+  name,
+  year,
+  image,
+  movie_id,
+  ratingAction,
+  watchlist,
+  addToWatchlistAction,
+  rated,
+  ratings,
+}) {
+  const [yourRating, setYourRating] = useState(false);
   /* Used for the star rating */
   const [rating, setRating] = useState(0);
   /* Used for dynamically rendering the "Add to watchlist" button and if it's disabled */
-  const [added, setAdded] = useState(false)
+  const [added, setAdded] = useState(false);
   /* This checks if the movie is in the watchlist */
-  const inWatchlist = watchlist.some(movie => movie.name === name && movie.year === year)
-  const inRatings = ratings.some(movie => movie.name === name && movie.year === year) 
- 
+  const inWatchlist = watchlist.some(
+    (movie) => movie.name === name && movie.year === year
+  );
+  const inRatings = ratings.some(
+    (movie) => movie.name === name && movie.year === year
+  );
+
   /* Used to format the movie object for action calls */
   let movie = {
+    movie_id: movie_id,
     name: name,
     year: year,
-  }
+  };
 
   const handleChange = (event, newValue) => {
     /* Sets rating for the star value */
     setRating(newValue);
     /* Sets rating for the POST request */
     const newRating = {
-      ...movie, rating: newValue
-    }
-    ratingAction(userid, newRating)
-    setYourRating(true)
-  }
+      movie_id: movie.movie_id,
+      rating: newValue,
+    };
+    ratingAction(userid, newRating);
+    setYourRating(true);
+  };
 
   const handleClick = () => {
     /* Adds movie to the POST request */
-      addToWatchlistAction(userid, movie)
-      setAdded(true)
-  }
+    addToWatchlistAction(userid, movie);
+    setAdded(true);
+  };
 
   return (
     <div data-test="box" className="box">
-
       <div className="top-content">
         <div className="aspect-ratio-wrapper">
           <img src={image} alt="Random Movie poster as a placeholder." />
@@ -48,43 +64,39 @@ function MovieCard({ userid, name, year, image, ratingAction, watchlist, addToWa
         <div className="text-container">
           <h3>{name}</h3>
           <p>{year}</p>
-          <br/>
+          <br />
         </div>
       </div>
 
       <div className="action-panel">
-        <button 
+        <button
           className="watchlist-button"
           onClick={handleClick}
-          disabled={ added || inWatchlist || inRatings ? true : false }
+          disabled={added || inWatchlist || inRatings ? true : false}
         >
-          { inRatings || yourRating ? 
-              "Your rating:" :
-            !added && !inWatchlist ? 
-              "Add to watchlist" : 
-              "In your watchlist" }
+          {inRatings || yourRating
+            ? "Your rating:"
+            : !added && !inWatchlist
+            ? "Add to watchlist"
+            : "In your watchlist"}
         </button>
-        <Stars 
+        <Stars
           className="stars"
           data-test="star"
           precision={0.5}
           size="large"
           emptyIcon={
-            <StarBorderIcon 
-              fontSize="inherit" 
-              style={{color:"#ffb400"}} 
-            />
+            <StarBorderIcon fontSize="inherit" style={{ color: "#ffb400" }} />
           }
           name={name}
-          value={ rated ? rated : rating }
+          value={rated ? rated : rating}
           onChange={handleChange}
         />
       </div>
-
     </div>
   );
 }
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     userid: state.login.userid,
     ratingError: state.rating.error,
@@ -93,4 +105,6 @@ const mapStateToProps = state => {
     ratings: state.rating.movies,
   };
 };
-export default connect(mapStateToProps, { ratingAction, addToWatchlistAction })(MovieCard);
+export default connect(mapStateToProps, { ratingAction, addToWatchlistAction })(
+  MovieCard
+);
