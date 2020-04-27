@@ -8,6 +8,11 @@
     justify-content: space-evenly;
     align-items: center;
     padding-right: 1rem;
+    @media only screen and (max-width: 750px) {
+       
+        justify-content: space-around;
+        
+      }
 
     .Bars {
       padding-top: 5px;
@@ -17,6 +22,7 @@
         font-size: 1.4rem;
       }
     }
+    
 
     .Links {
       width: 60%;
@@ -32,6 +38,7 @@
       img {
         height: 2rem;
         width: auto;
+       
       }
 
       .Groa-NavLink {
@@ -52,7 +59,7 @@
       }
     }
 
-    @media only screen and (max-width: 750px) {
+    @media only screen and (max-width: 600px) {
 
       .watchlist,
       .recommended,
@@ -132,6 +139,8 @@
     @media only screen and (max-width: 750px) {
       .Links {
         justify-content: space-between;
+        padding: 0%;
+        margin-right: 0%;
       }
 
       button {
@@ -221,7 +230,9 @@
           }
         }
 
-        .watchlist-menu,
+        .watchlist-menu {
+          display: none
+        }
         .recommended-menu,
         .explore-menu {
           display: none;
@@ -229,7 +240,9 @@
 
         @media only screen and (max-width: 750px) {
 
-          .watchlist-menu,
+          .watchlist-menu{
+            display: none
+          }
           .recommended-menu,
           .explore-menu {
             display: block;
