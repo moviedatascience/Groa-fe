@@ -55,11 +55,11 @@ const drawerWidth = 240;
 const useStyles = makeStyles(theme => ({
   searchContainer: {
     width: "70%",
-    margin: "0 auto"
+    margin: "auto"
   },
   [theme.breakpoints.down("xs")]: {
     searchContainer:{
-      width:"90%",
+      width:"50%",
     }
   },
   search: {
