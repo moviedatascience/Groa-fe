@@ -454,7 +454,7 @@
       margin-top: 2%;
       font-size: 20px; } }
   #root .mainContainer {
-    background: #000A12;
+    background: #505050;
     padding: 1.1% 1%;
     font-family: "Work Sans", sans-serif; }
     #root .mainContainer .navContainer {
@@ -462,6 +462,9 @@
       justify-content: space-evenly;
       align-items: center;
       padding-right: 1rem; }
+      @media only screen and (max-width: 750px) {
+        #root .mainContainer .navContainer {
+          justify-content: space-around; } }
       #root .mainContainer .navContainer .Bars {
         padding-top: 5px; }
         #root .mainContainer .navContainer .Bars .bars-icon {
@@ -487,8 +490,10 @@
           transition: all 500ms linear; }
           #root .mainContainer .navContainer .Links .NavLink:hover {
             color: white; }
-      @media only screen and (max-width: 750px) {
-        #root .mainContainer .navContainer .watchlist, #root .mainContainer .navContainer .recommended, #root .mainContainer .navContainer .explore,
+      @media only screen and (max-width: 600px) {
+        #root .mainContainer .navContainer .watchlist,
+        #root .mainContainer .navContainer .recommended,
+        #root .mainContainer .navContainer .explore,
         #root .mainContainer .navContainer .dropdown-hover .angle-down-icon {
           flex: .000000001;
           white-space: pre;
@@ -541,7 +546,9 @@
         transition: all 500ms linear; }
       @media only screen and (max-width: 750px) {
         #root .mainContainer .navContainer .Links {
-          justify-content: space-between; }
+          justify-content: space-between;
+          padding: 0%;
+          margin-right: 0%; }
         #root .mainContainer .navContainer button {
           font-size: 0;
           padding: .2rem;
@@ -603,10 +610,16 @@
           @media (hover: hover) and (pointer: fine) {
             #root .mainContainer .dropdown-hover:hover .dropdown-content .NavLink:hover {
               background-color: #D8D8D8; } }
-        #root .mainContainer .dropdown-hover:hover .dropdown-content .watchlist-menu, #root .mainContainer .dropdown-hover:hover .dropdown-content .recommended-menu, #root .mainContainer .dropdown-hover:hover .dropdown-content .explore-menu {
+        #root .mainContainer .dropdown-hover:hover .dropdown-content .watchlist-menu {
+          display: none; }
+        #root .mainContainer .dropdown-hover:hover .dropdown-content .recommended-menu,
+        #root .mainContainer .dropdown-hover:hover .dropdown-content .explore-menu {
           display: none; }
         @media only screen and (max-width: 750px) {
-          #root .mainContainer .dropdown-hover:hover .dropdown-content .watchlist-menu, #root .mainContainer .dropdown-hover:hover .dropdown-content .recommended-menu, #root .mainContainer .dropdown-hover:hover .dropdown-content .explore-menu {
+          #root .mainContainer .dropdown-hover:hover .dropdown-content .watchlist-menu {
+            display: none; }
+          #root .mainContainer .dropdown-hover:hover .dropdown-content .recommended-menu,
+          #root .mainContainer .dropdown-hover:hover .dropdown-content .explore-menu {
             display: block; } }
   #root .container.post-login {
     background: white;

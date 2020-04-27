@@ -6,20 +6,24 @@
   align-items: center;
   width: 100%;
   text-align: center;
+
   @media (max-width: 600px) {
     flex-direction: column;
   }
+
   img {
     align-items: center;
     height: 2.5rem;
     width: auto;
   }
+
   .signin-title {
     display: flex;
-    color:white;
+    color: white;
     // align-items: flex-start;;
   }
 }
+
 @media (max-width: 600px) {
   img {
     // position: absolute;
@@ -28,6 +32,7 @@
     left: 130px;
     top: 102px;
   }
+
   .signin-title {
     display: flex;
     justify-content: flex-start;
