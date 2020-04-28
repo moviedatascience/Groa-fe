@@ -25,6 +25,7 @@ function Explore({
     setFilter("");
     // Returns the movies
     getMoviesAction(userid);
+    // returns a list of recommendations to start the recommendations page
     recommendationAction(userid);
   }, [getMoviesAction, userid, ratings, setFilter, recommendationAction]);
   // How many movies render
