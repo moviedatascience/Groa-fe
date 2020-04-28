@@ -204,11 +204,11 @@ const Navigation = props => {
     icon: <SearchRoundedIcon /> 
   },
   {
-    name: "Recommended",
+    name: "Recommendations",
     icon: <ThumbUpRoundedIcon /> 
   },
   {
-    name: "Wishlist",
+    name: "Watchlist",
     icon: <PlaylistAddCheckRoundedIcon /> 
   },
   {
