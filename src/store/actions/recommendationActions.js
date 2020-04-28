@@ -17,7 +17,7 @@ export function recommendationAction(id) {
         console.log(res);
         dispatch({
           type: FETCHING_RECOMMENDATIONS_SUCCESS,
-          payload: res,
+          payload: res.data,
         });
       })
       .catch((err) => {
