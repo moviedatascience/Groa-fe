@@ -1,7 +1,7 @@
 import { loginAction } from "./loginAction.js";
 import { ratingAction, getRatingAction } from "./ratingAction.js";
 import { registerAction } from "./registerAction.js";
-import { recommendationAction, recommendedAction } from "./recommendationActions.js";
+import { recommendationAction } from "./recommendationActions.js";
 import { uploadAction, toggleIsUploaded } from "./uploadAction.js";
 import {
   addToWatchlistAction,
@@ -17,7 +17,6 @@ export {
   ratingAction,
   registerAction,
   recommendationAction,
-  recommendedAction,
   uploadAction,
   toggleIsUploaded,
   getRatingAction,
