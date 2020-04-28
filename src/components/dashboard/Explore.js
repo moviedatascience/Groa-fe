@@ -2,7 +2,11 @@ import React, { useEffect } from "react";
 // tools
 import { connect } from "react-redux";
 import { ifDev } from "../../utils/removeAttribute.js";
-import { getMoviesAction, setFilter } from "../../store/actions/index.js";
+import {
+  getMoviesAction,
+  setFilter,
+  recommendationAction,
+} from "../../store/actions/index.js";
 // children components
 import MovieCard from "../movies/MovieCard.js";
 import LoadingScreen from "../layout/LoadingScreen.js";
@@ -11,6 +15,7 @@ function Explore({
   isFetching,
   movies,
   userid,
+  recommendationAction,
   getMoviesAction,
   searchTerm,
   setFilter,
@@ -20,7 +25,8 @@ function Explore({
     setFilter("");
     // Returns the movies
     getMoviesAction(userid);
-  }, [getMoviesAction, userid, ratings, setFilter]);
+    recommendationAction(userid);
+  }, [getMoviesAction, userid, ratings, setFilter, recommendationAction]);
   // How many movies render
   const cardAmount = 25;
 
@@ -93,6 +99,8 @@ const mapStateToProps = (state) => {
     ratings: state.rating.movies,
   };
 };
-export default connect(mapStateToProps, { getMoviesAction, setFilter })(
-  Explore
-);
+export default connect(mapStateToProps, {
+  getMoviesAction,
+  recommendationAction,
+  setFilter,
+})(Explore);
