@@ -196,22 +196,27 @@ const Navigation = props => {
   const [open, setOpen] = React.useState(false);
   // for side bar menu
   const linkAttributes = [{
+    id:0,
     name: "Upload",
     icon: <PublishRoundedIcon /> 
   },
   {
+    id:1,
     name: "Explore",
     icon: <SearchRoundedIcon /> 
   },
   {
+    id:2,
     name: "Recommendations",
     icon: <ThumbUpRoundedIcon /> 
   },
   {
+    id:3,
     name: "Watchlist",
     icon: <PlaylistAddCheckRoundedIcon /> 
   },
   {
+    id:4,
     name: "Ratings",
     icon: <GradeRoundedIcon />
   }];
@@ -352,7 +357,7 @@ const Navigation = props => {
         <Divider />
         <List>
           {linkAttributes.map((linkObject, index) => (
-            <ListItem button component="a" href={`/${props.userid}/${linkObject.name.toLowerCase()}`}>
+            <ListItem key={linkObject.id} button component="a" href={`/${props.userid}/${linkObject.name.toLowerCase()}`}>
               <ListItemIcon>{linkObject.icon}</ListItemIcon>
               <ListItemText primary={linkObject.name} />
             </ListItem>
