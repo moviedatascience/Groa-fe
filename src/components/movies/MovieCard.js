@@ -34,12 +34,16 @@ const useStyles = makeStyles((theme) => ({
   cardGrid: {
     paddingTop: theme.spacing(8),
     paddingBottom: theme.spacing(8),
-    justify:'center',
+    paddingLeft: theme.spacing(8),
+    paddingRight: theme.spacing(8),
+    width: "100%"
+    // justify:'center',
   },
   card: {
-    height: '100%',
+    // height: '50%',
     display: 'flex',
     flexDirection: 'column',
+    width:'100%',
   },
   // cardMedia: {
     // paddingTop: '56.25%',
@@ -59,7 +63,7 @@ display:'flex',
   fontSize: '2.5vw',
  },
  middle:{
-  transition:'.5s ease',
+  transition:' .5s ease',
   opacity: 0,
   position: 'absolute',
   top: '50%',
@@ -70,6 +74,9 @@ display:'flex',
  },
  opacityBox:{
 
+ },
+ movieImg:{
+   width:'100%',
  },
 }));
 
@@ -128,16 +135,16 @@ function MovieCard({
   return (
    
 
-      <Container className={classes.cardGrid} maxWidth="0" >
+      <div className={classes.cardGrid} >
           {/* End hero unit */}
-          <Grid container spacing={12}  >
+          {/* <Grid container spacing={12}  > */}
            
               {/* <Grid xs={12} sm={6} md={4} > */}
                 <Card className={classes.card}>
                   <CardMedia
                     className={classes.cardMedia}
                   >
- <img src={image} alt="Random Movie poster as a placeholder." />
+                 <img className={classes.movieImg} src={image} alt="Random Movie poster as a placeholder." />
 
                   </CardMedia>
                   <CardContent className={classes.cardContent}>
@@ -155,12 +162,12 @@ function MovieCard({
                   </CardContent>
                   <CardActions className={classes.cardActions}>
                     <Button  onClick={handleClick}
-          disabled={added || inWatchlist || inRatings ? true : false}size="small" color="primary">
-                  {inRatings || yourRating
-            ? "Your rating:"
-            : !added && !inWatchlist
-            ? "Add to watchlist"
-            : "In your watchlist"}
+                    disabled={added || inWatchlist || inRatings ? true : false}size="small" color="primary">
+                            {inRatings || yourRating
+                      ? "Your rating:"
+                      : !added && !inWatchlist
+                      ? "Add to watchlist"
+                      : "In your watchlist"}
                     </Button>
                    
                   </CardActions>
@@ -182,8 +189,8 @@ function MovieCard({
                 </Card>
               {/* </Grid> */}
             
-          </Grid>
-        </Container>
+          {/* </Grid> */}
+        </div>
   );
 }
 const mapStateToProps = (state) => {

@@ -60,9 +60,10 @@ function Watchlist({
       <>
       {/* <Container className={classes.cardGrid}> */}
          {/* <CssBaseline /> */}
-         <Grid container spacing={12} justify='center' >
+         <Grid container spacing={12} justify='center'>
         {/* <div className="movie-cards"> */}
      
+              <Grid  md={12} >
           {watchlist
             .filter((movie) =>
               searchTerm !== ""
@@ -111,6 +112,7 @@ function Watchlist({
             })}
            
         {/* </div> */}
+        </Grid>
         </Grid>
       {/* </Container> */}
       </>
