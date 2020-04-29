@@ -108,8 +108,8 @@ function Watchlist({
                   />
                   {/* {deleteMode && (
                     <button
-                      // className="delete-button"
-                      onClick={() => handleClick(movie.movie_id)}
+                      className="delete-button"
+                      onClick={() => handleClick(movie.id)}
                     >
                       x
                     </button>
