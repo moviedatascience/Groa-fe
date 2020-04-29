@@ -34,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
   cardGrid: {
     paddingTop: theme.spacing(8),
     paddingBottom: theme.spacing(8),
-    // justify:'center',
+    justify:'center',
   },
   card: {
     height: '100%',
@@ -54,6 +54,22 @@ const useStyles = makeStyles((theme) => ({
  cardActions:{
 display:'flex',
 // flexDirection:'column'
+ },
+ stars:{
+  fontSize: '2.5vw',
+ },
+ middle:{
+  transition:'.5s ease',
+  opacity: 0,
+  position: 'absolute',
+  top: '50%',
+  left:' 50%',
+  transform: 'translate(-50%, -50%)',
+  // -msTransform:' translate(-50%, -50%)',
+  textAlign: 'center',
+ },
+ opacityBox:{
+
  },
 }));
 
@@ -131,6 +147,11 @@ function MovieCard({
                     <Typography>
                     {year}
                     </Typography>
+                    <div className={classes.middle}>
+                    <Typography className={classes.opacityBox}>
+                      Hello there
+                    </Typography>
+                    </div>
                   </CardContent>
                   <CardActions className={classes.cardActions}>
                     <Button  onClick={handleClick}
@@ -145,7 +166,8 @@ function MovieCard({
                   </CardActions>
                   <CardActions>
                   <Stars
-          className="stars"
+          // className="stars"
+          className={classes.stars}
           data-test="star"
           precision={0.5}
           size="large"
