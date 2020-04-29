@@ -1,60 +1,60 @@
-.watchlist-container {
-    font-family: $workSans;
-    background:$black;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    .movie-cards {
-      width: 20%;
-      margin: 0% auto;
-      display: flex;
-      flex-direction: row;
-      flex-wrap: wrap;
-      .movie-card-container {
-        position: relative;
-        margin: 0 auto;
-        width: 30%;
-      .box {
-        border-radius: 5px;
-        overflow: hidden;
-        width: 100%;
-        display: flex;
-        flex-direction: column;
+// .watchlist-container {
+//     font-family: $workSans;
+//     background:$black;
+//     display: flex;
+//     flex-direction: column;
+//     min-height: 100vh;
+//     .movie-cards {
+//       width: 20%;
+//       margin: 0% auto;
+//       display: flex;
+//       flex-direction: row;
+//       flex-wrap: wrap;
+//       .movie-card-container {
+//         position: relative;
+//         margin: 0 auto;
+//         width: 30%;
+//       .box {
+//         border-radius: 5px;
+//         overflow: hidden;
+//         width: 100%;
+//         display: flex;
+//         flex-direction: column;
         
-        img {
-          width: 20vw;
-          height: 33.33vw;
-        }
-        .text-container {
-           display: flex;
-           flex-direction: column;
-        }
-        @media screen and (max-width: 600px) {
-        }
-        .text-container {
-            display: none;
-        }
-        .action-panel {
-          display: none;
-        }
-      }
-      .delete-button {
-        position: absolute;
-        right: 1vw;
-        top: 2vw;
-        border-radius: 100%;
-        height: 2vw;
-        width: 2vw;
-        padding: 0;
-        cursor: pointer;
-        outline: inherit;
-        white-space: nowrap;
-        font-size: 1vw;
-        background-color: $gray2;
-        color: $white;
-        font-weight: bold;
-      }
-    }
-  }
-}
+//         img {
+//           width: 20vw;
+//           height: 33.33vw;
+//         }
+//         .text-container {
+//            display: flex;
+//            flex-direction: column;
+//         }
+//         @media screen and (max-width: 600px) {
+//         }
+//         .text-container {
+//             display: none;
+//         }
+//         .action-panel {
+//           display: none;
+//         }
+//       }
+//       .delete-button {
+//         position: absolute;
+//         right: 1vw;
+//         top: 2vw;
+//         border-radius: 100%;
+//         height: 2vw;
+//         width: 2vw;
+//         padding: 0;
+//         cursor: pointer;
+//         outline: inherit;
+//         white-space: nowrap;
+//         font-size: 1vw;
+//         background-color: $gray2;
+//         color: $white;
+//         font-weight: bold;
+//       }
+//     }
+//   }
+// }
   

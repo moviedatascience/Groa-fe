@@ -21,6 +21,12 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles((theme) => ({
+  root:{
+    flexGrow:1,
+  },
+  control: {
+    padding: theme.spacing(2),
+  },
   // icon: {
   //   marginRight: theme.spacing(2),
   // },
@@ -44,6 +50,8 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'column',
     width:'100%',
+    margin:0,
+    justifyContent:'center',
   },
   // cardMedia: {
     // paddingTop: '56.25%',
@@ -105,7 +113,10 @@ function MovieCard({
   const inRatings = ratings.some(
     (movie) => movie.name === name && movie.year === year
   );
+  //material-ui
   const classes = useStyles();
+  // const [spacing, setSpacing] = React.useState(2);
+
 
   /* Used to format the movie object for action calls */
   let movie = {
@@ -135,9 +146,9 @@ function MovieCard({
   return (
    
 
-      <div className={classes.cardGrid} >
+      <Container className={classes.cardGrid} maxWidth='0'>
           {/* End hero unit */}
-          {/* <Grid container spacing={12}  > */}
+          <Grid container spacing={12}  >
            
               {/* <Grid xs={12} sm={6} md={4} > */}
                 <Card className={classes.card}>
@@ -189,8 +200,8 @@ function MovieCard({
                 </Card>
               {/* </Grid> */}
             
-          {/* </Grid> */}
-        </div>
+          </Grid>
+        </Container>
   );
 }
 const mapStateToProps = (state) => {

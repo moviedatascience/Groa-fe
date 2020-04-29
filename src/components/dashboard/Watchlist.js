@@ -37,7 +37,10 @@ function Watchlist({
   setFilter,
 }) {
   const [deleteMode, setDeleteMode] = useState(false);
+  //for matieral-ui
   const classes = useStyles();
+  const [spacing, setSpacing] = React.useState(2);
+
   useEffect(() => {
     setFilter("");
     // Returns the users watchlist from the database
@@ -58,9 +61,12 @@ function Watchlist({
       //   data-test={ifDev("watchlist-component")}
       // >
       <>
+      {/* <Grid container className={classes.root} justify="center"> */}
+      {/* <Grid item xs={12}> */}
+        {/* <Grid justify="center" > */}
       {/* <Container className={classes.cardGrid}> */}
          {/* <CssBaseline /> */}
-         <Grid container spacing={12} justify='center'>
+         <Grid  container spacing={12} justify='center'>
         {/* <div className="movie-cards"> */}
      
               {/* <Grid  md={12} > */}
@@ -113,8 +119,9 @@ function Watchlist({
             })}
            
         {/* </div> */}
-        {/* </Grid> */}
         </Grid>
+        {/* </Grid> */}
+        {/* </Grid> */}
       {/* </Container> */}
       </>
     );
