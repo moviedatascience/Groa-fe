@@ -11,6 +11,20 @@ import {
 import LoadingScreen from "../layout/LoadingScreen.js";
 import MovieCard from "../movies/MovieCard.js";
 
+//for grid
+import CssBaseline from '@material-ui/core/CssBaseline';
+import Grid from '@material-ui/core/Grid';
+import { makeStyles } from '@material-ui/core/styles';
+import Container from '@material-ui/core/Container';
+
+
+const useStyles = makeStyles((theme) => ({
+  cardGrid: {
+    paddingTop: theme.spacing(8),
+    paddingBottom: theme.spacing(8),
+  },
+ 
+}));
 function Watchlist({
   userid,
   isFetching,
@@ -23,7 +37,7 @@ function Watchlist({
   setFilter,
 }) {
   const [deleteMode, setDeleteMode] = useState(false);
-
+  const classes = useStyles();
   useEffect(() => {
     setFilter("");
     // Returns the users watchlist from the database
@@ -38,11 +52,17 @@ function Watchlist({
   else if (isDeleting) return <LoadingScreen />;
   else
     return (
-      <div
-        className="watchlist-container"
-        data-test={ifDev("watchlist-component")}
-      >
-        <div className="movie-cards">
+
+      // <div
+      //   className="watchlist-container"
+      //   data-test={ifDev("watchlist-component")}
+      // >
+      <>
+      {/* <Container className={classes.cardGrid}> */}
+         {/* <CssBaseline /> */}
+         <Grid container spacing={12} justify='center' >
+        {/* <div className="movie-cards"> */}
+     
           {watchlist
             .filter((movie) =>
               searchTerm !== ""
@@ -60,9 +80,10 @@ function Watchlist({
               return (
                 <div
                   key={index}
-                  className="movie-card-container"
+        
                   onClick={() => setDeleteMode(!deleteMode)}
                 >
+                 
                   <MovieCard
                     key={index}
                     name={movie.primary_title}
@@ -88,8 +109,11 @@ function Watchlist({
                 </div>
               );
             })}
-        </div>
-      </div>
+           
+        {/* </div> */}
+        </Grid>
+      {/* </Container> */}
+      </>
     );
 }
 
