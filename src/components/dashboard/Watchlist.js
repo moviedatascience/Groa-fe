@@ -63,7 +63,7 @@ function Watchlist({
          <Grid container spacing={12} justify='center'>
         {/* <div className="movie-cards"> */}
      
-              <Grid  md={12} >
+              {/* <Grid  md={12} > */}
           {watchlist
             .filter((movie) =>
               searchTerm !== ""
@@ -84,7 +84,7 @@ function Watchlist({
         
                   onClick={() => setDeleteMode(!deleteMode)}
                 >
-                 
+
                   <MovieCard
                     key={index}
                     name={movie.primary_title}
@@ -98,21 +98,22 @@ function Watchlist({
                         ? unsplashUrl
                         : moviePoster
                     }
+                    
                   />
-                  {deleteMode && (
+                  {/* {deleteMode && (
                     <button
                       // className="delete-button"
                       onClick={() => handleClick(movie.movie_id)}
                     >
                       x
                     </button>
-                  )}
+                  )} */}
                 </div>
               );
             })}
            
         {/* </div> */}
-        </Grid>
+        {/* </Grid> */}
         </Grid>
       {/* </Container> */}
       </>

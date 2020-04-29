@@ -443,11 +443,6 @@
       display: flex;
       color: white; }
   @media (max-width: 600px) {
-    #root img {
-      width: 136px;
-      height: 38px;
-      left: 130px;
-      top: 102px; }
     #root .signin-title {
       display: flex;
       justify-content: flex-start;
@@ -878,49 +873,6 @@
       #root .textholder2 {
         width: 80%;
         margin: 6.6% auto; } }
-  #root .CongratsPage {
-    border: 2px solid #000A12;
-    background: #000A12;
-    height: 100vh;
-    font-family: "Work Sans", sans-serif; }
-    #root .CongratsPage .CenterBox {
-      display: flex;
-      margin-top: 10%;
-      justify-content: center; }
-      #root .CongratsPage .CenterBox .congratsForm {
-        display: flex;
-        justify-content: center;
-        background: white;
-        width: 600px;
-        height: 600px; }
-        #root .CongratsPage .CenterBox .congratsForm .textHolder {
-          text-align: center;
-          margin-top: 10%;
-          width: 550px;
-          height: 350px; }
-          #root .CongratsPage .CenterBox .congratsForm .textHolder h1 {
-            font-size: 35px;
-            padding-left: 80px;
-            padding-right: 50px;
-            margin-top: 10px;
-            font-weight: 400px; }
-          #root .CongratsPage .CenterBox .congratsForm .textHolder h2 {
-            font-size: 20px;
-            padding-top: 15px;
-            padding-bottom: 15px;
-            padding-left: 9px; }
-          #root .CongratsPage .CenterBox .congratsForm .textHolder .image {
-            display: flex;
-            justify-content: center;
-            margin: 16px; }
-          #root .CongratsPage .CenterBox .congratsForm .textHolder button {
-            font-size: 20px;
-            width: 220px;
-            height: 51px;
-            margin-top: 43px;
-            background: #00B392;
-            border-radius: 5px;
-            border: none; }
   #root .container.recommendations {
     font-family: "Work Sans", sans-serif;
     background: #505050;
@@ -951,11 +903,6 @@
             position: relative;
             width: 60%;
             overflow: hidden; }
-            #root .container.recommendations .movie-cards .box .top-content .aspect-ratio-wrapper img {
-              height: 100%;
-              position: absolute;
-              right: 0;
-              object-fit: cover; }
           #root .container.recommendations .movie-cards .box .top-content .text-container {
             color: black;
             background-color: white;
@@ -990,6 +937,53 @@
             font-size: 1.5vw; }
             #root .container.recommendations .movie-cards .box .action-panel .watchlist-button:hover {
               text-decoration: underline; }
+  #root .watchlist-container {
+    font-family: "Work Sans", sans-serif;
+    background: #505050;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; }
+    #root .watchlist-container .movie-cards {
+      width: 20%;
+      margin: 0% auto;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap; }
+      #root .watchlist-container .movie-cards .movie-card-container {
+        position: relative;
+        margin: 0 auto;
+        width: 30%; }
+        #root .watchlist-container .movie-cards .movie-card-container .box {
+          border-radius: 5px;
+          overflow: hidden;
+          width: 100%;
+          display: flex;
+          flex-direction: column; }
+          #root .watchlist-container .movie-cards .movie-card-container .box img {
+            width: 20vw;
+            height: 33.33vw; }
+          #root .watchlist-container .movie-cards .movie-card-container .box .text-container {
+            display: flex;
+            flex-direction: column; }
+          #root .watchlist-container .movie-cards .movie-card-container .box .text-container {
+            display: none; }
+          #root .watchlist-container .movie-cards .movie-card-container .box .action-panel {
+            display: none; }
+        #root .watchlist-container .movie-cards .movie-card-container .delete-button {
+          position: absolute;
+          right: 1vw;
+          top: 2vw;
+          border-radius: 100%;
+          height: 2vw;
+          width: 2vw;
+          padding: 0;
+          cursor: pointer;
+          outline: inherit;
+          white-space: nowrap;
+          font-size: 1vw;
+          background-color: #21242C;
+          color: white;
+          font-weight: bold; }
   #root .container.loading-screen {
     background: #000A12;
     display: flex;
