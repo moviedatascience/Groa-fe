@@ -124,9 +124,11 @@ fontSize:'10px'
   //   opacity: 0.3,
   // }
  },
+
 watchList:{
   fontSize:'8px'
 }
+
 }));
 
 // more fields will be appearing according to the Figma file

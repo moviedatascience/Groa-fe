@@ -62,8 +62,9 @@ function Ratings({
                 <MovieCard
                   key={index}
                   name={movie.primary_title}
+                  movie_id={movie.movie_id}
                   year={movie.start_year}
-                  rated={movie.average_rating}
+                  rated={movie.rating}
                   image={
                     !posterURI ||
                     posterURI === "None" ||
