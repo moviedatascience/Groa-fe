@@ -10,7 +10,19 @@ import {
 // children components
 import MovieCard from "../movies/MovieCard.js";
 import LoadingScreen from "../layout/LoadingScreen.js";
+//for grid
+import CssBaseline from '@material-ui/core/CssBaseline';
+import Grid from '@material-ui/core/Grid';
+import { makeStyles } from '@material-ui/core/styles';
+import Container from '@material-ui/core/Container';
 
+const useStyles = makeStyles((theme) => ({
+  cardGrid: {
+    paddingTop: theme.spacing(8),
+    paddingBottom: theme.spacing(8),
+  },
+ 
+}));
 function Explore({
   isFetching,
   movies,
@@ -30,12 +42,16 @@ function Explore({
   }, [getMoviesAction, userid, ratings, setFilter, recommendationAction]);
   // How many movies render
   const cardAmount = 25;
+  const classes = useStyles();
+
 
   if (isFetching) return <LoadingScreen />;
   else
     return (
-      <div className="container explore" data-test={ifDev("ratings-component")}>
-        <div className="movie-cards">
+      // <div className="container explore" data-test={ifDev("ratings-component")}>
+      //   <div className="movie-cards">
+        <Container className={classes.cardGrid} maxWidth='md'>
+
           {movies
             .filter((movie) =>
               !ratings.includes(
@@ -66,6 +82,8 @@ function Explore({
               let moviePoster = `https://image.tmdb.org/t/p/w500${posterURI}?api_key=${process.env.REACT_APP_TMDB_API_KEY}`;
 
               return (
+                <Grid container spacing={4}>
+
                 <MovieCard
                   key={index}
                   name={movie.primary_title}
@@ -82,10 +100,12 @@ function Explore({
                       : moviePoster
                   }
                 />
+                </Grid>
               );
             })}
-        </div>
-      </div>
+        {/* </div>
+      </div> */}
+      </Container>
     );
 }
 

@@ -10,6 +10,19 @@ import {
 // children components
 import LoadingScreen from "../layout/LoadingScreen.js";
 import MovieCard from "../movies/MovieCard.js";
+//for grid
+import CssBaseline from '@material-ui/core/CssBaseline';
+import Grid from '@material-ui/core/Grid';
+import { makeStyles } from '@material-ui/core/styles';
+import Container from '@material-ui/core/Container';
+
+const useStyles = makeStyles((theme) => ({
+  cardGrid: {
+    paddingTop: theme.spacing(8),
+    paddingBottom: theme.spacing(8),
+  },
+ 
+}));
 
 function Recommendations({
   isFetching,
@@ -29,15 +42,18 @@ function Recommendations({
     recommendationAction(userid);
     // Returns the most recent recommendations from the database
   }, [userid, isUploaded, recommendationAction, setFilter]);
+  const classes = useStyles();
 
   if (isFetching) return <LoadingScreen />;
   else
     return (
-      <div
-        className="container recommendations"
-        data-test={ifDev("recommendations-component")}
-      >
-        <div className="movie-cards">
+      // <div
+      //   className="container recommendations"
+      //   data-test={ifDev("recommendations-component")}
+      // >
+      //   <div className="movie-cards">
+      <Container className={classes.cardGrid} maxWidth='md'>
+
           {recommendations
             .filter((movie) =>
               searchTerm !== ""
@@ -54,6 +70,8 @@ function Recommendations({
               let moviePoster = `https://image.tmdb.org/t/p/w500${posterURI}?api_key=${process.env.REACT_APP_TMDB_API_KEY}`;
 
               return (
+                <Grid container spacing={4}>
+
                 <MovieCard
                   key={index}
                   rated={null}
@@ -70,10 +88,12 @@ function Recommendations({
                       : moviePoster
                   }
                 />
+                </Grid>
               );
             })}
-        </div>
-      </div>
+        {/* </div>
+      </div> */}
+      </Container>
     );
 }
 
