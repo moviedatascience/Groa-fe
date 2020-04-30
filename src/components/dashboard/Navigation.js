@@ -54,6 +54,8 @@ import SearchRoundedIcon from '@material-ui/icons/SearchRounded';
 import ThumbUpRoundedIcon from '@material-ui/icons/ThumbUpRounded';
 import PlaylistAddCheckRoundedIcon from '@material-ui/icons/PlaylistAddCheckRounded';
 import GradeRoundedIcon from '@material-ui/icons/GradeRounded';
+import ExitToAppRoundedIcon from '@material-ui/icons/ExitToAppRounded';
+
 
 const drawerWidth = 240;
 
@@ -65,11 +67,18 @@ const useStyles = makeStyles(theme => ({
     backgroundColor:'#505050',
 
   },
-  // [theme.breakpoints.down("xs")]: {
-  //   searchContainer:{
-  //     width:"100%",
-  //   }
-  // },
+  [theme.breakpoints.down("xs")]: {
+    searchContainer:{
+      width:"90%",
+    },
+    userIcon:{
+      display:'none',
+     },
+     groaLogo:{
+      flex:'display',
+      justifyContent:'center',
+     },
+  },
   search: {
     // display:'flex',
     // alignItems:'center',
@@ -188,14 +197,10 @@ const useStyles = makeStyles(theme => ({
     
   },
   
-    [theme.breakpoints.down("xs")]: {
-      userIcon:{
-       display:'none',
-        searchContainer:{
-          width:"100%",
-        }
-      },
-},
+//     [theme.breakpoints.down("xs")]: {
+//       margin:0,
+      
+// },
 }));
 
 
@@ -228,7 +233,12 @@ const Navigation = props => {
     id:4,
     name: "Ratings",
     icon: <GradeRoundedIcon />
-  }];
+  },
+  {id:5,
+  name:'Log Out',
+  icon: <ExitToAppRoundedIcon />
+  },
+];
 
   const handleDrawerOpen = () => {
     setOpen(true);

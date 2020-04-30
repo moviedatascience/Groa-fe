@@ -14,7 +14,7 @@ import Container from '@material-ui/core/Container';
 
 const useStyles = makeStyles((theme) => ({
   cardGrid: {
-    paddingTop: theme.spacing(8),
+    paddingTop: theme.spacing(2),
     paddingBottom: theme.spacing(8),
   },
  
@@ -57,7 +57,7 @@ function Ratings({
               let moviePoster = `https://image.tmdb.org/t/p/w500${posterURI}?api_key=${process.env.REACT_APP_TMDB_API_KEY}`;
 
               return (
-                <Grid container spacing={4}>
+                
 
                 <MovieCard
                   key={index}
@@ -74,9 +74,12 @@ function Ratings({
                       : moviePoster
                   }
                 />
-                </Grid>
+                
+                
               );
-            })}
+
+            }
+            )}
         {/* </div>
       </div> */}
       </Container>

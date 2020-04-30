@@ -15,14 +15,22 @@ import MovieCard from "../movies/MovieCard.js";
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
+// import Container from '@material-ui/core/Container';
+import GridList from "@material-ui/core/GridList";
+import GridListTile from "@material-ui/core/GridListTile";
+
+//reactstrap
+// import { Container, Row, Col } from 'reactstrap';
 
 
 const useStyles = makeStyles((theme) => ({
   cardGrid: {
-    paddingTop: theme.spacing(8),
+    paddingTop: theme.spacing(2),
     paddingBottom: theme.spacing(8),
   },
+  gridlist:{
+  
+  }
  
 }));
 function Watchlist({
@@ -62,11 +70,11 @@ function Watchlist({
       //   {/* <Grid justify="center" > */}
       // {/* <Container className={classes.cardGrid}> */}
       //    {/* <CssBaseline /> */}
-         <Container className={classes.cardGrid} maxWidth='md'>
-       {/* <Grid container spacing={4}> */}
-        {/* <div className="movie-cards"> */}
-     
-              {/* <Grid  md={12} > */}
+        //  <Container className={classes.cardGrid} maxWidth='md'>
+      <div>
+        <GridList className={classes.gridlist} cols={3}  cellHeight={350} justify="center">
+              {/* // <Container>
+              //   <Row xs="1" sm="2" md="4"> */}
           {watchlist
             .filter((movie) =>
               searchTerm !== ""
@@ -88,8 +96,8 @@ function Watchlist({
         
                   onClick={() => setDeleteMode(!deleteMode)}
                 >
-       <Grid container spacing={4}>
-
+       {/* <Grid container spacing={4}> */}
+       {/* <GridListTile> */}
                   <MovieCard
                     key={index}
                     name={movie.primary_title}
@@ -105,7 +113,8 @@ function Watchlist({
                     }
                     
                   />
-                  </Grid>
+                 {/* </GridListTile> */}
+                  {/* </Grid> */}
                   {deleteMode && (
                     <button
                       className="delete-button"
@@ -117,9 +126,10 @@ function Watchlist({
                 </div>
               );
             })}
-        
-       
-      </Container>
+         {/* </Row>
+       </Container> */}
+    </GridList>
+    </div>
     );
 }
 

@@ -4,21 +4,21 @@ import { ratingAction, addToWatchlistAction } from "../../store/actions";
 import Stars from "@material-ui/lab/Rating";
 import StarBorderIcon from "@material-ui/icons/StarBorder";
 //for grid
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Grid from '@material-ui/core/Grid';
-import { makeStyles } from '@material-ui/core/styles';
+import CssBaseline from "@material-ui/core/CssBaseline";
+import Grid from "@material-ui/core/Grid";
+import { makeStyles } from "@material-ui/core/styles";
 
-import Container from '@material-ui/core/Container';
-import Link from '@material-ui/core/Link';
-import AppBar from '@material-ui/core/AppBar';
-import Button from '@material-ui/core/Button';
-import CameraIcon from '@material-ui/icons/PhotoCamera';
-import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
+import Container from "@material-ui/core/Container";
+import Link from "@material-ui/core/Link";
+import AppBar from "@material-ui/core/AppBar";
+import Button from "@material-ui/core/Button";
+import CameraIcon from "@material-ui/icons/PhotoCamera";
+import Card from "@material-ui/core/Card";
+import CardActions from "@material-ui/core/CardActions";
+import CardContent from "@material-ui/core/CardContent";
+import CardMedia from "@material-ui/core/CardMedia";
+import Toolbar from "@material-ui/core/Toolbar";
+import Typography from "@material-ui/core/Typography";
 
 const useStyles = makeStyles((theme) => ({
   // root:{
@@ -31,14 +31,14 @@ const useStyles = makeStyles((theme) => ({
   //   marginRight: theme.spacing(2),
   // },
   // heroContent: {
-    // backgroundColor: theme.palette.background.paper,
+  // backgroundColor: theme.palette.background.paper,
   //   padding: theme.spacing(8, 0, 6),
   // },
   // heroButtons: {
   //   marginTop: theme.spacing(4),
   // },
   cardGrid: {
-    paddingTop: theme.spacing(8),
+    paddingTop: theme.spacing(4),
     paddingBottom: theme.spacing(8),
     display:'flex',
     flexDirection:'row',
@@ -52,13 +52,13 @@ const useStyles = makeStyles((theme) => ({
     height: '100%',
     display: 'flex',
     flexDirection: 'column',
-    // border: "1px solid #5B7648",
+    border: "1px solid #5B7648",
     width:'100%',
     // margin:0,
     // justifyContent:'center',
     '&:hover':{
       background:'black',
-      opacity: 0.3
+      // opacity: 0.3,
     },
     moreInfo:{
       display: 'flex',
@@ -69,9 +69,12 @@ const useStyles = makeStyles((theme) => ({
   //   '&:hover':{
   //     opacity: 5,
   //   }
+
   // },
   cardContent: {
-    flexGrow: 1,
+    // flexGrow: 1,
+    padding:0,
+    textAlign:'center',
   },
   
 //  name:{
@@ -80,22 +83,24 @@ const useStyles = makeStyles((theme) => ({
  cardActions:{
 // display:'flex',
 // flexDirection:'column'
-margin:'auto',
+// margin:'auto',
+fontSize:'10px'
  },
  stars:{
   fontSize: '2.5vw',
+  alignContent:'center'
  },
- middle:{
-  transition:' .5s ease',
-  opacity: 0,
-  position: 'absolute',
-  transform: 'translate(-50%, -50%)',
-  // -msTransform:' translate(-50%, -50%)',
-  textAlign: 'center',
-  '&:hover':{
-    opacity: 1,
-  }
- },
+//  middle:{
+//   transition:' .5s ease',
+//   opacity: 0,
+//   position: 'absolute',
+//   transform: 'translate(-50%, -50%)',
+//   -msTransform:' translate(-50%, -50%)',
+//   textAlign: 'center',
+//   '&:hover':{
+//     opacity: 1,
+//   }
+//  },
  text:{
   backgroundColor: '#4CAF50',
   color: 'white',
@@ -103,18 +108,25 @@ margin:'auto',
   opacity: 0,
   visibility: 'hidden',
   transition: 'opacity .2s, visibility .2s',
+  '&:hover':{
+    opacity: 5,
+  },
  },
+ 
  movieImg:{
    width:'100%',
    opacity: 1,
   display: 'block',
-  height: 'auto',
-  transition: '5s ease',
+  // height: 'auto',
+  // transition: '5s ease',
   backfaceVisibility: 'hidden',
-  '&:hover':{
-    opacity: 0.3,
-  }
+  // '&:hover':{
+  //   opacity: 0.3,
+  // }
  },
+watchList:{
+  fontSize:'8px'
+}
 }));
 
 // more fields will be appearing according to the Figma file
@@ -162,6 +174,7 @@ function MovieCard({
       movie_id: movie.movie_id,
       rating: newValue,
     };
+    console.log(newRating);
     ratingAction(userid, newRating);
     setYourRating(true);
   };
@@ -173,20 +186,21 @@ function MovieCard({
   };
 
   return (
-   
-  <Grid item key={movie_id} xs={12} sm={6} md={4}>
 
-                <Card className={classes.card}>
+   
+  // <Grid  xs={12} sm={6} md={4}>
+
+                <div className={classes.card}>
                  
                   {/* <CardMedia className={classes.cardMedia} > */}
                  <img className={classes.movieImg} src={image} alt="Random Movie poster as a placeholder." />
                   {/* </CardMedia> */}
               
-                      <div className={classes.text}>Description:</div>
+                      {/* <div className={classes.text}>Description:</div> */}
                   
                  
                   <CardContent className={classes.cardContent}>
-                    <Typography  component="h3" className={classes.name}>
+                    <Typography  component="h4" className={classes.name}>
                     {name}
                     </Typography>
                     <Typography>
@@ -194,8 +208,9 @@ function MovieCard({
                     </Typography>
 
                   </CardContent>
-                  <CardActions className={classes.cardActions}>
+                  <CardActions className={classes.cardActions} padding='0'>
                     <Button  onClick={handleClick}
+                    className={classes.watchList}
                     disabled={added || inWatchlist || inRatings ? true : false}size="small" color="primary">
                             {inRatings || yourRating
                       ? "Your rating:"
@@ -205,6 +220,7 @@ function MovieCard({
                     </Button>
                    
                   </CardActions>
+                  
                   <CardActions>
                   <Stars
                    className={classes.stars}
@@ -219,10 +235,10 @@ function MovieCard({
           onChange={handleChange}
         /> 
                   </CardActions>
-                </Card>
+                </div>
            
             
-          </Grid>
+         
   );
 }
 const mapStateToProps = (state) => {
