@@ -40,6 +40,8 @@ const useStyles = makeStyles((theme) => ({
   cardGrid: {
     paddingTop: theme.spacing(8),
     paddingBottom: theme.spacing(8),
+    display:'flex',
+    flexDirection:'row',
     // paddingLeft: theme.spacing(8),
     // paddingRight: theme.spacing(8),
     // width: "100%"
@@ -50,13 +52,23 @@ const useStyles = makeStyles((theme) => ({
     height: '100%',
     display: 'flex',
     flexDirection: 'column',
-    border: "1px solid #5B7648",
+    // border: "1px solid #5B7648",
     width:'100%',
     // margin:0,
     // justifyContent:'center',
+    '&:hover':{
+      background:'black',
+      opacity: 0.3
+    },
+    moreInfo:{
+      display: 'flex',
+      flexDirection: 'row',
+    },
   },
   // cardMedia: {
-    // paddingTop: '56.25%',
+  //   '&:hover':{
+  //     opacity: 5,
+  //   }
   // },
   cardContent: {
     flexGrow: 1,
@@ -77,17 +89,31 @@ margin:'auto',
   transition:' .5s ease',
   opacity: 0,
   position: 'absolute',
-  top: '50%',
-  left:' 50%',
   transform: 'translate(-50%, -50%)',
   // -msTransform:' translate(-50%, -50%)',
   textAlign: 'center',
+  '&:hover':{
+    opacity: 1,
+  }
  },
- opacityBox:{
-
+ text:{
+  backgroundColor: '#4CAF50',
+  color: 'white',
+  fontSize: '16px',
+  opacity: 0,
+  visibility: 'hidden',
+  transition: 'opacity .2s, visibility .2s',
  },
  movieImg:{
    width:'100%',
+   opacity: 1,
+  display: 'block',
+  height: 'auto',
+  transition: '5s ease',
+  backfaceVisibility: 'hidden',
+  '&:hover':{
+    opacity: 0.3,
+  }
  },
 }));
 
@@ -149,18 +175,16 @@ function MovieCard({
   return (
    
   <Grid item key={movie_id} xs={12} sm={6} md={4}>
-       {/* <Container className={classes.cardGrid} maxWidth='0'> */}
-          {/* End hero unit */}
-           {/* <Grid container spacing={12}  > */}
-           
-              {/* <Grid xs={12} sm={6} md={4} > */}
-                <Card className={classes.card}>
-                  <CardMedia
-                    className={classes.cardMedia}
-                  >
-                 <img className={classes.movieImg} src={image} alt="Random Movie poster as a placeholder." />
 
-                  </CardMedia>
+                <Card className={classes.card}>
+                 
+                  {/* <CardMedia className={classes.cardMedia} > */}
+                 <img className={classes.movieImg} src={image} alt="Random Movie poster as a placeholder." />
+                  {/* </CardMedia> */}
+              
+                      <div className={classes.text}>Description:</div>
+                  
+                 
                   <CardContent className={classes.cardContent}>
                     <Typography  component="h3" className={classes.name}>
                     {name}
@@ -168,11 +192,7 @@ function MovieCard({
                     <Typography>
                     {year}
                     </Typography>
-                    <div className={classes.middle}>
-                    <Typography className={classes.opacityBox}>
-                      Hello there
-                    </Typography>
-                    </div>
+
                   </CardContent>
                   <CardActions className={classes.cardActions}>
                     <Button  onClick={handleClick}
@@ -187,8 +207,7 @@ function MovieCard({
                   </CardActions>
                   <CardActions>
                   <Stars
-          // className="stars"
-          className={classes.stars}
+                   className={classes.stars}
           data-test="star"
           precision={0.5}
           size="large"
@@ -201,10 +220,9 @@ function MovieCard({
         /> 
                   </CardActions>
                 </Card>
-              {/* </Grid> */}
+           
             
           </Grid>
-        // </Container>
   );
 }
 const mapStateToProps = (state) => {

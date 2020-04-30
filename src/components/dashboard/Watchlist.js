@@ -88,7 +88,7 @@ function Watchlist({
         
                   onClick={() => setDeleteMode(!deleteMode)}
                 >
-       <Grid container spacing={6}>
+       <Grid container spacing={4}>
 
                   <MovieCard
                     key={index}

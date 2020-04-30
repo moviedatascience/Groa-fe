@@ -65,11 +65,11 @@ const useStyles = makeStyles(theme => ({
     backgroundColor:'#505050',
 
   },
-  [theme.breakpoints.down("xs")]: {
-    searchContainer:{
-      width:"80%",
-    }
-  },
+  // [theme.breakpoints.down("xs")]: {
+  //   searchContainer:{
+  //     width:"100%",
+  //   }
+  // },
   search: {
     // display:'flex',
     // alignItems:'center',
@@ -81,7 +81,7 @@ const useStyles = makeStyles(theme => ({
       color:'#ffffff',
     },
     width: "100%",
-    [theme.breakpoints.up("sm")]: {
+    [theme.breakpoints.down("sm")]: {
       width: "auto"
     }
   },
@@ -191,7 +191,10 @@ const useStyles = makeStyles(theme => ({
     [theme.breakpoints.down("xs")]: {
       userIcon:{
        display:'none',
-    }
+        searchContainer:{
+          width:"100%",
+        }
+      },
 },
 }));
 
