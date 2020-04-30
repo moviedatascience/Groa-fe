@@ -186,7 +186,13 @@ const useStyles = makeStyles(theme => ({
     display:'flex',
     flexDirection:'column',
     
-  }
+  },
+  
+    [theme.breakpoints.down("xs")]: {
+      userIcon:{
+       display:'none',
+    }
+},
 }));
 
 
@@ -298,7 +304,7 @@ const Navigation = props => {
           </Typography>
           
       <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
-      <PersonRoundedIcon/>
+      <PersonRoundedIcon className={classes.userIcon}/>
       </Button>
       <Menu
         id="simple-menu"

@@ -56,17 +56,14 @@ function Watchlist({
   else
     return (
 
-      // <div
-      //   className="watchlist-container"
-      //   data-test={ifDev("watchlist-component")}
-      // >
-      <>
-      {/* <Grid container className={classes.root} justify="center"> */}
-      {/* <Grid item xs={12}> */}
-        {/* <Grid justify="center" > */}
-      {/* <Container className={classes.cardGrid}> */}
-         {/* <CssBaseline /> */}
-         <Grid  container spacing={12} justify='center'>
+      
+      // /* <Grid container className={classes.root} justify="center"> */}
+      // {/* <Grid item xs={12}> */}
+      //   {/* <Grid justify="center" > */}
+      // {/* <Container className={classes.cardGrid}> */}
+      //    {/* <CssBaseline /> */}
+         <Container className={classes.cardGrid} maxWidth='md'>
+       {/* <Grid container spacing={4}> */}
         {/* <div className="movie-cards"> */}
      
               {/* <Grid  md={12} > */}
@@ -80,6 +77,7 @@ function Watchlist({
                 : true
             )
             .map((movie, index) => {
+
               let posterURI = movie.poster_url;
               let unsplashUrl =
                 "https://source.unsplash.com/collection/1736993/500x650";
@@ -90,6 +88,7 @@ function Watchlist({
         
                   onClick={() => setDeleteMode(!deleteMode)}
                 >
+       <Grid container spacing={6}>
 
                   <MovieCard
                     key={index}
@@ -106,24 +105,21 @@ function Watchlist({
                     }
                     
                   />
-                  {/* {deleteMode && (
+                  </Grid>
+                  {deleteMode && (
                     <button
                       className="delete-button"
                       onClick={() => handleClick(movie.id)}
                     >
                       x
                     </button>
-                  )} */}
+                  )}
                 </div>
               );
             })}
-           
-        {/* </div> */}
-        </Grid>
-        {/* </Grid> */}
-        {/* </Grid> */}
-      {/* </Container> */}
-      </>
+        
+       
+      </Container>
     );
 }
 

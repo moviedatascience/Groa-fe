@@ -21,9 +21,9 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles((theme) => ({
-  root:{
-    flexGrow:1,
-  },
+  // root:{
+  //   flexGrow:1,
+  // },
   control: {
     padding: theme.spacing(2),
   },
@@ -42,16 +42,18 @@ const useStyles = makeStyles((theme) => ({
     paddingBottom: theme.spacing(8),
     // paddingLeft: theme.spacing(8),
     // paddingRight: theme.spacing(8),
-    width: "100%"
+    // width: "100%"
     // justify:'center',
+
   },
   card: {
-    // height: '50%',
+    height: '100%',
     display: 'flex',
     flexDirection: 'column',
+    border: "1px solid #5B7648",
     width:'100%',
-    margin:0,
-    justifyContent:'center',
+    // margin:0,
+    // justifyContent:'center',
   },
   // cardMedia: {
     // paddingTop: '56.25%',
@@ -64,8 +66,9 @@ const useStyles = makeStyles((theme) => ({
 // width: '100%'
 //  },
  cardActions:{
-display:'flex',
+// display:'flex',
 // flexDirection:'column'
+margin:'auto',
  },
  stars:{
   fontSize: '2.5vw',
@@ -145,10 +148,10 @@ function MovieCard({
 
   return (
    
-
-      <Container className={classes.cardGrid} maxWidth='0'>
+  <Grid item key={movie_id} xs={12} sm={6} md={4}>
+       {/* <Container className={classes.cardGrid} maxWidth='0'> */}
           {/* End hero unit */}
-          <Grid container spacing={12}  >
+           {/* <Grid container spacing={12}  > */}
            
               {/* <Grid xs={12} sm={6} md={4} > */}
                 <Card className={classes.card}>
@@ -201,7 +204,7 @@ function MovieCard({
               {/* </Grid> */}
             
           </Grid>
-        </Container>
+        // </Container>
   );
 }
 const mapStateToProps = (state) => {
