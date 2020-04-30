@@ -28,10 +28,10 @@ const useStyles = makeStyles((theme) => ({
     paddingTop: theme.spacing(2),
     paddingBottom: theme.spacing(8),
   },
-  gridlist:{
-  
+  gridlist: {
+
   }
- 
+
 }));
 function Watchlist({
   userid,
@@ -64,24 +64,24 @@ function Watchlist({
   else
     return (
 
-      
+
       // /* <Grid container className={classes.root} justify="center"> */}
       // {/* <Grid item xs={12}> */}
       //   {/* <Grid justify="center" > */}
       // {/* <Container className={classes.cardGrid}> */}
       //    {/* <CssBaseline /> */}
-        //  <Container className={classes.cardGrid} maxWidth='md'>
+      //  <Container className={classes.cardGrid} maxWidth='md'>
       <div>
-        <GridList className={classes.gridlist} cols={3}  cellHeight={350} justify="center">
-              {/* // <Container>
+        <GridList className={classes.gridlist} cols={3} cellHeight='auto' justify="center">
+          {/* // <Container>
               //   <Row xs="1" sm="2" md="4"> */}
           {watchlist
             .filter((movie) =>
               searchTerm !== ""
                 ? movie.primary_title
-                    .toString()
-                    .toLowerCase()
-                    .includes(searchTerm.toLowerCase())
+                  .toString()
+                  .toLowerCase()
+                  .includes(searchTerm.toLowerCase())
                 : true
             )
             .map((movie, index) => {
@@ -93,27 +93,27 @@ function Watchlist({
               return (
                 <div
                   key={index}
-        
+
                   onClick={() => setDeleteMode(!deleteMode)}
                 >
-       {/* <Grid container spacing={4}> */}
-       {/* <GridListTile> */}
+                  {/* <Grid container spacing={4}> */}
+                  {/* <GridListTile> */}
                   <MovieCard
                     key={index}
                     name={movie.primary_title}
                     year={movie.start_year}
                     image={
                       !posterURI ||
-                      posterURI === "None" ||
-                      posterURI === "No poster" ||
-                      posterURI === "No Poster" ||
-                      posterURI === "Not in table"
+                        posterURI === "None" ||
+                        posterURI === "No poster" ||
+                        posterURI === "No Poster" ||
+                        posterURI === "Not in table"
                         ? unsplashUrl
                         : moviePoster
                     }
-                    
+
                   />
-                 {/* </GridListTile> */}
+                  {/* </GridListTile> */}
                   {/* </Grid> */}
                   {deleteMode && (
                     <button
@@ -126,10 +126,10 @@ function Watchlist({
                 </div>
               );
             })}
-         {/* </Row>
+          {/* </Row>
        </Container> */}
-    </GridList>
-    </div>
+        </GridList>
+      </div>
     );
 }
 

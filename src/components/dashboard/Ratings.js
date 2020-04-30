@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
     paddingTop: theme.spacing(2),
     paddingBottom: theme.spacing(8),
   },
- 
+
 }));
 function Ratings({
   userid,
@@ -41,46 +41,46 @@ function Ratings({
       //   <div className="movie-cards">
       <Container className={classes.cardGrid} maxWidth='md'>
 
-          {ratings
-            .filter((movie) =>
-              searchTerm !== ""
-                ? movie.primary_title
-                    .toString()
-                    .toLowerCase()
-                    .includes(searchTerm.toLowerCase())
-                : true
-            )
-            .map((movie, index) => {
-              let posterURI = movie.poster_url;
-              let unsplashUrl =
-                "https://source.unsplash.com/collection/1736993/500x650";
-              let moviePoster = `https://image.tmdb.org/t/p/w500${posterURI}?api_key=${process.env.REACT_APP_TMDB_API_KEY}`;
+        {ratings
+          .filter((movie) =>
+            searchTerm !== ""
+              ? movie.primary_title
+                .toString()
+                .toLowerCase()
+                .includes(searchTerm.toLowerCase())
+              : true
+          )
+          .map((movie, index) => {
+            let posterURI = movie.poster_url;
+            let unsplashUrl =
+              "https://source.unsplash.com/collection/1736993/500x650";
+            let moviePoster = `https://image.tmdb.org/t/p/w500${posterURI}?api_key=${process.env.REACT_APP_TMDB_API_KEY}`;
 
-              return (
-                
+            return (
 
-                <MovieCard
-                  key={index}
-                  name={movie.primary_title}
-                  movie_id={movie.movie_id}
-                  year={movie.start_year}
-                  rated={movie.rating}
-                  image={
-                    !posterURI ||
+
+              <MovieCard
+                key={index}
+                name={movie.primary_title}
+                movie_id={movie.movie_id}
+                year={movie.start_year}
+                rated={movie.rating}
+                image={
+                  !posterURI ||
                     posterURI === "None" ||
                     posterURI === "No poster" ||
                     posterURI === "No Poster" ||
                     posterURI === "Not in table"
-                      ? unsplashUrl
-                      : moviePoster
-                  }
-                />
-                
-                
-              );
+                    ? unsplashUrl
+                    : moviePoster
+                }
+              />
 
-            }
-            )}
+
+            );
+
+          }
+          )}
         {/* </div>
       </div> */}
       </Container>
