@@ -18,10 +18,12 @@ import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
   cardGrid: {
-    paddingTop: theme.spacing(8),
-    paddingBottom: theme.spacing(8),
+    paddingTop: theme.spacing(4),
+    paddingBottom: theme.spacing(4),
+    paddingRight: theme.spacing(2),
+    paddingLeft: theme.spacing(2),
   },
- 
+
 }));
 function Explore({
   isFetching,
@@ -54,36 +56,36 @@ function Explore({
         cols={screenWidth ? 3 : 5}
         cellHeight="auto"
       >
-          {movies
-            .filter((movie) =>
-              !ratings.includes(
-                (film) =>
-                  film.primary_title === movie.primary_title &&
-                  film.start_year === movie.start_year
-              ).length && searchTerm !== ""
-                ? movie.primary_title
-                    .toString()
-                    .toLowerCase()
-                    .includes(searchTerm.toLowerCase())
-                : true
-            )
-            .slice(0, cardAmount)
-            .map((movie, index) => {
-              /* Checks if the film is in ratings */
-              const isRated = (film) => {
-                return (
-                  film.primary_title === movie.primary_title &&
-                  film.start_year === movie.start_year
-                );
-              };
-              /* Returns the movie object if in ratings */
-              let rated = ratings.find(isRated);
-              let posterURI = movie.poster_url;
-              let unsplashUrl =
-                "https://source.unsplash.com/collection/1736993/500x650";
-              let moviePoster = `https://image.tmdb.org/t/p/w500${posterURI}?api_key=${process.env.REACT_APP_TMDB_API_KEY}`;
+        {movies
+          .filter((movie) =>
+            !ratings.includes(
+              (film) =>
+                film.primary_title === movie.primary_title &&
+                film.start_year === movie.start_year
+            ).length && searchTerm !== ""
+              ? movie.primary_title
+                .toString()
+                .toLowerCase()
+                .includes(searchTerm.toLowerCase())
+              : true
+          )
+          .slice(0, cardAmount)
+          .map((movie, index) => {
+            /* Checks if the film is in ratings */
+            const isRated = (film) => {
               return (
-                <div>
+                film.primary_title === movie.primary_title &&
+                film.start_year === movie.start_year
+              );
+            };
+            /* Returns the movie object if in ratings */
+            let rated = ratings.find(isRated);
+            let posterURI = movie.poster_url;
+            let unsplashUrl =
+              "https://source.unsplash.com/collection/1736993/500x650";
+            let moviePoster = `https://image.tmdb.org/t/p/w500${posterURI}?api_key=${process.env.REACT_APP_TMDB_API_KEY}`;
+            return (
+              <div>
                 <MovieCard
                   key={index}
                   name={movie.primary_title}
@@ -92,17 +94,17 @@ function Explore({
                   rated={rated ? rated.rating : null}
                   image={
                     !posterURI ||
-                    posterURI === "None" ||
-                    posterURI === "No poster" ||
-                    posterURI === "No Poster" ||
-                    posterURI === "Not in table"
+                      posterURI === "None" ||
+                      posterURI === "No poster" ||
+                      posterURI === "No Poster" ||
+                      posterURI === "Not in table"
                       ? unsplashUrl
                       : moviePoster
                   }
                 />
-                </div>
-              );
-            })}
+              </div>
+            );
+          })}
       </GridList>
     );
 }

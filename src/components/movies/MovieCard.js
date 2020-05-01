@@ -26,7 +26,6 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
     // border: "1px solid #5B7648",
     width: '100%',
-    margin: '1%',
     '&:hover': {
       background: 'black',
       opacity:'0.3',
@@ -40,10 +39,11 @@ const useStyles = makeStyles((theme) => ({
   cardContent: {
     // flexGrow: 1,
     padding: 0,
-    textAlign: "center",
+    
   },
   cardActions: {
     fontSize: "10px",
+    padding:0,
   },
   stars: {
     fontSize: "2.5vw",
@@ -82,7 +82,9 @@ const useStyles = makeStyles((theme) => ({
     // }
   },
   watchList: {
-    fontSize: "8px",
+    fontSize: "10px",
+    textAlign:'left',
+    padding:0,
   },
 }));
 // more fields will be appearing according to the Figma file
@@ -143,12 +145,12 @@ function MovieCard({
         alt="Random Movie poster as a placeholder."
       />
       <CardContent className={classes.cardContent}>
-        <Typography component="h4" className={classes.name}>
+        <Typography  className={classes.name}>
           {name}
         </Typography>
         <Typography>{year}</Typography>
       </CardContent>
-      <CardActions className={classes.cardActions} padding="0">
+      <CardActions className={classes.cardActions} >
         <Button
           onClick={handleClick}
           className={classes.watchList}

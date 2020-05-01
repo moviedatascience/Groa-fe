@@ -10,12 +10,13 @@ import LoadingScreen from "../layout/LoadingScreen.js";
 //for grid
 import { makeStyles } from '@material-ui/core/styles';
 import { GridList } from "@material-ui/core/";
-import Grid from '@material-ui/core/Grid'
 
 const useStyles = makeStyles((theme) => ({
   cardGrid: {
-    paddingTop: theme.spacing(2),
-    paddingBottom: theme.spacing(8),
+    paddingTop: theme.spacing(4),
+    paddingBottom: theme.spacing(4),
+    paddingRight: theme.spacing(2),
+    paddingLeft: theme.spacing(2),
   },
 
 }));
@@ -42,8 +43,8 @@ function Ratings({
   else
     return (
       <GridList
-      className={classes.cardGrid}
-      cols={screenWidth ? 3 : 5}
+        className={classes.cardGrid}
+        cols={screenWidth ? 3 : 5}
         cellHeight="auto"
       >
         {ratings
@@ -62,22 +63,22 @@ function Ratings({
             let moviePoster = `https://image.tmdb.org/t/p/w500${posterURI}?api_key=${process.env.REACT_APP_TMDB_API_KEY}`;
             return (
               <div key={index}>
-              <MovieCard
-                key={index}
-                name={movie.primary_title}
-                movie_id={movie.movie_id}
-                year={movie.start_year}
-                rated={movie.rating}
-                image={
-                  !posterURI ||
-                    posterURI === "None" ||
-                    posterURI === "No poster" ||
-                    posterURI === "No Poster" ||
-                    posterURI === "Not in table"
-                    ? unsplashUrl
-                    : moviePoster
-                }
-              />
+                <MovieCard
+                  key={index}
+                  name={movie.primary_title}
+                  movie_id={movie.movie_id}
+                  year={movie.start_year}
+                  rated={movie.rating}
+                  image={
+                    !posterURI ||
+                      posterURI === "None" ||
+                      posterURI === "No poster" ||
+                      posterURI === "No Poster" ||
+                      posterURI === "Not in table"
+                      ? unsplashUrl
+                      : moviePoster
+                  }
+                />
               </div>
             );
           }
