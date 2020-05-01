@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
 import {
   loginAction,
@@ -7,26 +6,15 @@ import {
   recommendationAction
 } from "../../store/actions";
 // import debounce from "../../utils/debounce";
-import {
-  // faSearch,
-  faUserCircle,
-  faAngleDown,
-  faBars,
-  faSync,
-  // faBackspace
-} from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { ifDev } from "../../utils/removeAttribute.js";
 import GroaLogo from "../../img/groa-logo-nav.png";
 
 //for search bar 
-import { makeStyles, fade, useTheme } from "@material-ui/core/styles";
+import { makeStyles, useTheme } from "@material-ui/core/styles";
 import SearchIcon from "@material-ui/icons/Search";
 import InputBase from "@material-ui/core/InputBase";
 
 //for the navbar 
 import clsx from 'clsx';
-// import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import AppBar from '@material-ui/core/AppBar';
@@ -41,8 +29,6 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
 //for user toggle menu
 import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
@@ -80,8 +66,6 @@ const useStyles = makeStyles(theme => ({
     },
   },
   search: {
-    // display:'flex',
-    // alignItems:'center',
     position: "relative",
     borderRadius: theme.shape.borderRadius,
     backgroundColor: '#ffffff',
@@ -183,24 +167,14 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     justifyContent: 'space-between'
   },
-  appBar: {
-    backgroundColor: '#5c5b5b'
-  },
   groaLogo: {
     height: '2rem',
     width: 'auto',
   },
-
   drawerContainer: {
     display: 'flex',
     flexDirection: 'column',
-
   },
-
-  //     [theme.breakpoints.down("xs")]: {
-  //       margin:0,
-
-  // },
 }));
 
 
@@ -277,27 +251,26 @@ const Navigation = props => {
     if (e.keyCode === 13 && query.query !== "") props.setFilter(e.target.value);
   };
 
-  const clearInput = e => {
-    setQuery({ query: "" });
-    props.setFilter("");
-  };
+  // const clearInput = e => {
+  //   setQuery({ query: "" });
+  //   props.setFilter("");
+  // };
 
   const logout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("state");
   };
 
-  const getNewRecommendations = id => {
-    // Gets new recommendations for account, if applicible
-    props.recommendationAction(id);
-  };
-
+  // const getNewRecommendations = id => {
+  // Gets new recommendations for account, if applicible
+  // props.recommendationAction(id);
+  // };
 
   return (
     <div className={classes.root}>
       <div className={classes.drawerContainer}>
         <CssBaseline />
-        <AppBar className={classes.appBar}
+        <AppBar
           position="fixed"
           className={clsx(classes.appBar, {
             [classes.appBarShift]: open,
@@ -316,7 +289,6 @@ const Navigation = props => {
             <Typography variant="h6" noWrap>
               <img className={classes.groaLogo} src={GroaLogo} alt="Groa Logo" />
             </Typography>
-
             <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
               <PersonRoundedIcon className={classes.userIcon} />
             </Button>
@@ -331,12 +303,6 @@ const Navigation = props => {
               <MenuItem onClick={handleClose} button component="a" href={`/${props.userid}/upload`}>Upload</MenuItem>
               <MenuItem onClick={logout} button component="a" href={`/login`}>Logout</MenuItem>
             </Menu>
-
-
-
-
-
-
           </Toolbar>
           <div className={classes.searchContainer}>
             <div className={classes.search}>
@@ -356,10 +322,8 @@ const Navigation = props => {
                 onKeyDown={handleSubmit}
               />
             </div>
-
           </div>
         </AppBar>
-
         <Drawer
           className={classes.drawer}
           variant="persistent"
@@ -392,7 +356,6 @@ const Navigation = props => {
             </ListItem>
           ))}
         </List> */}
-
         </Drawer>
         <main
           className={clsx(classes.content, {
@@ -400,11 +363,8 @@ const Navigation = props => {
           })}
         >
           <div className={classes.drawerHeader} />
-
         </main>
-
       </div>
-
     </div>
   );
 };

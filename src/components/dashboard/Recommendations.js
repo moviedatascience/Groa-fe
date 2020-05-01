@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 // tools
 import { connect } from "react-redux";
-import { ifDev } from "../../utils/removeAttribute.js";
 import {
   recommendationAction,
   toggleIsUploaded,
@@ -11,7 +10,6 @@ import {
 import LoadingScreen from "../layout/LoadingScreen.js";
 import MovieCard from "../movies/MovieCard.js";
 //for grid
-import CssBaseline from '@material-ui/core/CssBaseline';
 import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';

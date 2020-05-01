@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 // tools
 import { connect } from "react-redux";
-import { ifDev } from "../../utils/removeAttribute.js";
 import {
   removeFromWatchlistAction,
   getWatchlistAction,
@@ -17,10 +16,6 @@ import MovieCard from "../movies/MovieCard.js";
 //for grid
 import { GridList } from "@material-ui/core/";
 import { makeStyles } from "@material-ui/core/styles";
-// import Container from '@material-ui/core/Container';
-
-//reactstrap
-// import { Container, Row, Col } from 'reactstrap';
 
 const useStyles = makeStyles((theme) => ({
   cardGrid: {
@@ -42,8 +37,6 @@ function Watchlist({
   const [deleteMode, setDeleteMode] = useState(false);
   //for matieral-ui
   const classes = useStyles();
-  const [spacing, setSpacing] = React.useState(2);
-
   const screenWidth = widthFinder(window.innerWidth);
 
   useEffect(() => {
@@ -55,71 +48,59 @@ function Watchlist({
   function handleClick(id) {
     removeFromWatchlistAction(userid, id);
   }
-  console.log("this is suppose to be true or false", screenWidth);
+  // console.log("this is suppose to be true or false", screenWidth);
 
   if (isFetching) return <LoadingScreen />;
   else if (isDeleting) return <LoadingScreen />;
   else
     return (
-      
-
-        <GridList
-          className={classes.gridlist}
-          cols={screenWidth ? 3 : 5}
-          cellHeight="auto"
-          justify="center"
-        >
-          {/* // <Container>
-              //   <Row xs="1" sm="2" md="4"> */}
-          {watchlist
-            .filter((movie) =>
-              searchTerm !== ""
-                ? movie.primary_title
-                  .toString()
-                  .toLowerCase()
-                  .includes(searchTerm.toLowerCase())
-                : true
-            )
-            .map((movie, index) => {
-              let posterURI = movie.poster_url;
-              let unsplashUrl =
-                "https://source.unsplash.com/collection/1736993/500x650";
-              let moviePoster = `https://image.tmdb.org/t/p/w500${posterURI}?api_key=${process.env.REACT_APP_TMDB_API_KEY}`;
-              return (
-
-                <div key={index} onClick={() => setDeleteMode(!deleteMode)}>
-
-                  {/* <Grid container spacing={4}> */}
-                  {/* <GridListTile> */}
-                  <MovieCard
-                    key={index}
-                    name={movie.primary_title}
-                    year={movie.start_year}
-                    image={
-                      !posterURI ||
-                        posterURI === "None" ||
-                        posterURI === "No poster" ||
-                        posterURI === "No Poster" ||
-                        posterURI === "Not in table"
-                        ? unsplashUrl
-                        : moviePoster
-                    }
-                  />
-                  {/* </GridListTile> */}
-                  {/* </Grid> */}
-                  {deleteMode && (
-                    <button
-                      className="delete-button"
-                      onClick={() => handleClick(movie.id)}
-                    >
-                      x
+      <GridList
+        className={classes.gridlist}
+        cols={screenWidth ? 3 : 5}
+        cellHeight="auto"
+      >
+        {watchlist
+          .filter((movie) =>
+            searchTerm !== ""
+              ? movie.primary_title
+                .toString()
+                .toLowerCase()
+                .includes(searchTerm.toLowerCase())
+              : true
+          )
+          .map((movie, index) => {
+            let posterURI = movie.poster_url;
+            let unsplashUrl =
+              "https://source.unsplash.com/collection/1736993/500x650";
+            let moviePoster = `https://image.tmdb.org/t/p/w500${posterURI}?api_key=${process.env.REACT_APP_TMDB_API_KEY}`;
+            return (
+              <div key={index} onClick={() => setDeleteMode(!deleteMode)}>
+                <MovieCard
+                  key={index}
+                  name={movie.primary_title}
+                  year={movie.start_year}
+                  image={
+                    !posterURI ||
+                      posterURI === "None" ||
+                      posterURI === "No poster" ||
+                      posterURI === "No Poster" ||
+                      posterURI === "Not in table"
+                      ? unsplashUrl
+                      : moviePoster
+                  }
+                />
+                {deleteMode && (
+                  <button
+                    className="delete-button"
+                    onClick={() => handleClick(movie.id)}
+                  >
+                    x
                     </button>
-                  )}
-                </div>
-              );
-            })};
+                )}
+              </div>
+            );
+          })};
         </GridList>
-   
     );
 }
 
