@@ -29,6 +29,7 @@ const useStyles = makeStyles((theme) => ({
     '&:hover': {
       background: 'black',
       opacity:'0.3',
+      
     },
     moreInfo: {
       display: 'flex',
@@ -77,6 +78,7 @@ const useStyles = makeStyles((theme) => ({
     opacity: 1,
     display: "block",
     backfaceVisibility: "hidden",
+    borderRadius: '11px',
     // '&:hover':{
     //   opacity: 0.3,
     // }
