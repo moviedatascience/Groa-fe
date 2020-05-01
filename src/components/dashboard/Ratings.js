@@ -1,23 +1,24 @@
 import React, { useEffect } from "react";
 // tools
 import { connect } from "react-redux";
-import { ifDev } from "../../utils/removeAttribute.js";
 import { getRatingAction, setFilter } from "../../store/actions/index.js";
+// Screen width util
+import widthFinder from "../../utils/widthFinder.js";
 // children components
 import MovieCard from "../movies/MovieCard.js";
 import LoadingScreen from "../layout/LoadingScreen.js";
 //for grid
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
+import { GridList } from "@material-ui/core/";
 
 const useStyles = makeStyles((theme) => ({
   cardGrid: {
-    paddingTop: theme.spacing(8),
-    paddingBottom: theme.spacing(8),
+    paddingTop: theme.spacing(4),
+    paddingBottom: theme.spacing(4),
+    paddingRight: theme.spacing(2),
+    paddingLeft: theme.spacing(2),
   },
- 
+
 }));
 function Ratings({
   userid,
@@ -27,38 +28,41 @@ function Ratings({
   searchTerm,
   setFilter,
 }) {
+  //for sizing of the movie cards
+  const classes = useStyles();
+  const screenWidth = widthFinder(window.innerWidth);
   useEffect(() => {
     setFilter("");
     // Returns the ratings
     getRatingAction(userid);
   }, [getRatingAction, userid, setFilter]);
-  const classes = useStyles();
+  console.log(`here + ${screenWidth}`);
+  console.log(classes);
 
   if (isFetching) return <LoadingScreen />;
   else
     return (
-      // <div className="container ratings" data-test={ifDev("ratings-component")}>
-      //   <div className="movie-cards">
-      <Container className={classes.cardGrid} maxWidth='md'>
-
-          {ratings
-            .filter((movie) =>
-              searchTerm !== ""
-                ? movie.primary_title
-                    .toString()
-                    .toLowerCase()
-                    .includes(searchTerm.toLowerCase())
-                : true
-            )
-            .map((movie, index) => {
-              let posterURI = movie.poster_url;
-              let unsplashUrl =
-                "https://source.unsplash.com/collection/1736993/500x650";
-              let moviePoster = `https://image.tmdb.org/t/p/w500${posterURI}?api_key=${process.env.REACT_APP_TMDB_API_KEY}`;
-
-              return (
-                <Grid container spacing={4}>
-
+      <GridList
+        className={classes.cardGrid}
+        cols={screenWidth ? 3 : 5}
+        cellHeight="auto"
+      >
+        {ratings
+          .filter((movie) =>
+            searchTerm !== ""
+              ? movie.primary_title
+                .toString()
+                .toLowerCase()
+                .includes(searchTerm.toLowerCase())
+              : true
+          )
+          .map((movie, index) => {
+            let posterURI = movie.poster_url;
+            let unsplashUrl =
+              "https://source.unsplash.com/collection/1736993/500x650";
+            let moviePoster = `https://image.tmdb.org/t/p/w500${posterURI}?api_key=${process.env.REACT_APP_TMDB_API_KEY}`;
+            return (
+              <div key={index}>
                 <MovieCard
                   key={index}
                   name={movie.primary_title}
@@ -67,20 +71,19 @@ function Ratings({
                   rated={movie.rating}
                   image={
                     !posterURI ||
-                    posterURI === "None" ||
-                    posterURI === "No poster" ||
-                    posterURI === "No Poster" ||
-                    posterURI === "Not in table"
+                      posterURI === "None" ||
+                      posterURI === "No poster" ||
+                      posterURI === "No Poster" ||
+                      posterURI === "Not in table"
                       ? unsplashUrl
                       : moviePoster
                   }
                 />
-                </Grid>
-              );
-            })}
-        {/* </div>
-      </div> */}
-      </Container>
+              </div>
+            );
+          }
+          )}
+      </GridList>
     );
 }
 
