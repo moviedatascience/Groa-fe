@@ -51,7 +51,6 @@ function Watchlist({
   function handleClick(id) {
     removeFromWatchlistAction(userid, id);
   }
-  // console.log("this is suppose to be true or false", screenWidth);
 
   if (isFetching) return <LoadingScreen />;
   else if (isDeleting) return <LoadingScreen />;
