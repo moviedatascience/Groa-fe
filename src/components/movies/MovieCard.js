@@ -24,7 +24,6 @@ const useStyles = makeStyles((theme) => ({
     height: "100%",
     display: "flex",
     flexDirection: "column",
-    // border: "1px solid #5B7648",
     width: '100%',
     '&:hover': {
       background: 'black',
@@ -38,7 +37,6 @@ const useStyles = makeStyles((theme) => ({
   },
 
   cardContent: {
-    // flexGrow: 1,
     padding: 0,
     
   },
@@ -50,17 +48,6 @@ const useStyles = makeStyles((theme) => ({
     fontSize: "2.5vw",
     alignContent: "center",
   },
-  //  middle:{
-  //   transition:' .5s ease',
-  //   opacity: 0,
-  //   position: 'absolute',
-  //   transform: 'translate(-50%, -50%)',
-  //   -msTransform:' translate(-50%, -50%)',
-  //   textAlign: 'center',
-  //   '&:hover':{
-  //     opacity: 1,
-  //   }
-  //  },
   text: {
     backgroundColor: "#4CAF50",
     color: "white",
