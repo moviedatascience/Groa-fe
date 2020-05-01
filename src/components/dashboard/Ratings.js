@@ -10,6 +10,7 @@ import LoadingScreen from "../layout/LoadingScreen.js";
 //for grid
 import { makeStyles } from '@material-ui/core/styles';
 import { GridList } from "@material-ui/core/";
+import Grid from '@material-ui/core/Grid'
 
 const useStyles = makeStyles((theme) => ({
   cardGrid: {
@@ -26,22 +27,23 @@ function Ratings({
   searchTerm,
   setFilter,
 }) {
-   //for sizing of the movie cards
-   const classes = useStyles();
-   const screenWidth = widthFinder(window.innerWidth);
+  //for sizing of the movie cards
+  const classes = useStyles();
+  const screenWidth = widthFinder(window.innerWidth);
   useEffect(() => {
     setFilter("");
     // Returns the ratings
     getRatingAction(userid);
   }, [getRatingAction, userid, setFilter]);
- 
+  console.log(`here + ${screenWidth}`);
+  console.log(classes);
 
   if (isFetching) return <LoadingScreen />;
   else
     return (
       <GridList
-        className={classes.gridlist}
-        cols={screenWidth ? 3 : 5}
+      className={classes.cardGrid}
+      cols={screenWidth ? 3 : 5}
         cellHeight="auto"
       >
         {ratings
@@ -59,6 +61,7 @@ function Ratings({
               "https://source.unsplash.com/collection/1736993/500x650";
             let moviePoster = `https://image.tmdb.org/t/p/w500${posterURI}?api_key=${process.env.REACT_APP_TMDB_API_KEY}`;
             return (
+              <div key={index}>
               <MovieCard
                 key={index}
                 name={movie.primary_title}
@@ -75,6 +78,7 @@ function Ratings({
                     : moviePoster
                 }
               />
+              </div>
             );
           }
           )}

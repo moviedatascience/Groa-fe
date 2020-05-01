@@ -50,10 +50,10 @@ function Explore({
   else
     return (
       <GridList
-      className={classes.gridlist}
-      cols={screenWidth ? 3 : 5}
-      cellHeight="auto"
-    >
+        className={classes.cardGrid}
+        cols={screenWidth ? 3 : 5}
+        cellHeight="auto"
+      >
           {movies
             .filter((movie) =>
               !ratings.includes(
@@ -83,6 +83,7 @@ function Explore({
                 "https://source.unsplash.com/collection/1736993/500x650";
               let moviePoster = `https://image.tmdb.org/t/p/w500${posterURI}?api_key=${process.env.REACT_APP_TMDB_API_KEY}`;
               return (
+                <div>
                 <MovieCard
                   key={index}
                   name={movie.primary_title}
@@ -99,6 +100,7 @@ function Explore({
                       : moviePoster
                   }
                 />
+                </div>
               );
             })}
       </GridList>

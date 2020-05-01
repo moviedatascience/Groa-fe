@@ -78,6 +78,9 @@ const useStyles = makeStyles(theme => ({
       width: "auto"
     }
   },
+  appBarTop: {
+    backgroundColor: '#5c5b5b'
+  },
   searchIcon: {
     width: theme.spacing(7),
     height: "100%",
@@ -270,7 +273,7 @@ const Navigation = props => {
     <div className={classes.root}>
       <div className={classes.drawerContainer}>
         <CssBaseline />
-        <AppBar
+        <AppBar className={classes.appBarTop}
           position="fixed"
           className={clsx(classes.appBar, {
             [classes.appBarShift]: open,

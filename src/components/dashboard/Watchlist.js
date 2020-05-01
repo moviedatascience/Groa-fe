@@ -39,6 +39,7 @@ function Watchlist({
   const classes = useStyles();
   const screenWidth = widthFinder(window.innerWidth);
 
+  console.log(classes);
   useEffect(() => {
     setFilter("");
     // Returns the users watchlist from the database
@@ -55,7 +56,7 @@ function Watchlist({
   else
     return (
       <GridList
-        className={classes.gridlist}
+        className={classes.cardGrid}
         cols={screenWidth ? 3 : 5}
         cellHeight="auto"
       >

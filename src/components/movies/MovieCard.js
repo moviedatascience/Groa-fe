@@ -24,11 +24,12 @@ const useStyles = makeStyles((theme) => ({
     height: "100%",
     display: "flex",
     flexDirection: "column",
-    border: "1px solid #5B7648",
-    width: '50%',
+    // border: "1px solid #5B7648",
+    width: '100%',
     margin: '1%',
     '&:hover': {
       background: 'black',
+      opacity:'0.3',
     },
     moreInfo: {
       display: 'flex',
