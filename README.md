@@ -3,7 +3,10 @@
 You can find the deployed project at [https://www.groa.us/](https://www.groa.us/).
 
 ## Code Climate
+
+
     [![Maintainability](https://api.codeclimate.com/v1/badges/0fef80620dce0ea0e2ee/maintainability)](https://codeclimate.com/github/Lambda-School-Labs/Groa-fe/maintainability)
+    [![Test Coverage](https://api.codeclimate.com/v1/badges/0fef80620dce0ea0e2ee/test_coverage)](https://codeclimate.com/github/Lambda-School-Labs/Groa-fe/test_coverage)    
 
 ## Contributors
 
