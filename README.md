@@ -2,6 +2,9 @@
 
 You can find the deployed project at [https://www.groa.us/](https://www.groa.us/).
 
+## Code Climate
+    [![Maintainability](https://api.codeclimate.com/v1/badges/0fef80620dce0ea0e2ee/maintainability)](https://codeclimate.com/github/Lambda-School-Labs/Groa-fe/maintainability)
+
 ## Contributors
 
 ### Labs 21
@@ -22,7 +25,9 @@ You can find the deployed project at [https://www.groa.us/](https://www.groa.us/
 ### Labs 23
 
 | [Mike Sinnema](https://github.com/msinnema33) | [Juana Villalpando](https://github.com/jvillalp) | [Steven Matos](https://github.com/Steven-Matos) | [Luis Pepen](https://github.com/azatecas) |
-| :-: | :-:  | :-: | :-: |   
+| :-: | :-:  | :-: | :-: |
+| [<img src="https://avatars0.githubusercontent.com/u/42918544?s=460&v=4" width = "200" />](https://github.com/msinnema33) | [<img src="https://avatars0.githubusercontent.com/u/42918544?s=460&v=4" width = "200" />](https://github.com/jvillalp) | (https://github.com/Steven-Matos) | [<img src="https://avatars0.githubusercontent.com/u/42918544?s=460&v=4" width = "200" />](https://github.com/azatecas) |
+
 <br>
 <br>
 
