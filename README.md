@@ -30,6 +30,8 @@ You can find the deployed project at [https://www.groa.us/](https://www.groa.us/
 | [Mike Sinnema](https://github.com/msinnema33) | [Juana Villalpando](https://github.com/jvillalp) | [Steven Matos](https://github.com/Steven-Matos) | [Luis Pepen](https://github.com/azatecas) |
 | :-: | :-:  | :-: | :-: |
 | [<img src="https://avatars0.githubusercontent.com/u/42918544?s=460&v=4" width = "200" />](https://github.com/msinnema33) | [<img src="https://avatars0.githubusercontent.com/u/42918544?s=460&v=4" width = "200" />](https://github.com/jvillalp) | (https://github.com/Steven-Matos) | [<img src="https://avatars0.githubusercontent.com/u/42918544?s=460&v=4" width = "200" />](https://github.com/azatecas) |
+| [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/msinnema33) | [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/jvillalp) | [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/Steven-Matos) | [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/azatecas) |
+
 
 <br>
 <br>
