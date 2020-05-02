@@ -31,13 +31,13 @@ You can find the deployed project at [https://www.groa.us/](https://www.groa.us/
 | :-: | :-:  | :-: | :-: |
 | [<img src="https://avatars0.githubusercontent.com/u/42918544?s=460&v=4" width = "200" />](https://github.com/msinnema33) | [<img src="https://avatars0.githubusercontent.com/u/42918544?s=460&v=4" width = "200" />](https://github.com/jvillalp) | (https://github.com/Steven-Matos) | [<img src="https://avatars0.githubusercontent.com/u/42918544?s=460&v=4" width = "200" />](https://github.com/azatecas) |
 | [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/msinnema33) | [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/jvillalp) | [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/Steven-Matos) | [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/azatecas) |
-
+|[ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/michael-sinnema-37ba733) ||[ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/) |[ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/) |[ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/luis-pepen-17bb3b196) |
 
 <br>
 <br>
 
 ![MIT](https://img.shields.io/packagist/l/doctrine/orm.svg)
-![React](https://img.shields.io/badge/react-v16.7.0--alpha.2-blue.svg)
+![React](https://img.shields.io/badge/react-v16.13.1-blue.svg)
 ![Typescript](https://img.shields.io/npm/types/typescript.svg?style=flat)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 [![Maintainability](https://api.codeclimate.com/v1/badges/a99a88d28ad37a79dbf6/maintainability)](https://codeclimate.com/github/codeclimate/codeclimate/maintainability)
