@@ -5,8 +5,8 @@ You can find the deployed project at [https://www.groa.us/](https://www.groa.us/
 ## Code Climate
 
 
-    [![Maintainability](https://api.codeclimate.com/v1/badges/0fef80620dce0ea0e2ee/maintainability)](https://codeclimate.com/github/Lambda-School-Labs/Groa-fe/maintainability)
-    [![Test Coverage](https://api.codeclimate.com/v1/badges/0fef80620dce0ea0e2ee/test_coverage)](https://codeclimate.com/github/Lambda-School-Labs/Groa-fe/test_coverage)    
+[![Maintainability](https://api.codeclimate.com/v1/badges/0fef80620dce0ea0e2ee/maintainability)](https://codeclimate.com/github/Lambda-School-Labs/Groa-fe/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/0fef80620dce0ea0e2ee/test_coverage)](https://codeclimate.com/github/Lambda-School-Labs/Groa-fe/test_coverage)    
 
 ## Contributors
 
@@ -29,13 +29,13 @@ You can find the deployed project at [https://www.groa.us/](https://www.groa.us/
 
 | [Mike Sinnema](https://github.com/msinnema33) | [Juana Villalpando](https://github.com/jvillalp) | [Steven Matos](https://github.com/Steven-Matos) | [Luis Pepen](https://github.com/azatecas) |
 | :-: | :-:  | :-: | :-: |
-| [<img src="https://avatars0.githubusercontent.com/u/42918544?s=460&v=4" width = "200" />](https://github.com/msinnema33) | [<img src="https://avatars0.githubusercontent.com/u/42918544?s=460&v=4" width = "200" />](https://github.com/jvillalp) | (https://github.com/Steven-Matos) | [<img src="https://avatars0.githubusercontent.com/u/42918544?s=460&v=4" width = "200" />](https://github.com/azatecas) |
-| [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/msinnema33) | [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/jvillalp) | [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/Steven-Matos) | [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/azatecas) |
+| [https://avatars1.githubusercontent.com/u/54330659?s=400&u=aae15e2802c9301f9bacc644d4611c84156521ab&v=4](https://github.com/msinnema33) | [https://avatars0.githubusercontent.com/u/58449809?s=400&u=c7753d6b021b1cee87e69cfe475c9279f77d7679&v=4](https://github.com/jvillalp) | (https://github.com/Steven-Matos) | [<img src="https://avatars0.githubusercontent.com/u/42918544?s=460&v=4" width = "200" />](https://github.com/azatecas) |
+| [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/msinnema33) | [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/jvillalp) | [https://avatars1.githubusercontent.com/u/38477361?s=400&u=ed6df56daba7072ceb2780001230351c615b159e&v=4 ](https://github.com/Steven-Matos) | [https://avatars1.githubusercontent.com/u/29685279?s=400&u=91c9a8b35d8ff294b6c7ede51ed6f009666b9987&v=4](https://github.com/azatecas) |
 |[ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/michael-sinnema-37ba733) |[ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/juanavillalpando) |[ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/steven-matosFED) |[ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/luis-pepen-17bb3b196) |
 | [Mary Streletska](https://github.com/marinastr) |
 | :-: |
-| [<img src="https://avatars0.githubusercontent.com/u/42918544?s=460&v=4" width = "200" />]https://github.com/marinastr) |
-|[ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/michael-sinnema-37ba733) 
+|[https://avatars0.githubusercontent.com/u/15717759?s=400&u=b9f3e1aca0dffdc58f5b1298e829f4b35e007989&v=4](https://github.com/marinastr) |
+|[ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/mstreletska) |
 <br>
 <br>
 
