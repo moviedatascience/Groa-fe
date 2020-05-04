@@ -58,7 +58,7 @@ Gróa will use our Discovery Engine to present movies suited to your taste based
 - Rating movies
 - Receiving new more fine tuned recommendations based on what you've recently rated.
 - Adding movies to your watchlist
-
+ 
 ## Tech Stack
 
 ### Front end built using:
