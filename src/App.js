@@ -48,6 +48,7 @@ store.subscribe(() => {
 });
 
 function App() {
+  //used to create theme of app
   useEffect(() => reactGAinitialization(), []);
   const theme = React.useMemo(
     () =>
@@ -99,6 +100,7 @@ function App() {
           />
           <Route exact path="/:user_id/upload" component={DataUpload} />
           <Route path="/login" component={Login} />
+          <Route path="/logout" component={Login} />
           <Route exact path={["/", "/register"]} component={Register} />
           {/* this could be a modal */}
           {/* <Route path="/congrats" component={Congrats} /> */}

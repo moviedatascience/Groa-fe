@@ -53,7 +53,7 @@ function Explore({
     return (
       <GridList
         className={classes.cardGrid}
-        cols={screenWidth ? 3 : 5}
+        cols={3}
         cellHeight="auto"
       >
         {movies

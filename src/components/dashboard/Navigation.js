@@ -213,7 +213,7 @@ const Navigation = props => {
   },
   {
     id: 5,
-    name: 'Log Out',
+    name: 'LogOut',
     icon: <ExitToAppRoundedIcon />
   },
   ];
