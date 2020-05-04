@@ -4,9 +4,14 @@ You can find the deployed project at [https://www.groa.us/](https://www.groa.us/
 
 ## Code Climate
 
+![MIT](https://img.shields.io/packagist/l/doctrine/orm.svg)
+![React](https://img.shields.io/badge/react-v16.13.1-blue.svg)
+![Typescript](https://img.shields.io/npm/types/typescript.svg?style=flat)
+[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
+[![Maintainability](https://api.codeclimate.com/v1/badges/a99a88d28ad37a79dbf6/maintainability)](https://codeclimate.com/github/codeclimate/codeclimate/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/a99a88d28ad37a79dbf6/test_coverage)](https://codeclimate.com/github/codeclimate/codeclimate/test_coverage) 
 
-    [![Maintainability](https://api.codeclimate.com/v1/badges/0fef80620dce0ea0e2ee/maintainability)](https://codeclimate.com/github/Lambda-School-Labs/Groa-fe/maintainability)
-    [![Test Coverage](https://api.codeclimate.com/v1/badges/0fef80620dce0ea0e2ee/test_coverage)](https://codeclimate.com/github/Lambda-School-Labs/Groa-fe/test_coverage)    
+more info on using badges [here](https://github.com/badges/shields)
 
 ## Contributors
 
@@ -34,18 +39,7 @@ You can find the deployed project at [https://www.groa.us/](https://www.groa.us/
 |[ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/michael-sinnema-37ba733) |[ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/juanavillalpando) |[ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/steven-matosFED) |[ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/luis-pepen-17bb3b196) |
 | [Mary Streletska](https://www.linkedin.com/in/mstreletska/) |
 | [<img src="https://avatars0.githubusercontent.com/u/15717759?s=400&u=b9f3e1aca0dffdc58f5b1298e829f4b35e007989&v=4" width = "200" />](https://www.linkedin.com/in/mstreletska/) |
-|[ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/mstreletska/) 
-<br>
-<br>
-
-![MIT](https://img.shields.io/packagist/l/doctrine/orm.svg)
-![React](https://img.shields.io/badge/react-v16.13.1-blue.svg)
-![Typescript](https://img.shields.io/npm/types/typescript.svg?style=flat)
-[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
-[![Maintainability](https://api.codeclimate.com/v1/badges/a99a88d28ad37a79dbf6/maintainability)](https://codeclimate.com/github/codeclimate/codeclimate/maintainability)
-[![Test Coverage](https://api.codeclimate.com/v1/badges/a99a88d28ad37a79dbf6/test_coverage)](https://codeclimate.com/github/codeclimate/codeclimate/test_coverage)
-
-more info on using badges [here](https://github.com/badges/shields)
+|[ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/mstreletska/)
 
 ## Project Overview
 
