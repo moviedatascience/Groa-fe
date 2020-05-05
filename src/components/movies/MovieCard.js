@@ -73,12 +73,12 @@ const useStyles = makeStyles((theme) => ({
     // }
   },
   movieImgModal: {
-    width: "50%",
+    width: "30%",
     opacity: 1,
     display: "block",
     backfaceVisibility: "hidden",
     borderRadius: "11px",
-    margin:'auto',
+    margin: 'auto',
     // '&:hover':{
     //   opacity: 0.3,
     // }
@@ -96,7 +96,7 @@ const useStyles = makeStyles((theme) => ({
   },
   paper: {
     // backgroundColor: theme.palette.background.paper,
-    background:'white',
+    background: 'white',
     border: '2px solid #000',
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
@@ -114,7 +114,10 @@ function MovieCard({
   addToWatchlistAction,
   rated,
   ratings,
+  trailer,
+  description,
 }) {
+  // console.log('trailer',trailer)
   const [yourRating, setYourRating] = useState(false);
   /* Used for the star rating */
   const [rating, setRating] = useState(0);
@@ -143,6 +146,7 @@ function MovieCard({
     movie_id: movie_id,
     name: name,
     year: year,
+    // trailer:trailer,
   };
   const handleChange = (event, newValue) => {
     /* Sets rating for the star value */
@@ -164,67 +168,69 @@ function MovieCard({
   return (
     <div className={classes.card}>
       <button type="button" onClick={handleOpen}>
-      <img
-        className={classes.movieImg}
-        src={image}
-        alt="Random Movie poster as a placeholder."
-      />
-      <CardContent className={classes.cardContent}>
-        <Typography className={classes.name}>{name}</Typography>
-      </CardContent>
-      
+        <img
+          className={classes.movieImg}
+          src={image}
+          alt="Random Movie poster as a placeholder."
+        />
+        <CardContent className={classes.cardContent}>
+          <Typography className={classes.name}>{name}</Typography>
+        </CardContent>
+
       </button>
       <Modal
-      aria-labelledby="transition-modal-title"
-      aria-describedby="transition-modal-description"
-      className={classes.modal}
-      open={open}
-      onClose={handleClose}
-      closeAfterTransition
-      BackdropComponent={Backdrop}
-      BackdropProps={{
-        timeout: 500,
-      }}>
- <Fade in={open}>
+        aria-labelledby="transition-modal-title"
+        aria-describedby="transition-modal-description"
+        className={classes.modal}
+        open={open}
+        onClose={handleClose}
+        closeAfterTransition
+        BackdropComponent={Backdrop}
+        BackdropProps={{
+          timeout: 500,
+        }}>
+        <Fade in={open}>
           <div className={classes.paper}>
-          <img
-        className={classes.movieImgModal}
-        src={image}
-        alt="Random Movie poster as a placeholder."
-      />
-      <CardContent className={classes.cardContent}>
-        <Typography className={classes.name}>{name}</Typography>
-      </CardContent>
-          <Typography>{year}</Typography>
-          <CardActions className={classes.cardActions}>
-        <Button
-          onClick={handleClick}
-          className={classes.watchList}
-          disabled={added || inWatchlist || inRatings ? true : false}
-          size="small"
-          color="primary"
-        >
-          {inRatings || yourRating
-            ? "Your rating:"
-            : !added && !inWatchlist
-            ? "Add to watchlist"
-            : "In your watchlist"}
-        </Button>
-      </CardActions>
-      <CardActions>
-        <Stars
-          className={classes.stars}
-          data-test="star"
-          precision={0.5}
-          size="large"
-          emptyIcon={
-            <StarBorderIcon fontSize="inherit" style={{ color: "#ffb400" }} />
-          }
-          name={name}
-          value={rated ? rated : rating}
-          onChange={handleChange}
-        />
-      </CardActions>
+            <img
+              className={classes.movieImgModal}
+              src={image}
+              alt="Random Movie poster as a placeholder."
+            />
+            <CardContent className={classes.cardContent}>
+              <Typography className={classes.name}>{name}</Typography>
+            </CardContent>
+            <Typography>{year}</Typography>
+            <Typography>{description}</Typography>
+            <CardActions className={classes.cardActions}>
+              <Button
+                onClick={handleClick}
+                className={classes.watchList}
+                disabled={added || inWatchlist || inRatings ? true : false}
+                size="small"
+                color="primary"
+              >
+                {inRatings || yourRating
+                  ? "Your rating:"
+                  : !added && !inWatchlist
+                    ? "Add to watchlist"
+                    : "In your watchlist"}
+              </Button>
+            </CardActions>
+            <CardActions>
+              <Stars
+                className={classes.stars}
+                data-test="star"
+                precision={0.5}
+                size="large"
+                emptyIcon={
+                  <StarBorderIcon fontSize="inherit" style={{ color: "#ffb400" }} />
+                }
+                name={name}
+                value={rated ? rated : rating}
+                onChange={handleChange}
+              />
+            </CardActions>
+            <iframe width="285" height="200" src='https://www.youtube.com/embed/K_tLp7T6U1c' frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
           </div>
         </Fade>
       </Modal>

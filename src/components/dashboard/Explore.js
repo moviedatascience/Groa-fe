@@ -91,6 +91,7 @@ function Explore({
                   name={movie.primary_title}
                   year={movie.start_year}
                   movie_id={movie.movie_id}
+                  trailer={movie.trailer_url}
                   rated={rated ? rated.rating : null}
                   image={
                     !posterURI ||
