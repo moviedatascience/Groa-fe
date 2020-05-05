@@ -72,6 +72,9 @@ const useStyles = makeStyles((theme) => ({
           width: "90%",
         },
     },
+    Link:{
+        marginBottom:'2%',
+    },
 }));
 function Onboarding({
   isFetching,
@@ -250,7 +253,7 @@ function Onboarding({
           })}
          
       </GridList>
-      <Link
+      <Link className={classes.Link}
           to={`/${props.userid}/Onboarding2`}>
               Next
               </Link>

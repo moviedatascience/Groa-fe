@@ -14,7 +14,7 @@ import Explore from "./components/dashboard/Explore.js";
 import Onboarding from './components/auth/Onboarding';
 import Onboarding2 from './components/auth/Onboarding2';
 import SearchBar from './components/auth/SearchBar';
-
+import OnboardingPlateform from './components/auth/OnboardingPlateform';
 // for testing
 import { ifDev } from "./utils/removeAttribute.js";
 
@@ -108,6 +108,10 @@ function App() {
               '/:user_id/onboarding2', 
             ]}
             component={SearchBar}
+          />
+          <PrivateRoute 
+          path='/:user_id/onboardingplateform' 
+          component={OnboardingPlateform}
           />
           <PrivateRoute 
           path='/:user_id/onboarding' 
