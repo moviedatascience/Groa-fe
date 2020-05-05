@@ -24,25 +24,23 @@ const useStyles = makeStyles((theme) => ({
     height: "100%",
     display: "flex",
     flexDirection: "column",
-    width: '100%',
-    '&:hover': {
-      background: 'black',
-      opacity:'0.3',
-      
+    width: "100%",
+    "&:hover": {
+      background: "black",
+      opacity: "0.3",
     },
     moreInfo: {
-      display: 'flex',
-      flexDirection: 'row',
+      display: "flex",
+      flexDirection: "row",
     },
   },
 
   cardContent: {
     padding: 0,
-    
   },
   cardActions: {
     fontSize: "10px",
-    padding:0,
+    padding: 0,
   },
   stars: {
     fontSize: "2.5vw",
@@ -65,15 +63,15 @@ const useStyles = makeStyles((theme) => ({
     opacity: 1,
     display: "block",
     backfaceVisibility: "hidden",
-    borderRadius: '11px',
+    borderRadius: "11px",
     // '&:hover':{
     //   opacity: 0.3,
     // }
   },
   watchList: {
     fontSize: "10px",
-    textAlign:'left',
-    padding:0,
+    textAlign: "left",
+    padding: 0,
   },
 }));
 // more fields will be appearing according to the Figma file
@@ -134,12 +132,10 @@ function MovieCard({
         alt="Random Movie poster as a placeholder."
       />
       <CardContent className={classes.cardContent}>
-        <Typography  className={classes.name}>
-          {name}
-        </Typography>
+        <Typography className={classes.name}>{name}</Typography>
         <Typography>{year}</Typography>
       </CardContent>
-      <CardActions className={classes.cardActions} >
+      <CardActions className={classes.cardActions}>
         <Button
           onClick={handleClick}
           className={classes.watchList}
@@ -150,8 +146,8 @@ function MovieCard({
           {inRatings || yourRating
             ? "Your rating:"
             : !added && !inWatchlist
-              ? "Add to watchlist"
-              : "In your watchlist"}
+            ? "Add to watchlist"
+            : "In your watchlist"}
         </Button>
       </CardActions>
       <CardActions>

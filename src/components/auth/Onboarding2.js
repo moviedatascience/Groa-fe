@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect } from "react";
 // import Onboarding from '../lib';
 // import reactOnboardingPro from "react-onboarding-pro";
 // import "react-onboarding-pro/build/index.css";
@@ -21,7 +21,6 @@ import { makeStyles } from "@material-ui/core/styles";
 import { ifDev } from "../../utils/removeAttribute.js";
 import { Link } from "react-router-dom";
 
-
 const useStyles = makeStyles((theme) => ({
   cardGrid: {
     paddingTop: theme.spacing(4),
@@ -29,18 +28,20 @@ const useStyles = makeStyles((theme) => ({
     paddingRight: theme.spacing(2),
     paddingLeft: theme.spacing(2),
   },
-
 }));
-function Onboarding2({
-  isFetching,
-  movies,
-  userid,
-  recommendationAction,
-  getMoviesAction,
-  searchTerm,
-  setFilter,
-  ratings,
-}, props) {
+function Onboarding2(
+  {
+    isFetching,
+    movies,
+    userid,
+    recommendationAction,
+    getMoviesAction,
+    searchTerm,
+    setFilter,
+    ratings,
+  },
+  props
+) {
   const classes = useStyles();
   const screenWidth = widthFinder(window.innerWidth);
 
@@ -57,11 +58,7 @@ function Onboarding2({
   if (isFetching) return <LoadingScreen />;
   else
     return (
-        <GridList
-        className={classes.cardGrid}
-        cols={3}
-        cellHeight="auto"
-      >
+      <GridList className={classes.cardGrid} cols={3} cellHeight="auto">
         {movies
           .filter((movie) =>
             !ratings.includes(
@@ -70,9 +67,9 @@ function Onboarding2({
                 film.start_year === movie.start_year
             ).length && searchTerm !== ""
               ? movie.primary_title
-                .toString()
-                .toLowerCase()
-                .includes(searchTerm.toLowerCase())
+                  .toString()
+                  .toLowerCase()
+                  .includes(searchTerm.toLowerCase())
               : true
           )
           .slice(0, cardAmount)
@@ -100,10 +97,10 @@ function Onboarding2({
                   rated={rated ? rated.rating : null}
                   image={
                     !posterURI ||
-                      posterURI === "None" ||
-                      posterURI === "No poster" ||
-                      posterURI === "No Poster" ||
-                      posterURI === "Not in table"
+                    posterURI === "None" ||
+                    posterURI === "No poster" ||
+                    posterURI === "No Poster" ||
+                    posterURI === "Not in table"
                       ? unsplashUrl
                       : moviePoster
                   }
@@ -111,26 +108,26 @@ function Onboarding2({
               </div>
             );
           })}
-          {/* <button 
+        {/* <button 
           component="a" 
           href='/:user_id/onboarding2/'> */}
       </GridList>
     );
-};
+}
 
 const mapStateToProps = (state) => {
-    return {
-        userid: state.login.userid,
-        isFetching: state.movie.isFetching,
-        movies: state.movie.movies,
-        moviesError: state.movie.error,
-        searchTerm: state.filter.searchTerm,
-        watchlist: state.watchlist.movies,
-        ratings: state.rating.movies,
-    };
+  return {
+    userid: state.login.userid,
+    isFetching: state.movie.isFetching,
+    movies: state.movie.movies,
+    moviesError: state.movie.error,
+    searchTerm: state.filter.searchTerm,
+    watchlist: state.watchlist.movies,
+    ratings: state.rating.movies,
+  };
 };
 export default connect(mapStateToProps, {
-    getMoviesAction,
-    recommendationAction,
-    setFilter,
+  getMoviesAction,
+  recommendationAction,
+  setFilter,
 })(Onboarding2);
