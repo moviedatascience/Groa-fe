@@ -12,6 +12,8 @@ import Watchlist from "./components/dashboard/Watchlist.js";
 import Ratings from './components/dashboard/Ratings';
 import Explore from "./components/dashboard/Explore.js";
 import Onboarding from './components/auth/Onboarding';
+import Onboarding2 from './components/auth/Onboarding2';
+import SearchBar from './components/auth/SearchBar';
 
 // for testing
 import { ifDev } from "./utils/removeAttribute.js";
@@ -99,16 +101,27 @@ function App() {
             path="/:user_id/watchlist"
             component={Watchlist}
           />
+          <Route
+            exact
+            path={[
+              '/:user_id/onboarding',
+              '/:user_id/onboarding2', 
+            ]}
+            component={SearchBar}
+          />
           <PrivateRoute 
           path='/:user_id/onboarding' 
           component={Onboarding}
           />
+           <PrivateRoute 
+          path='/:user_id/onboarding2' 
+          component={Onboarding2}
+          />
 
           <Route exact path="/:user_id/upload" component={DataUpload} />
-          <Route path="/login" component={Login} />
+          <Route exact path={["/","/login" ]} component={Login} />
           <Route path="/logout" component={Login} />
-          {/* <Route path='/onboarding' component={Onboarding}/> */}
-          <Route exact path={["/", "/register"]} component={Register} />
+          <Route path="/register" component={Register} />
           {/* this could be a modal */}
           {/* <Route path="/congrats" component={Congrats} /> */}
           <PrivateRoute exact path="/:user_id/ratings" component={Ratings}/>
