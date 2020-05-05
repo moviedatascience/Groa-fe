@@ -9,6 +9,10 @@ import Button from "@material-ui/core/Button";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
+//for modal
+import Modal from '@material-ui/core/Modal';
+import Backdrop from '@material-ui/core/Backdrop';
+import Fade from '@material-ui/core/Fade';
 
 const useStyles = makeStyles((theme) => ({
   control: {
@@ -68,10 +72,34 @@ const useStyles = makeStyles((theme) => ({
     //   opacity: 0.3,
     // }
   },
+  movieImgModal: {
+    width: "50%",
+    opacity: 1,
+    display: "block",
+    backfaceVisibility: "hidden",
+    borderRadius: "11px",
+    margin:'auto',
+    // '&:hover':{
+    //   opacity: 0.3,
+    // }
+  },
   watchList: {
     fontSize: "10px",
     textAlign: "left",
     padding: 0,
+  },
+  //modal
+  modal: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  paper: {
+    // backgroundColor: theme.palette.background.paper,
+    background:'white',
+    border: '2px solid #000',
+    boxShadow: theme.shadows[5],
+    padding: theme.spacing(2, 4, 3),
   },
 }));
 // more fields will be appearing according to the Figma file
@@ -101,6 +129,15 @@ function MovieCard({
   );
   //material-ui
   const classes = useStyles();
+  const [open, setOpen] = React.useState(false);
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
   /* Used to format the movie object for action calls */
   let movie = {
     movie_id: movie_id,
@@ -126,6 +163,7 @@ function MovieCard({
   };
   return (
     <div className={classes.card}>
+      <button type="button" onClick={handleOpen}>
       <img
         className={classes.movieImg}
         src={image}
@@ -133,9 +171,32 @@ function MovieCard({
       />
       <CardContent className={classes.cardContent}>
         <Typography className={classes.name}>{name}</Typography>
-        <Typography>{year}</Typography>
       </CardContent>
-      <CardActions className={classes.cardActions}>
+      
+      </button>
+      <Modal
+      aria-labelledby="transition-modal-title"
+      aria-describedby="transition-modal-description"
+      className={classes.modal}
+      open={open}
+      onClose={handleClose}
+      closeAfterTransition
+      BackdropComponent={Backdrop}
+      BackdropProps={{
+        timeout: 500,
+      }}>
+ <Fade in={open}>
+          <div className={classes.paper}>
+          <img
+        className={classes.movieImgModal}
+        src={image}
+        alt="Random Movie poster as a placeholder."
+      />
+      <CardContent className={classes.cardContent}>
+        <Typography className={classes.name}>{name}</Typography>
+      </CardContent>
+          <Typography>{year}</Typography>
+          <CardActions className={classes.cardActions}>
         <Button
           onClick={handleClick}
           className={classes.watchList}
@@ -164,6 +225,9 @@ function MovieCard({
           onChange={handleChange}
         />
       </CardActions>
+          </div>
+        </Fade>
+      </Modal>
     </div>
   );
 }
