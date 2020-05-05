@@ -11,7 +11,7 @@ import OnboardingImg from "../../img/happy-running-person.png";
 function OnboardingPlateform({ userid }) {
   return (
     <div className="App">
-      <img src={OnboardingImg} />
+      <img src={OnboardingImg} alt="onboarding girl jumping" />
       <h1>You're Almost There</h1>
       <p>
         Help Groa personalize your recommendations! Groa works better when you
