@@ -17,6 +17,7 @@ import MovieCard from "../movies/MovieCard.js";
 import { GridList } from "@material-ui/core/";
 import { makeStyles } from "@material-ui/core/styles";
 
+
 const useStyles = makeStyles((theme) => ({
   cardGrid: {
     paddingTop: theme.spacing(4),
@@ -62,6 +63,7 @@ function Watchlist({
         cellHeight="auto"
 
       >
+      {/* <div> */}
         {watchlist
           .filter((movie) =>
             searchTerm !== ""
@@ -103,6 +105,7 @@ function Watchlist({
               </div>
             );
           })};
+          {/* </div> */}
         </GridList>
     );
 }

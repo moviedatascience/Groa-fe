@@ -79,7 +79,7 @@ const Register = (props) => {
       email: users.email,
       password: users.password,
     };
-    console.log("user before register button", user);
+    // console.log("user before register button", user);
     props.registerAction(user, props.history);
   };
 
