@@ -88,9 +88,12 @@ function Explore({
               <div>
                 <MovieCard
                   key={index}
+                  page={"Explore"}
                   name={movie.primary_title}
                   year={movie.start_year}
                   movie_id={movie.movie_id}
+                  description={movie.description}
+                  trailer={movie.trailer}
                   rated={rated ? rated.rating : null}
                   image={
                     !posterURI ||

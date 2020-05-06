@@ -36,13 +36,16 @@ function Watchlist({
   searchTerm,
   removeFromWatchlistAction,
   setFilter,
+  movies,
 }) {
+  console.log('movies', movies)
+
   const [deleteMode, setDeleteMode] = useState(false);
   //for matieral-ui
   const classes = useStyles();
   const screenWidth = widthFinder(window.innerWidth);
 
-  console.log(classes);
+  // console.log(classes);
   useEffect(() => {
     setFilter("");
     // Returns the users watchlist from the database
@@ -84,6 +87,8 @@ function Watchlist({
                   key={index}
                   name={movie.primary_title}
                   year={movie.start_year}
+                  trailer={movie.trailer_url}
+                  description={movie.description}                  
                   image={
                     !posterURI ||
                       posterURI === "None" ||
