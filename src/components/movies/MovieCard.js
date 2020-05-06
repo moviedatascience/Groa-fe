@@ -16,12 +16,13 @@ import Fade from '@material-ui/core/Fade';
 
 const useStyles = makeStyles((theme) => ({
   nameModal:{
-    fontSize:'20px',
+    fontSize:'25px',
     // textAlign:'center',
     paddingBottom:'5%',
   },
   descriptionModal:{
 color:'black',
+fontSize:'20px',
   },
   control: {
     padding: theme.spacing(2),
@@ -128,7 +129,7 @@ color:'black',
   starsModal:{
     justifyContent: 'center',
     display: 'flex',
-    fontSize: "9vw",
+    fontSize: "7vw",
   },
 }));
 // more fields will be appearing according to the Figma file
