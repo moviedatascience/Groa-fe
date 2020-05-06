@@ -100,6 +100,7 @@ const useStyles = makeStyles((theme) => ({
     border: '2px solid #000',
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
+    color: 'black',
   },
 }));
 // more fields will be appearing according to the Figma file
@@ -116,6 +117,7 @@ function MovieCard({
   ratings,
   trailer,
   description,
+  page
 }) {
   // console.log('trailer',trailer)
   const [yourRating, setYourRating] = useState(false);
@@ -146,7 +148,7 @@ function MovieCard({
     movie_id: movie_id,
     name: name,
     year: year,
-    // trailer:trailer,
+    description: description,
   };
   const handleChange = (event, newValue) => {
     /* Sets rating for the star value */
@@ -197,7 +199,7 @@ function MovieCard({
               alt="Random Movie poster as a placeholder."
             />
             <CardContent className={classes.cardContent}>
-              <Typography className={classes.name}>{name}</Typography>
+              <h1 className={classes.name}> {name} </h1>
             </CardContent>
             <Typography>{year}</Typography>
             <Typography>{description}</Typography>
@@ -230,7 +232,10 @@ function MovieCard({
                 onChange={handleChange}
               />
             </CardActions>
-            <iframe width="285" height="200" src='https://www.youtube.com/embed/K_tLp7T6U1c' frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            {console.log("The page is " + page)}
+            {page !== "Onboarding" ? <iframe width="285" height="200" src='https://player.vimeo.com/video/410011254?title=0&byline=0&portrait=0&badge=0' frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> : ""}
+            {/* <iframe width="285" height="200" src={trailer} frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> */}
+            {/* <iframe src="https://player.vimeo.com/video/410011254?title=0&byline=0&portrait=0&badge=0" width="400" height="315" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe> */}
           </div>
         </Fade>
       </Modal>

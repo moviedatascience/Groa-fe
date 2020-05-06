@@ -155,8 +155,9 @@ function Onboarding(
                                     <MovieCard
                                         key={index}
                                         name={movie.primary_title}
-                                        year={movie.start_year}
-                                        trailer={movie.trailer_url}
+                                        page={"Onboarding"}
+                                        // year={movie.start_year}
+                                        // trailer={movie.trailer_url}
                                         description={movie.description}
                                         movie_id={movie.movie_id}
                                         rated={rated ? rated.rating : null}
