@@ -4,25 +4,63 @@ import { ratingAction, addToWatchlistAction } from "../../store/actions";
 import Stars from "@material-ui/lab/Rating";
 import StarBorderIcon from "@material-ui/icons/StarBorder";
 //for grid
-import { makeStyles } from "@material-ui/core/styles";
-import Button from "@material-ui/core/Button";
-import CardActions from "@material-ui/core/CardActions";
-import CardContent from "@material-ui/core/CardContent";
-import Typography from "@material-ui/core/Typography";
-//for modal
-import Modal from '@material-ui/core/Modal';
-import Backdrop from '@material-ui/core/Backdrop';
-import Fade from '@material-ui/core/Fade';
+import { makeStyles, withStyles } from "@material-ui/core/styles";
+import {
+  Button,
+  CardActions,
+  CardContent,
+  Typography,
+  Modal,
+  Backdrop,
+  Fade,
+  IconButton,
+} from "@material-ui/core";
+import CloseIcon from "@material-ui/icons/Close";
+
+const styles = (theme) => ({
+  closeBtn: {
+    display: "flex",
+    justifyContent: "space-between",
+  },
+  closeButton: {
+    paddingLeft: "200px",
+    color: theme.palette.grey[500],
+  },
+});
+
+const DialogTitle = withStyles(styles)((props) => {
+  const { children, classes, onClose, ...other } = props;
+  return (
+    <div className={classes.closeBtn}>
+      <Typography variant="h6">{children}</Typography>
+      {onClose ? (
+        <IconButton
+          aria-label="close"
+          className={classes.closeButton}
+          onClick={onClose}
+        >
+          <CloseIcon />
+        </IconButton>
+      ) : null}
+    </div>
+  );
+});
 
 const useStyles = makeStyles((theme) => ({
-  nameModal:{
-    fontSize:'25px',
-    // textAlign:'center',
-    paddingBottom:'5%',
+  nameModal: {
+    fontSize: "25px",
+    paddingBottom: "2%",
   },
-  descriptionModal:{
-color:'black',
-fontSize:'20px',
+  year: {
+    fontSize: "18px",
+    paddingBottom: "1%",
+  },
+  descriptionModal: {
+    color: "white",
+    fontSize: "15px",
+  },
+  span: {
+    fontWeight: "bold",
   },
   control: {
     padding: theme.spacing(2),
@@ -82,12 +120,11 @@ fontSize:'20px',
     // }
   },
   movieImgModal: {
-    width: "50%",
     opacity: 1,
     display: "block",
     backfaceVisibility: "hidden",
     borderRadius: "11px",
-    margin: 'auto',
+    margin: "auto",
     // '&:hover':{
     //   opacity: 0.3,
     // }
@@ -99,39 +136,56 @@ fontSize:'20px',
   },
   //modal
   modal: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    overflow: "scroll",
   },
   paper: {
     // backgroundColor: theme.palette.background.paper,
-    background: 'white',
-    border: '2px solid #000',
+    background: "rgb(23, 23, 23, .96)",
+    marginTop: "auto",
+    width: "55rem",
     boxShadow: theme.shadows[5],
-    padding: theme.spacing(2, 4, 3),
-    color: 'black',
-    // display: 'flex'
+    padding: theme.spacing(0, 4, 3),
+    color: "white",
   },
   movieInfoModal: {
-    display: 'flex',
-    // flexDirection:'row',
+    display: "flex",
   },
-  watchStarsModal:{
-    justifyContent: 'center',
-    display: 'flex',
-
+  watchStarsModal: {
+    justifyContent: "center",
+    display: "flex",
   },
-  cardActionsModal:{
-    justifyContent: 'center',
-    display: 'flex',
+  cardActionsModal: {
+    justifyContent: "center",
+    display: "flex",
   },
-  starsModal:{
-    justifyContent: 'center',
-    display: 'flex',
-    fontSize: "7vw",
+  starsModal: {
+    justifyContent: "center",
+    display: "flex",
+    fontSize: "3vw",
+  },
+  actionBtn: {
+    padding: "1rem",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "space-evenly",
+  },
+  [theme.breakpoints.down("xs")]: {
+    movieInfoModal: {
+      flexDirection: "column",
+    },
+    nameModal: {},
+    paper: {
+      width: "17rem",
+    },
+    starsModal: {
+      fontSize: "3vw",
+    },
   },
 }));
+
 // more fields will be appearing according to the Figma file
 function MovieCard({
   userid,
@@ -146,7 +200,7 @@ function MovieCard({
   ratings,
   trailer,
   description,
-  page
+  page,
 }) {
   // console.log('trailer',trailer)
   const [yourRating, setYourRating] = useState(false);
@@ -207,7 +261,6 @@ function MovieCard({
         <CardContent className={classes.cardContent}>
           <Typography className={classes.name}>{name}</Typography>
         </CardContent>
-
       </button>
       <Modal
         aria-labelledby="transition-modal-title"
@@ -219,57 +272,91 @@ function MovieCard({
         BackdropComponent={Backdrop}
         BackdropProps={{
           timeout: 500,
-        }}>
+        }}
+      >
         <Fade in={open}>
           <div className={classes.paper}>
+            <DialogTitle className={classes.title} onClose={handleClose}>
+              <></>
+            </DialogTitle>
             <div className={classes.movieInfoModal}>
-              <img
-                className={classes.movieImgModal}
-                src={image}
-                alt="Random Movie poster as a placeholder."
-              />
-              <CardContent className={classes.cardContentModal}>
-                <h1 className={classes.nameModal}> {name} </h1>
-
-                <Typography>{year}</Typography>
-                <p className={classes.descriptionModal}>{description}</p>
-              </CardContent>
-            </div>
-            {page !== "Onboarding" ?
-              <CardActions className={classes.cardActionsModal}>
-                <Button
-                  onClick={handleClick}
-                  className={classes.watchList}
-                  disabled={added || inWatchlist || inRatings ? true : false}
-                  size="small"
-                  color="primary"
-                >
-                  {inRatings || yourRating
-                    ? "Your rating:"
-                    : !added && !inWatchlist
-                      ? "Add to watchlist"
-                      : "In your watchlist"}
-                </Button>
-              </CardActions> : ""}
-              {/* <CardActions> */}
-                <Stars
-                  className={classes.starsModal}
-                  data-test="star"
-                  precision={0.5}
-                  size="large"
-                  emptyIcon={
-                    <StarBorderIcon fontSize="inherit" style={{ color: "#ffb400" }} />
-                  }
-                  name={name}
-                  value={rated ? rated : rating}
-                  onChange={handleChange}
+              <div>
+                <img
+                  className={classes.movieImgModal}
+                  src={image}
+                  alt="Random Movie poster as a placeholder."
                 />
-              {/* </CardActions> */}
-              {/* {console.log("The page is " + page)} */}
-              {page !== "Onboarding" ? <iframe width="440" height="315" src="https://www.youtube.com/embed/9rmbeyCnCTQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> : ""}
-              {/* <iframe width="285" height="200" src={trailer} frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> */}
-              {/* <iframe src="https://player.vimeo.com/video/410011254?title=0&byline=0&portrait=0&badge=0" width="400" height="315" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe> */}
+              </div>
+              <div>
+                <CardContent className={classes.cardContentModal}>
+                  <h1 className={classes.nameModal}> {name} </h1>
+                  <Typography className={classes.year}>{year}</Typography>
+                  <p className={classes.descriptionModal}>
+                    <span className={classes.span}>Description: </span>
+                    Lorem Ipsum is simply dummy text of the printing and
+                    typesetting industry. Lorem Ipsum has been the industry's
+                    standard dummy text ever since the 1500s, when an unknown
+                    printer took a galley of type and scrambled it to make a
+                    type specimen book. It has survived not only five centuries,
+                    but also the leap
+                  </p>
+                </CardContent>
+                <div>
+                  {page !== "Onboarding" ? (
+                    <CardActions className={classes.cardActionsModal}>
+                      <Button
+                        onClick={handleClick}
+                        className={classes.watchList}
+                        disabled={
+                          added || inWatchlist || inRatings ? true : false
+                        }
+                        size="small"
+                        color="primary"
+                      >
+                        {inRatings || yourRating
+                          ? "Your rating:"
+                          : !added && !inWatchlist
+                          ? "Add to watchlist"
+                          : "In your watchlist"}
+                      </Button>
+                    </CardActions>
+                  ) : (
+                    ""
+                  )}
+                  <Stars
+                    className={classes.starsModal}
+                    data-test="star"
+                    precision={0.5}
+                    size="large"
+                    emptyIcon={
+                      <StarBorderIcon
+                        fontSize="inherit"
+                        style={{ color: "#ffb400" }}
+                      />
+                    }
+                    name={name}
+                    value={rated ? rated : rating}
+                    onChange={handleChange}
+                  />
+                </div>
+              </div>
             </div>
+
+            {page !== "Onboarding" ? (
+              // eslint-disable-next-line jsx-a11y/iframe-has-title
+              <iframe
+                width="440"
+                height="315"
+                frameborder="0"
+                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen
+              ></iframe>
+            ) : (
+              ""
+            )}
+            {/* <iframe width="285" height="200" src={trailer} frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> */}
+            {/* <iframe src="https://player.vimeo.com/video/410011254?title=0&byline=0&portrait=0&badge=0" width="400" height="315" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe> */}
+          </div>
           {/* </div> */}
         </Fade>
       </Modal>

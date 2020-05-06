@@ -17,7 +17,6 @@ import MovieCard from "../movies/MovieCard.js";
 import { GridList } from "@material-ui/core/";
 import { makeStyles } from "@material-ui/core/styles";
 
-
 const useStyles = makeStyles((theme) => ({
   cardGrid: {
     paddingTop: theme.spacing(4),
@@ -38,7 +37,7 @@ function Watchlist({
   setFilter,
   movies,
 }) {
-  console.log('movies', movies)
+  console.log("movies", movies);
 
   const [deleteMode, setDeleteMode] = useState(false);
   //for matieral-ui
@@ -64,16 +63,15 @@ function Watchlist({
         className={classes.cardGrid}
         cols={screenWidth ? 3 : 5}
         cellHeight="auto"
-
       >
-      {/* <div> */}
+        {/* <div> */}
         {watchlist
           .filter((movie) =>
             searchTerm !== ""
               ? movie.primary_title
-                .toString()
-                .toLowerCase()
-                .includes(searchTerm.toLowerCase())
+                  .toString()
+                  .toLowerCase()
+                  .includes(searchTerm.toLowerCase())
               : true
           )
           .map((movie, index) => {
@@ -88,13 +86,14 @@ function Watchlist({
                   name={movie.primary_title}
                   year={movie.start_year}
                   trailer={movie.trailer_url}
-                  description={movie.description}                  
+                  description={movie.description}
+                  page="Onboarding"
                   image={
                     !posterURI ||
-                      posterURI === "None" ||
-                      posterURI === "No poster" ||
-                      posterURI === "No Poster" ||
-                      posterURI === "Not in table"
+                    posterURI === "None" ||
+                    posterURI === "No poster" ||
+                    posterURI === "No Poster" ||
+                    posterURI === "Not in table"
                       ? unsplashUrl
                       : moviePoster
                   }
@@ -105,13 +104,13 @@ function Watchlist({
                     onClick={() => handleClick(movie.id)}
                   >
                     x
-                    </button>
+                  </button>
                 )}
               </div>
             );
-          })};
-          {/* </div> */}
-        </GridList>
+          })}
+        ;{/* </div> */}
+      </GridList>
     );
 }
 
