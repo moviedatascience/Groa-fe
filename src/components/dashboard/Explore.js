@@ -53,7 +53,7 @@ function Explore({
     return (
       <GridList
         className={classes.cardGrid}
-        cols={3}
+        cols={screenWidth ? 3 : 5}
         cellHeight="auto"
       >
         {movies
@@ -64,9 +64,9 @@ function Explore({
                 film.start_year === movie.start_year
             ).length && searchTerm !== ""
               ? movie.primary_title
-                .toString()
-                .toLowerCase()
-                .includes(searchTerm.toLowerCase())
+                  .toString()
+                  .toLowerCase()
+                  .includes(searchTerm.toLowerCase())
               : true
           )
           .slice(0, cardAmount)
@@ -97,10 +97,10 @@ function Explore({
                   rated={rated ? rated.rating : null}
                   image={
                     !posterURI ||
-                      posterURI === "None" ||
-                      posterURI === "No poster" ||
-                      posterURI === "No Poster" ||
-                      posterURI === "Not in table"
+                    posterURI === "None" ||
+                    posterURI === "No poster" ||
+                    posterURI === "No Poster" ||
+                    posterURI === "Not in table"
                       ? unsplashUrl
                       : moviePoster
                   }

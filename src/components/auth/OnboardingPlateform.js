@@ -1,10 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import {
-  loginAction,
-  setFilter,
-  recommendationAction,
-} from "../../store/actions";
+import { setFilter } from "../../store/actions";
 import { Link } from "react-router-dom";
 //img
 import OnboardingImg from "../../img/happy-running-person.png";
