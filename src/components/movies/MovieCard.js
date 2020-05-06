@@ -15,6 +15,14 @@ import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
 
 const useStyles = makeStyles((theme) => ({
+  nameModal:{
+    fontSize:'20px',
+    // textAlign:'center',
+    paddingBottom:'5%',
+  },
+  descriptionModal:{
+color:'black',
+  },
   control: {
     padding: theme.spacing(2),
   },
@@ -73,7 +81,7 @@ const useStyles = makeStyles((theme) => ({
     // }
   },
   movieImgModal: {
-    width: "30%",
+    width: "50%",
     opacity: 1,
     display: "block",
     backfaceVisibility: "hidden",
@@ -93,6 +101,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
+
   },
   paper: {
     // backgroundColor: theme.palette.background.paper,
@@ -101,6 +110,25 @@ const useStyles = makeStyles((theme) => ({
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
     color: 'black',
+    // display: 'flex'
+  },
+  movieInfoModal: {
+    display: 'flex',
+    // flexDirection:'row',
+  },
+  watchStarsModal:{
+    justifyContent: 'center',
+    display: 'flex',
+
+  },
+  cardActionsModal:{
+    justifyContent: 'center',
+    display: 'flex',
+  },
+  starsModal:{
+    justifyContent: 'center',
+    display: 'flex',
+    fontSize: "9vw",
   },
 }));
 // more fields will be appearing according to the Figma file
@@ -193,50 +221,55 @@ function MovieCard({
         }}>
         <Fade in={open}>
           <div className={classes.paper}>
-            <img
-              className={classes.movieImgModal}
-              src={image}
-              alt="Random Movie poster as a placeholder."
-            />
-            <CardContent className={classes.cardContent}>
-              <h1 className={classes.name}> {name} </h1>
-            </CardContent>
-            <Typography>{year}</Typography>
-            <Typography>{description}</Typography>
-            <CardActions className={classes.cardActions}>
-              <Button
-                onClick={handleClick}
-                className={classes.watchList}
-                disabled={added || inWatchlist || inRatings ? true : false}
-                size="small"
-                color="primary"
-              >
-                {inRatings || yourRating
-                  ? "Your rating:"
-                  : !added && !inWatchlist
-                    ? "Add to watchlist"
-                    : "In your watchlist"}
-              </Button>
-            </CardActions>
-            <CardActions>
-              <Stars
-                className={classes.stars}
-                data-test="star"
-                precision={0.5}
-                size="large"
-                emptyIcon={
-                  <StarBorderIcon fontSize="inherit" style={{ color: "#ffb400" }} />
-                }
-                name={name}
-                value={rated ? rated : rating}
-                onChange={handleChange}
+            <div className={classes.movieInfoModal}>
+              <img
+                className={classes.movieImgModal}
+                src={image}
+                alt="Random Movie poster as a placeholder."
               />
-            </CardActions>
-            {console.log("The page is " + page)}
-            {page !== "Onboarding" ? <iframe width="285" height="200" src='https://player.vimeo.com/video/410011254?title=0&byline=0&portrait=0&badge=0' frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> : ""}
-            {/* <iframe width="285" height="200" src={trailer} frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> */}
-            {/* <iframe src="https://player.vimeo.com/video/410011254?title=0&byline=0&portrait=0&badge=0" width="400" height="315" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe> */}
-          </div>
+              <CardContent className={classes.cardContentModal}>
+                <h1 className={classes.nameModal}> {name} </h1>
+
+                <Typography>{year}</Typography>
+                <p className={classes.descriptionModal}>{description}</p>
+              </CardContent>
+            </div>
+            {page !== "Onboarding" ?
+              <CardActions className={classes.cardActionsModal}>
+                <Button
+                  onClick={handleClick}
+                  className={classes.watchList}
+                  disabled={added || inWatchlist || inRatings ? true : false}
+                  size="small"
+                  color="primary"
+                >
+                  {inRatings || yourRating
+                    ? "Your rating:"
+                    : !added && !inWatchlist
+                      ? "Add to watchlist"
+                      : "In your watchlist"}
+                </Button>
+              </CardActions> : ""}
+              {/* <CardActions> */}
+                <Stars
+                  className={classes.starsModal}
+                  data-test="star"
+                  precision={0.5}
+                  size="large"
+                  emptyIcon={
+                    <StarBorderIcon fontSize="inherit" style={{ color: "#ffb400" }} />
+                  }
+                  name={name}
+                  value={rated ? rated : rating}
+                  onChange={handleChange}
+                />
+              {/* </CardActions> */}
+              {/* {console.log("The page is " + page)} */}
+              {page !== "Onboarding" ? <iframe width="440" height="315" src="https://www.youtube.com/embed/9rmbeyCnCTQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> : ""}
+              {/* <iframe width="285" height="200" src={trailer} frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> */}
+              {/* <iframe src="https://player.vimeo.com/video/410011254?title=0&byline=0&portrait=0&badge=0" width="400" height="315" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe> */}
+            </div>
+          {/* </div> */}
         </Fade>
       </Modal>
     </div>
