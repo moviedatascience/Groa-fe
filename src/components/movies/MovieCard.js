@@ -29,7 +29,7 @@ const styles = (theme) => ({
 });
 
 const DialogTitle = withStyles(styles)((props) => {
-  const { children, classes, onClose, ...other } = props;
+  const { children, classes, onClose } = props;
   return (
     <div className={classes.closeBtn}>
       <Typography variant="h6">{children}</Typography>
@@ -45,7 +45,6 @@ const DialogTitle = withStyles(styles)((props) => {
     </div>
   );
 });
-
 
 const useStyles = makeStyles((theme) => ({
   nameModal: {
@@ -176,7 +175,7 @@ const useStyles = makeStyles((theme) => ({
   },
   [theme.breakpoints.down("xs")]: {
     movieImgModal: {
-      width: '80%',
+      width: "80%",
     },
     paper: {
       width: "17rem",
@@ -249,7 +248,6 @@ function MovieCard({
     // console.log(newRating);
     ratingAction(userid, newRating);
     setYourRating(true);
-
   };
   const handleClick = () => {
     /* Adds movie to the POST request */
@@ -323,15 +321,13 @@ function MovieCard({
                         {inRatings || yourRating
                           ? "Your rating:"
                           : !added && !inWatchlist
-                            ? "Add to watchlist"
-                            : "In your watchlist"}
+                          ? "Add to watchlist"
+                          : "In your watchlist"}
                       </Button>
                     </CardActions>
                   ) : (
-                      ""
-                    )}
-  
-  
+                    ""
+                  )}
 
                   <Stars
                     className={classes.starsModal}
@@ -349,16 +345,22 @@ function MovieCard({
                     onChange={handleChange}
                     onClick={multiFunctions}
                   />
-
                 </div>
               </div>
             </div>
             {page !== "Onboarding" ? (
               // eslint-disable-next-line jsx-a11y/iframe-has-title
-              <iframe width="400" height="420" src={trailer} frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              <iframe
+                width="400"
+                height="420"
+                src={trailer}
+                frameborder="0"
+                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen
+              ></iframe>
             ) : (
-                ""
-              )}
+              ""
+            )}
             {/* <iframe width="285" height="200" src={trailer} frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> */}
             {/* <iframe src="https://player.vimeo.com/video/410011254?title=0&byline=0&portrait=0&badge=0" width="400" height="315" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe> */}
           </div>
