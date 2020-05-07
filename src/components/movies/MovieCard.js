@@ -16,13 +16,7 @@ import {
   IconButton,
 } from "@material-ui/core";
 import CloseIcon from "@material-ui/icons/Close";
-//to rate and get an alert
-import Snackbar from '@material-ui/core/Snackbar';
-import MuiAlert from '@material-ui/lab/Alert';
 
-function Alert(props) {
-  return <MuiAlert elevation={6} variant="filled" {...props} />;
-}
 const styles = (theme) => ({
   closeBtn: {
     display: "flex",
@@ -51,6 +45,7 @@ const DialogTitle = withStyles(styles)((props) => {
     </div>
   );
 });
+
 
 const useStyles = makeStyles((theme) => ({
   nameModal: {
@@ -211,6 +206,7 @@ function MovieCard({
   trailer,
   description,
   page,
+  handleClickStar,
 }) {
   const [yourRating, setYourRating] = useState(false);
   /* Used for the star rating */
@@ -250,15 +246,22 @@ function MovieCard({
       movie_id: movie.movie_id,
       rating: newValue,
     };
-    console.log(newRating);
+    // console.log(newRating);
     ratingAction(userid, newRating);
     setYourRating(true);
+
   };
   const handleClick = () => {
     /* Adds movie to the POST request */
     addToWatchlistAction(userid, movie);
     setAdded(true);
   };
+
+  const multiFunctions = () => {
+    handleClose();
+    handleClickStar();
+  };
+
   return (
     <div className={classes.card}>
       <button type="button" onClick={handleOpen}>
@@ -327,37 +330,32 @@ function MovieCard({
                   ) : (
                       ""
                     )}
-                    <Button variant="outlined" onClick={handleClick}>
-                     <Stars
-                     className={classes.starsModal}
-                     data-test="star"
-                     precision={0.5}
-                     size="large"
-                     emptyIcon={
-                       <StarBorderIcon
-                         fontSize="inherit"
-                         style={{ color: "#ffb400" }}
-                       />
-                     }
-                     name={name}
-                     value={rated ? rated : rating}
-                     onChange={handleChange}
-                   />
-                   </Button>
-                  <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
-                    <Alert onClose={handleClose} variant="outlined" severity="success">
-                    
-                You rated this movie
-                    </Alert>
-                  </Snackbar>
+  
+  
+
+                  <Stars
+                    className={classes.starsModal}
+                    data-test="star"
+                    precision={0.5}
+                    size="large"
+                    emptyIcon={
+                      <StarBorderIcon
+                        fontSize="inherit"
+                        style={{ color: "#ffb400" }}
+                      />
+                    }
+                    name={name}
+                    value={rated ? rated : rating}
+                    onChange={handleChange}
+                    onClick={multiFunctions}
+                  />
+
                 </div>
               </div>
             </div>
-
             {page !== "Onboarding" ? (
               // eslint-disable-next-line jsx-a11y/iframe-has-title
-              <iframe width="285" height="200" src={trailer} frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
+              <iframe width="400" height="420" src={trailer} frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             ) : (
                 ""
               )}

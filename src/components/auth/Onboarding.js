@@ -20,6 +20,8 @@ import { Link } from "react-router-dom";
 import { useTheme } from "@material-ui/core/styles";
 import SearchIcon from "@material-ui/icons/Search";
 import InputBase from "@material-ui/core/InputBase";
+//for alert confirmation
+import ConfirmationAlert from '../movies/ConfirmationAlert';
 
 const useStyles = makeStyles((theme) => ({
   cardGrid: {
@@ -84,6 +86,7 @@ function Onboarding(
 ) {
   console.log("movies", movies);
   const classes = useStyles();
+  const [openAlert, setOpenAlert] = useState(false);
   const screenWidth = widthFinder(window.innerWidth);
   //for search bar
   const handleSubmit = (e) => {
@@ -101,6 +104,16 @@ function Onboarding(
     setQuery({ query: e.target.value });
     sendChange(e.target.value.trim());
   };
+  const handleClickStar = () => {
+    setOpenAlert(true);
+    console.log('openalert')
+  };
+  const handleCloseStar = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setOpenAlert(false);
+  };
 
   useEffect(() => {
     setFilter("");
@@ -109,7 +122,7 @@ function Onboarding(
   }, [getMoviesAction, userid, ratings, setFilter]);
   // How many movies render
   const cardAmount = 25;
-
+  console.log("open alert is now +" + openAlert)
   if (isFetching) return <LoadingScreen />;
   else
     return (
@@ -127,9 +140,9 @@ function Onboarding(
                   film.start_year === movie.start_year
               ).length && searchTerm !== ""
                 ? movie.primary_title
-                    .toString()
-                    .toLowerCase()
-                    .includes(searchTerm.toLowerCase())
+                  .toString()
+                  .toLowerCase()
+                  .includes(searchTerm.toLowerCase())
                 : true
             )
             .slice(0, cardAmount)
@@ -160,13 +173,17 @@ function Onboarding(
                     rated={rated ? rated.rating : null}
                     image={
                       !posterURI ||
-                      posterURI === "None" ||
-                      posterURI === "No poster" ||
-                      posterURI === "No Poster" ||
-                      posterURI === "Not in table"
+                        posterURI === "None" ||
+                        posterURI === "No poster" ||
+                        posterURI === "No Poster" ||
+                        posterURI === "Not in table"
                         ? unsplashUrl
                         : moviePoster
                     }
+                    openAlert={openAlert}
+                    handleClickStar={handleClickStar}
+                    handleCloseStar={handleCloseStar}
+
                   />
                 </div>
               );
@@ -175,6 +192,7 @@ function Onboarding(
         <Link className={classes.Link} to={`/${props.userid}/Onboarding2`}>
           Next
         </Link>
+        {openAlert ? <ConfirmationAlert openAlert={openAlert} handleCloseStar={handleCloseStar}></ConfirmationAlert> : ("")}
       </div>
     );
 }
