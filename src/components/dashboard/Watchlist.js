@@ -37,7 +37,6 @@ function Watchlist({
   setFilter,
   movies,
 }) {
-  console.log("movies", movies);
 
   const [deleteMode, setDeleteMode] = useState(false);
   //for matieral-ui

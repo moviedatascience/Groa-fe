@@ -212,8 +212,6 @@ function MovieCard({
   description,
   page,
 }) {
-  console.log('movies', trailer)
-  // console.log('trailer',trailer)
   const [yourRating, setYourRating] = useState(false);
   /* Used for the star rating */
   const [rating, setRating] = useState(0);
