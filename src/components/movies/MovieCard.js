@@ -16,7 +16,13 @@ import {
   IconButton,
 } from "@material-ui/core";
 import CloseIcon from "@material-ui/icons/Close";
+//to rate and get an alert
+import Snackbar from '@material-ui/core/Snackbar';
+import MuiAlert from '@material-ui/lab/Alert';
 
+function Alert(props) {
+  return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
 const styles = (theme) => ({
   closeBtn: {
     display: "flex",
@@ -174,8 +180,8 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "space-evenly",
   },
   [theme.breakpoints.down("xs")]: {
-    movieImgModal:{
-      width:'80%',
+    movieImgModal: {
+      width: '80%',
     },
     paper: {
       width: "17rem",
@@ -185,7 +191,7 @@ const useStyles = makeStyles((theme) => ({
       flexDirection: "column",
     },
     starsModal: {
-      fontSize: "3vw",
+      fontSize: "5vw",
     },
   },
 }));
@@ -206,6 +212,7 @@ function MovieCard({
   description,
   page,
 }) {
+  console.log('movies', trailer)
   // console.log('trailer',trailer)
   const [yourRating, setYourRating] = useState(false);
   /* Used for the star rating */
@@ -294,7 +301,7 @@ function MovieCard({
               <div>
                 <CardContent className={classes.cardContentModal}>
                   <h1 className={classes.nameModal}> {name} </h1>
-                  <Typography className={classes.year}>{year}</Typography>
+                  <p className={classes.year}>{year}</p>
                   <p className={classes.descriptionModal}>
                     {/* <span className={classes.span}>Description: </span> */}
                     {description}
@@ -315,44 +322,47 @@ function MovieCard({
                         {inRatings || yourRating
                           ? "Your rating:"
                           : !added && !inWatchlist
-                          ? "Add to watchlist"
-                          : "In your watchlist"}
+                            ? "Add to watchlist"
+                            : "In your watchlist"}
                       </Button>
                     </CardActions>
                   ) : (
-                    ""
-                  )}
-                  <Stars
-                    className={classes.starsModal}
-                    data-test="star"
-                    precision={0.5}
-                    size="large"
-                    emptyIcon={
-                      <StarBorderIcon
-                        fontSize="inherit"
-                        style={{ color: "#ffb400" }}
-                      />
-                    }
-                    name={name}
-                    value={rated ? rated : rating}
-                    onChange={handleChange}
-                  />
+                      ""
+                    )}
+                    <Button variant="outlined" onClick={handleClick}>
+                     <Stars
+                     className={classes.starsModal}
+                     data-test="star"
+                     precision={0.5}
+                     size="large"
+                     emptyIcon={
+                       <StarBorderIcon
+                         fontSize="inherit"
+                         style={{ color: "#ffb400" }}
+                       />
+                     }
+                     name={name}
+                     value={rated ? rated : rating}
+                     onChange={handleChange}
+                   />
+                   </Button>
+                  <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+                    <Alert onClose={handleClose} variant="outlined" severity="success">
+                    
+                You rated this movie
+                    </Alert>
+                  </Snackbar>
                 </div>
               </div>
             </div>
 
             {page !== "Onboarding" ? (
               // eslint-disable-next-line jsx-a11y/iframe-has-title
-              <iframe
-                width="440"
-                height="315"
-                frameborder="0"
-                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen
-              ></iframe>
+              <iframe width="285" height="200" src={trailer} frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
             ) : (
-              ""
-            )}
+                ""
+              )}
             {/* <iframe width="285" height="200" src={trailer} frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> */}
             {/* <iframe src="https://player.vimeo.com/video/410011254?title=0&byline=0&portrait=0&badge=0" width="400" height="315" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe> */}
           </div>
