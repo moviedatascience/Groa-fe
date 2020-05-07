@@ -20,8 +20,10 @@ import { Link } from "react-router-dom";
 import { useTheme } from "@material-ui/core/styles";
 import SearchIcon from "@material-ui/icons/Search";
 import InputBase from "@material-ui/core/InputBase";
-//for alert confirmation
-import ConfirmationAlert from '../movies/ConfirmationAlert';
+
+//testing snackbar
+import Snackbar from "@material-ui/core/Snackbar";
+import MuiAlert from "@material-ui/lab/Alert";
 
 const useStyles = makeStyles((theme) => ({
   cardGrid: {
@@ -72,6 +74,11 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: "2%",
   },
 }));
+
+function Alert(props) {
+  return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
+
 function Onboarding(
   {
     isFetching,
@@ -106,10 +113,10 @@ function Onboarding(
   };
   const handleClickStar = () => {
     setOpenAlert(true);
-    console.log('openalert')
+    console.log("openalert");
   };
   const handleCloseStar = (event, reason) => {
-    if (reason === 'clickaway') {
+    if (reason === "clickaway") {
       return;
     }
     setOpenAlert(false);
@@ -122,7 +129,7 @@ function Onboarding(
   }, [getMoviesAction, userid, ratings, setFilter]);
   // How many movies render
   const cardAmount = 25;
-  console.log("open alert is now +" + openAlert)
+  console.log("open alert is now ", openAlert);
   if (isFetching) return <LoadingScreen />;
   else
     return (
@@ -140,9 +147,9 @@ function Onboarding(
                   film.start_year === movie.start_year
               ).length && searchTerm !== ""
                 ? movie.primary_title
-                  .toString()
-                  .toLowerCase()
-                  .includes(searchTerm.toLowerCase())
+                    .toString()
+                    .toLowerCase()
+                    .includes(searchTerm.toLowerCase())
                 : true
             )
             .slice(0, cardAmount)
@@ -173,17 +180,14 @@ function Onboarding(
                     rated={rated ? rated.rating : null}
                     image={
                       !posterURI ||
-                        posterURI === "None" ||
-                        posterURI === "No poster" ||
-                        posterURI === "No Poster" ||
-                        posterURI === "Not in table"
+                      posterURI === "None" ||
+                      posterURI === "No poster" ||
+                      posterURI === "No Poster" ||
+                      posterURI === "Not in table"
                         ? unsplashUrl
                         : moviePoster
                     }
-                    openAlert={openAlert}
                     handleClickStar={handleClickStar}
-                    handleCloseStar={handleCloseStar}
-
                   />
                 </div>
               );
@@ -192,7 +196,15 @@ function Onboarding(
         <Link className={classes.Link} to={`/${props.userid}/Onboarding2`}>
           Next
         </Link>
-        {openAlert ? <ConfirmationAlert openAlert={openAlert} handleCloseStar={handleCloseStar}></ConfirmationAlert> : ("")}
+        <Snackbar
+          open={openAlert}
+          autoHideDuration={6000}
+          onClose={handleCloseStar}
+        >
+          <Alert onClose={handleCloseStar} severity="success">
+            This is a success message!
+          </Alert>
+        </Snackbar>
       </div>
     );
 }
