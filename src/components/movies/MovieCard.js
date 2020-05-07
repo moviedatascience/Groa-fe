@@ -144,7 +144,8 @@ const useStyles = makeStyles((theme) => ({
   paper: {
     // backgroundColor: theme.palette.background.paper,
     background: "rgb(23, 23, 23, .96)",
-    marginTop: "auto",
+    margin: "auto",
+    // marginBottom:'auto',
     width: "55rem",
     boxShadow: theme.shadows[5],
     padding: theme.spacing(0, 4, 3),
@@ -173,12 +174,15 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "space-evenly",
   },
   [theme.breakpoints.down("xs")]: {
-    movieInfoModal: {
-      flexDirection: "column",
+    movieImgModal:{
+      width:'80%',
     },
-    nameModal: {},
     paper: {
       width: "17rem",
+      // marginTop: "1%",
+    },
+    movieInfoModal: {
+      flexDirection: "column",
     },
     starsModal: {
       fontSize: "3vw",
@@ -292,13 +296,8 @@ function MovieCard({
                   <h1 className={classes.nameModal}> {name} </h1>
                   <Typography className={classes.year}>{year}</Typography>
                   <p className={classes.descriptionModal}>
-                    <span className={classes.span}>Description: </span>
-                    Lorem Ipsum is simply dummy text of the printing and
-                    typesetting industry. Lorem Ipsum has been the industry's
-                    standard dummy text ever since the 1500s, when an unknown
-                    printer took a galley of type and scrambled it to make a
-                    type specimen book. It has survived not only five centuries,
-                    but also the leap
+                    {/* <span className={classes.span}>Description: </span> */}
+                    {description}
                   </p>
                 </CardContent>
                 <div>

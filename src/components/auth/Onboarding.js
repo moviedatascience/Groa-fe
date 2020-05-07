@@ -155,7 +155,7 @@ function Onboarding(
                     page={"Onboarding"}
                     // year={movie.start_year}
                     // trailer={movie.trailer_url}
-                    description={movie.description}
+                    // description={movie.description}
                     movie_id={movie.movie_id}
                     rated={rated ? rated.rating : null}
                     image={
