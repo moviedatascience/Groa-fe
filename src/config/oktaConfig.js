@@ -1,5 +1,5 @@
-const CLIENT_ID = `${process.env.CLIENT_ID}`;
-const ISSUER = `${process.env.ISSUER}`;
+const CLIENT_ID = process.env.CLIENT_ID;
+const ISSUER = process.env.ISSUER;
 const OKTA_TESTING_DISABLEHTTPSCHECK = process.env.OKTA_TESTING_DISABLEHTTPSCHECK || false;
 
 export default {
