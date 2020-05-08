@@ -41,6 +41,7 @@ import ThumbUpRoundedIcon from '@material-ui/icons/ThumbUpRounded';
 import PlaylistAddCheckRoundedIcon from '@material-ui/icons/PlaylistAddCheckRounded';
 import GradeRoundedIcon from '@material-ui/icons/GradeRounded';
 import ExitToAppRoundedIcon from '@material-ui/icons/ExitToAppRounded';
+import { useOktaAuth } from "@okta/okta-react/dist/OktaContext";
 
 
 const drawerWidth = 240;
@@ -182,6 +183,13 @@ const useStyles = makeStyles(theme => ({
 
 
 const Navigation = props => {
+
+    //OKTA useOKTA AUTH
+    const { authState, authService } = useOktaAuth();
+    const [userInfo, setUserInfo] = useState(null);
+
+    const logout = async () => authService.logout('/');
+
   //for nav bar
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
@@ -259,10 +267,10 @@ const Navigation = props => {
   //   props.setFilter("");
   // };
 
-  const logout = () => {
-    localStorage.removeItem("token");
-    localStorage.removeItem("state");
-  };
+  // const logout = () => {
+  //   localStorage.removeItem("token");
+  //   localStorage.removeItem("state");
+  // };
 
   // const getNewRecommendations = id => {
   // Gets new recommendations for account, if applicible
@@ -304,7 +312,7 @@ const Navigation = props => {
             >
               <MenuItem onClick={handleClose} button component="a" href={`/${props.userid}/ratings`} >Ratings</MenuItem>
               <MenuItem onClick={handleClose} button component="a" href={`/${props.userid}/upload`}>Upload</MenuItem>
-              <MenuItem onClick={logout} button component="a" href={`/login`}>Logout</MenuItem>
+              <MenuItem onClick={logout} button component="a">Logout</MenuItem>
             </Menu>
           </Toolbar>
           <div className={classes.searchContainer}>
