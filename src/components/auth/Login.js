@@ -54,10 +54,7 @@ const LoginPage = (props) => {
 
   //OKTA useOKTA AUTH
   const { authState, authService } = useOktaAuth();
-  const [userInfo, setUserInfo] = useState(null);
 
-  // console.log('AUTHOKTA', authState);
-  // console.log('AUTHOKTASERVICE', authService);
   
 
   //Okta Login/Logout redirects
@@ -65,15 +62,10 @@ const LoginPage = (props) => {
   const logout = async () => authService.logout('/');
 
   useEffect(() => {
-    // if(authState.isAuthenticated){
-    //   props.loginAction(authState.accessToken, props.history);
-    // }
     if (authState.isAuthenticated) {
       authService.getUser()
         .then((info) => {
-          console.log('USERINFO', info.sub)
-           props.loginAction(authState.accessToken, info.sub, props.history)
-  
+           props.loginAction(authState.accessToken, info.sub, props.history)  
       })
       .catch(err => console.log("Error fetching User info in UseEffect", err))
     }
@@ -82,14 +74,14 @@ const LoginPage = (props) => {
 
 
 
-  const [user, setUser] = useState({
-    user_name: "",
-    password: "",
-  });
-  const { register, handleSubmit, errors } = useForm({
-    validationSchema: RegisterSchema,
-  });
-  const classes = useStyles();
+  // const [user, setUser] = useState({
+  //   user_name: "",
+  //   password: "",
+  // });
+  // const { register, handleSubmit, errors } = useForm({
+  //   validationSchema: RegisterSchema,
+  // });
+  // const classes = useStyles();
 
   // const handleChange = (e) => {
   //   setUser({

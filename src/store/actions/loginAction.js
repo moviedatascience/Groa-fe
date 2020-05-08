@@ -7,13 +7,11 @@ export const FETCHING_USER_LOGIN_FAIL = "FETCHING_USER_LOGIN_FAIL";
 
 // LOGIN
 export function loginAction(token, okta_id, history) {
-  console.log('okta ID in loginAction',okta_id)
   return dispatch => {
     axiosWithAuth(token)
       .post("/login", {id:okta_id})
       .then(res => {
         console.log("loginAction res",res)
-        // localStorage.setItem("token", res.data.token);
         dispatch({ 
           type: FETCHING_USER_LOGIN_SUCCESS,
           payload: res.data.user_id });

@@ -58,6 +58,7 @@ store.subscribe(() => {
 });
 
 function App() {
+  
 
 
   useEffect(() => reactGAinitialization(), []);

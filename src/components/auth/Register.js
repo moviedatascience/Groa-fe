@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect} from "react";
 import { connect } from "react-redux";
 import { registerAction, loginAction } from "../../store/actions";
 import { ifDev } from "../../utils/removeAttribute.js";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
+
 
 //For validation
 import { useForm } from "react-hook-form";
@@ -17,6 +18,8 @@ import Box from '@material-ui/core/Box';
 
 // Navbar Register
 import RegisterNavLinks from "../layout/nav-layouts/RegisterNavLinks";
+//OKTA
+import { useOktaAuth } from '@okta/okta-react';
 
 function Copyright() {
   return (
@@ -55,6 +58,23 @@ const RegisterSchema = Yup.object().shape({
 });
 
 const Register = (props) => {
+  const history = useHistory();
+  const { authState, authService } = useOktaAuth();
+  const login = async () => authService.login('/');
+  const logout = async () => authService.logout('/');
+
+  //if user already Authenticated, loginAction redirects to to explore page
+  useEffect(() => {
+    console.log('))))))))))))))))))))))))))))))))))))))))))))))',authState.isAuthenticated)      
+      authService.getUser()
+        .then((info) => {
+           props.loginAction(authState.accessToken, info.sub, history)  
+      })
+      .catch(err => console.log("Error fetching User info in UseEffect", err))
+  }, [authState]);
+
+
+
   const [users, setUsers] = useState({
     email: "",
     user_name: "",
@@ -206,9 +226,8 @@ const Register = (props) => {
               <div className="bottomAccount">
                 <Link
                   className="register link"
-                  onClick={handleSubmit}
+                  onClick={login}
                   data-test={ifDev("loginBtn")}
-                  to="/login"
                 >
                   <p> Login</p>
                   <p>Already have an account?</p>
