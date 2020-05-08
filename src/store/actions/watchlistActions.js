@@ -12,12 +12,12 @@ export const FETCHING_WATCHLIST_SUCCESS = "FETCHING_WATCHLIST_SUCCESS";
 export const FETCHING_WATCHLIST_FAIL = "FETCHING_WATCHLIST_FAIL";
 
 // ADD TO WATCHLIST
-export function addToWatchlistAction(id, movie) {
+export function addToWatchlistAction(id, movie, token) {
   return dispatch => {
     dispatch({
       type: ADDING_WATCHLIST_START
     });
-    axiosWithAuth()
+    axiosWithAuth(token)
       .post(`/${id}/add-to-watchlist`, movie)
       .then(res => {
         dispatch({
@@ -35,12 +35,12 @@ export function addToWatchlistAction(id, movie) {
 }
 
 // GET WATCHLIST
-export function getWatchlistAction(id) {
+export function getWatchlistAction(id, token) {
   return dispatch => {
     dispatch({
       type: FETCHING_WATCHLIST_START
     });
-    axiosWithAuth()
+    axiosWithAuth(token)
       .get(`/${id}/get-watchlist`)
       .then(res => {
         dispatch({
@@ -58,12 +58,12 @@ export function getWatchlistAction(id) {
 }
 
 // DELETE FROM WATCHLIST
-export function removeFromWatchlistAction(user_id, watchlist_id) {
+export function removeFromWatchlistAction(user_id, watchlist_id, token) {
   return dispatch => {
     dispatch({
       type: REMOVING_FROM_WATCHLIST_START
     });
-    axiosWithAuth()
+    axiosWithAuth(token)
       .delete(`/${user_id}/remove-from-watchlist/${watchlist_id}`)
       .then(res => {
         console.log(res);

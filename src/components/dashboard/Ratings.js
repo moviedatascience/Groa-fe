@@ -10,6 +10,7 @@ import LoadingScreen from "../layout/LoadingScreen.js";
 //for grid
 import { makeStyles } from '@material-ui/core/styles';
 import { GridList } from "@material-ui/core/";
+import { useOktaAuth } from "@okta/okta-react/dist/OktaContext";
 
 const useStyles = makeStyles((theme) => ({
   cardGrid: {
@@ -28,13 +29,16 @@ function Ratings({
   searchTerm,
   setFilter,
 }) {
+  //OKTA AUTH
+  const { authState, authService } = useOktaAuth();
+  const {accessToken} = authState;
   //for sizing of the movie cards
   const classes = useStyles();
   const screenWidth = widthFinder(window.innerWidth);
   useEffect(() => {
     setFilter("");
     // Returns the ratings
-    getRatingAction(userid);
+    getRatingAction(userid, accessToken);
   }, [getRatingAction, userid, setFilter]);
   console.log(`here + ${screenWidth}`);
   console.log(classes);
