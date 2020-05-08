@@ -34,6 +34,7 @@ function Explore({
   searchTerm,
   setFilter,
   ratings,
+  handleClickStar,
 }) {
   const classes = useStyles();
   const screenWidth = widthFinder(window.innerWidth);

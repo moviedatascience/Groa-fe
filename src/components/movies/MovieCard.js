@@ -125,6 +125,7 @@ const useStyles = makeStyles((theme) => ({
     backfaceVisibility: "hidden",
     borderRadius: "11px",
     margin: "auto",
+    paddingBottom:'1%',
     // '&:hover':{
     //   opacity: 0.3,
     // }
@@ -173,6 +174,11 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
     justifyContent: "space-evenly",
   },
+  videoWrapper:{
+    position:'relative',
+    height:0,
+    paddingBottom:'56.25%',
+  },
   [theme.breakpoints.down("xs")]: {
     movieImgModal: {
       width: "80%",
@@ -187,6 +193,10 @@ const useStyles = makeStyles((theme) => ({
     starsModal: {
       fontSize: "5vw",
     },
+    // trailerModal:{
+    //   width:'auto',
+    //   height:'auto',
+    // },
   },
 }));
 
@@ -306,9 +316,9 @@ function MovieCard({
                     {description}
                   </p>
                 </CardContent>
-                <div>
+                <div className={classes.bottomModal}>
                   {page !== "Onboarding" ? (
-                    <CardActions className={classes.cardActionsModal}>
+                    // <CardActions className={classes.cardActionsModal}>
                       <Button
                         onClick={handleClick}
                         className={classes.watchList}
@@ -324,7 +334,7 @@ function MovieCard({
                           ? "Add to watchlist"
                           : "In your watchlist"}
                       </Button>
-                    </CardActions>
+                    // </CardActions>
                   ) : (
                     ""
                   )}
@@ -346,13 +356,17 @@ function MovieCard({
                     onClick={multiFunctions}
                   />
                 </div>
+               
               </div>
             </div>
+            {/* <div className={classes.videoWrapper}> */}
             {page !== "Onboarding" ? (
               // eslint-disable-next-line jsx-a11y/iframe-has-title
-              <iframe
-                width="400"
-                height="420"
+              <iframe className={classes.trailerModal}
+                width="100%"
+                height="315vw"
+                margin-left= 'auto'
+                margin-right= 'auto'
                 src={trailer}
                 frameborder="0"
                 allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
@@ -361,6 +375,7 @@ function MovieCard({
             ) : (
               ""
             )}
+            {/* </div> */}
             {/* <iframe width="285" height="200" src={trailer} frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> */}
             {/* <iframe src="https://player.vimeo.com/video/410011254?title=0&byline=0&portrait=0&badge=0" width="400" height="315" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe> */}
           </div>

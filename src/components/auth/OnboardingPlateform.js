@@ -11,6 +11,15 @@ const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
   },
+  onboardingText:{
+    display:'flex',
+    justifyContent:'center',
+    flexDirection:'column',
+  },
+  onboardingBut:{
+    display:'flex',
+    alignItems:'center',
+  },
   [theme.breakpoints.down("xs")]: {
     root: {
      flexDirection:'column'
@@ -24,7 +33,7 @@ function OnboardingPlateform({ userid }) {
   return (
     <div className={classes.root}>
       <img src={OnboardingImg} alt="onboarding girl jumping" />
-      <div>
+      <div className={classes.onboardingText}>
         <h1> You're Almost There</h1>
         <p>
           Help Groa personalize your recommendations! Groa works better when you
@@ -35,8 +44,8 @@ function OnboardingPlateform({ userid }) {
           personalized recommendations in no time! Train Groa to be your personal
           movie AI!
       </p>
-        <Link to={`/${userid}/Onboarding`}>
-          <button> Let's Start</button>
+        <Link className={classes.onboardingBut} to={`/${userid}/Onboarding`}>
+          <button > Let's Start</button>
         </Link>
       </div>
     </div>

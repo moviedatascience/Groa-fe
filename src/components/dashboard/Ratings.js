@@ -69,6 +69,8 @@ function Ratings({
                   movie_id={movie.movie_id}
                   year={movie.start_year}
                   rated={movie.rating}
+                  description={movie.description}
+                  trailer={movie.trailer_url}
                   image={
                     !posterURI ||
                       posterURI === "None" ||
