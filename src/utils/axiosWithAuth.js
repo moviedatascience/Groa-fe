@@ -1,14 +1,19 @@
-import axios from "axios";
+import axios from 'axios';
+// import GetOktaToken from '../config/GetOktaToken';
 
-const axiosWithAuth = () => {
-  const token = localStorage.getItem("token");
 
-  return axios.create({
-    baseURL: "https://dev.groa.us/api/users",
-    headers: {
-      Authorization: token,
-    },
-  });
-};
+//baseURL needs to be properly implement once endpoints for login are available
+
+const axiosWithAuth = (accessToken) => {
+
+    // const [ accessToken ] = GetOktaToken();
+
+    return axios.create({
+        headers: {
+            Authorization: `Bearer ${accessToken}`
+        },
+        baseURL: "http://localhost:8080/api/users"
+    })
+}
 
 export default axiosWithAuth;

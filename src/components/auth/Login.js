@@ -1,7 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { loginAction } from "../../store/actions";
 import { ifDev } from "../../utils/removeAttribute.js";
+
+//OKTA
+import { useOktaAuth } from '@okta/okta-react';
 
 // styling imports
 import Picture1 from "../../img/watching-tv.png";
@@ -48,6 +51,37 @@ const RegisterSchema = Yup.object().shape({
 });
 
 const LoginPage = (props) => {
+
+  //OKTA useOKTA AUTH
+  const { authState, authService } = useOktaAuth();
+  const [userInfo, setUserInfo] = useState(null);
+
+  // console.log('AUTHOKTA', authState);
+  // console.log('AUTHOKTASERVICE', authService);
+  
+
+  //Okta Login/Logout redirects
+  const login = async () => authService.login('/');
+  const logout = async () => authService.logout('/');
+
+  useEffect(() => {
+    // if(authState.isAuthenticated){
+    //   props.loginAction(authState.accessToken, props.history);
+    // }
+    if (authState.isAuthenticated) {
+      authService.getUser()
+        .then((info) => {
+          console.log('USERINFO', info.sub)
+           props.loginAction(authState.accessToken, info.sub, props.history)
+  
+      })
+      .catch(err => console.log("Error fetching User info in UseEffect", err))
+    }
+  }, []);
+
+
+
+
   const [user, setUser] = useState({
     user_name: "",
     password: "",
@@ -57,17 +91,17 @@ const LoginPage = (props) => {
   });
   const classes = useStyles();
 
-  const handleChange = (e) => {
-    setUser({
-      ...user,
-      [e.target.name]: e.target.value,
-    });
-    console.log(user);
-  };
+  // const handleChange = (e) => {
+  //   setUser({
+  //     ...user,
+  //     [e.target.name]: e.target.value,
+  //   });
+  //   console.log(user);
+  // };
 
-  const onSubmit = () => {
-    props.loginAction(user, props.history);
-  };
+  // const onSubmit = () => {
+  //   props.loginAction(user, props.history);
+  // };
 
   return (
     <div
@@ -95,7 +129,7 @@ const LoginPage = (props) => {
           </div>
         </div>
         {/* FORM START */}
-        <div className="box-right">
+        {/* <div className="box-right">
           <form
             className="form login-form"
             onSubmit={handleSubmit(onSubmit)}
@@ -161,7 +195,7 @@ const LoginPage = (props) => {
                     <b>Sign in with Facebook</b>
                   </p>
                 </div>
-                {/* <a href="" class="fb connect">Sign in with Facebook</a> */}
+                {/* <a href="" class="fb connect">Sign in with Facebook</a> 
               </div>
             </div>
           </form>
@@ -178,14 +212,29 @@ const LoginPage = (props) => {
                 </span>
               </Link>
             </p>
+            {/* Test 
+
+              <div>
+              <p>IIIIIIIIIIIIII</p>
+                {!authState.isAuthenticated && <p onClick={login}>TEST PAGE/REDIRECT</p>}
+              </div>
+                
+
+
           </div>
-          {/* <div className='about-us'>
-                <div><a> A b o u t U s  </a> </div>
-                <div>T e r m s and C o n d i t i on s  </div>
-                <div>P r i v a c y</div>
-              </div> */}
-        </div>
+
+        </div> */}
         {/* FORM ENDS */}
+
+        <div>
+          <p>IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII</p>
+            {/* {!authState.isAuthenticated && <p onClick={login}>Please Login</p>}
+            {authState.isAuthenticated && <p> You are Logged in </p>} */}
+
+            {!authState.isAuthenticated ? <p onClick={login}>Please Login</p> : <p> You are Logged in <span onClick={logout}>Logout </span></p>}
+
+
+          </div>
       </div>
       {/* END OF MAIN CONTENT */}
       <Box mt={2}>

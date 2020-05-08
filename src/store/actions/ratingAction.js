@@ -8,12 +8,12 @@ export const FETCHING_RATINGS_SUCCESS = "FETCHING_RATINGS_SUCCESS";
 export const FETCHING_RATINGS_FAIL = "FETCHING_RATINGS_FAIL";
 
 // RATINGS
-export function ratingAction(id, rating) {
+export function ratingAction(id, rating, token) {
   return dispatch => {
     dispatch({
       type: ADDING_RATING_START
     });
-    axiosWithAuth()
+    axiosWithAuth(token)
       .post(`/${id}/add-movie-rating`, rating)
       .then(res => {
         dispatch({
@@ -32,12 +32,12 @@ export function ratingAction(id, rating) {
 }
 
 //GET RATINGS
-export function getRatingAction(id) {
+export function getRatingAction(id, token) {
   return dispatch => {
     dispatch({
       type: FETCHING_RATINGS_START
     });
-    axiosWithAuth()
+    axiosWithAuth(token)
       .get(`/${id}/get-ratings`)
       .then(res => {
         dispatch({

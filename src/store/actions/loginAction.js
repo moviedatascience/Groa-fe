@@ -4,17 +4,18 @@ import axiosWithAuth from "../../utils/axiosWithAuth.js";
 export const FETCHING_USER_LOGIN_SUCCESS = "FETCHING_USER_LOGIN_SUCCESS";
 export const FETCHING_USER_LOGIN_FAIL = "FETCHING_USER_LOGIN_FAIL";
 
+
 // LOGIN
-export function loginAction(userCreds, history) {
-  console.log(userCreds)
+export function loginAction(token, okta_id, history) {
+  console.log('okta ID in loginAction',okta_id)
   return dispatch => {
-    axiosWithAuth()
-      .post("/login", userCreds)
+    axiosWithAuth(token)
+      .post("/login", {id:okta_id})
       .then(res => {
-        console.log(res)
-        localStorage.setItem("token", res.data.token);
+        console.log("loginAction res",res)
+        // localStorage.setItem("token", res.data.token);
         dispatch({ 
-          type: FETCHING_USER_LOGIN_SUCCESS, 
+          type: FETCHING_USER_LOGIN_SUCCESS,
           payload: res.data.user_id });
         dispatch({
           type: FETCHING_RATINGS_SUCCESS,

@@ -9,6 +9,7 @@ import Button from "@material-ui/core/Button";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
+import { useOktaAuth } from "@okta/okta-react/dist/OktaContext";
 
 const useStyles = makeStyles((theme) => ({
   control: {
@@ -89,6 +90,10 @@ function MovieCard({
   rated,
   ratings,
 }) {
+  //OKTA AUTH
+  const { authState, authService } = useOktaAuth();
+  const {accessToken} = authState;
+
   const [yourRating, setYourRating] = useState(false);
   /* Used for the star rating */
   const [rating, setRating] = useState(0);
@@ -118,12 +123,12 @@ function MovieCard({
       rating: newValue,
     };
     console.log(newRating);
-    ratingAction(userid, newRating);
+    ratingAction(userid, newRating, accessToken);
     setYourRating(true);
   };
   const handleClick = () => {
     /* Adds movie to the POST request */
-    addToWatchlistAction(userid, movie);
+    addToWatchlistAction(userid, movie, accessToken);
     setAdded(true);
   };
   return (

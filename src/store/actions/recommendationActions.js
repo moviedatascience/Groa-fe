@@ -6,12 +6,12 @@ export const FETCHING_RECOMMENDATIONS_FAIL = "FETCHING_RECOMMENDATIONS_FAIL";
 
 // RECOMMENDATIONS
 // this call requests new recommendations be inserted into the database, then returns latest
-export function recommendationAction(id) {
+export function recommendationAction(id, accessToken) {
   return (dispatch) => {
     dispatch({
       type: FETCHING_RECOMMENDATIONS_START,
     });
-    axiosWithAuth()
+    axiosWithAuth(accessToken)
       .get(`/${id}/recommendations`)
       .then((res) => {
         console.log(res);

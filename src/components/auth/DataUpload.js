@@ -9,9 +9,14 @@ import fileAlt from "../../img/file-alt.svg";
 // children components
 import Congratulations from "./Congratulations.js";
 import LoadingScreen from "../layout/LoadingScreen.js";
+import { useOktaAuth } from "@okta/okta-react/dist/OktaContext";
 
 const DataUpload = ({ userid, uploadAction, isUploading, setFilter }) => {
   const [uploadSuccess, setUploadSuccess] = useState(false);
+
+    //OKTA AUTH
+    const { authState, authService } = useOktaAuth();
+    const {accessToken} = authState;
 
   useEffect(() => {
     setFilter("")
@@ -48,7 +53,7 @@ const DataUpload = ({ userid, uploadAction, isUploading, setFilter }) => {
   const handleChange = file => {
     let data = new FormData();
     data.append("movies", file, file.name);
-    uploadAction(userid, data, setUploadSuccess);
+    uploadAction(userid, data, setUploadSuccess, accessToken);
     data = new FormData();
   };
 
