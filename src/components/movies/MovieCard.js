@@ -316,7 +316,7 @@ function MovieCard({
                     {description}
                   </p>
                 </CardContent>
-                <div className={classes.bottomModal}>
+                {/* <div className={classes.bottomModal}> */}
                   {page !== "Onboarding" ? (
                     // <CardActions className={classes.cardActionsModal}>
                       <Button
@@ -355,7 +355,7 @@ function MovieCard({
                     onChange={handleChange}
                     onClick={multiFunctions}
                   />
-                </div>
+                {/* </div> */}
                
               </div>
             </div>
@@ -364,7 +364,7 @@ function MovieCard({
               // eslint-disable-next-line jsx-a11y/iframe-has-title
               <iframe className={classes.trailerModal}
                 width="100%"
-                height="315vw"
+                height="315vh"
                 margin-left= 'auto'
                 margin-right= 'auto'
                 src={trailer}

@@ -202,7 +202,7 @@ function Onboarding(
           onClose={handleCloseStar}
         >
           <Alert onClose={handleCloseStar} severity="success">
-            This is a success message!
+            You have successfully rated this movie!
           </Alert>
         </Snackbar>
       </div>
