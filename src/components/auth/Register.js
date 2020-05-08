@@ -49,12 +49,9 @@ const useStyles = makeStyles((theme) => ({
 
 // Validation Schema
 const RegisterSchema = Yup.object().shape({
-  user_name: Yup.string().required("Username is required"),
+  firstName: Yup.string().required("firstName is required"),
+  lastName: Yup.string().required("lastName is required"),
   email: Yup.string().email().required("Email is required"),
-  password: Yup.string().min(6).required("Password is required"),
-  confirmpassword: Yup.string()
-    .oneOf([Yup.ref("password"), null], "Passwords must match")
-    .required(),
 });
 
 const Register = (props) => {
@@ -77,9 +74,8 @@ const Register = (props) => {
 
   const [users, setUsers] = useState({
     email: "",
-    user_name: "",
-    password: "",
-    confirmpassword: "",
+    firstName: "",
+    lastName: "",
   });
   const { register, handleSubmit, errors } = useForm({
     validationSchema: RegisterSchema,
@@ -95,9 +91,9 @@ const Register = (props) => {
 
   const onSubmit = () => {
     let user = {
-      user_name: users.user_name,
+      firstName: users.firstName,
+      lastName:users.lastName,
       email: users.email,
-      password: users.password,
     };
     console.log("user before register button", user);
     props.registerAction(user, props.history);
@@ -139,6 +135,36 @@ const Register = (props) => {
             >
               {/* <Grid className="register-inputs"> */}
               {/* <Grid container item xs={12}> */}
+              
+              {errors.email && errors.email.type === "required" && (
+                <p>An email is required</p>
+              )}
+              {/* </Grid> */}
+              {/* <Grid container item xs={12}> */}
+              <TextField
+                className={classes.textField}
+                name="firstName"
+                value={users.firstName}
+                onChange={handleChange}
+                label="First Name"
+                variant="outlined"
+                inputRef={register}
+              />
+              {errors.firstName && errors.firstName.type === "required" && (
+                <p>First Name is required</p>
+              )} 
+              <TextField
+                className={classes.textField}
+                name="lastName"
+                value={users.lastName}
+                onChange={handleChange}
+                label="Last Name"
+                variant="outlined"
+                inputRef={register}
+              />
+                {errors.lastName && errors.lastName.type === "required" && (
+                <p>Last Name is required</p>
+                )} 
               <TextField
                 className={classes.textField}
                 name="email"
@@ -149,25 +175,11 @@ const Register = (props) => {
                 inputRef={register}
               />
               {errors.email && errors.email.type === "required" && (
-                <p>An email is required</p>
-              )}
+                <p>Email is required</p>
+              )} 
               {/* </Grid> */}
               {/* <Grid container item xs={12}> */}
-              <TextField
-                className={classes.textField}
-                name="user_name"
-                value={users.user_name}
-                onChange={handleChange}
-                label="Username"
-                variant="outlined"
-                inputRef={register}
-              />
-              {errors.user_name && errors.user_name.type === "required" && (
-                <p>Username is required</p>
-              )}
-              {/* </Grid> */}
-              {/* <Grid container item xs={12}> */}
-              <TextField
+              {/* <TextField
                 className={classes.textField}
                 name="password"
                 type="password"
@@ -176,16 +188,16 @@ const Register = (props) => {
                 label="Password"
                 variant="outlined"
                 inputRef={register}
-              />
-              {errors.password && errors.password.type === "required" && (
-                <p>Password required</p>
-              )}
-              {errors.password && errors.password.type === "min" && (
+              /> */}
+              {/* {errors.password && errors.password.type === "required" && (
+                <p>Password required</p> */}
+
+              {/* {errors.password && errors.password.type === "min" && (
                 <p>Password must be at least 6 characters long</p>
-              )}
+              )} */}
               {/* </Grid> */}
               {/* <Grid container item xs={12}> */}
-              <TextField
+              {/* <TextField
                 className={classes.textField}
                 name="confirmpassword"
                 type="password"
@@ -194,15 +206,15 @@ const Register = (props) => {
                 label="Confirm Password"
                 variant="outlined"
                 inputRef={register}
-              />
-              {errors.confirmpassword &&
+              /> */}
+              {/* {errors.confirmpassword &&
                 errors.confirmpassword.type === "required" && (
                   <p>Password Confirmation Required</p>
                 )}
               {errors.confirmpassword &&
                 errors.confirmpassword.type === "oneOf" && (
                   <p>Password does not match</p>
-                )}
+                )} */}
               {/* </Grid> */}
               {/* </Grid> */}
               <div className="bottom-form">
