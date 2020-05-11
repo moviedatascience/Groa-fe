@@ -25,6 +25,9 @@ import InputBase from "@material-ui/core/InputBase";
 import Snackbar from "@material-ui/core/Snackbar";
 import MuiAlert from "@material-ui/lab/Alert";
 
+//okta
+import { useOktaAuth } from "@okta/okta-react/dist/OktaContext";
+
 const useStyles = makeStyles((theme) => ({
   cardGrid: {
     paddingTop: theme.spacing(4),
@@ -93,6 +96,10 @@ function Onboarding(
 ) {
   console.log("movies", movies);
   const classes = useStyles();
+  //for okta
+  const { authState, authService } = useOktaAuth();
+  const { accessToken } = authState;
+
   const [openAlert, setOpenAlert] = useState(false);
   const screenWidth = widthFinder(window.innerWidth);
   //for search bar
@@ -125,11 +132,11 @@ function Onboarding(
   useEffect(() => {
     setFilter("");
     // Returns the movies
-    getMoviesAction(userid);
+    getMoviesAction(userid, accessToken);
   }, [getMoviesAction, userid, ratings, setFilter]);
   // How many movies render
   const cardAmount = 25;
-  console.log("open alert is now ", openAlert);
+  // console.log("open alert is now ", openAlert);
   if (isFetching) return <LoadingScreen />;
   else
     return (
@@ -147,9 +154,9 @@ function Onboarding(
                   film.start_year === movie.start_year
               ).length && searchTerm !== ""
                 ? movie.primary_title
-                    .toString()
-                    .toLowerCase()
-                    .includes(searchTerm.toLowerCase())
+                  .toString()
+                  .toLowerCase()
+                  .includes(searchTerm.toLowerCase())
                 : true
             )
             .slice(0, cardAmount)
@@ -180,10 +187,10 @@ function Onboarding(
                     rated={rated ? rated.rating : null}
                     image={
                       !posterURI ||
-                      posterURI === "None" ||
-                      posterURI === "No poster" ||
-                      posterURI === "No Poster" ||
-                      posterURI === "Not in table"
+                        posterURI === "None" ||
+                        posterURI === "No poster" ||
+                        posterURI === "No Poster" ||
+                        posterURI === "Not in table"
                         ? unsplashUrl
                         : moviePoster
                     }

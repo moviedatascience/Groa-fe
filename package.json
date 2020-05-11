@@ -37,7 +37,8 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "GENERATE_SOURCEMAP=false react-scripts build",
-    "test": "react-scripts test"
+    "test": "react-scripts test",
+    "scss": "node-sass --watch scss -o css"
   },
   "eslintConfig": {
     "extends": "react-app"

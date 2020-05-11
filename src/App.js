@@ -18,11 +18,11 @@ import Onboarding from './components/auth/Onboarding';
 import Onboarding2 from './components/auth/Onboarding2';
 import SearchBar from './components/auth/SearchBar';
 import OnboardingPlateform from './components/auth/OnboardingPlateform';
+import PostOnboarding from './components/auth/PostOnboarding';
 // for testing
 import { ifDev } from "./utils/removeAttribute.js";
 import oktaConfig from './config/oktaConfig';
 import { useOktaAuth } from '@okta/okta-react';
-
 
 // config imports
 import reactGAinitialization from "./config/analytics.js";
@@ -39,10 +39,6 @@ import { loadState, saveState } from "./store/localStorage.js";
 //for theme color change
 import { createMuiTheme } from "@material-ui/core/styles";
 import { ThemeProvider } from "@material-ui/core/styles";
-
-
-
-
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(
@@ -92,7 +88,6 @@ function App() {
 
           {/* this is fine as a route because all of the routes that will have display their component will only be avalible on a private route */}
           <Route path="/implicit/callback" component={LoginCallback} />
-
           <Route
             exact
             path={[
@@ -123,15 +118,15 @@ function App() {
             ]}
             component={SearchBar}
           />
-          <PrivateRoute 
+          <SecureRoute 
           path='/:user_id/onboardingplateform' 
           component={OnboardingPlateform}
           />
-          <PrivateRoute 
+          <SecureRoute 
           path='/:user_id/onboarding' 
           component={Onboarding}
           />
-           <PrivateRoute 
+           <SecureRoute 
           path='/:user_id/onboarding2' 
           component={Onboarding2}
           />
@@ -140,8 +135,12 @@ function App() {
             path="/test"
             component={Test}
           />
+          <SecureRoute 
+          path='/:user_id/postonboarding'
+          component={PostOnboarding}
+          />
           <Route exact path="/:user_id/upload" component={DataUpload} />
-          <Route exact path={["/","/login" ]} component={Login} />
+          <Route exact path={["/","/register" ]} component={Register} />
           <Route path="/logout" component={Login} />
           <Route path="/register" component={Register} />
           {/* this could be a modal */}
@@ -155,5 +154,4 @@ function App() {
     </ThemeProvider>
   );
 }
-
 export default App;
