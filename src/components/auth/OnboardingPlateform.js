@@ -7,7 +7,6 @@ import OnboardingImg from "../../img/happy-running-person.png";
 //material-ui
 import { makeStyles } from '@material-ui/core/styles';
 
-
 const useStyles = makeStyles((theme) => ({
   root: {
     // margin: '0 auto',
@@ -18,7 +17,6 @@ const useStyles = makeStyles((theme) => ({
   onboardingPlateformImg: {
     width: '50%',
     padding:'3%',
-
   },
   onboardingText: {
     display: 'flex',
@@ -59,7 +57,6 @@ const useStyles = makeStyles((theme) => ({
   [theme.breakpoints.down("xs")]: {
     root: {
       flexDirection: 'column',
-
     },
     onboardingPlateformImg: {
       display: 'block',

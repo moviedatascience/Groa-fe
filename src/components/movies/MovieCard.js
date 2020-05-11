@@ -99,7 +99,6 @@ const useStyles = makeStyles((theme) => ({
     alignContent: "center",
   },
   text: {
-    backgroundColor: "#4CAF50",
     color: "white",
     fontSize: "16px",
     opacity: 0,

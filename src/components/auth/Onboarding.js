@@ -200,15 +200,15 @@ function Onboarding(
               );
             })}
         </GridList>
-        <Link className={classes.Link} to={`/${props.userid}/Onboarding2`}>
+        {/* <Link className={classes.Link} to={`/${props.userid}/Onboarding2`}>
           Next
-        </Link>
+        </Link> */}
         <Snackbar
           open={openAlert}
           autoHideDuration={6000}
           onClose={handleCloseStar}
         >
-          <Alert onClose={handleCloseStar} severity="success">
+          <Alert onClose={handleCloseStar} variant="outlined" severity="success">
             You have successfully rated this movie!
           </Alert>
         </Snackbar>
