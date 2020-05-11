@@ -10,31 +10,24 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    position: "fixed",
-    // top:"50%",
-    // left: "50%",
-    // transform: "translate(-50%, -50%)",
+    // margin: '0 auto',
     display: 'flex',
-    // justifyContent:'center',
     background: '#505050',
-    margin:'5%',
+    padding:'2%',
   },
   onboardingPlateformImg: {
     width: '50%',
-    // display:'flex',
-    // justifyContent:'center',
+    padding:'3%',
 
   },
   onboardingText: {
     display: 'flex',
     justifyContent: 'center',
     flexDirection: 'column',
-    // width:'80%',
-    padding: '2%',
+    padding: '3%',
     color: 'white',
   },
   onboardingh1: {
-    // textAlign:'center',
     fontSize: '35px',
     padding: '2%',
   },
@@ -48,9 +41,6 @@ const useStyles = makeStyles((theme) => ({
     fontSize: '20px',
   },
   onboardingLink: {
-    // display:'flex',
-    // alignItems:'center',
-    // textDecoration:'none'
     textAlign: 'center',
     fontSize: '25px',
     padding: '2%',
@@ -60,16 +50,22 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
     color: 'white',
     padding:'2%',
+    borderRadius:'4px',
+    '&:hover':{
+      backgroundColor:'white',
+      color:'#00E6BC',
+    },
   },
   [theme.breakpoints.down("xs")]: {
     root: {
-      flexDirection: 'column'
+      flexDirection: 'column',
+
     },
     onboardingPlateformImg: {
       display: 'block',
       marginLeft: 'auto',
       marginRight: 'auto',
-      width: "50%",
+      width: "60%",
     }
   },
 }));
@@ -79,9 +75,7 @@ function OnboardingPlateform({ userid }) {
 
   return (
     <div className={classes.root}>
-      {/* <div classname={classes.onboardingPlateformImg}> */}
       <img className={classes.onboardingPlateformImg} src={OnboardingImg} alt="onboarding girl jumping" />
-      {/* </div> */}
       <div className={classes.onboardingText}>
         <h1 className={classes.onboardingh1}>You're Almost There.</h1>
         <p className={classes.onboardingp1}>
