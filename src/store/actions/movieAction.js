@@ -3,12 +3,12 @@ export const FETCHING_MOVIES_START = "FETCHING_MOVIES_START";
 export const FETCHING_MOVIES_SUCCESS = "FETCHING_MOVIES_SUCCESS";
 export const FETCHING_MOVIES_FAIL = "FETCHING_MOVIES_FAIL";
 //GET MOVIES
-export function getMoviesAction(id) {
+export function getMoviesAction(id, token) {
     return dispatch => {
       dispatch({
         type: FETCHING_MOVIES_START
       });
-      axiosWithAuth()
+      axiosWithAuth(token)
         .get(`/${id}/get-movies`)
         .then(res => {
           dispatch({

@@ -1,6 +1,9 @@
 import React, { useEffect } from "react";
 import { Route } from "react-router-dom";
 
+import { Security, SecureRoute, LoginCallback } from '@okta/okta-react';
+import Test from './Test';
+
 // local imports
 import PrivateRoute from "./utils/privateRoute.js";
 import Recommendations from "./components/dashboard/Recommendations.js";
@@ -17,6 +20,9 @@ import SearchBar from './components/auth/SearchBar';
 import OnboardingPlateform from './components/auth/OnboardingPlateform';
 // for testing
 import { ifDev } from "./utils/removeAttribute.js";
+import oktaConfig from './config/oktaConfig';
+import { useOktaAuth } from '@okta/okta-react';
+
 
 // config imports
 import reactGAinitialization from "./config/analytics.js";
@@ -33,6 +39,10 @@ import { loadState, saveState } from "./store/localStorage.js";
 //for theme color change
 import { createMuiTheme } from "@material-ui/core/styles";
 import { ThemeProvider } from "@material-ui/core/styles";
+
+
+
+
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(
@@ -51,7 +61,13 @@ store.subscribe(() => {
 });
 
 function App() {
+<<<<<<< HEAD
   //used to create theme of app
+=======
+  
+
+
+>>>>>>> a883fac84b969c09c86686f1f0d809ea0d19f6cf
   useEffect(() => reactGAinitialization(), []);
   const theme = React.useMemo(
     () =>
@@ -75,10 +91,13 @@ function App() {
     <ThemeProvider theme={theme}>
     <Provider store={store}>
       <Router>
-        <div className="App" data-test={ifDev("App-component")}>
-         
-          
+      <Security {...oktaConfig.oidc}>
+
+        <div className="App" data-test={ifDev("App-component")}>        
+
           {/* this is fine as a route because all of the routes that will have display their component will only be avalible on a private route */}
+          <Route path="/implicit/callback" component={LoginCallback} />
+
           <Route
             exact
             path={[
@@ -90,17 +109,18 @@ function App() {
             ]}
             component={Navigation}
           />
-          <PrivateRoute
+          <SecureRoute
             exact
             path="/:user_id/recommendations"
             component={Recommendations}
             data-test={ifDev("dash-component")}
           />
-             <PrivateRoute
+          <SecureRoute
             exact
             path="/:user_id/watchlist"
             component={Watchlist}
           />
+<<<<<<< HEAD
           <Route
             exact
             path={[
@@ -122,15 +142,23 @@ function App() {
           component={Onboarding2}
           />
 
+=======
+          <SecureRoute
+            exact
+            path="/test"
+            component={Test}
+          />
+>>>>>>> a883fac84b969c09c86686f1f0d809ea0d19f6cf
           <Route exact path="/:user_id/upload" component={DataUpload} />
           <Route exact path={["/","/login" ]} component={Login} />
           <Route path="/logout" component={Login} />
           <Route path="/register" component={Register} />
           {/* this could be a modal */}
           {/* <Route path="/congrats" component={Congrats} /> */}
-          <PrivateRoute exact path="/:user_id/ratings" component={Ratings}/>
-          <PrivateRoute exact path="/:user_id/explore" component={Explore}/>
+          <SecureRoute exact path="/:user_id/ratings" component={Ratings}/>
+          <SecureRoute exact path="/:user_id/explore" component={Explore}/>
         </div>
+        </Security>
       </Router>
     </Provider>
     </ThemeProvider>

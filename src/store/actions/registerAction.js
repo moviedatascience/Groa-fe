@@ -18,6 +18,7 @@ export function registerAction(userCreds, history) {
           .post("/login", user)
           .then(res => {
             localStorage.setItem("token", res.data.token);
+            console.log("THIS IS WORKING BOIIIIII")
             dispatch({
               type: FETCHING_USER_LOGIN_SUCCESS,
               payload: res.data.user_id

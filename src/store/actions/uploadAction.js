@@ -5,10 +5,10 @@ export const UPLOADING_FILE_FAIL = "UPLOADING_FILE_FAIL";
 export const UPLOADED_SUCCESSFUL = "UPLOADED_SUCCESSFUL";
 
 // UPLOADING
-export function uploadAction(userid, data, setUploadSuccess) {
+export function uploadAction(userid, data, setUploadSuccess, token) {
   return dispatch => {
     dispatch({ type: UPLOADING_FILE_START });
-    axiosWithAuth()
+    axiosWithAuth(token)
       // this is insantiated when a file is added to input
       .post(`/${userid}/uploading`, data, {
         headers: {

@@ -16,6 +16,7 @@ import MovieCard from "../movies/MovieCard.js";
 //for grid
 import { GridList } from "@material-ui/core/";
 import { makeStyles } from "@material-ui/core/styles";
+import { useOktaAuth } from "@okta/okta-react/dist/OktaContext";
 
 const useStyles = makeStyles((theme) => ({
   cardGrid: {
@@ -37,6 +38,12 @@ function Watchlist({
   setFilter,
   movies,
 }) {
+<<<<<<< HEAD
+=======
+  //OKTA AUTH
+  const { authState, authService } = useOktaAuth();
+  const {accessToken} = authState;
+>>>>>>> a883fac84b969c09c86686f1f0d809ea0d19f6cf
 
   const [deleteMode, setDeleteMode] = useState(false);
   //for matieral-ui
@@ -47,11 +54,11 @@ function Watchlist({
   useEffect(() => {
     setFilter("");
     // Returns the users watchlist from the database
-    getWatchlistAction(userid);
+    getWatchlistAction(userid, accessToken);
   }, [getWatchlistAction, userid, isDeleting, setFilter]);
 
   function handleClick(id) {
-    removeFromWatchlistAction(userid, id);
+    removeFromWatchlistAction(userid, id, accessToken);
   }
 
   if (isFetching) return <LoadingScreen />;

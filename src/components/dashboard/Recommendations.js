@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { useOktaAuth } from '@okta/okta-react';
 // tools
 import { connect } from "react-redux";
 import {
@@ -33,10 +34,14 @@ function Recommendations({
   isUploaded,
   setFilter,
 }) {
+
+  const { authState } = useOktaAuth();
+  const { accessToken } = authState;
+
   useEffect(() => {
     setFilter("");
     if (isUploaded === true) {
-      recommendationAction(userid);
+      recommendationAction(userid, accessToken);
       toggleIsUploaded();
     }
     recommendationAction(userid);
