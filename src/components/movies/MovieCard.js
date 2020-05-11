@@ -4,7 +4,6 @@ import { ratingAction, addToWatchlistAction } from "../../store/actions";
 import Stars from "@material-ui/lab/Rating";
 import StarBorderIcon from "@material-ui/icons/StarBorder";
 //for grid
-<<<<<<< HEAD
 import { makeStyles, withStyles } from "@material-ui/core/styles";
 import {
   Button,
@@ -17,6 +16,7 @@ import {
   IconButton,
 } from "@material-ui/core";
 import CloseIcon from "@material-ui/icons/Close";
+import { useOktaAuth } from "@okta/okta-react/dist/OktaContext";
 
 const styles = (theme) => ({
   closeBtn: {
@@ -46,14 +46,6 @@ const DialogTitle = withStyles(styles)((props) => {
     </div>
   );
 });
-=======
-import { makeStyles } from "@material-ui/core/styles";
-import Button from "@material-ui/core/Button";
-import CardActions from "@material-ui/core/CardActions";
-import CardContent from "@material-ui/core/CardContent";
-import Typography from "@material-ui/core/Typography";
-import { useOktaAuth } from "@okta/okta-react/dist/OktaContext";
->>>>>>> a883fac84b969c09c86686f1f0d809ea0d19f6cf
 
 const useStyles = makeStyles((theme) => ({
   nameModal: {
@@ -268,13 +260,9 @@ function MovieCard({
       movie_id: movie.movie_id,
       rating: newValue,
     };
-<<<<<<< HEAD
-    // console.log(newRating);
-    ratingAction(userid, newRating);
-=======
+
     console.log(newRating);
     ratingAction(userid, newRating, accessToken);
->>>>>>> a883fac84b969c09c86686f1f0d809ea0d19f6cf
     setYourRating(true);
   };
   const handleClick = () => {

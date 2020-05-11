@@ -61,13 +61,8 @@ store.subscribe(() => {
 });
 
 function App() {
-<<<<<<< HEAD
   //used to create theme of app
-=======
-  
 
-
->>>>>>> a883fac84b969c09c86686f1f0d809ea0d19f6cf
   useEffect(() => reactGAinitialization(), []);
   const theme = React.useMemo(
     () =>
@@ -120,7 +115,6 @@ function App() {
             path="/:user_id/watchlist"
             component={Watchlist}
           />
-<<<<<<< HEAD
           <Route
             exact
             path={[
@@ -141,14 +135,11 @@ function App() {
           path='/:user_id/onboarding2' 
           component={Onboarding2}
           />
-
-=======
           <SecureRoute
             exact
             path="/test"
             component={Test}
           />
->>>>>>> a883fac84b969c09c86686f1f0d809ea0d19f6cf
           <Route exact path="/:user_id/upload" component={DataUpload} />
           <Route exact path={["/","/login" ]} component={Login} />
           <Route path="/logout" component={Login} />

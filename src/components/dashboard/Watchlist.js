@@ -38,12 +38,10 @@ function Watchlist({
   setFilter,
   movies,
 }) {
-<<<<<<< HEAD
-=======
+
   //OKTA AUTH
   const { authState, authService } = useOktaAuth();
   const {accessToken} = authState;
->>>>>>> a883fac84b969c09c86686f1f0d809ea0d19f6cf
 
   const [deleteMode, setDeleteMode] = useState(false);
   //for matieral-ui
