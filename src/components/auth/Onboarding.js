@@ -147,7 +147,7 @@ function Onboarding(
   // console.log('state ', state )
   // console.log("open alert is now ", openAlert);
   if (isFetching) return <LoadingScreen />;
-  else if (numRatings.num >= 12) return <Redirect to= 'postonboarding' />
+  else if (numRatings.num >= 13) return <Redirect to= 'postonboarding' />
   else return (
     <div>
       <GridList

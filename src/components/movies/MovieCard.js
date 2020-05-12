@@ -132,8 +132,10 @@ const useStyles = makeStyles((theme) => ({
   },
   watchList: {
     fontSize: "10px",
-    textAlign: "left",
-    padding: 0,
+    // textAlign: "center",
+    // padding: 0,
+    justifyContent: "center",
+    display: "flex",
   },
   //modal
   modal: {
@@ -156,8 +158,8 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
   },
   watchStarsModal: {
-    justifyContent: "center",
     display: "flex",
+    justifyContent: "center"
   },
   cardActionsModal: {
     justifyContent: "center",
@@ -273,9 +275,9 @@ function MovieCard({
   };
 
   const multiFunctions = () => {
-    // handleClose();
-    // handleClickStar();
-    // onboardingRating();
+    handleClose();
+    handleClickStar();
+    onboardingRating();
   };
 
   const onboardingRating = () => {
@@ -370,7 +372,7 @@ function MovieCard({
                     onChange={handleChange}
                       // else if (newRatings >= 6) return <SecureRoute path='/:user_id/postonboarding' component={PostOnboarding}/>
 
-                    onClick={onboardingRating}
+                    onClick={multiFunctions}
                   />  
                   ) : (
                     <Stars
