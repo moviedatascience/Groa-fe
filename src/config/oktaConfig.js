@@ -1,12 +1,12 @@
-const CLIENT_ID = process.env.CLIENT_ID;
-const ISSUER = process.env.ISSUER;
+const CLIENT_ID = process.env.REACT_APP_CLIENT_ID;
+const ISSUER = process.env.REACT_APP_ISSUER;
 const OKTA_TESTING_DISABLEHTTPSCHECK = process.env.OKTA_TESTING_DISABLEHTTPSCHECK || false;
 
 export default {
   oidc: {
-    clientId: '0oaap4ry7yG1neZhz4x6',
-    issuer: 'https://dev-568768.okta.com/oauth2/default',
-    redirectUri: 'https://www.groa.us/implicit/callback',
+    clientId: CLIENT_ID,
+    issuer: ISSUER,
+    redirectUri: window.location.origin + '/implicit/callback',
     scopes: ['openid', 'profile', 'email'],
     pkce: true,
     disableHttpsCheck: OKTA_TESTING_DISABLEHTTPSCHECK,
