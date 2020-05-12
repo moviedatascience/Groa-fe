@@ -1,7 +1,5 @@
 import axios from 'axios';
 
-//baseURL needs to be properly implement once endpoints for login are available
-
 const axiosWithAuth = (accessToken) => {
 
     return axios.create({

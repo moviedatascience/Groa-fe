@@ -2,16 +2,11 @@ import React, { useState, useEffect} from "react";
 import { connect } from "react-redux";
 import { registerAction, loginAction } from "../../store/actions";
 import { ifDev } from "../../utils/removeAttribute.js";
-import { Link, useHistory, Redirect } from "react-router-dom";
+import { Link, useHistory} from "react-router-dom";
 
-
-//For validation
-import { useForm } from "react-hook-form";
-import * as Yup from "yup";
 
 // styling imports
 import Picture3 from "../../img/couch-popcorn.png";
-import { TextField } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
@@ -103,7 +98,7 @@ const Register = (props) => {
               <div className="bottom-form">
                 <div className="signup-btn-container btn-container">
                 <button className="signup-btn" onClick={login}> Login </button>
-                  <button className="signup-btn" onClick={registerOkta}>Sign Up </button>
+                  <button className="signup-btn" onClick={login}>Sign Up </button>
                   <p className='subtitle fancy'><span>OR</span></p>
                 <div className="google-btn">
                 <div className="google-icon-wrapper">
