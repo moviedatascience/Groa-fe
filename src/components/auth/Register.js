@@ -2,7 +2,7 @@ import React, { useState, useEffect} from "react";
 import { connect } from "react-redux";
 import { registerAction, loginAction } from "../../store/actions";
 import { ifDev } from "../../utils/removeAttribute.js";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useHistory, Redirect } from "react-router-dom";
 
 
 //For validation
@@ -47,22 +47,18 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-// Validation Schema
-const RegisterSchema = Yup.object().shape({
-  firstName: Yup.string().required("firstName is required"),
-  lastName: Yup.string().required("lastName is required"),
-  email: Yup.string().email().required("Email is required"),
-});
-
 const Register = (props) => {
   const history = useHistory();
   const { authState, authService } = useOktaAuth();
   const login = async () => authService.login('/');
   const logout = async () => authService.logout('/');
 
+  const registerOkta = () => {
+    window.location.href = 'https://dev-568768.okta.com/signin/register'; 
+  };
+
   //if user already Authenticated, loginAction redirects to to explore page
-  useEffect(() => {
-    console.log('))))))))))))))))))))))))))))))))))))))))))))))',authState.isAuthenticated)      
+  useEffect(() => {    
       authService.getUser()
         .then((info) => {
            props.loginAction(authState.accessToken, info.sub, history)  
@@ -70,34 +66,6 @@ const Register = (props) => {
       .catch(err => console.log("Error fetching User info in UseEffect", err))
   }, [authState]);
 
-
-
-  const [users, setUsers] = useState({
-    email: "",
-    firstName: "",
-    lastName: "",
-  });
-  const { register, handleSubmit, errors } = useForm({
-    validationSchema: RegisterSchema,
-  });
-  const classes = useStyles();
-
-  const handleChange = (e) => {
-    setUsers({
-      ...users,
-      [e.target.name]: e.target.value,
-    });
-  };
-
-  const onSubmit = () => {
-    let user = {
-      firstName: users.firstName,
-      lastName:users.lastName,
-      email: users.email,
-    };
-    console.log("user before register button", user);
-    props.registerAction(user, props.history);
-  };
 
   return (
     <div
@@ -128,98 +96,14 @@ const Register = (props) => {
         {/* FORM STARTS */}
         <div className="box-right">
           {/* <Grid container spacing={1}> */}
-            <form
+            <div
               className="form"
-              data-test={ifDev("registerForm")}
-              onSubmit={handleSubmit(onSubmit)}
             >
-              {/* <Grid className="register-inputs"> */}
-              {/* <Grid container item xs={12}> */}
-              
-              {errors.email && errors.email.type === "required" && (
-                <p>An email is required</p>
-              )}
-              {/* </Grid> */}
-              {/* <Grid container item xs={12}> */}
-              <TextField
-                className={classes.textField}
-                name="firstName"
-                value={users.firstName}
-                onChange={handleChange}
-                label="First Name"
-                variant="outlined"
-                inputRef={register}
-              />
-              {errors.firstName && errors.firstName.type === "required" && (
-                <p>First Name is required</p>
-              )} 
-              <TextField
-                className={classes.textField}
-                name="lastName"
-                value={users.lastName}
-                onChange={handleChange}
-                label="Last Name"
-                variant="outlined"
-                inputRef={register}
-              />
-                {errors.lastName && errors.lastName.type === "required" && (
-                <p>Last Name is required</p>
-                )} 
-              <TextField
-                className={classes.textField}
-                name="email"
-                value={users.email}
-                onChange={handleChange}
-                label="Email"
-                variant="outlined"
-                inputRef={register}
-              />
-              {errors.email && errors.email.type === "required" && (
-                <p>Email is required</p>
-              )} 
-              {/* </Grid> */}
-              {/* <Grid container item xs={12}> */}
-              {/* <TextField
-                className={classes.textField}
-                name="password"
-                type="password"
-                value={users.password}
-                onChange={handleChange}
-                label="Password"
-                variant="outlined"
-                inputRef={register}
-              /> */}
-              {/* {errors.password && errors.password.type === "required" && (
-                <p>Password required</p> */}
 
-              {/* {errors.password && errors.password.type === "min" && (
-                <p>Password must be at least 6 characters long</p>
-              )} */}
-              {/* </Grid> */}
-              {/* <Grid container item xs={12}> */}
-              {/* <TextField
-                className={classes.textField}
-                name="confirmpassword"
-                type="password"
-                value={users.confirmpassword}
-                onChange={handleChange}
-                label="Confirm Password"
-                variant="outlined"
-                inputRef={register}
-              /> */}
-              {/* {errors.confirmpassword &&
-                errors.confirmpassword.type === "required" && (
-                  <p>Password Confirmation Required</p>
-                )}
-              {errors.confirmpassword &&
-                errors.confirmpassword.type === "oneOf" && (
-                  <p>Password does not match</p>
-                )} */}
-              {/* </Grid> */}
-              {/* </Grid> */}
               <div className="bottom-form">
                 <div className="signup-btn-container btn-container">
-                  <button className="signup-btn">Sign Up </button>
+                <button className="signup-btn" onClick={login}> Login </button>
+                  <button className="signup-btn" onClick={registerOkta}>Sign Up </button>
                   <p className='subtitle fancy'><span>OR</span></p>
                 <div className="google-btn">
                 <div className="google-icon-wrapper">
@@ -235,22 +119,10 @@ const Register = (props) => {
                     </div>
                 </div>
               </div>
-              <div className="bottomAccount">
-                <Link
-                  className="register link"
-                  onClick={login}
-                  data-test={ifDev("loginBtn")}
-                >
-                  <p> Login</p>
-                  <p>Already have an account?</p>
-                </Link>
-              </div>
-            </form>
-          {/* </Grid> */}
-          {/* FORM ENDS */}
+            </div>
         </div>
-      </div>{" "}
-      {/* PAGE CONTAINER */}
+      </div>
+
       <Box mt={3}>
         <Copyright />
       </Box>

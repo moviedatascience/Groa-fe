@@ -37,8 +37,6 @@ import { loadState, saveState } from "./store/localStorage.js";
 import { createMuiTheme } from "@material-ui/core/styles";
 import { ThemeProvider } from "@material-ui/core/styles";
 
-// import dotenv from 'dotenv';
-
 
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
