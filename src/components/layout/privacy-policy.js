@@ -15,7 +15,7 @@ function PrivacyPolicy() {
         </p>
       <h3>What personal information do we collect from the people that visit our blog, website or app?
       </h3>  
-        <p>When ordering or registering on our site, as appropriate, you may be asked to enter your name, email address, Preferences or other details to help you with your experience.
+        <p>When using or registering on our site, as appropriate, you may be asked to enter your name, email address, Preferences or other details to help you with your experience.
         </p>
       <h3>When do we collect information?
       </h3>
