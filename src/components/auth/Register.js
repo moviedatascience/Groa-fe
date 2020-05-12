@@ -30,6 +30,9 @@ function Copyright() {
       </Link>{' '}
       2020
       {'.'}
+      <Link color="white" to="https://groa.us/privacy-policy">
+        GROÁ Privacy Policy
+      </Link>
     </Typography>
   );
 }

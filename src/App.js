@@ -14,6 +14,7 @@ import DataUpload from "./components/auth/DataUpload";
 import Watchlist from "./components/dashboard/Watchlist.js";
 import Ratings from './components/dashboard/Ratings';
 import Explore from "./components/dashboard/Explore.js";
+import PrivacyPolicy from "./components/layout/privacy-policy.js";
 
 // for testing
 import { ifDev } from "./utils/removeAttribute.js";
@@ -118,6 +119,7 @@ function App() {
             path="/test"
             component={Test}
           />
+          <Route path ="/privacy-policy" component={PrivacyPolicy} />
           <Route exact path="/:user_id/upload" component={DataUpload} />
           <Route path="/login" component={Login} />
           <Route exact path={["/", "/register"]} component={Register} />
