@@ -14,11 +14,14 @@ import DataUpload from "./components/auth/DataUpload";
 import Watchlist from "./components/dashboard/Watchlist.js";
 import Ratings from './components/dashboard/Ratings';
 import Explore from "./components/dashboard/Explore.js";
+
 import Onboarding from './components/auth/Onboarding';
 import Onboarding2 from './components/auth/Onboarding2';
 import SearchBar from './components/auth/SearchBar';
 import OnboardingPlateform from './components/auth/OnboardingPlateform';
 import PostOnboarding from './components/auth/PostOnboarding';
+import PrivacyPolicy from "./components/layout/privacy-policy.js";
+
 // for testing
 import { ifDev } from "./utils/removeAttribute.js";
 import oktaConfig from './config/oktaConfig';
@@ -135,10 +138,13 @@ function App() {
             path="/test"
             component={Test}
           />
+
           <SecureRoute 
           path='/:user_id/postonboarding'
           component={PostOnboarding}
           />
+
+          <Route path ="/privacy-policy" component={PrivacyPolicy} />
           <Route exact path="/:user_id/upload" component={DataUpload} />
           <Route exact path={["/","/register" ]} component={Register} />
           <Route path="/logout" component={Login} />
