@@ -12,7 +12,7 @@ const axiosWithAuth = (accessToken) => {
         headers: {
             Authorization: `Bearer ${accessToken}`
         },
-        baseURL: "https://dev.groa.us/api/users"
+        baseURL: "http://localhost:8080/api/users"
     })
 }
 

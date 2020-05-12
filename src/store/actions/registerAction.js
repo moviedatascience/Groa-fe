@@ -17,7 +17,7 @@ export function registerAction(userCreds, history) {
         axiosWithAuth()
           .post("/login", user)
           .then(res => {
-            localStorage.setItem("token", res.data.token);
+            // localStorage.setItem("token", res.data.token);
             console.log("THIS IS WORKING BOIIIIII")
             dispatch({
               type: FETCHING_USER_LOGIN_SUCCESS,
