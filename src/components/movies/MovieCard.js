@@ -321,7 +321,7 @@ function MovieCard({
                     {description}
                   </p>
                 </CardContent>
-                {/* <div className={classes.bottomModal}> */}
+                {/* < className={classes.bottomModal}> */}
                   {page !== "Onboarding" ? (
                     // <CardActions className={classes.cardActionsModal}>
                       <Button
@@ -343,7 +343,8 @@ function MovieCard({
                   ) : (
                     ""
                   )}
-
+                 
+                   {page === "Onboarding" ? (
                   <Stars
                     className={classes.starsModal}
                     data-test="star"
@@ -359,14 +360,27 @@ function MovieCard({
                     value={rated ? rated : rating}
                     onChange={handleChange}
                     onClick={multiFunctions}
-                  />
-                {/* </div> */}
-               
+                  />  
+                  ) : (
+                    <Stars
+                    className={classes.starsModal}
+                    data-test="star"
+                    precision={0.5}
+                    size="large"
+                    emptyIcon={
+                      <StarBorderIcon
+                        fontSize="inherit"
+                        style={{ color: "#ffb400" }}
+                      />
+                    }
+                    name={name}
+                    value={rated ? rated : rating}
+                    onChange={handleChange}
+                  /> 
+                  )}                  
               </div>
             </div>
-            {/* <div className={classes.videoWrapper}> */}
             {page !== "Onboarding" ? (
-              // eslint-disable-next-line jsx-a11y/iframe-has-title
               <iframe className={classes.trailerModal}
                 width="100%"
                 height="315vh"
@@ -380,11 +394,7 @@ function MovieCard({
             ) : (
               ""
             )}
-            {/* </div> */}
-            {/* <iframe width="285" height="200" src={trailer} frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> */}
-            {/* <iframe src="https://player.vimeo.com/video/410011254?title=0&byline=0&portrait=0&badge=0" width="400" height="315" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe> */}
           </div>
-          {/* </div> */}
         </Fade>
       </Modal>
     </div>
