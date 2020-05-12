@@ -41,7 +41,8 @@ function Ratings({
     getRatingAction(userid, accessToken);
   }, [getRatingAction, userid, setFilter]);
   console.log(`here + ${screenWidth}`);
-  console.log(classes);
+  // console.log(classes);
+  console.log("ratings length " + ratings.length);
 
   if (isFetching) return <LoadingScreen />;
   else

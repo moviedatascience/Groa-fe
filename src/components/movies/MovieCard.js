@@ -216,6 +216,8 @@ function MovieCard({
   description,
   page,
   handleClickStar,
+  numRatings,
+  setNumRatings
 }) {
   //OKTA AUTH
   const { authState, authService } = useOktaAuth();
@@ -271,9 +273,16 @@ function MovieCard({
   };
 
   const multiFunctions = () => {
-    handleClose();
-    handleClickStar();
+    // handleClose();
+    // handleClickStar();
+    onboaringRating();
   };
+
+  const onboaringRating = () => {
+    setNumRatings({...numRatings, num: numRatings.num + 1});
+    console.log("number of ratings is " + numRatings.num);
+    console.log("openalert");
+  }
 
   return (
     <div className={classes.card}>
@@ -359,7 +368,9 @@ function MovieCard({
                     name={name}
                     value={rated ? rated : rating}
                     onChange={handleChange}
-                    onClick={multiFunctions}
+                      // else if (newRatings >= 6) return <SecureRoute path='/:user_id/postonboarding' component={PostOnboarding}/>
+
+                    onClick={onboaringRating}
                   />  
                   ) : (
                     <Stars

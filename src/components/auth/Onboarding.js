@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 // import reactOnboardingPro from "react-onboarding-pro";
 // import "react-onboarding-pro/build/index.css";
 import { connect } from "react-redux";
-import { getMoviesAction, setFilter } from "../../store/actions/index.js";
+import { getMoviesAction, getRatingAction, setFilter } from "../../store/actions/index.js";
 // Screen width util
 import widthFinder from "../../utils/widthFinder.js";
 // PostOnboarding
@@ -29,6 +29,8 @@ import MuiAlert from "@material-ui/lab/Alert";
 //okta
 import { useOktaAuth } from "@okta/okta-react/dist/OktaContext";
 import { SecureRoute } from '@okta/okta-react';
+import { Redirect } from 'react-router';
+
 
 const useStyles = makeStyles((theme) => ({
   cardGrid: {
@@ -93,6 +95,7 @@ function Onboarding(
     searchTerm,
     setFilter,
     ratings,
+    getRatingAction,
   },
   props
 ) {
@@ -103,7 +106,7 @@ function Onboarding(
   const { accessToken } = authState;
 
   const [openAlert, setOpenAlert] = useState(false);
-  // const [numRatings, setNumRatings] = useState(0);
+  let [numRatings, setNumRatings] = useState({num:0});
   const screenWidth = widthFinder(window.innerWidth);
   //for search bar
   const handleSubmit = (e) => {
@@ -123,7 +126,7 @@ function Onboarding(
   };
   const handleClickStar = () => {
     setOpenAlert(true);
-    console.log("openalert");
+    
   };
   const handleCloseStar = (event, reason) => {
     if (reason === "clickaway") {
@@ -136,14 +139,15 @@ function Onboarding(
     setFilter("");
     // Returns the movies
     getMoviesAction(userid, accessToken);
-  }, [getMoviesAction, userid, ratings, setFilter]);
+    //get ratings
+    // getRatingAction(userid, accessToken);
+  }, [getMoviesAction, userid, ratings, setFilter, getRatingAction,]);
   // How many movies render
   const cardAmount = 25;
+  // console.log('state ', state )
   // console.log("open alert is now ", openAlert);
-  console.log("ratings length " + ratings.length);
-  console.log("ratings " + ratings);
   if (isFetching) return <LoadingScreen />;
-  // else if (ratings.length >= 6) return <SecureRoute path='/:user_id/postonboarding' component={PostOnboarding}/>
+  else if (numRatings.num >= 6) return <Redirect to= 'postonboarding' />
   else return (
     <div>
       <GridList
@@ -200,6 +204,8 @@ function Onboarding(
                       : moviePoster
                   }
                   handleClickStar={handleClickStar}
+                  numRatings={numRatings}
+                  setNumRatings={setNumRatings}
                 />
               </div>
             );
@@ -222,7 +228,7 @@ function Onboarding(
     }
 
 const mapStateToProps = (state) => {
-  console.log("state rating movies " + state.rating.movies)
+  // console.log(state.rating.movies.length)
   return {
     userid: state.login.userid,
     isFetching: state.movie.isFetching,
@@ -231,9 +237,11 @@ const mapStateToProps = (state) => {
     searchTerm: state.filter.searchTerm,
     watchlist: state.watchlist.movies,
     ratings: state.rating.movies,
+    ratingsError: state.rating.error,
   };
 };
 export default connect(mapStateToProps, {
   getMoviesAction,
   setFilter,
+  getRatingAction
 })(Onboarding);
