@@ -174,11 +174,11 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
     justifyContent: "space-evenly",
   },
-  videoWrapper:{
-    position:'relative',
-    height:0,
-    paddingBottom:'56.25%',
-  },
+  // videoWrapper:{
+  //   position:'relative',
+  //   height:0,
+  //   paddingBottom:'56.25%',
+  // },
   [theme.breakpoints.down("xs")]: {
     movieImgModal: {
       width: "80%",
@@ -386,6 +386,7 @@ function MovieCard({
                 height="315vh"
                 margin-left= 'auto'
                 margin-right= 'auto'
+                padding='2%'
                 src={trailer}
                 frameborder="0"
                 allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"

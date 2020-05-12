@@ -6,7 +6,8 @@ import { connect } from "react-redux";
 import { getMoviesAction, setFilter } from "../../store/actions/index.js";
 // Screen width util
 import widthFinder from "../../utils/widthFinder.js";
-
+// PostOnboarding
+import PostOnboarding from './PostOnboarding';
 // children components
 import MovieCard from "../movies/MovieCard.js";
 import LoadingScreen from "../layout/LoadingScreen.js";
@@ -27,6 +28,7 @@ import MuiAlert from "@material-ui/lab/Alert";
 
 //okta
 import { useOktaAuth } from "@okta/okta-react/dist/OktaContext";
+import { SecureRoute } from '@okta/okta-react';
 
 const useStyles = makeStyles((theme) => ({
   cardGrid: {
@@ -101,6 +103,7 @@ function Onboarding(
   const { accessToken } = authState;
 
   const [openAlert, setOpenAlert] = useState(false);
+  // const [numRatings, setNumRatings] = useState(0);
   const screenWidth = widthFinder(window.innerWidth);
   //for search bar
   const handleSubmit = (e) => {
@@ -137,86 +140,89 @@ function Onboarding(
   // How many movies render
   const cardAmount = 25;
   // console.log("open alert is now ", openAlert);
+  console.log("ratings length " + ratings.length);
+  console.log("ratings " + ratings);
   if (isFetching) return <LoadingScreen />;
-  else
-    return (
-      <div>
-        <GridList
-          className={classes.cardGrid}
-          cols={screenWidth ? 3 : 5}
-          cellHeight="auto"
-        >
-          {movies
-            .filter((movie) =>
-              !ratings.includes(
-                (film) =>
-                  film.primary_title === movie.primary_title &&
-                  film.start_year === movie.start_year
-              ).length && searchTerm !== ""
-                ? movie.primary_title
-                  .toString()
-                  .toLowerCase()
-                  .includes(searchTerm.toLowerCase())
-                : true
-            )
-            .slice(0, cardAmount)
-            .map((movie, index) => {
-              /* Checks if the film is in ratings */
-              const isRated = (film) => {
-                return (
-                  film.primary_title === movie.primary_title &&
-                  film.start_year === movie.start_year
-                );
-              };
-              /* Returns the movie object if in ratings */
-              let rated = ratings.find(isRated);
-              let posterURI = movie.poster_url;
-              let unsplashUrl =
-                "https://source.unsplash.com/collection/1736993/500x650";
-              let moviePoster = `https://image.tmdb.org/t/p/w500${posterURI}?api_key=${process.env.REACT_APP_TMDB_API_KEY}`;
+  // else if (ratings.length >= 6) return <SecureRoute path='/:user_id/postonboarding' component={PostOnboarding}/>
+  else return (
+    <div>
+      <GridList
+        className={classes.cardGrid}
+        cols={screenWidth ? 3 : 5}
+        cellHeight="auto"
+      >
+        {movies
+          .filter((movie) =>
+            !ratings.includes(
+              (film) =>
+                film.primary_title === movie.primary_title &&
+                film.start_year === movie.start_year
+            ).length && searchTerm !== ""
+              ? movie.primary_title
+                .toString()
+                .toLowerCase()
+                .includes(searchTerm.toLowerCase())
+              : true
+          )
+          .slice(0, cardAmount)
+          .map((movie, index) => {
+            /* Checks if the film is in ratings */
+            const isRated = (film) => {
               return (
-                <div>
-                  <MovieCard
-                    key={index}
-                    name={movie.primary_title}
-                    page={"Onboarding"}
-                    // year={movie.start_year}
-                    // trailer={movie.trailer_url}
-                    // description={movie.description}
-                    movie_id={movie.movie_id}
-                    rated={rated ? rated.rating : null}
-                    image={
-                      !posterURI ||
-                        posterURI === "None" ||
-                        posterURI === "No poster" ||
-                        posterURI === "No Poster" ||
-                        posterURI === "Not in table"
-                        ? unsplashUrl
-                        : moviePoster
-                    }
-                    handleClickStar={handleClickStar}
-                  />
-                </div>
+                film.primary_title === movie.primary_title &&
+                film.start_year === movie.start_year
               );
-            })}
-        </GridList>
-        {/* <Link className={classes.Link} to={`/${props.userid}/Onboarding2`}>
-          Next
-        </Link> */}
-        <Snackbar
-          open={openAlert}
-          autoHideDuration={6000}
-          onClose={handleCloseStar}
-        >
-          <Alert onClose={handleCloseStar} variant="outlined" severity="success">
-            You have successfully rated this movie!
-          </Alert>
-        </Snackbar>
-      </div>
-    );
-}
+            };
+            /* Returns the movie object if in ratings */
+            let rated = ratings.find(isRated);
+            let posterURI = movie.poster_url;
+            let unsplashUrl =
+              "https://source.unsplash.com/collection/1736993/500x650";
+            let moviePoster = `https://image.tmdb.org/t/p/w500${posterURI}?api_key=${process.env.REACT_APP_TMDB_API_KEY}`;
+            return (
+              <div>
+                <MovieCard
+                  key={index}
+                  name={movie.primary_title}
+                  page={"Onboarding"}
+                  // year={movie.start_year}
+                  // trailer={movie.trailer_url}
+                  // description={movie.description}
+                  movie_id={movie.movie_id}
+                  rated={rated ? rated.rating : null}
+                  image={
+                    !posterURI ||
+                      posterURI === "None" ||
+                      posterURI === "No poster" ||
+                      posterURI === "No Poster" ||
+                      posterURI === "Not in table"
+                      ? unsplashUrl
+                      : moviePoster
+                  }
+                  handleClickStar={handleClickStar}
+                />
+              </div>
+            );
+          })}
+      </GridList>
+      {/* <Link className={classes.Link} to={`/${props.userid}/Onboarding2`}>
+        Next
+      </Link> */}
+      <Snackbar
+        open={openAlert}
+        autoHideDuration={6000}
+        onClose={handleCloseStar}
+      >
+        <Alert onClose={handleCloseStar} variant="filled" severity="success">
+          You have successfully rated this movie!
+        </Alert>
+      </Snackbar>
+    </div>
+  );
+    }
 
 const mapStateToProps = (state) => {
+  console.log("state rating movies " + state.rating.movies)
   return {
     userid: state.login.userid,
     isFetching: state.movie.isFetching,
