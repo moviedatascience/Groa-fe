@@ -99,7 +99,7 @@ function Onboarding(
   },
   props
 ) {
-  console.log("movies", movies);
+  // console.log("movies", movies);
   const classes = useStyles();
   //for okta
   const { authState, authService } = useOktaAuth();
@@ -141,13 +141,13 @@ function Onboarding(
     getMoviesAction(userid, accessToken);
     //get ratings
     // getRatingAction(userid, accessToken);
-  }, [getMoviesAction, userid, ratings, setFilter, getRatingAction,]);
+  }, [getMoviesAction, userid, ratings, setFilter,]);
   // How many movies render
   const cardAmount = 25;
   // console.log('state ', state )
   // console.log("open alert is now ", openAlert);
   if (isFetching) return <LoadingScreen />;
-  else if (numRatings.num >= 6) return <Redirect to= 'postonboarding' />
+  else if (numRatings.num >= 12) return <Redirect to= 'postonboarding' />
   else return (
     <div>
       <GridList

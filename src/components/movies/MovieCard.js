@@ -275,10 +275,10 @@ function MovieCard({
   const multiFunctions = () => {
     // handleClose();
     // handleClickStar();
-    onboaringRating();
+    // onboardingRating();
   };
 
-  const onboaringRating = () => {
+  const onboardingRating = () => {
     setNumRatings({...numRatings, num: numRatings.num + 1});
     console.log("number of ratings is " + numRatings.num);
     console.log("openalert");
@@ -370,7 +370,7 @@ function MovieCard({
                     onChange={handleChange}
                       // else if (newRatings >= 6) return <SecureRoute path='/:user_id/postonboarding' component={PostOnboarding}/>
 
-                    onClick={onboaringRating}
+                    onClick={onboardingRating}
                   />  
                   ) : (
                     <Stars
