@@ -64,6 +64,32 @@ const Register = (props) => {
       .catch(err => console.log("Error fetching User info in UseEffect", err))
   }, [authState]);
 
+  // const [users, setUsers] = useState({
+  //   email: "",
+  //   firstName: "",
+  //   lastName: "",
+  // });
+  // const { register, handleSubmit, errors } = useForm({
+  //   validationSchema: RegisterSchema,
+  // });
+  // const classes = useStyles();
+
+  // const handleChange = (e) => {
+  //   setUsers({
+  //     ...users,
+  //     [e.target.name]: e.target.value,
+  //   });
+  // };
+
+  // const onSubmit = () => {
+  //   let user = {
+  //     firstName: users.firstName,
+  //     lastName:users.lastName,
+  //     email: users.email,
+  //   };
+    // console.log("user before register button", user);
+  //   props.registerAction(user, props.history);
+  // };
 
   return (
     <div

@@ -14,13 +14,18 @@ import DataUpload from "./components/auth/DataUpload";
 import Watchlist from "./components/dashboard/Watchlist.js";
 import Ratings from './components/dashboard/Ratings';
 import Explore from "./components/dashboard/Explore.js";
+
+import Onboarding from './components/auth/Onboarding';
+import Onboarding2 from './components/auth/Onboarding2';
+import SearchBar from './components/auth/SearchBar';
+import OnboardingPlateform from './components/auth/OnboardingPlateform';
+import PostOnboarding from './components/auth/PostOnboarding';
 import PrivacyPolicy from "./components/layout/privacy-policy.js";
 
 // for testing
 import { ifDev } from "./utils/removeAttribute.js";
 import oktaConfig from './config/oktaConfig';
 import { useOktaAuth } from '@okta/okta-react';
-
 
 // config imports
 import reactGAinitialization from "./config/analytics.js";
@@ -37,8 +42,6 @@ import { loadState, saveState } from "./store/localStorage.js";
 //for theme color change
 import { createMuiTheme } from "@material-ui/core/styles";
 import { ThemeProvider } from "@material-ui/core/styles";
-
-
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(
@@ -57,8 +60,7 @@ store.subscribe(() => {
 });
 
 function App() {
-  
-
+  //used to create theme of app
 
   useEffect(() => reactGAinitialization(), []);
   const theme = React.useMemo(
@@ -89,7 +91,6 @@ function App() {
 
           {/* this is fine as a route because all of the routes that will have display their component will only be avalible on a private route */}
           <Route path="/implicit/callback" component={LoginCallback} />
-
           <Route
             exact
             path={[
@@ -112,15 +113,42 @@ function App() {
             path="/:user_id/watchlist"
             component={Watchlist}
           />
+          <Route
+            exact
+            path={[
+              '/:user_id/onboarding',
+              '/:user_id/onboarding2', 
+            ]}
+            component={SearchBar}
+          />
+          <SecureRoute 
+          path='/:user_id/onboardingplateform' 
+          component={OnboardingPlateform}
+          />
+          <SecureRoute 
+          path='/:user_id/onboarding' 
+          component={Onboarding}
+          />
+           <SecureRoute 
+          path='/:user_id/onboarding2' 
+          component={Onboarding2}
+          />
           <SecureRoute
             exact
             path="/test"
             component={Test}
           />
+
+          <SecureRoute 
+          path='/:user_id/postonboarding'
+          component={PostOnboarding}
+          />
+
           <Route path ="/privacy-policy" component={PrivacyPolicy} />
           <Route exact path="/:user_id/upload" component={DataUpload} />
-          <Route path="/login" component={Login} />
-          <Route exact path={["/", "/register"]} component={Register} />
+          <Route exact path={["/","/register" ]} component={Register} />
+          <Route path="/logout" component={Login} />
+          <Route path="/register" component={Register} />
           {/* this could be a modal */}
           {/* <Route path="/congrats" component={Congrats} /> */}
           <SecureRoute exact path="/:user_id/ratings" component={Ratings}/>
@@ -132,5 +160,4 @@ function App() {
     </ThemeProvider>
   );
 }
-
 export default App;

@@ -35,6 +35,7 @@ function Explore({
   searchTerm,
   setFilter,
   ratings,
+  handleClickStar,
 }) {
   const classes = useStyles();
   const screenWidth = widthFinder(window.innerWidth);
@@ -68,9 +69,9 @@ function Explore({
                 film.start_year === movie.start_year
             ).length && searchTerm !== ""
               ? movie.primary_title
-                .toString()
-                .toLowerCase()
-                .includes(searchTerm.toLowerCase())
+                  .toString()
+                  .toLowerCase()
+                  .includes(searchTerm.toLowerCase())
               : true
           )
           .slice(0, cardAmount)
@@ -92,19 +93,23 @@ function Explore({
               <div>
                 <MovieCard
                   key={index}
+                  page={"Explore"}
                   name={movie.primary_title}
                   year={movie.start_year}
                   movie_id={movie.movie_id}
+                  description={movie.description}
+                  trailer={movie.trailer_url}
                   rated={rated ? rated.rating : null}
                   image={
                     !posterURI ||
-                      posterURI === "None" ||
-                      posterURI === "No poster" ||
-                      posterURI === "No Poster" ||
-                      posterURI === "Not in table"
+                    posterURI === "None" ||
+                    posterURI === "No poster" ||
+                    posterURI === "No Poster" ||
+                    posterURI === "Not in table"
                       ? unsplashUrl
                       : moviePoster
                   }
+
                 />
               </div>
             );

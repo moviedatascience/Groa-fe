@@ -19,11 +19,16 @@ export function loginAction(token, okta_id, history) {
           type: FETCHING_RATINGS_SUCCESS,
           payload: res.data.ratings
         });
+        console.log('this is the Response', res);
           dispatch({
             type: FETCHING_WATCHLIST_SUCCESS,
             payload: res.data.watchlist
           });
-        history.push(`/${res.data.user_id}/explore`);
+          if(res.data.newUser === true){
+            history.push(`/${res.data.user_id}/onboardingplateform`);
+            }else {
+              history.push(`/${res.data.user_id}/explore`);
+            }
       })
       .catch(err => {
         console.log("ERROR: ", err);
