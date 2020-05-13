@@ -84,14 +84,15 @@ console.log('movies', movies)
               "https://source.unsplash.com/collection/1736993/500x650";
             let moviePoster = `https://image.tmdb.org/t/p/w500${posterURI}?api_key=${process.env.REACT_APP_TMDB_API_KEY}`;
             return (
-              <div key={index} onClick={() => setDeleteMode(!deleteMode)}>
+              <div key={index} >
                 <MovieCard
                   key={index}
                   name={movie.primary_title}
                   year={movie.start_year}
                   trailer={movie.trailer_url}
                   description={movie.description}
-                  page="Onboarding"
+                  genres={movie.genres}
+                  page="watchlist"
                   image={
                     !posterURI ||
                     posterURI === "None" ||
@@ -101,6 +102,7 @@ console.log('movies', movies)
                       ? unsplashUrl
                       : moviePoster
                   }
+                  onClick={() => setDeleteMode(!deleteMode)}
                 />
                 {deleteMode && (
                   <button

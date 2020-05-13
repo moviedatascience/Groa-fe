@@ -81,7 +81,6 @@ function Recommendations({
                   year={movie.year}
                   movie_id={movie.movie_id}
                   genres={movie.genres}
-                  score={movie.score}
                   image={
                     !posterURI ||
                       posterURI === "None" ||

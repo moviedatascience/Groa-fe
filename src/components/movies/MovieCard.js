@@ -125,7 +125,8 @@ const useStyles = makeStyles((theme) => ({
     backfaceVisibility: "hidden",
     borderRadius: "11px",
     margin: "auto",
-    paddingBottom:'1%',
+    paddingBottom: '1%',
+    width: "80%",
     // '&:hover':{
     //   opacity: 0.3,
     // }
@@ -158,8 +159,9 @@ const useStyles = makeStyles((theme) => ({
   movieInfoModal: {
     display: "flex",
   },
-  genresModal:{
-fontStyle:'italic',
+  genresModal: {
+    fontStyle: 'italic',
+    paddingTop: "3%",
   },
   watchStarsModal: {
     display: "flex",
@@ -221,7 +223,6 @@ function MovieCard({
   trailer,
   description,
   genres,
-  score,
   page,
   handleClickStar,
   numRatings,
@@ -229,7 +230,7 @@ function MovieCard({
 }) {
   //OKTA AUTH
   const { authState, authService } = useOktaAuth();
-  const {accessToken} = authState;
+  const { accessToken } = authState;
 
   const [yourRating, setYourRating] = useState(false);
   /* Used for the star rating */
@@ -287,7 +288,7 @@ function MovieCard({
   };
 
   const onboardingRating = () => {
-    setNumRatings({...numRatings, num: numRatings.num + 1});
+    setNumRatings({ ...numRatings, num: numRatings.num + 1 });
     console.log("number of ratings is " + numRatings.num);
     console.log("openalert");
   }
@@ -340,34 +341,31 @@ function MovieCard({
                   <p className={classes.genresModal}>
                     {genres}
                   </p>
-                  <p className={classes.scoreModal}>
-                    {(Math.floor(score * 100))}%
-                  </p>
-                  </CardContent>
+                </CardContent>
                 {/* < className={classes.bottomModal}> */}
-                  {page !== "Onboarding" ? (
-                    <CardActions className={classes.cardActionsModal}>
-                      <Button
-                        onClick={handleClick}
-                        className={classes.watchList}
-                        disabled={
-                          added || inWatchlist || inRatings ? true : false
-                        }
-                        size="small"
-                        color="primary"
-                      >
-                        {inRatings || yourRating
-                          ? "Your rating:"
-                          : !added && !inWatchlist
+                {page !== "Onboarding" && "watchlist" ? (
+                  <CardActions className={classes.cardActionsModal}>
+                    <Button
+                      onClick={handleClick}
+                      className={classes.watchList}
+                      disabled={
+                        added || inWatchlist || inRatings ? true : false
+                      }
+                      size="small"
+                      color="primary"
+                    >
+                      {inRatings || yourRating
+                        ? "Your rating:"
+                        : !added && !inWatchlist
                           ? "Add to watchlist"
                           : "In your watchlist"}
-                      </Button>
-                     </CardActions>
-                  ) : (
+                    </Button>
+                  </CardActions>
+                ) : (
                     ""
                   )}
-                
-                   {page === "Onboarding" ? (
+
+                {page === "Onboarding" ? (
                   <Stars
                     className={classes.starsModal}
                     data-test="star"
@@ -382,35 +380,35 @@ function MovieCard({
                     name={name}
                     value={rated ? rated : rating}
                     onChange={handleChange}
-                      // else if (newRatings >= 6) return <SecureRoute path='/:user_id/postonboarding' component={PostOnboarding}/>
+                    // else if (newRatings >= 6) return <SecureRoute path='/:user_id/postonboarding' component={PostOnboarding}/>
 
                     onClick={multiFunctions}
-                  />  
-                  ) : (
+                  />
+                ) : (
                     <Stars
-                    className={classes.starsModal}
-                    data-test="star"
-                    precision={0.5}
-                    size="large"
-                    emptyIcon={
-                      <StarBorderIcon
-                        fontSize="inherit"
-                        style={{ color: "#ffb400" }}
-                      />
-                    }
-                    name={name}
-                    value={rated ? rated : rating}
-                    onChange={handleChange}
-                  /> 
-                  )}                  
+                      className={classes.starsModal}
+                      data-test="star"
+                      precision={0.5}
+                      size="large"
+                      emptyIcon={
+                        <StarBorderIcon
+                          fontSize="inherit"
+                          style={{ color: "#ffb400" }}
+                        />
+                      }
+                      name={name}
+                      value={rated ? rated : rating}
+                      onChange={handleChange}
+                    />
+                  )}
               </div>
             </div>
             {page !== "Onboarding" ? (
               <iframe className={classes.trailerModal}
                 width="100%"
                 height="315vh"
-                margin-left= 'auto'
-                margin-right= 'auto'
+                margin-left='auto'
+                margin-right='auto'
                 padding='2%'
                 src={trailer}
                 frameBorder="0"
@@ -418,8 +416,8 @@ function MovieCard({
                 allowFullScreen
               ></iframe>
             ) : (
-              ""
-            )}
+                ""
+              )}
           </div>
         </Fade>
       </Modal>

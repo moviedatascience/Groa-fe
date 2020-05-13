@@ -76,6 +76,7 @@ function Ratings({
                   rated={movie.rating}
                   description={movie.description}
                   trailer={movie.trailer_url}
+                  genres={movie.genres}
                   image={
                     !posterURI ||
                       posterURI === "None" ||
