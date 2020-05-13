@@ -38,7 +38,7 @@ function Watchlist({
   setFilter,
   movies,
 }) {
-
+console.log('movies', movies)
   //OKTA AUTH
   const { authState, authService } = useOktaAuth();
   const {accessToken} = authState;

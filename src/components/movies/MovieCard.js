@@ -131,11 +131,12 @@ const useStyles = makeStyles((theme) => ({
     // }
   },
   watchList: {
-    fontSize: "10px",
+    // fontSize: "10px",
     // textAlign: "center",
-    // padding: 0,
+    // padding: '16px',
     justifyContent: "center",
     display: "flex",
+    // margin: 0,
   },
   //modal
   modal: {
@@ -156,6 +157,9 @@ const useStyles = makeStyles((theme) => ({
   },
   movieInfoModal: {
     display: "flex",
+  },
+  genresModal:{
+fontStyle:'italic',
   },
   watchStarsModal: {
     display: "flex",
@@ -216,6 +220,8 @@ function MovieCard({
   ratings,
   trailer,
   description,
+  genres,
+  score,
   page,
   handleClickStar,
   numRatings,
@@ -331,10 +337,16 @@ function MovieCard({
                     {/* <span className={classes.span}>Description: </span> */}
                     {description}
                   </p>
-                </CardContent>
+                  <p className={classes.genresModal}>
+                    {genres}
+                  </p>
+                  <p className={classes.scoreModal}>
+                    {(Math.floor(score * 100))}%
+                  </p>
+                  </CardContent>
                 {/* < className={classes.bottomModal}> */}
                   {page !== "Onboarding" ? (
-                    // <CardActions className={classes.cardActionsModal}>
+                    <CardActions className={classes.cardActionsModal}>
                       <Button
                         onClick={handleClick}
                         className={classes.watchList}
@@ -350,11 +362,11 @@ function MovieCard({
                           ? "Add to watchlist"
                           : "In your watchlist"}
                       </Button>
-                    // </CardActions>
+                     </CardActions>
                   ) : (
                     ""
                   )}
-                 
+                
                    {page === "Onboarding" ? (
                   <Stars
                     className={classes.starsModal}
@@ -401,9 +413,9 @@ function MovieCard({
                 margin-right= 'auto'
                 padding='2%'
                 src={trailer}
-                frameborder="0"
+                frameBorder="0"
                 allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen
+                allowFullScreen
               ></iframe>
             ) : (
               ""
