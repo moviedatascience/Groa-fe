@@ -111,6 +111,7 @@ const useStyles = makeStyles((theme) => ({
 
   movieImg: {
     width: "100%",
+    height:'100%',
     opacity: 1,
     display: "block",
     backfaceVisibility: "hidden",
@@ -158,7 +159,7 @@ const useStyles = makeStyles((theme) => ({
   DeleteMoviefromWatch: {
     backgroundColor: 'white',
     cursor: 'pointer',
-    
+
   },
   movieInfoModal: {
     display: "flex",
