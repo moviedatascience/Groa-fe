@@ -126,7 +126,6 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: "11px",
     margin: "auto",
     paddingBottom: '1%',
-    width: "80%",
     // '&:hover':{
     //   opacity: 0.3,
     // }
@@ -155,6 +154,11 @@ const useStyles = makeStyles((theme) => ({
     boxShadow: theme.shadows[5],
     padding: theme.spacing(0, 4, 3),
     color: "white",
+  },
+  DeleteMoviefromWatch: {
+    backgroundColor: 'white',
+    cursor: 'pointer',
+    
   },
   movieInfoModal: {
     display: "flex",
@@ -226,7 +230,9 @@ function MovieCard({
   page,
   handleClickStar,
   numRatings,
-  setNumRatings
+  setNumRatings,
+  deleteMode,
+  setDeleteMode
 }) {
   //OKTA AUTH
   const { authState, authService } = useOktaAuth();
@@ -343,7 +349,7 @@ function MovieCard({
                   </p>
                 </CardContent>
                 {/* < className={classes.bottomModal}> */}
-                {page !== "Onboarding" && "watchlist" ? (
+                {page !== "Onboarding" && page !== "watchlist" ? (
                   <CardActions className={classes.cardActionsModal}>
                     <Button
                       onClick={handleClick}
@@ -365,6 +371,27 @@ function MovieCard({
                     ""
                   )}
 
+                  {page === "watchlist" ? (
+                // <div key={movie_id} onClick={() => setDeleteMode(!deleteMode)}>
+                  
+                  <CardActions className={classes.cardActionsModal} onClick={() => setDeleteMode(!deleteMode)} >
+                  {deleteMode && (
+                    <button
+                      className={classes.DeleteMoviefromWatch}
+                      onClick={() => handleClick(movie.id)}
+                    >
+                      Remove from Watchlist
+                  </button>
+                 
+                  )}
+                   </CardActions>
+
+                // </div>
+                ) : (
+                  ""
+                )}
+
+                
                 {page === "Onboarding" ? (
                   <Stars
                     className={classes.starsModal}

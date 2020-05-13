@@ -84,7 +84,7 @@ console.log('movies', movies)
               "https://source.unsplash.com/collection/1736993/500x650";
             let moviePoster = `https://image.tmdb.org/t/p/w500${posterURI}?api_key=${process.env.REACT_APP_TMDB_API_KEY}`;
             return (
-              <div key={index} >
+              <div>
                 <MovieCard
                   key={index}
                   name={movie.primary_title}
@@ -102,16 +102,11 @@ console.log('movies', movies)
                       ? unsplashUrl
                       : moviePoster
                   }
-                  onClick={() => setDeleteMode(!deleteMode)}
+                  deleteMode={deleteMode}
+                  setDeleteMode={setDeleteMode}
+                  handleClick={handleClick}
                 />
-                {deleteMode && (
-                  <button
-                    className="delete-button"
-                    onClick={() => handleClick(movie.id)}
-                  >
-                    x
-                  </button>
-                )}
+                
               </div>
             );
           })}
