@@ -24,7 +24,7 @@ const styles = (theme) => ({
     justifyContent: "space-between",
   },
   closeButton: {
-    paddingLeft: "200px",
+    // paddingLeft: "200px",
     color: theme.palette.grey[500],
   },
 });
