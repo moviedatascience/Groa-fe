@@ -1,5 +1,5 @@
-const CLIENT_ID = process.env.REACT_APP_CLIENT_ID;
-const ISSUER = process.env.REACT_APP_ISSUER;
+const CLIENT_ID = "0oaap4ry7yG1neZhz4x6";
+const ISSUER = "https://dev-568768.okta.com/oauth2/default";
 const OKTA_TESTING_DISABLEHTTPSCHECK = process.env.OKTA_TESTING_DISABLEHTTPSCHECK || false;
 
 export default {
