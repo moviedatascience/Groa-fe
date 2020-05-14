@@ -277,9 +277,14 @@ function MovieCard({
   const multiFunctions = () => {
     handleClose();
     handleClickStar();
-    // onboardingRating();
+    onboardingRating();
   };
 
+const onboardingRating = () => {
+    setNumRatings({ ...numRatings, num: numRatings.num + 1 });
+    console.log("number of ratings is " + numRatings.num);
+    console.log("openalert");
+  };
 
   return (
     <div className={classes.card}>
@@ -384,7 +389,7 @@ function MovieCard({
                     name={name}
                     value={rated ? rated : rating}
                     onChange={handleChange}
-                    // onClick={onboardingRating}
+                    onClick={handleClose}
                   /> 
                   )}                  
               </div>
