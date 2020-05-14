@@ -1,11 +1,7 @@
 import React, { useEffect } from "react";
 // tools
 import { connect } from "react-redux";
-import {
-  getMoviesAction,
-  setFilter,
-  recommendationAction,
-} from "../../store/actions/index.js";
+import { getMoviesAction, setFilter } from "../../store/actions/index.js";
 // Screen width util
 import widthFinder from "../../utils/widthFinder.js";
 
@@ -24,31 +20,27 @@ const useStyles = makeStyles((theme) => ({
     paddingRight: theme.spacing(2),
     paddingLeft: theme.spacing(2),
   },
-
 }));
 function Explore({
   isFetching,
   movies,
   userid,
-  recommendationAction,
   getMoviesAction,
   searchTerm,
   setFilter,
   ratings,
-  handleClickStar,
 }) {
   const classes = useStyles();
   const screenWidth = widthFinder(window.innerWidth);
-  const { authState, authService } = useOktaAuth();
-  const {accessToken} = authState;
+  const { authState } = useOktaAuth();
+  const { accessToken } = authState;
 
   useEffect(() => {
     setFilter("");
     // Returns the movies
     getMoviesAction(userid, accessToken);
     // returns a list of recommendations to start the recommendations page
-    recommendationAction(userid, accessToken);
-  }, [getMoviesAction, userid, ratings, setFilter, recommendationAction]);
+  }, [getMoviesAction, userid, ratings, setFilter]);
   // How many movies render
   const cardAmount = 25;
 
@@ -58,8 +50,7 @@ function Explore({
       <GridList
         className={classes.cardGrid}
         cols={screenWidth ? 3 : 5}
-        cellHeight="auto"
-      >
+        cellHeight='auto'>
         {movies
           .filter((movie) =>
             !ratings.includes(
@@ -108,7 +99,6 @@ function Explore({
                       ? unsplashUrl
                       : moviePoster
                   }
-
                 />
               </div>
             );
@@ -130,6 +120,5 @@ const mapStateToProps = (state) => {
 };
 export default connect(mapStateToProps, {
   getMoviesAction,
-  recommendationAction,
   setFilter,
 })(Explore);
