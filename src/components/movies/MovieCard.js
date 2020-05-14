@@ -54,31 +54,43 @@ const useStyles = makeStyles((theme) => ({
 
   },
   modalBtn: {
-    // backgroundColor: 'green',
-    height: '100%',
+    border:'2px solid white',
+    height: '250px',
     // paddingBottom: '2%',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    flexDirection: 'column',
-
-
+    // display: 'flex',
+    // justifyContent: 'center',
+    // alignItems: 'center',
+    // flexDirection: 'column',
   },
   cardContent: {
     // paddingBottom: 0,
     // display:'flex',
     // justifyContent:'center',
     // alignItems:'baseline'
-    // height: '90%',
+    height: '100%',
     // display: 'flex',
-    justifyContent: 'center',
+    // justifyContent: 'center',
     // alignItems: 'center',
-    flexDirection: 'column',
+    // flexDirection: 'column',
+
+  },
+  movieImg: {
+    width: "100%",
+    height: '200px',
+    opacity: 1,
+    // display: "block",
+    backfaceVisibility: "hidden",
+    borderRadius: "11px",
+    objectFit: 'contain',
+
+    // '&:hover':{
+    //   opacity: 0.3,
+    // }
   },
   name: {
     fontSize: "15px",
     textAlign: 'center',
-    padding: '5%',
+    paddingTop: '2%',
     // display:'flex',
     // justifyContent:'center',
     // alignItems:'baseline'
@@ -113,7 +125,6 @@ const useStyles = makeStyles((theme) => ({
     "&:hover": {
       // background: "black",
       opacity: "0.3",
-      // border:'2px solid red',
     },
     moreInfo: {
       display: "flex",
@@ -141,18 +152,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
 
-  movieImg: {
-    width: "100%",
-    height: '80%',
-    opacity: 1,
-    display: "block",
-    backfaceVisibility: "hidden",
-    borderRadius: "11px",
-    objectFit: 'cover',
-    // '&:hover':{
-    //   opacity: 0.3,
-    // }
-  },
+
   movieImgModal: {
     opacity: 1,
     display: "block",
@@ -226,6 +226,12 @@ const useStyles = makeStyles((theme) => ({
   //   paddingBottom:'56.25%',
   // },
   [theme.breakpoints.down("xs")]: {
+    name:{
+      padding:'0',
+    },
+    // movieImg:{
+    //   height:'80%',
+    // },
     movieImgModal: {
       width: "80%",
     },
@@ -342,8 +348,8 @@ function MovieCard({
           src={image}
           alt="Random Movie poster as a placeholder."
         />
-        {/* 
-        <div className={classes.cardContent}> */}
+        {/* </div> */}
+        {/* <div className={classes.cardContent}>  */}
         <p className={classes.name}>{name}</p>
         {/* </div> */}
         {/* </div> */}
@@ -463,6 +469,7 @@ function MovieCard({
                       name={name}
                       value={rated ? rated : rating}
                       onChange={handleChange}
+                      onClick={handleClose}
                     />
                   )}
               </div>
