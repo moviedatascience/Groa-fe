@@ -106,7 +106,7 @@ function Onboarding(
   const { accessToken } = authState;
 
   const [openAlert, setOpenAlert] = useState(false);
-  let [numRatings, setNumRatings] = useState({num:0});
+  let [numRatings, setNumRatings] = useState(0);
   const screenWidth = widthFinder(window.innerWidth);
   //for search bar
   const handleSubmit = (e) => {
@@ -125,8 +125,7 @@ function Onboarding(
     sendChange(e.target.value.trim());
   };
   const handleClickStar = () => {
-    setOpenAlert(true);
-    
+    setOpenAlert(true); 
   };
   const handleCloseStar = (event, reason) => {
     if (reason === "clickaway") {
@@ -140,14 +139,13 @@ function Onboarding(
     // Returns the movies
     getMoviesAction(userid, accessToken);
     //get ratings
-    // getRatingAction(userid, accessToken);
-  }, [getMoviesAction, userid, ratings, setFilter,]);
+
+  }, [getMoviesAction, userid, ratings, setFilter]);
   // How many movies render
   const cardAmount = 25;
-  // console.log('state ', state )
-  // console.log("open alert is now ", openAlert);
+
   if (isFetching) return <LoadingScreen />;
-  else if (numRatings.num >= 13) return <Redirect to= 'postonboarding' />
+  else if (numRatings >= 6) return <Redirect to= 'postonboarding' />
   else return (
     <div>
       <GridList

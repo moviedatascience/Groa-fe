@@ -11,7 +11,7 @@ export function loginAction(token, okta_id, history) {
     axiosWithAuth(token)
       .post("/login", {id:okta_id})
       .then(res => {
-        console.log("loginAction res",res)
+        console.log("loginAction res {{{{{{{{{{{{{{{{{{{{{{{{{{",res)
         dispatch({ 
           type: FETCHING_USER_LOGIN_SUCCESS,
           payload: res.data.user_id });
