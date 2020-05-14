@@ -1,6 +1,6 @@
 # Gróa
 
-You can find the deployed project at [https://www.groa.us/](https://www.groa.us/).
+[You can check out the live demo of Gróa here](http://www.groa.us/).
 
 ## Code Climate
 
