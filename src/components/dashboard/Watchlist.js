@@ -38,10 +38,9 @@ function Watchlist({
   setFilter,
   movies,
 }) {
-
   //OKTA AUTH
   const { authState, authService } = useOktaAuth();
-  const {accessToken} = authState;
+  const { accessToken } = authState;
 
   const [deleteMode, setDeleteMode] = useState(false);
   //for matieral-ui
@@ -66,8 +65,7 @@ function Watchlist({
       <GridList
         className={classes.cardGrid}
         cols={screenWidth ? 3 : 5}
-        cellHeight="auto"
-      >
+        cellHeight='auto'>
         {/* <div> */}
         {watchlist
           .filter((movie) =>
@@ -91,7 +89,7 @@ function Watchlist({
                   year={movie.start_year}
                   trailer={movie.trailer_url}
                   description={movie.description}
-                  page="Onboarding"
+                  page='Onboarding'
                   image={
                     !posterURI ||
                     posterURI === "None" ||
@@ -104,9 +102,8 @@ function Watchlist({
                 />
                 {deleteMode && (
                   <button
-                    className="delete-button"
-                    onClick={() => handleClick(movie.id)}
-                  >
+                    className='delete-button'
+                    onClick={() => handleClick(movie.id)}>
                     x
                   </button>
                 )}
