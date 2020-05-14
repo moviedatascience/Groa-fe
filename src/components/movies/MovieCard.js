@@ -286,6 +286,7 @@ function MovieCard({
     console.log("openalert");
   }
 
+
   return (
     <div className={classes.card}>
       <button type="button" onClick={handleOpen}>
@@ -389,7 +390,7 @@ function MovieCard({
                     name={name}
                     value={rated ? rated : rating}
                     onChange={handleChange}
-                    // onClick={onboardingRating}
+                    onClick={handleClose}
                   /> 
                   )}                  
               </div>
