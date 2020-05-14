@@ -133,11 +133,6 @@ function App() {
           path='/:user_id/onboarding2' 
           component={Onboarding2}
           />
-          <SecureRoute
-            exact
-            path="/test"
-            component={Test}
-          />
 
           <SecureRoute 
           path='/:user_id/postonboarding'

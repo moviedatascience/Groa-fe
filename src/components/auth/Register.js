@@ -63,7 +63,8 @@ const Register = (props) => {
   useEffect(() => {    
       authService.getUser()
         .then((info) => {
-           props.loginAction(authState.accessToken, info.sub, history)  
+           props.loginAction(authState.accessToken, info.sub, history);
+           console.log("checking authentication")  
       })
       .catch(err => console.log("Error fetching User info in UseEffect", err))
   }, [authState]);
