@@ -11,7 +11,6 @@ import DataUpload from "./components/auth/DataUpload";
 import Watchlist from "./components/dashboard/Watchlist.js";
 import Ratings from './components/dashboard/Ratings';
 import Explore from "./components/dashboard/Explore.js";
-
 import Onboarding from './components/auth/Onboarding';
 import SearchBar from './components/auth/SearchBar';
 import OnboardingPlatform from './components/auth/OnboardingPlatform';
