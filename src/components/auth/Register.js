@@ -65,7 +65,6 @@ const Register = (props) => {
       .catch(err => console.log("Error fetching User info in UseEffect", err))
   }, [authState]);
 
-
   return (
     <div
       className="container register-component"
