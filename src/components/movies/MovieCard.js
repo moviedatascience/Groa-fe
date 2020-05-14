@@ -50,7 +50,40 @@ const DialogTitle = withStyles(styles)((props) => {
 const useStyles = makeStyles((theme) => ({
   nameModal: {
     fontSize: "25px",
-    paddingBottom: "2%",
+    // paddingBottom: "2%",
+
+  },
+  modalBtn: {
+    // backgroundColor: 'green',
+    height: '100%',
+    // paddingBottom: '2%',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'column',
+
+
+  },
+  cardContent: {
+    // paddingBottom: 0,
+    // display:'flex',
+    // justifyContent:'center',
+    // alignItems:'baseline'
+    // height: '90%',
+    // display: 'flex',
+    justifyContent: 'center',
+    // alignItems: 'center',
+    flexDirection: 'column',
+  },
+  name: {
+    fontSize: "15px",
+    textAlign: 'center',
+    padding: '5%',
+    // display:'flex',
+    // justifyContent:'center',
+    // alignItems:'baseline'
+    // verticalAlign: 'middle',
+
   },
   year: {
     fontSize: "18px",
@@ -67,19 +100,20 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(2),
   },
   cardGrid: {
-    paddingTop: theme.spacing(4),
-    paddingBottom: theme.spacing(8),
+    paddingTop: theme.spacing(2),
+    paddingBottom: theme.spacing(2),
     display: "flex",
     flexDirection: "row",
   },
   card: {
-    height: "100%",
+    // height: "90%",
     display: "flex",
     flexDirection: "column",
     width: "100%",
     "&:hover": {
-      background: "black",
+      // background: "black",
       opacity: "0.3",
+      // border:'2px solid red',
     },
     moreInfo: {
       display: "flex",
@@ -87,9 +121,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
 
-  cardContent: {
-    padding: 0,
-  },
+
   cardActions: {
     fontSize: "10px",
     padding: 0,
@@ -111,11 +143,12 @@ const useStyles = makeStyles((theme) => ({
 
   movieImg: {
     width: "100%",
-    height:'100%',
+    height: '80%',
     opacity: 1,
     display: "block",
     backfaceVisibility: "hidden",
     borderRadius: "11px",
+    objectFit: 'cover',
     // '&:hover':{
     //   opacity: 0.3,
     // }
@@ -302,16 +335,19 @@ function MovieCard({
 
   return (
     <div className={classes.card}>
-      <button type="button" onClick={handleOpen}>
+      <div className={classes.modalBtn} onClick={handleOpen}>
+        {/* <div className={classes.cardContent}>  */}
         <img
           className={classes.movieImg}
           src={image}
           alt="Random Movie poster as a placeholder."
         />
-        <CardContent className={classes.cardContent}>
-          <Typography className={classes.name}>{name}</Typography>
-        </CardContent>
-      </button>
+        {/* 
+        <div className={classes.cardContent}> */}
+        <p className={classes.name}>{name}</p>
+        {/* </div> */}
+        {/* </div> */}
+      </div>
       <Modal
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
@@ -372,27 +408,27 @@ function MovieCard({
                     ""
                   )}
 
-                  {page === "watchlist" ? (
-                // <div key={movie_id} onClick={() => setDeleteMode(!deleteMode)}>
-                  
+                {page === "watchlist" ? (
+                  // <div key={movie_id} onClick={() => setDeleteMode(!deleteMode)}>
+
                   <CardActions className={classes.cardActionsModal} onClick={() => setDeleteMode(!deleteMode)} >
-                  {deleteMode && (
-                    <button
-                      className={classes.DeleteMoviefromWatch}
-                      onClick={() => handleClick(movie.id)}
-                    >
-                      Remove from Watchlist
+                    {deleteMode && (
+                      <button
+                        className={classes.DeleteMoviefromWatch}
+                        onClick={() => handleClick(movie.id)}
+                      >
+                        Remove from Watchlist
                   </button>
-                 
-                  )}
-                   </CardActions>
 
-                // </div>
+                    )}
+                  </CardActions>
+
+                  // </div>
                 ) : (
-                  ""
-                )}
+                    ""
+                  )}
 
-                
+
                 {page === "Onboarding" ? (
                   <Stars
                     className={classes.starsModal}
