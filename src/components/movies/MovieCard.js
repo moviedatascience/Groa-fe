@@ -54,8 +54,8 @@ const useStyles = makeStyles((theme) => ({
 
   },
   modalBtn: {
-    border:'2px solid white',
-    height: '250px',
+    // border:'2px solid white',
+    // height: '250px',
     // paddingBottom: '2%',
     // display: 'flex',
     // justifyContent: 'center',

@@ -19,7 +19,9 @@ const useStyles = makeStyles((theme) => ({
     paddingRight: theme.spacing(2),
     paddingLeft: theme.spacing(2),
   },
-
+  movieCard:{
+    border:'2px solid red'
+  },
 }));
 function Ratings({
   userid,
@@ -67,7 +69,7 @@ function Ratings({
               "https://source.unsplash.com/collection/1736993/500x650";
             let moviePoster = `https://image.tmdb.org/t/p/w500${posterURI}?api_key=${process.env.REACT_APP_TMDB_API_KEY}`;
             return (
-              <div key={index}>
+              <div key={index} className={classes.movieCard}>
                 <MovieCard
                   key={index}
                   name={movie.primary_title}
