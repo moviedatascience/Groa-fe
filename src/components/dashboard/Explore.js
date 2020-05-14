@@ -42,7 +42,6 @@ function Explore({
   const { authState, authService } = useOktaAuth();
   const {accessToken} = authState;
 
-  // console.log("|||||||||||||||||||||||",accessToken);
   useEffect(() => {
     setFilter("");
     // Returns the movies
