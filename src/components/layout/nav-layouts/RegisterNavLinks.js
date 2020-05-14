@@ -8,7 +8,7 @@ export default function RegisterNavLinks() {
   return (
     <div className="register nav" data-test={ifDev("register-nav-component")}>
       <img src={GroaLogo} alt="Groa Logo" />
-     <h3 className="signin-title">Welcome</h3>
+     <h3 className="signin-title">Register</h3>
     </div>
   );
 }
