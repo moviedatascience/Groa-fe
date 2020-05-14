@@ -67,7 +67,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function OnboardingPlatform({ userid }) {
+function OnboardingPlateform({ userid }) {
   const classes = useStyles();
 
   return (
@@ -104,4 +104,4 @@ const mapStateToProps = (state) => {
 };
 export default connect(mapStateToProps, {
   setFilter,
-})(OnboardingPlatform);
+})(OnboardingPlateform);
