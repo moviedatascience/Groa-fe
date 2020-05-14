@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { loginAction } from "../../store/actions";
 import { ifDev } from "../../utils/removeAttribute.js";
@@ -8,7 +8,6 @@ import { useOktaAuth } from '@okta/okta-react';
 
 // styling imports
 import Picture1 from "../../img/watching-tv.png";
-import { TextField } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
@@ -17,11 +16,7 @@ import Box from "@material-ui/core/Box";
 import LoginNavLinks from "../layout/nav-layouts/LoginNavLinks.js";
 
 //For validation
-import { useForm } from "react-hook-form";
 import * as Yup from "yup";
-
-//link to register
-import { Link } from "react-router-dom";
 
 function Copyright() {
   return (
