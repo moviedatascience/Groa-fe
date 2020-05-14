@@ -130,7 +130,7 @@ function App() {
           <Route path ="/privacy-policy" component={PrivacyPolicy} />
           <Route exact path="/:user_id/upload" component={DataUpload} />
           <Route exact path={["/","/register" ]} component={Register} />
-          <Route path="/logout" component={Login} />
+          <Route path="/logout" component={Register} />
           <Route path="/register" component={Register} />
           <SecureRoute exact path="/:user_id/ratings" component={Ratings}/>
           <SecureRoute exact path="/:user_id/explore" component={Explore}/>
