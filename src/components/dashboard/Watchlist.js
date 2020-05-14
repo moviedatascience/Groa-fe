@@ -36,7 +36,9 @@ function Watchlist({
   searchTerm,
   removeFromWatchlistAction,
   setFilter,
+  movies,
 }) {
+
   //OKTA AUTH
   const { authState, authService } = useOktaAuth();
   const {accessToken} = authState;
@@ -46,7 +48,7 @@ function Watchlist({
   const classes = useStyles();
   const screenWidth = widthFinder(window.innerWidth);
 
-  console.log(classes);
+  // console.log(classes);
   useEffect(() => {
     setFilter("");
     // Returns the users watchlist from the database
@@ -65,15 +67,15 @@ function Watchlist({
         className={classes.cardGrid}
         cols={screenWidth ? 3 : 5}
         cellHeight="auto"
-
       >
+        {/* <div> */}
         {watchlist
           .filter((movie) =>
             searchTerm !== ""
               ? movie.primary_title
-                .toString()
-                .toLowerCase()
-                .includes(searchTerm.toLowerCase())
+                  .toString()
+                  .toLowerCase()
+                  .includes(searchTerm.toLowerCase())
               : true
           )
           .map((movie, index) => {
@@ -87,12 +89,15 @@ function Watchlist({
                   key={index}
                   name={movie.primary_title}
                   year={movie.start_year}
+                  trailer={movie.trailer_url}
+                  description={movie.description}
+                  page="Onboarding"
                   image={
                     !posterURI ||
-                      posterURI === "None" ||
-                      posterURI === "No poster" ||
-                      posterURI === "No Poster" ||
-                      posterURI === "Not in table"
+                    posterURI === "None" ||
+                    posterURI === "No poster" ||
+                    posterURI === "No Poster" ||
+                    posterURI === "Not in table"
                       ? unsplashUrl
                       : moviePoster
                   }
@@ -103,12 +108,13 @@ function Watchlist({
                     onClick={() => handleClick(movie.id)}
                   >
                     x
-                    </button>
+                  </button>
                 )}
               </div>
             );
-          })};
-        </GridList>
+          })}
+        ;{/* </div> */}
+      </GridList>
     );
 }
 

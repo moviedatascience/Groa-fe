@@ -1,5 +1,7 @@
 import React, { useEffect } from "react";
-// tools
+// import Onboarding from '../lib';
+// import reactOnboardingPro from "react-onboarding-pro";
+// import "react-onboarding-pro/build/index.css";
 import { connect } from "react-redux";
 import {
   getMoviesAction,
@@ -15,7 +17,9 @@ import LoadingScreen from "../layout/LoadingScreen.js";
 //for grid
 import { GridList } from "@material-ui/core/";
 import { makeStyles } from "@material-ui/core/styles";
-import { useOktaAuth } from "@okta/okta-react/dist/OktaContext";
+//for Link
+import { ifDev } from "../../utils/removeAttribute.js";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   cardGrid: {
@@ -24,30 +28,29 @@ const useStyles = makeStyles((theme) => ({
     paddingRight: theme.spacing(2),
     paddingLeft: theme.spacing(2),
   },
-
 }));
-function Explore({
-  isFetching,
-  movies,
-  userid,
-  recommendationAction,
-  getMoviesAction,
-  searchTerm,
-  setFilter,
-  ratings,
-  handleClickStar,
-}) {
+function Onboarding2(
+  {
+    isFetching,
+    movies,
+    userid,
+    recommendationAction,
+    getMoviesAction,
+    searchTerm,
+    setFilter,
+    ratings,
+  },
+  props
+) {
   const classes = useStyles();
   const screenWidth = widthFinder(window.innerWidth);
-  const { authState, authService } = useOktaAuth();
-  const {accessToken} = authState;
 
   useEffect(() => {
     setFilter("");
     // Returns the movies
-    getMoviesAction(userid, accessToken);
+    getMoviesAction(userid);
     // returns a list of recommendations to start the recommendations page
-    recommendationAction(userid, accessToken);
+    recommendationAction(userid);
   }, [getMoviesAction, userid, ratings, setFilter, recommendationAction]);
   // How many movies render
   const cardAmount = 25;
@@ -55,11 +58,7 @@ function Explore({
   if (isFetching) return <LoadingScreen />;
   else
     return (
-      <GridList
-        className={classes.cardGrid}
-        cols={screenWidth ? 3 : 5}
-        cellHeight="auto"
-      >
+      <GridList className={classes.cardGrid} cols={3} cellHeight="auto">
         {movies
           .filter((movie) =>
             !ratings.includes(
@@ -92,12 +91,9 @@ function Explore({
               <div>
                 <MovieCard
                   key={index}
-                  page={"Explore"}
                   name={movie.primary_title}
                   year={movie.start_year}
                   movie_id={movie.movie_id}
-                  description={movie.description}
-                  trailer={movie.trailer_url}
                   rated={rated ? rated.rating : null}
                   image={
                     !posterURI ||
@@ -108,11 +104,13 @@ function Explore({
                       ? unsplashUrl
                       : moviePoster
                   }
-
                 />
               </div>
             );
           })}
+        {/* <button 
+          component="a" 
+          href='/:user_id/onboarding2/'> */}
       </GridList>
     );
 }
@@ -132,4 +130,4 @@ export default connect(mapStateToProps, {
   getMoviesAction,
   recommendationAction,
   setFilter,
-})(Explore);
+})(Onboarding2);

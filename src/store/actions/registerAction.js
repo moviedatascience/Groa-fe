@@ -17,13 +17,16 @@ export function registerAction(userCreds, history) {
         axiosWithAuth()
           .post("/login", user)
           .then(res => {
-            localStorage.setItem("token", res.data.token);
-            console.log("THIS IS WORKING BOIIIIII")
+            console.log('this is the res', res);
             dispatch({
               type: FETCHING_USER_LOGIN_SUCCESS,
               payload: res.data.user_id
             });
-            history.push(`/${res.data.user_id}/explore`);
+            if(res.data.newUser === true){
+            history.push(`/${res.data.user_id}/onboardingplateform`);
+            }else {
+              history.push(`/${res.data.user_id}/explore`);
+            }
           }).catch(err => {
             console.log(err)
           });

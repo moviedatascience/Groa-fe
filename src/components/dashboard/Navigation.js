@@ -29,6 +29,8 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
+import ClickAwayListener from '@material-ui/core/ClickAwayListener';
+
 //for user toggle menu
 import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
@@ -126,7 +128,7 @@ const useStyles = makeStyles(theme => ({
     marginLeft: drawerWidth,
     transition: theme.transitions.create(['margin', 'width'], {
       easing: theme.transitions.easing.easeOut,
-      duration: theme.transitions.duration.enteringScreen,
+      // duration: theme.transitions.duration.enteringScreen,
     }),
   },
   menuButton: {
@@ -221,7 +223,7 @@ const Navigation = props => {
   },
   {
     id: 5,
-    name: 'Log Out',
+    name: 'LogOut',
     icon: <ExitToAppRoundedIcon />
   },
   ];
@@ -276,6 +278,10 @@ const Navigation = props => {
   // Gets new recommendations for account, if applicible
   // props.recommendationAction(id);
   // };
+  //for click away
+  const handleClickAway = () => {
+    setOpen(false);
+  };
 
   return (
     <div className={classes.root}>
@@ -335,31 +341,36 @@ const Navigation = props => {
             </div>
           </div>
         </AppBar>
-        <Drawer
-          className={classes.drawer}
-          variant="persistent"
-          anchor="left"
-          open={open}
-          classes={{
-            paper: classes.drawerPaper,
-          }}
+        <ClickAwayListener
+          mouseEvent="onMouseDown"
+          touchEvent="onTouchStart"
+          onClickAway={handleClickAway}
         >
-          <div className={classes.drawerHeader}>
-            <IconButton onClick={handleDrawerClose}>
-              {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
-            </IconButton>
-          </div>
-          <Divider />
-          <List>
-            {linkAttributes.map((linkObject, index) => (
-              <ListItem key={linkObject.id} button component="a" href={`/${props.userid}/${linkObject.name.toLowerCase()}`}>
-                <ListItemIcon>{linkObject.icon}</ListItemIcon>
-                <ListItemText primary={linkObject.name} />
-              </ListItem>
-            ))}
-          </List>
-          <Divider />
-          {/* <List>
+          <Drawer
+            className={classes.drawer}
+            variant="persistent"
+            anchor="left"
+            open={open}
+            classes={{
+              paper: classes.drawerPaper,
+            }}
+          >
+            <div className={classes.drawerHeader}>
+              <IconButton onClick={handleDrawerClose}>
+                {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
+              </IconButton>
+            </div>
+            <Divider />
+            <List>
+              {linkAttributes.map((linkObject, index) => (
+                <ListItem key={linkObject.id} button component="a" href={`/${props.userid}/${linkObject.name.toLowerCase()}`}>
+                  <ListItemIcon>{linkObject.icon}</ListItemIcon>
+                  <ListItemText primary={linkObject.name} />
+                </ListItem>
+              ))}
+            </List>
+            <Divider />
+            {/* <List>
           {['All mail', 'Trash', 'Spam'].map((text, index) => (
             <ListItem button key={text}>
               <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
@@ -367,7 +378,8 @@ const Navigation = props => {
             </ListItem>
           ))}
         </List> */}
-        </Drawer>
+          </Drawer>
+        </ClickAwayListener>
         <main
           className={clsx(classes.content, {
             [classes.contentShift]: open,
