@@ -6,7 +6,7 @@ const axiosWithAuth = (accessToken) => {
         headers: {
             Authorization: `Bearer ${accessToken}`
         },
-        baseURL: process.env.REACT_APP_BASEURL
-    })
+        baseURL: `https://www.dev.groa.us/api/users`
+       })
 }
 export default axiosWithAuth;
