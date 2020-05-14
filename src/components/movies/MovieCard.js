@@ -280,11 +280,12 @@ function MovieCard({
     onboardingRating();
   };
 
-const onboardingRating = () => {
-    setNumRatings({ ...numRatings, num: numRatings.num + 1 });
+  const onboardingRating = () => {
+    setNumRatings({...numRatings, num: numRatings.num + 1});
     console.log("number of ratings is " + numRatings.num);
     console.log("openalert");
-  };
+  }
+
 
   return (
     <div className={classes.card}>
@@ -364,7 +365,7 @@ const onboardingRating = () => {
                     emptyIcon={
                       <StarBorderIcon
                         fontSize="inherit"
-                        style={{ color: "#bbb" }}
+                        style={{ color: "#ffb400" }}
                       />
                     }
                     name={name}
