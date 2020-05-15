@@ -67,6 +67,13 @@ const useStyles = makeStyles((theme) => ({
   Link: {
     marginBottom: "2%",
   },
+  movieCard: {
+    color: 'white',
+    "&:hover": {
+      boxShadow: '0px 0px 2px 2px black',
+      backgroundColor: 'black',
+    },
+  },
 }));
 
 function Alert(props) {
@@ -160,7 +167,7 @@ function Onboarding(
               "https://source.unsplash.com/collection/1736993/500x650";
             let moviePoster = `https://image.tmdb.org/t/p/w500${posterURI}?api_key=${process.env.REACT_APP_TMDB_API_KEY}`;
             return (
-              <div>
+              <div className={classes.movieCard}>
                 <MovieCard
                   key={index}
                   name={movie.primary_title}
@@ -186,7 +193,7 @@ function Onboarding(
       </GridList>
       <Snackbar
         open={openAlert}
-        autoHideDuration={6000}
+        autoHideDuration={4000}
         onClose={handleCloseStar}
       >
         <Alert onClose={handleCloseStar} variant="filled" severity="success">

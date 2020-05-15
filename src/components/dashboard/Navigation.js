@@ -69,10 +69,6 @@ const useStyles = makeStyles(theme => ({
     position: "relative",
     borderRadius: theme.shape.borderRadius,
     backgroundColor: '#ffffff',
-    "&:hover": {
-      backgroundColor: '#5c5b5b',
-      color: '#ffffff',
-    },
     width: "100%",
     [theme.breakpoints.down("sm")]: {
       width: "auto"
@@ -90,15 +86,10 @@ const useStyles = makeStyles(theme => ({
     alignItems: "center",
     justifyContent: "center",
     color: '#505050',
-    "&:hover": {
-      color: '#D8D8D8',
-    },
   },
   inputRoot: {
     color: "#505050",
-    "&:hover": {
-      color: '#ffffff',
-    },
+    width: '100%',
   },
   inputInput: {
     padding: theme.spacing(1, 1, 1, 7),
@@ -114,6 +105,7 @@ const useStyles = makeStyles(theme => ({
     flexDirection: 'column'
   },
   appBar: {
+    backgroundColor: '#5c5b5b',
     transition: theme.transitions.create(['margin', 'width'], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,

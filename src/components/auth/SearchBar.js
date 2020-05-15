@@ -50,6 +50,7 @@ const useStyles = makeStyles(theme => ({
   },
   inputRoot: {
     color: '#ffffff',
+    width:'100%',
     "&:hover": {
       color: '#ffffff',
     },
@@ -58,9 +59,6 @@ const useStyles = makeStyles(theme => ({
     padding: theme.spacing(1, 1, 1, 7),
     transition: theme.transitions.create("width"),
     width: "100%",
-    [theme.breakpoints.up("md")]: {
-      width: 200
-    }
   },
 }));
 
