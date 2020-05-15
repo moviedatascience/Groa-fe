@@ -32,15 +32,17 @@ function Explore({
 }) {
   const classes = useStyles();
   const screenWidth = widthFinder(window.innerWidth);
-  const { authState } = useOktaAuth();
+
+  const { authState, authService } = useOktaAuth();
+
   const { accessToken } = authState;
 
   useEffect(() => {
     setFilter("");
     // Returns the movies
     getMoviesAction(userid, accessToken);
-    // returns a list of recommendations to start the recommendations page
-  }, [getMoviesAction, userid, ratings, setFilter]);
+  }, [getMoviesAction, userid, ratings, setFilter, accessToken]);
+
   // How many movies render
   const cardAmount = 25;
 
