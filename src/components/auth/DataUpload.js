@@ -14,15 +14,15 @@ import { useOktaAuth } from "@okta/okta-react/dist/OktaContext";
 const DataUpload = ({ userid, uploadAction, isUploading, setFilter }) => {
   const [uploadSuccess, setUploadSuccess] = useState(false);
 
-    //OKTA AUTH
-    const { authState, authService } = useOktaAuth();
-    const {accessToken} = authState;
+  //OKTA AUTH
+  const { authState, authService } = useOktaAuth();
+  const { accessToken } = authState;
 
   useEffect(() => {
-    setFilter("")
-  })
+    setFilter("");
+  });
 
-  const toggleInstructions = (window.onclick = function(event) {
+  const toggleInstructions = (window.onclick = function (event) {
     const dropdowns = document.getElementsByClassName("dropdown-content");
     const dropdowns2 = document.getElementsByClassName(
       "dropdown-content-Empty"
@@ -50,22 +50,26 @@ const DataUpload = ({ userid, uploadAction, isUploading, setFilter }) => {
     }
   });
 
-  const handleChange = file => {
-    let data = new FormData();
-    data.append("movies", file, file.name);
-    uploadAction(userid, data, setUploadSuccess, accessToken);
-    data = new FormData();
+  const handleChange = (file) => {
+    console.log("This is the file that is uploaded: ", file);
+    let formData = new FormData();
+    formData.append("movies", file);
+    for (var pair of formData.entries()) {
+      console.log(pair[0] + ", " + pair[1]);
+    }
+    uploadAction(userid, formData, setUploadSuccess, accessToken);
+    formData = new FormData();
   };
 
-  const onDragStart = e => {
+  const onDragStart = (e) => {
     e.preventDefault();
   };
 
-  const onDragOver = e => {
+  const onDragOver = (e) => {
     e.preventDefault();
   };
 
-  const onFileDrop = e => {
+  const onFileDrop = (e) => {
     e.preventDefault();
     let files = e.dataTransfer.files;
     handleChange(files[0]);
@@ -169,8 +173,8 @@ const DataUpload = ({ userid, uploadAction, isUploading, setFilter }) => {
 
           {/* ///////////////UPLOAD FILE //////////////////// */}
           <div className="UploadContainer">
-            <form 
-              encType='multipart/form-data'
+            <form
+              encType="multipart/form-data"
               className="inputholder"
               onDragEnter={onDragStart}
               onDragOver={onDragOver}
@@ -200,11 +204,13 @@ const DataUpload = ({ userid, uploadAction, isUploading, setFilter }) => {
       // END DataUploadPage
     );
 };
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     userid: state.login.userid,
-    isUploading: state.upload.isUploading
+    isUploading: state.upload.isUploading,
   };
 };
 
-export default connect(mapStateToProps, { uploadAction, setFilter })(DataUpload);
+export default connect(mapStateToProps, { uploadAction, setFilter })(
+  DataUpload
+);
