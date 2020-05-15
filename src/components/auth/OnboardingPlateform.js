@@ -11,7 +11,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     // margin: '0 auto',
     display: 'flex',
-    background: '#505050',
+    background: '#212120',
     padding: '2%',
   },
   onboardingPlateformImg: {

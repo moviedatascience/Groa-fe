@@ -24,12 +24,7 @@ const useStyles = makeStyles(theme => ({
   search: {
     position: "relative",
     borderRadius: theme.shape.borderRadius,
-    backgroundColor: '#5c5b5b',
-    color: '#ffffff',
-    "&:hover": {
-      backgroundColor: '#5c5b5b',
-      color: '#ffffff',
-    },
+    backgroundColor: 'white',
     width: "100%",
     [theme.breakpoints.down("sm")]: {
       width: "auto"
@@ -43,17 +38,11 @@ const useStyles = makeStyles(theme => ({
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    color: '#ffffff',
-    "&:hover": {
-      color: '#D8D8D8',
-    },
+    color: '#212120',
   },
   inputRoot: {
-    color: '#ffffff',
+    color: '#212120',
     width: '100%',
-    "&:hover": {
-      color: '#ffffff',
-    },
   },
   inputInput: {
     padding: theme.spacing(1, 1, 1, 7),
