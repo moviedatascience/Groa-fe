@@ -72,19 +72,16 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-function PostOnboarding({ 
-    isFetching,
-    movies,
+function PostOnboarding({
     userid,
     recommendationAction,
     getMoviesAction,
-    searchTerm,
     setFilter,
     ratings,
 }) {
     const classes = useStyles();
     //for okta
-    const { authState, authService } = useOktaAuth();
+    const { authState } = useOktaAuth();
     const { accessToken } = authState;
     //to obtain recommendations from onboarding questionaire
     useEffect(() => {

@@ -13,11 +13,17 @@ import { GridList } from "@material-ui/core/";
 import { useOktaAuth } from "@okta/okta-react/dist/OktaContext";
 
 const useStyles = makeStyles((theme) => ({
-  cardGrid: {
+  cardGrid: { 
     paddingTop: theme.spacing(4),
     paddingBottom: theme.spacing(4),
     paddingRight: theme.spacing(2),
     paddingLeft: theme.spacing(2),
+  },
+  movieCard: {
+    "&:hover": {
+    boxShadow: '0px 0px 2px 2px black',
+    backgroundColor:'black',
+    },
   },
 }));
 function Ratings({
@@ -63,7 +69,7 @@ function Ratings({
               "https://source.unsplash.com/collection/1736993/500x650";
             let moviePoster = `https://image.tmdb.org/t/p/w500${posterURI}?api_key=${process.env.REACT_APP_TMDB_API_KEY}`;
             return (
-              <div key={index}>
+              <div key={index} className={classes.movieCard}>
                 <MovieCard
                   key={index}
                   name={movie.primary_title}
@@ -72,6 +78,7 @@ function Ratings({
                   rated={movie.rating}
                   description={movie.description}
                   trailer={movie.trailer_url}
+                  genres={movie.genres}
                   image={
                     !posterURI ||
                     posterURI === "None" ||

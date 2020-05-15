@@ -24,7 +24,7 @@ const styles = (theme) => ({
     justifyContent: "space-between",
   },
   closeButton: {
-    paddingLeft: "200px",
+    // paddingLeft: "200px",
     color: theme.palette.grey[500],
   },
 });
@@ -50,7 +50,52 @@ const DialogTitle = withStyles(styles)((props) => {
 const useStyles = makeStyles((theme) => ({
   nameModal: {
     fontSize: "25px",
-    paddingBottom: "2%",
+    // paddingBottom: "2%",
+
+  },
+  modalBtn: {
+    // border:'2px solid white',
+    // height: '250px',
+    // paddingBottom: '2%',
+    // display: 'flex',
+    // justifyContent: 'center',
+    // alignItems: 'center',
+    // flexDirection: 'column',
+  },
+  cardContent: {
+    // paddingBottom: 0,
+    // display:'flex',
+    // justifyContent:'center',
+    // alignItems:'baseline'
+    height: '100%',
+    // display: 'flex',
+    // justifyContent: 'center',
+    // alignItems: 'center',
+    // flexDirection: 'column',
+
+  },
+  movieImg: {
+    width: "100%",
+    height: '375px',
+    opacity: 1,
+    // display: "block",
+    backfaceVisibility: "hidden",
+    borderRadius: "11px",
+    objectFit: 'contain',
+
+    // '&:hover':{
+    //   opacity: 0.3,
+    // }
+  },
+  name: {
+    fontSize: "15px",
+    textAlign: 'center',
+    paddingTop: '2%',
+    // display:'flex',
+    // justifyContent:'center',
+    // alignItems:'baseline'
+    // verticalAlign: 'middle',
+
   },
   year: {
     fontSize: "18px",
@@ -67,19 +112,18 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(2),
   },
   cardGrid: {
-    paddingTop: theme.spacing(4),
-    paddingBottom: theme.spacing(8),
+    paddingTop: theme.spacing(2),
+    paddingBottom: theme.spacing(2),
     display: "flex",
     flexDirection: "row",
   },
   card: {
-    height: "100%",
+    // height: "90%",
     display: "flex",
     flexDirection: "column",
     width: "100%",
     "&:hover": {
-      background: "black",
-      opacity: "0.3",
+      // boxShadow: '0px 0px 2px 2px black',
     },
     moreInfo: {
       display: "flex",
@@ -87,9 +131,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
 
-  cardContent: {
-    padding: 0,
-  },
+
   cardActions: {
     fontSize: "10px",
     padding: 0,
@@ -109,33 +151,25 @@ const useStyles = makeStyles((theme) => ({
     },
   },
 
-  movieImg: {
-    width: "100%",
-    opacity: 1,
-    display: "block",
-    backfaceVisibility: "hidden",
-    borderRadius: "11px",
-    // '&:hover':{
-    //   opacity: 0.3,
-    // }
-  },
+
   movieImgModal: {
     opacity: 1,
     display: "block",
     backfaceVisibility: "hidden",
     borderRadius: "11px",
     margin: "auto",
-    paddingBottom:'1%',
+    paddingBottom: '1%',
     // '&:hover':{
     //   opacity: 0.3,
     // }
   },
   watchList: {
-    fontSize: "10px",
+    // fontSize: "10px",
     // textAlign: "center",
-    // padding: 0,
+    // padding: '16px',
     justifyContent: "center",
     display: "flex",
+    // margin: 0,
   },
   //modal
   modal: {
@@ -154,8 +188,17 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(0, 4, 3),
     color: "white",
   },
+  DeleteMoviefromWatch: {
+    backgroundColor: 'white',
+    cursor: 'pointer',
+
+  },
   movieInfoModal: {
     display: "flex",
+  },
+  genresModal: {
+    fontStyle: 'italic',
+    paddingTop: "3%",
   },
   watchStarsModal: {
     display: "flex",
@@ -182,6 +225,16 @@ const useStyles = makeStyles((theme) => ({
   //   paddingBottom:'56.25%',
   // },
   [theme.breakpoints.down("xs")]: {
+    name: {
+      padding: '0',
+    },
+    // movieImg:{
+    //   height:'80%',
+    // },
+    movieImg: {
+      height: '200px',
+      width: '100%',
+    },
     movieImgModal: {
       width: "80%",
     },
@@ -216,14 +269,17 @@ function MovieCard({
   ratings,
   trailer,
   description,
+  genres,
   page,
   handleClickStar,
   numRatings,
-  setNumRatings
+  setNumRatings,
+  deleteMode,
+  setDeleteMode
 }) {
   //OKTA AUTH
   const { authState, authService } = useOktaAuth();
-  const {accessToken} = authState;
+  const { accessToken } = authState;
 
   const [yourRating, setYourRating] = useState(false);
   /* Used for the star rating */
@@ -281,7 +337,7 @@ function MovieCard({
   };
 
   const onboardingRating = () => {
-    setNumRatings({...numRatings, num: numRatings.num + 1});
+    setNumRatings({ ...numRatings, num: numRatings.num + 1 });
     console.log("number of ratings is " + numRatings.num);
     console.log("openalert");
   }
@@ -289,16 +345,14 @@ function MovieCard({
 
   return (
     <div className={classes.card}>
-      <button type="button" onClick={handleOpen}>
+      <div className={classes.modalBtn} onClick={handleOpen}>
         <img
           className={classes.movieImg}
           src={image}
           alt="Random Movie poster as a placeholder."
         />
-        <CardContent className={classes.cardContent}>
-          <Typography className={classes.name}>{name}</Typography>
-        </CardContent>
-      </button>
+        <p className={classes.name}>{name}</p>
+      </div>
       <Modal
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
@@ -329,34 +383,50 @@ function MovieCard({
                   <h1 className={classes.nameModal}> {name} </h1>
                   <p className={classes.year}>{year}</p>
                   <p className={classes.descriptionModal}>
-                    {/* <span className={classes.span}>Description: </span> */}
                     {description}
                   </p>
+                  <p className={classes.genresModal}>
+                    {genres}
+                  </p>
                 </CardContent>
-                {/* < className={classes.bottomModal}> */}
-                  {page !== "Onboarding" ? (
-                    // <CardActions className={classes.cardActionsModal}>
-                      <Button
-                        onClick={handleClick}
-                        className={classes.watchList}
-                        disabled={
-                          added || inWatchlist || inRatings ? true : false
-                        }
-                        size="small"
-                        color="primary"
-                      >
-                        {inRatings || yourRating
-                          ? "Your rating:"
-                          : !added && !inWatchlist
+                {page !== "Onboarding" && page !== "watchlist" ? (
+                  <CardActions className={classes.cardActionsModal}>
+                    <Button
+                      onClick={handleClick}
+                      className={classes.watchList}
+                      disabled={
+                        added || inWatchlist || inRatings ? true : false
+                      }
+                      size="small"
+                      color="primary"
+                    >
+                      {inRatings || yourRating
+                        ? "Your rating:"
+                        : !added && !inWatchlist
                           ? "Add to watchlist"
                           : "In your watchlist"}
-                      </Button>
-                    // </CardActions>
-                  ) : (
+                    </Button>
+                  </CardActions>
+                ) : (
                     ""
                   )}
-                 
-                   {page === "Onboarding" ? (
+                {page === "watchlist" ? (
+                  // <div key={movie_id} onClick={() => setDeleteMode(!deleteMode)}>
+                  <CardActions className={classes.cardActionsModal} onClick={() => setDeleteMode(!deleteMode)} >
+                    {deleteMode && (
+                      <button
+                        className={classes.DeleteMoviefromWatch}
+                        onClick={() => handleClick(movie.id)}
+                      >
+                        Remove from Watchlist
+                  </button>
+                    )}
+                  </CardActions>
+                  // </div>
+                ) : (
+                    ""
+                  )}
+                {page === "Onboarding" ? (
                   <Stars
                     className={classes.starsModal}
                     data-test="star"
@@ -371,45 +441,43 @@ function MovieCard({
                     name={name}
                     value={rated ? rated : rating}
                     onChange={handleChange}
-                      // else if (newRatings >= 6) return <SecureRoute path='/:user_id/postonboarding' component={PostOnboarding}/>
-
                     onClick={multiFunctions}
-                  />  
-                  ) : (
+                  />
+                ) : (
                     <Stars
-                    className={classes.starsModal}
-                    data-test="star"
-                    precision={0.5}
-                    size="large"
-                    emptyIcon={
-                      <StarBorderIcon
-                        fontSize="inherit"
-                        style={{ color: "#ffb400" }}
-                      />
-                    }
-                    name={name}
-                    value={rated ? rated : rating}
-                    onChange={handleChange}
-                    onClick={handleClose}
-                  /> 
-                  )}                  
+                      className={classes.starsModal}
+                      data-test="star"
+                      precision={0.5}
+                      size="large"
+                      emptyIcon={
+                        <StarBorderIcon
+                          fontSize="inherit"
+                          style={{ color: "#ffb400" }}
+                        />
+                      }
+                      name={name}
+                      value={rated ? rated : rating}
+                      onChange={handleChange}
+                      onClick={handleClose}
+                    />
+                  )}
               </div>
             </div>
             {page !== "Onboarding" ? (
               <iframe className={classes.trailerModal}
                 width="100%"
                 height="315vh"
-                margin-left= 'auto'
-                margin-right= 'auto'
+                margin-left='auto'
+                margin-right='auto'
                 padding='2%'
                 src={trailer}
-                frameborder="0"
+                frameBorder="0"
                 allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen
+                allowFullScreen
               ></iframe>
             ) : (
-              ""
-            )}
+                ""
+              )}
           </div>
         </Fade>
       </Modal>

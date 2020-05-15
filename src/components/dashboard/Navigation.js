@@ -67,11 +67,7 @@ const useStyles = makeStyles((theme) => ({
   search: {
     position: "relative",
     borderRadius: theme.shape.borderRadius,
-    backgroundColor: "#ffffff",
-    "&:hover": {
-      backgroundColor: "#5c5b5b",
-      color: "#ffffff",
-    },
+    backgroundColor: '#ffffff',
     width: "100%",
     [theme.breakpoints.down("sm")]: {
       width: "auto",
@@ -88,16 +84,11 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    color: "#505050",
-    "&:hover": {
-      color: "#D8D8D8",
-    },
+    color: '#505050',
   },
   inputRoot: {
     color: "#505050",
-    "&:hover": {
-      color: "#ffffff",
-    },
+    width: '100%',
   },
   inputInput: {
     padding: theme.spacing(1, 1, 1, 7),
@@ -113,7 +104,8 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
   },
   appBar: {
-    transition: theme.transitions.create(["margin", "width"], {
+    backgroundColor: '#5c5b5b',
+    transition: theme.transitions.create(['margin', 'width'], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
@@ -176,6 +168,7 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
   },
 }));
+
 
 const Navigation = (props) => {
   //OKTA useOKTA AUTH
@@ -356,8 +349,8 @@ const Navigation = (props) => {
                 {theme.direction === "ltr" ? (
                   <ChevronLeftIcon />
                 ) : (
-                  <ChevronRightIcon />
-                )}
+                    <ChevronRightIcon />
+                  )}
               </IconButton>
             </div>
             <Divider />

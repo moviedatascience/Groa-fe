@@ -25,23 +25,28 @@ const useStyles = makeStyles((theme) => ({
     paddingRight: theme.spacing(2),
     paddingLeft: theme.spacing(2),
   },
+  movieCard: {
+    "&:hover": {
+    boxShadow: '0px 0px 2px 2px black',
+    backgroundColor:'black',
+    },
+  },
 }));
 function Watchlist({
   userid,
   isFetching,
   isDeleting,
   watchlist,
-  watchlistError,
   getWatchlistAction,
   searchTerm,
   removeFromWatchlistAction,
   setFilter,
   movies,
 }) {
-
+  console.log('movies', movies)
   //OKTA AUTH
-  const { authState, authService } = useOktaAuth();
-  const {accessToken} = authState;
+  const { authState } = useOktaAuth();
+  const { accessToken } = authState;
 
   const [deleteMode, setDeleteMode] = useState(false);
   //for matieral-ui
@@ -73,9 +78,9 @@ function Watchlist({
           .filter((movie) =>
             searchTerm !== ""
               ? movie.primary_title
-                  .toString()
-                  .toLowerCase()
-                  .includes(searchTerm.toLowerCase())
+                .toString()
+                .toLowerCase()
+                .includes(searchTerm.toLowerCase())
               : true
           )
           .map((movie, index) => {
@@ -84,32 +89,28 @@ function Watchlist({
               "https://source.unsplash.com/collection/1736993/500x650";
             let moviePoster = `https://image.tmdb.org/t/p/w500${posterURI}?api_key=${process.env.REACT_APP_TMDB_API_KEY}`;
             return (
-              <div key={index} onClick={() => setDeleteMode(!deleteMode)}>
+              <div className={classes.movieCard}>
                 <MovieCard
                   key={index}
                   name={movie.primary_title}
                   year={movie.start_year}
                   trailer={movie.trailer_url}
                   description={movie.description}
-                  page="Onboarding"
+                  genres={movie.genres}
+                  page="watchlist"
                   image={
                     !posterURI ||
-                    posterURI === "None" ||
-                    posterURI === "No poster" ||
-                    posterURI === "No Poster" ||
-                    posterURI === "Not in table"
+                      posterURI === "None" ||
+                      posterURI === "No poster" ||
+                      posterURI === "No Poster" ||
+                      posterURI === "Not in table"
                       ? unsplashUrl
                       : moviePoster
                   }
+                  deleteMode={deleteMode}
+                  setDeleteMode={setDeleteMode}
+                  handleClick={handleClick}
                 />
-                {deleteMode && (
-                  <button
-                    className="delete-button"
-                    onClick={() => handleClick(movie.id)}
-                  >
-                    x
-                  </button>
-                )}
               </div>
             );
           })}

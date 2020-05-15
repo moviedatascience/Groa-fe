@@ -1,26 +1,14 @@
 import React, { useEffect, useState } from "react";
-// import Onboarding from '../lib';
-// import reactOnboardingPro from "react-onboarding-pro";
-// import "react-onboarding-pro/build/index.css";
 import { connect } from "react-redux";
 import { getMoviesAction, getRatingAction, setFilter } from "../../store/actions/index.js";
 // Screen width util
 import widthFinder from "../../utils/widthFinder.js";
-// PostOnboarding
-import PostOnboarding from './PostOnboarding';
 // children components
 import MovieCard from "../movies/MovieCard.js";
 import LoadingScreen from "../layout/LoadingScreen.js";
 //for grid
 import { GridList } from "@material-ui/core/";
 import { makeStyles } from "@material-ui/core/styles";
-//for Link
-import { ifDev } from "../../utils/removeAttribute.js";
-import { Link } from "react-router-dom";
-//for search bar
-import { useTheme } from "@material-ui/core/styles";
-import SearchIcon from "@material-ui/icons/Search";
-import InputBase from "@material-ui/core/InputBase";
 
 //testing snackbar
 import Snackbar from "@material-ui/core/Snackbar";
@@ -28,7 +16,6 @@ import MuiAlert from "@material-ui/lab/Alert";
 
 //okta
 import { useOktaAuth } from "@okta/okta-react/dist/OktaContext";
-import { SecureRoute } from '@okta/okta-react';
 import { Redirect } from 'react-router';
 
 
@@ -80,6 +67,13 @@ const useStyles = makeStyles((theme) => ({
   Link: {
     marginBottom: "2%",
   },
+  movieCard: {
+    color: 'white',
+    "&:hover": {
+      boxShadow: '0px 0px 2px 2px black',
+      backgroundColor: 'black',
+    },
+  },
 }));
 
 function Alert(props) {
@@ -95,23 +89,19 @@ function Onboarding(
     searchTerm,
     setFilter,
     ratings,
-    getRatingAction,
   },
   props
 ) {
   // console.log("movies", movies);
   const classes = useStyles();
   //for okta
-  const { authState, authService } = useOktaAuth();
+  const { authState } = useOktaAuth();
   const { accessToken } = authState;
 
   const [openAlert, setOpenAlert] = useState(false);
-  let [numRatings, setNumRatings] = useState({num:0});
+  let [numRatings, setNumRatings] = useState({ num: 0 });
   const screenWidth = widthFinder(window.innerWidth);
   //for search bar
-  const handleSubmit = (e) => {
-    if (e.keyCode === 13 && query.query !== "") props.setFilter(e.target.value);
-  };
   const [query, setQuery] = useState({
     query: "",
   });
@@ -120,13 +110,9 @@ function Onboarding(
     props.setFilter(query);
   };
 
-  const handleChange = (e) => {
-    setQuery({ query: e.target.value });
-    sendChange(e.target.value.trim());
-  };
   const handleClickStar = () => {
     setOpenAlert(true);
-    
+
   };
   const handleCloseStar = (event, reason) => {
     if (reason === "clickaway") {
@@ -139,15 +125,12 @@ function Onboarding(
     setFilter("");
     // Returns the movies
     getMoviesAction(userid, accessToken);
-    //get ratings
-    // getRatingAction(userid, accessToken);
   }, [getMoviesAction, userid, ratings, setFilter,]);
   // How many movies render
   const cardAmount = 25;
-  // console.log('state ', state )
-  // console.log("open alert is now ", openAlert);
+
   if (isFetching) return <LoadingScreen />;
-  else if (numRatings.num >= 13) return <Redirect to= 'postonboarding' />
+  else if (numRatings.num >= 13) return <Redirect to='postonboarding' />
   else return (
     <div>
       <GridList
@@ -184,14 +167,11 @@ function Onboarding(
               "https://source.unsplash.com/collection/1736993/500x650";
             let moviePoster = `https://image.tmdb.org/t/p/w500${posterURI}?api_key=${process.env.REACT_APP_TMDB_API_KEY}`;
             return (
-              <div>
+              <div className={classes.movieCard}>
                 <MovieCard
                   key={index}
                   name={movie.primary_title}
                   page={"Onboarding"}
-                  // year={movie.start_year}
-                  // trailer={movie.trailer_url}
-                  // description={movie.description}
                   movie_id={movie.movie_id}
                   rated={rated ? rated.rating : null}
                   image={
@@ -211,12 +191,9 @@ function Onboarding(
             );
           })}
       </GridList>
-      {/* <Link className={classes.Link} to={`/${props.userid}/Onboarding2`}>
-        Next
-      </Link> */}
       <Snackbar
         open={openAlert}
-        autoHideDuration={6000}
+        autoHideDuration={4000}
         onClose={handleCloseStar}
       >
         <Alert onClose={handleCloseStar} variant="filled" severity="success">
@@ -225,10 +202,9 @@ function Onboarding(
       </Snackbar>
     </div>
   );
-    }
+}
 
 const mapStateToProps = (state) => {
-  // console.log(state.rating.movies.length)
   return {
     userid: state.login.userid,
     isFetching: state.movie.isFetching,
