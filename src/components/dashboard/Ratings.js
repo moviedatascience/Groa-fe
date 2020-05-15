@@ -8,7 +8,7 @@ import widthFinder from "../../utils/widthFinder.js";
 import MovieCard from "../movies/MovieCard.js";
 import LoadingScreen from "../layout/LoadingScreen.js";
 //for grid
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from "@material-ui/core/styles";
 import { GridList } from "@material-ui/core/";
 import { useOktaAuth } from "@okta/okta-react/dist/OktaContext";
 
@@ -19,7 +19,6 @@ const useStyles = makeStyles((theme) => ({
     paddingRight: theme.spacing(2),
     paddingLeft: theme.spacing(2),
   },
-
 }));
 function Ratings({
   userid,
@@ -31,7 +30,7 @@ function Ratings({
 }) {
   //OKTA AUTH
   const { authState, authService } = useOktaAuth();
-  const {accessToken} = authState;
+  const { accessToken } = authState;
   //for sizing of the movie cards
   const classes = useStyles();
   const screenWidth = widthFinder(window.innerWidth);
@@ -40,9 +39,6 @@ function Ratings({
     // Returns the ratings
     getRatingAction(userid, accessToken);
   }, [getRatingAction, userid, setFilter]);
-  console.log(`here + ${screenWidth}`);
-  // console.log(classes);
-  console.log("ratings length " + ratings.length);
 
   if (isFetching) return <LoadingScreen />;
   else
@@ -56,9 +52,9 @@ function Ratings({
           .filter((movie) =>
             searchTerm !== ""
               ? movie.primary_title
-                .toString()
-                .toLowerCase()
-                .includes(searchTerm.toLowerCase())
+                  .toString()
+                  .toLowerCase()
+                  .includes(searchTerm.toLowerCase())
               : true
           )
           .map((movie, index) => {
@@ -78,18 +74,17 @@ function Ratings({
                   trailer={movie.trailer_url}
                   image={
                     !posterURI ||
-                      posterURI === "None" ||
-                      posterURI === "No poster" ||
-                      posterURI === "No Poster" ||
-                      posterURI === "Not in table"
+                    posterURI === "None" ||
+                    posterURI === "No poster" ||
+                    posterURI === "No Poster" ||
+                    posterURI === "Not in table"
                       ? unsplashUrl
                       : moviePoster
                   }
                 />
               </div>
             );
-          }
-          )}
+          })}
       </GridList>
     );
 }
