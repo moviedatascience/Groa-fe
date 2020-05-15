@@ -55,11 +55,11 @@ const Register = (props) => {
   }
 
   //if user already Authenticated, loginAction redirects to to explore page
-  useEffect(() => {    
-      authService.getUser()
-        .then((info) => {
-           props.loginAction(authState.accessToken, info.sub, history);
-           console.log("checking authentication")  
+  useEffect(() => {
+    authService.getUser()
+      .then((info) => {
+        props.loginAction(authState.accessToken, info.sub, history);
+        console.log("checking authentication")
       })
       .catch(err => console.log("Error fetching User info in UseEffect", err))
   }, [authState]);
@@ -96,7 +96,6 @@ const Register = (props) => {
           <div
             className="form"
           >
-
             <div className="bottom-form">
               <div className="signup-btn-container btn-container">
                 <button className="signup-btn" onClick={login}> Login </button>
@@ -119,7 +118,6 @@ const Register = (props) => {
           </div>
         </div>
       </div>
-
       <Box mt={3}>
         <Copyright />
       </Box>

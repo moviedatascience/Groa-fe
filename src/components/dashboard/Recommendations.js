@@ -60,7 +60,7 @@ function Recommendations({
     return (
       <GridList
         className={classes.cardGrid}
-        cols={screenWidth ? 3 : 5}
+        cols={screenWidth ? 2 : 5}
         cellHeight="auto"
       >
         {recommendations

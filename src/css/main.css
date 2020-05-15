@@ -72,7 +72,7 @@
     text-transform: lowercase; }
   #root .App {
     min-height: 100vh;
-    background-color: #505050; }
+    background-color: #212120; }
   #root .container.register-component,
   #root .container.login-component {
     font-family: "Work Sans", sans-serif;

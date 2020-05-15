@@ -52,6 +52,9 @@ const useStyles = makeStyles((theme) => ({
     margin: "auto",
     backgroundColor: "#505050",
   },
+  userIcon:{
+color:'white',
+  },
   [theme.breakpoints.down("xs")]: {
     searchContainer: {
       width: "90%",
@@ -104,7 +107,7 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
   },
   appBar: {
-    backgroundColor: '#5c5b5b',
+    backgroundColor: '#1c1c1b',
     transition: theme.transitions.create(['margin', 'width'], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
@@ -126,9 +129,11 @@ const useStyles = makeStyles((theme) => ({
   drawer: {
     width: drawerWidth,
     flexShrink: 0,
+    backgroundColor:'#212120',
   },
   drawerPaper: {
     width: drawerWidth,
+    backgroundColor:'#212120',
   },
   drawerHeader: {
     display: "flex",
@@ -155,7 +160,7 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: 0,
   },
   toolBar: {
-    backgroundColor: "#505050",
+    backgroundColor: "#1c1c1b",
     display: "flex",
     justifyContent: "space-between",
   },
@@ -267,7 +272,7 @@ const Navigation = (props) => {
           })}>
           <Toolbar className={classes.toolBar}>
             <IconButton
-              color='inherit'
+              color='white'
               aria-label='open drawer'
               onClick={handleDrawerOpen}
               edge='start'
