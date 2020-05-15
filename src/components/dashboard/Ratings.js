@@ -13,14 +13,17 @@ import { GridList } from "@material-ui/core/";
 import { useOktaAuth } from "@okta/okta-react/dist/OktaContext";
 
 const useStyles = makeStyles((theme) => ({
-  cardGrid: {
+  cardGrid: { 
     paddingTop: theme.spacing(4),
     paddingBottom: theme.spacing(4),
     paddingRight: theme.spacing(2),
     paddingLeft: theme.spacing(2),
   },
   movieCard: {
-    border: '2px solid red'
+    "&:hover": {
+    boxShadow: '0px 0px 2px 2px black',
+    backgroundColor:'black',
+    },
   },
 }));
 function Ratings({

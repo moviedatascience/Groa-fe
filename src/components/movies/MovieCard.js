@@ -76,7 +76,7 @@ const useStyles = makeStyles((theme) => ({
   },
   movieImg: {
     width: "100%",
-    height: '200px',
+    height: '375px',
     opacity: 1,
     // display: "block",
     backfaceVisibility: "hidden",
@@ -123,9 +123,8 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
     width: "100%",
     "&:hover": {
-      // background: "black",
-      opacity: "0.3",
-    },
+      // boxShadow: '0px 0px 2px 2px black',
+  },
     moreInfo: {
       display: "flex",
       flexDirection: "row",
@@ -232,6 +231,10 @@ const useStyles = makeStyles((theme) => ({
     // movieImg:{
     //   height:'80%',
     // },
+    movieImg:{
+      height:'200px',
+      width:'100%',
+    },
     movieImgModal: {
       width: "80%",
     },
