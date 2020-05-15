@@ -41,7 +41,8 @@ function Ratings({
     getRatingAction(userid, accessToken);
   }, [getRatingAction, userid, setFilter]);
   console.log(`here + ${screenWidth}`);
-  console.log(classes);
+  // console.log(classes);
+  console.log("ratings length " + ratings.length);
 
   if (isFetching) return <LoadingScreen />;
   else
@@ -73,6 +74,8 @@ function Ratings({
                   movie_id={movie.movie_id}
                   year={movie.start_year}
                   rated={movie.rating}
+                  description={movie.description}
+                  trailer={movie.trailer_url}
                   image={
                     !posterURI ||
                       posterURI === "None" ||

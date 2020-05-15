@@ -21,6 +21,7 @@
     "node-sass": "^4.14.1",
     "puppeteer": "^2.1.1",
     "react": "^16.13.1",
+    "react-bootstrap": "^1.0.1",
     "react-dom": "^16.13.1",
     "react-ga": "^2.7.0",
     "react-hook-form": "^4.10.2",
@@ -37,7 +38,8 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "GENERATE_SOURCEMAP=false react-scripts build",
-    "test": "react-scripts test"
+    "test": "react-scripts test",
+    "scss": "node-sass --watch scss -o css"
   },
   "eslintConfig": {
     "extends": "react-app"
