@@ -26,44 +26,6 @@ const useStyles = makeStyles((theme) => ({
     paddingRight: theme.spacing(2),
     paddingLeft: theme.spacing(2),
   },
-  searchIcon: {
-    width: theme.spacing(7),
-    height: "100%",
-    position: "absolute",
-    pointerEvents: "none",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    color: "#505050",
-    "&:hover": {
-      // backgroundColor: '#5c5b5b',
-      color: "#D8D8D8",
-    },
-  },
-  search: {
-    position: "relative",
-    borderRadius: theme.shape.borderRadius,
-    backgroundColor: "#5c5b5b",
-    "&:hover": {
-      backgroundColor: "#5c5b5b",
-      color: "#ffffff",
-    },
-    width: "100%",
-    [theme.breakpoints.down("sm")]: {
-      width: "auto",
-    },
-  },
-  searchContainer: {
-    width: "40%",
-    margin: "auto",
-    // backgroundColor: '#505050',
-    paddingTop: "4%",
-  },
-  [theme.breakpoints.down("xs")]: {
-    searchContainer: {
-      width: "90%",
-    },
-  },
   Link: {
     marginBottom: "2%",
   },

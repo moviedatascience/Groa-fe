@@ -16,7 +16,7 @@ import { useOktaAuth } from "@okta/okta-react/dist/OktaContext";
 const useStyles = makeStyles((theme) => ({
     root: {
         display: 'flex',
-        background: '#505050',
+        background: '#212120',
         padding: '2%',
     },
     PostOnboardingImg: {
