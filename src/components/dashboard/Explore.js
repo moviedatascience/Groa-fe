@@ -1,11 +1,7 @@
 import React, { useEffect } from "react";
 // tools
 import { connect } from "react-redux";
-import {
-  getMoviesAction,
-  setFilter,
-  recommendationAction,
-} from "../../store/actions/index.js";
+import { getMoviesAction, setFilter } from "../../store/actions/index.js";
 // Screen width util
 import widthFinder from "../../utils/widthFinder.js";
 
@@ -29,7 +25,6 @@ function Explore({
   isFetching,
   movies,
   userid,
-  recommendationAction,
   getMoviesAction,
   searchTerm,
   setFilter,
@@ -37,15 +32,17 @@ function Explore({
 }) {
   const classes = useStyles();
   const screenWidth = widthFinder(window.innerWidth);
+
   const { authState, authService } = useOktaAuth();
+
   const { accessToken } = authState;
 
-  // console.log("|||||||||||||||||||||||",accessToken);
   useEffect(() => {
     setFilter("");
     // Returns the movies
     getMoviesAction(userid, accessToken);
   }, [getMoviesAction, userid, ratings, setFilter, accessToken]);
+
   // How many movies render
   const cardAmount = 25;
 
@@ -55,8 +52,7 @@ function Explore({
       <GridList
         className={classes.cardGrid}
         cols={screenWidth ? 3 : 5}
-        cellHeight="auto"
-      >
+        cellHeight='auto'>
         {movies
           .filter((movie) =>
             !ratings.includes(
@@ -89,9 +85,12 @@ function Explore({
               <div>
                 <MovieCard
                   key={index}
+                  page={"Explore"}
                   name={movie.primary_title}
                   year={movie.start_year}
                   movie_id={movie.movie_id}
+                  description={movie.description}
+                  trailer={movie.trailer_url}
                   rated={rated ? rated.rating : null}
                   image={
                     !posterURI ||
@@ -123,6 +122,5 @@ const mapStateToProps = (state) => {
 };
 export default connect(mapStateToProps, {
   getMoviesAction,
-  recommendationAction,
   setFilter,
 })(Explore);

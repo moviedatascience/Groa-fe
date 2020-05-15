@@ -1,6 +1,6 @@
 const widthFinder = (screenWidth) => {
   console.log("passed down width", screenWidth);
-  if (parseInt(screenWidth) < 380) {
+  if (parseInt(screenWidth) < 400) {
     return true;
   } else {
     return false;
