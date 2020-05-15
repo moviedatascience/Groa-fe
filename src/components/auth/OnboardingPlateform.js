@@ -12,11 +12,11 @@ const useStyles = makeStyles((theme) => ({
     // margin: '0 auto',
     display: 'flex',
     background: '#505050',
-    padding:'2%',
+    padding: '2%',
   },
   onboardingPlateformImg: {
-    width: '50%',
-    padding:'3%',
+    width: '40%',
+    padding: '3%',
   },
   onboardingText: {
     display: 'flex',
@@ -24,6 +24,7 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
     padding: '3%',
     color: 'white',
+    width:'60%',
   },
   onboardingh1: {
     fontSize: '35px',
@@ -47,11 +48,11 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: '#00E6BC',
     width: '100%',
     color: 'white',
-    padding:'2%',
-    borderRadius:'4px',
-    '&:hover':{
-      backgroundColor:'white',
-      color:'#00E6BC',
+    padding: '2%',
+    borderRadius: '4px',
+    '&:hover': {
+      backgroundColor: 'white',
+      color: '#00E6BC',
     },
   },
   [theme.breakpoints.down("xs")]: {

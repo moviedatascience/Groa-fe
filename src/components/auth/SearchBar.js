@@ -6,7 +6,7 @@ import {
   recommendationAction
 } from "../../store/actions";
 //for search bar 
-import { makeStyles} from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import SearchIcon from "@material-ui/icons/Search";
 import InputBase from "@material-ui/core/InputBase";
 
@@ -14,7 +14,6 @@ const useStyles = makeStyles(theme => ({
   searchContainer: {
     width: "40%",
     margin: 'auto',
-    // backgroundColor: '#505050',
     paddingTop: '4%',
   },
   [theme.breakpoints.down("xs")]: {
@@ -46,7 +45,6 @@ const useStyles = makeStyles(theme => ({
     justifyContent: "center",
     color: '#ffffff',
     "&:hover": {
-      // backgroundColor: '#5c5b5b',
       color: '#D8D8D8',
     },
   },
@@ -68,8 +66,6 @@ const useStyles = makeStyles(theme => ({
 
 
 const Navigation = props => {
-  //for user icon menu
-//   const [anchorEl, setAnchorEl] = React.useState(null);
 
   const classes = useStyles();
   const [query, setQuery] = useState({
@@ -90,26 +86,26 @@ const Navigation = props => {
   };
 
   return (
-          <div className={classes.searchContainer}>
-            <div className={classes.search}>
-              <div className={classes.searchIcon}>
-                <SearchIcon />
-              </div>
-              <InputBase
-                placeholder="Search…"
-                type='text'
-                onChange={handleChange}
-                value={query.query}
-                classes={{
-                  root: classes.inputRoot,
-                  input: classes.inputInput
-                }}
-                inputProps={{ "aria-label": "search" }}
-                onKeyDown={handleSubmit}
-              />
-            </div>
-          </div>
-      
+    <div className={classes.searchContainer}>
+      <div className={classes.search}>
+        <div className={classes.searchIcon}>
+          <SearchIcon />
+        </div>
+        <InputBase
+          placeholder="Search…"
+          type='text'
+          onChange={handleChange}
+          value={query.query}
+          classes={{
+            root: classes.inputRoot,
+            input: classes.inputInput
+          }}
+          inputProps={{ "aria-label": "search" }}
+          onKeyDown={handleSubmit}
+        />
+      </div>
+    </div>
+
   );
 };
 
