@@ -15,7 +15,7 @@ const Congrats = ({ userid }) => {
               <img src={SuccessImg} alt="Success png" />
             </div>
             <button>
-              <Link to={`/${userid}/recommended`} style={{color: "white",textDecoration: "none"}}>Go to Dashboard</Link>
+              <Link to={`/${userid}/recommended`} style={{ color: "white", textDecoration: "none" }}>Go to Dashboard</Link>
             </button>
           </div>
         </div>

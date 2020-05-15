@@ -14,15 +14,15 @@ import { useOktaAuth } from "@okta/okta-react/dist/OktaContext";
 const DataUpload = ({ userid, uploadAction, isUploading, setFilter }) => {
   const [uploadSuccess, setUploadSuccess] = useState(false);
 
-    //OKTA AUTH
-    const { authState, authService } = useOktaAuth();
-    const {accessToken} = authState;
+  //OKTA AUTH
+  const { authState, authService } = useOktaAuth();
+  const { accessToken } = authState;
 
   useEffect(() => {
     setFilter("")
   })
 
-  const toggleInstructions = (window.onclick = function(event) {
+  const toggleInstructions = (window.onclick = function (event) {
     const dropdowns = document.getElementsByClassName("dropdown-content");
     const dropdowns2 = document.getElementsByClassName(
       "dropdown-content-Empty"
@@ -169,7 +169,7 @@ const DataUpload = ({ userid, uploadAction, isUploading, setFilter }) => {
 
           {/* ///////////////UPLOAD FILE //////////////////// */}
           <div className="UploadContainer">
-            <form 
+            <form
               encType='multipart/form-data'
               className="inputholder"
               onDragEnter={onDragStart}
