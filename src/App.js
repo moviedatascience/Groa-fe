@@ -1,30 +1,27 @@
 import React, { useEffect } from "react";
 import { Route } from "react-router-dom";
 
-import { Security, SecureRoute, LoginCallback } from '@okta/okta-react';
-import Test from './Test';
+import { Security, SecureRoute, LoginCallback } from "@okta/okta-react";
 
 // local imports
-import PrivateRoute from "./utils/privateRoute.js";
 import Recommendations from "./components/dashboard/Recommendations.js";
 import Navigation from "./components/dashboard/Navigation.js";
 import Register from "./components/auth/Register";
-import Login from "./components/auth/Login";
 import DataUpload from "./components/auth/DataUpload";
 import Watchlist from "./components/dashboard/Watchlist.js";
-import Ratings from './components/dashboard/Ratings';
+import Ratings from "./components/dashboard/Ratings";
 import Explore from "./components/dashboard/Explore.js";
-import Onboarding from './components/auth/Onboarding';
-import Onboarding2 from './components/auth/Onboarding2';
-import SearchBar from './components/auth/SearchBar';
-import OnboardingPlateform from './components/auth/OnboardingPlateform';
-import PostOnboarding from './components/auth/PostOnboarding';
+import Onboarding from "./components/auth/Onboarding";
+import Onboarding2 from "./components/auth/Onboarding2";
+import SearchBar from "./components/auth/SearchBar";
+import OnboardingPlateform from "./components/auth/OnboardingPlateform";
+import PostOnboarding from "./components/auth/PostOnboarding";
 import PrivacyPolicy from "./components/layout/privacy-policy.js";
 
 // for testing
 import { ifDev } from "./utils/removeAttribute.js";
-import oktaConfig from './config/oktaConfig';
-import { useOktaAuth } from '@okta/okta-react';
+import oktaConfig from "./config/oktaConfig";
+import { useOktaAuth } from "@okta/okta-react";
 
 // config imports
 import reactGAinitialization from "./config/analytics.js";
@@ -54,7 +51,7 @@ store.subscribe(() => {
     login: store.getState().login,
     recommendations: store.getState().recommendations,
     rating: store.getState().rating,
-    watchlist: store.getState().watchlist
+    watchlist: store.getState().watchlist,
   });
 });
 
@@ -68,89 +65,81 @@ function App() {
         palette: {
           type: "dark",
           primary: {
-            main: "#DBE0DF"
+            main: "#DBE0DF",
           },
           secondary: {
-            main: "#6E8B3D"
-          }
+            main: "#6E8B3D",
+          },
         },
         typography: {
-          fontFamily: "Mallanna, sans-serif"
-        }
+          fontFamily: "Mallanna, sans-serif",
+        },
       }),
     []
   );
   return (
     <ThemeProvider theme={theme}>
-    <Provider store={store}>
-      <Router>
-      <Security {...oktaConfig.oidc}>
+      <Provider store={store}>
+        <Router>
+          <Security {...oktaConfig.oidc}>
+            <div className="App" data-test={ifDev("App-component")}>
+              {/* this is fine as a route because all of the routes that will have display their component will only be avalible on a private route */}
+              <Route path="/implicit/callback" component={LoginCallback} />
+              <Route
+                exact
+                path={[
+                  "/:user_id/recommendations",
+                  "/:user_id/watchlist",
+                  "/:user_id/explore",
+                  "/:user_id/upload",
+                  "/:user_id/ratings",
+                ]}
+                component={Navigation}
+              />
+              <SecureRoute
+                exact
+                path="/:user_id/recommendations"
+                component={Recommendations}
+                data-test={ifDev("dash-component")}
+              />
+              <SecureRoute
+                exact
+                path="/:user_id/watchlist"
+                component={Watchlist}
+              />
+              <Route
+                exact
+                path={["/:user_id/onboarding", "/:user_id/onboarding2"]}
+                component={SearchBar}
+              />
+              <SecureRoute
+                path="/:user_id/onboardingplateform"
+                component={OnboardingPlateform}
+              />
+              <SecureRoute path="/:user_id/onboarding" component={Onboarding} />
+              <SecureRoute
+                path="/:user_id/onboarding2"
+                component={Onboarding2}
+              />
 
-        <div className="App" data-test={ifDev("App-component")}>        
+              <SecureRoute
+                path="/:user_id/postonboarding"
+                component={PostOnboarding}
+              />
 
-          {/* this is fine as a route because all of the routes that will have display their component will only be avalible on a private route */}
-          <Route path="/implicit/callback" component={LoginCallback} />
-          <Route
-            exact
-            path={[
-              "/:user_id/recommendations",
-              "/:user_id/watchlist",
-              "/:user_id/explore",
-              "/:user_id/upload",
-              "/:user_id/ratings"
-            ]}
-            component={Navigation}
-          />
-          <SecureRoute
-            exact
-            path="/:user_id/recommendations"
-            component={Recommendations}
-            data-test={ifDev("dash-component")}
-          />
-          <SecureRoute
-            exact
-            path="/:user_id/watchlist"
-            component={Watchlist}
-          />
-          <Route
-            exact
-            path={[
-              '/:user_id/onboarding',
-              '/:user_id/onboarding2', 
-            ]}
-            component={SearchBar}
-          />
-          <SecureRoute 
-          path='/:user_id/onboardingplateform' 
-          component={OnboardingPlateform}
-          />
-          <SecureRoute 
-          path='/:user_id/onboarding' 
-          component={Onboarding}
-          />
-           <SecureRoute 
-          path='/:user_id/onboarding2' 
-          component={Onboarding2}
-          />
-
-          <SecureRoute 
-          path='/:user_id/postonboarding'
-          component={PostOnboarding}
-          />
-
-          <Route path ="/privacy-policy" component={PrivacyPolicy} />
-          <Route exact path="/:user_id/upload" component={DataUpload} />
-          <Route exact path={["/","/register" ]} component={Register} />
-          <Route path="/logout" component={Register} />
-          <Route path="/register" component={Register} />
-          {/* this could be a modal */}
-          {/* <Route path="/congrats" component={Congrats} /> */}
-          <SecureRoute exact path="/:user_id/ratings" component={Ratings}/>
-          <SecureRoute exact path="/:user_id/explore" component={Explore}/>
-        </div>
-        </Security>
-      </Router>
-    </Provider>
+              <Route path="/privacy-policy" component={PrivacyPolicy} />
+              <Route exact path="/:user_id/upload" component={DataUpload} />
+              <Route exact path={["/", "/register"]} component={Register} />
+              <Route path="/logout" component={Register} />
+              <Route path="/register" component={Register} />
+              {/* this could be a modal */}
+              {/* <Route path="/congrats" component={Congrats} /> */}
+              <SecureRoute exact path="/:user_id/ratings" component={Ratings} />
+              <SecureRoute exact path="/:user_id/explore" component={Explore} />
+            </div>
+          </Security>
+        </Router>
+      </Provider>
     </ThemeProvider>
   );
 }
