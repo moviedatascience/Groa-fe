@@ -5,7 +5,6 @@ import { Security, SecureRoute, LoginCallback } from '@okta/okta-react';
 import Test from './Test';
 
 // local imports
-import PrivateRoute from "./utils/privateRoute.js";
 import Recommendations from "./components/dashboard/Recommendations.js";
 import Navigation from "./components/dashboard/Navigation.js";
 import Register from "./components/auth/Register";
@@ -15,7 +14,6 @@ import Watchlist from "./components/dashboard/Watchlist.js";
 import Ratings from './components/dashboard/Ratings';
 import Explore from "./components/dashboard/Explore.js";
 import Onboarding from './components/auth/Onboarding';
-import Onboarding2 from './components/auth/Onboarding2';
 import SearchBar from './components/auth/SearchBar';
 import OnboardingPlateform from './components/auth/OnboardingPlateform';
 import PostOnboarding from './components/auth/PostOnboarding';
@@ -24,7 +22,6 @@ import PrivacyPolicy from "./components/layout/privacy-policy.js";
 // for testing
 import { ifDev } from "./utils/removeAttribute.js";
 import oktaConfig from './config/oktaConfig';
-import { useOktaAuth } from '@okta/okta-react';
 
 // config imports
 import reactGAinitialization from "./config/analytics.js";
@@ -116,7 +113,6 @@ function App() {
             exact
             path={[
               '/:user_id/onboarding',
-              '/:user_id/onboarding2', 
             ]}
             component={SearchBar}
           />
@@ -127,10 +123,6 @@ function App() {
           <SecureRoute 
           path='/:user_id/onboarding' 
           component={Onboarding}
-          />
-           <SecureRoute 
-          path='/:user_id/onboarding2' 
-          component={Onboarding2}
           />
 
           <SecureRoute 
