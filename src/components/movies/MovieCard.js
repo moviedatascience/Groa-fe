@@ -124,7 +124,7 @@ const useStyles = makeStyles((theme) => ({
     width: "100%",
     "&:hover": {
       // boxShadow: '0px 0px 2px 2px black',
-  },
+    },
     moreInfo: {
       display: "flex",
       flexDirection: "row",
@@ -225,15 +225,15 @@ const useStyles = makeStyles((theme) => ({
   //   paddingBottom:'56.25%',
   // },
   [theme.breakpoints.down("xs")]: {
-    name:{
-      padding:'0',
+    name: {
+      padding: '0',
     },
     // movieImg:{
     //   height:'80%',
     // },
-    movieImg:{
-      height:'200px',
-      width:'100%',
+    movieImg: {
+      height: '200px',
+      width: '100%',
     },
     movieImgModal: {
       width: "80%",
@@ -342,20 +342,16 @@ function MovieCard({
     console.log("openalert");
   }
 
+
   return (
     <div className={classes.card}>
       <div className={classes.modalBtn} onClick={handleOpen}>
-        {/* <div className={classes.cardContent}>  */}
         <img
           className={classes.movieImg}
           src={image}
           alt="Random Movie poster as a placeholder."
         />
-        {/* </div> */}
-        {/* <div className={classes.cardContent}>  */}
         <p className={classes.name}>{name}</p>
-        {/* </div> */}
-        {/* </div> */}
       </div>
       <Modal
         aria-labelledby="transition-modal-title"
@@ -387,14 +383,12 @@ function MovieCard({
                   <h1 className={classes.nameModal}> {name} </h1>
                   <p className={classes.year}>{year}</p>
                   <p className={classes.descriptionModal}>
-                    {/* <span className={classes.span}>Description: </span> */}
                     {description}
                   </p>
                   <p className={classes.genresModal}>
                     {genres}
                   </p>
                 </CardContent>
-                {/* < className={classes.bottomModal}> */}
                 {page !== "Onboarding" && page !== "watchlist" ? (
                   <CardActions className={classes.cardActionsModal}>
                     <Button
@@ -416,10 +410,8 @@ function MovieCard({
                 ) : (
                     ""
                   )}
-
                 {page === "watchlist" ? (
                   // <div key={movie_id} onClick={() => setDeleteMode(!deleteMode)}>
-
                   <CardActions className={classes.cardActionsModal} onClick={() => setDeleteMode(!deleteMode)} >
                     {deleteMode && (
                       <button
@@ -428,16 +420,12 @@ function MovieCard({
                       >
                         Remove from Watchlist
                   </button>
-
                     )}
                   </CardActions>
-
                   // </div>
                 ) : (
                     ""
                   )}
-
-
                 {page === "Onboarding" ? (
                   <Stars
                     className={classes.starsModal}
@@ -453,8 +441,6 @@ function MovieCard({
                     name={name}
                     value={rated ? rated : rating}
                     onChange={handleChange}
-                    // else if (newRatings >= 6) return <SecureRoute path='/:user_id/postonboarding' component={PostOnboarding}/>
-
                     onClick={multiFunctions}
                   />
                 ) : (

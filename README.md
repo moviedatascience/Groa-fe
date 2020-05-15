@@ -1,6 +1,6 @@
-# Gróa
+ <img src="https://i.imgur.com/NUs8EQX.jpg">
 
-You can find the deployed project at [https://www.groa.us/](https://www.groa.us/).
+[You can check out the live demo of Gróa here](http://www.groa.us/).
 
 ## Code Climate
 
@@ -35,12 +35,7 @@ more info on using badges [here](https://github.com/badges/shields)
 | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------------------------------------------: |
 |      [<img src="https://avatars1.githubusercontent.com/u/54330659?s=460&u=aae15e2802c9301f9bacc644d4611c84156521ab&v=4" width = "200" />](https://github.com/msinnema33)       | [<img src="https://avatars0.githubusercontent.com/u/58449809?s=460&u=c7753d6b021b1cee87e69cfe475c9279f77d7679&v=4" width = "200" />](https://github.com/jvillalp) | [<img src="https://avatars1.githubusercontent.com/u/38477361?s=460&u=ed6df56daba7072ceb2780001230351c615b159e&v=4" width ="200" />](https://github.com/Steven-Matos) | [<img src="https://avatars1.githubusercontent.com/u/29685279?s=400&u=91c9a8b35d8ff294b6c7ede51ed6f009666b9987&v=4" width = "200" />](https://github.com/azatecas) |
 |                                            [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/msinnema33)                                             |                                       [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/jvillalp)                                       |                                      [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/Steven-Matos)                                       |                                       [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/azatecas)                                       |
-|                    [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/michael-sinnema-37ba733)                     |                 [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/juanavillalpando)                  |                   [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/steven-matosFED)                    |               [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/luis-pepen-17bb3b196)                |
-|                                                          [Mary Streletska](https://www.linkedin.com/in/mstreletska/)                                                           |
-| [<img src="https://avatars0.githubusercontent.com/u/15717759?s=400&u=b9f3e1aca0dffdc58f5b1298e829f4b35e007989&v=4" width = "200" />](https://www.linkedin.com/in/mstreletska/) |
-
-|[ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/mstreletska/)
-
+|                    [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/michael-sinnema-37ba733)                     |                 [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/juanavillalpando)                  |                   [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/steven-matosFED)                    |               [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/luis-pepen-17bb3b196)                |                                                       
 ## Project Overview
 
 [Trello Board](https://trello.com/b/ce1lYRW9/gr%C3%B3a)

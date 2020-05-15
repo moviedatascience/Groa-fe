@@ -50,7 +50,7 @@ const useStyles = makeStyles(theme => ({
   },
   inputRoot: {
     color: '#ffffff',
-    width:'100%',
+    width: '100%',
     "&:hover": {
       color: '#ffffff',
     },
@@ -61,7 +61,6 @@ const useStyles = makeStyles(theme => ({
     width: "100%",
   },
 }));
-
 
 const Navigation = props => {
 
@@ -103,7 +102,6 @@ const Navigation = props => {
         />
       </div>
     </div>
-
   );
 };
 

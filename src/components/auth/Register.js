@@ -50,15 +50,16 @@ const Register = (props) => {
   const login = async () => authService.login('/');
   const logout = async () => authService.logout('/');
 
-  const registerOkta = () => {
-    window.location.href = 'https://dev-568768.okta.com/signin/register';
-  };
+  const facebookLogin = () => {
+    window.location.href = `https://dev-568768.okta.com/oauth2/v1/authorize?idp=0oabxx6bmXwAawmlZ4x6&client_id=${process.env.REACT_APP_CLIENT_ID}&response_type=id_token&response_mode=fragment&scope=openid%20email&redirect_uri=https%3A%2F%2Fgroa.us%2F&state=1234&nonce=groa1234`
+  }
 
   //if user already Authenticated, loginAction redirects to to explore page
-  useEffect(() => {
-    authService.getUser()
-      .then((info) => {
-        props.loginAction(authState.accessToken, info.sub, history)
+  useEffect(() => {    
+      authService.getUser()
+        .then((info) => {
+           props.loginAction(authState.accessToken, info.sub, history);
+           console.log("checking authentication")  
       })
       .catch(err => console.log("Error fetching User info in UseEffect", err))
   }, [authState]);

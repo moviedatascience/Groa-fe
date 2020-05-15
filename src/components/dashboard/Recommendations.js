@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useOktaAuth } from '@okta/okta-react';
+import { useOktaAuth } from "@okta/okta-react";
 // tools
 import { connect } from "react-redux";
 import {
@@ -40,14 +40,10 @@ function Recommendations({
   isUploaded,
   setFilter,
 }) {
-
-  const { authState } = useOktaAuth();
-  const { accessToken } = authState;
-
   useEffect(() => {
     setFilter("");
     if (isUploaded === true) {
-      recommendationAction(userid, accessToken);
+      recommendationAction(userid);
       toggleIsUploaded();
     }
     recommendationAction(userid);
@@ -68,9 +64,9 @@ function Recommendations({
           .filter((movie) =>
             searchTerm !== ""
               ? movie.title
-                .toString()
-                .toLowerCase()
-                .includes(searchTerm.toLowerCase())
+                  .toString()
+                  .toLowerCase()
+                  .includes(searchTerm.toLowerCase())
               : true
           )
           .map((movie, index) => {
@@ -86,13 +82,12 @@ function Recommendations({
                   name={movie.title}
                   year={movie.year}
                   movie_id={movie.movie_id}
-                  genres={movie.genres}
                   image={
                     !posterURI ||
-                      posterURI === "None" ||
-                      posterURI === "No poster" ||
-                      posterURI === "No Poster" ||
-                      posterURI === "Not in table"
+                    posterURI === "None" ||
+                    posterURI === "No poster" ||
+                    posterURI === "No Poster" ||
+                    posterURI === "Not in table"
                       ? unsplashUrl
                       : moviePoster
                   }

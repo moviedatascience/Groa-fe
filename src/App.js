@@ -13,7 +13,6 @@ import DataUpload from "./components/auth/DataUpload";
 import Watchlist from "./components/dashboard/Watchlist.js";
 import Ratings from './components/dashboard/Ratings';
 import Explore from "./components/dashboard/Explore.js";
-
 import Onboarding from './components/auth/Onboarding';
 import SearchBar from './components/auth/SearchBar';
 import OnboardingPlateform from './components/auth/OnboardingPlateform';
@@ -125,11 +124,6 @@ function App() {
           path='/:user_id/onboarding' 
           component={Onboarding}
           />
-          <SecureRoute
-            exact
-            path="/test"
-            component={Test}
-          />
 
           <SecureRoute 
           path='/:user_id/postonboarding'
@@ -139,7 +133,10 @@ function App() {
           <Route path ="/privacy-policy" component={PrivacyPolicy} />
           <Route exact path="/:user_id/upload" component={DataUpload} />
           <Route exact path={["/","/register" ]} component={Register} />
-          <Route path="/logout" component={Login} />
+          <Route path="/logout" component={Register} />
+          <Route path="/register" component={Register} />
+          {/* this could be a modal */}
+          {/* <Route path="/congrats" component={Congrats} /> */}
           <SecureRoute exact path="/:user_id/ratings" component={Ratings}/>
           <SecureRoute exact path="/:user_id/explore" component={Explore}/>
         </div>

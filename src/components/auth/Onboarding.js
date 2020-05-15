@@ -221,3 +221,4 @@ export default connect(mapStateToProps, {
   setFilter,
   getRatingAction
 })(Onboarding);
+
