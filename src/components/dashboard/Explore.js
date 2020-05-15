@@ -24,7 +24,6 @@ const useStyles = makeStyles((theme) => ({
     paddingRight: theme.spacing(2),
     paddingLeft: theme.spacing(2),
   },
-
 }));
 function Explore({
   isFetching,
@@ -39,16 +38,14 @@ function Explore({
   const classes = useStyles();
   const screenWidth = widthFinder(window.innerWidth);
   const { authState, authService } = useOktaAuth();
-  const {accessToken} = authState;
+  const { accessToken } = authState;
 
   // console.log("|||||||||||||||||||||||",accessToken);
   useEffect(() => {
     setFilter("");
     // Returns the movies
     getMoviesAction(userid, accessToken);
-    // returns a list of recommendations to start the recommendations page
-    recommendationAction(userid, accessToken);
-  }, [getMoviesAction, userid, ratings, setFilter, recommendationAction]);
+  }, [getMoviesAction, userid, ratings, setFilter, accessToken]);
   // How many movies render
   const cardAmount = 25;
 
@@ -68,9 +65,9 @@ function Explore({
                 film.start_year === movie.start_year
             ).length && searchTerm !== ""
               ? movie.primary_title
-                .toString()
-                .toLowerCase()
-                .includes(searchTerm.toLowerCase())
+                  .toString()
+                  .toLowerCase()
+                  .includes(searchTerm.toLowerCase())
               : true
           )
           .slice(0, cardAmount)
@@ -98,10 +95,10 @@ function Explore({
                   rated={rated ? rated.rating : null}
                   image={
                     !posterURI ||
-                      posterURI === "None" ||
-                      posterURI === "No poster" ||
-                      posterURI === "No Poster" ||
-                      posterURI === "Not in table"
+                    posterURI === "None" ||
+                    posterURI === "No poster" ||
+                    posterURI === "No Poster" ||
+                    posterURI === "Not in table"
                       ? unsplashUrl
                       : moviePoster
                   }
