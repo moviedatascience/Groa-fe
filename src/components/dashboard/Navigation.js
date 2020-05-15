@@ -5,7 +5,6 @@ import {
   setFilter,
   recommendationAction
 } from "../../store/actions";
-// import debounce from "../../utils/debounce";
 import GroaLogo from "../../img/groa-logo-nav.png";
 
 //for search bar 
@@ -45,9 +44,7 @@ import GradeRoundedIcon from '@material-ui/icons/GradeRounded';
 import ExitToAppRoundedIcon from '@material-ui/icons/ExitToAppRounded';
 import { useOktaAuth } from "@okta/okta-react/dist/OktaContext";
 
-
 const drawerWidth = 240;
-
 
 const useStyles = makeStyles(theme => ({
   searchContainer: {
@@ -94,7 +91,6 @@ const useStyles = makeStyles(theme => ({
     justifyContent: "center",
     color: '#505050',
     "&:hover": {
-      // backgroundColor: '#5c5b5b',
       color: '#D8D8D8',
     },
   },
@@ -128,7 +124,6 @@ const useStyles = makeStyles(theme => ({
     marginLeft: drawerWidth,
     transition: theme.transitions.create(['margin', 'width'], {
       easing: theme.transitions.easing.easeOut,
-      // duration: theme.transitions.duration.enteringScreen,
     }),
   },
   menuButton: {
@@ -183,14 +178,13 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-
 const Navigation = props => {
 
-    //OKTA useOKTA AUTH
-    const { authState, authService } = useOktaAuth();
-    const [userInfo, setUserInfo] = useState(null);
+  //OKTA useOKTA AUTH
+  const { authState, authService } = useOktaAuth();
+  const [userInfo, setUserInfo] = useState(null);
 
-    const logout = async () => authService.logout('/');
+  const logout = async () => authService.logout('/');
 
   //for nav bar
   const theme = useTheme();
@@ -264,21 +258,6 @@ const Navigation = props => {
     if (e.keyCode === 13 && query.query !== "") props.setFilter(e.target.value);
   };
 
-  // const clearInput = e => {
-  //   setQuery({ query: "" });
-  //   props.setFilter("");
-  // };
-
-  // const logout = () => {
-  //   localStorage.removeItem("token");
-  //   localStorage.removeItem("state");
-  // };
-
-  // const getNewRecommendations = id => {
-  // Gets new recommendations for account, if applicible
-  // props.recommendationAction(id);
-  // };
-  //for click away
   const handleClickAway = () => {
     setOpen(false);
   };
@@ -370,14 +349,6 @@ const Navigation = props => {
               ))}
             </List>
             <Divider />
-            {/* <List>
-          {['All mail', 'Trash', 'Spam'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List> */}
           </Drawer>
         </ClickAwayListener>
         <main

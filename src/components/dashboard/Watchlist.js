@@ -31,17 +31,16 @@ function Watchlist({
   isFetching,
   isDeleting,
   watchlist,
-  watchlistError,
   getWatchlistAction,
   searchTerm,
   removeFromWatchlistAction,
   setFilter,
   movies,
 }) {
-console.log('movies', movies)
+  console.log('movies', movies)
   //OKTA AUTH
-  const { authState, authService } = useOktaAuth();
-  const {accessToken} = authState;
+  const { authState } = useOktaAuth();
+  const { accessToken } = authState;
 
   const [deleteMode, setDeleteMode] = useState(false);
   //for matieral-ui
@@ -73,9 +72,9 @@ console.log('movies', movies)
           .filter((movie) =>
             searchTerm !== ""
               ? movie.primary_title
-                  .toString()
-                  .toLowerCase()
-                  .includes(searchTerm.toLowerCase())
+                .toString()
+                .toLowerCase()
+                .includes(searchTerm.toLowerCase())
               : true
           )
           .map((movie, index) => {
@@ -95,10 +94,10 @@ console.log('movies', movies)
                   page="watchlist"
                   image={
                     !posterURI ||
-                    posterURI === "None" ||
-                    posterURI === "No poster" ||
-                    posterURI === "No Poster" ||
-                    posterURI === "Not in table"
+                      posterURI === "None" ||
+                      posterURI === "No poster" ||
+                      posterURI === "No Poster" ||
+                      posterURI === "Not in table"
                       ? unsplashUrl
                       : moviePoster
                   }
@@ -106,7 +105,6 @@ console.log('movies', movies)
                   setDeleteMode={setDeleteMode}
                   handleClick={handleClick}
                 />
-                
               </div>
             );
           })}

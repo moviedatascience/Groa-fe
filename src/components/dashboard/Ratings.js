@@ -19,8 +19,8 @@ const useStyles = makeStyles((theme) => ({
     paddingRight: theme.spacing(2),
     paddingLeft: theme.spacing(2),
   },
-  movieCard:{
-    border:'2px solid red'
+  movieCard: {
+    border: '2px solid red'
   },
 }));
 function Ratings({
@@ -33,7 +33,7 @@ function Ratings({
 }) {
   //OKTA AUTH
   const { authState, authService } = useOktaAuth();
-  const {accessToken} = authState;
+  const { accessToken } = authState;
   //for sizing of the movie cards
   const classes = useStyles();
   const screenWidth = widthFinder(window.innerWidth);
