@@ -25,8 +25,8 @@ const useStyles = makeStyles((theme) => ({
   },
   movieCard: {
     "&:hover": {
-    boxShadow: '0px 0px 2px 2px black',
-    backgroundColor:'black',
+      boxShadow: "0px 0px 2px 2px black",
+      backgroundColor: "black",
     },
   },
 }));
@@ -40,15 +40,18 @@ function Recommendations({
   isUploaded,
   setFilter,
 }) {
+  const { authState } = useOktaAuth();
+  const { accessToken } = authState;
+
   useEffect(() => {
     setFilter("");
     if (isUploaded === true) {
       recommendationAction(userid);
       toggleIsUploaded();
     }
-    recommendationAction(userid);
+    recommendationAction(userid, accessToken);
     // Returns the most recent recommendations from the database
-  }, [userid, isUploaded, recommendationAction, setFilter]);
+  }, [userid, isUploaded, recommendationAction, setFilter, accessToken]);
   const classes = useStyles();
   const screenWidth = widthFinder(window.innerWidth);
 
