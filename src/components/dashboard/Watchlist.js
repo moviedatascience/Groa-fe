@@ -22,12 +22,12 @@ const useStyles = makeStyles((theme) => ({
   cardGrid: {
     paddingTop: theme.spacing(4),
     paddingBottom: theme.spacing(4),
-    paddingRight: theme.spacing(2),
-    paddingLeft: theme.spacing(2),
+    paddingRight: theme.spacing(1),
+    paddingLeft: theme.spacing(1),
   },
   movieCard: {
     "&:hover": {
-    boxShadow: '0px 0px 2px 2px black',
+    boxShadow: '0px 0px 1px 1px black',
     backgroundColor:'black',
     },
   },
