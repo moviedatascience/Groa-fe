@@ -84,6 +84,7 @@ function Recommendations({
                   rated={null}
                   name={movie.title}
                   year={movie.year}
+                  description={movie.description}
                   movie_id={movie.movie_id}
                   image={
                     !posterURI ||

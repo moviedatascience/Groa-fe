@@ -196,9 +196,16 @@ const useStyles = makeStyles((theme) => ({
   movieInfoModal: {
     display: "flex",
   },
+  movieContentDiv: {
+    margin: 'auto',
+  },
   genresModal: {
     fontStyle: 'italic',
     paddingTop: "3%",
+  },
+  actionButtons: {
+    display: 'flex',
+    justifyContent:'center',
   },
   watchStarsModal: {
     display: "flex",
@@ -371,14 +378,14 @@ function MovieCard({
               <></>
             </DialogTitle>
             <div className={classes.movieInfoModal}>
-              <div>
-                <img
-                  className={classes.movieImgModal}
-                  src={image}
-                  alt="Random Movie poster as a placeholder."
-                />
-              </div>
-              <div>
+
+              <img
+                className={classes.movieImgModal}
+                src={image}
+                alt="Random Movie poster as a placeholder."
+              />
+
+              <div className={classes.movieContentDiv} >
                 <CardContent className={classes.cardContentModal}>
                   <h1 className={classes.nameModal}> {name} </h1>
                   <p className={classes.year}>{year}</p>
@@ -389,27 +396,51 @@ function MovieCard({
                     {genres}
                   </p>
                 </CardContent>
-                {page !== "Onboarding" && page !== "watchlist" ? (
-                  <CardActions className={classes.cardActionsModal}>
-                    <Button
-                      onClick={handleClick}
-                      className={classes.watchList}
-                      disabled={
-                        added || inWatchlist || inRatings ? true : false
-                      }
-                      size="small"
-                      color="primary"
-                    >
-                      {inRatings || yourRating
-                        ? "Your rating:"
-                        : !added && !inWatchlist
-                          ? "Add to watchlist"
-                          : "In your watchlist"}
-                    </Button>
-                  </CardActions>
-                ) : (
-                    ""
-                  )}
+                <div className={classes.actionButtons}>
+                  {page !== "Onboarding" && page !== "watchlist" ? (
+                    <CardActions className={classes.cardActionsModal}>
+                      <Button
+                        onClick={handleClick}
+                        className={classes.watchList}
+                        disabled={
+                          added || inWatchlist || inRatings ? true : false
+                        }
+                        size="small"
+                        color="primary"
+                      >
+                        {inRatings || yourRating
+                          ? "Your rating:"
+                          : !added && !inWatchlist
+                            ? "Add to watchlist"
+                            : "In your watchlist"}
+                      </Button>
+                    </CardActions>
+                  ) : (
+                      ""
+                    )}
+
+                  {page === "Explore" ? (
+                    <CardActions className={classes.cardActionsModal}>
+                      <Button
+                        onClick={handleClick}
+                        className={classes.watchList}
+                        disabled={
+                          added || inWatchlist || inRatings ? true : false
+                        }
+                        size="small"
+                        color="primary"
+                      >
+                        {inRatings || yourRating
+                          ? "Your rating:"
+                          : !added && !inWatchlist
+                            ? "Not Interested"
+                            : "Removed from Results"}
+                      </Button>
+                    </CardActions>
+                  ) : (
+                      ""
+                    )}
+                </div>
                 {page === "watchlist" ? (
                   // <div key={movie_id} onClick={() => setDeleteMode(!deleteMode)}>
                   <CardActions className={classes.cardActionsModal} onClick={() => setDeleteMode(!deleteMode)} >

@@ -26,9 +26,6 @@ const useStyles = makeStyles((theme) => ({
     paddingRight: theme.spacing(2),
     paddingLeft: theme.spacing(2),
   },
-  Link: {
-    marginBottom: "2%",
-  },
   movieCard: {
     color: 'white',
     "&:hover": {
@@ -67,10 +64,6 @@ function Onboarding(
   const [query, setQuery] = useState({
     query: "",
   });
-
-  const sendChange = (query) => {
-    props.setFilter(query);
-  };
 
   const handleClickStar = () => {
     setOpenAlert(true);
