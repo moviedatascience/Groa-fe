@@ -89,7 +89,7 @@ function Watchlist({
               "https://source.unsplash.com/collection/1736993/500x650";
             let moviePoster = `https://image.tmdb.org/t/p/w500${posterURI}?api_key=${process.env.REACT_APP_TMDB_API_KEY}`;
             return (
-              <div className={classes.movieCard}>
+              <div className={classes.movieCard} key={index}>
                 <MovieCard
                   key={index}
                   name={movie.primary_title}

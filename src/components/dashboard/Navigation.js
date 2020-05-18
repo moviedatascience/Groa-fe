@@ -212,11 +212,6 @@ const Navigation = (props) => {
       name: "Ratings",
       icon: <GradeRoundedIcon />,
     },
-    {
-      id: 5,
-      name: "LogOut",
-      icon: <ExitToAppRoundedIcon />,
-    },
   ];
 
   const handleDrawerOpen = () => {
