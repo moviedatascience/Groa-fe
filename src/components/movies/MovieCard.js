@@ -50,52 +50,22 @@ const DialogTitle = withStyles(styles)((props) => {
 const useStyles = makeStyles((theme) => ({
   nameModal: {
     fontSize: "25px",
-    // paddingBottom: "2%",
-
-  },
-  modalBtn: {
-    // border:'2px solid white',
-    // height: '250px',
-    // paddingBottom: '2%',
-    // display: 'flex',
-    // justifyContent: 'center',
-    // alignItems: 'center',
-    // flexDirection: 'column',
   },
   cardContent: {
-    // paddingBottom: 0,
-    // display:'flex',
-    // justifyContent:'center',
-    // alignItems:'baseline'
-    height: '100%',
-    // display: 'flex',
-    // justifyContent: 'center',
-    // alignItems: 'center',
-    // flexDirection: 'column',
-
+    height: "100%",
   },
   movieImg: {
     width: "100%",
-    height: '375px',
+    height: "375px",
     opacity: 1,
-    // display: "block",
     backfaceVisibility: "hidden",
     borderRadius: "11px",
-    objectFit: 'contain',
-
-    // '&:hover':{
-    //   opacity: 0.3,
-    // }
+    objectFit: "contain",
   },
   name: {
     fontSize: "15px",
-    textAlign: 'center',
-    paddingTop: '2%',
-    // display:'flex',
-    // justifyContent:'center',
-    // alignItems:'baseline'
-    // verticalAlign: 'middle',
-
+    textAlign: "center",
+    paddingTop: "2%",
   },
   year: {
     fontSize: "18px",
@@ -118,20 +88,15 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "row",
   },
   card: {
-    // height: "90%",
     display: "flex",
     flexDirection: "column",
     width: "100%",
-    "&:hover": {
-      // boxShadow: '0px 0px 2px 2px black',
-    },
+    "&:hover": {},
     moreInfo: {
       display: "flex",
       flexDirection: "row",
     },
   },
-
-
   cardActions: {
     fontSize: "10px",
     padding: 0,
@@ -150,26 +115,17 @@ const useStyles = makeStyles((theme) => ({
       opacity: 5,
     },
   },
-
-
   movieImgModal: {
     opacity: 1,
     display: "block",
     backfaceVisibility: "hidden",
     borderRadius: "11px",
     margin: "auto",
-    paddingBottom: '1%',
-    // '&:hover':{
-    //   opacity: 0.3,
-    // }
+    paddingBottom: "1%",
   },
   watchList: {
-    // fontSize: "10px",
-    // textAlign: "center",
-    // padding: '16px',
     justifyContent: "center",
     display: "flex",
-    // margin: 0,
   },
   //modal
   modal: {
@@ -179,30 +135,27 @@ const useStyles = makeStyles((theme) => ({
     overflow: "scroll",
   },
   paper: {
-    // backgroundColor: theme.palette.background.paper,
     background: "rgb(23, 23, 23, .96)",
     margin: "auto",
-    // marginBottom:'auto',
     width: "55rem",
     boxShadow: theme.shadows[5],
     padding: theme.spacing(0, 4, 3),
     color: "white",
   },
   DeleteMoviefromWatch: {
-    backgroundColor: 'white',
-    cursor: 'pointer',
-
+    backgroundColor: "white",
+    cursor: "pointer",
   },
   movieInfoModal: {
     display: "flex",
   },
   genresModal: {
-    fontStyle: 'italic',
+    fontStyle: "italic",
     paddingTop: "3%",
   },
   watchStarsModal: {
     display: "flex",
-    justifyContent: "center"
+    justifyContent: "center",
   },
   cardActionsModal: {
     justifyContent: "center",
@@ -219,28 +172,19 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
     justifyContent: "space-evenly",
   },
-  // videoWrapper:{
-  //   position:'relative',
-  //   height:0,
-  //   paddingBottom:'56.25%',
-  // },
   [theme.breakpoints.down("xs")]: {
     name: {
-      padding: '0',
+      padding: "0",
     },
-    // movieImg:{
-    //   height:'80%',
-    // },
     movieImg: {
-      height: '200px',
-      width: '100%',
+      height: "200px",
+      width: "100%",
     },
     movieImgModal: {
       width: "80%",
     },
     paper: {
       width: "17rem",
-      // marginTop: "1%",
     },
     movieInfoModal: {
       flexDirection: "column",
@@ -248,10 +192,6 @@ const useStyles = makeStyles((theme) => ({
     starsModal: {
       fontSize: "5vw",
     },
-    // trailerModal:{
-    //   width:'auto',
-    //   height:'auto',
-    // },
   },
 }));
 
@@ -275,7 +215,7 @@ function MovieCard({
   numRatings,
   setNumRatings,
   deleteMode,
-  setDeleteMode
+  setDeleteMode,
 }) {
   //OKTA AUTH
   const { authState, authService } = useOktaAuth();
@@ -319,8 +259,6 @@ function MovieCard({
       movie_id: movie.movie_id,
       rating: newValue,
     };
-
-    console.log(newRating);
     ratingAction(userid, newRating, accessToken);
     setYourRating(true);
   };
@@ -340,8 +278,7 @@ function MovieCard({
     setNumRatings({ ...numRatings, num: numRatings.num + 1 });
     console.log("number of ratings is " + numRatings.num);
     console.log("openalert");
-  }
-
+  };
 
   return (
     <div className={classes.card}>
@@ -382,12 +319,8 @@ function MovieCard({
                 <CardContent className={classes.cardContentModal}>
                   <h1 className={classes.nameModal}> {name} </h1>
                   <p className={classes.year}>{year}</p>
-                  <p className={classes.descriptionModal}>
-                    {description}
-                  </p>
-                  <p className={classes.genresModal}>
-                    {genres}
-                  </p>
+                  <p className={classes.descriptionModal}>{description}</p>
+                  <p className={classes.genresModal}>{genres}</p>
                 </CardContent>
                 {page !== "Onboarding" && page !== "watchlist" ? (
                   <CardActions className={classes.cardActionsModal}>
@@ -403,29 +336,32 @@ function MovieCard({
                       {inRatings || yourRating
                         ? "Your rating:"
                         : !added && !inWatchlist
-                          ? "Add to watchlist"
-                          : "In your watchlist"}
+                        ? "Add to watchlist"
+                        : "In your watchlist"}
                     </Button>
                   </CardActions>
                 ) : (
-                    ""
-                  )}
+                  ""
+                )}
                 {page === "watchlist" ? (
                   // <div key={movie_id} onClick={() => setDeleteMode(!deleteMode)}>
-                  <CardActions className={classes.cardActionsModal} onClick={() => setDeleteMode(!deleteMode)} >
+                  <CardActions
+                    className={classes.cardActionsModal}
+                    onClick={() => setDeleteMode(!deleteMode)}
+                  >
                     {deleteMode && (
                       <button
                         className={classes.DeleteMoviefromWatch}
                         onClick={() => handleClick(movie.id)}
                       >
                         Remove from Watchlist
-                  </button>
+                      </button>
                     )}
                   </CardActions>
-                  // </div>
                 ) : (
-                    ""
-                  )}
+                  // </div>
+                  ""
+                )}
                 {page === "Onboarding" ? (
                   <Stars
                     className={classes.starsModal}
@@ -444,40 +380,42 @@ function MovieCard({
                     onClick={multiFunctions}
                   />
                 ) : (
-                    <Stars
-                      className={classes.starsModal}
-                      data-test="star"
-                      precision={0.5}
-                      size="large"
-                      emptyIcon={
-                        <StarBorderIcon
-                          fontSize="inherit"
-                          style={{ color: "#ffb400" }}
-                        />
-                      }
-                      name={name}
-                      value={rated ? rated : rating}
-                      onChange={handleChange}
-                      onClick={handleClose}
-                    />
-                  )}
+                  <Stars
+                    className={classes.starsModal}
+                    data-test="star"
+                    precision={0.5}
+                    size="large"
+                    emptyIcon={
+                      <StarBorderIcon
+                        fontSize="inherit"
+                        style={{ color: "#ffb400" }}
+                      />
+                    }
+                    name={name}
+                    value={rated ? rated : rating}
+                    onChange={handleChange}
+                    onClick={handleClose}
+                  />
+                )}
               </div>
             </div>
             {page !== "Onboarding" ? (
-              <iframe className={classes.trailerModal}
+              <iframe
+                className={classes.trailerModal}
+                title={name}
                 width="100%"
                 height="315vh"
-                margin-left='auto'
-                margin-right='auto'
-                padding='2%'
+                margin-left="auto"
+                margin-right="auto"
+                padding="2%"
                 src={trailer}
                 frameBorder="0"
                 allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
               ></iframe>
             ) : (
-                ""
-              )}
+              ""
+            )}
           </div>
         </Fade>
       </Modal>

@@ -22,8 +22,8 @@ const useStyles = makeStyles((theme) => ({
   },
   movieCard: {
     "&:hover": {
-    boxShadow: '0px 0px 1px 1px black',
-    backgroundColor:'black',
+      boxShadow: "0px 0px 2px 2px black",
+      backgroundColor: "black",
     },
   },
 }));
@@ -38,7 +38,7 @@ function Explore({
 }) {
   const classes = useStyles();
   const screenWidth = widthFinder(window.innerWidth);
-  
+
   const { authState, authService } = useOktaAuth();
   const { accessToken } = authState;
 
@@ -49,7 +49,7 @@ function Explore({
   }, [getMoviesAction, userid, ratings, setFilter, accessToken]);
 
   // How many movies render
-  const cardAmount = 25;
+  const cardAmount = 40;
 
   if (isFetching) return <LoadingScreen />;
   else
@@ -65,9 +65,9 @@ function Explore({
               (film) => film.title === movie.title && film.year === movie.year
             ).length && searchTerm !== ""
               ? movie.primary_title
-                .toString()
-                .toLowerCase()
-                .includes(searchTerm.toLowerCase())
+                  .toString()
+                  .toLowerCase()
+                  .includes(searchTerm.toLowerCase())
               : true
           )
           .slice(0, cardAmount)
@@ -95,10 +95,10 @@ function Explore({
                   rated={rated ? rated.rating : null}
                   image={
                     !posterURI ||
-                      posterURI === "None" ||
-                      posterURI === "No poster" ||
-                      posterURI === "No Poster" ||
-                      posterURI === "Not in table"
+                    posterURI === "None" ||
+                    posterURI === "No poster" ||
+                    posterURI === "No Poster" ||
+                    posterURI === "Not in table"
                       ? unsplashUrl
                       : moviePoster
                   }
