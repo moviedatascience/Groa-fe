@@ -41,7 +41,6 @@ import SearchRoundedIcon from "@material-ui/icons/SearchRounded";
 import ThumbUpRoundedIcon from "@material-ui/icons/ThumbUpRounded";
 import PlaylistAddCheckRoundedIcon from "@material-ui/icons/PlaylistAddCheckRounded";
 import GradeRoundedIcon from "@material-ui/icons/GradeRounded";
-import ExitToAppRoundedIcon from "@material-ui/icons/ExitToAppRounded";
 import { useOktaAuth } from "@okta/okta-react/dist/OktaContext";
 
 const drawerWidth = 240;
@@ -52,8 +51,8 @@ const useStyles = makeStyles((theme) => ({
     margin: "auto",
     backgroundColor: "#505050",
   },
-  userIcon:{
-color:'white',
+  userIcon: {
+    color: "white",
   },
   [theme.breakpoints.down("xs")]: {
     searchContainer: {
@@ -70,7 +69,7 @@ color:'white',
   search: {
     position: "relative",
     borderRadius: theme.shape.borderRadius,
-    backgroundColor: '#ffffff',
+    backgroundColor: "#ffffff",
     width: "100%",
     [theme.breakpoints.down("sm")]: {
       width: "auto",
@@ -87,11 +86,11 @@ color:'white',
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    color: '#505050',
+    color: "#505050",
   },
   inputRoot: {
     color: "#505050",
-    width: '100%',
+    width: "100%",
   },
   inputInput: {
     padding: theme.spacing(1, 1, 1, 7),
@@ -107,8 +106,8 @@ color:'white',
     flexDirection: "column",
   },
   appBar: {
-    backgroundColor: '#1c1c1b',
-    transition: theme.transitions.create(['margin', 'width'], {
+    backgroundColor: "#1c1c1b",
+    transition: theme.transitions.create(["margin", "width"], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
@@ -129,11 +128,11 @@ color:'white',
   drawer: {
     width: drawerWidth,
     flexShrink: 0,
-    backgroundColor:'#212120',
+    backgroundColor: "#212120",
   },
   drawerPaper: {
     width: drawerWidth,
-    backgroundColor:'#212120',
+    backgroundColor: "#212120",
   },
   drawerHeader: {
     display: "flex",
@@ -174,11 +173,9 @@ color:'white',
   },
 }));
 
-
 const Navigation = (props) => {
   //OKTA useOKTA AUTH
   const { authState, authService } = useOktaAuth();
-  const [userInfo, setUserInfo] = useState(null);
 
   const logout = async () => authService.logout("/");
 
@@ -261,53 +258,60 @@ const Navigation = (props) => {
         <CssBaseline />
         <AppBar
           className={classes.appBarTop}
-          position='fixed'
+          position="fixed"
+          // eslint-disable-next-line react/jsx-no-duplicate-props
           className={clsx(classes.appBar, {
             [classes.appBarShift]: open,
-          })}>
+          })}
+        >
           <Toolbar className={classes.toolBar}>
             <IconButton
-              color='white'
-              aria-label='open drawer'
+              color="white"
+              aria-label="open drawer"
               onClick={handleDrawerOpen}
-              edge='start'
-              className={clsx(classes.menuButton, open && classes.hide)}>
+              edge="start"
+              className={clsx(classes.menuButton, open && classes.hide)}
+            >
               <MenuIcon />
             </IconButton>
-            <Typography variant='h6' noWrap>
+            <Typography variant="h6" noWrap>
               <img
                 className={classes.groaLogo}
                 src={GroaLogo}
-                alt='Groa Logo'
+                alt="Groa Logo"
               />
             </Typography>
             <Button
-              aria-controls='simple-menu'
-              aria-haspopup='true'
-              onClick={handleClick}>
+              aria-controls="simple-menu"
+              aria-haspopup="true"
+              onClick={handleClick}
+            >
               <PersonRoundedIcon className={classes.userIcon} />
             </Button>
             <Menu
-              id='simple-menu'
+              id="simple-menu"
               anchorEl={anchorEl}
               keepMounted
               open={Boolean(anchorEl)}
-              onClose={handleClose}>
+              onClose={handleClose}
+            >
               <MenuItem
                 onClick={handleClose}
                 button
-                component='a'
-                href={`/${props.userid}/ratings`}>
+                component="a"
+                href={`/${props.userid}/ratings`}
+              >
                 Ratings
               </MenuItem>
               <MenuItem
                 onClick={handleClose}
                 button
-                component='a'
-                href={`/${props.userid}/upload`}>
+                component="a"
+                href={`/${props.userid}/upload`}
+              >
                 Upload
               </MenuItem>
-              <MenuItem onClick={logout} button component='a'>
+              <MenuItem onClick={logout} button component="a">
                 Logout
               </MenuItem>
             </Menu>
@@ -318,8 +322,8 @@ const Navigation = (props) => {
                 <SearchIcon />
               </div>
               <InputBase
-                placeholder='Search…'
-                type='text'
+                placeholder="Search…"
+                type="text"
                 onChange={handleChange}
                 value={query.query}
                 classes={{
@@ -333,24 +337,26 @@ const Navigation = (props) => {
           </div>
         </AppBar>
         <ClickAwayListener
-          mouseEvent='onMouseDown'
-          touchEvent='onTouchStart'
-          onClickAway={handleClickAway}>
+          mouseEvent="onMouseDown"
+          touchEvent="onTouchStart"
+          onClickAway={handleClickAway}
+        >
           <Drawer
             className={classes.drawer}
-            variant='persistent'
-            anchor='left'
+            variant="persistent"
+            anchor="left"
             open={open}
             classes={{
               paper: classes.drawerPaper,
-            }}>
+            }}
+          >
             <div className={classes.drawerHeader}>
               <IconButton onClick={handleDrawerClose}>
                 {theme.direction === "ltr" ? (
                   <ChevronLeftIcon />
                 ) : (
-                    <ChevronRightIcon />
-                  )}
+                  <ChevronRightIcon />
+                )}
               </IconButton>
             </div>
             <Divider />
@@ -359,8 +365,9 @@ const Navigation = (props) => {
                 <ListItem
                   key={linkObject.id}
                   button
-                  component='a'
-                  href={`/${props.userid}/${linkObject.name.toLowerCase()}`}>
+                  component="a"
+                  href={`/${props.userid}/${linkObject.name.toLowerCase()}`}
+                >
                   <ListItemIcon>{linkObject.icon}</ListItemIcon>
                   <ListItemText primary={linkObject.name} />
                 </ListItem>
@@ -372,7 +379,8 @@ const Navigation = (props) => {
         <main
           className={clsx(classes.content, {
             [classes.contentShift]: open,
-          })}>
+          })}
+        >
           <div className={classes.drawerHeader} />
         </main>
       </div>
