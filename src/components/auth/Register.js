@@ -56,7 +56,11 @@ const Register = (props) => {
 
   //if user already Authenticated, loginAction redirects to to explore page
   useEffect(() => {
-    console.log("AUTHHHHHHHHHHHHHHHHHHHHHH", authState);
+    //Auth URL redirect from facebook contains #id_token, if exist login() will authenticate the user
+    if(window.location.href.indexOf("#id_token") > -1) {
+      login();
+    }
+
     if(authState.isAuthenticated === true){
     authService.getUser()
       .then((info) => {
@@ -67,7 +71,7 @@ const Register = (props) => {
       .catch(err => console.log("Error fetching User info in UseEffect", err))
     }
 
-  }, );
+  }, [authState, authService]);
 
   return (
     <div
