@@ -259,11 +259,8 @@ function MovieCard({
       movie_id: movie.movie_id,
       rating: newValue,
     };
-
-    console.log(newRating);
     ratingAction(userid, newRating, accessToken);
     setYourRating(true);
-    window.location.reload(true);
   };
   const handleClick = () => {
     /* Adds movie to the POST request */
