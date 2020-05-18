@@ -45,7 +45,7 @@
   #root html {
     font-family: "Work Sans", sans-serif;
     font-weight: normal;
-    color: #505050;
+    color: #212120;
     font-size: 14px; }
   #root h1,
   #root h2,
@@ -72,12 +72,12 @@
     text-transform: lowercase; }
   #root .App {
     min-height: 100vh;
-    background-color: #505050; }
+    background-color: #212120; }
   #root .container.register-component,
   #root .container.login-component {
     font-family: "Work Sans", sans-serif;
     color: white;
-    background: #505050;
+    background: #212120;
     margin: 0 auto;
     width: 100%;
     min-height: 100vh; }
@@ -134,7 +134,7 @@
       margin: auto;
       padding: 3%;
       border-radius: 4px;
-      background: #505050;
+      background: #212120;
       width: 100%;
       max-width: 518px;
       height: 550px; }
@@ -192,7 +192,7 @@
             height: 50px;
             border-radius: 4px;
             background: #00B392;
-            color: #505050;
+            color: #212120;
             font-size: 14px;
             margin-bottom: 2%; }
           #root .container.register-component .box-right .bottom-form .btn-container .fancy,
@@ -248,7 +248,7 @@
             #root .container.register-component .box-right .bottom-form .btn-container .google-btn .btn-text,
             #root .container.login-component .box-right .bottom-form .btn-container .google-btn .btn-text {
               margin: 7% 2% 0 30%;
-              color: #505050;
+              color: #212120;
               font-size: 14px;
               letter-spacing: 0.2px;
               font-family: "Roboto"; }
@@ -394,7 +394,7 @@
     #root .container.login-component .box-container .box-right {
       margin: 2%;
       padding: 0%;
-      background: #505050;
+      background: #212120;
       height: 100%; }
       #root .container.register-component .box-container .box-right .form,
       #root .container.login-component .box-container .box-right .form {
@@ -450,7 +450,7 @@
       margin-top: 2%;
       font-size: 20px; } }
   #root .mainContainer {
-    background: #505050;
+    background: #212120;
     padding: 1.1% 1%;
     font-family: "Work Sans", sans-serif; }
     #root .mainContainer .navContainer {
@@ -594,7 +594,7 @@
         border: 1px solid #D8D8D8; }
         #root .mainContainer .dropdown-hover:hover .dropdown-content .NavLink {
           border-top: 1px solid #D8D8D8;
-          color: #505050;
+          color: #212120;
           text-decoration: none;
           font-size: 1.1rem;
           padding: 1rem 1.5rem;

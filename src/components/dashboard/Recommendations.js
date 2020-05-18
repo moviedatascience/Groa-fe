@@ -20,12 +20,12 @@ const useStyles = makeStyles((theme) => ({
   cardGrid: {
     paddingTop: theme.spacing(4),
     paddingBottom: theme.spacing(4),
-    paddingRight: theme.spacing(2),
-    paddingLeft: theme.spacing(2),
+    paddingRight: theme.spacing(1),
+    paddingLeft: theme.spacing(1),
   },
   movieCard: {
     "&:hover": {
-      boxShadow: "0px 0px 2px 2px black",
+      boxShadow: "0px 0px 1px 1px black",
       backgroundColor: "black",
     },
   },
@@ -60,7 +60,7 @@ function Recommendations({
     return (
       <GridList
         className={classes.cardGrid}
-        cols={screenWidth ? 3 : 5}
+        cols={screenWidth ? 2 : 5}
         cellHeight="auto"
       >
         {recommendations
@@ -78,7 +78,7 @@ function Recommendations({
               "https://source.unsplash.com/collection/1736993/500x650";
             let moviePoster = `https://image.tmdb.org/t/p/w500${posterURI}?api_key=${process.env.REACT_APP_TMDB_API_KEY}`;
             return (
-              <div className={classes.movieCard}>
+              <div className={classes.movieCard} key={index}>
                 <MovieCard
                   key={index}
                   rated={null}

@@ -16,8 +16,8 @@ const useStyles = makeStyles((theme) => ({
   cardGrid: {
     paddingTop: theme.spacing(4),
     paddingBottom: theme.spacing(4),
-    paddingRight: theme.spacing(2),
-    paddingLeft: theme.spacing(2),
+    paddingRight: theme.spacing(1),
+    paddingLeft: theme.spacing(1),
   },
   movieCard: {
     "&:hover": {
@@ -51,7 +51,7 @@ function Ratings({
     return (
       <GridList
         className={classes.cardGrid}
-        cols={screenWidth ? 3 : 5}
+        cols={screenWidth ? 2 : 5}
         cellHeight="auto"
       >
         {ratings

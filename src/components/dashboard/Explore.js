@@ -17,8 +17,8 @@ const useStyles = makeStyles((theme) => ({
   cardGrid: {
     paddingTop: theme.spacing(4),
     paddingBottom: theme.spacing(4),
-    paddingRight: theme.spacing(2),
-    paddingLeft: theme.spacing(2),
+    paddingRight: theme.spacing(1),
+    paddingLeft: theme.spacing(1),
   },
   movieCard: {
     "&:hover": {
@@ -56,7 +56,7 @@ function Explore({
     return (
       <GridList
         className={classes.cardGrid}
-        cols={screenWidth ? 3 : 5}
+        cols={screenWidth ? 2 : 5}
         cellHeight="auto"
       >
         {movies
@@ -83,7 +83,7 @@ function Explore({
               "https://source.unsplash.com/collection/1736993/500x650";
             let moviePoster = `https://image.tmdb.org/t/p/w500${posterURI}?api_key=${process.env.REACT_APP_TMDB_API_KEY}`;
             return (
-              <div className={classes.movieCard}>
+              <div className={classes.movieCard} key={index}>
                 <MovieCard
                   key={index}
                   page={"Explore"}
