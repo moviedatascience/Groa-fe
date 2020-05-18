@@ -87,7 +87,7 @@ function Onboarding(
     setFilter("");
     // Returns the movies
     getMoviesAction(userid, accessToken);
-  }, [getMoviesAction, userid, ratings, setFilter,]);
+  }, [getMoviesAction, userid, ratings, setFilter, accessToken]);
   // How many movies render
   const cardAmount = 25;
 
@@ -104,8 +104,8 @@ function Onboarding(
           .filter((movie) =>
             !ratings.includes(
               (film) =>
-                film.primary_title === movie.primary_title &&
-                film.start_year === movie.start_year
+                film.film.title === movie.title &&
+                film.year === movie.year
             ).length && searchTerm !== ""
               ? movie.primary_title
                 .toString()
@@ -118,8 +118,8 @@ function Onboarding(
             /* Checks if the film is in ratings */
             const isRated = (film) => {
               return (
-                film.primary_title === movie.primary_title &&
-                film.start_year === movie.start_year
+                film.title === movie.title &&
+                film.year === movie.year
               );
             };
             /* Returns the movie object if in ratings */
@@ -132,7 +132,7 @@ function Onboarding(
               <div className={classes.movieCard}>
                 <MovieCard
                   key={index}
-                  name={movie.primary_title}
+                  name={movie.title}
                   page={"Onboarding"}
                   movie_id={movie.movie_id}
                   rated={rated ? rated.rating : null}

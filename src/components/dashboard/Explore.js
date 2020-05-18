@@ -39,7 +39,7 @@ function Explore({
   const classes = useStyles();
   const screenWidth = widthFinder(window.innerWidth);
   
-  const { authState, authService } = useOktaAuth();
+  const { authState } = useOktaAuth();
   const { accessToken } = authState;
 
   useEffect(() => {
