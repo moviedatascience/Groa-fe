@@ -7,6 +7,7 @@ import { upload } from './uploadReducer';
 import { filter } from './filterReducer'; 
 import { watchlist } from './watchlistReducer';
 import { movie } from './movieReducer';
+import { notwatchlist } from './notWatchListReducer';
 
 export const reducer = combineReducers({
   login,
@@ -16,5 +17,6 @@ export const reducer = combineReducers({
   upload,
   movie,
   filter, 
-  watchlist
+  watchlist,
+  notwatchlist,
 });
