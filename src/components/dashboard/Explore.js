@@ -17,13 +17,13 @@ const useStyles = makeStyles((theme) => ({
   cardGrid: {
     paddingTop: theme.spacing(4),
     paddingBottom: theme.spacing(4),
-    paddingRight: theme.spacing(2),
-    paddingLeft: theme.spacing(2),
+    paddingRight: theme.spacing(1),
+    paddingLeft: theme.spacing(1),
   },
   movieCard: {
     "&:hover": {
-    boxShadow: '0px 0px 2px 2px black',
-    backgroundColor:'black',
+      boxShadow: "0px 0px 2px 2px black",
+      backgroundColor: "black",
     },
   },
 }));
@@ -39,8 +39,8 @@ function Explore({
 }) {
   const classes = useStyles();
   const screenWidth = widthFinder(window.innerWidth);
-  
-  const { authState } = useOktaAuth();
+
+  const { authState, authService } = useOktaAuth();
   const { accessToken } = authState;
 
   useEffect(() => {
@@ -52,7 +52,7 @@ function Explore({
   }, [getMoviesAction,notWatchListAction, userid, ratings, setFilter, accessToken]);
 
   // How many movies render
-  const cardAmount = 25;
+  const cardAmount = 40;
 
   if (isFetching) return <LoadingScreen />;
   else
@@ -68,9 +68,9 @@ function Explore({
               (film) => film.title === movie.title && film.year === movie.year
             ).length && searchTerm !== ""
               ? movie.primary_title
-                .toString()
-                .toLowerCase()
-                .includes(searchTerm.toLowerCase())
+                  .toString()
+                  .toLowerCase()
+                  .includes(searchTerm.toLowerCase())
               : true
           )
           .slice(0, cardAmount)
@@ -86,7 +86,7 @@ function Explore({
               "https://source.unsplash.com/collection/1736993/500x650";
             let moviePoster = `https://image.tmdb.org/t/p/w500${posterURI}?api_key=${process.env.REACT_APP_TMDB_API_KEY}`;
             return (
-              <div className={classes.movieCard}>
+              <div className={classes.movieCard} key={index}>
                 <MovieCard
                   key={index}
                   page={"Explore"}
@@ -98,10 +98,10 @@ function Explore({
                   rated={rated ? rated.rating : null}
                   image={
                     !posterURI ||
-                      posterURI === "None" ||
-                      posterURI === "No poster" ||
-                      posterURI === "No Poster" ||
-                      posterURI === "Not in table"
+                    posterURI === "None" ||
+                    posterURI === "No poster" ||
+                    posterURI === "No Poster" ||
+                    posterURI === "Not in table"
                       ? unsplashUrl
                       : moviePoster
                   }

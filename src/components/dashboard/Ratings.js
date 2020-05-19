@@ -13,16 +13,16 @@ import { GridList } from "@material-ui/core/";
 import { useOktaAuth } from "@okta/okta-react/dist/OktaContext";
 
 const useStyles = makeStyles((theme) => ({
-  cardGrid: { 
+  cardGrid: {
     paddingTop: theme.spacing(4),
     paddingBottom: theme.spacing(4),
-    paddingRight: theme.spacing(2),
-    paddingLeft: theme.spacing(2),
+    paddingRight: theme.spacing(1),
+    paddingLeft: theme.spacing(1),
   },
   movieCard: {
     "&:hover": {
-    boxShadow: '0px 0px 2px 2px black',
-    backgroundColor:'black',
+      boxShadow: "0px 0px 2px 2px black",
+      backgroundColor: "black",
     },
   },
 }));
@@ -44,7 +44,7 @@ function Ratings({
     setFilter("");
     // Returns the ratings
     getRatingAction(userid, accessToken);
-  }, [getRatingAction, userid, setFilter]);
+  }, [getRatingAction, userid, setFilter, accessToken]);
 
   if (isFetching) return <LoadingScreen />;
   else
