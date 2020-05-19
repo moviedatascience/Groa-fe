@@ -6,7 +6,7 @@ import {
 
 const initialState = {
   queries: [],
-  isFetching: false,
+  isSearching: false,
   error: "",
 };
 
@@ -15,18 +15,18 @@ export const search = (state = initialState, action) => {
     case START_SEARCH_START:
       return {
         ...state,
-        isFetching: true,
+        isSearching: true,
       };
     case START_SEARCH_SUCCESS:
       return {
         ...state,
-        isFetching: false,
+        isSearching: false,
         queries: action.payload,
       };
     case START_SEARCH_FAIL:
       return {
         ...state,
-        isFetching: false,
+        isSearching: false,
         error: action.payload,
       };
     default:
