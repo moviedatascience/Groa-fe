@@ -8,9 +8,8 @@ import {
 import GroaLogo from "../../img/groa-logo-nav.png";
 
 //for search bar
+import SearchBar from "../auth/SearchBar.js";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
-import SearchIcon from "@material-ui/icons/Search";
-import InputBase from "@material-ui/core/InputBase";
 
 //for the navbar
 import clsx from "clsx";
@@ -46,11 +45,6 @@ import { useOktaAuth } from "@okta/okta-react/dist/OktaContext";
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
-  searchContainer: {
-    width: "40%",
-    margin: "auto",
-    backgroundColor: "#505050",
-  },
   userIcon: {
     color: "white",
   },
@@ -66,39 +60,8 @@ const useStyles = makeStyles((theme) => ({
       justifyContent: "center",
     },
   },
-  search: {
-    position: "relative",
-    borderRadius: theme.shape.borderRadius,
-    backgroundColor: "#ffffff",
-    width: "100%",
-    [theme.breakpoints.down("sm")]: {
-      width: "auto",
-    },
-  },
   appBarTop: {
     backgroundColor: "#5c5b5b",
-  },
-  searchIcon: {
-    width: theme.spacing(7),
-    height: "100%",
-    position: "absolute",
-    pointerEvents: "none",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    color: "#505050",
-  },
-  inputRoot: {
-    color: "#505050",
-    width: "100%",
-  },
-  inputInput: {
-    padding: theme.spacing(1, 1, 1, 7),
-    transition: theme.transitions.create("width"),
-    width: "100%",
-    [theme.breakpoints.up("md")]: {
-      width: 200,
-    },
   },
   //for nav bar
   root: {
@@ -181,7 +144,7 @@ const Navigation = (props) => {
 
   //for nav bar
   const theme = useTheme();
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
   // for side bar menu
   const linkAttributes = [
     {
@@ -219,7 +182,7 @@ const Navigation = (props) => {
     setOpen(false);
   };
   //for user icon menu
-  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [anchorEl, setAnchorEl] = useState(null);
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -230,22 +193,6 @@ const Navigation = (props) => {
   };
 
   const classes = useStyles();
-  const [query, setQuery] = useState({
-    query: "",
-  });
-
-  const handleChange = (e) => {
-    setQuery({ query: e.target.value });
-    sendChange(e.target.value.trim());
-  };
-
-  const sendChange = (query) => {
-    props.setFilter(query);
-  };
-
-  const handleSubmit = (e) => {
-    if (e.keyCode === 13 && query.query !== "") props.setFilter(e.target.value);
-  };
 
   //for click away
   const handleClickAway = () => {
@@ -316,25 +263,7 @@ const Navigation = (props) => {
               </MenuItem>
             </Menu>
           </Toolbar>
-          <div className={classes.searchContainer}>
-            <div className={classes.search}>
-              <div className={classes.searchIcon}>
-                <SearchIcon />
-              </div>
-              <InputBase
-                placeholder="Search…"
-                type="text"
-                onChange={handleChange}
-                value={query.query}
-                classes={{
-                  root: classes.inputRoot,
-                  input: classes.inputInput,
-                }}
-                inputProps={{ "aria-label": "search" }}
-                onKeyDown={handleSubmit}
-              />
-            </div>
-          </div>
+          <SearchBar />
         </AppBar>
         <ClickAwayListener
           mouseEvent="onMouseDown"
