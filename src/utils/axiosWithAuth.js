@@ -6,7 +6,7 @@ const axiosWithAuth = (accessToken) => {
         headers: {
             Authorization: `Bearer ${accessToken}`
         },
-        baseURL: 'http://localhost:8080/api/users',
+        baseURL: process.env.REACT_APP_BASEURL
     })
 }
 export default axiosWithAuth;
