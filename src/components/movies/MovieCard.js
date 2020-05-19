@@ -229,7 +229,6 @@ function MovieCard({
   //OKTA AUTH
   const { authState, authService } = useOktaAuth();
   const { accessToken } = authState;
-  
   const [yourRating, setYourRating] = useState(false);
   /* Used for the star rating */
   const [rating, setRating] = useState(0);
@@ -285,6 +284,7 @@ function MovieCard({
   const handleClickRemove = () => {
     notWatchListAction(userid, movie, accessToken);
     setRemoved(true);
+    handleClose();
   }
 
   const multiFunctions = () => {
