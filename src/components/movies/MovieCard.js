@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import { ratingAction, addToWatchlistAction } from "../../store/actions";
+import { ratingAction, addToWatchlistAction, notWatchListAction } from "../../store/actions";
 import Stars from "@material-ui/lab/Rating";
 import StarBorderIcon from "@material-ui/icons/StarBorder";
 //for grid
@@ -282,7 +282,9 @@ function MovieCard({
   numRatings,
   setNumRatings,
   deleteMode,
-  setDeleteMode
+  setDeleteMode,
+  notWatchListAction,
+  notwatchlist,
 }) {
   //OKTA AUTH
   const { authState, authService } = useOktaAuth();
@@ -293,8 +295,13 @@ function MovieCard({
   const [rating, setRating] = useState(0);
   /* Used for dynamically rendering the "Add to watchlist" button and if it's disabled */
   const [added, setAdded] = useState(false);
+  //to remove movie user not interested in
+  const [ removed, setRemoved] = useState(false);
   /* This checks if the movie is in the watchlist */
   const inWatchlist = watchlist.some(
+    (movie) => movie.name === name && movie.year === year
+  );
+  const notInWatchlist = notwatchlist.some(
     (movie) => movie.name === name && movie.year === year
   );
   const inRatings = ratings.some(
@@ -337,6 +344,11 @@ function MovieCard({
     setAdded(true);
   };
 
+  const handleClickRemove = () => {
+    notWatchListAction(userid, movie, accessToken);
+    setRemoved(true);
+  }
+
   const multiFunctions = () => {
     handleClose();
     handleClickStar();
@@ -348,7 +360,6 @@ function MovieCard({
     console.log("number of ratings is " + numRatings.num);
     console.log("openalert");
   }
-
 
   return (
     <div className={classes.card}>
@@ -419,20 +430,18 @@ function MovieCard({
                       ""
                     )}
 
-                  {page === "Explore" ? (
+                  {page === "Recommendations" ? (
                     <CardActions className={classes.cardActionsModal}>
                       <Button
-                        onClick={handleClick}
+                        onClick={handleClickRemove}
                         className={classes.watchList}
                         disabled={
-                          added || inWatchlist || inRatings ? true : false
+                          removed || notInWatchlist ? true : false
                         }
                         size="small"
                         color="primary"
                       >
-                        {inRatings || yourRating
-                          ? "Your rating:"
-                          : !added && !inWatchlist
+                        {!removed && !notInWatchlist
                             ? "Not Interested"
                             : "Removed from Results"}
                       </Button>
@@ -516,14 +525,17 @@ function MovieCard({
   );
 }
 const mapStateToProps = (state) => {
+  // console.log('this is the res of notwatchlist', state)
+
   return {
     userid: state.login.userid,
     ratingError: state.rating.error,
     watchlist: state.watchlist.movies,
     watchlistError: state.watchlist.error,
     ratings: state.rating.movies,
+    notwatchlist: state.notwatchlist.movies
   };
 };
-export default connect(mapStateToProps, { ratingAction, addToWatchlistAction })(
+export default connect(mapStateToProps, { ratingAction, addToWatchlistAction, notWatchListAction })(
   MovieCard
 );

@@ -10,6 +10,7 @@ import {
 } from "./watchlistActions.js";
 import { getMoviesAction } from "./movieAction"
 import { setFilter } from "./filterActions.js"; 
+import {notWatchListAction} from './notWatchListAction.js';
 
 
 export {
@@ -24,5 +25,6 @@ export {
   removeFromWatchlistAction,
   getWatchlistAction,
   getMoviesAction,
-  setFilter
+  setFilter,
+  notWatchListAction
 };
