@@ -23,7 +23,7 @@ export function loginAction(token, okta_id, history) {
             type: FETCHING_WATCHLIST_SUCCESS,
             payload: res.data.watchlist
           });
-          if(res.data.newUser === true){
+          if(res.data.ratings.length < 6){
             history.push(`/${res.data.user_id}/onboardingplateform`);
             }else {
               history.push(`/${res.data.user_id}/explore`);

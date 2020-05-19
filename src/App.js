@@ -20,7 +20,6 @@ import PrivacyPolicy from "./components/layout/privacy-policy.js";
 // for testing
 import { ifDev } from "./utils/removeAttribute.js";
 import oktaConfig from "./config/oktaConfig";
-import { useOktaAuth } from "@okta/okta-react";
 
 // config imports
 import reactGAinitialization from "./config/analytics.js";
