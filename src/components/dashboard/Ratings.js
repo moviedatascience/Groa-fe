@@ -54,6 +54,7 @@ function Ratings({
         cols={screenWidth ? 2 : 5}
         cellHeight="auto"
       >
+        
         {ratings
           .filter((movie) =>
             searchTerm !== ""
@@ -64,12 +65,14 @@ function Ratings({
               : true
           )
           .map((movie, index) => {
+            // console.log('inratings',movie.movie_id)
             let posterURI = movie.poster_url;
             let unsplashUrl =
               "https://source.unsplash.com/collection/1736993/500x650";
             let moviePoster = `https://image.tmdb.org/t/p/w500${posterURI}?api_key=${process.env.REACT_APP_TMDB_API_KEY}`;
             return (
               <div key={index} className={classes.movieCard}>
+                
                 <MovieCard
                   key={index}
                   name={movie.primary_title}

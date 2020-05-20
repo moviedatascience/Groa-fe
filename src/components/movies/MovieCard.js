@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
-import { ratingAction, addToWatchlistAction, notWatchListAction } from "../../store/actions";
+import { ratingAction, addToWatchlistAction, notWatchListAction, serviceProviderAction } from "../../store/actions";
 import Stars from "@material-ui/lab/Rating";
 import StarBorderIcon from "@material-ui/icons/StarBorder";
 //for grid
@@ -50,6 +50,7 @@ const DialogTitle = withStyles(styles)((props) => {
 const useStyles = makeStyles((theme) => ({
   nameModal: {
     fontSize: "25px",
+    textAlign: 'center',
   },
   cardContent: {
     height: "100%",
@@ -158,7 +159,7 @@ const useStyles = makeStyles((theme) => ({
   },
   actionButtons: {
     display: 'flex',
-    justifyContent:'center',
+    justifyContent: 'center',
   },
   watchStarsModal: {
     display: "flex",
@@ -178,6 +179,11 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexDirection: "column",
     justifyContent: "space-evenly",
+  },
+  serviceBtn: {
+    color: 'red',
+    border: '2px solid green',
+    textAlign: 'center',
   },
   [theme.breakpoints.down("xs")]: {
     name: {
@@ -225,17 +231,26 @@ function MovieCard({
   setDeleteMode,
   notWatchListAction,
   notwatchlist,
+  serviceProviderAction,
+  serviceProvider,
 }) {
   //OKTA AUTH
   const { authState, authService } = useOktaAuth();
   const { accessToken } = authState;
+// console.log('movie id', movie_id)
+
+  useEffect(() => {
+    serviceProviderAction(userid, accessToken, movie_id)
+  }, [serviceProviderAction, userid, movie_id, accessToken])
+  // console.log('service provider', )
+
   const [yourRating, setYourRating] = useState(false);
   /* Used for the star rating */
   const [rating, setRating] = useState(0);
   /* Used for dynamically rendering the "Add to watchlist" button and if it's disabled */
   const [added, setAdded] = useState(false);
   //to remove movie user not interested in
-  const [ removed, setRemoved] = useState(false);
+  const [removed, setRemoved] = useState(false);
   /* This checks if the movie is in the watchlist */
   const inWatchlist = watchlist.some(
     (movie) => movie.name === name && movie.year === year
@@ -321,6 +336,13 @@ function MovieCard({
           timeout: 500,
         }}
       >
+        {serviceProvider
+        .map((serviceProviders, index)=> {
+<div>
+  pro
+</div>
+
+        })}
         <Fade in={open}>
           <div className={classes.paper}>
             <DialogTitle className={classes.title} onClose={handleClose}>
@@ -376,8 +398,8 @@ function MovieCard({
                         color="primary"
                       >
                         {!removed && !notInWatchlist
-                            ? "Not Interested"
-                            : "Removed from Results"}
+                          ? "Not Interested"
+                          : "Removed from Results"}
                       </Button>
                     </CardActions>
                   ) : (
@@ -400,9 +422,9 @@ function MovieCard({
                     )}
                   </CardActions>
                 ) : (
-                  // </div>
-                  ""
-                )}
+                    // </div>
+                    ""
+                  )}
                 {page === "Onboarding" ? (
                   <Stars
                     className={classes.starsModal}
@@ -421,24 +443,30 @@ function MovieCard({
                     onClick={multiFunctions}
                   />
                 ) : (
-                  <Stars
-                    className={classes.starsModal}
-                    data-test="star"
-                    precision={0.5}
-                    size="large"
-                    emptyIcon={
-                      <StarBorderIcon
-                        fontSize="inherit"
-                        style={{ color: "#ffb400" }}
-                      />
-                    }
-                    name={name}
-                    value={rated ? rated : rating}
-                    onChange={handleChange}
-                    onClick={handleClose}
-                  />
-                )}
+                    <Stars
+                      className={classes.starsModal}
+                      data-test="star"
+                      precision={0.5}
+                      size="large"
+                      emptyIcon={
+                        <StarBorderIcon
+                          fontSize="inherit"
+                          style={{ color: "#ffb400" }}
+                        />
+                      }
+                      name={name}
+                      value={rated ? rated : rating}
+                      onChange={handleChange}
+                      onClick={handleClose}
+                    />
+                  )}
+
+                <div >
+                  <p className={classes.serviceBtn}> these are the providers: </p>
+                  
+                </div>
               </div>
+
             </div>
             {page !== "Onboarding" ? (
               <iframe
@@ -455,8 +483,8 @@ function MovieCard({
                 allowFullScreen
               ></iframe>
             ) : (
-              ""
-            )}
+                ""
+              )}
           </div>
         </Fade>
       </Modal>
@@ -472,9 +500,10 @@ const mapStateToProps = (state) => {
     watchlist: state.watchlist.movies,
     watchlistError: state.watchlist.error,
     ratings: state.rating.movies,
-    notwatchlist: state.notwatchlist.movies
+    notwatchlist: state.notwatchlist.movies,
+    serviceProvider: state.serviceProvider.serviceProviders
   };
 };
-export default connect(mapStateToProps, { ratingAction, addToWatchlistAction, notWatchListAction })(
+export default connect(mapStateToProps, { ratingAction, addToWatchlistAction, notWatchListAction, serviceProviderAction })(
   MovieCard
 );

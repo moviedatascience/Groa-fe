@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 // tools
 import { connect } from "react-redux";
-import { getMoviesAction, setFilter, notWatchListAction } from "../../store/actions/index.js";
+import { getMoviesAction, setFilter, notWatchListAction} from "../../store/actions/index.js";
 // Screen width util
 import widthFinder from "../../utils/widthFinder.js";
 
@@ -35,8 +35,10 @@ function Explore({
   searchTerm,
   setFilter,
   ratings,
-  notWatchListAction
+  notWatchListAction,
+
 }) {
+  // console.log('this is the movies', movie_id)
   const classes = useStyles();
   const screenWidth = widthFinder(window.innerWidth);
 
@@ -48,9 +50,10 @@ function Explore({
     // Returns the movies
     getMoviesAction(userid, accessToken);
     notWatchListAction(userid, accessToken);
-    
-  }, [getMoviesAction,notWatchListAction, userid, ratings, setFilter, accessToken]);
-
+  }, [getMoviesAction, notWatchListAction, userid, ratings, setFilter, accessToken]);
+  
+  // const {movie_id} = movies.movie_id;
+// console.log('this is it', movies.movie_id);
   // How many movies render
   const cardAmount = 40;
 
@@ -68,13 +71,14 @@ function Explore({
               (film) => film.title === movie.title && film.year === movie.year
             ).length && searchTerm !== ""
               ? movie.primary_title
-                  .toString()
-                  .toLowerCase()
-                  .includes(searchTerm.toLowerCase())
+                .toString()
+                .toLowerCase()
+                .includes(searchTerm.toLowerCase())
               : true
           )
           .slice(0, cardAmount)
           .map((movie, index) => {
+            // console.log('this is the movies', movie)
             /* Checks if the film is in ratings */
             const isRated = (film) => {
               return film.title === movie.title && film.year === movie.year;
@@ -92,16 +96,16 @@ function Explore({
                   page={"Explore"}
                   name={movie.title}
                   year={movie.year}
-                  movie_id={movie.movie_id}
                   description={movie.description}
+                  genres={movie.genres}
                   trailer={movie.trailer_url}
                   rated={rated ? rated.rating : null}
                   image={
                     !posterURI ||
-                    posterURI === "None" ||
-                    posterURI === "No poster" ||
-                    posterURI === "No Poster" ||
-                    posterURI === "Not in table"
+                      posterURI === "None" ||
+                      posterURI === "No poster" ||
+                      posterURI === "No Poster" ||
+                      posterURI === "Not in table"
                       ? unsplashUrl
                       : moviePoster
                   }
@@ -114,6 +118,8 @@ function Explore({
 }
 
 const mapStateToProps = (state) => {
+  // console.log('this is the res of notwatchlist', state)
+
   return {
     userid: state.login.userid,
     isFetching: state.movie.isFetching,
@@ -127,5 +133,5 @@ const mapStateToProps = (state) => {
 export default connect(mapStateToProps, {
   getMoviesAction,
   setFilter,
-  notWatchListAction
+  notWatchListAction,
 })(Explore);
