@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
+import axiosWithAuth from "../../utils/axiosWithAuth.js";
 import { connect } from "react-redux";
-import { ratingAction, addToWatchlistAction, notWatchListAction, serviceProviderAction } from "../../store/actions";
+import { ratingAction, addToWatchlistAction, notWatchListAction } from "../../store/actions";
 import Stars from "@material-ui/lab/Rating";
 import StarBorderIcon from "@material-ui/icons/StarBorder";
 //for grid
@@ -17,6 +18,12 @@ import {
 } from "@material-ui/core";
 import CloseIcon from "@material-ui/icons/Close";
 import { useOktaAuth } from "@okta/okta-react/dist/OktaContext";
+
+//menu expander
+import ExpansionPanel from '@material-ui/core/ExpansionPanel';
+import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
+import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 const styles = (theme) => ({
   closeBtn: {
@@ -231,19 +238,18 @@ function MovieCard({
   setDeleteMode,
   notWatchListAction,
   notwatchlist,
-  serviceProviderAction,
-  serviceProvider,
 }) {
   //OKTA AUTH
   const { authState, authService } = useOktaAuth();
   const { accessToken } = authState;
-// console.log('movie id', movie_id)
+  // console.log('movie id', movie_id)
 
-  useEffect(() => {
-    serviceProviderAction(userid, accessToken, movie_id)
-  }, [serviceProviderAction, userid, movie_id, accessToken])
-  // console.log('service provider', )
+  // useEffect(() => {
+  //   serviceProviderAction(userid, accessToken, movie_id)
+  // }, [serviceProviderAction, userid, movie_id, accessToken])
 
+  // console.log('service provider',serviceProvider )
+  const [serviceProvider, setServiceProvider] = useState([]);
   const [yourRating, setYourRating] = useState(false);
   /* Used for the star rating */
   const [rating, setRating] = useState(0);
@@ -300,7 +306,20 @@ function MovieCard({
     notWatchListAction(userid, movie, accessToken);
     setRemoved(true);
     handleClose();
+  };
+
+  const handleClickProviders = () => {
+    axiosWithAuth(accessToken)
+      .get(`${userid}/service-providers/${movie.movie_id}`)
+      .then(res => {
+        setServiceProvider(res.data)
+        console.log('data', res.data)
+      })
+      .catch(err => {
+        console.log(err)
+      })
   }
+
 
   const multiFunctions = () => {
     handleClose();
@@ -313,7 +332,7 @@ function MovieCard({
     console.log("number of ratings is " + numRatings.num);
     console.log("openalert");
   };
-
+  // console.log('sericelink', serviceLinks)
   return (
     <div className={classes.card}>
       <div className={classes.modalBtn} onClick={handleOpen}>
@@ -336,13 +355,7 @@ function MovieCard({
           timeout: 500,
         }}
       >
-        {serviceProvider
-        .map((serviceProviders, index)=> {
-<div>
-  pro
-</div>
 
-        })}
         <Fade in={open}>
           <div className={classes.paper}>
             <DialogTitle className={classes.title} onClose={handleClose}>
@@ -461,9 +474,29 @@ function MovieCard({
                     />
                   )}
 
-                <div >
-                  <p className={classes.serviceBtn}> these are the providers: </p>
-                  
+                <div className={classes.root}>
+                  <ExpansionPanel>
+                    <ExpansionPanelSummary
+                      expandIcon={<ExpandMoreIcon />}
+                      aria-controls="panel1a-content"
+                      id="panel1a-header"
+                      onClick={handleClickProviders}
+                    >
+                      <Typography className={classes.heading}>Expansion Panel 1</Typography>
+                    </ExpansionPanelSummary>
+                    <ExpansionPanelDetails>
+                      {serviceProvider
+                        .map((serviceProviders) => {
+                          return (
+                            <Typography>
+                              {serviceProviders.link}
+                            </Typography>
+                          )
+                        })}
+
+                    </ExpansionPanelDetails>
+                  </ExpansionPanel>
+
                 </div>
               </div>
 
@@ -501,9 +534,8 @@ const mapStateToProps = (state) => {
     watchlistError: state.watchlist.error,
     ratings: state.rating.movies,
     notwatchlist: state.notwatchlist.movies,
-    serviceProvider: state.serviceProvider.serviceProviders
   };
 };
-export default connect(mapStateToProps, { ratingAction, addToWatchlistAction, notWatchListAction, serviceProviderAction })(
+export default connect(mapStateToProps, { ratingAction, addToWatchlistAction, notWatchListAction })(
   MovieCard
 );

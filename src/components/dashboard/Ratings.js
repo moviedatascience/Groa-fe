@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 // tools
 import { connect } from "react-redux";
-import { getRatingAction, setFilter } from "../../store/actions/index.js";
+import { getRatingAction, setFilter, serviceProviderAction } from "../../store/actions/index.js";
 // Screen width util
 import widthFinder from "../../utils/widthFinder.js";
 // children components
@@ -33,6 +33,8 @@ function Ratings({
   ratings,
   searchTerm,
   setFilter,
+  serviceProviderAction,
+  serviceProvider
 }) {
   //OKTA AUTH
   const { authState, authService } = useOktaAuth();
@@ -44,7 +46,12 @@ function Ratings({
     setFilter("");
     // Returns the ratings
     getRatingAction(userid, accessToken);
+    
   }, [getRatingAction, userid, setFilter, accessToken]);
+
+  // const handleClickProvider = (user_id, access_Token, movie_id) => {
+  //   serviceProviderAction(user_id, access_Token, movie_id)
+  //   };
 
   if (isFetching) return <LoadingScreen />;
   else
@@ -72,7 +79,6 @@ function Ratings({
             let moviePoster = `https://image.tmdb.org/t/p/w500${posterURI}?api_key=${process.env.REACT_APP_TMDB_API_KEY}`;
             return (
               <div key={index} className={classes.movieCard}>
-                
                 <MovieCard
                   key={index}
                   name={movie.primary_title}
@@ -82,6 +88,8 @@ function Ratings({
                   description={movie.description}
                   trailer={movie.trailer_url}
                   genres={movie.genres}
+                  // onClick={handleClickProvider}
+                  // serviceLinks={serviceProvider.link}
                   image={
                     !posterURI ||
                     posterURI === "None" ||
@@ -106,8 +114,9 @@ const mapStateToProps = (state) => {
     ratings: state.rating.movies,
     ratingsError: state.rating.error,
     searchTerm: state.filter.searchTerm,
+    serviceProvider: state.serviceProvider.serviceProviders
   };
 };
-export default connect(mapStateToProps, { getRatingAction, setFilter })(
+export default connect(mapStateToProps, { getRatingAction, setFilter, serviceProviderAction })(
   Ratings
 );
