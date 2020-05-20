@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { ratingAction, addToWatchlistAction, notWatchListAction } from "../../store/actions";
 import Stars from "@material-ui/lab/Rating";
 import StarBorderIcon from "@material-ui/icons/StarBorder";
+import Link from '@material-ui/core/link'
 //for grid
 import { makeStyles, withStyles } from "@material-ui/core/styles";
 import {
@@ -303,7 +304,8 @@ function MovieCard({
   };
 
   const handleClickRemove = () => {
-    notWatchListAction(userid, movie, accessToken);
+    const notWatch = {movie_id: movie.movie_id, user_id: userid}
+    notWatchListAction(userid, notWatch, accessToken);
     setRemoved(true);
     handleClose();
   };
@@ -482,19 +484,22 @@ function MovieCard({
                       id="panel1a-header"
                       onClick={handleClickProviders}
                     >
-                      <Typography className={classes.heading}>Expansion Panel 1</Typography>
+                      <Typography className={classes.heading}>Service Providers</Typography>
                     </ExpansionPanelSummary>
-                    <ExpansionPanelDetails>
+                    <div>
                       {serviceProvider
                         .map((serviceProviders) => {
                           return (
                             <Typography>
-                              {serviceProviders.link}
+                              <Link href={serviceProviders.link} >
+                              
+                              <button>{serviceProviders.name}</button>
+                              </Link>
                             </Typography>
                           )
                         })}
 
-                    </ExpansionPanelDetails>
+                    </div>
                   </ExpansionPanel>
 
                 </div>
