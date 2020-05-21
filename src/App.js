@@ -16,6 +16,7 @@ import SearchBar from './components/auth/SearchBar';
 import OnboardingPlateform from './components/auth/OnboardingPlateform';
 import PostOnboarding from './components/auth/PostOnboarding';
 import PrivacyPolicy from "./components/layout/privacy-policy.js";
+import LandingPage from './components/LandingPage';
 
 // for testing
 import { ifDev } from "./utils/removeAttribute.js";
@@ -83,6 +84,7 @@ function App() {
             <div className="App" data-test={ifDev("App-component")}>
               {/* this is fine as a route because all of the routes that will have display their component will only be avalible on a private route */}
               <Route path="/implicit/callback" component={LoginCallback} />
+              <Route path="/landingpage" component={LandingPage} />
               <Route
                 exact
                 path={[

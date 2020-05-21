@@ -31,18 +31,6 @@ function Copyright() {
   );
 }
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    margin: theme.spacing(1),
-  },
-  textField: {
-    display: "flex",
-    justifyContent: "center",
-    marginBottom: "2%",
-    width: "100%",
-    padding: "0",
-  },
-}));
 
 const Register = (props) => {
   const history = useHistory();
