@@ -65,8 +65,7 @@ const Navigation = ({ searchAction, userid }) => {
 
   const handleSubmit = (e) => {
     if (e.keyCode === 13 && query.query !== "")
-      console.log("This is the query ", query);
-    searchAction(userid, query, accessToken);
+      searchAction(userid, query, accessToken);
   };
 
   return (
