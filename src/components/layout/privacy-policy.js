@@ -1,7 +1,10 @@
 import React from "react";
 
+import Typography from "@material-ui/core/Typography";
+
 function PrivacyPolicy() {
   return (
+    <Typography variant="body2" color="textSecondary" align="center">
     <div className="container privacy-policy">
       <h1>Groa Privacy Policy</h1>
 
@@ -174,6 +177,7 @@ function PrivacyPolicy() {
         privacy policy you may contact us at contact@groa.us.
       </p>
     </div>
+    </Typography>
   );
 }
 
