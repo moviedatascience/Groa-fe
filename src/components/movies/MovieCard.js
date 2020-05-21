@@ -62,8 +62,8 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: '#212120',
   },
   heading: {
-    fontSize: theme.typography.pxToRem(15),
-    fontWeight: theme.typography.fontWeightRegular,
+    // fontSize: theme.typography.pxToRem(15),
+    // fontWeight: theme.typography.fontWeightRegular,
   },
   nameModal: {
     fontSize: "25px",
