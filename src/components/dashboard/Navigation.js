@@ -28,13 +28,8 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import ClickAwayListener from "@material-ui/core/ClickAwayListener";
-
-//for user toggle menu
-import Button from "@material-ui/core/Button";
-import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 //icons
-import PersonRoundedIcon from "@material-ui/icons/PersonRounded";
 import PublishRoundedIcon from "@material-ui/icons/PublishRounded";
 import SearchRoundedIcon from "@material-ui/icons/SearchRounded";
 import ThumbUpRoundedIcon from "@material-ui/icons/ThumbUpRounded";
@@ -186,15 +181,6 @@ const Navigation = ({ userid, search }) => {
     setOpen(false);
   };
   //for user icon menu
-  const [anchorEl, setAnchorEl] = useState(null);
-
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
 
   const classes = useStyles();
 
