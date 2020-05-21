@@ -4,7 +4,7 @@ import Typography from "@material-ui/core/Typography";
 
 function PrivacyPolicy() {
   return (
-    <Typography variant="body2" color="textSecondary" align="center">
+    <Typography variant="body2" color="textSecondary" align="left">
     <div className="container privacy-policy">
       <h1>Groa Privacy Policy</h1>
 
