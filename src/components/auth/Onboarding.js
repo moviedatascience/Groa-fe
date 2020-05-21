@@ -120,6 +120,7 @@ function Onboarding({
                 return (
                   <div className={classes.movieCard} key={index}>
                     <MovieCard
+                      key={index}
                       name={movie.title}
                       page={"Onboarding"}
                       movie_id={movie.movie_id}
@@ -175,6 +176,7 @@ function Onboarding({
                 return (
                   <div className={classes.movieCard} key={index}>
                     <MovieCard
+                      key={index}
                       name={movie.title}
                       page={"Onboarding"}
                       movie_id={movie.movie_id}
