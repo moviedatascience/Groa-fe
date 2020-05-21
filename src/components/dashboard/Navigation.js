@@ -45,6 +45,9 @@ import { useOktaAuth } from "@okta/okta-react/dist/OktaContext";
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
+  logout: {
+    color: "white",
+  },
   userIcon: {
     color: "white",
   },
@@ -136,7 +139,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Navigation = (props) => {
+const Navigation = ({ userid, search }) => {
   //OKTA useOKTA AUTH
   const { authState, authService } = useOktaAuth();
 
@@ -145,6 +148,7 @@ const Navigation = (props) => {
   //for nav bar
   const theme = useTheme();
   const [open, setOpen] = useState(false);
+
   // for side bar menu
   const linkAttributes = [
     {
@@ -228,21 +232,21 @@ const Navigation = (props) => {
                 alt="Groa Logo"
               />
             </Typography>
-            <Button
+            {/* <Button
               aria-controls="simple-menu"
               aria-haspopup="true"
               onClick={handleClick}
             >
               <PersonRoundedIcon className={classes.userIcon} />
-            </Button>
-            <Menu
+            </Button> 
+             <Menu
               id="simple-menu"
               anchorEl={anchorEl}
               keepMounted
               open={Boolean(anchorEl)}
               onClose={handleClose}
-            >
-              <MenuItem
+            > 
+           <MenuItem
                 onClick={handleClose}
                 button
                 component="a"
@@ -257,13 +261,19 @@ const Navigation = (props) => {
                 href={`/${props.userid}/upload`}
               >
                 Upload
-              </MenuItem>
-              <MenuItem onClick={logout} button component="a">
-                Logout
-              </MenuItem>
-            </Menu>
+              </MenuItem>  */}
+            <MenuItem
+              onClick={logout}
+              button
+              component="a"
+              className={classes.logout}
+            >
+              Logout
+            </MenuItem>
+            {/* </Menu> */}
           </Toolbar>
-          <SearchBar />
+          {search ? <SearchBar /> : <></>}
+          {/* <SearchBar /> */}
         </AppBar>
         <ClickAwayListener
           mouseEvent="onMouseDown"
@@ -295,7 +305,8 @@ const Navigation = (props) => {
                   key={linkObject.id}
                   button
                   component="a"
-                  href={`/${props.userid}/${linkObject.name.toLowerCase()}`}
+                  onClick={linkObject.click}
+                  href={`/${userid}/${linkObject.name.toLowerCase()}`}
                 >
                   <ListItemIcon>{linkObject.icon}</ListItemIcon>
                   <ListItemText primary={linkObject.name} />
@@ -321,6 +332,7 @@ const mapStateToProps = (state) => {
   return {
     userid: state.login.userid,
     searchTerm: state.filter.searchTerm,
+    search: state.movie.search,
   };
 };
 export default connect(mapStateToProps, {
