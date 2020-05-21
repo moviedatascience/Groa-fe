@@ -56,6 +56,15 @@ const DialogTitle = withStyles(styles)((props) => {
 });
 
 const useStyles = makeStyles((theme) => ({
+  root: {
+    width: '80%',
+    margin: 'auto',
+    backgroundColor: '#212120',
+  },
+  heading: {
+    fontSize: theme.typography.pxToRem(15),
+    fontWeight: theme.typography.fontWeightRegular,
+  },
   nameModal: {
     fontSize: "25px",
     textAlign: 'center',
@@ -131,6 +140,7 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: "11px",
     margin: "auto",
     paddingBottom: "1%",
+    width: '50%',
   },
   watchList: {
     justifyContent: "center",
@@ -188,10 +198,40 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
     justifyContent: "space-evenly",
   },
+  trailerModal:{
+marginTop:'2%',
+  },
+  expansionPanal: {
+    // margin:'auto',
+    // width:'80%',
+    backgroundColor: '#212120',
+  },
+  expansionPanalSummary: {
+    // backgroundColor:'white',
+    // margin:'auto',
+    // width:'80%',
+    backgroundColor: '#212120',
+
+  },
+  serviceInfo: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+  },
+  Link: {
+    textDecoration: 'none',
+  },
   serviceBtn: {
-    color: 'red',
-    border: '2px solid green',
-    textAlign: 'center',
+    textDecoration: 'none',
+    margin:'1%',
+    width:'150px',
+   
+    // color: 'red',
+    // border: '2px solid green',
+    // textAlign: 'center',
+    // "&:hover": {
+    //   backgroundColor:'green'
+    // },
   },
   [theme.breakpoints.down("xs")]: {
     name: {
@@ -304,7 +344,7 @@ function MovieCard({
   };
 
   const handleClickRemove = () => {
-    const notWatch = {movie_id: movie.movie_id, user_id: userid}
+    const notWatch = { movie_id: movie.movie_id, user_id: userid }
     notWatchListAction(userid, notWatch, accessToken);
     setRemoved(true);
     handleClose();
@@ -477,25 +517,26 @@ function MovieCard({
                   )}
 
                 <div className={classes.root}>
-                  <ExpansionPanel>
+                  <ExpansionPanel className={classes.expansionPanal}>
                     <ExpansionPanelSummary
                       expandIcon={<ExpandMoreIcon />}
                       aria-controls="panel1a-content"
                       id="panel1a-header"
+                      className={classes.expansionPanalSummary}
                       onClick={handleClickProviders}
                     >
                       <Typography className={classes.heading}>Service Providers</Typography>
                     </ExpansionPanelSummary>
-                    <div>
+                    <div className={classes.serviceInfo}>
                       {serviceProvider
                         .map((serviceProviders) => {
                           return (
-                            <Typography>
-                              <Link href={serviceProviders.link} >
-                              
-                              <button>{serviceProviders.name}</button>
+                            <div >
+                              <Link href={serviceProviders.link} className={classes.Link}>
+
+                                <Button variant="outlined" className={classes.serviceBtn}>{serviceProviders.name}</Button>
                               </Link>
-                            </Typography>
+                            </div>
                           )
                         })}
 
