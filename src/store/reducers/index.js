@@ -23,7 +23,6 @@ export const reducer = combineReducers({
   search,
   notwatchlist,
   serviceProvider,
-  search
 });
 
 
