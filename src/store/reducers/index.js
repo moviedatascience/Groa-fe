@@ -9,6 +9,7 @@ import { watchlist } from './watchlistReducer';
 import { movie } from './movieReducer';
 import { notwatchlist } from './notWatchListReducer';
 import { serviceProvider } from './serviceProviderReducer';
+import { search } from "./searchReducer";
 
 export const reducer = combineReducers({
   login,
@@ -19,6 +20,10 @@ export const reducer = combineReducers({
   movie,
   filter,
   watchlist,
+  search,
   notwatchlist,
   serviceProvider,
+  search
 });
+
+
