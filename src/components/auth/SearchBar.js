@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
+import useStateWithCallback from "use-state-with-callback";
 import { connect } from "react-redux";
 import { loginAction, searchAction } from "../../store/actions";
 import { useOktaAuth } from "@okta/okta-react/dist/OktaContext";
@@ -55,17 +56,23 @@ const Navigation = ({ searchAction, userid }) => {
   const { authState } = useOktaAuth();
   const { accessToken } = authState;
   const classes = useStyles();
-  const [query, setQuery] = useState({
-    query: "",
-  });
+  const [query, setQuery] = useStateWithCallback(
+    {
+      query: "",
+    },
+    (query) => {
+      searchAction(userid, query, accessToken);
+    }
+  );
 
   const handleChange = (e) => {
     setQuery({ query: e.target.value });
   };
 
   const handleSubmit = (e) => {
-    if (e.keyCode === 13 && query.query !== "")
+    if (query.query === "") {
       searchAction(userid, query, accessToken);
+    }
   };
 
   return (
@@ -84,7 +91,7 @@ const Navigation = ({ searchAction, userid }) => {
             input: classes.inputInput,
           }}
           inputProps={{ "aria-label": "search" }}
-          onKeyDown={handleSubmit}
+          onSubmit={handleSubmit}
         />
       </div>
     </div>
