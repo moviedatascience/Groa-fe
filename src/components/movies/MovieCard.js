@@ -72,10 +72,10 @@ const DialogTitle = withStyles(styles)((props) => {
 });
 
 const useStyles = makeStyles((theme) => ({
- 
+
   // heading: {
-    // fontSize: theme.typography.pxToRem(15),
-    // fontWeight: theme.typography.fontWeightRegular,
+  // fontSize: theme.typography.pxToRem(15),
+  // fontWeight: theme.typography.fontWeightRegular,
   // },
   nameModal: {
     fontSize: "25px",
@@ -96,7 +96,7 @@ const useStyles = makeStyles((theme) => ({
     fontSize: "15px",
     textAlign: "center",
     paddingTop: "2%",
-    marginBottom:'2%',
+    marginBottom: '2%',
   },
   year: {
     fontSize: "18px",
@@ -215,23 +215,23 @@ const useStyles = makeStyles((theme) => ({
     marginTop: '2%',
   },
   // gridProvider: {
-    //   width: '80%',
-      // margin: 'auto',
-    //   backgroundColor: '#212120',
-    // },
-    btnsProviders:{
-      backgroundColor: '#212120',
-      color:'white',
-    },
+  //   width: '80%',
+  // margin: 'auto',
+  //   backgroundColor: '#212120',
+  // },
+  btnsProviders: {
+    backgroundColor: '#212120',
+    color: 'white',
+  },
   // expansionPanal: {
-    // margin:'auto',
-    // width:'80%',
-    // backgroundColor: '#212120',
+  // margin:'auto',
+  // width:'80%',
+  // backgroundColor: '#212120',
   // },
   // expansionPanalSummary: {
-    // backgroundColor:'white',
-    // margin:'auto',
-    // width:'80%',
+  // backgroundColor:'white',
+  // margin:'auto',
+  // width:'80%',
   //   backgroundColor: '#212120',
 
   // },
@@ -258,7 +258,7 @@ const useStyles = makeStyles((theme) => ({
   [theme.breakpoints.down("xs")]: {
     name: {
       padding: "0",
-      
+
     },
     movieImg: {
       height: "200px",
@@ -408,8 +408,8 @@ function MovieCard({
       .catch(err => {
         console.log(err)
       });
-      setOpen((prevOpen) => !prevOpen);
-      // console.info(`You clicked ${serviceProvider[selectedIndex]}`);
+    setOpen((prevOpen) => !prevOpen);
+    // console.info(`You clicked ${serviceProvider[selectedIndex]}`);
   }
 
 
@@ -482,13 +482,13 @@ function MovieCard({
                         {inRatings || yourRating
                           ? "Your rating:"
                           : !added && !inWatchlist
-                          ? "Add to watchlist"
-                          : "In your watchlist"}
+                            ? "Add to watchlist"
+                            : "In your watchlist"}
                       </Button>
                     </CardActions>
                   ) : (
-                    ""
-                  )}
+                      ""
+                    )}
 
                   {page === "Recommendations" ? (
                     <CardActions className={classes.cardActionsModal}>
@@ -505,8 +505,8 @@ function MovieCard({
                       </Button>
                     </CardActions>
                   ) : (
-                    ""
-                  )}
+                      ""
+                    )}
                 </div>
                 {page === "watchlist" ? (
                   // <div key={movie_id} onClick={() => setDeleteMode(!deleteMode)}>
@@ -591,58 +591,58 @@ function MovieCard({
                 ) : (
                     ""
                   )} */}
-                   {page !== 'watchlist' && page !== 'Onboarding' ? ( 
-                <Grid container direction="column" alignItems="center">
-                  <Grid item xs={12}>
-                    <ButtonGroup variant="contained" color="primary" ref={anchorRef} aria-label="split button">
-                      <Button className={classes.btnsProviders} onClick={handleClickProviders}>Service Providers</Button>
-                      <Button
-                      className={classes.btnsProviders}
-                        color="primary"
-                        size="small"
-                        aria-controls={open ? 'split-button-menu' : undefined}
-                        aria-expanded={open ? 'true' : undefined}
-                        aria-label="select merge strategy"
-                        aria-haspopup="menu"
-                        onClick={handleClickProviders}
-                      >
-                        <ArrowDropDownIcon />
-                      </Button>
-                    </ButtonGroup>
-                    <Popper open={open} anchorEl={anchorRef.current} role={undefined} transition disablePortal>
-                      {({ TransitionProps, placement }) => (
-                        <Grow
-                          {...TransitionProps}
-                          style={{
-                            transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom',
-                          }}
+                {page !== 'watchlist' && page !== 'Onboarding' ? (
+                  <Grid container direction="column" alignItems="center">
+                    <Grid item xs={12}>
+                      <ButtonGroup variant="contained" color="primary" ref={anchorRef} aria-label="split button">
+                        <Button className={classes.btnsProviders} onClick={handleClickProviders}>Service Providers</Button>
+                        <Button
+                          className={classes.btnsProviders}
+                          color="primary"
+                          size="small"
+                          aria-controls={open ? 'split-button-menu' : undefined}
+                          aria-expanded={open ? 'true' : undefined}
+                          aria-label="select merge strategy"
+                          aria-haspopup="menu"
+                          onClick={handleClickProviders}
                         >
-                          <Paper>
-                            <ClickAwayListener onClickAway={handleCloseServiceProvider}>
-                              <MenuList id="split-button-menu">
-                                {serviceProvider
-                                  .map((serviceProviders, index) => {
-                                    return (
-                                      <MenuItem
-                                        key={serviceProvider}
-                                        disabled={index === 2}
-                                        selected={index === selectedIndex}
-                                        onClick={(event) => handleMenuItemClick(event, index)}
-                                      >
-                                        <Link href={serviceProviders.link} className={classes.Link}>
-                                          <Button variant="outlined" className={classes.serviceBtn}>{serviceProviders.name}</Button>
-                                        </Link>
-                                      </MenuItem>
-                                    )
-                                  })}
-                              </MenuList>
-                            </ClickAwayListener>
-                          </Paper>
-                        </Grow>
-                      )}
-                    </Popper>
+                          <ArrowDropDownIcon />
+                        </Button>
+                      </ButtonGroup>
+                      <Popper open={open} anchorEl={anchorRef.current} role={undefined} transition disablePortal>
+                        {({ TransitionProps, placement }) => (
+                          <Grow
+                            {...TransitionProps}
+                            style={{
+                              transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom',
+                            }}
+                          >
+                            <Paper>
+                              <ClickAwayListener onClickAway={handleCloseServiceProvider}>
+                                <MenuList id="split-button-menu">
+                                  {serviceProvider
+                                    .map((serviceProviders, index) => {
+                                      return (
+                                        <MenuItem
+                                          key={serviceProvider}
+                                          disabled={index === 2}
+                                          selected={index === selectedIndex}
+                                          onClick={(event) => handleMenuItemClick(event, index)}
+                                        >
+                                          <Link href={serviceProviders.link} className={classes.Link}>
+                                            <Button variant="outlined" className={classes.serviceBtn}>{serviceProviders.name}</Button>
+                                          </Link>
+                                        </MenuItem>
+                                      )
+                                    })}
+                                </MenuList>
+                              </ClickAwayListener>
+                            </Paper>
+                          </Grow>
+                        )}
+                      </Popper>
+                    </Grid>
                   </Grid>
-                </Grid>
                 ) : (
                     ""
                   )}
