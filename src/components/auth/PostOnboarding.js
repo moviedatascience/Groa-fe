@@ -98,8 +98,7 @@ function PostOnboarding({
     recommendationAction,
     accessToken,
   ]);
-  // How many movies render
-  const cardAmount = 25;
+
   return (
     <div className={classes.root}>
       <img
