@@ -2,6 +2,7 @@ import {
   START_SEARCH_START,
   START_SEARCH_SUCCESS,
   START_SEARCH_FAIL,
+  EMPTY_SEARCH,
 } from "../actions/searchAction.js";
 
 const initialState = {
@@ -12,6 +13,11 @@ const initialState = {
 
 export const search = (state = initialState, action) => {
   switch (action.type) {
+    case EMPTY_SEARCH:
+      return {
+        ...state,
+        isSearching: false,
+      };
     case START_SEARCH_START:
       return {
         ...state,
@@ -20,7 +26,7 @@ export const search = (state = initialState, action) => {
     case START_SEARCH_SUCCESS:
       return {
         ...state,
-        isSearching: false,
+        isSearching: true,
         queries: action.payload,
       };
     case START_SEARCH_FAIL:
