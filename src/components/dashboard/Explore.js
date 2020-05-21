@@ -81,7 +81,10 @@ function Explore({
             // console.log('this is the movies', movie)
             /* Checks if the film is in ratings */
             const isRated = (film) => {
-              return film.title === movie.title && film.year === movie.year;
+              return (
+                film.title === movie.title && 
+              film.year === movie.year
+              );
             };
             /* Returns the movie object if in ratings */
                         // console.log('inratings',movie.movie_id)
