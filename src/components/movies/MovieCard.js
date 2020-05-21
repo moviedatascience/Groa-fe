@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import { ratingAction, addToWatchlistAction, notWatchListAction } from "../../store/actions";
+import {
+  ratingAction,
+  addToWatchlistAction,
+  notWatchListAction,
+} from "../../store/actions";
 import Stars from "@material-ui/lab/Rating";
 import StarBorderIcon from "@material-ui/icons/StarBorder";
 //for grid
@@ -150,15 +154,15 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
   },
   movieContentDiv: {
-    margin: 'auto',
+    margin: "auto",
   },
   genresModal: {
     fontStyle: "italic",
     paddingTop: "3%",
   },
   actionButtons: {
-    display: 'flex',
-    justifyContent:'center',
+    display: "flex",
+    justifyContent: "center",
   },
   watchStarsModal: {
     display: "flex",
@@ -235,7 +239,7 @@ function MovieCard({
   /* Used for dynamically rendering the "Add to watchlist" button and if it's disabled */
   const [added, setAdded] = useState(false);
   //to remove movie user not interested in
-  const [ removed, setRemoved] = useState(false);
+  const [removed, setRemoved] = useState(false);
   /* This checks if the movie is in the watchlist */
   const inWatchlist = watchlist.some(
     (movie) => movie.name === name && movie.year === year
@@ -285,7 +289,7 @@ function MovieCard({
     notWatchListAction(userid, movie, accessToken);
     setRemoved(true);
     handleClose();
-  }
+  };
 
   const multiFunctions = () => {
     handleClose();
@@ -327,14 +331,13 @@ function MovieCard({
               <></>
             </DialogTitle>
             <div className={classes.movieInfoModal}>
-
               <img
                 className={classes.movieImgModal}
                 src={image}
                 alt="Random Movie poster as a placeholder."
               />
 
-              <div className={classes.movieContentDiv} >
+              <div className={classes.movieContentDiv}>
                 <CardContent className={classes.cardContentModal}>
                   <h1 className={classes.nameModal}> {name} </h1>
                   <p className={classes.year}>{year}</p>
@@ -356,33 +359,31 @@ function MovieCard({
                         {inRatings || yourRating
                           ? "Your rating:"
                           : !added && !inWatchlist
-                            ? "Add to watchlist"
-                            : "In your watchlist"}
+                          ? "Add to watchlist"
+                          : "In your watchlist"}
                       </Button>
                     </CardActions>
                   ) : (
-                      ""
-                    )}
+                    ""
+                  )}
 
                   {page === "Recommendations" ? (
                     <CardActions className={classes.cardActionsModal}>
                       <Button
                         onClick={handleClickRemove}
                         className={classes.watchList}
-                        disabled={
-                          removed || notInWatchlist ? true : false
-                        }
+                        disabled={removed || notInWatchlist ? true : false}
                         size="small"
                         color="primary"
                       >
                         {!removed && !notInWatchlist
-                            ? "Not Interested"
-                            : "Removed from Results"}
+                          ? "Not Interested"
+                          : "Removed from Results"}
                       </Button>
                     </CardActions>
                   ) : (
-                      ""
-                    )}
+                    ""
+                  )}
                 </div>
                 {page === "watchlist" ? (
                   // <div key={movie_id} onClick={() => setDeleteMode(!deleteMode)}>
@@ -472,9 +473,11 @@ const mapStateToProps = (state) => {
     watchlist: state.watchlist.movies,
     watchlistError: state.watchlist.error,
     ratings: state.rating.movies,
-    notwatchlist: state.notwatchlist.movies
+    notwatchlist: state.notwatchlist.movies,
   };
 };
-export default connect(mapStateToProps, { ratingAction, addToWatchlistAction, notWatchListAction })(
-  MovieCard
-);
+export default connect(mapStateToProps, {
+  ratingAction,
+  addToWatchlistAction,
+  notWatchListAction,
+})(MovieCard);

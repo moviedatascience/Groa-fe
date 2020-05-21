@@ -6,12 +6,12 @@ import { uploadAction, toggleIsUploaded } from "./uploadAction.js";
 import {
   addToWatchlistAction,
   removeFromWatchlistAction,
-  getWatchlistAction
+  getWatchlistAction,
 } from "./watchlistActions.js";
-import { getMoviesAction } from "./movieAction"
-import { setFilter } from "./filterActions.js"; 
-import {notWatchListAction} from './notWatchListAction.js';
-
+import { getMoviesAction } from "./movieAction";
+import { setFilter } from "./filterActions.js";
+import { searchAction } from "./searchAction.js";
+import { notWatchListAction } from "./notWatchListAction.js";
 
 export {
   loginAction,
@@ -26,5 +26,6 @@ export {
   getWatchlistAction,
   getMoviesAction,
   setFilter,
-  notWatchListAction
+  searchAction,
+  notWatchListAction,
 };

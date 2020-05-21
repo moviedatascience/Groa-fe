@@ -1,20 +1,18 @@
-import React, { useState } from "react";
+import React from "react";
+import useStateWithCallback from "use-state-with-callback";
 import { connect } from "react-redux";
-import {
-  loginAction,
-  setFilter,
-  recommendationAction
-} from "../../store/actions";
-//for search bar 
+import { loginAction, searchAction } from "../../store/actions";
+import { useOktaAuth } from "@okta/okta-react/dist/OktaContext";
+//for search bar
 import { makeStyles } from "@material-ui/core/styles";
 import SearchIcon from "@material-ui/icons/Search";
 import InputBase from "@material-ui/core/InputBase";
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   searchContainer: {
     width: "40%",
-    margin: 'auto',
-    paddingTop: '4%',
+    margin: "auto",
+    paddingTop: "4%",
   },
   [theme.breakpoints.down("xs")]: {
     searchContainer: {
@@ -24,11 +22,11 @@ const useStyles = makeStyles(theme => ({
   search: {
     position: "relative",
     borderRadius: theme.shape.borderRadius,
-    backgroundColor: 'white',
+    backgroundColor: "white",
     width: "100%",
     [theme.breakpoints.down("sm")]: {
-      width: "auto"
-    }
+      width: "auto",
+    },
   },
   searchIcon: {
     width: theme.spacing(7),
@@ -38,37 +36,43 @@ const useStyles = makeStyles(theme => ({
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    color: '#212120',
+    color: "#212120",
   },
   inputRoot: {
-    color: '#212120',
-    width: '100%',
+    color: "#212120",
+    width: "100%",
   },
   inputInput: {
     padding: theme.spacing(1, 1, 1, 7),
     transition: theme.transitions.create("width"),
     width: "100%",
+    [theme.breakpoints.up("md")]: {
+      width: 200,
+    },
   },
 }));
 
-const Navigation = props => {
-
+const Navigation = ({ searchAction, userid }) => {
+  const { authState } = useOktaAuth();
+  const { accessToken } = authState;
   const classes = useStyles();
-  const [query, setQuery] = useState({
-    query: ""
-  });
+  const [query, setQuery] = useStateWithCallback(
+    {
+      query: "",
+    },
+    (query) => {
+      searchAction(userid, query, accessToken);
+    }
+  );
 
-  const handleChange = e => {
+  const handleChange = (e) => {
     setQuery({ query: e.target.value });
-    sendChange(e.target.value.trim());
   };
 
-  const sendChange = query => {
-    props.setFilter(query);
-  };
-
-  const handleSubmit = e => {
-    if (e.keyCode === 13 && query.query !== "") props.setFilter(e.target.value);
+  const handleSubmit = (e) => {
+    if (query.query === "") {
+      searchAction(userid, query, accessToken);
+    }
   };
 
   return (
@@ -79,29 +83,28 @@ const Navigation = props => {
         </div>
         <InputBase
           placeholder="Search…"
-          type='text'
+          type="text"
           onChange={handleChange}
           value={query.query}
           classes={{
             root: classes.inputRoot,
-            input: classes.inputInput
+            input: classes.inputInput,
           }}
           inputProps={{ "aria-label": "search" }}
-          onKeyDown={handleSubmit}
+          onSubmit={handleSubmit}
         />
       </div>
     </div>
   );
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     userid: state.login.userid,
-    searchTerm: state.filter.searchTerm
+    searchTerm: state.filter.searchTerm,
   };
 };
 export default connect(mapStateToProps, {
   loginAction,
-  recommendationAction,
-  setFilter
+  searchAction,
 })(Navigation);

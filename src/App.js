@@ -11,10 +11,10 @@ import DataUpload from "./components/auth/DataUpload";
 import Watchlist from "./components/dashboard/Watchlist.js";
 import Ratings from "./components/dashboard/Ratings";
 import Explore from "./components/dashboard/Explore.js";
-import Onboarding from './components/auth/Onboarding';
-import SearchBar from './components/auth/SearchBar';
-import OnboardingPlateform from './components/auth/OnboardingPlateform';
-import PostOnboarding from './components/auth/PostOnboarding';
+import Onboarding from "./components/auth/Onboarding";
+import SearchBar from "./components/auth/SearchBar";
+import OnboardingPlatform from "./components/auth/OnboardingPlatform";
+import PostOnboarding from "./components/auth/PostOnboarding";
 import PrivacyPolicy from "./components/layout/privacy-policy.js";
 
 // for testing
@@ -90,7 +90,7 @@ function App() {
                   "/:user_id/watchlist",
                   "/:user_id/explore",
                   "/:user_id/upload",
-                  "/:user_id/ratings"
+                  "/:user_id/ratings",
                 ]}
                 component={Navigation}
               />
@@ -107,19 +107,14 @@ function App() {
               />
               <Route
                 exact
-                path={[
-                  '/:user_id/onboarding',
-                ]}
+                path={["/:user_id/onboarding"]}
                 component={SearchBar}
               />
               <SecureRoute
-                path='/:user_id/onboardingplateform'
-                component={OnboardingPlateform}
+                path="/:user_id/onboardingplatform"
+                component={OnboardingPlatform}
               />
-              <SecureRoute
-                path='/:user_id/onboarding'
-                component={Onboarding}
-              />
+              <SecureRoute path="/:user_id/onboarding" component={Onboarding} />
               <SecureRoute
                 path="/:user_id/postonboarding"
                 component={PostOnboarding}

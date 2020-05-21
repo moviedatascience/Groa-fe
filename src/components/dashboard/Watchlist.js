@@ -27,8 +27,8 @@ const useStyles = makeStyles((theme) => ({
   },
   movieCard: {
     "&:hover": {
-    boxShadow: '0px 0px 1px 1px black',
-    backgroundColor:'black',
+      boxShadow: "0px 0px 1px 1px black",
+      backgroundColor: "black",
     },
   },
 }));
@@ -43,7 +43,6 @@ function Watchlist({
   setFilter,
   movies,
 }) {
-  // console.log('movies', movies)
   //OKTA AUTH
   const { authState } = useOktaAuth();
   const { accessToken } = authState;
@@ -58,7 +57,7 @@ function Watchlist({
     setFilter("");
     // Returns the users watchlist from the database
     getWatchlistAction(userid, accessToken);
-  }, [getWatchlistAction, userid, isDeleting, setFilter]);
+  }, [getWatchlistAction, userid, isDeleting, setFilter, accessToken]);
 
   function handleClick(id) {
     removeFromWatchlistAction(userid, id, accessToken);
@@ -78,9 +77,9 @@ function Watchlist({
           .filter((movie) =>
             searchTerm !== ""
               ? movie.primary_title
-                .toString()
-                .toLowerCase()
-                .includes(searchTerm.toLowerCase())
+                  .toString()
+                  .toLowerCase()
+                  .includes(searchTerm.toLowerCase())
               : true
           )
           .map((movie, index) => {
@@ -100,10 +99,10 @@ function Watchlist({
                   page="watchlist"
                   image={
                     !posterURI ||
-                      posterURI === "None" ||
-                      posterURI === "No poster" ||
-                      posterURI === "No Poster" ||
-                      posterURI === "Not in table"
+                    posterURI === "None" ||
+                    posterURI === "No poster" ||
+                    posterURI === "No Poster" ||
+                    posterURI === "Not in table"
                       ? unsplashUrl
                       : moviePoster
                   }
