@@ -75,6 +75,7 @@ function Ratings({
               <div key={index} className={classes.movieCard}>
                 <MovieCard
                   key={index}
+                  page={"Ratings"}
                   name={movie.primary_title}
                   movie_id={movie.movie_id}
                   year={movie.start_year}

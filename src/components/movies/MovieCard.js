@@ -515,33 +515,38 @@ function MovieCard({
                       onClick={handleClose}
                     />
                   )}
-                <div className={classes.root}>
-                  <ExpansionPanel className={classes.expansionPanal}>
-                    <ExpansionPanelSummary
-                      expandIcon={<ExpandMoreIcon />}
-                      aria-controls="panel1a-content"
-                      id="panel1a-header"
-                      className={classes.expansionPanalSummary}
-                      onClick={handleClickProviders}
-                    >
-                      <Typography className={classes.heading}>Service Providers</Typography>
-                    </ExpansionPanelSummary>
-                    <div className={classes.serviceInfo}>
-                      {serviceProvider
-                        .map((serviceProviders) => {
-                          return (
-                            <div >
-                              <Link href={serviceProviders.link} className={classes.Link}>
-                                <Button variant="outlined" className={classes.serviceBtn}>{serviceProviders.name}</Button>
-                              </Link>
-                            </div>
-                          )
-                        })}
-                    </div>
-                  </ExpansionPanel>
-                </div>
+                {page !== 'watchlist' && page !== 'Onboarding' ? (
+                  <div className={classes.root}>
+                    <ExpansionPanel className={classes.expansionPanal}>
+                      <ExpansionPanelSummary
+                        expandIcon={<ExpandMoreIcon />}
+                        aria-controls="panel1a-content"
+                        id="panel1a-header"
+                        className={classes.expansionPanalSummary}
+                        onClick={handleClickProviders}
+                      >
+                        <Typography className={classes.heading}>Service Providers</Typography>
+                      </ExpansionPanelSummary>
+                      <div className={classes.serviceInfo}>
+                        {serviceProvider
+                          .map((serviceProviders) => {
+                            return (
+                              <div >
+                                <Link href={serviceProviders.link} className={classes.Link}>
+                                  <Button variant="outlined" className={classes.serviceBtn}>{serviceProviders.name}</Button>
+                                </Link>
+                              </div>
+                            )
+                          })}
+                      </div>
+                    </ExpansionPanel>
+                  </div>
+                  ) : (
+                     ""
+                 )} 
               </div>
             </div>
+
             {page !== "Onboarding" ? (
               <iframe
                 className={classes.trailerModal}

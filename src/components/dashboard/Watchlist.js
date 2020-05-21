@@ -83,6 +83,7 @@ function Watchlist({
               : true
           )
           .map((movie, index) => {
+            // console.log('in watchlist',movie.movie_id)
 
             let posterURI = movie.poster_url;
             let unsplashUrl =
