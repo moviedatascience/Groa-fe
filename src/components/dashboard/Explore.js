@@ -1,7 +1,11 @@
 import React, { useEffect } from "react";
 // tools
 import { connect } from "react-redux";
-import { getMoviesAction, setFilter, notWatchListAction } from "../../store/actions/index.js";
+import {
+  getMoviesAction,
+  setFilter,
+  notWatchListAction,
+} from "../../store/actions/index.js";
 // Screen width util
 import widthFinder from "../../utils/widthFinder.js";
 
@@ -35,7 +39,9 @@ function Explore({
   searchTerm,
   setFilter,
   ratings,
-  notWatchListAction
+  queries,
+  isSearching,
+  notWatchListAction,
 }) {
   const classes = useStyles();
   const screenWidth = widthFinder(window.innerWidth);
@@ -48,8 +54,14 @@ function Explore({
     // Returns the movies
     getMoviesAction(userid, accessToken);
     notWatchListAction(userid, accessToken);
-    
-  }, [getMoviesAction,notWatchListAction, userid, ratings, setFilter, accessToken]);
+  }, [
+    getMoviesAction,
+    notWatchListAction,
+    userid,
+    ratings,
+    setFilter,
+    accessToken,
+  ]);
 
   // How many movies render
   const cardAmount = 40;
@@ -57,59 +69,121 @@ function Explore({
   if (isFetching) return <LoadingScreen />;
   else
     return (
-      <GridList
-        className={classes.cardGrid}
-        cols={screenWidth ? 2 : 5}
-        cellHeight="auto"
-      >
-        {movies
-          .filter((movie) =>
-            !ratings.includes(
-              (film) => film.title === movie.title && film.year === movie.year
-            ).length && searchTerm !== ""
-              ? movie.primary_title
-                  .toString()
-                  .toLowerCase()
-                  .includes(searchTerm.toLowerCase())
-              : true
-          )
-          .slice(0, cardAmount)
-          .map((movie, index) => {
-            /* Checks if the film is in ratings */
-            const isRated = (film) => {
-              return film.title === movie.title && film.year === movie.year;
-            };
-            /* Returns the movie object if in ratings */
-            let rated = ratings.find(isRated);
-            let posterURI = movie.poster_url;
-            let unsplashUrl =
-              "https://source.unsplash.com/collection/1736993/500x650";
-            let moviePoster = `https://image.tmdb.org/t/p/w500${posterURI}?api_key=${process.env.REACT_APP_TMDB_API_KEY}`;
-            return (
-              <div className={classes.movieCard} key={index}>
-                <MovieCard
-                  key={index}
-                  page={"Explore"}
-                  name={movie.title}
-                  year={movie.year}
-                  movie_id={movie.movie_id}
-                  description={movie.description}
-                  trailer={movie.trailer_url}
-                  rated={rated ? rated.rating : null}
-                  image={
-                    !posterURI ||
-                    posterURI === "None" ||
-                    posterURI === "No poster" ||
-                    posterURI === "No Poster" ||
-                    posterURI === "Not in table"
-                      ? unsplashUrl
-                      : moviePoster
-                  }
-                />
-              </div>
-            );
-          })}
-      </GridList>
+      <>
+        {isSearching ? (
+          <GridList
+            className={classes.cardGrid}
+            cols={screenWidth ? 2 : 5}
+            cellHeight="auto"
+          >
+            {" "}
+            {queries
+              .filter((movie) =>
+                !ratings.includes(
+                  (film) =>
+                    film.title === movie.title && film.year === movie.year
+                ).length && searchTerm !== ""
+                  ? movie.primary_title
+                      .toString()
+                      .toLowerCase()
+                      .includes(searchTerm.toLowerCase())
+                  : true
+              )
+              .slice(0, cardAmount)
+              .map((movie, index) => {
+                /* Checks if the film is in ratings */
+                const isRated = (film) => {
+                  return film.title === movie.title && film.year === movie.year;
+                };
+                /* Returns the movie object if in ratings */
+                let rated = ratings.find(isRated);
+                let posterURI = movie.poster_url;
+                let unsplashUrl =
+                  "https://source.unsplash.com/collection/1736993/500x650";
+                let moviePoster = `https://image.tmdb.org/t/p/w500${posterURI}?api_key=${process.env.REACT_APP_TMDB_API_KEY}`;
+                return (
+                  <div className={classes.movieCard} key={index}>
+                    <MovieCard
+                      key={index}
+                      page={"Explore"}
+                      name={movie.title}
+                      year={movie.year}
+                      movie_id={movie.movie_id}
+                      description={movie.description}
+                      trailer={movie.trailer_url}
+                      rated={rated ? rated.rating : null}
+                      image={
+                        !posterURI ||
+                        posterURI === "None" ||
+                        posterURI === "No poster" ||
+                        posterURI === "No Poster" ||
+                        posterURI === "Not in table"
+                          ? unsplashUrl
+                          : moviePoster
+                      }
+                    />
+                  </div>
+                );
+              })}
+          </GridList>
+        ) : (
+          <GridList
+            className={classes.cardGrid}
+            cols={screenWidth ? 2 : 5}
+            cellHeight="auto"
+          >
+            {" "}
+            {movies
+              .filter((movie) =>
+                !ratings.includes(
+                  (film) =>
+                    film.title === movie.title && film.year === movie.year
+                ).length && searchTerm !== ""
+                  ? movie.primary_title
+                      .toString()
+                      .toLowerCase()
+                      .includes(searchTerm.toLowerCase())
+                  : true
+              )
+              .slice(0, cardAmount)
+              .map((movie, index) => {
+                /* Checks if the film is in ratings */
+                const isRated = (film) => {
+                  return film.title === movie.title && film.year === movie.year;
+                };
+                /* Returns the movie object if in ratings */
+                let rated = ratings.find(isRated);
+                let posterURI = movie.poster_url;
+                let unsplashUrl =
+                  "https://source.unsplash.com/collection/1736993/500x650";
+                let moviePoster = `https://image.tmdb.org/t/p/w500${posterURI}?api_key=${process.env.REACT_APP_TMDB_API_KEY}`;
+                return (
+                  <div className={classes.movieCard} key={index}>
+                    <MovieCard
+                      key={index}
+                      page={"Explore"}
+                      name={movie.title}
+                      year={movie.year}
+                      movie_id={movie.movie_id}
+                      description={movie.description}
+                      trailer={movie.trailer_url}
+                      rated={rated ? rated.rating : null}
+                      image={
+                        !posterURI ||
+                        posterURI === "None" ||
+                        posterURI === "No poster" ||
+                        posterURI === "No Poster" ||
+                        posterURI === "Not in table"
+                          ? unsplashUrl
+                          : moviePoster
+                      }
+                    />
+                  </div>
+                );
+              })}
+          </GridList>
+        )}
+      </>
     );
 }
 
@@ -122,10 +196,12 @@ const mapStateToProps = (state) => {
     searchTerm: state.filter.searchTerm,
     watchlist: state.watchlist.movies,
     ratings: state.rating.movies,
+    queries: state.search.queries,
+    isSearching: state.search.isSearching,
   };
 };
 export default connect(mapStateToProps, {
   getMoviesAction,
   setFilter,
-  notWatchListAction
+  notWatchListAction,
 })(Explore);
