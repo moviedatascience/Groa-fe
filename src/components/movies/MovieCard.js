@@ -25,6 +25,18 @@ import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+//import for button group
+import Grid from '@material-ui/core/Grid';
+import ButtonGroup from '@material-ui/core/ButtonGroup';
+import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
+import ClickAwayListener from '@material-ui/core/ClickAwayListener';
+import Grow from '@material-ui/core/Grow';
+import Paper from '@material-ui/core/Paper';
+import Popper from '@material-ui/core/Popper';
+import MenuItem from '@material-ui/core/MenuItem';
+import MenuList from '@material-ui/core/MenuList';
+
+// const options = ['Create a merge commit', 'Squash and merge', 'Rebase and merge'];
 
 const styles = (theme) => ({
   closeBtn: {
@@ -56,15 +68,11 @@ const DialogTitle = withStyles(styles)((props) => {
 });
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    width: '80%',
-    margin: 'auto',
-    backgroundColor: '#212120',
-  },
-  heading: {
+ 
+  // heading: {
     // fontSize: theme.typography.pxToRem(15),
     // fontWeight: theme.typography.fontWeightRegular,
-  },
+  // },
   nameModal: {
     fontSize: "25px",
     textAlign: 'center',
@@ -84,6 +92,7 @@ const useStyles = makeStyles((theme) => ({
     fontSize: "15px",
     textAlign: "center",
     paddingTop: "2%",
+    marginBottom:'2%',
   },
   year: {
     fontSize: "18px",
@@ -201,18 +210,27 @@ const useStyles = makeStyles((theme) => ({
   trailerModal: {
     marginTop: '2%',
   },
-  expansionPanal: {
+  // gridProvider: {
+    //   width: '80%',
+      // margin: 'auto',
+    //   backgroundColor: '#212120',
+    // },
+    btnsProviders:{
+      backgroundColor: '#212120',
+      color:'white',
+    },
+  // expansionPanal: {
     // margin:'auto',
     // width:'80%',
-    backgroundColor: '#212120',
-  },
-  expansionPanalSummary: {
+    // backgroundColor: '#212120',
+  // },
+  // expansionPanalSummary: {
     // backgroundColor:'white',
     // margin:'auto',
     // width:'80%',
-    backgroundColor: '#212120',
+  //   backgroundColor: '#212120',
 
-  },
+  // },
   serviceInfo: {
     display: 'flex',
     flexWrap: 'wrap',
@@ -224,7 +242,7 @@ const useStyles = makeStyles((theme) => ({
   serviceBtn: {
     textDecoration: 'none',
     margin: '1%',
-    width: '150px',
+    // width: '150px',
 
     // color: 'red',
     // border: '2px solid green',
@@ -236,6 +254,7 @@ const useStyles = makeStyles((theme) => ({
   [theme.breakpoints.down("xs")]: {
     name: {
       padding: "0",
+      
     },
     movieImg: {
       height: "200px",
@@ -310,14 +329,39 @@ function MovieCard({
   );
   //material-ui
   const classes = useStyles();
+  const [openModal, setOpenModal] = React.useState(false);
+  //for button group
   const [open, setOpen] = React.useState(false);
+  const anchorRef = React.useRef(null);
+  const [selectedIndex, setSelectedIndex] = React.useState(1);
+
+  const handleClickServiceProvider = () => {
+    console.info(`You clicked ${serviceProvider[selectedIndex]}`);
+  };
+
+  const handleMenuItemClick = (event, index) => {
+    setSelectedIndex(index);
+    setOpen(false);
+  };
+
+  const handleToggle = () => {
+    setOpen((prevOpen) => !prevOpen);
+  };
+
+  const handleCloseServiceProvider = (event) => {
+    if (anchorRef.current && anchorRef.current.contains(event.target)) {
+      return;
+    }
+
+    setOpen(false);
+  };
 
   const handleOpen = () => {
-    setOpen(true);
+    setOpenModal(true);
   };
 
   const handleClose = () => {
-    setOpen(false);
+    setOpenModal(false);
   };
   /* Used to format the movie object for action calls */
   let movie = {
@@ -359,7 +403,9 @@ function MovieCard({
       })
       .catch(err => {
         console.log(err)
-      })
+      });
+      setOpen((prevOpen) => !prevOpen);
+      // console.info(`You clicked ${serviceProvider[selectedIndex]}`);
   }
 
 
@@ -389,7 +435,7 @@ function MovieCard({
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
         className={classes.modal}
-        open={open}
+        open={openModal}
         onClose={handleClose}
         closeAfterTransition
         BackdropComponent={Backdrop}
@@ -398,7 +444,7 @@ function MovieCard({
         }}
       >
 
-        <Fade in={open}>
+        <Fade in={openModal}>
           <div className={classes.paper}>
             <DialogTitle className={classes.title} onClose={handleClose}>
               <></>
@@ -515,7 +561,7 @@ function MovieCard({
                       onClick={handleClose}
                     />
                   )}
-                {page !== 'watchlist' && page !== 'Onboarding' ? (
+                {/* {page !== 'watchlist' && page !== 'Onboarding' ? (
                   <div className={classes.root}>
                     <ExpansionPanel className={classes.expansionPanal}>
                       <ExpansionPanelSummary
@@ -543,7 +589,58 @@ function MovieCard({
                   </div>
                 ) : (
                     ""
-                  )}
+                  )} */}
+                <Grid container direction="column" alignItems="center">
+                  <Grid item xs={12}>
+                    <ButtonGroup variant="contained" color="primary" ref={anchorRef} aria-label="split button">
+                      <Button className={classes.btnsProviders} onClick={handleClickProviders}>Service Providers</Button>
+                      <Button
+                      className={classes.btnsProviders}
+                        color="primary"
+                        size="small"
+                        aria-controls={open ? 'split-button-menu' : undefined}
+                        aria-expanded={open ? 'true' : undefined}
+                        aria-label="select merge strategy"
+                        aria-haspopup="menu"
+                        onClick={handleClickProviders}
+                      >
+                        <ArrowDropDownIcon />
+                      </Button>
+                    </ButtonGroup>
+                    <Popper open={open} anchorEl={anchorRef.current} role={undefined} transition disablePortal>
+                      {({ TransitionProps, placement }) => (
+                        <Grow
+                          {...TransitionProps}
+                          style={{
+                            transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom',
+                          }}
+                        >
+                          <Paper>
+                            <ClickAwayListener onClickAway={handleCloseServiceProvider}>
+                              <MenuList id="split-button-menu">
+                                {serviceProvider
+                                  .map((serviceProviders, index) => {
+                                    return (
+                                      <MenuItem
+                                        key={serviceProvider}
+                                        disabled={index === 2}
+                                        selected={index === selectedIndex}
+                                        onClick={(event) => handleMenuItemClick(event, index)}
+                                      >
+                                        <Link href={serviceProviders.link} className={classes.Link}>
+                                          <Button variant="outlined" className={classes.serviceBtn}>{serviceProviders.name}</Button>
+                                        </Link>
+                                      </MenuItem>
+                                    )
+                                  })}
+                              </MenuList>
+                            </ClickAwayListener>
+                          </Paper>
+                        </Grow>
+                      )}
+                    </Popper>
+                  </Grid>
+                </Grid>
               </div>
             </div>
 
