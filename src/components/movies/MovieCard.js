@@ -198,8 +198,8 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
     justifyContent: "space-evenly",
   },
-  trailerModal:{
-marginTop:'2%',
+  trailerModal: {
+    marginTop: '2%',
   },
   expansionPanal: {
     // margin:'auto',
@@ -223,9 +223,9 @@ marginTop:'2%',
   },
   serviceBtn: {
     textDecoration: 'none',
-    margin:'1%',
-    width:'150px',
-   
+    margin: '1%',
+    width: '150px',
+
     // color: 'red',
     // border: '2px solid green',
     // textAlign: 'center',
@@ -515,7 +515,6 @@ function MovieCard({
                       onClick={handleClose}
                     />
                   )}
-
                 <div className={classes.root}>
                   <ExpansionPanel className={classes.expansionPanal}>
                     <ExpansionPanelSummary
@@ -533,19 +532,15 @@ function MovieCard({
                           return (
                             <div >
                               <Link href={serviceProviders.link} className={classes.Link}>
-
                                 <Button variant="outlined" className={classes.serviceBtn}>{serviceProviders.name}</Button>
                               </Link>
                             </div>
                           )
                         })}
-
                     </div>
                   </ExpansionPanel>
-
                 </div>
               </div>
-
             </div>
             {page !== "Onboarding" ? (
               <iframe

@@ -84,6 +84,8 @@ function Explore({
               return film.title === movie.title && film.year === movie.year;
             };
             /* Returns the movie object if in ratings */
+                        // console.log('inratings',movie.movie_id)
+
             let rated = ratings.find(isRated);
             let posterURI = movie.poster_url;
             let unsplashUrl =
@@ -95,6 +97,7 @@ function Explore({
                   key={index}
                   page={"Explore"}
                   name={movie.title}
+                  movie_id={movie.movie_id}
                   year={movie.year}
                   description={movie.description}
                   genres={movie.genres}

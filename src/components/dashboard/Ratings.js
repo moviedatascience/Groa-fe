@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 // tools
 import { connect } from "react-redux";
-import { getRatingAction, setFilter, serviceProviderAction } from "../../store/actions/index.js";
+import { getRatingAction, setFilter } from "../../store/actions/index.js";
 // Screen width util
 import widthFinder from "../../utils/widthFinder.js";
 // children components
@@ -33,8 +33,6 @@ function Ratings({
   ratings,
   searchTerm,
   setFilter,
-  serviceProviderAction,
-  serviceProvider
 }) {
   //OKTA AUTH
   const { authState, authService } = useOktaAuth();
@@ -46,12 +44,8 @@ function Ratings({
     setFilter("");
     // Returns the ratings
     getRatingAction(userid, accessToken);
-    
-  }, [getRatingAction, userid, setFilter, accessToken]);
 
-  // const handleClickProvider = (user_id, access_Token, movie_id) => {
-  //   serviceProviderAction(user_id, access_Token, movie_id)
-  //   };
+  }, [getRatingAction, userid, setFilter, accessToken]);
 
   if (isFetching) return <LoadingScreen />;
   else
@@ -61,14 +55,14 @@ function Ratings({
         cols={screenWidth ? 2 : 5}
         cellHeight="auto"
       >
-        
+
         {ratings
           .filter((movie) =>
             searchTerm !== ""
               ? movie.primary_title
-                  .toString()
-                  .toLowerCase()
-                  .includes(searchTerm.toLowerCase())
+                .toString()
+                .toLowerCase()
+                .includes(searchTerm.toLowerCase())
               : true
           )
           .map((movie, index) => {
@@ -92,10 +86,10 @@ function Ratings({
                   // serviceLinks={serviceProvider.link}
                   image={
                     !posterURI ||
-                    posterURI === "None" ||
-                    posterURI === "No poster" ||
-                    posterURI === "No Poster" ||
-                    posterURI === "Not in table"
+                      posterURI === "None" ||
+                      posterURI === "No poster" ||
+                      posterURI === "No Poster" ||
+                      posterURI === "Not in table"
                       ? unsplashUrl
                       : moviePoster
                   }
@@ -114,9 +108,8 @@ const mapStateToProps = (state) => {
     ratings: state.rating.movies,
     ratingsError: state.rating.error,
     searchTerm: state.filter.searchTerm,
-    serviceProvider: state.serviceProvider.serviceProviders
   };
 };
-export default connect(mapStateToProps, { getRatingAction, setFilter, serviceProviderAction })(
+export default connect(mapStateToProps, { getRatingAction, setFilter })(
   Ratings
 );
