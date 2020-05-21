@@ -26,8 +26,8 @@ const useStyles = makeStyles((theme) => ({
   cardGrid: {
     paddingTop: theme.spacing(4),
     paddingBottom: theme.spacing(4),
-    paddingRight: theme.spacing(2),
-    paddingLeft: theme.spacing(2),
+    paddingRight: theme.spacing(1),
+    paddingLeft: theme.spacing(1),
   },
   movieCard: {
     color: "white",
@@ -118,7 +118,7 @@ function Onboarding({
                   "https://source.unsplash.com/collection/1736993/500x650";
                 let moviePoster = `https://image.tmdb.org/t/p/w500${posterURI}?api_key=${process.env.REACT_APP_TMDB_API_KEY}`;
                 return (
-                  <div className={classes.movieCard}>
+                  <div className={classes.movieCard} key={index}>
                     <MovieCard
                       key={index}
                       name={movie.title}
@@ -174,7 +174,7 @@ function Onboarding({
                   "https://source.unsplash.com/collection/1736993/500x650";
                 let moviePoster = `https://image.tmdb.org/t/p/w500${posterURI}?api_key=${process.env.REACT_APP_TMDB_API_KEY}`;
                 return (
-                  <div className={classes.movieCard}>
+                  <div className={classes.movieCard} key={index}>
                     <MovieCard
                       key={index}
                       name={movie.title}

@@ -43,6 +43,7 @@ function Explore({
   isSearching,
   notWatchListAction,
 }) {
+  // console.log('this is the movies', movie_id)
   const classes = useStyles();
   const screenWidth = widthFinder(window.innerWidth);
 
@@ -188,6 +189,7 @@ function Explore({
 }
 
 const mapStateToProps = (state) => {
+
   return {
     userid: state.login.userid,
     isFetching: state.movie.isFetching,

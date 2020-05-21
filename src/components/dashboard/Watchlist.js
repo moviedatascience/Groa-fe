@@ -41,7 +41,6 @@ function Watchlist({
   searchTerm,
   removeFromWatchlistAction,
   setFilter,
-  movies,
 }) {
   //OKTA AUTH
   const { authState } = useOktaAuth();
@@ -83,6 +82,8 @@ function Watchlist({
               : true
           )
           .map((movie, index) => {
+            // console.log('in watchlist',movie.movie_id)
+
             let posterURI = movie.poster_url;
             let unsplashUrl =
               "https://source.unsplash.com/collection/1736993/500x650";
@@ -92,11 +93,13 @@ function Watchlist({
                 <MovieCard
                   key={index}
                   name={movie.primary_title}
+                  // movie_id={movie.movie_id}
                   year={movie.start_year}
                   trailer={movie.trailer_url}
                   description={movie.description}
                   genres={movie.genres}
                   page="watchlist"
+                  // provider={serviceProvider.data.provider}
                   image={
                     !posterURI ||
                     posterURI === "None" ||

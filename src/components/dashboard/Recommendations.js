@@ -84,6 +84,7 @@ function Recommendations({
                   rated={null}
                   name={movie.title}
                   year={movie.year}
+                  genres={movie.genres}
                   description={movie.description}
                   movie_id={movie.movie_id}
                   trailer={movie.trailer_url}
