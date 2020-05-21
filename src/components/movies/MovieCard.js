@@ -8,7 +8,6 @@ import {
 } from "../../store/actions";
 import Stars from "@material-ui/lab/Rating";
 import StarBorderIcon from "@material-ui/icons/StarBorder";
-import Link from '@material-ui/core/link'
 //for grid
 import { makeStyles, withStyles } from "@material-ui/core/styles";
 import {
@@ -20,6 +19,7 @@ import {
   Backdrop,
   Fade,
   IconButton,
+  Link
 } from "@material-ui/core";
 import CloseIcon from "@material-ui/icons/Close";
 import { useOktaAuth } from "@okta/okta-react/dist/OktaContext";
