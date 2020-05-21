@@ -218,6 +218,7 @@ const Navigation = ({ userid, search }) => {
                 alt="Groa Logo"
               />
             </Typography>
+            {/* Below commented out code to be used in the future for profile page */}
             {/* <Button
               aria-controls="simple-menu"
               aria-haspopup="true"
