@@ -86,6 +86,8 @@ function Recommendations({
                   year={movie.year}
                   description={movie.description}
                   movie_id={movie.movie_id}
+                  trailer={movie.trailer_url}
+                  page={'Recommendations'}
                   image={
                     !posterURI ||
                     posterURI === "None" ||

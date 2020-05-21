@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 // tools
 import { connect } from "react-redux";
-import { getMoviesAction, setFilter } from "../../store/actions/index.js";
+import { getMoviesAction, setFilter, notWatchListAction } from "../../store/actions/index.js";
 // Screen width util
 import widthFinder from "../../utils/widthFinder.js";
 
@@ -35,6 +35,7 @@ function Explore({
   searchTerm,
   setFilter,
   ratings,
+  notWatchListAction
 }) {
   const classes = useStyles();
   const screenWidth = widthFinder(window.innerWidth);
@@ -46,7 +47,9 @@ function Explore({
     setFilter("");
     // Returns the movies
     getMoviesAction(userid, accessToken);
-  }, [getMoviesAction, userid, ratings, setFilter, accessToken]);
+    notWatchListAction(userid, accessToken);
+    
+  }, [getMoviesAction,notWatchListAction, userid, ratings, setFilter, accessToken]);
 
   // How many movies render
   const cardAmount = 40;
@@ -124,4 +127,5 @@ const mapStateToProps = (state) => {
 export default connect(mapStateToProps, {
   getMoviesAction,
   setFilter,
+  notWatchListAction
 })(Explore);
