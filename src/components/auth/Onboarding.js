@@ -86,60 +86,119 @@ function Onboarding({
   else
     return (
       <div>
-        <GridList
-          className={classes.cardGrid}
-          cols={screenWidth ? 2 : 5}
-          cellHeight="auto"
-        >
-          {movies
-            .filter((movie) =>
-              !ratings.includes(
-                (film) =>
-                  film.film.title === movie.title && film.year === movie.year
-              ).length && searchTerm !== ""
-                ? movie.primary_title
-                    .toString()
-                    .toLowerCase()
-                    .includes(searchTerm.toLowerCase())
-                : true
-            )
-            .slice(0, cardAmount)
-            .map((movie, index) => {
-              /* Checks if the film is in ratings */
-              const isRated = (film) => {
-                return film.title === movie.title && film.year === movie.year;
-              };
-              /* Returns the movie object if in ratings */
-              let rated = ratings.find(isRated);
-              let posterURI = movie.poster_url;
-              let unsplashUrl =
-                "https://source.unsplash.com/collection/1736993/500x650";
-              let moviePoster = `https://image.tmdb.org/t/p/w500${posterURI}?api_key=${process.env.REACT_APP_TMDB_API_KEY}`;
-              return (
-                <div className={classes.movieCard}>
-                  <MovieCard
-                    key={index}
-                    name={movie.title}
-                    page={"Onboarding"}
-                    movie_id={movie.movie_id}
-                    rated={rated ? rated.rating : null}
-                    image={
-                      !posterURI ||
-                      posterURI === "None" ||
-                      posterURI === "No poster" ||
-                      posterURI === "No Poster" ||
-                      posterURI === "Not in table"
-                        ? unsplashUrl
-                        : moviePoster
-                    }
-                    handleClickStar={handleClickStar}
-                    numRatings={numRatings}
-                    setNumRatings={setNumRatings}
-                  />
-                </div>
-              );
-            })}
-        </GridList>
+        {isSearching ? (
+          <GridList
+            className={classes.cardGrid}
+            cols={screenWidth ? 2 : 5}
+            cellHeight="auto"
+          >
+            {" "}
+            {queries
+              .filter((movie) =>
+                !ratings.includes(
+                  (film) =>
+                    film.film.title === movie.title && film.year === movie.year
+                ).length && searchTerm !== ""
+                  ? movie.primary_title
+                      .toString()
+                      .toLowerCase()
+                      .includes(searchTerm.toLowerCase())
+                  : true
+              )
+              .slice(0, cardAmount)
+              .map((movie, index) => {
+                /* Checks if the film is in ratings */
+                const isRated = (film) => {
+                  return film.title === movie.title && film.year === movie.year;
+                };
+                /* Returns the movie object if in ratings */
+                let rated = ratings.find(isRated);
+                let posterURI = movie.poster_url;
+                let unsplashUrl =
+                  "https://source.unsplash.com/collection/1736993/500x650";
+                let moviePoster = `https://image.tmdb.org/t/p/w500${posterURI}?api_key=${process.env.REACT_APP_TMDB_API_KEY}`;
+                return (
+                  <div className={classes.movieCard}>
+                    <MovieCard
+                      key={index}
+                      name={movie.title}
+                      page={"Onboarding"}
+                      movie_id={movie.movie_id}
+                      rated={rated ? rated.rating : null}
+                      image={
+                        !posterURI ||
+                        posterURI === "None" ||
+                        posterURI === "No poster" ||
+                        posterURI === "No Poster" ||
+                        posterURI === "Not in table"
+                          ? unsplashUrl
+                          : moviePoster
+                      }
+                      handleClickStar={handleClickStar}
+                      numRatings={numRatings}
+                      setNumRatings={setNumRatings}
+                    />
+                  </div>
+                );
+              })}
+          </GridList>
+        ) : (
+          <GridList
+            className={classes.cardGrid}
+            cols={screenWidth ? 2 : 5}
+            cellHeight="auto"
+          >
+            {" "}
+            {movies
+              .filter((movie) =>
+                !ratings.includes(
+                  (film) =>
+                    film.film.title === movie.title && film.year === movie.year
+                ).length && searchTerm !== ""
+                  ? movie.primary_title
+                      .toString()
+                      .toLowerCase()
+                      .includes(searchTerm.toLowerCase())
+                  : true
+              )
+              .slice(0, cardAmount)
+              .map((movie, index) => {
+                /* Checks if the film is in ratings */
+                const isRated = (film) => {
+                  return film.title === movie.title && film.year === movie.year;
+                };
+                /* Returns the movie object if in ratings */
+                let rated = ratings.find(isRated);
+                let posterURI = movie.poster_url;
+                let unsplashUrl =
+                  "https://source.unsplash.com/collection/1736993/500x650";
+                let moviePoster = `https://image.tmdb.org/t/p/w500${posterURI}?api_key=${process.env.REACT_APP_TMDB_API_KEY}`;
+                return (
+                  <div className={classes.movieCard}>
+                    <MovieCard
+                      key={index}
+                      name={movie.title}
+                      page={"Onboarding"}
+                      movie_id={movie.movie_id}
+                      rated={rated ? rated.rating : null}
+                      image={
+                        !posterURI ||
+                        posterURI === "None" ||
+                        posterURI === "No poster" ||
+                        posterURI === "No Poster" ||
+                        posterURI === "Not in table"
+                          ? unsplashUrl
+                          : moviePoster
+                      }
+                      handleClickStar={handleClickStar}
+                      numRatings={numRatings}
+                      setNumRatings={setNumRatings}
+                    />
+                  </div>
+                );
+              })}
+          </GridList>
+        )}
         <Snackbar
           open={openAlert}
           autoHideDuration={4000}
