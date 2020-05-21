@@ -541,9 +541,9 @@ function MovieCard({
                       </div>
                     </ExpansionPanel>
                   </div>
-                  ) : (
-                     ""
-                 )} 
+                ) : (
+                    ""
+                  )}
               </div>
             </div>
 
