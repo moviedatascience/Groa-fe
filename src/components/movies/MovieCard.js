@@ -591,6 +591,7 @@ function MovieCard({
                 ) : (
                     ""
                   )} */}
+                   {page !== 'watchlist' && page !== 'Onboarding' ? ( 
                 <Grid container direction="column" alignItems="center">
                   <Grid item xs={12}>
                     <ButtonGroup variant="contained" color="primary" ref={anchorRef} aria-label="split button">
@@ -642,6 +643,9 @@ function MovieCard({
                     </Popper>
                   </Grid>
                 </Grid>
+                ) : (
+                    ""
+                  )}
               </div>
             </div>
 
