@@ -8,16 +8,10 @@ import {
   removeFromWatchlistAction,
   getWatchlistAction,
 } from "./watchlistActions.js";
-<<<<<<< HEAD
 import { getMoviesAction } from "./movieAction";
 import { setFilter } from "./filterActions.js";
 import { searchAction } from "./searchAction.js";
-=======
-import { getMoviesAction } from "./movieAction"
-import { setFilter } from "./filterActions.js"; 
-import {notWatchListAction} from './notWatchListAction.js';
-
->>>>>>> 03a852403abb46cc3a4c36ade92ec57eec797ff9
+import { notWatchListAction } from "./notWatchListAction.js";
 
 export {
   loginAction,
@@ -32,9 +26,6 @@ export {
   getWatchlistAction,
   getMoviesAction,
   setFilter,
-<<<<<<< HEAD
   searchAction,
-=======
-  notWatchListAction
->>>>>>> 03a852403abb46cc3a4c36ade92ec57eec797ff9
+  notWatchListAction,
 };
