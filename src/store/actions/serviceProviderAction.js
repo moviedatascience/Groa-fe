@@ -4,7 +4,6 @@ export const FETCHING_SERVICEPROVIDERS_SUCCESS = "FETCHING_SERVICEPROVIDERS_SUCC
 export const FETCHING_SERVICEPROVIDERS_FAIL = "FETCHING_SERVICEPROVIDERS_FAIL";
 
 export function serviceProviderAction(id, token, movie_id) {
-    // console.log('movie id', movie_id)
     return dispatch => {
         dispatch({
             type: FETCHING_SERVICEPROVIDERS_START
@@ -15,9 +14,7 @@ export function serviceProviderAction(id, token, movie_id) {
                 dispatch({
                     type: FETCHING_SERVICEPROVIDERS_SUCCESS,
                     payload: res.data,
-                    
                 });
-                // console.log('in action', res.data)
             })
             .catch(err => {
                 dispatch({

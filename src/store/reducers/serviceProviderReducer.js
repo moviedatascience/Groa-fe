@@ -10,7 +10,6 @@ const initialState = {
     error: ""
 };
 
-
 export const serviceProvider = (state = initialState, action) => {
     switch (action.type) {
         // GET service providers

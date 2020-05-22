@@ -6,8 +6,10 @@ import {
   addToWatchlistAction,
   notWatchListAction,
 } from "../../store/actions";
+
 import Stars from "@material-ui/lab/Rating";
 import StarBorderIcon from "@material-ui/icons/StarBorder";
+import Box from '@material-ui/core/Box';
 //for grid
 import { makeStyles, withStyles } from "@material-ui/core/styles";
 import {
@@ -83,6 +85,7 @@ const useStyles = makeStyles((theme) => ({
   },
   cardContent: {
     height: "100%",
+    padding:0,
   },
   movieImg: {
     width: "100%",
@@ -192,6 +195,19 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     justifyContent: "center",
   },
+  starRoot:{
+    display: 'flex',
+    width:'50%',
+    margin:'auto',
+    // flexDirection: 'column',
+    justifyContent:'center',
+    // '& > * + *': {
+    //   marginTop: theme.spacing(1),
+    // },
+  },
+  starRootOnboarding:{
+    width:'100%',
+  },
   watchStarsModal: {
     display: "flex",
     justifyContent: "center",
@@ -201,9 +217,10 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
   },
   starsModal: {
-    justifyContent: "center",
-    display: "flex",
+    // justifyContent: "center",
+    // display: "flex",
     fontSize: "3vw",
+    // margin:'auto',
   },
   actionBtn: {
     padding: "1rem",
@@ -528,39 +545,42 @@ function MovieCard({
                     ""
                   )}
                 {page === "Onboarding" ? (
+                  <Box className={classes.starRootOnboarding} component="fieldset"  borderColor="transparent">
                   <Stars
-                    className={classes.starsModal}
-                    data-test="star"
-                    precision={0.5}
+                  className={classes.starsModal}
                     size="large"
+                    precision={0.5}
+                    emptyIcon={<StarBorderIcon fontSize="inherit" />}
                     emptyIcon={
-                      <StarBorderIcon
-                        fontSize="inherit"
-                        style={{ color: "#ffb400" }}
-                      />
-                    }
-                    name={name}
-                    value={rated ? rated : rating}
-                    onChange={handleChange}
-                    onClick={multiFunctions}
+                          <StarBorderIcon
+                            fontSize="inherit"
+                            style={{ color: "#ffb400" }}
+                          />
+                        }
+                        name={name}
+                        value={rated ? rated : rating}
+                        onChange={handleChange}
+                        onClick={multiFunctions}
                   />
+                </Box>
                 ) : (
-                    <Stars
-                      className={classes.starsModal}
-                      data-test="star"
-                      precision={0.5}
-                      size="large"
-                      emptyIcon={
-                        <StarBorderIcon
-                          fontSize="inherit"
-                          style={{ color: "#ffb400" }}
-                        />
-                      }
-                      name={name}
-                      value={rated ? rated : rating}
-                      onChange={handleChange}
-                      onClick={handleClose}
-                    />
+                  <Box className={classes.starRoot} component="fieldset"  borderColor="transparent">
+                  <Stars
+                  className={classes.starsModal}
+                    size="large"
+                    precision={0.5}
+                    emptyIcon={<StarBorderIcon fontSize="inherit" />}
+                    emptyIcon={
+                          <StarBorderIcon
+                            fontSize="inherit"
+                            style={{ color: "#ffb400" }}
+                          />
+                        }
+                        name={name}
+                        value={rated ? rated : rating}
+                        onChange={handleChange}
+                  />
+                </Box>
                   )}
                 {/* {page !== 'watchlist' && page !== 'Onboarding' ? (
                   <div className={classes.root}>
