@@ -51,7 +51,6 @@ function Watchlist({
   const classes = useStyles();
   const screenWidth = widthFinder(window.innerWidth);
 
-  // console.log(classes);
   useEffect(() => {
     setFilter("");
     // Returns the users watchlist from the database
@@ -71,19 +70,16 @@ function Watchlist({
         cols={screenWidth ? 2 : 5}
         cellHeight="auto"
       >
-        {/* <div> */}
         {watchlist
           .filter((movie) =>
             searchTerm !== ""
               ? movie.primary_title
-                  .toString()
-                  .toLowerCase()
-                  .includes(searchTerm.toLowerCase())
+                .toString()
+                .toLowerCase()
+                .includes(searchTerm.toLowerCase())
               : true
           )
           .map((movie, index) => {
-            // console.log('in watchlist',movie.movie_id)
-
             let posterURI = movie.poster_url;
             let unsplashUrl =
               "https://source.unsplash.com/collection/1736993/500x650";
@@ -93,19 +89,17 @@ function Watchlist({
                 <MovieCard
                   key={index}
                   name={movie.primary_title}
-                  // movie_id={movie.movie_id}
                   year={movie.start_year}
                   trailer={movie.trailer_url}
                   description={movie.description}
                   genres={movie.genres}
                   page="watchlist"
-                  // provider={serviceProvider.data.provider}
                   image={
                     !posterURI ||
-                    posterURI === "None" ||
-                    posterURI === "No poster" ||
-                    posterURI === "No Poster" ||
-                    posterURI === "Not in table"
+                      posterURI === "None" ||
+                      posterURI === "No poster" ||
+                      posterURI === "No Poster" ||
+                      posterURI === "Not in table"
                       ? unsplashUrl
                       : moviePoster
                   }
@@ -115,8 +109,7 @@ function Watchlist({
                 />
               </div>
             );
-          })}
-        ;{/* </div> */}
+          })};
       </GridList>
     );
 }

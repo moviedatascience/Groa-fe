@@ -188,7 +188,6 @@ function Explore({
 }
 
 const mapStateToProps = (state) => {
-
   return {
     userid: state.login.userid,
     isFetching: state.movie.isFetching,
