@@ -55,7 +55,6 @@ function Ratings({
         cols={screenWidth ? 2 : 5}
         cellHeight="auto"
       >
-
         {ratings
           .filter((movie) =>
             searchTerm !== ""
@@ -66,7 +65,6 @@ function Ratings({
               : true
           )
           .map((movie, index) => {
-            // console.log('inratings',movie.movie_id)
             let posterURI = movie.poster_url;
             let unsplashUrl =
               "https://source.unsplash.com/collection/1736993/500x650";
@@ -83,8 +81,6 @@ function Ratings({
                   description={movie.description}
                   trailer={movie.trailer_url}
                   genres={movie.genres}
-                  // onClick={handleClickProvider}
-                  // serviceLinks={serviceProvider.link}
                   image={
                     !posterURI ||
                       posterURI === "None" ||
