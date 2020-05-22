@@ -217,9 +217,9 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
   },
   starsModal: {
-    // justifyContent: "center",
+    justifyContent: "center",
     // display: "flex",
-    fontSize: "3vw",
+    // fontSize: "3vw",
     // margin:'auto',
   },
   actionBtn: {
@@ -564,7 +564,7 @@ function MovieCard({
                   />
                 </Box>
                 ) : (
-                  <Box className={classes.starRoot} component="fieldset"  borderColor="transparent">
+                  <Box className={classes.starRoot}  borderColor="transparent">
                   <Stars
                   className={classes.starsModal}
                     size="large"
@@ -582,7 +582,7 @@ function MovieCard({
                   />
                 </Box>
                   )}
-                {/* {page !== 'watchlist' && page !== 'Onboarding' ? (
+                {page !== 'watchlist' && page !== 'Onboarding' ? (
                   <div className={classes.root}>
                     <ExpansionPanel className={classes.expansionPanal}>
                       <ExpansionPanelSummary
@@ -610,8 +610,8 @@ function MovieCard({
                   </div>
                 ) : (
                     ""
-                  )} */}
-                {page !== 'watchlist' && page !== 'Onboarding' ? (
+                  )}
+                {/* {page !== 'watchlist' && page !== 'Onboarding' ? (
                   <Grid container direction="column" alignItems="center">
                     <Grid item xs={12}>
                       <ButtonGroup variant="contained" color="primary" ref={anchorRef} aria-label="split button">
@@ -665,7 +665,7 @@ function MovieCard({
                   </Grid>
                 ) : (
                     ""
-                  )}
+                  )} */}
               </div>
             </div>
 
