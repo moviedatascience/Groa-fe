@@ -22,7 +22,7 @@ function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {"© 2020 by GROÁ, All rights reserved"}
-      <Link color="white" to="https://groa.us/privacy-policy">
+      <Link color="white" to="/privacy-policy">
         GROÁ Privacy Policy
       </Link>
     </Typography>
