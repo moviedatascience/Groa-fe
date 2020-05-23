@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 // tools
 import { connect } from "react-redux";
 import { getMoviesAction, setFilter, notWatchListAction } from "../store/actions/index.js";
@@ -13,7 +13,10 @@ import { GridList,GridListTileBar,GridListTile, IconButton } from "@material-ui/
 
 import StarBorderIcon from '@material-ui/icons/StarBorder';
 import { makeStyles } from "@material-ui/core/styles";
+import { red } from "@material-ui/core/colors";
 
+import Carousel from 'react-multi-carousel';
+import 'react-multi-carousel/lib/styles.css';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -26,101 +29,150 @@ const useStyles = makeStyles((theme) => ({
         },
         '*::-webkit-scrollbar-thumb': {
           backgroundColor: 'rgba(244, 246, 244, 0.86)',
-          outline: '1px solid slategrey'
+          outline: '1px solid slategrey',
+          borderRadius: '10px',
+          height: '5px'
         }
       },
-    cardGrid: {
-      paddingTop: theme.spacing(4),
-      paddingBottom: theme.spacing(4),
-      paddingRight: theme.spacing(1),
-      paddingLeft: theme.spacing(1),
-    },
-    movieCard: {
-      "&:hover": {
-        boxShadow: "0px 0px 2px 2px black",
-        backgroundColor: "black",
-      },
-    },
-    gridList: {
+      cont: {
+        display: 'flex',
         flexWrap: 'nowrap',
-        // Promote the list into his own layer on Chrome. This cost memory but helps keeping high FPS.
-        transform: 'translateZ(0)',
+        overflowX: 'auto',
+        backgroundColor: theme.palette.background.paper,
+        height: "500px",
       },
-      title: {
-        color: theme.palette.primary.light,
+      movieList: {
+        minWidth:'15%',
+        margin:'10px',
       },
-      titleBar: {
-        background:
-          'linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)',
+      posterImg: {
+        width:'100%',
       },
+      movieList: {
+        minWidth:'15%',
+        margin:'10px',
+      },
+      posterImg: {
+        width:'100%',
+      },
+      customArrow:{
+          display:"flex",
+          justifyContent:"center",
+          alignItems:"center",
+          backgroundColor: "rgba(0, 0, 0, 0.3)",
+          color:"white",
+          fontWeight:"900",
+          border: "none",
+          width: "50px",
+          height:"50px",
+          borderRadius:"50%",
+          position: "absolute",
+          right:"0",
+          padding: "0",
+          fontSize:"30px",
+          "&:hover": {
+             backgroundColor:"rgba(0, 0, 0, 0.6)",
+             color:"white",
+             width: "50px",
+             height:"95%",
+             borderRadius:"0" 
+          }
+      },
+      leftArrow:{
+        display:"flex",
+        justifyContent:"center",
+        alignItems:"center",
+        backgroundColor: "rgba(0, 0, 0, 0.3)",
+        color:"white",
+        fontWeight:"900",
+        border: "none",
+        width: "50px",
+        height:"50px",
+        borderRadius:"50%",
+        position: "absolute",
+        left:"0",
+        padding: "0",
+        fontSize:"30px",
+        "&:hover": {
+           backgroundColor:"rgba(0, 0, 0, 0.6)",
+           color:"white",
+           width: "50px",
+           height:"95%",
+           borderRadius:"0" 
+        }
+    },
+
   }));
 
+const responsive = {
+  superLargeDesktop: {
+    // the naming can be any, depends on you.
+    breakpoint: { max: 4000, min: 3000 },
+    items: 5
+  },
+  desktop: {
+    breakpoint: { max: 3000, min: 1024 },
+    items: 5
+  },
+  tablet: {
+    breakpoint: { max: 1024, min: 464 },
+    items: 3
+  },
+  mobile: {
+    breakpoint: { max: 464, min: 0 },
+    items: 2
+  }
+};
 
- 
-
-  const tileData = [
-    {
-      img: 'https://i.imgur.com/c63JJmt.png',
-      title: 'Image',
-      author: 'author',
-    },
-    {
-    img: 'https://i.imgur.com/c63JJmt.png',
-    title: 'Image',
-    author: 'author',
-    },
-    {
-    img: 'https://i.imgur.com/c63JJmt.png',
-    title: 'Image',
-    author: 'author',
-    },
-    {
-    img: 'https://i.imgur.com/c63JJmt.png',
-    title: 'Image',
-    author: 'author',
-    },
-    {
-    img: 'https://i.imgur.com/c63JJmt.png',
-    title: 'Image',
-    author: 'author',
-    },
-    {
-    img: 'https://i.imgur.com/c63JJmt.png',
-    title: 'Image',
-    author: 'author',
-    },
-    
-  ];
-
-
-
-const TileBar = () => {
-    const classes = useStyles();
-    const screenWidth = widthFinder(window.innerWidth);
+export const TileBar = ({movies}) => {
+    const styles = useStyles();
 
     return (
-        <div className={classes.root}>
-        <GridList className={classes.gridList} cols={5}>
-          {tileData.map((tile) => (
-            <GridListTile key={tile.img}>
-              <img src={tile.img} alt={tile.title} />
-              <GridListTileBar
-                title={tile.title}
-                classes={{
-                  root: classes.titleBar,
-                  title: classes.title,
-                }}
-                actionIcon={
-                  <IconButton aria-label={`star ${tile.title}`}>
-                    <StarBorderIcon className={classes.title} />
-                  </IconButton>
-                }
-              />
-            </GridListTile>
-          ))}
-        </GridList>
-      </div>
+      <Carousel
+          swipeable={true}
+          draggable={true}
+          responsive={responsive}
+          keyBoardControl={true}
+          transitionDuration={200}
+          containerClass="carousel-container"
+          removeArrowOnDeviceType={["tablet", "mobile"]}
+          itemClass="carousel-item-padding-10-px"
+          customLeftArrow={<CustomLeftArrow />}
+          customRightArrow={<CustomRightArrow />}
+      >
+
+          {movies.map(tile => {
+              let posterURI = tile.poster_url;
+              let moviePoster = `https://image.tmdb.org/t/p/w500${posterURI}?api_key=${process.env.REACT_APP_TMDB_API_KEY}`;
+              let movieTitle = tile.title
+
+              return (              
+              <div className={styles.movieList}>
+              <img src={moviePoster} alt={movieTitle} className={styles.posterImg} /> 
+              </div>              
+              )
+          })}
+        </Carousel>
     )
 }
 
-export default TileBar;
+
+const CustomRightArrow = ({ onClick, ...rest }) => {
+  const styles = useStyles();
+  const {
+    onMove,
+    carouselState: { currentSlide, deviceType } 
+  } = rest;
+  // onMove means if dragging or swiping in progress.
+  return <button className={styles.customArrow} onClick={() => onClick()}> > </button>;
+};
+
+const CustomLeftArrow = ({ onClick, ...rest }) => {
+const styles = useStyles();
+const {
+  onMove,
+  carouselState: { currentSlide, deviceType } 
+} = rest;
+// onMove means if dragging or swiping in progress.
+return <button className={styles.leftArrow} onClick={() => onClick()}> &#60; </button>;
+};

@@ -1,6 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axiosWithAuth from "../../utils/axiosWithAuth.js";
 import { connect } from "react-redux";
-import { ratingAction, addToWatchlistAction, notWatchListAction } from "../../store/actions";
+import {
+  ratingAction,
+  addToWatchlistAction,
+  notWatchListAction,
+} from "../../store/actions";
 import Stars from "@material-ui/lab/Rating";
 import StarBorderIcon from "@material-ui/icons/StarBorder";
 //for grid
@@ -14,9 +19,28 @@ import {
   Backdrop,
   Fade,
   IconButton,
+  Link
 } from "@material-ui/core";
 import CloseIcon from "@material-ui/icons/Close";
 import { useOktaAuth } from "@okta/okta-react/dist/OktaContext";
+
+//menu expander
+import ExpansionPanel from '@material-ui/core/ExpansionPanel';
+import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
+import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+//import for button group
+import Grid from '@material-ui/core/Grid';
+import ButtonGroup from '@material-ui/core/ButtonGroup';
+import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
+import ClickAwayListener from '@material-ui/core/ClickAwayListener';
+import Grow from '@material-ui/core/Grow';
+import Paper from '@material-ui/core/Paper';
+import Popper from '@material-ui/core/Popper';
+import MenuItem from '@material-ui/core/MenuItem';
+import MenuList from '@material-ui/core/MenuList';
+
+// const options = ['Create a merge commit', 'Squash and merge', 'Rebase and merge'];
 
 const styles = (theme) => ({
   closeBtn: {
@@ -48,8 +72,14 @@ const DialogTitle = withStyles(styles)((props) => {
 });
 
 const useStyles = makeStyles((theme) => ({
+
+  // heading: {
+  // fontSize: theme.typography.pxToRem(15),
+  // fontWeight: theme.typography.fontWeightRegular,
+  // },
   nameModal: {
     fontSize: "25px",
+    textAlign: 'center',
   },
   cardContent: {
     height: "100%",
@@ -66,6 +96,7 @@ const useStyles = makeStyles((theme) => ({
     fontSize: "15px",
     textAlign: "center",
     paddingTop: "2%",
+    marginBottom: '2%',
   },
   year: {
     fontSize: "18px",
@@ -122,6 +153,7 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: "11px",
     margin: "auto",
     paddingBottom: "1%",
+    width: '50%',
   },
   watchList: {
     justifyContent: "center",
@@ -150,15 +182,15 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
   },
   movieContentDiv: {
-    margin: 'auto',
+    margin: "auto",
   },
   genresModal: {
     fontStyle: "italic",
     paddingTop: "3%",
   },
   actionButtons: {
-    display: 'flex',
-    justifyContent:'center',
+    display: "flex",
+    justifyContent: "center",
   },
   watchStarsModal: {
     display: "flex",
@@ -179,9 +211,54 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
     justifyContent: "space-evenly",
   },
+  trailerModal: {
+    marginTop: '2%',
+  },
+  // gridProvider: {
+  //   width: '80%',
+  // margin: 'auto',
+  //   backgroundColor: '#212120',
+  // },
+  btnsProviders: {
+    backgroundColor: '#212120',
+    color: 'white',
+  },
+  // expansionPanal: {
+  // margin:'auto',
+  // width:'80%',
+  // backgroundColor: '#212120',
+  // },
+  // expansionPanalSummary: {
+  // backgroundColor:'white',
+  // margin:'auto',
+  // width:'80%',
+  //   backgroundColor: '#212120',
+
+  // },
+  serviceInfo: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+  },
+  Link: {
+    textDecoration: 'none',
+  },
+  serviceBtn: {
+    textDecoration: 'none',
+    margin: '1%',
+    // width: '150px',
+
+    // color: 'red',
+    // border: '2px solid green',
+    // textAlign: 'center',
+    // "&:hover": {
+    //   backgroundColor:'green'
+    // },
+  },
   [theme.breakpoints.down("xs")]: {
     name: {
       padding: "0",
+
     },
     movieImg: {
       height: "200px",
@@ -229,13 +306,21 @@ function MovieCard({
   //OKTA AUTH
   const { authState, authService } = useOktaAuth();
   const { accessToken } = authState;
+  // console.log('movie id', movie_id)
+
+  // useEffect(() => {
+  //   serviceProviderAction(userid, accessToken, movie_id)
+  // }, [serviceProviderAction, userid, movie_id, accessToken])
+
+  // console.log('service provider',serviceProvider )
+  const [serviceProvider, setServiceProvider] = useState([]);
   const [yourRating, setYourRating] = useState(false);
   /* Used for the star rating */
   const [rating, setRating] = useState(0);
   /* Used for dynamically rendering the "Add to watchlist" button and if it's disabled */
   const [added, setAdded] = useState(false);
   //to remove movie user not interested in
-  const [ removed, setRemoved] = useState(false);
+  const [removed, setRemoved] = useState(false);
   /* This checks if the movie is in the watchlist */
   const inWatchlist = watchlist.some(
     (movie) => movie.name === name && movie.year === year
@@ -248,14 +333,39 @@ function MovieCard({
   );
   //material-ui
   const classes = useStyles();
+  const [openModal, setOpenModal] = React.useState(false);
+  //for button group
   const [open, setOpen] = React.useState(false);
+  const anchorRef = React.useRef(null);
+  const [selectedIndex, setSelectedIndex] = React.useState(1);
+
+  const handleClickServiceProvider = () => {
+    console.info(`You clicked ${serviceProvider[selectedIndex]}`);
+  };
+
+  const handleMenuItemClick = (event, index) => {
+    setSelectedIndex(index);
+    setOpen(false);
+  };
+
+  const handleToggle = () => {
+    setOpen((prevOpen) => !prevOpen);
+  };
+
+  const handleCloseServiceProvider = (event) => {
+    if (anchorRef.current && anchorRef.current.contains(event.target)) {
+      return;
+    }
+
+    setOpen(false);
+  };
 
   const handleOpen = () => {
-    setOpen(true);
+    setOpenModal(true);
   };
 
   const handleClose = () => {
-    setOpen(false);
+    setOpenModal(false);
   };
   /* Used to format the movie object for action calls */
   let movie = {
@@ -282,10 +392,26 @@ function MovieCard({
   };
 
   const handleClickRemove = () => {
-    notWatchListAction(userid, movie, accessToken);
+    const notWatch = { movie_id: movie.movie_id, user_id: userid }
+    notWatchListAction(userid, notWatch, accessToken);
     setRemoved(true);
     handleClose();
+  };
+
+  const handleClickProviders = () => {
+    axiosWithAuth(accessToken)
+      .get(`${userid}/service-providers/${movie.movie_id}`)
+      .then(res => {
+        setServiceProvider(res.data)
+        console.log('data', res.data)
+      })
+      .catch(err => {
+        console.log(err)
+      });
+    setOpen((prevOpen) => !prevOpen);
+    // console.info(`You clicked ${serviceProvider[selectedIndex]}`);
   }
+
 
   const multiFunctions = () => {
     handleClose();
@@ -298,7 +424,7 @@ function MovieCard({
     console.log("number of ratings is " + numRatings.num);
     console.log("openalert");
   };
-
+  // console.log('sericelink', serviceLinks)
   return (
     <div className={classes.card}>
       <div className={classes.modalBtn} onClick={handleOpen}>
@@ -313,7 +439,7 @@ function MovieCard({
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
         className={classes.modal}
-        open={open}
+        open={openModal}
         onClose={handleClose}
         closeAfterTransition
         BackdropComponent={Backdrop}
@@ -321,20 +447,20 @@ function MovieCard({
           timeout: 500,
         }}
       >
-        <Fade in={open}>
+
+        <Fade in={openModal}>
           <div className={classes.paper}>
             <DialogTitle className={classes.title} onClose={handleClose}>
               <></>
             </DialogTitle>
             <div className={classes.movieInfoModal}>
-
               <img
                 className={classes.movieImgModal}
                 src={image}
                 alt="Random Movie poster as a placeholder."
               />
 
-              <div className={classes.movieContentDiv} >
+              <div className={classes.movieContentDiv}>
                 <CardContent className={classes.cardContentModal}>
                   <h1 className={classes.nameModal}> {name} </h1>
                   <p className={classes.year}>{year}</p>
@@ -369,15 +495,13 @@ function MovieCard({
                       <Button
                         onClick={handleClickRemove}
                         className={classes.watchList}
-                        disabled={
-                          removed || notInWatchlist ? true : false
-                        }
+                        disabled={removed || notInWatchlist ? true : false}
                         size="small"
                         color="primary"
                       >
                         {!removed && !notInWatchlist
-                            ? "Not Interested"
-                            : "Removed from Results"}
+                          ? "Not Interested"
+                          : "Removed from Results"}
                       </Button>
                     </CardActions>
                   ) : (
@@ -400,9 +524,9 @@ function MovieCard({
                     )}
                   </CardActions>
                 ) : (
-                  // </div>
-                  ""
-                )}
+                    // </div>
+                    ""
+                  )}
                 {page === "Onboarding" ? (
                   <Stars
                     className={classes.starsModal}
@@ -421,25 +545,110 @@ function MovieCard({
                     onClick={multiFunctions}
                   />
                 ) : (
-                  <Stars
-                    className={classes.starsModal}
-                    data-test="star"
-                    precision={0.5}
-                    size="large"
-                    emptyIcon={
-                      <StarBorderIcon
-                        fontSize="inherit"
-                        style={{ color: "#ffb400" }}
-                      />
-                    }
-                    name={name}
-                    value={rated ? rated : rating}
-                    onChange={handleChange}
-                    onClick={handleClose}
-                  />
-                )}
+                    <Stars
+                      className={classes.starsModal}
+                      data-test="star"
+                      precision={0.5}
+                      size="large"
+                      emptyIcon={
+                        <StarBorderIcon
+                          fontSize="inherit"
+                          style={{ color: "#ffb400" }}
+                        />
+                      }
+                      name={name}
+                      value={rated ? rated : rating}
+                      onChange={handleChange}
+                      onClick={handleClose}
+                    />
+                  )}
+                {/* {page !== 'watchlist' && page !== 'Onboarding' ? (
+                  <div className={classes.root}>
+                    <ExpansionPanel className={classes.expansionPanal}>
+                      <ExpansionPanelSummary
+                        expandIcon={<ExpandMoreIcon />}
+                        aria-controls="panel1a-content"
+                        id="panel1a-header"
+                        className={classes.expansionPanalSummary}
+                        onClick={handleClickProviders}
+                      >
+                        <Typography className={classes.heading}>Service Providers</Typography>
+                      </ExpansionPanelSummary>
+                      <div className={classes.serviceInfo}>
+                        {serviceProvider
+                          .map((serviceProviders) => {
+                            return (
+                              <div >
+                                <Link href={serviceProviders.link} className={classes.Link}>
+                                  <Button variant="outlined" className={classes.serviceBtn}>{serviceProviders.name}</Button>
+                                </Link>
+                              </div>
+                            )
+                          })}
+                      </div>
+                    </ExpansionPanel>
+                  </div>
+                ) : (
+                    ""
+                  )} */}
+                {page !== 'watchlist' && page !== 'Onboarding' ? (
+                  <Grid container direction="column" alignItems="center">
+                    <Grid item xs={12}>
+                      <ButtonGroup variant="contained" color="primary" ref={anchorRef} aria-label="split button">
+                        <Button className={classes.btnsProviders} onClick={handleClickProviders}>Service Providers</Button>
+                        <Button
+                          className={classes.btnsProviders}
+                          color="primary"
+                          size="small"
+                          aria-controls={open ? 'split-button-menu' : undefined}
+                          aria-expanded={open ? 'true' : undefined}
+                          aria-label="select merge strategy"
+                          aria-haspopup="menu"
+                          onClick={handleClickProviders}
+                        >
+                          <ArrowDropDownIcon />
+                        </Button>
+                      </ButtonGroup>
+                      <Popper open={open} anchorEl={anchorRef.current} role={undefined} transition disablePortal>
+                        {({ TransitionProps, placement }) => (
+                          <Grow
+                            {...TransitionProps}
+                            style={{
+                              transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom',
+                            }}
+                          >
+                            <Paper>
+                              <ClickAwayListener onClickAway={handleCloseServiceProvider}>
+                                <MenuList id="split-button-menu">
+                                  {serviceProvider
+                                    .map((serviceProviders, index) => {
+                                      return (
+                                        <MenuItem
+                                          key={serviceProvider}
+                                          disabled={index === 2}
+                                          selected={index === selectedIndex}
+                                          onClick={(event) => handleMenuItemClick(event, index)}
+                                        >
+                                          <Link href={serviceProviders.link} className={classes.Link}>
+                                            <Button variant="outlined" className={classes.serviceBtn}>{serviceProviders.name}</Button>
+                                          </Link>
+                                        </MenuItem>
+                                      )
+                                    })}
+                                </MenuList>
+                              </ClickAwayListener>
+                            </Paper>
+                          </Grow>
+                        )}
+                      </Popper>
+                    </Grid>
+                  </Grid>
+                ) : (
+                    ""
+                  )}
               </div>
             </div>
+
             {page !== "Onboarding" ? (
               <iframe
                 className={classes.trailerModal}
@@ -455,8 +664,8 @@ function MovieCard({
                 allowFullScreen
               ></iframe>
             ) : (
-              ""
-            )}
+                ""
+              )}
           </div>
         </Fade>
       </Modal>
@@ -472,9 +681,11 @@ const mapStateToProps = (state) => {
     watchlist: state.watchlist.movies,
     watchlistError: state.watchlist.error,
     ratings: state.rating.movies,
-    notwatchlist: state.notwatchlist.movies
+    notwatchlist: state.notwatchlist.movies,
   };
 };
-export default connect(mapStateToProps, { ratingAction, addToWatchlistAction, notWatchListAction })(
-  MovieCard
-);
+export default connect(mapStateToProps, {
+  ratingAction,
+  addToWatchlistAction,
+  notWatchListAction,
+})(MovieCard);

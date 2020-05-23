@@ -4,10 +4,13 @@ import { rating } from './ratingReducer';
 import { register } from './registerReducer';
 import { recommendations } from './recommendationReducer';
 import { upload } from './uploadReducer';
-import { filter } from './filterReducer'; 
+import { filter } from './filterReducer';
 import { watchlist } from './watchlistReducer';
 import { movie } from './movieReducer';
 import { notwatchlist } from './notWatchListReducer';
+import { serviceProvider } from './serviceProviderReducer';
+import { search } from "./searchReducer";
+import { landingPageReducer } from './landingPageReducer';
 
 export const reducer = combineReducers({
   login,
@@ -16,7 +19,12 @@ export const reducer = combineReducers({
   recommendations,
   upload,
   movie,
-  filter, 
+  filter,
   watchlist,
+  search,
   notwatchlist,
+  serviceProvider,
+  landingPageReducer
 });
+
+

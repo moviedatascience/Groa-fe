@@ -27,8 +27,8 @@ const useStyles = makeStyles((theme) => ({
   },
   movieCard: {
     "&:hover": {
-    boxShadow: '0px 0px 1px 1px black',
-    backgroundColor:'black',
+      boxShadow: "0px 0px 1px 1px black",
+      backgroundColor: "black",
     },
   },
 }));
@@ -41,9 +41,7 @@ function Watchlist({
   searchTerm,
   removeFromWatchlistAction,
   setFilter,
-  movies,
 }) {
-  // console.log('movies', movies)
   //OKTA AUTH
   const { authState } = useOktaAuth();
   const { accessToken } = authState;
@@ -58,7 +56,7 @@ function Watchlist({
     setFilter("");
     // Returns the users watchlist from the database
     getWatchlistAction(userid, accessToken);
-  }, [getWatchlistAction, userid, isDeleting, setFilter]);
+  }, [getWatchlistAction, userid, isDeleting, setFilter, accessToken]);
 
   function handleClick(id) {
     removeFromWatchlistAction(userid, id, accessToken);
@@ -78,12 +76,14 @@ function Watchlist({
           .filter((movie) =>
             searchTerm !== ""
               ? movie.primary_title
-                .toString()
-                .toLowerCase()
-                .includes(searchTerm.toLowerCase())
+                  .toString()
+                  .toLowerCase()
+                  .includes(searchTerm.toLowerCase())
               : true
           )
           .map((movie, index) => {
+            // console.log('in watchlist',movie.movie_id)
+
             let posterURI = movie.poster_url;
             let unsplashUrl =
               "https://source.unsplash.com/collection/1736993/500x650";
@@ -93,17 +93,19 @@ function Watchlist({
                 <MovieCard
                   key={index}
                   name={movie.primary_title}
+                  // movie_id={movie.movie_id}
                   year={movie.start_year}
                   trailer={movie.trailer_url}
                   description={movie.description}
                   genres={movie.genres}
                   page="watchlist"
+                  // provider={serviceProvider.data.provider}
                   image={
                     !posterURI ||
-                      posterURI === "None" ||
-                      posterURI === "No poster" ||
-                      posterURI === "No Poster" ||
-                      posterURI === "Not in table"
+                    posterURI === "None" ||
+                    posterURI === "No poster" ||
+                    posterURI === "No Poster" ||
+                    posterURI === "Not in table"
                       ? unsplashUrl
                       : moviePoster
                   }
