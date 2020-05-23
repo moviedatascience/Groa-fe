@@ -1,7 +1,13 @@
 import React, { useEffect, useState } from "react";
 //redux
 import { connect } from "react-redux";
-import { landingPageAction } from "../store/actions/index.js";
+import { 
+    horrorLandingAction,
+    comedyLandingAction,
+    dramaLandingAction,
+    romanceLandingAction,
+    staffLandingAction, 
+} from "../store/actions/index.js";
 
 import LandingMovieSlider from './LandingMovieSlider';
 import Box from '@material-ui/core/Box';
@@ -11,6 +17,7 @@ import LandingNavLinks from "./layout/nav-layouts/LandingNavLinks";
 import { makeStyles } from "@material-ui/core";
 import { withTheme } from "@material-ui/styles";
 import headerImg from '../img/watching-tv.png';
+
 
 
 
@@ -90,15 +97,35 @@ function Copyright() {
   }
 
 const LandingPage = ({
-        landingPageAction,
-        landingMovies,
-        landingMoviesRec,
+    //actions destructured from props
+        horrorLandingAction,
+        comedyLandingAction,
+        dramaLandingAction,
+        romanceLandingAction,
+        staffLandingAction,
+    //actions destructured from props
+        horrorMovies,
+        horrorMoviesRec,
+        comedyMovies,
+        comedyMoviesRec,
+        dramaMovies,
+        dramaMoviesRec,
+        romanceMovies,
+        romanceMoviesRec,
+        staffMovies,
+        staffMoviesRec,
+        isFetching,
+
     }) => {
     const [getRec, setGetRec] = useState(false);
     const styles = useStyles();
 
     useEffect(() => {
-        landingPageAction(36);            
+        horrorLandingAction();
+        comedyLandingAction();
+        dramaLandingAction();
+        romanceLandingAction();
+        staffLandingAction();            
     }, []);
 
     const toggleRec = () => {
@@ -126,20 +153,34 @@ const LandingPage = ({
                     </div>                    
                 </header>
                 <LandingMovieSlider 
-                    moviesRated={landingMovies}
-                    moviesRec={landingMoviesRec}
+                    moviesRated={horrorMovies}
+                    moviesRec={horrorMoviesRec}
                     category={"Horror"}
+                />
+
+                <LandingMovieSlider 
+                    moviesRated={comedyMovies}
+                    moviesRec={comedyMoviesRec}
+                    category={"Comedy"}
+                />
+
+                <LandingMovieSlider 
+                    moviesRated={dramaMovies}
+                    moviesRec={dramaMoviesRec}
+                    category={"Drama"}
+                />
+
+                <LandingMovieSlider 
+                    moviesRated={romanceMovies}
+                    moviesRec={romanceMoviesRec}
+                    category={"Romance"}
                 />
                 <LandingMovieSlider 
-                    moviesRated={landingMovies}
-                    moviesRec={landingMoviesRec}
-                    category={"Horror"}
+                    moviesRated={staffMovies}
+                    moviesRec={staffMoviesRec}
+                    category={"Staff"}
                 />
-                <LandingMovieSlider 
-                    moviesRated={landingMovies}
-                    moviesRec={landingMoviesRec}
-                    category={"Horror"}
-                />
+
             </div>            
         <Box mt={3}>
           <Copyright />
@@ -152,13 +193,25 @@ const mapStateToProps = (state) => {
 
     console.log("SSSSSSSSSSSSSSSSs", state)
     return {
-        landingMovies: state.landingPageReducer.landingMovies,
-        landingMoviesRec: state.landingPageReducer.landingMoviesRec,
+        horrorMovies: state.landingPageReducer.horrorMovies,
+        horrorMoviesRec: state.landingPageReducer.horrorMoviesRec,
+        comedyMovies: state.landingPageReducer.comedyMovies,
+        comedyMoviesRec: state.landingPageReducer.comedyMoviesRec,
+        dramaMovies: state.landingPageReducer.dramaMovies,
+        dramaMoviesRec: state.landingPageReducer.dramaMoviesRec,
+        romanceMovies: state.landingPageReducer.romanceMovies,
+        romanceMoviesRec: state.landingPageReducer.romanceMoviesRec,
+        staffMovies: state.landingPageReducer.staffMovies,
+        staffMoviesRec: state.landingPageReducer.staffMoviesRec,
         isFetching: state.isFetching,
         error: state.error,
     }
 }
 
 export default connect(mapStateToProps, {
-    landingPageAction,
+    horrorLandingAction,
+    comedyLandingAction,
+    dramaLandingAction,
+    romanceLandingAction,
+    staffLandingAction,
 })(LandingPage);

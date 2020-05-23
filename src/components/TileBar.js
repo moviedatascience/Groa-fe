@@ -4,10 +4,6 @@ import { connect } from "react-redux";
 import { getMoviesAction, setFilter, notWatchListAction } from "../store/actions/index.js";
 // Screen width util
 import widthFinder from "../utils/widthFinder.js";
-
-
-
-
 import StarBorderIcon from '@material-ui/icons/StarBorder';
 import { makeStyles } from "@material-ui/core/styles";
 import { red } from "@material-ui/core/colors";
@@ -55,8 +51,8 @@ const useStyles = makeStyles((theme) => ({
           display:"flex",
           justifyContent:"center",
           alignItems:"center",
-          backgroundColor: "rgba(0, 0, 0, 0.3)",
-          color:"white",
+          backgroundColor: "rgba(65, 236, 176, 1)",
+          color:"black",
           fontWeight:"900",
           border: "none",
           width: "50px",
@@ -69,7 +65,7 @@ const useStyles = makeStyles((theme) => ({
           cursor:"pointer",
           transitionDuration: ".2s",
           "&:hover": {
-             backgroundColor:"rgba(0, 0, 0, 0.6)",
+             backgroundColor:"rgba(65, 236, 176, .5)",
              color:"white",
              width: "8%",
              height:"100%",
@@ -84,8 +80,8 @@ const useStyles = makeStyles((theme) => ({
         display:"flex",
         justifyContent:"center",
         alignItems:"center",
-        backgroundColor: "rgba(0, 0, 0, 0.3)",
-        color:"white",
+        backgroundColor: "rgba(65, 236, 176, 1)",
+        color:"black",
         fontWeight:"900",
         border: "none",
         width: "50px",
@@ -98,7 +94,7 @@ const useStyles = makeStyles((theme) => ({
         cursor:"pointer",
         transitionDuration: ".2s",
         "&:hover": {
-           backgroundColor:"rgba(0, 0, 0, 0.6)",
+           backgroundColor:"rgba(65, 236, 176, .5)",
            color:"white",
            width: "8%",
            height:"100%",

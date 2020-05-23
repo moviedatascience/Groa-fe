@@ -125,7 +125,7 @@ function App() {
               <Route exact path="/:user_id/upload" component={DataUpload} />
               <Route exact path={["/", "/register"]} component={Register} />
               <Route path="/logout" component={Register} />
-              <Route path="/register" component={Register} />
+              {/* <Route exact path="/register" component={Register} /> */}
               {/* this could be a modal */}
               {/* <Route path="/congrats" component={Congrats} /> */}
               <SecureRoute exact path="/:user_id/ratings" component={Ratings} />
