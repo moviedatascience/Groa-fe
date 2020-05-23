@@ -4,21 +4,14 @@ import { connect } from "react-redux";
 import { landingPageAction } from "../store/actions/index.js";
 
 import LandingMovieSlider from './LandingMovieSlider';
-import TileBar from "./TileBar";
-import Picture3 from "../img/couch-popcorn.png";
 import Box from '@material-ui/core/Box';
 import { Link, useHistory } from "react-router-dom";
 import Typography from '@material-ui/core/Typography';
 import LandingNavLinks from "./layout/nav-layouts/LandingNavLinks";
 import { makeStyles } from "@material-ui/core";
 import { withTheme } from "@material-ui/styles";
-import Axios from 'axios';
-
-
-
-
 import headerImg from '../img/watching-tv.png';
-import axiosWithAuth from "../utils/axiosWithAuth";
+
 
 
 const useStyles = makeStyles((theme) => ({
@@ -51,13 +44,14 @@ const useStyles = makeStyles((theme) => ({
         },
         '& button':{
             margin: "5vh",
-            width:"30%",
+            width:"100%",
             height:"8vh",
             fontSize:"30px",
             color: "black",
             backgroundColor:"gold",
             borderRadius: "20px",
-            border:"none"
+            border:"none",
+            cursor:"pointer"
         },
         '& p':{
             fontSize:"20px",
@@ -104,7 +98,7 @@ const LandingPage = ({
     const styles = useStyles();
 
     useEffect(() => {
-        landingPageAction(39);            
+        landingPageAction(36);            
     }, []);
 
     const toggleRec = () => {
@@ -123,12 +117,24 @@ const LandingPage = ({
                        <h1>Welcome to Groa!</h1>
                        <p>The unbias movie recommendation platform!</p>
                        <p>For movie fans by movie fans!</p>
-                       <button>Get Started</button> 
+                       <Link to="/register">
+                       <button>Get Started</button>
+                       </Link>
                     </div>
                     <div>
                         <img src={headerImg} alt="groa"/>
                     </div>                    
                 </header>
+                <LandingMovieSlider 
+                    moviesRated={landingMovies}
+                    moviesRec={landingMoviesRec}
+                    category={"Horror"}
+                />
+                <LandingMovieSlider 
+                    moviesRated={landingMovies}
+                    moviesRec={landingMoviesRec}
+                    category={"Horror"}
+                />
                 <LandingMovieSlider 
                     moviesRated={landingMovies}
                     moviesRec={landingMoviesRec}

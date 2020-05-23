@@ -3,33 +3,37 @@ import { makeStyles } from "@material-ui/core";
 import { TileBar } from "./TileBar";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-
-
-// const responsive = {
-//   superLargeDesktop: {
-//     // the naming can be any, depends on you.
-//     breakpoint: { max: 4000, min: 3000 },
-//     items: 5
-//   },
-//   desktop: {
-//     breakpoint: { max: 3000, min: 1024 },
-//     items: 5
-//   },
-//   tablet: {
-//     breakpoint: { max: 1024, min: 464 },
-//     items: 3
-//   },
-//   mobile: {
-//     breakpoint: { max: 464, min: 0 },
-//     items: 2
-//   }
-// };
-
-
+import { Link, useHistory } from "react-router-dom";
+//styling for Landing Movie Slider Component
 const useStyles = makeStyles((theme) => ({
+    btnCont:{
+        display:"flex",
+        alignItems: "center",
+        justifyContent:"center",
+        transitionDuration: ".5s",
+        position: "relative"
+    },
     recBtn: {
-        margin: "auto",
-        width: "200px",
+        fontFamily: `"Work Sans", sans-serif`,
+        margin: "10px 0",
+        width: "300px",
+        height:"5vh",
+        fontSize:"18px",
+        color: "black",
+        backgroundColor:"rgba(65, 236, 176, 1)",
+        borderRadius: "20px",
+        border:"none",
+        display:"flex",
+        justifyContent:"center",
+        alignItems:"center",
+        cursor: "pointer",
+        transitionDuration: ".2s",
+        fontWeight:"900",
+    },
+    actionBtn: {
+        fontFamily: `"Work Sans", sans-serif`,
+        margin: "10px 0",
+        width: "300px",
         height:"5vh",
         fontSize:"18px",
         color: "black",
@@ -40,12 +44,17 @@ const useStyles = makeStyles((theme) => ({
         justifyContent:"center",
         alignItems:"center",
         cursor: "pointer",
+        transitionDuration: ".2s",
+        fontWeight:"900",
     },
     btnClose: {
+        fontFamily: `"Work Sans", sans-serif`,
+        position: "absolute",
+        right: "0",
         margin: "auto",
-        width: "200px",
+        width: "100px",
         height:"5vh",
-        fontSize:"18px",
+        fontSize:"20px",
         color: "white",
         backgroundColor:"red",
         borderRadius: "20px",
@@ -54,63 +63,13 @@ const useStyles = makeStyles((theme) => ({
         justifyContent:"center",
         alignItems:"center",
         cursor: "pointer",
+        transitionDuration: ".5s",
+    },
+    recMovies:{
+        backgroundColor:"rgba(125, 125, 125, 1)"
     },
 
-    // movieList: {
-    //     minWidth:'15%',
-    //     margin:'10px',
-    //   },
-    //   posterImg: {
-    //     width:'100%',
-    //   },
-    //   customArrow:{
-    //       display:"flex",
-    //       justifyContent:"center",
-    //       alignItems:"center",
-    //       backgroundColor: "rgba(0, 0, 0, 0.3)",
-    //       color:"white",
-    //       fontWeight:"900",
-    //       border: "none",
-    //       width: "50px",
-    //       height:"50px",
-    //       borderRadius:"50%",
-    //       position: "absolute",
-    //       right:"0",
-    //       padding: "0",
-    //       fontSize:"30px",
-    //       "&:hover": {
-    //          backgroundColor:"rgba(0, 0, 0, 0.6)",
-    //          color:"white",
-    //          width: "50px",
-    //          height:"95%",
-    //          borderRadius:"0" 
-    //       }
-    //   },
-    //   leftArrow:{
-    //     display:"flex",
-    //     justifyContent:"center",
-    //     alignItems:"center",
-    //     backgroundColor: "rgba(0, 0, 0, 0.3)",
-    //     color:"white",
-    //     fontWeight:"900",
-    //     border: "none",
-    //     width: "50px",
-    //     height:"50px",
-    //     borderRadius:"50%",
-    //     position: "absolute",
-    //     left:"0",
-    //     padding: "0",
-    //     fontSize:"30px",
-    //     "&:hover": {
-    //        backgroundColor:"rgba(0, 0, 0, 0.6)",
-    //        color:"white",
-    //        width: "50px",
-    //        height:"95%",
-    //        borderRadius:"0" 
-    //     }
-    // },
-}) ); 
-
+})); 
 
 const LandingMovieSlider = ({moviesRated, moviesRec, category}) => {
     const [getRec, setGetRec] = useState(false);
@@ -124,69 +83,36 @@ const LandingMovieSlider = ({moviesRated, moviesRec, category}) => {
         <section>
             <h3>Rate {category} Movies</h3>
             <TileBar movies={moviesRated} />
-            <div className={!getRec ? styles.recBtn : styles.btnClose} onClick={toggleRec}>
+            <div className={styles.btnCont}>
+                <div >
                 {!getRec ? 
-                <p>Show Recommendations</p>
-                : 
-                <p>X Close </p>}        
-            </div>
+                    <div className={styles.recBtn} onClick={toggleRec}>Show Recommendations</div>
+                    : 
+                    <Link to="/register" style={{ textDecoration: 'none' }}>
+                        <div className={styles.actionBtn}>Get Your Own</div>
+                    </Link>
+                    }        
+                </div>
+                {getRec ?
+                    <div className={styles.btnClose} onClick={toggleRec}>
+                        X Close
+                    </div>
+                    :
+                    null
+                }
+            </div>            
 
-            {getRec ? 
-            <TileBar 
-                movies={moviesRec}
-            /> 
+            {getRec ?
+            <div className={styles.recMovies}>
+                <TileBar 
+                    movies={moviesRec}
+                />
+            </div> 
             :
             null
             }
-            {/* <Carousel
-                swipeable={true}
-                draggable={true}
-                responsive={responsive}
-                keyBoardControl={true}
-                transitionDuration={200}
-                containerClass="carousel-container"
-                removeArrowOnDeviceType={["tablet", "mobile"]}
-                itemClass="carousel-item-padding-10-px"
-                customLeftArrow={<CustomLeftArrow />}
-                customRightArrow={<CustomRightArrow />}
-            >
-
-                {moviesRec.map(tile => {
-                    let posterURI = tile.poster_url;
-                    let moviePoster = `https://image.tmdb.org/t/p/w500${posterURI}?api_key=${process.env.REACT_APP_TMDB_API_KEY}`;
-                    let movieTitle = tile.title
-
-                    return (              
-                    <div className={styles.movieList}>
-                    <img src={moviePoster} alt={movieTitle} className={styles.posterImg} /> 
-                    </div>              
-                    )
-                })}
-            </Carousel> */}
-
         </section>
     )
 }
-
-// const CustomRightArrow = ({ onClick, ...rest }) => {
-//     const styles = useStyles();
-//     const {
-//       onMove,
-//       carouselState: { currentSlide, deviceType } 
-//     } = rest;
-//     // onMove means if dragging or swiping in progress.
-//     return <button className={styles.customArrow} onClick={() => onClick()}> > </button>;
-//   };
-
-// const CustomLeftArrow = ({ onClick, ...rest }) => {
-// const styles = useStyles();
-// const {
-//     onMove,
-//     carouselState: { currentSlide, deviceType } 
-// } = rest;
-// // onMove means if dragging or swiping in progress.
-// return <button className={styles.leftArrow} onClick={() => onClick()}> &#60; </button>;
-// };
-
 
 export default LandingMovieSlider;

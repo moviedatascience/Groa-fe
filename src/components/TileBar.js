@@ -5,11 +5,8 @@ import { getMoviesAction, setFilter, notWatchListAction } from "../store/actions
 // Screen width util
 import widthFinder from "../utils/widthFinder.js";
 
-// children components
-import MovieCard from "./movies/MovieCard.js";
-import LoadingScreen from "./layout/LoadingScreen.js";
-//for grid
-import { GridList,GridListTileBar,GridListTile, IconButton } from "@material-ui/core/";
+
+
 
 import StarBorderIcon from '@material-ui/icons/StarBorder';
 import { makeStyles } from "@material-ui/core/styles";
@@ -22,16 +19,15 @@ import 'react-multi-carousel/lib/styles.css';
 const useStyles = makeStyles((theme) => ({
     '@global': {
         '*::-webkit-scrollbar': {
-          width: '0.4em'
+          width: '0.9em',
+          backgroundColor:"rgba(0, 0, 0, 0.71)"
         },
         '*::-webkit-scrollbar-track': {
           '-webkit-box-shadow': 'inset 0 0 6px rgba(0,0,0,0.00)'
         },
         '*::-webkit-scrollbar-thumb': {
-          backgroundColor: 'rgba(244, 246, 244, 0.86)',
-          outline: '1px solid slategrey',
+          backgroundColor: 'rgba(65, 236, 176, 1)',
           borderRadius: '10px',
-          height: '5px'
         }
       },
       cont: {
@@ -70,12 +66,18 @@ const useStyles = makeStyles((theme) => ({
           right:"0",
           padding: "0",
           fontSize:"30px",
+          cursor:"pointer",
+          transitionDuration: ".2s",
           "&:hover": {
              backgroundColor:"rgba(0, 0, 0, 0.6)",
              color:"white",
-             width: "50px",
-             height:"95%",
-             borderRadius:"0" 
+             width: "8%",
+             height:"100%",
+             borderRadius:"50% 0 0 50%",
+             fontSize:"40px",
+          },
+          "&:focus":{
+            outline:"none"
           }
       },
       leftArrow:{
@@ -93,12 +95,18 @@ const useStyles = makeStyles((theme) => ({
         left:"0",
         padding: "0",
         fontSize:"30px",
+        cursor:"pointer",
+        transitionDuration: ".2s",
         "&:hover": {
            backgroundColor:"rgba(0, 0, 0, 0.6)",
            color:"white",
-           width: "50px",
-           height:"95%",
-           borderRadius:"0" 
+           width: "8%",
+           height:"100%",
+           borderRadius:"0 50% 50% 0",
+           fontSize:"40px",  
+        },
+        "&:focus":{
+          outline:"none"
         }
     },
 
@@ -108,11 +116,11 @@ const responsive = {
   superLargeDesktop: {
     // the naming can be any, depends on you.
     breakpoint: { max: 4000, min: 3000 },
-    items: 5
+    items: 6
   },
   desktop: {
     breakpoint: { max: 3000, min: 1024 },
-    items: 5
+    items: 6
   },
   tablet: {
     breakpoint: { max: 1024, min: 464 },
