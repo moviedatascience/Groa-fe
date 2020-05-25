@@ -10,7 +10,7 @@ export function notWatchListAction(id, movie, token) {
             type: ADDING_NOTWATCHLIST_START,
         });
         axiosWithAuth(token)
-        .post(`/notwatchlist`, id, movie)
+        .post(`/${id}/notwatchlist`, movie)
         .then((res) => {
             console.log('this is the res of notwatchlist', res)
             dispatch({
