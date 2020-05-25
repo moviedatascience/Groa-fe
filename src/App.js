@@ -84,7 +84,7 @@ function App() {
             <div className="App" data-test={ifDev("App-component")}>
               {/* this is fine as a route because all of the routes that will have display their component will only be avalible on a private route */}
               <Route path="/implicit/callback" component={LoginCallback} />
-              <Route path="/landingpage" component={LandingPage} />
+              <Route exact path={["/", "/landingpage"]} component={LandingPage} />
               <Route
                 exact
                 path={[
@@ -123,7 +123,7 @@ function App() {
               />
               <Route path="/privacy-policy" component={PrivacyPolicy} />
               <Route exact path="/:user_id/upload" component={DataUpload} />
-              <Route exact path={["/", "/register"]} component={Register} />
+              <Route exact path="/register" component={Register} />
               <Route path="/logout" component={Register} />
               {/* <Route exact path="/register" component={Register} /> */}
               {/* this could be a modal */}

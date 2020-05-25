@@ -6,7 +6,8 @@ import {
     comedyLandingAction,
     dramaLandingAction,
     romanceLandingAction,
-    staffLandingAction, 
+    staffLandingAction,
+    loginAction 
 } from "../store/actions/index.js";
 
 import LandingMovieSlider from './LandingMovieSlider';
@@ -18,6 +19,7 @@ import { makeStyles } from "@material-ui/core";
 import { withTheme } from "@material-ui/styles";
 import headerImg from '../img/watching-tv.png';
 
+import { useOktaAuth } from "@okta/okta-react";
 
 
 
@@ -29,7 +31,6 @@ const useStyles = makeStyles((theme) => ({
         color: "white"
     },
     jumbotron: {
-        // border: "2px solid white",
         height: "90vh",
         display: "flex",
         flexDirection: "row",
@@ -40,7 +41,11 @@ const useStyles = makeStyles((theme) => ({
         },
         '& img':{
             width:"100%"
-        }
+        },
+        ['@media (max-width:500px)']: { 
+            display: "flex",
+            flexDirection: "column",
+          }
     },
     title: {
         width: "50%",
@@ -58,11 +63,19 @@ const useStyles = makeStyles((theme) => ({
             backgroundColor:"gold",
             borderRadius: "20px",
             border:"none",
-            cursor:"pointer"
+            cursor:"pointer",
+            ['@media (max-width:500px)']: {
+                width: "100%",
+                margin:"5vh auto"
+             }
         },
         '& p':{
             fontSize:"20px",
-        }
+        },
+        ['@media (max-width:500px)']: {
+            width: "100%",
+            textAlign:"center"
+          }
 
     },
     recBtn: {
@@ -103,7 +116,8 @@ const LandingPage = ({
         dramaLandingAction,
         romanceLandingAction,
         staffLandingAction,
-    //actions destructured from props
+        loginAction,
+    //state destructured from props
         horrorMovies,
         horrorMoviesRec,
         comedyMovies,
@@ -117,8 +131,33 @@ const LandingPage = ({
         isFetching,
 
     }) => {
+    const history = useHistory();
+    const { authState, authService } = useOktaAuth();
+    const login = async () => authService.login("/");
     const [getRec, setGetRec] = useState(false);
     const styles = useStyles();
+
+
+    useEffect(() => {
+        //Auth URL redirect from facebook contains #id_token, if exist login() will authenticate the user
+        if (window.location.href.indexOf("#id_token") > -1) {
+          login();
+        }
+    
+        if (authState.isAuthenticated === true) {
+          authService
+            .getUser()
+            .then((info) => {
+              loginAction(authState.accessToken, info.sub, history);
+              console.log("checking authentication");
+            })
+            .catch((err) =>
+              console.log("Error fetching User info in UseEffect", err)
+            );
+        }
+
+        console.log("HHHHHHHHHHHHHHHHHHHHHHHHHHHH",authState)
+      }, [authState, authService]);
 
     useEffect(() => {
         horrorLandingAction();
@@ -127,10 +166,6 @@ const LandingPage = ({
         romanceLandingAction();
         staffLandingAction();            
     }, []);
-
-    const toggleRec = () => {
-        setGetRec(!getRec);
-    }
 
     return (
         <div>            
@@ -155,30 +190,30 @@ const LandingPage = ({
                 <LandingMovieSlider 
                     moviesRated={horrorMovies}
                     moviesRec={horrorMoviesRec}
-                    category={"Horror"}
+                    heading={"Horror"}
                 />
 
                 <LandingMovieSlider 
                     moviesRated={comedyMovies}
                     moviesRec={comedyMoviesRec}
-                    category={"Comedy"}
+                    heading={"Comedy"}
                 />
 
                 <LandingMovieSlider 
                     moviesRated={dramaMovies}
                     moviesRec={dramaMoviesRec}
-                    category={"Drama"}
+                    heading={"Drama"}
                 />
 
                 <LandingMovieSlider 
                     moviesRated={romanceMovies}
                     moviesRec={romanceMoviesRec}
-                    category={"Romance"}
+                    heading={"Romance"}
                 />
                 <LandingMovieSlider 
                     moviesRated={staffMovies}
                     moviesRec={staffMoviesRec}
-                    category={"Staff"}
+                    heading={"Staff's Favorite Movies"}
                 />
 
             </div>            
@@ -190,9 +225,10 @@ const LandingPage = ({
   };
 
 const mapStateToProps = (state) => {
-
-    console.log("SSSSSSSSSSSSSSSSs", state)
     return {
+        registerSuccess: state.register.success,
+        userid: state.login.userid,
+        errorStatus: state.register.error,
         horrorMovies: state.landingPageReducer.horrorMovies,
         horrorMoviesRec: state.landingPageReducer.horrorMoviesRec,
         comedyMovies: state.landingPageReducer.comedyMovies,
@@ -214,4 +250,5 @@ export default connect(mapStateToProps, {
     dramaLandingAction,
     romanceLandingAction,
     staffLandingAction,
+    loginAction,
 })(LandingPage);
