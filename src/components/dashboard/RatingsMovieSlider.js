@@ -88,6 +88,9 @@ const useStyles = makeStyles((theme) => ({
   titles: {
     fontSize: "1.5rem",
   },
+  subTitles: {
+    textAlign: "center",
+  },
 }));
 
 const LandingMovieSlider = ({ movieRatings, heading }) => {
@@ -102,13 +105,9 @@ const LandingMovieSlider = ({ movieRatings, heading }) => {
           <RatingsTileBar movies={movieRatings} />
         </>
       ) : (
-        <ReactLoading
-          className={styles.loading}
-          type={"spinningBubbles"}
-          color={"#00E6BC"}
-          height={"150px"}
-          width={"150px"}
-        />
+        <h3 className={styles.subTitles}>
+          Movie of this star rating have not been rated yet
+        </h3>
       )}
     </section>
   );
