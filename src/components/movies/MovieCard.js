@@ -229,7 +229,7 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "space-evenly",
   },
   trailerModal: {
-    marginTop: "10%",
+    marginTop: "5%",
     padding: "0 1.5rem",
   },
   // gridProvider: {
@@ -240,7 +240,7 @@ const useStyles = makeStyles((theme) => ({
   ExpansionRoot: {
    margin:'auto',
   //  backgroundColor:'#00B392',
-padding:'0 10%',
+padding:'0 15%',
   },
   btnsProviders: {
     backgroundColor: "#212120",
@@ -263,6 +263,9 @@ padding:'0 10%',
   },
   Link: {
     textDecoration: "none",
+    "&:hover": {
+      textDecoration: "none",
+    },
   },
   serviceBtn: {
     textDecoration: 'none',
