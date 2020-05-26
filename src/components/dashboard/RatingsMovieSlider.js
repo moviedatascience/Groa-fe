@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { makeStyles } from "@material-ui/core";
-import { TileBar } from "./TileBar";
+import { RatingsTileBar } from "./RatingsTileBar";
 import ReactLoading from "react-loading";
 import "react-multi-carousel/lib/styles.css";
-import { Link, useHistory } from "react-router-dom";
+import Rating from "@material-ui/lab/Rating";
 //styling for Landing Movie Slider Component
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "center",
     transitionDuration: ".5s",
     position: "relative",
-    ["@media (max-width:500px)"]: {
+    "@media (max-width:500px)": {
       width: "100%",
     },
   },
@@ -52,7 +52,7 @@ const useStyles = makeStyles((theme) => ({
     cursor: "pointer",
     transitionDuration: ".2s",
     fontWeight: "900",
-    ["@media (max-width:500px)"]: {
+    "@media (max-width:500px)": {
       width: "100%",
       margin: "2vh auto",
     },
@@ -74,7 +74,7 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
     cursor: "pointer",
     transitionDuration: ".5s",
-    ["@media (max-width:500px)"]: {
+    "@media (max-width:500px)": {
       width: "20%",
       fontSize: "12px",
     },
@@ -85,47 +85,21 @@ const useStyles = makeStyles((theme) => ({
   loading: {
     margin: "auto",
   },
+  titles: {
+    fontSize: "1.5rem",
+  },
 }));
 
-const LandingMovieSlider = ({ moviesRated, moviesRec, heading }) => {
-  const [getRec, setGetRec] = useState(false);
+const LandingMovieSlider = ({ movieRatings, heading }) => {
   const styles = useStyles();
-
-  const toggleRec = () => {
-    setGetRec(!getRec);
-  };
 
   return (
     <section className={styles.container}>
-      <h3> {heading} </h3>
+      <h1 className={styles.titles}> {heading} </h1>
 
-      {moviesRated.length > 1 ? (
+      {movieRatings.length > 1 ? (
         <>
-          <TileBar movies={moviesRated} />
-          <div className={styles.btnCont}>
-            <div>
-              {!getRec ? (
-                <div className={styles.recBtn} onClick={toggleRec}>
-                  Show Recommendations
-                </div>
-              ) : (
-                <Link to="/register" style={{ textDecoration: "none" }}>
-                  <div className={styles.actionBtn}>Get Your Own</div>
-                </Link>
-              )}
-            </div>
-            {getRec ? (
-              <div className={styles.btnClose} onClick={toggleRec}>
-                X Close
-              </div>
-            ) : null}
-          </div>
-
-          {getRec ? (
-            <div className={styles.recMovies}>
-              <TileBar movies={moviesRec} />
-            </div>
-          ) : null}
+          <RatingsTileBar movies={movieRatings} />
         </>
       ) : (
         <ReactLoading
