@@ -415,7 +415,6 @@ function MovieCard({
     const notWatch = { movie_id: movie.movie_id, user_id: userid };
     notWatchListAction(userid, notWatch, accessToken);
     setRemoved(true);
-    handleClose();
   };
 
   const handleClickProviders = () => {
@@ -616,96 +615,8 @@ function MovieCard({
                 ) : (
                     ""
                   )}
-                {/* {page !== 'watchlist' && page !== 'Onboarding' ? (
-                  <Grid container direction="column" alignItems="center">
-                    <Grid item xs={12}>
-                      <ButtonGroup
-                        variant="contained"
-                        color="primary"
-                        ref={anchorRef}
-                        aria-label="split button"
-                      >
-                        <Button
-                          className={classes.btnsProviders}
-                          onClick={handleClickProviders}
-                        >
-                          Service Providers
-                        </Button>
-                        <Button
-                          className={classes.btnsProviders}
-                          color="primary"
-                          size="small"
-                          aria-controls={open ? "split-button-menu" : undefined}
-                          aria-expanded={open ? "true" : undefined}
-                          aria-label="select merge strategy"
-                          aria-haspopup="menu"
-                          onClick={handleClickProviders}
-                        >
-                          <ArrowDropDownIcon />
-                        </Button>
-                      </ButtonGroup>
-                      <Popper
-                        open={open}
-                        anchorEl={anchorRef.current}
-                        role={undefined}
-                        transition
-                        disablePortal
-                      >
-                        {({ TransitionProps, placement }) => (
-                          <Grow
-                            {...TransitionProps}
-                            style={{
-                              transformOrigin:
-                                placement === "bottom"
-                                  ? "center top"
-                                  : "center bottom",
-                            }}
-                          >
-                            <Paper>
-                              <ClickAwayListener
-                                onClickAway={handleCloseServiceProvider}
-                              >
-                                <MenuList id="split-button-menu">
-                                  {serviceProvider.map(
-                                    (serviceProviders, index) => {
-                                      return (
-                                        <MenuItem
-                                          key={serviceProvider}
-                                          disabled={index === 2}
-                                          selected={index === selectedIndex}
-                                          onClick={(event) =>
-                                            handleMenuItemClick(event, index)
-                                          }
-                                        >
-                                          <Link
-                                            href={serviceProviders.link}
-                                            className={classes.Link}
-                                          >
-                                            <Button
-                                              variant="outlined"
-                                              className={classes.serviceBtn}
-                                            >
-                                              {serviceProviders.name}
-                                            </Button>
-                                          </Link>
-                                        </MenuItem>
-                                      );
-                                    }
-                                  )}
-                                </MenuList>
-                              </ClickAwayListener>
-                            </Paper>
-                          </Grow>
-                        )}
-                      </Popper>
-                    </Grid>
-                  </Grid>
-                ) : (
-                    ""
-                  )} */}
               </div>
             </div>
-
             {page !== "Onboarding" ? (
               <iframe
                 className={classes.trailerModal}
@@ -730,7 +641,6 @@ function MovieCard({
   );
 }
 const mapStateToProps = (state) => {
-  // console.log('this is the res of notwatchlist', state)
 
   return {
     userid: state.login.userid,
