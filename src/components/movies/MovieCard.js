@@ -237,9 +237,10 @@ const useStyles = makeStyles((theme) => ({
   // margin: 'auto',
   //   backgroundColor: '#212120',
   // },
-  root: {
-    // dislay:'flex',
-    // justifyContent:'center',
+  ExpansionRoot: {
+   margin:'auto',
+  //  backgroundColor:'#00B392',
+padding:'0 10%',
   },
   btnsProviders: {
     backgroundColor: "#212120",
@@ -249,15 +250,13 @@ const useStyles = makeStyles((theme) => ({
     dislay: 'flex',
     justifyContent: 'center',
     margin: 'auto',
-    width: '80%',
-    backgroundColor: '#212120',
+    // width: '80%',
+    background: "rgb(23, 23, 23, .96)",
+    boxShadow: theme.shadows[5],
+   
   },
   expansionPanalSummary: {
-    backgroundColor: 'white',
     margin: 'auto',
-    width: '80%',
-    backgroundColor: '#212120',
-
   },
   serviceInfo: {
     textAlign: 'center',
@@ -498,13 +497,13 @@ function MovieCard({
                         {inRatings || yourRating
                           ? "Your rating:"
                           : !added && !inWatchlist
-                          ? "Add to watchlist"
-                          : "In your watchlist"}
+                            ? "Add to watchlist"
+                            : "In your watchlist"}
                       </Button>
                     </CardActions>
                   ) : (
-                    ""
-                  )}
+                      ""
+                    )}
 
                   {page === "Recommendations" ? (
                     <CardActions className={classes.cardActionsModal}>
@@ -521,8 +520,8 @@ function MovieCard({
                       </Button>
                     </CardActions>
                   ) : (
-                    ""
-                  )}
+                      ""
+                    )}
                 </div>
                 {page === "watchlist" ? (
                   // <div key={movie_id} onClick={() => setDeleteMode(!deleteMode)}>
@@ -540,9 +539,9 @@ function MovieCard({
                     )}
                   </CardActions>
                 ) : (
-                  // </div>
-                  ""
-                )}
+                    // </div>
+                    ""
+                  )}
                 {page === "Onboarding" ? (
                   <Box
                     className={classes.starRootOnboarding}
@@ -586,7 +585,7 @@ function MovieCard({
                     </Box>
                   )}
                 {page !== 'watchlist' && page !== 'Onboarding' ? (
-                  <div className={classes.root}>
+                  <div className={classes.ExpansionRoot}>
                     <ExpansionPanel className={classes.expansionPanal}>
                       <ExpansionPanelSummary
                         expandIcon={<ExpandMoreIcon />}
@@ -602,7 +601,7 @@ function MovieCard({
                           .map((serviceProviders) => {
                             return (
                               <div >
-                                <Link href={serviceProviders.link} className={classes.Link}>
+                                <Link href={serviceProviders.link} className={classes.Link} target="_blank">
                                   <Button variant="outlined" className={classes.serviceBtn}>{serviceProviders.name}</Button>
                                 </Link>
                               </div>
@@ -719,8 +718,8 @@ function MovieCard({
                 allowFullScreen
               ></iframe>
             ) : (
-              ""
-            )}
+                ""
+              )}
           </div>
         </Fade>
       </Modal>
