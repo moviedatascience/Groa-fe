@@ -176,9 +176,9 @@ const LandingPage = ({
 
                 <header className={styles.jumbotron}>
                     <div className={styles.title}>
-                       <h1>Welcome to Groa!</h1>
-                       <p>The unbias movie recommendation platform!</p>
-                       <p>For movie fans by movie fans!</p>
+                       <h1>Welcome to Gróa</h1>
+                       <p>An individualized movie discovery platform.</p>
+                       <p>View the lists below to experiment with the recommendation engine or make an account to start your journey.</p>
                        <Link to="/register">
                        <button>Get Started</button>
                        </Link>
