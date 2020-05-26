@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const baseURL = process.env.REACT_APP_BASEURL || 'http://localhost:8080/api/users'
+const baseURL = process.env.REACT_APP_BASEURL
 
 const axiosWithAuth = (accessToken) => {
 
@@ -8,7 +8,7 @@ const axiosWithAuth = (accessToken) => {
         headers: {
             Authorization: `Bearer ${accessToken}`
         },
-        baseURL: baseURL
+        baseURL: 'http://localhost:8080/api/users'
     })
 }
 export default axiosWithAuth;

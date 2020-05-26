@@ -133,7 +133,7 @@ const LandingPage = ({
     }) => {
     const history = useHistory();
     const { authState, authService } = useOktaAuth();
-    const login = async () => authService.login("/");
+    const login = async () => authService.login("/register");
     const [getRec, setGetRec] = useState(false);
     const styles = useStyles();
 
@@ -155,8 +155,6 @@ const LandingPage = ({
               console.log("Error fetching User info in UseEffect", err)
             );
         }
-
-        console.log("HHHHHHHHHHHHHHHHHHHHHHHHHHHH",authState)
       }, [authState, authService]);
 
     useEffect(() => {
@@ -177,7 +175,7 @@ const LandingPage = ({
                 <header className={styles.jumbotron}>
                     <div className={styles.title}>
                        <h1>Welcome to Groa!</h1>
-                       <p>The unbias movie recommendation platform!</p>
+                       <p>The unbiased movie recommendation platform!</p>
                        <p>For movie fans by movie fans!</p>
                        <Link to="/register">
                        <button>Get Started</button>

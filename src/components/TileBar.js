@@ -1,16 +1,7 @@
-import React, { useState, useEffect } from "react";
-// tools
-import { connect } from "react-redux";
-import { getMoviesAction, setFilter, notWatchListAction } from "../store/actions/index.js";
-// Screen width util
-import widthFinder from "../utils/widthFinder.js";
-import StarBorderIcon from '@material-ui/icons/StarBorder';
+import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { red } from "@material-ui/core/colors";
-
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
-
 
 const useStyles = makeStyles((theme) => ({
     '@global': {
@@ -39,13 +30,11 @@ const useStyles = makeStyles((theme) => ({
       },
       posterImg: {
         width:'100%',
+        objectFit:"contain",
       },
       movieList: {
         minWidth:'15%',
         margin:'10px',
-      },
-      posterImg: {
-        width:'100%',
       },
       customArrow:{
           display:"flex",
@@ -105,6 +94,11 @@ const useStyles = makeStyles((theme) => ({
           outline:"none"
         }
     },
+    name: {
+      fontSize: "15px",
+      textAlign: "center",
+      paddingBottom: "5%",
+    },
 
   }));
 
@@ -112,18 +106,22 @@ const responsive = {
   superLargeDesktop: {
     // the naming can be any, depends on you.
     breakpoint: { max: 4000, min: 3000 },
-    items: 6
+    items: 6,
+    slidesToSlide: 6,
   },
   desktop: {
     breakpoint: { max: 3000, min: 1024 },
-    items: 6
+    items: 6,
+    slidesToSlide: 6,
   },
   tablet: {
-    breakpoint: { max: 1024, min: 500 },
-    items: 4
+    breakpoint: { max: 800, min: 500 },
+    items: 4,
+    slidesToSlide: 4,
+
   },
   mobile: {
-    breakpoint: { max: 464, min: 0 },
+    breakpoint: { max: 500, min: 0 },
     items: 2
   }
 };
@@ -137,7 +135,7 @@ export const TileBar = ({movies}) => {
           draggable={true}
           responsive={responsive}
           keyBoardControl={true}
-          transitionDuration={200}
+          transitionDuration={800}
           containerClass="carousel-container"
           removeArrowOnDeviceType={["tablet", "mobile"]}
           itemClass="carousel-item-padding-10-px"
@@ -151,15 +149,20 @@ export const TileBar = ({movies}) => {
               let movieTitle = tile.title
 
               return (              
-              <div className={styles.movieList}>
-              <img src={moviePoster} alt={movieTitle} className={styles.posterImg} /> 
+              <div className={styles.movieList} key={tile.movie_id}>
+                <img 
+                  src={moviePoster} 
+                  alt={movieTitle} 
+                  className={styles.posterImg} />
+                  <div>
+                    <p className={styles.name}>{movieTitle}</p>
+                  </div>  
               </div>              
               )
           })}
         </Carousel>
     )
 }
-
 
 const CustomRightArrow = ({ onClick, ...rest }) => {
   const styles = useStyles();
