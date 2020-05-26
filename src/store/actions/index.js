@@ -13,6 +13,13 @@ import { setFilter } from "./filterActions.js";
 import { notWatchListAction } from './notWatchListAction.js';
 import { serviceProviderAction } from './serviceProviderAction.js';
 import { searchAction } from "./searchAction.js";
+import { 
+  horrorLandingAction,
+  comedyLandingAction,
+  dramaLandingAction,
+  romanceLandingAction,
+  staffLandingAction 
+ } from "./landingPageAction";
 
 export {
   loginAction,
@@ -30,4 +37,9 @@ export {
   notWatchListAction,
   serviceProviderAction,
   searchAction,
+  horrorLandingAction,
+  comedyLandingAction,
+  dramaLandingAction,
+  romanceLandingAction,
+  staffLandingAction 
 };

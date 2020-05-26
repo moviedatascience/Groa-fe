@@ -10,6 +10,7 @@ import { movie } from './movieReducer';
 import { notwatchlist } from './notWatchListReducer';
 import { serviceProvider } from './serviceProviderReducer';
 import { search } from "./searchReducer";
+import { landingPageReducer } from './landingPageReducer';
 
 export const reducer = combineReducers({
   login,
@@ -23,6 +24,7 @@ export const reducer = combineReducers({
   search,
   notwatchlist,
   serviceProvider,
+  landingPageReducer
 });
 
 
