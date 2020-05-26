@@ -23,6 +23,12 @@ import { useOktaAuth } from "@okta/okta-react/dist/OktaContext";
 import { Redirect } from "react-router";
 
 const useStyles = makeStyles((theme) => ({
+  Title: {
+    fontSize: "2rem",
+    textAlign: "center",
+    color:'white',
+    paddingTop:'2%',
+  },
   cardGrid: {
     paddingTop: theme.spacing(4),
     paddingBottom: theme.spacing(4),
@@ -30,10 +36,9 @@ const useStyles = makeStyles((theme) => ({
     paddingLeft: theme.spacing(1),
   },
   movieCard: {
-    color: "white",
+    border: '1px solid black',
     "&:hover": {
-      boxShadow: "0px 0px 2px 2px black",
-      backgroundColor: "black",
+      transform: 'scale(1.1)',
     },
   },
 }));
@@ -85,6 +90,8 @@ function Onboarding({
   else if (numRatings.num >= 13) return <Redirect to="postonboarding" />;
   else
     return (
+      <>
+     <h1 className={classes.Title}> Rate Movies to Get Personalized Recommendations </h1>
       <div>
         {isSearching ? (
           <GridList
@@ -209,6 +216,7 @@ function Onboarding({
           </Alert>
         </Snackbar>
       </div>
+      </>
     );
 }
 

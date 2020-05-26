@@ -18,6 +18,10 @@ import { makeStyles } from "@material-ui/core/styles";
 import { useOktaAuth } from "@okta/okta-react/dist/OktaContext";
 
 const useStyles = makeStyles((theme) => ({
+  Title: {
+    fontSize: "3rem",
+    textAlign: "center",
+  },
   cardGrid: {
     paddingTop: theme.spacing(4),
     paddingBottom: theme.spacing(4),
@@ -25,9 +29,9 @@ const useStyles = makeStyles((theme) => ({
     paddingLeft: theme.spacing(1),
   },
   movieCard: {
+    border: '1px solid black',
     "&:hover": {
-      boxShadow: "0px 0px 2px 2px black",
-      backgroundColor: "black",
+      transform: 'scale(1.1)',
     },
   },
 }));
@@ -70,6 +74,7 @@ function Explore({
   else
     return (
       <>
+        <h1 className={classes.Title}>Search for Your Favorite Movies</h1>
         {isSearching ? (
           <GridList
             className={classes.cardGrid}
