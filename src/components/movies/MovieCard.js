@@ -229,7 +229,7 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "space-evenly",
   },
   trailerModal: {
-    marginTop: "5%",
+    margin: "3% 0",
     padding: "0 1.5rem",
   },
   // gridProvider: {
