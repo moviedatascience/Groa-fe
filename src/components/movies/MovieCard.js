@@ -62,37 +62,23 @@ const DialogTitle = withStyles(styles)((props) => {
 });
 
 const useStyles = makeStyles((theme) => ({
-  heading: {
-    fontSize: theme.typography.pxToRem(15),
-    fontWeight: theme.typography.fontWeightRegular,
-  },
   nameModal: {
     fontSize: "25px",
     textAlign: "center",
   },
   cardContent: {
     height: "100%",
-    },
+  },
   movieImg: {
     width: "100%",
     height: "375px",
     borderRadius: "11px",
     objectFit: "contain",
-    // position:'relative',
-    // top:'-25px',
-    // left:'-35px',
-    // width:'500px',
-    // height:'auto',
-    // display:'block',
-    // zIndex:'999',
-    // "&:hover": {
-    // transform: 'scale(1.1)',
-    // },
   },
   name: {
     fontSize: "15px",
     textAlign: "center",
-    color:'#00B392',
+    color: '#00B392',
     paddingTop: '1%',
   },
   year: {
@@ -119,7 +105,7 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexDirection: "column",
     width: "100%",
-    padding:'1%',
+    padding: '1%',
   },
   cardActions: {
     fontSize: "10px",
@@ -217,15 +203,9 @@ const useStyles = makeStyles((theme) => ({
     margin: "3% 0",
     padding: "0 1.5rem",
   },
-  // gridProvider: {
-  //   width: '80%',
-  // margin: 'auto',
-  //   backgroundColor: '#212120',
-  // },
   ExpansionRoot: {
-   margin:'auto',
-  //  backgroundColor:'#00B392',
-padding:'0 15%',
+    margin: 'auto',
+    padding: '0 15%',
   },
   btnsProviders: {
     backgroundColor: "#212120",
@@ -235,12 +215,16 @@ padding:'0 15%',
     dislay: 'flex',
     justifyContent: 'center',
     margin: 'auto',
+    textAlign:"center",
     background: "rgb(23, 23, 23, .96)",
     boxShadow: theme.shadows[5],
   },
   expansionPanalSummary: {
     margin: 'auto',
-  },
+    },
+    heading:{
+      margin:'auto',
+    },
   serviceInfo: {
     textAlign: 'center',
   },
@@ -251,8 +235,10 @@ padding:'0 15%',
     },
   },
   serviceBtn: {
-    textDecoration: "none",
     margin: "1%",
+    "&:hover": {
+      color: '#00B392',
+    },
   },
   [theme.breakpoints.down("xs")]: {
     name: {
@@ -492,26 +478,26 @@ function MovieCard({
                       ""
                     )}
                 </div>
-                {page === "watchlist" ? ( 
+                {page === "watchlist" ? (
                   <div onClick={() => setDeleteMode(!deleteMode)}>
-                  <CardActions
-                    className={classes.cardActionsModal}
-                    onClick={() => setDeleteMode(!deleteMode)}
-                  >
-                    {deleteMode && (
-                      <button
-                        className={classes.DeleteMoviefromWatch}
-                        onClick={() => handleClick(movie.id)}
-                      >
-                        Remove from Watchlist
+                    <CardActions
+                      className={classes.cardActionsModal}
+                      onClick={() => setDeleteMode(!deleteMode)}
+                    >
+                      {deleteMode && (
+                        <button
+                          className={classes.DeleteMoviefromWatch}
+                          onClick={() => handleClick(movie.id)}
+                        >
+                          Remove from Watchlist
                       </button>
-                    )}
-                  </CardActions>
+                      )}
+                    </CardActions>
                   </div>
-                ) : (   
+                ) : (
                     ""
                   )}
-                  
+
                 {page === "Onboarding" ? (
                   <Box
                     className={classes.starRootOnboarding}
