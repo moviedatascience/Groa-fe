@@ -1,100 +1,76 @@
 import React, { useEffect } from "react";
+import RatingsMovieSlider from "./RatingsMovieSlider.js";
 // tools
 import { connect } from "react-redux";
 import { getRatingAction, setFilter } from "../../store/actions/index.js";
-// Screen width util
-import widthFinder from "../../utils/widthFinder.js";
+
 // children components
-import MovieCard from "../movies/MovieCard.js";
 import LoadingScreen from "../layout/LoadingScreen.js";
 //for grid
 import { makeStyles } from "@material-ui/core/styles";
-import { GridList } from "@material-ui/core/";
 import { useOktaAuth } from "@okta/okta-react/dist/OktaContext";
 
 const useStyles = makeStyles((theme) => ({
-  cardGrid: {
-    paddingTop: theme.spacing(4),
-    paddingBottom: theme.spacing(4),
-    paddingRight: theme.spacing(1),
-    paddingLeft: theme.spacing(1),
+  RatingsContainer: {
+    padding: "2rem",
   },
-  movieCard: {
-    "&:hover": {
-      boxShadow: "0px 0px 2px 2px black",
-      backgroundColor: "black",
-    },
+  Title: {
+    fontSize: "3rem",
+    textAlign: "center",
   },
 }));
-function Ratings({
-  userid,
-  isFetching,
-  getRatingAction,
-  ratings,
-  searchTerm,
-  setFilter,
-}) {
+function Ratings({ userid, isFetching, getRatingAction, ratings, setFilter }) {
   //OKTA AUTH
   const { authState, authService } = useOktaAuth();
   const { accessToken } = authState;
   //for sizing of the movie cards
   const classes = useStyles();
-  const screenWidth = widthFinder(window.innerWidth);
   useEffect(() => {
     setFilter("");
     // Returns the ratings
     getRatingAction(userid, accessToken);
-
   }, [getRatingAction, userid, setFilter, accessToken]);
+
+  //Seprate Star ratings
+  const fiveStars = ratings.filter((movie) => movie.rating === 5);
+  const fourHalfStars = ratings.filter((movie) => movie.rating === 4.5);
+  const fourStars = ratings.filter((movie) => movie.rating === 4);
+  const threeHalfStars = ratings.filter((movie) => movie.rating === 3.5);
+  const threeStars = ratings.filter((movie) => movie.rating === 3);
+  const twoHalfStars = ratings.filter((movie) => movie.rating === 2.5);
+  const twoStars = ratings.filter((movie) => movie.rating === 2);
+  const oneHalfStars = ratings.filter((movie) => movie.rating === 1.5);
+  const oneStars = ratings.filter((movie) => movie.rating === 1);
 
   if (isFetching) return <LoadingScreen />;
   else
     return (
-      <GridList
-        className={classes.cardGrid}
-        cols={screenWidth ? 2 : 5}
-        cellHeight="auto"
-      >
-        {ratings
-          .filter((movie) =>
-            searchTerm !== ""
-              ? movie.primary_title
-                .toString()
-                .toLowerCase()
-                .includes(searchTerm.toLowerCase())
-              : true
-          )
-          .map((movie, index) => {
-            let posterURI = movie.poster_url;
-            let unsplashUrl =
-              "https://source.unsplash.com/collection/1736993/500x650";
-            let moviePoster = `https://image.tmdb.org/t/p/w500${posterURI}?api_key=${process.env.REACT_APP_TMDB_API_KEY}`;
-            return (
-              <div key={index} className={classes.movieCard}>
-                <MovieCard
-                  key={index}
-                  page={"Ratings"}
-                  name={movie.primary_title}
-                  movie_id={movie.movie_id}
-                  year={movie.start_year}
-                  rated={movie.rating}
-                  description={movie.description}
-                  trailer={movie.trailer_url}
-                  genres={movie.genres}
-                  image={
-                    !posterURI ||
-                      posterURI === "None" ||
-                      posterURI === "No poster" ||
-                      posterURI === "No Poster" ||
-                      posterURI === "Not in table"
-                      ? unsplashUrl
-                      : moviePoster
-                  }
-                />
-              </div>
-            );
-          })}
-      </GridList>
+      <>
+        <h1 className={classes.Title}>My Ratings</h1>
+        <div className={classes.RatingsContainer}>
+          <RatingsMovieSlider movieRatings={fiveStars} heading={"5 Star"} />
+          <RatingsMovieSlider
+            movieRatings={fourHalfStars}
+            heading={"4.5 Star"}
+          />
+          <RatingsMovieSlider movieRatings={fourStars} heading={"4 Star"} />
+          <RatingsMovieSlider
+            movieRatings={threeHalfStars}
+            heading={"3.5 Star"}
+          />
+          <RatingsMovieSlider movieRatings={threeStars} heading={"3 Star"} />
+          <RatingsMovieSlider
+            movieRatings={twoHalfStars}
+            heading={"2.5 Star"}
+          />
+          <RatingsMovieSlider movieRatings={twoStars} heading={"2 Star"} />
+          <RatingsMovieSlider
+            movieRatings={oneHalfStars}
+            heading={"1.5 Star"}
+          />
+          <RatingsMovieSlider movieRatings={oneStars} heading={"1 Star"} />
+        </div>
+      </>
     );
 }
 
@@ -104,7 +80,6 @@ const mapStateToProps = (state) => {
     isFetching: state.rating.isFetching,
     ratings: state.rating.movies,
     ratingsError: state.rating.error,
-    searchTerm: state.filter.searchTerm,
   };
 };
 export default connect(mapStateToProps, { getRatingAction, setFilter })(

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import axiosWithAuth from "../../utils/axiosWithAuth.js";
 import { connect } from "react-redux";
 import {
@@ -42,8 +42,6 @@ import Popper from "@material-ui/core/Popper";
 import MenuItem from "@material-ui/core/MenuItem";
 import MenuList from "@material-ui/core/MenuList";
 
-// const options = ['Create a merge commit', 'Squash and merge', 'Rebase and merge'];
-
 const styles = (theme) => ({
   closeBtn: {
     display: "flex",
@@ -74,7 +72,6 @@ const DialogTitle = withStyles(styles)((props) => {
 });
 
 const useStyles = makeStyles((theme) => ({
-
   heading: {
     fontSize: theme.typography.pxToRem(15),
     fontWeight: theme.typography.fontWeightRegular,
@@ -90,6 +87,7 @@ const useStyles = makeStyles((theme) => ({
   movieImg: {
     width: "100%",
     height: "375px",
+    paddingTop: "2.5rem",
     opacity: 1,
     backfaceVisibility: "hidden",
     borderRadius: "11px",
@@ -199,11 +197,7 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     width: "50%",
     margin: "auto",
-    // flexDirection: 'column',
     justifyContent: "center",
-    // '& > * + *': {
-    //   marginTop: theme.spacing(1),
-    // },
   },
   starRootOnboarding: {
     width: "100%",
@@ -220,7 +214,6 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "center",
     // display: "flex",
     fontSize: "3vw",
-    // margin:'auto',
   },
   actionBtn: {
     padding: "1rem",
@@ -266,15 +259,15 @@ padding:'0 15%',
     },
   },
   serviceBtn: {
-    textDecoration: 'none',
-    margin: '1%',
+    textDecoration: "none",
+    margin: "1%",
   },
   [theme.breakpoints.down("xs")]: {
     name: {
       padding: "0",
     },
     movieImg: {
-      height: "200px",
+      height: "270px",
       width: "100%",
     },
     movieImgModal: {
@@ -292,7 +285,7 @@ padding:'0 15%',
       flexDirection: "column",
     },
     starsModal: {
-      fontSize: "5vw",
+      fontSize: "9vw",
     },
   },
 }));
@@ -324,9 +317,9 @@ function MovieCard({
   //OKTA AUTH
   const { authState, authService } = useOktaAuth();
   const { accessToken } = authState;
-  
   const [serviceProvider, setServiceProvider] = useState([]);
   const [yourRating, setYourRating] = useState(false);
+
   /* Used for the star rating */
   const [rating, setRating] = useState(0);
   /* Used for dynamically rendering the "Add to watchlist" button and if it's disabled */
@@ -351,18 +344,10 @@ function MovieCard({
   const anchorRef = React.useRef(null);
   const [selectedIndex, setSelectedIndex] = React.useState(1);
 
-  // const handleClickServiceProvider = () => {
-  //   console.info(`You clicked ${serviceProvider[selectedIndex]}`);
-  // };
-
   const handleMenuItemClick = (event, index) => {
     setSelectedIndex(index);
     setOpen(false);
   };
-
-  // const handleToggle = () => {
-  //   setOpen((prevOpen) => !prevOpen);
-  // };
 
   const handleCloseServiceProvider = (event) => {
     if (anchorRef.current && anchorRef.current.contains(event.target)) {
@@ -420,7 +405,6 @@ function MovieCard({
         console.log(err);
       });
     setOpen((prevOpen) => !prevOpen);
-    // console.info(`You clicked ${serviceProvider[selectedIndex]}`);
   };
 
   const multiFunctions = () => {
@@ -517,7 +501,6 @@ function MovieCard({
                     )}
                 </div>
                 {page === "watchlist" ? (
-                  // <div key={movie_id} onClick={() => setDeleteMode(!deleteMode)}>
                   <CardActions
                     className={classes.cardActionsModal}
                     onClick={() => setDeleteMode(!deleteMode)}
@@ -632,7 +615,6 @@ function MovieCard({
   );
 }
 const mapStateToProps = (state) => {
-
   return {
     userid: state.login.userid,
     ratingError: state.rating.error,
