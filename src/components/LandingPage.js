@@ -174,9 +174,11 @@ const LandingPage = ({
 
                 <header className={styles.jumbotron}>
                     <div className={styles.title}>
+
                        <h1>Welcome to Groa!</h1>
                        <p>The unbiased movie recommendation platform!</p>
                        <p>For movie fans by movie fans!</p>
+
                        <Link to="/register">
                        <button>Get Started</button>
                        </Link>

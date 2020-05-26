@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme) => ({
   searchContainer: {
     width: "40%",
     margin: "auto",
-    paddingTop: "4%",
+    paddingTop: "1%",
   },
   [theme.breakpoints.down("xs")]: {
     searchContainer: {

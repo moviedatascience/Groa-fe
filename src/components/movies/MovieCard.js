@@ -31,16 +31,6 @@ import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-//import for button group
-import Grid from "@material-ui/core/Grid";
-import ButtonGroup from "@material-ui/core/ButtonGroup";
-import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
-import ClickAwayListener from "@material-ui/core/ClickAwayListener";
-import Grow from "@material-ui/core/Grow";
-import Paper from "@material-ui/core/Paper";
-import Popper from "@material-ui/core/Popper";
-import MenuItem from "@material-ui/core/MenuItem";
-import MenuList from "@material-ui/core/MenuList";
 
 const styles = (theme) => ({
   closeBtn: {
@@ -72,32 +62,24 @@ const DialogTitle = withStyles(styles)((props) => {
 });
 
 const useStyles = makeStyles((theme) => ({
-  heading: {
-    fontSize: theme.typography.pxToRem(15),
-    fontWeight: theme.typography.fontWeightRegular,
-  },
   nameModal: {
     fontSize: "25px",
     textAlign: "center",
   },
   cardContent: {
     height: "100%",
-    padding: 0,
   },
   movieImg: {
     width: "100%",
     height: "375px",
-    paddingTop: "2.5rem",
-    opacity: 1,
-    backfaceVisibility: "hidden",
     borderRadius: "11px",
     objectFit: "contain",
   },
   name: {
     fontSize: "15px",
     textAlign: "center",
-    paddingTop: "2%",
-    marginBottom: "2%",
+    color: '#00B392',
+    paddingTop: '1%',
   },
   year: {
     fontSize: "18px",
@@ -123,11 +105,7 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexDirection: "column",
     width: "100%",
-    "&:hover": {},
-    moreInfo: {
-      display: "flex",
-      flexDirection: "row",
-    },
+    padding: '1%',
   },
   cardActions: {
     fontSize: "10px",
@@ -154,7 +132,7 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: "11px",
     margin: "auto",
     paddingBottom: "1%",
-    width: "50%",
+    width: "40%",
   },
   watchList: {
     justifyContent: "center",
@@ -225,15 +203,9 @@ const useStyles = makeStyles((theme) => ({
     margin: "3% 0",
     padding: "0 1.5rem",
   },
-  // gridProvider: {
-  //   width: '80%',
-  // margin: 'auto',
-  //   backgroundColor: '#212120',
-  // },
   ExpansionRoot: {
-   margin:'auto',
-  //  backgroundColor:'#00B392',
-padding:'0 15%',
+    margin: 'auto',
+    padding: '0 15%',
   },
   btnsProviders: {
     backgroundColor: "#212120",
@@ -243,12 +215,16 @@ padding:'0 15%',
     dislay: 'flex',
     justifyContent: 'center',
     margin: 'auto',
+    textAlign:"center",
     background: "rgb(23, 23, 23, .96)",
     boxShadow: theme.shadows[5],
   },
   expansionPanalSummary: {
     margin: 'auto',
-  },
+    },
+    heading:{
+      margin:'auto',
+    },
   serviceInfo: {
     textAlign: 'center',
   },
@@ -259,8 +235,10 @@ padding:'0 15%',
     },
   },
   serviceBtn: {
-    textDecoration: "none",
     margin: "1%",
+    "&:hover": {
+      color: '#00B392',
+    },
   },
   [theme.breakpoints.down("xs")]: {
     name: {
@@ -426,7 +404,7 @@ function MovieCard({
           src={image}
           alt="Random Movie poster as a placeholder."
         />
-        <p className={classes.name}>{name}</p>
+        {/* <p className={classes.name}>{name}</p> */}
       </div>
       <Modal
         aria-labelledby="transition-modal-title"
@@ -501,27 +479,28 @@ function MovieCard({
                     )}
                 </div>
                 {page === "watchlist" ? (
-                  <CardActions
-                    className={classes.cardActionsModal}
-                    onClick={() => setDeleteMode(!deleteMode)}
-                  >
-                    {deleteMode && (
-                      <button
-                        className={classes.DeleteMoviefromWatch}
-                        onClick={() => handleClick(movie.id)}
-                      >
-                        Remove from Watchlist
+                  <div onClick={() => setDeleteMode(!deleteMode)}>
+                    <CardActions
+                      className={classes.cardActionsModal}
+                      onClick={() => setDeleteMode(!deleteMode)}
+                    >
+                      {deleteMode && (
+                        <button
+                          className={classes.DeleteMoviefromWatch}
+                          onClick={() => handleClick(movie.id)}
+                        >
+                          Remove from Watchlist
                       </button>
-                    )}
-                  </CardActions>
+                      )}
+                    </CardActions>
+                  </div>
                 ) : (
-                    // </div>
                     ""
                   )}
+
                 {page === "Onboarding" ? (
                   <Box
                     className={classes.starRootOnboarding}
-                    component="fieldset"
                     borderColor="transparent"
                   >
                     <Stars
