@@ -326,13 +326,7 @@ function MovieCard({
   //OKTA AUTH
   const { authState, authService } = useOktaAuth();
   const { accessToken } = authState;
-  // console.log('movie id', movie_id)
-
-  // useEffect(() => {
-  //   serviceProviderAction(userid, accessToken, movie_id)
-  // }, [serviceProviderAction, userid, movie_id, accessToken])
-
-  // console.log('service provider',serviceProvider )
+  
   const [serviceProvider, setServiceProvider] = useState([]);
   const [yourRating, setYourRating] = useState(false);
   /* Used for the star rating */
@@ -442,7 +436,6 @@ function MovieCard({
     console.log("number of ratings is " + numRatings.num);
     console.log("openalert");
   };
-  // console.log('sericelink', serviceLinks)
   return (
     <div className={classes.card}>
       <div className={classes.modalBtn} onClick={handleOpen}>
