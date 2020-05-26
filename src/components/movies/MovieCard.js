@@ -25,7 +25,13 @@ import {
 } from "@material-ui/core";
 import CloseIcon from "@material-ui/icons/Close";
 import { useOktaAuth } from "@okta/okta-react/dist/OktaContext";
-//Material UI Components
+
+//menu expander
+import ExpansionPanel from '@material-ui/core/ExpansionPanel';
+import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
+import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+//import for button group
 import Grid from "@material-ui/core/Grid";
 import ButtonGroup from "@material-ui/core/ButtonGroup";
 import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
@@ -66,6 +72,10 @@ const DialogTitle = withStyles(styles)((props) => {
 });
 
 const useStyles = makeStyles((theme) => ({
+  heading: {
+    fontSize: theme.typography.pxToRem(15),
+    fontWeight: theme.typography.fontWeightRegular,
+  },
   nameModal: {
     fontSize: "25px",
     textAlign: "center",
@@ -201,6 +211,8 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
   },
   starsModal: {
+    justifyContent: "center",
+    // display: "flex",
     fontSize: "3vw",
   },
   actionBtn: {
@@ -210,20 +222,41 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "space-evenly",
   },
   trailerModal: {
-    marginTop: "10%",
+    margin: "3% 0",
     padding: "0 1.5rem",
+  },
+  // gridProvider: {
+  //   width: '80%',
+  // margin: 'auto',
+  //   backgroundColor: '#212120',
+  // },
+  ExpansionRoot: {
+   margin:'auto',
+  //  backgroundColor:'#00B392',
+padding:'0 15%',
   },
   btnsProviders: {
     backgroundColor: "#212120",
     color: "white",
   },
+  expansionPanal: {
+    dislay: 'flex',
+    justifyContent: 'center',
+    margin: 'auto',
+    background: "rgb(23, 23, 23, .96)",
+    boxShadow: theme.shadows[5],
+  },
+  expansionPanalSummary: {
+    margin: 'auto',
+  },
   serviceInfo: {
-    display: "flex",
-    flexWrap: "wrap",
-    justifyContent: "center",
+    textAlign: 'center',
   },
   Link: {
     textDecoration: "none",
+    "&:hover": {
+      textDecoration: "none",
+    },
   },
   serviceBtn: {
     textDecoration: "none",
@@ -284,7 +317,6 @@ function MovieCard({
   //OKTA AUTH
   const { authState, authService } = useOktaAuth();
   const { accessToken } = authState;
-
   const [serviceProvider, setServiceProvider] = useState([]);
   const [yourRating, setYourRating] = useState(false);
 
@@ -360,7 +392,6 @@ function MovieCard({
     const notWatch = { movie_id: movie.movie_id, user_id: userid };
     notWatchListAction(userid, notWatch, accessToken);
     setRemoved(true);
-    handleClose();
   };
 
   const handleClickProviders = () => {
@@ -387,7 +418,6 @@ function MovieCard({
     console.log("number of ratings is " + numRatings.num);
     console.log("openalert");
   };
-
   return (
     <div className={classes.card}>
       <div className={classes.modalBtn} onClick={handleOpen}>
@@ -444,13 +474,13 @@ function MovieCard({
                         {inRatings || yourRating
                           ? "Your rating:"
                           : !added && !inWatchlist
-                          ? "Add to watchlist"
-                          : "In your watchlist"}
+                            ? "Add to watchlist"
+                            : "In your watchlist"}
                       </Button>
                     </CardActions>
                   ) : (
-                    ""
-                  )}
+                      ""
+                    )}
 
                   {page === "Recommendations" ? (
                     <CardActions className={classes.cardActionsModal}>
@@ -467,8 +497,8 @@ function MovieCard({
                       </Button>
                     </CardActions>
                   ) : (
-                    ""
-                  )}
+                      ""
+                    )}
                 </div>
                 {page === "watchlist" ? (
                   <CardActions
@@ -485,8 +515,9 @@ function MovieCard({
                     )}
                   </CardActions>
                 ) : (
-                  ""
-                )}
+                    // </div>
+                    ""
+                  )}
                 {page === "Onboarding" ? (
                   <Box
                     className={classes.starRootOnboarding}
@@ -498,7 +529,6 @@ function MovieCard({
                       size="large"
                       precision={0.5}
                       emptyIcon={<StarBorderIcon fontSize="inherit" />}
-                      // eslint-disable-next-line react/jsx-no-duplicate-props
                       emptyIcon={
                         <StarBorderIcon
                           fontSize="inherit"
@@ -512,120 +542,55 @@ function MovieCard({
                     />
                   </Box>
                 ) : (
-                  <Box
-                    className={classes.starRoot}
-                    component="fieldset"
-                    borderColor="transparent"
-                  >
-                    <Stars
-                      className={classes.starsModal}
-                      size="large"
-                      precision={0.5}
-                      emptyIcon={<StarBorderIcon fontSize="inherit" />}
-                      // eslint-disable-next-line react/jsx-no-duplicate-props
-                      emptyIcon={
-                        <StarBorderIcon
-                          fontSize="inherit"
-                          style={{ color: "#ffb400" }}
-                        />
-                      }
-                      name={name}
-                      value={rated ? rated : rating}
-                      onChange={handleChange}
-                    />
-                  </Box>
-                )}
-                {page !== "watchlist" && page !== "Onboarding" ? (
-                  <Grid container direction="column" alignItems="center">
-                    <Grid item xs={12}>
-                      <ButtonGroup
-                        variant="contained"
-                        color="primary"
-                        ref={anchorRef}
-                        aria-label="split button"
+                    <Box className={classes.starRoot} borderColor="transparent">
+                      <Stars
+                        className={classes.starsModal}
+                        size="large"
+                        precision={0.5}
+                        emptyIcon={<StarBorderIcon fontSize="inherit" />}
+                        emptyIcon={
+                          <StarBorderIcon
+                            fontSize="inherit"
+                            style={{ color: "#ffb400" }}
+                          />
+                        }
+                        name={name}
+                        value={rated ? rated : rating}
+                        onChange={handleChange}
+                      />
+                    </Box>
+                  )}
+                {page !== 'watchlist' && page !== 'Onboarding' ? (
+                  <div className={classes.ExpansionRoot}>
+                    <ExpansionPanel className={classes.expansionPanal}>
+                      <ExpansionPanelSummary
+                        expandIcon={<ExpandMoreIcon />}
+                        aria-controls="panel1a-content"
+                        id="panel1a-header"
+                        className={classes.expansionPanalSummary}
+                        onClick={handleClickProviders}
                       >
-                        <Button
-                          className={classes.btnsProviders}
-                          onClick={handleClickProviders}
-                        >
-                          Service Providers
-                        </Button>
-                        <Button
-                          className={classes.btnsProviders}
-                          color="primary"
-                          size="small"
-                          aria-controls={open ? "split-button-menu" : undefined}
-                          aria-expanded={open ? "true" : undefined}
-                          aria-label="select merge strategy"
-                          aria-haspopup="menu"
-                          onClick={handleClickProviders}
-                        >
-                          <ArrowDropDownIcon />
-                        </Button>
-                      </ButtonGroup>
-                      <Popper
-                        open={open}
-                        anchorEl={anchorRef.current}
-                        role={undefined}
-                        transition
-                        disablePortal
-                      >
-                        {({ TransitionProps, placement }) => (
-                          <Grow
-                            {...TransitionProps}
-                            style={{
-                              transformOrigin:
-                                placement === "bottom"
-                                  ? "center top"
-                                  : "center bottom",
-                            }}
-                          >
-                            <Paper>
-                              <ClickAwayListener
-                                onClickAway={handleCloseServiceProvider}
-                              >
-                                <MenuList id="split-button-menu">
-                                  {serviceProvider.map(
-                                    (serviceProviders, index) => {
-                                      return (
-                                        <MenuItem
-                                          key={serviceProvider}
-                                          disabled={index === 2}
-                                          selected={index === selectedIndex}
-                                          onClick={(event) =>
-                                            handleMenuItemClick(event, index)
-                                          }
-                                        >
-                                          <Link
-                                            href={serviceProviders.link}
-                                            target="_blank"
-                                            className={classes.Link}
-                                          >
-                                            <Button
-                                              variant="outlined"
-                                              className={classes.serviceBtn}
-                                            >
-                                              {serviceProviders.name}
-                                            </Button>
-                                          </Link>
-                                        </MenuItem>
-                                      );
-                                    }
-                                  )}
-                                </MenuList>
-                              </ClickAwayListener>
-                            </Paper>
-                          </Grow>
-                        )}
-                      </Popper>
-                    </Grid>
-                  </Grid>
+                        <Typography className={classes.heading}>Where to Watch</Typography>
+                      </ExpansionPanelSummary>
+                      <div className={classes.serviceInfo}>
+                        {serviceProvider
+                          .map((serviceProviders) => {
+                            return (
+                              <div >
+                                <Link href={serviceProviders.link} className={classes.Link} target="_blank">
+                                  <Button variant="outlined" className={classes.serviceBtn}>{serviceProviders.name}</Button>
+                                </Link>
+                              </div>
+                            )
+                          })}
+                      </div>
+                    </ExpansionPanel>
+                  </div>
                 ) : (
-                  ""
-                )}
+                    ""
+                  )}
               </div>
             </div>
-
             {page !== "Onboarding" ? (
               <iframe
                 className={classes.trailerModal}
@@ -641,8 +606,8 @@ function MovieCard({
                 allowFullScreen
               ></iframe>
             ) : (
-              ""
-            )}
+                ""
+              )}
           </div>
         </Fade>
       </Modal>
