@@ -27,10 +27,10 @@ import CloseIcon from "@material-ui/icons/Close";
 import { useOktaAuth } from "@okta/okta-react/dist/OktaContext";
 
 //menu expander
-import ExpansionPanel from '@material-ui/core/ExpansionPanel';
-import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
-import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+// import ExpansionPanel from '@material-ui/core/ExpansionPanel';
+// import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
+// import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
+// import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 //import for button group
 import Grid from '@material-ui/core/Grid';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
@@ -174,7 +174,7 @@ const useStyles = makeStyles((theme) => ({
     margin: "auto",
     width: "55rem",
     boxShadow: theme.shadows[5],
-    padding: theme.spacing(0, 4, 3),
+    padding: theme.spacing(0, 1, 3),
     color: "white",
   },
   DeleteMoviefromWatch: {
@@ -285,7 +285,7 @@ const useStyles = makeStyles((theme) => ({
       width: "80%",
     },
     paper: {
-      width: "17rem",
+      width: "24rem",
     },
     movieInfoModal: {
       flexDirection: "column",
@@ -356,18 +356,18 @@ function MovieCard({
   const anchorRef = React.useRef(null);
   const [selectedIndex, setSelectedIndex] = React.useState(1);
 
-  const handleClickServiceProvider = () => {
-    console.info(`You clicked ${serviceProvider[selectedIndex]}`);
-  };
+  // const handleClickServiceProvider = () => {
+  //   console.info(`You clicked ${serviceProvider[selectedIndex]}`);
+  // };
 
   const handleMenuItemClick = (event, index) => {
     setSelectedIndex(index);
     setOpen(false);
   };
 
-  const handleToggle = () => {
-    setOpen((prevOpen) => !prevOpen);
-  };
+  // const handleToggle = () => {
+  //   setOpen((prevOpen) => !prevOpen);
+  // };
 
   const handleCloseServiceProvider = (event) => {
     if (anchorRef.current && anchorRef.current.contains(event.target)) {
@@ -551,6 +551,7 @@ function MovieCard({
                     size="large"
                     precision={0.5}
                     emptyIcon={<StarBorderIcon fontSize="inherit" />}
+                    // eslint-disable-next-line react/jsx-no-duplicate-props
                     emptyIcon={
                           <StarBorderIcon
                             fontSize="inherit"
@@ -570,6 +571,7 @@ function MovieCard({
                     size="large"
                     precision={0.5}
                     emptyIcon={<StarBorderIcon fontSize="inherit" />}
+                    // eslint-disable-next-line react/jsx-no-duplicate-props
                     emptyIcon={
                           <StarBorderIcon
                             fontSize="inherit"
