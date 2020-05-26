@@ -44,7 +44,6 @@ function Ratings({
     setFilter("");
     // Returns the ratings
     getRatingAction(userid, accessToken);
-
   }, [getRatingAction, userid, setFilter, accessToken]);
 
   if (isFetching) return <LoadingScreen />;
@@ -55,45 +54,36 @@ function Ratings({
         cols={screenWidth ? 2 : 5}
         cellHeight="auto"
       >
-        {ratings
-          .filter((movie) =>
-            searchTerm !== ""
-              ? movie.primary_title
-                .toString()
-                .toLowerCase()
-                .includes(searchTerm.toLowerCase())
-              : true
-          )
-          .map((movie, index) => {
-            let posterURI = movie.poster_url;
-            let unsplashUrl =
-              "https://source.unsplash.com/collection/1736993/500x650";
-            let moviePoster = `https://image.tmdb.org/t/p/w500${posterURI}?api_key=${process.env.REACT_APP_TMDB_API_KEY}`;
-            return (
-              <div key={index} className={classes.movieCard}>
-                <MovieCard
-                  key={index}
-                  page={"Ratings"}
-                  name={movie.primary_title}
-                  movie_id={movie.movie_id}
-                  year={movie.start_year}
-                  rated={movie.rating}
-                  description={movie.description}
-                  trailer={movie.trailer_url}
-                  genres={movie.genres}
-                  image={
-                    !posterURI ||
-                      posterURI === "None" ||
-                      posterURI === "No poster" ||
-                      posterURI === "No Poster" ||
-                      posterURI === "Not in table"
-                      ? unsplashUrl
-                      : moviePoster
-                  }
-                />
-              </div>
-            );
-          })}
+        {ratings.map((movie, index) => {
+          let posterURI = movie.poster_url;
+          let unsplashUrl =
+            "https://source.unsplash.com/collection/1736993/500x650";
+          let moviePoster = `https://image.tmdb.org/t/p/w500${posterURI}?api_key=${process.env.REACT_APP_TMDB_API_KEY}`;
+          return (
+            <div key={index} className={classes.movieCard}>
+              <MovieCard
+                key={index}
+                page={"Ratings"}
+                name={movie.primary_title}
+                movie_id={movie.movie_id}
+                year={movie.start_year}
+                rated={movie.rating}
+                description={movie.description}
+                trailer={movie.trailer_url}
+                genres={movie.genres}
+                image={
+                  !posterURI ||
+                  posterURI === "None" ||
+                  posterURI === "No poster" ||
+                  posterURI === "No Poster" ||
+                  posterURI === "Not in table"
+                    ? unsplashUrl
+                    : moviePoster
+                }
+              />
+            </div>
+          );
+        })}
       </GridList>
     );
 }
