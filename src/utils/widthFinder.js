@@ -1,5 +1,5 @@
 const widthFinder = (screenWidth) => {
-  if (parseInt(screenWidth) < 500) {
+  if (parseInt(screenWidth) < 599) {
     return true;
   } else {
     return false;

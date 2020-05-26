@@ -24,8 +24,9 @@ const useStyles = makeStyles((theme) => ({
     paddingLeft: theme.spacing(1),
   },
   movieCard: {
+    border:'2px solid black',
     "&:hover": {
-      boxShadow: "0px 0px 1px 1px black",
+      boxShadow: "2px 2px 2px 2px black",
       backgroundColor: "black",
     },
   },

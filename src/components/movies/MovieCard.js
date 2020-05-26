@@ -74,21 +74,17 @@ const useStyles = makeStyles((theme) => ({
     height: "100%",
     padding: 0,
   },
-  modalBtn:{
-display:'flex',
-alignContent:'center',
-  },
   movieImg: {
     width: "100%",
-    height: "100%",
+    height: "375px",
     borderRadius: "11px",
     objectFit: "contain",
   },
   name: {
     fontSize: "15px",
     textAlign: "center",
-    paddingTop: "2%",
-    marginBottom: "2%",
+    color:'#00B392',
+    paddingTop: '1%',
   },
   year: {
     fontSize: "18px",
