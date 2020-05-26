@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import axiosWithAuth from "../../utils/axiosWithAuth.js";
 import { connect } from "react-redux";
 import {
@@ -25,13 +25,7 @@ import {
 } from "@material-ui/core";
 import CloseIcon from "@material-ui/icons/Close";
 import { useOktaAuth } from "@okta/okta-react/dist/OktaContext";
-
-//menu expander
-// import ExpansionPanel from '@material-ui/core/ExpansionPanel';
-// import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
-// import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
-// import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-//import for button group
+//Material UI Components
 import Grid from "@material-ui/core/Grid";
 import ButtonGroup from "@material-ui/core/ButtonGroup";
 import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
@@ -41,8 +35,6 @@ import Paper from "@material-ui/core/Paper";
 import Popper from "@material-ui/core/Popper";
 import MenuItem from "@material-ui/core/MenuItem";
 import MenuList from "@material-ui/core/MenuList";
-
-// const options = ['Create a merge commit', 'Squash and merge', 'Rebase and merge'];
 
 const styles = (theme) => ({
   closeBtn: {
@@ -74,10 +66,6 @@ const DialogTitle = withStyles(styles)((props) => {
 });
 
 const useStyles = makeStyles((theme) => ({
-  // heading: {
-  // fontSize: theme.typography.pxToRem(15),
-  // fontWeight: theme.typography.fontWeightRegular,
-  // },
   nameModal: {
     fontSize: "25px",
     textAlign: "center",
@@ -89,6 +77,7 @@ const useStyles = makeStyles((theme) => ({
   movieImg: {
     width: "100%",
     height: "375px",
+    paddingTop: "2.5rem",
     opacity: 1,
     backfaceVisibility: "hidden",
     borderRadius: "11px",
@@ -198,11 +187,7 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     width: "50%",
     margin: "auto",
-    // flexDirection: 'column',
     justifyContent: "center",
-    // '& > * + *': {
-    //   marginTop: theme.spacing(1),
-    // },
   },
   starRootOnboarding: {
     width: "100%",
@@ -216,10 +201,7 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
   },
   starsModal: {
-    // justifyContent: "center",
-    // display: "flex",
     fontSize: "3vw",
-    // margin:'auto',
   },
   actionBtn: {
     padding: "1rem",
@@ -231,27 +213,10 @@ const useStyles = makeStyles((theme) => ({
     marginTop: "10%",
     padding: "0 1.5rem",
   },
-  // gridProvider: {
-  //   width: '80%',
-  // margin: 'auto',
-  //   backgroundColor: '#212120',
-  // },
   btnsProviders: {
     backgroundColor: "#212120",
     color: "white",
   },
-  // expansionPanal: {
-  // margin:'auto',
-  // width:'80%',
-  // backgroundColor: '#212120',
-  // },
-  // expansionPanalSummary: {
-  // backgroundColor:'white',
-  // margin:'auto',
-  // width:'80%',
-  //   backgroundColor: '#212120',
-
-  // },
   serviceInfo: {
     display: "flex",
     flexWrap: "wrap",
@@ -263,21 +228,13 @@ const useStyles = makeStyles((theme) => ({
   serviceBtn: {
     textDecoration: "none",
     margin: "1%",
-    // width: '150px',
-
-    // color: 'red',
-    // border: '2px solid green',
-    // textAlign: 'center',
-    // "&:hover": {
-    //   backgroundColor:'green'
-    // },
   },
   [theme.breakpoints.down("xs")]: {
     name: {
       padding: "0",
     },
     movieImg: {
-      height: "200px",
+      height: "270px",
       width: "100%",
     },
     movieImgModal: {
@@ -295,7 +252,7 @@ const useStyles = makeStyles((theme) => ({
       flexDirection: "column",
     },
     starsModal: {
-      fontSize: "5vw",
+      fontSize: "9vw",
     },
   },
 }));
@@ -327,15 +284,10 @@ function MovieCard({
   //OKTA AUTH
   const { authState, authService } = useOktaAuth();
   const { accessToken } = authState;
-  // console.log('movie id', movie_id)
 
-  // useEffect(() => {
-  //   serviceProviderAction(userid, accessToken, movie_id)
-  // }, [serviceProviderAction, userid, movie_id, accessToken])
-
-  // console.log('service provider',serviceProvider )
   const [serviceProvider, setServiceProvider] = useState([]);
   const [yourRating, setYourRating] = useState(false);
+
   /* Used for the star rating */
   const [rating, setRating] = useState(0);
   /* Used for dynamically rendering the "Add to watchlist" button and if it's disabled */
@@ -360,18 +312,10 @@ function MovieCard({
   const anchorRef = React.useRef(null);
   const [selectedIndex, setSelectedIndex] = React.useState(1);
 
-  // const handleClickServiceProvider = () => {
-  //   console.info(`You clicked ${serviceProvider[selectedIndex]}`);
-  // };
-
   const handleMenuItemClick = (event, index) => {
     setSelectedIndex(index);
     setOpen(false);
   };
-
-  // const handleToggle = () => {
-  //   setOpen((prevOpen) => !prevOpen);
-  // };
 
   const handleCloseServiceProvider = (event) => {
     if (anchorRef.current && anchorRef.current.contains(event.target)) {
@@ -430,7 +374,6 @@ function MovieCard({
         console.log(err);
       });
     setOpen((prevOpen) => !prevOpen);
-    // console.info(`You clicked ${serviceProvider[selectedIndex]}`);
   };
 
   const multiFunctions = () => {
@@ -444,7 +387,7 @@ function MovieCard({
     console.log("number of ratings is " + numRatings.num);
     console.log("openalert");
   };
-  // console.log('sericelink', serviceLinks)
+
   return (
     <div className={classes.card}>
       <div className={classes.modalBtn} onClick={handleOpen}>
@@ -528,7 +471,6 @@ function MovieCard({
                   )}
                 </div>
                 {page === "watchlist" ? (
-                  // <div key={movie_id} onClick={() => setDeleteMode(!deleteMode)}>
                   <CardActions
                     className={classes.cardActionsModal}
                     onClick={() => setDeleteMode(!deleteMode)}
@@ -543,7 +485,6 @@ function MovieCard({
                     )}
                   </CardActions>
                 ) : (
-                  // </div>
                   ""
                 )}
                 {page === "Onboarding" ? (
@@ -594,35 +535,6 @@ function MovieCard({
                     />
                   </Box>
                 )}
-                {/* {page !== 'watchlist' && page !== 'Onboarding' ? (
-                  <div className={classes.root}>
-                    <ExpansionPanel className={classes.expansionPanal}>
-                      <ExpansionPanelSummary
-                        expandIcon={<ExpandMoreIcon />}
-                        aria-controls="panel1a-content"
-                        id="panel1a-header"
-                        className={classes.expansionPanalSummary}
-                        onClick={handleClickProviders}
-                      >
-                        <Typography className={classes.heading}>Service Providers</Typography>
-                      </ExpansionPanelSummary>
-                      <div className={classes.serviceInfo}>
-                        {serviceProvider
-                          .map((serviceProviders) => {
-                            return (
-                              <div >
-                                <Link href={serviceProviders.link} className={classes.Link}>
-                                  <Button variant="outlined" className={classes.serviceBtn}>{serviceProviders.name}</Button>
-                                </Link>
-                              </div>
-                            )
-                          })}
-                      </div>
-                    </ExpansionPanel>
-                  </div>
-                ) : (
-                    ""
-                  )} */}
                 {page !== "watchlist" && page !== "Onboarding" ? (
                   <Grid container direction="column" alignItems="center">
                     <Grid item xs={12}>
@@ -686,6 +598,7 @@ function MovieCard({
                                         >
                                           <Link
                                             href={serviceProviders.link}
+                                            target="_blank"
                                             className={classes.Link}
                                           >
                                             <Button
@@ -737,8 +650,6 @@ function MovieCard({
   );
 }
 const mapStateToProps = (state) => {
-  // console.log('this is the res of notwatchlist', state)
-
   return {
     userid: state.login.userid,
     ratingError: state.rating.error,
