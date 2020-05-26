@@ -31,16 +31,6 @@ import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-//import for button group
-import Grid from "@material-ui/core/Grid";
-import ButtonGroup from "@material-ui/core/ButtonGroup";
-import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
-import ClickAwayListener from "@material-ui/core/ClickAwayListener";
-import Grow from "@material-ui/core/Grow";
-import Paper from "@material-ui/core/Paper";
-import Popper from "@material-ui/core/Popper";
-import MenuItem from "@material-ui/core/MenuItem";
-import MenuList from "@material-ui/core/MenuList";
 
 const styles = (theme) => ({
   closeBtn: {
@@ -84,12 +74,13 @@ const useStyles = makeStyles((theme) => ({
     height: "100%",
     padding: 0,
   },
+  modalBtn:{
+display:'flex',
+alignContent:'center',
+  },
   movieImg: {
     width: "100%",
-    height: "375px",
-    paddingTop: "2.5rem",
-    opacity: 1,
-    backfaceVisibility: "hidden",
+    height: "100%",
     borderRadius: "11px",
     objectFit: "contain",
   },
@@ -123,11 +114,7 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexDirection: "column",
     width: "100%",
-    "&:hover": {},
-    moreInfo: {
-      display: "flex",
-      flexDirection: "row",
-    },
+    padding:'1%',
   },
   cardActions: {
     fontSize: "10px",
@@ -426,7 +413,7 @@ function MovieCard({
           src={image}
           alt="Random Movie poster as a placeholder."
         />
-        <p className={classes.name}>{name}</p>
+        {/* <p className={classes.name}>{name}</p> */}
       </div>
       <Modal
         aria-labelledby="transition-modal-title"
@@ -500,7 +487,8 @@ function MovieCard({
                       ""
                     )}
                 </div>
-                {page === "watchlist" ? (
+                {page === "watchlist" ? ( 
+                  <div onClick={() => setDeleteMode(!deleteMode)}>
                   <CardActions
                     className={classes.cardActionsModal}
                     onClick={() => setDeleteMode(!deleteMode)}
@@ -514,14 +502,14 @@ function MovieCard({
                       </button>
                     )}
                   </CardActions>
-                ) : (
-                    // </div>
+                  </div>
+                ) : (   
                     ""
                   )}
+                  
                 {page === "Onboarding" ? (
                   <Box
                     className={classes.starRootOnboarding}
-                    component="fieldset"
                     borderColor="transparent"
                   >
                     <Stars
