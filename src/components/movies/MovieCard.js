@@ -132,7 +132,7 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: "11px",
     margin: "auto",
     paddingBottom: "1%",
-    width: "50%",
+    width: "40%",
   },
   watchList: {
     justifyContent: "center",
