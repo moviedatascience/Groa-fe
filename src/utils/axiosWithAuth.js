@@ -8,7 +8,7 @@ const axiosWithAuth = (accessToken) => {
         headers: {
             Authorization: `Bearer ${accessToken}`
         },
-        baseURL: baseURL;
+        baseURL: baseURL
     })
 }
 export default axiosWithAuth;

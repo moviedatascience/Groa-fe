@@ -250,10 +250,8 @@ padding:'0 15%',
     dislay: 'flex',
     justifyContent: 'center',
     margin: 'auto',
-    // width: '80%',
     background: "rgb(23, 23, 23, .96)",
     boxShadow: theme.shadows[5],
-   
   },
   expansionPanalSummary: {
     margin: 'auto',
