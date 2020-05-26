@@ -19,6 +19,10 @@ import { makeStyles } from "@material-ui/core/styles";
 import { useOktaAuth } from "@okta/okta-react/dist/OktaContext";
 
 const useStyles = makeStyles((theme) => ({
+  Title: {
+    fontSize: "3rem",
+    textAlign: "center",
+  },
   cardGrid: {
     paddingTop: theme.spacing(4),
     paddingBottom: theme.spacing(4),
@@ -26,10 +30,9 @@ const useStyles = makeStyles((theme) => ({
     paddingLeft: theme.spacing(1),
   },
   movieCard: {
-    border:'2px solid black',
+    border: '1px solid black',
     "&:hover": {
-      boxShadow: "0px 0px 1px 1px black",
-      backgroundColor: "black",
+      transform: 'scale(1.1)',
     },
   },
 }));
@@ -49,7 +52,7 @@ function Watchlist({
 
   const [deleteMode, setDeleteMode] = useState(false);
   //for matieral-ui
-  const classes = useStyles();
+  const styles = useStyles();
   const screenWidth = widthFinder(window.innerWidth);
 
   useEffect(() => {
@@ -66,8 +69,10 @@ function Watchlist({
   else if (isDeleting) return <LoadingScreen />;
   else
     return (
+      <>
+      <h1 className={styles.Title}>My Watchlist</h1>
       <GridList
-        className={classes.cardGrid}
+        className={styles.cardGrid}
         cols={screenWidth ? 2 : 5}
         cellHeight="auto"
       >
@@ -86,7 +91,7 @@ function Watchlist({
               "https://source.unsplash.com/collection/1736993/500x650";
             let moviePoster = `https://image.tmdb.org/t/p/w500${posterURI}?api_key=${process.env.REACT_APP_TMDB_API_KEY}`;
             return (
-              <div className={classes.movieCard} key={index}>
+              <div className={styles.movieCard} key={index}>
                 <MovieCard
                   key={index}
                   name={movie.primary_title}
@@ -112,6 +117,7 @@ function Watchlist({
             );
           })};
       </GridList>
+      </>
     );
 }
 

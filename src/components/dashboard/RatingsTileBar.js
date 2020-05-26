@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
     flexWrap: "nowrap",
     overflowX: "auto",
     backgroundColor: theme.palette.background.paper,
-    height: "500px",
+    height: "400px",
   },
   movieList: {
     minWidth: "15%",
@@ -101,8 +101,7 @@ const useStyles = makeStyles((theme) => ({
   },
   movieCard: {
     "&:hover": {
-      boxShadow: "0px 0px 2px 2px black",
-      backgroundColor: "black",
+        transform: 'scale(1.1)',
     },
   },
 }));
@@ -139,7 +138,7 @@ export const RatingsTileBar = ({ movies }) => {
       transitionDuration={200}
       containerClass="carousel-container"
       removeArrowOnDeviceType={["tablet", "mobile"]}
-      itemClass="carousel-item-padding-10-px"
+      itemClass="carousel-item-padding-1-px"
       customLeftArrow={<CustomLeftArrow />}
       customRightArrow={<CustomRightArrow />}
     >

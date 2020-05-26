@@ -72,13 +72,22 @@ const useStyles = makeStyles((theme) => ({
   },
   cardContent: {
     height: "100%",
-    padding: 0,
-  },
+    },
   movieImg: {
     width: "100%",
     height: "375px",
     borderRadius: "11px",
     objectFit: "contain",
+    // position:'relative',
+    // top:'-25px',
+    // left:'-35px',
+    // width:'500px',
+    // height:'auto',
+    // display:'block',
+    // zIndex:'999',
+    // "&:hover": {
+    // transform: 'scale(1.1)',
+    // },
   },
   name: {
     fontSize: "15px",

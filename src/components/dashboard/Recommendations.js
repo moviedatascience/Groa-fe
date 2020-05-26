@@ -17,6 +17,10 @@ import { GridList } from "@material-ui/core/";
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
+  Title: {
+    fontSize: "3rem",
+    textAlign: "center",
+  },
   cardGrid: {
     paddingTop: theme.spacing(4),
     paddingBottom: theme.spacing(4),
@@ -24,10 +28,9 @@ const useStyles = makeStyles((theme) => ({
     paddingLeft: theme.spacing(1),
   },
   movieCard: {
-    border:'2px solid black',
+    border: '1px solid black',
     "&:hover": {
-      boxShadow: "2px 2px 2px 2px black",
-      backgroundColor: "black",
+      transform: 'scale(1.1)',
     },
   },
 }));
@@ -59,51 +62,54 @@ function Recommendations({
   if (isFetching) return <LoadingScreen />;
   else
     return (
-      <GridList
-        className={classes.cardGrid}
-        cols={screenWidth ? 2 : 5}
-        cellHeight="auto"
-      >
-        {recommendations
-          .filter((movie) =>
-            searchTerm !== ""
-              ? movie.title
+      <>
+        <h1 className={classes.Title}>My Recommendations</h1>
+        <GridList
+          className={classes.cardGrid}
+          cols={screenWidth ? 2 : 5}
+          cellHeight="auto"
+        >
+          {recommendations
+            .filter((movie) =>
+              searchTerm !== ""
+                ? movie.title
                   .toString()
                   .toLowerCase()
                   .includes(searchTerm.toLowerCase())
-              : true
-          )
-          .map((movie, index) => {
-            let posterURI = movie.poster_url;
-            let unsplashUrl =
-              "https://source.unsplash.com/collection/1736993/500x650";
-            let moviePoster = `https://image.tmdb.org/t/p/w500${posterURI}?api_key=${process.env.REACT_APP_TMDB_API_KEY}`;
-            return (
-              <div className={classes.movieCard} key={index}>
-                <MovieCard
-                  key={index}
-                  rated={null}
-                  name={movie.title}
-                  year={movie.year}
-                  genres={movie.genres}
-                  description={movie.description}
-                  movie_id={movie.movie_id}
-                  trailer={movie.trailer_url}
-                  page={'Recommendations'}
-                  image={
-                    !posterURI ||
-                    posterURI === "None" ||
-                    posterURI === "No poster" ||
-                    posterURI === "No Poster" ||
-                    posterURI === "Not in table"
-                      ? unsplashUrl
-                      : moviePoster
-                  }
-                />
-              </div>
-            );
-          })}
-      </GridList>
+                : true
+            )
+            .map((movie, index) => {
+              let posterURI = movie.poster_url;
+              let unsplashUrl =
+                "https://source.unsplash.com/collection/1736993/500x650";
+              let moviePoster = `https://image.tmdb.org/t/p/w500${posterURI}?api_key=${process.env.REACT_APP_TMDB_API_KEY}`;
+              return (
+                <div className={classes.movieCard} key={index}>
+                  <MovieCard
+                    key={index}
+                    rated={null}
+                    name={movie.title}
+                    year={movie.year}
+                    genres={movie.genres}
+                    description={movie.description}
+                    movie_id={movie.movie_id}
+                    trailer={movie.trailer_url}
+                    page={'Recommendations'}
+                    image={
+                      !posterURI ||
+                        posterURI === "None" ||
+                        posterURI === "No poster" ||
+                        posterURI === "No Poster" ||
+                        posterURI === "Not in table"
+                        ? unsplashUrl
+                        : moviePoster
+                    }
+                  />
+                </div>
+              );
+            })}
+        </GridList>
+      </>
     );
 }
 
