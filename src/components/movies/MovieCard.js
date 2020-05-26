@@ -75,17 +75,17 @@ const DialogTitle = withStyles(styles)((props) => {
 
 const useStyles = makeStyles((theme) => ({
 
-  // heading: {
-  // fontSize: theme.typography.pxToRem(15),
-  // fontWeight: theme.typography.fontWeightRegular,
-  // },
+  heading: {
+    fontSize: theme.typography.pxToRem(15),
+    fontWeight: theme.typography.fontWeightRegular,
+  },
   nameModal: {
     fontSize: "25px",
     textAlign: 'center',
   },
   cardContent: {
     height: "100%",
-    padding:0,
+    padding: 0,
   },
   movieImg: {
     width: "100%",
@@ -195,18 +195,18 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     justifyContent: "center",
   },
-  starRoot:{
+  starRoot: {
     display: 'flex',
-    width:'50%',
-    margin:'auto',
+    width: '50%',
+    margin: 'auto',
     // flexDirection: 'column',
-    justifyContent:'center',
+    justifyContent: 'center',
     // '& > * + *': {
     //   marginTop: theme.spacing(1),
     // },
   },
-  starRootOnboarding:{
-    width:'100%',
+  starRootOnboarding: {
+    width: '100%',
   },
   watchStarsModal: {
     display: "flex",
@@ -219,7 +219,7 @@ const useStyles = makeStyles((theme) => ({
   starsModal: {
     justifyContent: "center",
     // display: "flex",
-    // fontSize: "3vw",
+    fontSize: "3vw",
     // margin:'auto',
   },
   actionBtn: {
@@ -236,26 +236,30 @@ const useStyles = makeStyles((theme) => ({
   // margin: 'auto',
   //   backgroundColor: '#212120',
   // },
+  root: {
+    // dislay:'flex',
+    // justifyContent:'center',
+  },
   btnsProviders: {
     backgroundColor: '#212120',
     color: 'white',
   },
-  // expansionPanal: {
-  // margin:'auto',
-  // width:'80%',
-  // backgroundColor: '#212120',
-  // },
-  // expansionPanalSummary: {
-  // backgroundColor:'white',
-  // margin:'auto',
-  // width:'80%',
-  //   backgroundColor: '#212120',
-
-  // },
-  serviceInfo: {
-    display: 'flex',
-    flexWrap: 'wrap',
+  expansionPanal: {
+    dislay: 'flex',
     justifyContent: 'center',
+    margin: 'auto',
+    width: '80%',
+    backgroundColor: '#212120',
+  },
+  expansionPanalSummary: {
+    backgroundColor: 'white',
+    margin: 'auto',
+    width: '80%',
+    backgroundColor: '#212120',
+
+  },
+  serviceInfo: {
+    textAlign: 'center',
   },
   Link: {
     textDecoration: 'none',
@@ -263,14 +267,6 @@ const useStyles = makeStyles((theme) => ({
   serviceBtn: {
     textDecoration: 'none',
     margin: '1%',
-    // width: '150px',
-
-    // color: 'red',
-    // border: '2px solid green',
-    // textAlign: 'center',
-    // "&:hover": {
-    //   backgroundColor:'green'
-    // },
   },
   [theme.breakpoints.down("xs")]: {
     name: {
@@ -545,32 +541,32 @@ function MovieCard({
                     ""
                   )}
                 {page === "Onboarding" ? (
-                  <Box className={classes.starRootOnboarding} component="fieldset"  borderColor="transparent">
-                  <Stars
-                  className={classes.starsModal}
-                    size="large"
-                    precision={0.5}
-                    emptyIcon={<StarBorderIcon fontSize="inherit" />}
-                    emptyIcon={
-                          <StarBorderIcon
-                            fontSize="inherit"
-                            style={{ color: "#ffb400" }}
-                          />
-                        }
-                        name={name}
-                        value={rated ? rated : rating}
-                        onChange={handleChange}
-                        onClick={multiFunctions}
-                  />
-                </Box>
+                  <Box className={classes.starRootOnboarding} component="fieldset" borderColor="transparent">
+                    <Stars
+                      className={classes.starsModal}
+                      size="large"
+                      precision={0.5}
+                      emptyIcon={<StarBorderIcon fontSize="inherit" />}
+                      emptyIcon={
+                        <StarBorderIcon
+                          fontSize="inherit"
+                          style={{ color: "#ffb400" }}
+                        />
+                      }
+                      name={name}
+                      value={rated ? rated : rating}
+                      onChange={handleChange}
+                      onClick={multiFunctions}
+                    />
+                  </Box>
                 ) : (
-                  <Box className={classes.starRoot}  borderColor="transparent">
-                  <Stars
-                  className={classes.starsModal}
-                    size="large"
-                    precision={0.5}
-                    emptyIcon={<StarBorderIcon fontSize="inherit" />}
-                    emptyIcon={
+                    <Box className={classes.starRoot} borderColor="transparent">
+                      <Stars
+                        className={classes.starsModal}
+                        size="large"
+                        precision={0.5}
+                        emptyIcon={<StarBorderIcon fontSize="inherit" />}
+                        emptyIcon={
                           <StarBorderIcon
                             fontSize="inherit"
                             style={{ color: "#ffb400" }}
@@ -579,8 +575,8 @@ function MovieCard({
                         name={name}
                         value={rated ? rated : rating}
                         onChange={handleChange}
-                  />
-                </Box>
+                      />
+                    </Box>
                   )}
                 {page !== 'watchlist' && page !== 'Onboarding' ? (
                   <div className={classes.root}>
@@ -592,7 +588,7 @@ function MovieCard({
                         className={classes.expansionPanalSummary}
                         onClick={handleClickProviders}
                       >
-                        <Typography className={classes.heading}>Service Providers</Typography>
+                        <Typography className={classes.heading}>Where to Watch</Typography>
                       </ExpansionPanelSummary>
                       <div className={classes.serviceInfo}>
                         {serviceProvider
