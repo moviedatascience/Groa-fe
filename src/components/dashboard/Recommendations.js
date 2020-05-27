@@ -20,6 +20,11 @@ const useStyles = makeStyles((theme) => ({
   Title: {
     fontSize: "3rem",
     textAlign: "center",
+    [theme.breakpoints.down("xs")]: {
+      Title: {
+        fontSize:'1rem'
+      },
+    },
   },
   cardGrid: {
     paddingTop: theme.spacing(4),
@@ -28,9 +33,9 @@ const useStyles = makeStyles((theme) => ({
     paddingLeft: theme.spacing(1),
   },
   movieCard: {
-    border: '1px solid black',
     "&:hover": {
       transform: 'scale(1.1)',
+      transitionDuration:'.5s'
     },
   },
 }));
@@ -63,7 +68,7 @@ function Recommendations({
   else
     return (
       <>
-        <h1 className={classes.Title}>My Recommendations</h1>
+        <h1 className={classes.Title}>Our Recommendations</h1>
         <GridList
           className={classes.cardGrid}
           cols={screenWidth ? 2 : 5}

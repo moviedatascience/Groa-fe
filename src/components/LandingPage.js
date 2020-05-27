@@ -48,6 +48,7 @@ const useStyles = makeStyles((theme) => ({
           }
     },
     title: {
+        textAlign:'center',
         width: "50%",
         flexDirection:"column",
         fontFamily: `"Work Sans", sans-serif`,
@@ -174,11 +175,9 @@ const LandingPage = ({
 
                 <header className={styles.jumbotron}>
                     <div className={styles.title}>
-
-                       <h1>Welcome to Groa!</h1>
-                       <p>The unbiased movie recommendation platform!</p>
-                       <p>For movie fans by movie fans!</p>
-
+                       <h1>Welcome to Groa</h1>
+                       <p>The unbiased movie recommendation platform</p>
+                       <p>for movie fans by movie fans!</p>
                        <Link to="/register">
                        <button>Get Started</button>
                        </Link>

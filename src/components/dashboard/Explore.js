@@ -29,9 +29,9 @@ const useStyles = makeStyles((theme) => ({
     paddingLeft: theme.spacing(1),
   },
   movieCard: {
-    border: '1px solid black',
     "&:hover": {
       transform: 'scale(1.1)',
+      transitionDuration:'.5s'
     },
   },
 }));
