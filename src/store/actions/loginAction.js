@@ -24,7 +24,7 @@ export function loginAction(token, okta_id, history) {
             payload: res.data.watchlist
           });
           if(res.data.ratings.length <= 6){
-            history.push(`/${res.data.user_id}/onboardingplateform`);
+            history.push(`/${res.data.user_id}/onboardingplatform`);
             }else {
               history.push(`/${res.data.user_id}/explore`);
             }
