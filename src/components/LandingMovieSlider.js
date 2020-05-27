@@ -52,7 +52,7 @@ const useStyles = makeStyles((theme) => ({
     cursor: "pointer",
     transitionDuration: ".2s",
     fontWeight: "900",
-    ["@media (max-width:500px)"]: {
+    ["@media (max-width:800px)"]: {
       width: "100%",
       margin: "2vh auto",
     },
@@ -64,7 +64,7 @@ const useStyles = makeStyles((theme) => ({
     margin: "auto",
     width: "10%",
     height: "5vh",
-    fontSize: "20px",
+    fontSize: "18px",
     color: "white",
     backgroundColor: "red",
     borderRadius: "20px",
@@ -74,8 +74,8 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
     cursor: "pointer",
     transitionDuration: ".5s",
-    ["@media (max-width:500px)"]: {
-      width: "20%",
+    ["@media (max-width:800px)"]: {
+      width: "15%",
       fontSize: "12px",
     },
   },

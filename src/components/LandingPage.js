@@ -134,7 +134,7 @@ const LandingPage = ({
     }) => {
     const history = useHistory();
     const { authState, authService } = useOktaAuth();
-    const login = async () => authService.login("/");
+    const login = async () => authService.login("/register");
     const [getRec, setGetRec] = useState(false);
     const styles = useStyles();
 
@@ -156,8 +156,6 @@ const LandingPage = ({
               console.log("Error fetching User info in UseEffect", err)
             );
         }
-
-        console.log("HHHHHHHHHHHHHHHHHHHHHHHHHHHH",authState)
       }, [authState, authService]);
 
     useEffect(() => {
