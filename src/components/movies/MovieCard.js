@@ -479,21 +479,14 @@ function MovieCard({
                     )}
                 </div>
                 {page === "watchlist" ? (
-                  <div onClick={() => setDeleteMode(!deleteMode)}>
-                    <CardActions
-                      className={classes.cardActionsModal}
-                      onClick={() => setDeleteMode(!deleteMode)}
-                    >
-                      {deleteMode && (
-                        <button
-                          className={classes.DeleteMoviefromWatch}
-                          onClick={() => handleClick(movie.id)}
-                        >
-                          Remove from Watchlist
-                      </button>
-                      )}
-                    </CardActions>
-                  </div>
+                  <CardActions onClick={()=>setDeleteMode(!deleteMode)}>
+                   {deleteMode &&<button 
+                  className="delete-button"
+                  onClick={()=>handleClick(movie.id)}
+                  >
+                    x
+                  </button>}
+                </CardActions>
                 ) : (
                     ""
                   )}
