@@ -23,7 +23,7 @@ export function registerAction(userCreds, history) {
               payload: res.data.user_id
             });
             if(res.data.newUser === true){
-            history.push(`/${res.data.user_id}/onboardingplateform`);
+            history.push(`/${res.data.user_id}/onboardingplatform`);
             }else {
               history.push(`/${res.data.user_id}/explore`);
             }
