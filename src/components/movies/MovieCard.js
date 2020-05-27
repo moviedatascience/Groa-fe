@@ -484,7 +484,7 @@ function MovieCard({
                   className="delete-button"
                   onClick={()=>handleClick(movie.id)}
                   >
-                    x
+                    Remove from Watchlist
                   </button>}
                 </CardActions>
                 ) : (
