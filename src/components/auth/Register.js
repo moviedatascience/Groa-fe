@@ -33,7 +33,8 @@ function Copyright() {
 const Register = (props) => {
   const history = useHistory();
   const { authState, authService } = useOktaAuth();
-  const login = async () => authService.login("/");
+
+  const login = async () => authService.login("/register");
 
   const facebookLogin = () => {
     window.location.href = `https://dev-568768.okta.com/oauth2/v1/authorize?idp=0oabxx6bmXwAawmlZ4x6&client_id=${process.env.REACT_APP_CLIENT_ID}&response_type=id_token&response_mode=fragment&scope=openid%20email&redirect_uri=https%3A%2F%2Fgroa.us%2F&state=1234&nonce=groa1234`;

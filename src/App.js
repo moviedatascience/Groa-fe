@@ -55,7 +55,6 @@ store.subscribe(() => {
 });
 
 function App() {
-  //used to create theme of app
 
   useEffect(() => reactGAinitialization(), []);
   const theme = React.useMemo(
@@ -82,7 +81,6 @@ function App() {
         <Router>
           <Security {...oktaConfig.oidc}>
             <div className="App" data-test={ifDev("App-component")}>
-              {/* this is fine as a route because all of the routes that will have display their component will only be avalible on a private route */}
               <Route path="/implicit/callback" component={LoginCallback} />
               <Route exact path={["/", "/landingpage"]} component={LandingPage} />
               <Route
@@ -107,7 +105,7 @@ function App() {
                 path="/:user_id/watchlist"
                 component={Watchlist}
               />
-              <Route
+              <SecureRoute
                 exact
                 path={["/:user_id/onboarding"]}
                 component={SearchBar}
@@ -125,9 +123,6 @@ function App() {
               <Route exact path="/:user_id/upload" component={DataUpload} />
               <Route exact path="/register" component={Register} />
               <Route path="/logout" component={Register} />
-              {/* <Route exact path="/register" component={Register} /> */}
-              {/* this could be a modal */}
-              {/* <Route path="/congrats" component={Congrats} /> */}
               <SecureRoute exact path="/:user_id/ratings" component={Ratings} />
               <SecureRoute exact path="/:user_id/explore" component={Explore} />
             </div>
