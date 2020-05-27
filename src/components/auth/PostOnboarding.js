@@ -18,6 +18,7 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     background: "#212120",
     padding: "2%",
+    fontFamily: 'Work Sans',
   },
   PostOnboardingImg: {
     width: "50%",

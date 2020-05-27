@@ -12,6 +12,7 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
     justifyContent: 'center',
     height: '100vh',
+    fontFamily: 'Work Sans',
   },
   loadingComponent: {
     margin: '4.5% auto'

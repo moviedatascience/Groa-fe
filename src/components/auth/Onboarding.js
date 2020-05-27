@@ -24,6 +24,7 @@ import { Redirect } from "react-router";
 
 const useStyles = makeStyles((theme) => ({
   Title: {
+    fontFamily: 'Work Sans',
     fontSize: "2rem",
     textAlign: "center",
     color:'white',
