@@ -27,15 +27,13 @@ export const watchlist = (state = initialState, action) => {
       return {
         ...state,
         isAdding: true
-      }
+      };
     // ADD TO WATCHLIST SUCCESS
     case ADDING_WATCHLIST_SUCCESS:
       return {
         ...state,
         isAdding: false,
-
       };
-
     // ADD TO WATCHLIST FAIL
     case ADDING_WATCHLIST_FAIL:
       return {
@@ -43,7 +41,6 @@ export const watchlist = (state = initialState, action) => {
         isAdding: false,
         error: action.payload
       };
-
     // GET WATCHLIST START
     case FETCHING_WATCHLIST_START:
       return {
@@ -57,7 +54,6 @@ export const watchlist = (state = initialState, action) => {
         isFetching: false,
         movies: action.payload
       };
-
     // GET WATCHLIST FAIL
     case FETCHING_WATCHLIST_FAIL:
       return {
