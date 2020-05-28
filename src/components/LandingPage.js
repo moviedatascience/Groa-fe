@@ -142,8 +142,12 @@ const LandingPage = ({
     useEffect(() => {
         //Auth URL redirect from facebook contains #id_token, if exist login() will authenticate the user
         if (window.location.href.indexOf("#id_token") > -1) {
-          login();
+            login();
         }
+
+        if (window.location.href.indexOf("AUTHENTICATED") > -1) {
+            login();
+          }
     
         if (authState.isAuthenticated === true) {
           authService

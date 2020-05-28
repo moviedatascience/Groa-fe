@@ -1,9 +1,8 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core";
 import { RatingsTileBar } from "./RatingsTileBar";
-import ReactLoading from "react-loading";
 import "react-multi-carousel/lib/styles.css";
-import Rating from "@material-ui/lab/Rating";
+
 //styling for Landing Movie Slider Component
 const useStyles = makeStyles((theme) => ({
   container: {
