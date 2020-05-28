@@ -380,8 +380,8 @@ function MovieCard({
     setRemoved(true);
   };
   const handleClickDeleteFromWatchlist = () => {
-    const removefromWatchlist = { movie_id: movie.movie_id, user_id: userid};
-    removeWatchListAction( userid, removefromWatchlist, accessToken);
+    console.log('thisi sin move', movie_id)
+    removeWatchListAction( userid, movie_id, accessToken);
     setDeleted(true);
   }
 
@@ -501,8 +501,8 @@ function MovieCard({
                      color="primary"
                    >
                      {!deleted && !removeInWatchlist
-                       ? "Remove"
-                       : "Removed from Results"}
+                       ? "Remove from Watchlist"
+                       : "Removed from Watchlist"}
                    </Button>
                  </CardActions>
                 ) : (

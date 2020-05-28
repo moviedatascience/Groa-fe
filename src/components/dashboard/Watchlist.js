@@ -93,6 +93,7 @@ function Watchlist({
                   trailer={movie.trailer_url}
                   description={movie.description}
                   genres={movie.genres}
+                  movie_id={movie.movie_id}
                   page="watchlist"
                   image={
                     !posterURI ||

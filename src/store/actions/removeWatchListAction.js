@@ -4,6 +4,7 @@ export const REMOVEFROMWATCHLIST_SUCCESS = 'REMOVEFROMWATCHLIST_SUCCESS';
 export const REMOVEFROMWATCHLIST_FAIL = 'REMOVEFROMWATCHLIST_FAIL';
 
 export function removeWatchListAction(id, movie_id, token) {
+    console.log('mvie id', movie_id)
     return(dispatch) => {
         dispatch({
             type: REMOVEFROMWATCHLIST_START,
@@ -11,11 +12,11 @@ export function removeWatchListAction(id, movie_id, token) {
         axiosWithAuth(token)
         .post(`/watchlist/${id}/remove/${movie_id}`)
         .then( res => {
-            console.log(res.data);
             dispatch({
                 type: REMOVEFROMWATCHLIST_SUCCESS,
                 payload: res.data,
             });
+            console.log('data from front end',res.data);
         })
         .catch( err => {
             dispatch({
