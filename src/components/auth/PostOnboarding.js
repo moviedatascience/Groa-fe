@@ -10,8 +10,10 @@ import { Link } from "react-router-dom";
 import PostOnboardingImg from "../../img/post-onboarding-man.png";
 //material-ui
 import { makeStyles } from "@material-ui/core/styles";
+import { Button } from "@material-ui/core";
 //okta
 import { useOktaAuth } from "@okta/okta-react/dist/OktaContext";
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -21,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
     fontFamily: 'Work Sans',
   },
   PostOnboardingImg: {
-    width: "50%",
+    width: "45%",
     padding: "3%",
   },
   onboardingText: {
@@ -46,29 +48,31 @@ const useStyles = makeStyles((theme) => ({
   },
   onboardingLink: {
     textAlign: "center",
-    fontSize: "25px",
+    // fontSize: "25px",
     padding: "2%",
+    textDecoration:'none',
   },
   onboardingBut: {
-    backgroundColor: "#00E6BC",
     width: "100%",
-    color: "#FFFFFF",
-    padding: "2%",
+    height:'7vh',
+    background: '#00B392',
+    color: '#212120',
     borderRadius: "4px",
-    "&:hover": {
-      backgroundColor: "white",
-      color: "#00E6BC",
+    '&:hover': {
+      boxShadow: '0 0 6px #00B392',
+      color: '#00B392',
     },
   },
   [theme.breakpoints.down("xs")]: {
     root: {
-      flexDirection: "column",
+      flexDirection: "column-reverse",
+      textAlign:'center',
     },
     PostOnboardingImg: {
       display: "block",
       marginLeft: "auto",
       marginRight: "auto",
-      width: "60%",
+      width: "50%",
     },
   },
 }));
@@ -117,7 +121,7 @@ function PostOnboarding({
           className={classes.onboardingLink}
           to={`/${userid}/recommendations`}
         >
-          <button className={classes.onboardingBut}>Finish</button>
+          <Button className={classes.onboardingBut}>Finish</Button>
         </Link>
       </div>
     </div>

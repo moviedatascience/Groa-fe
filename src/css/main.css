@@ -73,25 +73,6 @@
   #root .App {
     min-height: 100vh;
     background-color: #212120; }
-  #root .register.nav,
-  #root .login.nav {
-    justify-content: space-between;
-    width: 100%; }
-    #root .register.nav img,
-    #root .login.nav img {
-      align-items: center;
-      height: 2.5rem;
-      width: auto; }
-    #root .register.nav .signin-title,
-    #root .login.nav .signin-title {
-      display: flex;
-      color: white; }
-  @media (max-width: 600px) {
-    #root .signin-title {
-      display: flex;
-      justify-content: flex-start;
-      margin-top: 2%;
-      font-size: 20px; } }
   #root .mainContainer {
     background: #212120;
     padding: 1.1% 1%;
