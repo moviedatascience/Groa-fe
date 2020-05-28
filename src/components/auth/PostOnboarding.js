@@ -121,7 +121,7 @@ function PostOnboarding({
           className={classes.onboardingLink}
           to={`/${userid}/recommendations`}
         >
-          <Button className={classes.onboardingBut}>Finish</Button>
+          <Button className={classes.onboardingBut}>View Your Recommended Movies</Button>
         </Link>
       </div>
     </div>
