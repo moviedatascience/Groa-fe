@@ -5,13 +5,13 @@ import { recommendationAction } from "./recommendationActions.js";
 import { uploadAction, toggleIsUploaded } from "./uploadAction.js";
 import {
   addToWatchlistAction,
-  removeFromWatchlistAction,
   getWatchlistAction,
 } from "./watchlistActions.js";
 import { getMoviesAction } from "./movieAction"
 import { setFilter } from "./filterActions.js";
 import { notWatchListAction } from './notWatchListAction.js';
 import { serviceProviderAction } from './serviceProviderAction.js';
+import { removeWatchListAction } from './removeWatchListAction.js';
 import { searchAction } from "./searchAction.js";
 import { 
   horrorLandingAction,
@@ -30,12 +30,12 @@ export {
   toggleIsUploaded,
   getRatingAction,
   addToWatchlistAction,
-  removeFromWatchlistAction,
   getWatchlistAction,
   getMoviesAction,
   setFilter,
   notWatchListAction,
   serviceProviderAction,
+  removeWatchListAction,
   searchAction,
   horrorLandingAction,
   comedyLandingAction,

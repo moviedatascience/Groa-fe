@@ -5,6 +5,7 @@ import {
   ratingAction,
   addToWatchlistAction,
   notWatchListAction,
+  removeWatchListAction
 } from "../../store/actions";
 
 import Stars from "@material-ui/lab/Rating";
@@ -291,6 +292,8 @@ function MovieCard({
   setDeleteMode,
   notWatchListAction,
   notwatchlist,
+  removeWatchListAction,
+  removewatchlist
 }) {
   //OKTA AUTH
   const { authState, authService } = useOktaAuth();
@@ -304,12 +307,17 @@ function MovieCard({
   const [added, setAdded] = useState(false);
   //to remove movie user not interested in
   const [removed, setRemoved] = useState(false);
+  //to delete from watchist in watchlist page
+  const [deleted, setDeleted] = useState(false);
   /* This checks if the movie is in the watchlist */
   const inWatchlist = watchlist.some(
     (movie) => movie.name === name && movie.year === year
   );
   const notInWatchlist = notwatchlist.some(
     (movie) => movie.name === name && movie.year === year
+  );
+  const removeInWatchlist = removewatchlist.some(
+    (movie) => movie.name === name &&movie.year === year
   );
   const inRatings = ratings.some(
     (movie) => movie.name === name && movie.year === year
@@ -371,6 +379,11 @@ function MovieCard({
     notWatchListAction(userid, notWatch, accessToken);
     setRemoved(true);
   };
+  const handleClickDeleteFromWatchlist = () => {
+    const removefromWatchlist = { movie_id: movie.movie_id, user_id: userid};
+    removeWatchListAction( userid, removefromWatchlist, accessToken);
+    setDeleted(true);
+  }
 
   const handleClickProviders = () => {
     axiosWithAuth(accessToken)
@@ -479,14 +492,19 @@ function MovieCard({
                     )}
                 </div>
                 {page === "watchlist" ? (
-                  <CardActions onClick={()=>setDeleteMode(!deleteMode)}>
-                   {deleteMode &&<button 
-                  className="delete-button"
-                  onClick={()=>handleClick(movie.id)}
-                  >
-                    Remove from Watchlist
-                  </button>}
-                </CardActions>
+                   <CardActions className={classes.cardActionsModal}>
+                   <Button
+                     onClick={handleClickDeleteFromWatchlist}
+                     className={classes.watchList}
+                     disabled={deleted || removeInWatchlist ? true : false}
+                     size="small"
+                     color="primary"
+                   >
+                     {!deleted && !removeInWatchlist
+                       ? "Remove"
+                       : "Removed from Results"}
+                   </Button>
+                 </CardActions>
                 ) : (
                     ""
                   )}
@@ -532,7 +550,7 @@ function MovieCard({
                       />
                     </Box>
                   )}
-                {page !== 'watchlist' && page !== 'Onboarding' ? (
+                {page !== 'watchlist' && page !== 'Onboarding' && page !== "Recommendations" ? (
                   <div className={classes.ExpansionRoot}>
                     <ExpansionPanel className={classes.expansionPanal}>
                       <ExpansionPanelSummary
@@ -594,10 +612,12 @@ const mapStateToProps = (state) => {
     watchlistError: state.watchlist.error,
     ratings: state.rating.movies,
     notwatchlist: state.notwatchlist.movies,
+    removewatchlist: state.removewatchlist.movies,
   };
 };
 export default connect(mapStateToProps, {
   ratingAction,
   addToWatchlistAction,
   notWatchListAction,
+  removeWatchListAction,
 })(MovieCard);

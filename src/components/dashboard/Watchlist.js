@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 // tools
 import { connect } from "react-redux";
 import {
-  removeFromWatchlistAction,
   getWatchlistAction,
   setFilter,
 } from "../../store/actions/index.js";
@@ -43,7 +42,6 @@ function Watchlist({
   watchlist,
   getWatchlistAction,
   searchTerm,
-  removeFromWatchlistAction,
   setFilter,
 }) {
   //OKTA AUTH
@@ -60,10 +58,6 @@ function Watchlist({
     // Returns the users watchlist from the database
     getWatchlistAction(userid, accessToken);
   }, [getWatchlistAction, userid, isDeleting, setFilter, accessToken]);
-
-  function handleClick(id) {
-    removeFromWatchlistAction(userid, id, accessToken);
-  }
 
   if (isFetching) return <LoadingScreen />;
   else if (isDeleting) return <LoadingScreen />;
@@ -109,9 +103,6 @@ function Watchlist({
                       ? unsplashUrl
                       : moviePoster
                   }
-                  deleteMode={deleteMode}
-                  setDeleteMode={setDeleteMode}
-                  handleClick={handleClick}
                 />
               </div>
             );
@@ -125,7 +116,6 @@ const mapStateToProps = (state) => {
   return {
     userid: state.login.userid,
     isFetching: state.watchlist.isFetching,
-    isDeleting: state.watchlist.isDeleting,
     watchlist: state.watchlist.movies,
     watchlistError: state.watchlist.error,
     searchTerm: state.filter.searchTerm,
@@ -133,6 +123,5 @@ const mapStateToProps = (state) => {
 };
 export default connect(mapStateToProps, {
   getWatchlistAction,
-  removeFromWatchlistAction,
   setFilter,
 })(Watchlist);

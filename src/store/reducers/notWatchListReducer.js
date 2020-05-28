@@ -5,7 +5,7 @@ import {
 } from "../actions/notWatchListAction";
 
 const initialState = {
-    movies:[],
+    movies: [],
     isAdding: false,
     error: "",
 };

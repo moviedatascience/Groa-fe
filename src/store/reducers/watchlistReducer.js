@@ -3,10 +3,6 @@ import {
     ADDING_WATCHLIST_SUCCESS,
     ADDING_WATCHLIST_FAIL,
 
-    REMOVING_FROM_WATCHLIST_START,
-    REMOVING_FROM_WATCHLIST_SUCCESS,
-    REMOVING_FROM_WATCHLIST_FAIL,
-
     FETCHING_WATCHLIST_START,
     FETCHING_WATCHLIST_SUCCESS,
     FETCHING_WATCHLIST_FAIL
@@ -41,28 +37,6 @@ import {
         return {
           ...state,
           isAdding: false,
-          error: action.payload
-        };
-
-      // REMOVE FROM WATCHLIST START
-      case  REMOVING_FROM_WATCHLIST_START:
-        return {
-          ...state,
-          isDeleting: true
-        }
-      // REMOVE FROM WATCHLIST SUCCESS
-      case  REMOVING_FROM_WATCHLIST_SUCCESS:
-        return {
-          ...state,
-          isDeleting: false,
-        
-        };
-  
-      // REMOVE FROM WATCHLIST FAIL
-      case  REMOVING_FROM_WATCHLIST_FAIL:
-        return {
-          ...state,
-          isDeleting: false,
           error: action.payload
         };
 
