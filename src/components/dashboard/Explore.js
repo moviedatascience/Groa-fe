@@ -34,6 +34,11 @@ const useStyles = makeStyles((theme) => ({
       transitionDuration:'.5s'
     },
   },
+  [theme.breakpoints.down("xs")]: {
+    Title: {
+      fontSize: '2rem'
+    },
+  },
 }));
 function Explore({
   isFetching,

@@ -20,11 +20,11 @@ const useStyles = makeStyles((theme) => ({
   Title: {
     fontSize: "3rem",
     textAlign: "center",
+  },
     [theme.breakpoints.down("xs")]: {
       Title: {
-        fontSize: '1rem'
+        fontSize: '2rem'
       },
-    },
   },
   cardGrid: {
     paddingTop: theme.spacing(4),
