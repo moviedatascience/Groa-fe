@@ -1,14 +1,14 @@
 .register.nav,
 .login.nav {
-  font-family: $workSans;
-  display: flex;
+  // font-family: $workSans;
+  // display: flex;
   justify-content: space-between;
-  align-items: center;
+  // align-items: center;
   width: 100%;
-  text-align: center;
+  // text-align: center;
 
   @media (max-width: 600px) {
-    flex-direction: column;
+    // flex-direction: column;
   }
 
   img {

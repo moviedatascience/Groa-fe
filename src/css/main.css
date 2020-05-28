@@ -71,7 +71,6 @@
   #root .lowercase {
     text-transform: lowercase; }
   #root .App {
-    min-height: 100vh;
     background-color: #212120; }
   #root .container.register-component,
   #root .container.login-component {
