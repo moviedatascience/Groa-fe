@@ -33,7 +33,6 @@ export function addToWatchlistAction(id, movie, token) {
       });
   };
 }
-
 // GET WATCHLIST
 export function getWatchlistAction(id, token) {
   return dispatch => {
