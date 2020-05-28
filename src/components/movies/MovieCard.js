@@ -542,7 +542,7 @@ function MovieCard({
                       />
                     </Box>
                   )}
-                {page !== 'watchlist' && page !== 'Onboarding' && page !== "Recommendations" ? (
+                {page !== 'Onboarding' ? (
                   <div className={classes.ExpansionRoot}>
                     <ExpansionPanel className={classes.expansionPanal}>
                       <ExpansionPanelSummary
