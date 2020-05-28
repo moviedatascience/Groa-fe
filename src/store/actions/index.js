@@ -11,7 +11,7 @@ import { getMoviesAction } from "./movieAction"
 import { setFilter } from "./filterActions.js";
 import { notWatchListAction } from './notWatchListAction.js';
 import { serviceProviderAction } from './serviceProviderAction.js';
-import { removeWatchListAction } from './removeWatchListAction.js';
+import { removeWatchListAction } from './watchlistActions.js';
 import { searchAction } from "./searchAction.js";
 import { 
   horrorLandingAction,

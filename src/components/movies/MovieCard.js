@@ -293,7 +293,7 @@ function MovieCard({
   notWatchListAction,
   notwatchlist,
   removeWatchListAction,
-  removewatchlist
+  // removewatchlist
 }) {
   //OKTA AUTH
   const { authState, authService } = useOktaAuth();
@@ -316,7 +316,7 @@ function MovieCard({
   const notInWatchlist = notwatchlist.some(
     (movie) => movie.name === name && movie.year === year
   );
-  const removeInWatchlist = removewatchlist.some(
+  const removeInWatchlist = watchlist.some(
     (movie) => movie.name === name &&movie.year === year
   );
   const inRatings = ratings.some(
@@ -612,7 +612,6 @@ const mapStateToProps = (state) => {
     watchlistError: state.watchlist.error,
     ratings: state.rating.movies,
     notwatchlist: state.notwatchlist.movies,
-    removewatchlist: state.removewatchlist.movies,
   };
 };
 export default connect(mapStateToProps, {

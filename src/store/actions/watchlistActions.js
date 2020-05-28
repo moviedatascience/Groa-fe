@@ -7,6 +7,10 @@ export const FETCHING_WATCHLIST_START = "FETCHING_WATCHLIST_START";
 export const FETCHING_WATCHLIST_SUCCESS = "FETCHING_WATCHLIST_SUCCESS";
 export const FETCHING_WATCHLIST_FAIL = "FETCHING_WATCHLIST_FAIL";
 
+export const REMOVEFROMWATCHLIST_START = 'REMOVEFROMWATCHLIST_START';
+export const REMOVEFROMWATCHLIST_SUCCESS = 'REMOVEFROMWATCHLIST_SUCCESS';
+export const REMOVEFROMWATCHLIST_FAIL = 'REMOVEFROMWATCHLIST_FAIL';
+
 // ADD TO WATCHLIST
 export function addToWatchlistAction(id, movie, token) {
   return dispatch => {
@@ -51,4 +55,35 @@ export function getWatchlistAction(id, token) {
         });
       });
   };
+}
+// POST REMOVEFROMWATCHLIST
+export function removeWatchListAction(id, movie_id, token) {
+  console.log('mvie id', movie_id)
+  return (dispatch) => {
+    dispatch({
+      type: REMOVEFROMWATCHLIST_START,
+    });
+    axiosWithAuth(token)
+      .post(`/watchlist/${id}/remove/${movie_id}`)
+      .then(res => {
+        dispatch({
+          type: REMOVEFROMWATCHLIST_SUCCESS,
+          payload: res.data,
+        });
+        axiosWithAuth(token)
+          .get(`/${id}/get-watchlist`)
+          .then(res => {
+            dispatch({
+              type: FETCHING_WATCHLIST_SUCCESS,
+              payload: res.data
+            });
+          })
+      })
+      .catch(err => {
+        dispatch({
+          type: REMOVEFROMWATCHLIST_FAIL,
+          payload: err
+        })
+      })
+  }
 }
