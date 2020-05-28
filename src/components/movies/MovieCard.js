@@ -39,7 +39,6 @@ const styles = (theme) => ({
     justifyContent: "space-between",
   },
   closeButton: {
-    // paddingLeft: "200px",
     color: theme.palette.grey[500],
   },
 });
@@ -192,7 +191,6 @@ const useStyles = makeStyles((theme) => ({
   },
   starsModal: {
     justifyContent: "center",
-    // display: "flex",
     fontSize: "3vw",
   },
   actionBtn: {
@@ -359,7 +357,6 @@ function MovieCard({
     addToWatchlistAction(userid, movie, accessToken);
     setAdded(true);
   };
-
   const deleteRating = (e) => {
     e.preventDefault();
     const RatingDeletion = {
@@ -368,7 +365,6 @@ function MovieCard({
     };
     removeRatingAction(userid, RatingDeletion, accessToken);
   };
-
   const handleClickRemove = () => {
     const notWatch = { movie_id: movie.movie_id, user_id: userid };
     notWatchListAction(userid, notWatch, accessToken);
@@ -380,7 +376,6 @@ function MovieCard({
     setDeleted(true);
     handleClose();
   }
-
   const handleClickProviders = () => {
     axiosWithAuth(accessToken)
       .get(`${userid}/service-providers/${movie.movie_id}`)
@@ -393,13 +388,11 @@ function MovieCard({
       });
     setOpen((prevOpen) => !prevOpen);
   };
-
   const multiFunctions = () => {
     handleClose();
     handleClickStar();
     onboardingRating();
   };
-
   const onboardingRating = () => {
     setNumRatings({ ...numRatings, num: numRatings.num + 1 });
     console.log("number of ratings is " + numRatings.num);
@@ -409,7 +402,6 @@ function MovieCard({
     <div className={classes.card}>
       <div className={classes.modalBtn} onClick={handleOpen}>
         <img className={classes.movieImg} src={image} alt={movie.name} />
-        {/* <p className={classes.name}>{name}</p> */}
       </div>
       <Modal
         aria-labelledby="transition-modal-title"
@@ -453,14 +445,13 @@ function MovieCard({
                         {inRatings || yourRating
                           ? "Your Rated this Movie"
                           : !added && !inWatchlist
-                          ? "Add to watchlist"
-                          : "In your watchlist"}
+                            ? "Add to watchlist"
+                            : "In your watchlist"}
                       </Button>
                     </CardActions>
                   ) : (
-                    ""
-                  )}
-
+                      ""
+                    )}
                   {page === "Recommendations" ? (
                     <CardActions className={classes.cardActionsModal}>
                       <Button
@@ -476,22 +467,22 @@ function MovieCard({
                       </Button>
                     </CardActions>
                   ) : (
-                    ""
-                  )}
+                      ""
+                    )}
                   {page === "Ratings" ? (
-              <CardActions className={classes.cardActionsModal}>
-                <Button
-                  onClick={deleteRating}
-                  className={classes.watchList}
-                  size="small"
-                  color="primary"
-                >
-                  Remove Your Rating
+                    <CardActions className={classes.cardActionsModal}>
+                      <Button
+                        onClick={deleteRating}
+                        className={classes.watchList}
+                        size="small"
+                        color="primary"
+                      >
+                        Remove Your Rating
                 </Button>
-              </CardActions>
-            ) : (
-              ""
-            )}
+                    </CardActions>
+                  ) : (
+                      ""
+                    )}
                 </div>
                 {page === "watchlist" ? (
                   <CardActions className={classes.cardActionsModal}>
@@ -508,9 +499,8 @@ function MovieCard({
                     </Button>
                   </CardActions>
                 ) : (
-                  ""
-                )}
-
+                    ""
+                  )}
                 {page === "Onboarding" ? (
                   <Box
                     className={classes.starRootOnboarding}
@@ -521,7 +511,6 @@ function MovieCard({
                       size="large"
                       precision={0.5}
                       emptyIcon={<StarBorderIcon fontSize="inherit" />}
-                      // eslint-disable-next-line react/jsx-no-duplicate-props
                       emptyIcon={
                         <StarBorderIcon
                           fontSize="inherit"
@@ -590,8 +579,8 @@ function MovieCard({
                     </ExpansionPanel>
                   </div>
                 ) : (
-                  ""
-                )}
+                    ""
+                  )}
               </div>
             </div>
             {page !== "Onboarding" ? (
@@ -609,8 +598,8 @@ function MovieCard({
                 allowFullScreen
               ></iframe>
             ) : (
-              ""
-            )}
+                ""
+              )}
           </div>
         </Fade>
       </Modal>
