@@ -73,10 +73,11 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
-    alignItems: 'center',    borderRadius: '4px',
+    alignItems: 'center',
+    borderRadius: '4px',
     background: '#212120',
     width: '100%',
-    height: '550px',
+    // height: '550px',
   },
   form: {
     width: '50%',
@@ -105,26 +106,26 @@ const useStyles = makeStyles((theme) => ({
     background: '#00B392',
     color: '#212120',
     marginBottom: '2%',
-    '&:hover':{
+    '&:hover': {
       boxShadow: '0 0 6px #00B392',
-      color:'#00B392',
+      color: '#00B392',
     },
   },
-  fbBtn:{
+  fbBtn: {
     width: '100%',
     height: '50px',
     backgroundColor: '#3A5A97',
     borderRadius: '4px',
     boxShadow: '0 3px 4px 0 rgba(0, 0, 0, .25)',
     marginTop: '2%',
-    '&:hover':{
+    '&:hover': {
       boxShadow: '0 0 6px #4285f4',
     },
-    '&:active':{
-      backgroundColor:'white',
+    '&:active': {
+      backgroundColor: 'white',
     }
   },
-  fbIconWrapper:{
+  fbIconWrapper: {
     position: 'absolute',
     marginTop: '4px',
     marginLeft: '1px',
@@ -132,22 +133,61 @@ const useStyles = makeStyles((theme) => ({
     height: '40px',
     borderRadius: '2px',
   },
-  fbIcon:{
+  fbIcon: {
     marginTop: '11px',
     marginLeft: '11px',
     width: '18px',
     height: '18px',
   },
-  btnText:{
+  btnText: {
     margin: '6% 1% 0 30%',
     color: 'white',
     fontzsize: '14px',
     letterSpacing: '0.2px',
     fontFamily: "Roboto",
   },
+
   [theme.breakpoints.down("xs")]: {
     onboardingNav: {
       flexDirection: 'column',
+    },
+    boxContainer: {
+      flexDirection: 'column',
+      alignItems: "center",
+      width:'100%'
+    },
+    boxLeft: {
+      width: '80%',
+      margin: 0,
+      padding: 0,
+    },
+    textContainer: {
+      margin: '0 auto',
+      width: '100%',
+    },
+    h1: {
+      display: 'none',
+    },
+    h5: {
+      display: 'none',
+    },
+    imageWrapper: {
+      display: 'none',
+    },
+    logo: {
+      display: 'none',
+    },
+    boxRight: {
+      margin: '10% 0',
+      background: "#212120",
+      height: '100%',
+    },
+    form: {
+      maxWidth: '100%',
+      width:'80%'
+    },
+    btnText: {
+      margin: '4% 2% 0 35%',
     },
   },
 }));
@@ -243,7 +283,7 @@ const Register = (props) => {
                   Login with Email
                 </Button>
                 <p>
-                  <span>--------- OR ---------</span>
+                  <span>----------- OR -----------</span>
                 </p>
                 <div className={styles.fbBtn} onClick={facebookLogin}>
                   <div class={styles.fbIconWrapper}>
@@ -262,7 +302,7 @@ const Register = (props) => {
           </div>
         </div>
       </div>
-        <Copyright />
+      <Copyright />
     </div>
   );
 };
