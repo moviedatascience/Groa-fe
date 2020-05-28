@@ -21,10 +21,11 @@ const useStyles = makeStyles((theme) => ({
   Title: {
     fontSize: "3rem",
     textAlign: "center",
+    paddingTop:'2%',
   },
   cardGrid: {
-    paddingTop: theme.spacing(4),
-    paddingBottom: theme.spacing(4),
+    paddingTop: theme.spacing(0),
+    paddingBottom: theme.spacing(2),
     paddingRight: theme.spacing(1),
     paddingLeft: theme.spacing(1),
   },
