@@ -378,6 +378,7 @@ function MovieCard({
     console.log('thisi sin move', movie_id)
     removeWatchListAction(userid, movie_id, accessToken);
     setDeleted(true);
+    handleClose();
   }
 
   const handleClickProviders = () => {
@@ -477,6 +478,20 @@ function MovieCard({
                   ) : (
                     ""
                   )}
+                  {page === "Ratings" ? (
+              <CardActions className={classes.cardActionsModal}>
+                <Button
+                  onClick={deleteRating}
+                  className={classes.watchList}
+                  size="small"
+                  color="primary"
+                >
+                  Remove Your Rating
+                </Button>
+              </CardActions>
+            ) : (
+              ""
+            )}
                 </div>
                 {page === "watchlist" ? (
                   <CardActions className={classes.cardActionsModal}>
@@ -593,20 +608,6 @@ function MovieCard({
                 allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
               ></iframe>
-            ) : (
-              ""
-            )}
-            {page === "Ratings" ? (
-              <CardActions className={classes.cardActionsModal}>
-                <Button
-                  onClick={deleteRating}
-                  className={classes.watchList}
-                  size="small"
-                  color="primary"
-                >
-                  Remove Rating
-                </Button>
-              </CardActions>
             ) : (
               ""
             )}
