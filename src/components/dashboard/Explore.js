@@ -80,7 +80,7 @@ function Explore({
   else
     return (
       <>
-        <h1 className={classes.Title}>Search for Your Favorite Movies</h1>
+        <h1 className={classes.Title}>Search Your Favorite Movies</h1>
         {isSearching ? (
           <GridList
             className={classes.cardGrid}
