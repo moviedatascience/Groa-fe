@@ -206,7 +206,7 @@ const useStyles = makeStyles((theme) => ({
   },
   ExpansionRoot: {
     margin: 'auto',
-    padding: '0 15%',
+    padding: '2% 25%',
   },
   btnsProviders: {
     backgroundColor: "#212120",
