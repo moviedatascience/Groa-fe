@@ -5,6 +5,7 @@ import {
   ratingAction,
   addToWatchlistAction,
   notWatchListAction,
+  removeRatingAction,
 } from "../../store/actions";
 
 import Stars from "@material-ui/lab/Rating";
@@ -27,10 +28,9 @@ import CloseIcon from "@material-ui/icons/Close";
 import { useOktaAuth } from "@okta/okta-react/dist/OktaContext";
 
 //menu expander
-import ExpansionPanel from '@material-ui/core/ExpansionPanel';
-import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
-import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import ExpansionPanel from "@material-ui/core/ExpansionPanel";
+import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
 const styles = (theme) => ({
   closeBtn: {
@@ -78,8 +78,8 @@ const useStyles = makeStyles((theme) => ({
   name: {
     fontSize: "15px",
     textAlign: "center",
-    color: '#00B392',
-    paddingTop: '1%',
+    color: "#00B392",
+    paddingTop: "1%",
   },
   year: {
     fontSize: "18px",
@@ -105,7 +105,7 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexDirection: "column",
     width: "100%",
-    padding: '1%',
+    padding: "1%",
   },
   cardActions: {
     fontSize: "10px",
@@ -152,6 +152,7 @@ const useStyles = makeStyles((theme) => ({
     boxShadow: theme.shadows[5],
     padding: theme.spacing(0, 6, 3),
     color: "white",
+    mozoverflowY: "scroll",
   },
   DeleteMoviefromWatch: {
     backgroundColor: "white",
@@ -204,29 +205,29 @@ const useStyles = makeStyles((theme) => ({
     padding: "0 1.5rem",
   },
   ExpansionRoot: {
-    margin: 'auto',
-    padding: '0 15%',
+    margin: "auto",
+    padding: "0 15%",
   },
   btnsProviders: {
     backgroundColor: "#212120",
     color: "white",
   },
   expansionPanal: {
-    dislay: 'flex',
-    justifyContent: 'center',
-    margin: 'auto',
-    textAlign:"center",
+    dislay: "flex",
+    justifyContent: "center",
+    margin: "auto",
+    textAlign: "center",
     background: "rgb(23, 23, 23, .96)",
     boxShadow: theme.shadows[5],
   },
   expansionPanalSummary: {
-    margin: 'auto',
-    },
-    heading:{
-      margin:'auto',
-    },
+    margin: "auto",
+  },
+  heading: {
+    margin: "auto",
+  },
   serviceInfo: {
-    textAlign: 'center',
+    textAlign: "center",
   },
   Link: {
     textDecoration: "none",
@@ -237,7 +238,7 @@ const useStyles = makeStyles((theme) => ({
   serviceBtn: {
     margin: "1%",
     "&:hover": {
-      color: '#00B392',
+      color: "#00B392",
     },
   },
   [theme.breakpoints.down("xs")]: {
@@ -291,6 +292,7 @@ function MovieCard({
   setDeleteMode,
   notWatchListAction,
   notwatchlist,
+  removeRatingAction,
 }) {
   //OKTA AUTH
   const { authState, authService } = useOktaAuth();
@@ -319,21 +321,6 @@ function MovieCard({
   const [openModal, setOpenModal] = React.useState(false);
   //for button group
   const [open, setOpen] = React.useState(false);
-  const anchorRef = React.useRef(null);
-  const [selectedIndex, setSelectedIndex] = React.useState(1);
-
-  const handleMenuItemClick = (event, index) => {
-    setSelectedIndex(index);
-    setOpen(false);
-  };
-
-  const handleCloseServiceProvider = (event) => {
-    if (anchorRef.current && anchorRef.current.contains(event.target)) {
-      return;
-    }
-
-    setOpen(false);
-  };
 
   const handleOpen = () => {
     setOpenModal(true);
@@ -364,6 +351,15 @@ function MovieCard({
     /* Adds movie to the POST request */
     addToWatchlistAction(userid, movie, accessToken);
     setAdded(true);
+  };
+
+  const deleteRating = (e) => {
+    e.preventDefault();
+    const RatingDeletion = {
+      user_id: userid,
+      movie_id: movie_id,
+    };
+    removeRatingAction(userid, RatingDeletion, accessToken);
   };
 
   const handleClickRemove = () => {
@@ -399,11 +395,7 @@ function MovieCard({
   return (
     <div className={classes.card}>
       <div className={classes.modalBtn} onClick={handleOpen}>
-        <img
-          className={classes.movieImg}
-          src={image}
-          alt="Random Movie poster as a placeholder."
-        />
+        <img className={classes.movieImg} src={image} alt={movie.name} />
         {/* <p className={classes.name}>{name}</p> */}
       </div>
       <Modal
@@ -424,11 +416,7 @@ function MovieCard({
               <></>
             </DialogTitle>
             <div className={classes.movieInfoModal}>
-              <img
-                className={classes.movieImgModal}
-                src={image}
-                alt="Random Movie poster as a placeholder."
-              />
+              <img className={classes.movieImgModal} src={image} alt={name} />
 
               <div className={classes.movieContentDiv}>
                 <CardContent className={classes.cardContentModal}>
@@ -452,13 +440,13 @@ function MovieCard({
                         {inRatings || yourRating
                           ? "Your rating:"
                           : !added && !inWatchlist
-                            ? "Add to watchlist"
-                            : "In your watchlist"}
+                          ? "Add to watchlist"
+                          : "In your watchlist"}
                       </Button>
                     </CardActions>
                   ) : (
-                      ""
-                    )}
+                    ""
+                  )}
 
                   {page === "Recommendations" ? (
                     <CardActions className={classes.cardActionsModal}>
@@ -475,21 +463,23 @@ function MovieCard({
                       </Button>
                     </CardActions>
                   ) : (
-                      ""
-                    )}
-                </div>
-                {page === "watchlist" ? (
-                  <CardActions onClick={()=>setDeleteMode(!deleteMode)}>
-                   {deleteMode &&<button 
-                  className="delete-button"
-                  onClick={()=>handleClick(movie.id)}
-                  >
-                    Remove from Watchlist
-                  </button>}
-                </CardActions>
-                ) : (
                     ""
                   )}
+                </div>
+                {page === "watchlist" ? (
+                  <CardActions onClick={() => setDeleteMode(!deleteMode)}>
+                    {deleteMode && (
+                      <button
+                        className="delete-button"
+                        onClick={() => handleClick(movie.id)}
+                      >
+                        Remove from Watchlist
+                      </button>
+                    )}
+                  </CardActions>
+                ) : (
+                  ""
+                )}
 
                 {page === "Onboarding" ? (
                   <Box
@@ -501,6 +491,7 @@ function MovieCard({
                       size="large"
                       precision={0.5}
                       emptyIcon={<StarBorderIcon fontSize="inherit" />}
+                      // eslint-disable-next-line react/jsx-no-duplicate-props
                       emptyIcon={
                         <StarBorderIcon
                           fontSize="inherit"
@@ -514,25 +505,26 @@ function MovieCard({
                     />
                   </Box>
                 ) : (
-                    <Box className={classes.starRoot} borderColor="transparent">
-                      <Stars
-                        className={classes.starsModal}
-                        size="large"
-                        precision={0.5}
-                        emptyIcon={<StarBorderIcon fontSize="inherit" />}
-                        emptyIcon={
-                          <StarBorderIcon
-                            fontSize="inherit"
-                            style={{ color: "#ffb400" }}
-                          />
-                        }
-                        name={name}
-                        value={rated ? rated : rating}
-                        onChange={handleChange}
-                      />
-                    </Box>
-                  )}
-                {page !== 'watchlist' && page !== 'Onboarding' ? (
+                  <Box className={classes.starRoot} borderColor="transparent">
+                    <Stars
+                      className={classes.starsModal}
+                      size="large"
+                      precision={0.5}
+                      emptyIcon={<StarBorderIcon fontSize="inherit" />}
+                      // eslint-disable-next-line react/jsx-no-duplicate-props
+                      emptyIcon={
+                        <StarBorderIcon
+                          fontSize="inherit"
+                          style={{ color: "#ffb400" }}
+                        />
+                      }
+                      name={name}
+                      value={rated ? rated : rating}
+                      onChange={handleChange}
+                    />
+                  </Box>
+                )}
+                {page !== "watchlist" && page !== "Onboarding" ? (
                   <div className={classes.ExpansionRoot}>
                     <ExpansionPanel className={classes.expansionPanal}>
                       <ExpansionPanelSummary
@@ -542,25 +534,35 @@ function MovieCard({
                         className={classes.expansionPanalSummary}
                         onClick={handleClickProviders}
                       >
-                        <Typography className={classes.heading}>Where to Watch</Typography>
+                        <Typography className={classes.heading}>
+                          Where to Watch
+                        </Typography>
                       </ExpansionPanelSummary>
                       <div className={classes.serviceInfo}>
-                        {serviceProvider
-                          .map((serviceProviders) => {
-                            return (
-                              <div >
-                                <Link href={serviceProviders.link} className={classes.Link} target="_blank">
-                                  <Button variant="outlined" className={classes.serviceBtn}>{serviceProviders.name}</Button>
-                                </Link>
-                              </div>
-                            )
-                          })}
+                        {serviceProvider.map((serviceProviders) => {
+                          return (
+                            <div>
+                              <Link
+                                href={serviceProviders.link}
+                                className={classes.Link}
+                                target="_blank"
+                              >
+                                <Button
+                                  variant="outlined"
+                                  className={classes.serviceBtn}
+                                >
+                                  {serviceProviders.name}
+                                </Button>
+                              </Link>
+                            </div>
+                          );
+                        })}
                       </div>
                     </ExpansionPanel>
                   </div>
                 ) : (
-                    ""
-                  )}
+                  ""
+                )}
               </div>
             </div>
             {page !== "Onboarding" ? (
@@ -578,8 +580,22 @@ function MovieCard({
                 allowFullScreen
               ></iframe>
             ) : (
-                ""
-              )}
+              ""
+            )}
+            {page === "Ratings" ? (
+              <CardActions className={classes.cardActionsModal}>
+                <Button
+                  onClick={deleteRating}
+                  className={classes.watchList}
+                  size="small"
+                  color="primary"
+                >
+                  Remove Rating
+                </Button>
+              </CardActions>
+            ) : (
+              ""
+            )}
           </div>
         </Fade>
       </Modal>
@@ -600,4 +616,5 @@ export default connect(mapStateToProps, {
   ratingAction,
   addToWatchlistAction,
   notWatchListAction,
+  removeRatingAction,
 })(MovieCard);
