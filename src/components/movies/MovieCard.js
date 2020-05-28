@@ -287,8 +287,6 @@ function MovieCard({
   handleClickStar,
   numRatings,
   setNumRatings,
-  deleteMode,
-  setDeleteMode,
   notWatchListAction,
   notwatchlist,
   removeWatchListAction,

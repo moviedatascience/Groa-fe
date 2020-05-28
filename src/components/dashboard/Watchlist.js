@@ -48,7 +48,6 @@ function Watchlist({
   const { authState } = useOktaAuth();
   const { accessToken } = authState;
 
-  const [deleteMode, setDeleteMode] = useState(false);
   //for matieral-ui
   const styles = useStyles();
   const screenWidth = widthFinder(window.innerWidth);
@@ -60,7 +59,6 @@ function Watchlist({
   }, [getWatchlistAction, userid, isDeleting, setFilter, accessToken]);
 
   if (isFetching) return <LoadingScreen />;
-  else if (isDeleting) return <LoadingScreen />;
   else
     return (
       <>

@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "center",
     [theme.breakpoints.down("xs")]: {
       Title: {
-        fontSize:'1rem'
+        fontSize: '1rem'
       },
     },
   },
@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
   movieCard: {
     "&:hover": {
       transform: 'scale(1.1)',
-      transitionDuration:'.5s'
+      transitionDuration: '.5s'
     },
   },
 }));
@@ -84,7 +84,6 @@ function Recommendations({
                 : true
             )
             .map((movie, index) => {
-              console.log('this is movie id', movie.movie_id)
               let posterURI = movie.poster_url;
               let unsplashUrl =
                 "https://source.unsplash.com/collection/1736993/500x650";
