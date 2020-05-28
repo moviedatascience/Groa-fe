@@ -415,11 +415,7 @@ function MovieCard({
               <></>
             </DialogTitle>
             <div className={classes.movieInfoModal}>
-              <img
-                className={classes.movieImgModal}
-                src={image}
-                alt="Random Movie poster as a placeholder."
-              />
+              <img className={classes.movieImgModal} src={image} alt={name} />
 
               <div className={classes.movieContentDiv}>
                 <CardContent className={classes.cardContentModal}>
