@@ -74,7 +74,6 @@ export const watchlist = (state = initialState, action) => {
     case REMOVEFROMWATCHLIST_SUCCESS:
       return {
         ...state,
-        isRemoving: false,
       };
     case REMOVEFROMWATCHLIST_FAIL:
       return {

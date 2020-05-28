@@ -67,7 +67,7 @@ export function removeWatchListAction(id, movie_id, token) {
       .then(res => {
         dispatch({
           type: REMOVEFROMWATCHLIST_SUCCESS,
-          payload: res.data,
+          // payload: res.data,
         });
         axiosWithAuth(token)
           .get(`/${id}/get-watchlist`)

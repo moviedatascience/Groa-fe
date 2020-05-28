@@ -216,16 +216,16 @@ const useStyles = makeStyles((theme) => ({
     dislay: 'flex',
     justifyContent: 'center',
     margin: 'auto',
-    textAlign:"center",
+    textAlign: "center",
     background: "rgb(23, 23, 23, .96)",
     boxShadow: theme.shadows[5],
   },
   expansionPanalSummary: {
     margin: 'auto',
-    },
-    heading:{
-      margin:'auto',
-    },
+  },
+  heading: {
+    margin: 'auto',
+  },
   serviceInfo: {
     textAlign: 'center',
   },
@@ -317,7 +317,7 @@ function MovieCard({
     (movie) => movie.name === name && movie.year === year
   );
   const removeInWatchlist = watchlist.some(
-    (movie) => movie.name === name &&movie.year === year
+    (movie) => movie.name === name && movie.year === year
   );
   const inRatings = ratings.some(
     (movie) => movie.name === name && movie.year === year
@@ -381,7 +381,7 @@ function MovieCard({
   };
   const handleClickDeleteFromWatchlist = () => {
     console.log('thisi sin move', movie_id)
-    removeWatchListAction( userid, movie_id, accessToken);
+    removeWatchListAction(userid, movie_id, accessToken);
     setDeleted(true);
   }
 
@@ -463,7 +463,7 @@ function MovieCard({
                         color="primary"
                       >
                         {inRatings || yourRating
-                          ? "Your rating:"
+                          ? "Your Rated this Movie"
                           : !added && !inWatchlist
                             ? "Add to watchlist"
                             : "In your watchlist"}
@@ -492,19 +492,19 @@ function MovieCard({
                     )}
                 </div>
                 {page === "watchlist" ? (
-                   <CardActions className={classes.cardActionsModal}>
-                   <Button
-                     onClick={handleClickDeleteFromWatchlist}
-                     className={classes.watchList}
-                     disabled={deleted || removeInWatchlist ? true : false}
-                     size="small"
-                     color="primary"
-                   >
-                     {!deleted && !removeInWatchlist
-                       ? "Remove from Watchlist"
-                       : "Removed from Watchlist"}
-                   </Button>
-                 </CardActions>
+                  <CardActions className={classes.cardActionsModal}>
+                    <Button
+                      onClick={handleClickDeleteFromWatchlist}
+                      className={classes.watchList}
+                      disabled={deleted || removeInWatchlist ? true : false}
+                      size="small"
+                      color="primary"
+                    >
+                      {!deleted && !removeInWatchlist
+                        ? "Remove from Watchlist"
+                        : "Removed from Watchlist"}
+                    </Button>
+                  </CardActions>
                 ) : (
                     ""
                   )}
