@@ -21,10 +21,10 @@ const useStyles = makeStyles((theme) => ({
     fontSize: "3rem",
     textAlign: "center",
   },
-    [theme.breakpoints.down("xs")]: {
-      Title: {
-        fontSize: '2rem'
-      },
+  [theme.breakpoints.down("xs")]: {
+    Title: {
+      fontSize: "2rem",
+    },
   },
   cardGrid: {
     paddingTop: theme.spacing(2),
@@ -34,8 +34,8 @@ const useStyles = makeStyles((theme) => ({
   },
   movieCard: {
     "&:hover": {
-      transform: 'scale(1.1)',
-      transitionDuration: '.5s'
+      transform: "scale(1.1)",
+      transitionDuration: ".5s",
     },
   },
 }));
@@ -78,9 +78,9 @@ function Recommendations({
             .filter((movie) =>
               searchTerm !== ""
                 ? movie.title
-                  .toString()
-                  .toLowerCase()
-                  .includes(searchTerm.toLowerCase())
+                    .toString()
+                    .toLowerCase()
+                    .includes(searchTerm.toLowerCase())
                 : true
             )
             .map((movie, index) => {
@@ -99,13 +99,13 @@ function Recommendations({
                     description={movie.description}
                     movie_id={movie.movie_id}
                     trailer={movie.trailer_url}
-                    page={'Recommendations'}
+                    page={"Recommendations"}
                     image={
                       !posterURI ||
-                        posterURI === "None" ||
-                        posterURI === "No poster" ||
-                        posterURI === "No Poster" ||
-                        posterURI === "Not in table"
+                      posterURI === "None" ||
+                      posterURI === "No poster" ||
+                      posterURI === "No Poster" ||
+                      posterURI === "Not in table"
                         ? unsplashUrl
                         : moviePoster
                     }
