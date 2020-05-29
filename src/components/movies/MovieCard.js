@@ -170,6 +170,8 @@ const useStyles = makeStyles((theme) => ({
   },
   genresModal: {
     fontStyle: "italic",
+    display:'flex',
+    alignItems:'center',
   },
   rateGenreModal: {
     display: 'flex',
