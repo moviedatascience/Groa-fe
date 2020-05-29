@@ -102,6 +102,8 @@ function Explore({
               )
               .slice(0, cardAmount)
               .map((movie, index) => {
+                console.log('this is the movie ', movie)
+
                 /* Checks if the film is in ratings */
                 const isRated = (film) => {
                   return film.title === movie.title && film.year === movie.year;
@@ -122,6 +124,7 @@ function Explore({
                       movie_id={movie.movie_id}
                       description={movie.description}
                       trailer={movie.trailer_url}
+                      avg_rating={movie.avg_rating}
                       rated={rated ? rated.rating : null}
                       image={
                         !posterURI ||
