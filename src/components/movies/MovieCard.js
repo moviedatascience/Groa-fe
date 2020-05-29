@@ -152,7 +152,7 @@ const useStyles = makeStyles((theme) => ({
     boxShadow: theme.shadows[5],
     padding: theme.spacing(0, 6, 3),
     color: "white",
-    mozoverflowY: "scroll",
+    overflowY: "scroll",
   },
   DeleteMoviefromWatch: {
     backgroundColor: "white",
