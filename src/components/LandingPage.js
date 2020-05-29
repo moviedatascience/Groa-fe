@@ -24,6 +24,17 @@ import { useOktaAuth } from "@okta/okta-react";
 
 
 const useStyles = makeStyles((theme) => ({
+    onboardingNav:{
+        color: 'white',
+        display: 'flex',
+        width: '95%',
+        margin: '0 auto',
+        justifyContent: 'flex-end',
+        alignItems: 'center',
+        padding: '1.1% 1%',
+        textAlign: 'center',
+        fontSize:'1rem',
+    },
     testDiv: {
         margin: "auto",
         width: "80%",
@@ -173,9 +184,9 @@ const LandingPage = ({
     return (
         <div>            
             <div className={styles.testDiv}>
-                <nav className="onboarding-nav registerNav">
+                <div className={styles.onboardingNav}>
                     <LandingNavLinks />
-                </nav>
+                </div>
 
                 <header className={styles.jumbotron}>
                     <div className={styles.title}>
@@ -187,7 +198,7 @@ const LandingPage = ({
                        </Link>
                     </div>
                     <div>
-                        <img src={headerImg} alt="groa"/>
+                        <img className={styles.img} src={headerImg} alt="groa"/>
                     </div>                    
                 </header>
                 <LandingMovieSlider 
