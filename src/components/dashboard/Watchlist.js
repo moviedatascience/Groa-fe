@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 // tools
 import { connect } from "react-redux";
 import {
-  removeFromWatchlistAction,
   getWatchlistAction,
   setFilter,
 } from "../../store/actions/index.js";
@@ -24,8 +23,8 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "center",
   },
   cardGrid: {
-    paddingTop: theme.spacing(4),
-    paddingBottom: theme.spacing(4),
+    paddingTop: theme.spacing(2),
+    paddingBottom: theme.spacing(2),
     paddingRight: theme.spacing(1),
     paddingLeft: theme.spacing(1),
   },
@@ -33,6 +32,11 @@ const useStyles = makeStyles((theme) => ({
     "&:hover": {
       transform: 'scale(1.1)',
       transitionDuration:'.5s'
+    },
+  },
+  [theme.breakpoints.down("xs")]: {
+    Title: {
+      fontSize: '2rem'
     },
   },
 }));
@@ -43,14 +47,12 @@ function Watchlist({
   watchlist,
   getWatchlistAction,
   searchTerm,
-  removeFromWatchlistAction,
   setFilter,
 }) {
   //OKTA AUTH
   const { authState } = useOktaAuth();
   const { accessToken } = authState;
 
-  const [deleteMode, setDeleteMode] = useState(false);
   //for matieral-ui
   const styles = useStyles();
   const screenWidth = widthFinder(window.innerWidth);
@@ -61,12 +63,7 @@ function Watchlist({
     getWatchlistAction(userid, accessToken);
   }, [getWatchlistAction, userid, isDeleting, setFilter, accessToken]);
 
-  function handleClick(id) {
-    removeFromWatchlistAction(userid, id, accessToken);
-  }
-
   if (isFetching) return <LoadingScreen />;
-  else if (isDeleting) return <LoadingScreen />;
   else
     return (
       <>
@@ -99,6 +96,7 @@ function Watchlist({
                   trailer={movie.trailer_url}
                   description={movie.description}
                   genres={movie.genres}
+                  movie_id={movie.movie_id}
                   page="watchlist"
                   image={
                     !posterURI ||
@@ -109,9 +107,6 @@ function Watchlist({
                       ? unsplashUrl
                       : moviePoster
                   }
-                  deleteMode={deleteMode}
-                  setDeleteMode={setDeleteMode}
-                  handleClick={handleClick}
                 />
               </div>
             );
@@ -125,7 +120,6 @@ const mapStateToProps = (state) => {
   return {
     userid: state.login.userid,
     isFetching: state.watchlist.isFetching,
-    isDeleting: state.watchlist.isDeleting,
     watchlist: state.watchlist.movies,
     watchlistError: state.watchlist.error,
     searchTerm: state.filter.searchTerm,
@@ -133,6 +127,5 @@ const mapStateToProps = (state) => {
 };
 export default connect(mapStateToProps, {
   getWatchlistAction,
-  removeFromWatchlistAction,
   setFilter,
 })(Watchlist);

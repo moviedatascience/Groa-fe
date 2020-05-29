@@ -21,10 +21,11 @@ const useStyles = makeStyles((theme) => ({
   Title: {
     fontSize: "3rem",
     textAlign: "center",
+    paddingTop:'2%',
   },
   cardGrid: {
-    paddingTop: theme.spacing(4),
-    paddingBottom: theme.spacing(4),
+    paddingTop: theme.spacing(0),
+    paddingBottom: theme.spacing(2),
     paddingRight: theme.spacing(1),
     paddingLeft: theme.spacing(1),
   },
@@ -32,6 +33,11 @@ const useStyles = makeStyles((theme) => ({
     "&:hover": {
       transform: 'scale(1.1)',
       transitionDuration:'.5s'
+    },
+  },
+  [theme.breakpoints.down("xs")]: {
+    Title: {
+      fontSize: '2rem'
     },
   },
 }));
@@ -74,7 +80,7 @@ function Explore({
   else
     return (
       <>
-        <h1 className={classes.Title}>Search for Your Favorite Movies</h1>
+        <h1 className={classes.Title}>Search Your Favorite Movies</h1>
         {isSearching ? (
           <GridList
             className={classes.cardGrid}

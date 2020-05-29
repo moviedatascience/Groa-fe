@@ -29,6 +29,14 @@ const useStyles = makeStyles((theme) => ({
     lineHeight: '2rem',
     color: '#ffffff',
   },
+  [theme.breakpoints.down("xs")]: {
+    loadingComponenth4: {
+      fontSize: '2rem'
+    },
+    loadingComponentp:{
+      fontSize: '1rem'
+    },
+  },
 }));
 
 function LoadingScreen({
@@ -45,15 +53,15 @@ function LoadingScreen({
       data-test={ifDev("loading-screen-component")}
     >
       {isUploading ? (
-        <h4 className={classes.loadingComponenth4} >Uploading files...</h4>
+        <h4 className={classes.loadingComponenth4} >Uploading Files...</h4>
       ) : isFetchingWatchlist ? (
-        <h4 className={classes.loadingComponenth4}>Loading watchlist...</h4>
+        <h4 className={classes.loadingComponenth4}>Loading Watchlist...</h4>
       ) : isFetchingRecommendations ? (
-        <h4 className={classes.loadingComponenth4}>Loading recommendations...</h4>
+        <h4 className={classes.loadingComponenth4}>Loading Recommendations...</h4>
       ) : isFetchingRatings ? (
-        <h4 className={classes.loadingComponenth4}>Loading ratings...</h4>
+        <h4 className={classes.loadingComponenth4}>Loading Ratings...</h4>
       ) : isFetchingExplore ? (
-        <h4 className={classes.loadingComponenth4}>Loading search results...</h4>
+        <h4 className={classes.loadingComponenth4}>Loading Movies to Explore...</h4>
       ) : null}
       <ReactLoading
         className={classes.loadingComponent}

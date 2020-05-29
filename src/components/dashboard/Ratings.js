@@ -18,6 +18,11 @@ const useStyles = makeStyles((theme) => ({
     fontSize: "3rem",
     textAlign: "center",
   },
+  [theme.breakpoints.down("xs")]: {
+    Title: {
+      fontSize: '2rem'
+    },
+  },
 }));
 function Ratings({ userid, isFetching, getRatingAction, ratings, setFilter }) {
   //OKTA AUTH

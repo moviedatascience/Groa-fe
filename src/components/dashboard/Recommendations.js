@@ -20,22 +20,22 @@ const useStyles = makeStyles((theme) => ({
   Title: {
     fontSize: "3rem",
     textAlign: "center",
+  },
     [theme.breakpoints.down("xs")]: {
       Title: {
-        fontSize:'1rem'
+        fontSize: '2rem'
       },
-    },
   },
   cardGrid: {
-    paddingTop: theme.spacing(4),
-    paddingBottom: theme.spacing(4),
+    paddingTop: theme.spacing(2),
+    paddingBottom: theme.spacing(2),
     paddingRight: theme.spacing(1),
     paddingLeft: theme.spacing(1),
   },
   movieCard: {
     "&:hover": {
       transform: 'scale(1.1)',
-      transitionDuration:'.5s'
+      transitionDuration: '.5s'
     },
   },
 }));
