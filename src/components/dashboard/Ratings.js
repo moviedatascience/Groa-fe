@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
   },
   [theme.breakpoints.down("xs")]: {
     Title: {
-      fontSize: '2rem'
+      fontSize: "2rem",
     },
   },
 }));
