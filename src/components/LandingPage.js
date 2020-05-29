@@ -67,7 +67,7 @@ const useStyles = makeStyles((theme) => ({
             fontSize: '60px',            
         },
         '& button':{
-            margin: "5vh",
+            margin:"3vh auto",
             width:"100%",
             height:"8vh",
             fontSize:"30px",
