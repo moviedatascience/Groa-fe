@@ -447,10 +447,14 @@ function MovieCard({
                     <p className={classes.genresModal}>{genres}</p>
                   </div>
                   <p className={classes.descriptionModal}>{description}</p>
+                  {page === "Recommendations" ? (
                   <div className={classes.rateGenreModal}>
                     <img classaName={classes.imdbImg} src="https://img.icons8.com/color/48/000000/imdb.png" />
                     <p className={classes.avgRatingModal}> {avg_rating}/10</p>
                   </div>
+                  ) : (
+                    ""
+                  )}
                 </CardContent>
                 <div className={classes.actionButtons}>
                   {page !== "Onboarding" && page !== "watchlist" ? (
