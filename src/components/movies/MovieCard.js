@@ -450,7 +450,7 @@ function MovieCard({
                   {page === "Recommendations" ? (
                   <div className={classes.rateGenreModal}>
                     <img classaName={classes.imdbImg} src="https://img.icons8.com/color/48/000000/imdb.png" />
-                    <p className={classes.avgRatingModal}> {avg_rating}/10</p>
+                    <p className={classes.avgRatingModal}> {avg_rating * 2 }/10</p>
                   </div>
                   ) : (
                     ""
