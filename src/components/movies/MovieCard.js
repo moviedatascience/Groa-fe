@@ -81,10 +81,6 @@ const useStyles = makeStyles((theme) => ({
     color: "#00B392",
     paddingTop: "1%",
   },
-  year: {
-    fontSize: "18px",
-    paddingBottom: "1%",
-  },
   descriptionModal: {
     color: "white",
     fontSize: "15px",
@@ -164,9 +160,30 @@ const useStyles = makeStyles((theme) => ({
   movieContentDiv: {
     margin: "auto",
   },
+  yearGenreModal: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    padding:"2% 0"
+  },
+  year: {
+    fontSize: "18px",  
+  },
   genresModal: {
     fontStyle: "italic",
-    paddingTop: "3%",
+    display:'flex',
+    alignItems:'center',
+  },
+  rateGenreModal: {
+    display: 'flex',
+  },
+  imdbImg: {
+    height: '40%',
+  },
+  avgRatingModal: {
+    fontSize: "1rem",
+    paddingLeft: "3%",
+    display:'flex',
+    alignItems:'center',
   },
   actionButtons: {
     display: "flex",
@@ -283,6 +300,7 @@ function MovieCard({
   trailer,
   description,
   genres,
+  avg_rating,
   page,
   handleClickStar,
   numRatings,
@@ -424,9 +442,19 @@ function MovieCard({
               <div className={classes.movieContentDiv}>
                 <CardContent className={classes.cardContentModal}>
                   <h1 className={classes.nameModal}> {name} </h1>
-                  <p className={classes.year}>{year}</p>
+                  <div className={classes.yearGenreModal}>
+                    <p className={classes.year}>{year}</p>
+                    <p className={classes.genresModal}>{genres}</p>
+                  </div>
                   <p className={classes.descriptionModal}>{description}</p>
-                  <p className={classes.genresModal}>{genres}</p>
+                  {page === "Recommendations" ? (
+                  <div className={classes.rateGenreModal}>
+                    <img classaName={classes.imdbImg} src="https://img.icons8.com/color/48/000000/imdb.png" />
+                    <p className={classes.avgRatingModal}> {avg_rating * 2 }/10</p>
+                  </div>
+                  ) : (
+                    ""
+                  )}
                 </CardContent>
                 <div className={classes.actionButtons}>
                   {page !== "Onboarding" && page !== "watchlist" ? (

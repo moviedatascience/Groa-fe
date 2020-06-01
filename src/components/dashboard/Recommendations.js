@@ -84,6 +84,7 @@ function Recommendations({
                 : true
             )
             .map((movie, index) => {
+              console.log('this is the movie ', movie)
               let posterURI = movie.poster_url;
               let unsplashUrl =
                 "https://source.unsplash.com/collection/1736993/500x650";
@@ -98,6 +99,7 @@ function Recommendations({
                     genres={movie.genres}
                     description={movie.description}
                     movie_id={movie.movie_id}
+                    avg_rating={movie.avg_rating}
                     trailer={movie.trailer_url}
                     page={"Recommendations"}
                     image={
