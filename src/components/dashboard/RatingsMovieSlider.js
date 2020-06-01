@@ -99,7 +99,7 @@ const LandingMovieSlider = ({ movieRatings, heading }) => {
     <section className={styles.container}>
       <h1 className={styles.titles}> {heading} </h1>
 
-      {movieRatings.length > 1 ? (
+      {movieRatings.length >= 1 ? (
         <>
           <RatingsTileBar movies={movieRatings} />
         </>

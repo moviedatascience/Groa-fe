@@ -221,8 +221,8 @@ const useStyles = makeStyles((theme) => ({
     padding: "0 1.5rem",
   },
   ExpansionRoot: {
-    margin: 'auto',
-    padding: '2% 25%',
+    margin: "auto",
+    padding: "2% 25%",
   },
   btnsProviders: {
     backgroundColor: "#212120",
@@ -387,11 +387,11 @@ function MovieCard({
     setRemoved(true);
   };
   const handleClickDeleteFromWatchlist = () => {
-    console.log('thisi sin move', movie_id)
+    console.log("thisi sin move", movie_id);
     removeWatchListAction(userid, movie_id, accessToken);
     setDeleted(true);
     handleClose();
-  }
+  };
   const handleClickProviders = () => {
     axiosWithAuth(accessToken)
       .get(`${userid}/service-providers/${movie.movie_id}`)
@@ -471,13 +471,13 @@ function MovieCard({
                         {inRatings || yourRating
                           ? "Your Rated this Movie"
                           : !added && !inWatchlist
-                            ? "Add to watchlist"
-                            : "In your watchlist"}
+                          ? "Add to watchlist"
+                          : "In your watchlist"}
                       </Button>
                     </CardActions>
                   ) : (
-                      ""
-                    )}
+                    ""
+                  )}
                   {page === "Recommendations" ? (
                     <CardActions className={classes.cardActionsModal}>
                       <Button
@@ -493,8 +493,8 @@ function MovieCard({
                       </Button>
                     </CardActions>
                   ) : (
-                      ""
-                    )}
+                    ""
+                  )}
                   {page === "Ratings" ? (
                     <CardActions className={classes.cardActionsModal}>
                       <Button
@@ -504,11 +504,11 @@ function MovieCard({
                         color="primary"
                       >
                         Remove Your Rating
-                </Button>
+                      </Button>
                     </CardActions>
                   ) : (
-                      ""
-                    )}
+                    ""
+                  )}
                 </div>
                 {page === "watchlist" ? (
                   <CardActions className={classes.cardActionsModal}>
@@ -525,8 +525,8 @@ function MovieCard({
                     </Button>
                   </CardActions>
                 ) : (
-                    ""
-                  )}
+                  ""
+                )}
                 {page === "Onboarding" ? (
                   <Box
                     className={classes.starRootOnboarding}
@@ -550,25 +550,25 @@ function MovieCard({
                     />
                   </Box>
                 ) : (
-                    <Box className={classes.starRoot} borderColor="transparent">
-                      <Stars
-                        className={classes.starsModal}
-                        size="large"
-                        precision={0.5}
-                        emptyIcon={<StarBorderIcon fontSize="inherit" />}
-                        emptyIcon={
-                          <StarBorderIcon
-                            fontSize="inherit"
-                            style={{ color: "#ffb400" }}
-                          />
-                        }
-                        name={name}
-                        value={rated ? rated : rating}
-                        onChange={handleChange}
-                      />
-                    </Box>
-                  )}
-                {page !== 'Onboarding' ? (
+                  <Box className={classes.starRoot} borderColor="transparent">
+                    <Stars
+                      className={classes.starsModal}
+                      size="large"
+                      precision={0.5}
+                      emptyIcon={<StarBorderIcon fontSize="inherit" />}
+                      emptyIcon={
+                        <StarBorderIcon
+                          fontSize="inherit"
+                          style={{ color: "#ffb400" }}
+                        />
+                      }
+                      name={name}
+                      value={rated ? rated : rating}
+                      onChange={handleChange}
+                    />
+                  </Box>
+                )}
+                {page !== "Onboarding" ? (
                   <div className={classes.ExpansionRoot}>
                     <ExpansionPanel className={classes.expansionPanal}>
                       <ExpansionPanelSummary
@@ -605,8 +605,8 @@ function MovieCard({
                     </ExpansionPanel>
                   </div>
                 ) : (
-                    ""
-                  )}
+                  ""
+                )}
               </div>
             </div>
             {page !== "Onboarding" ? (
@@ -624,8 +624,8 @@ function MovieCard({
                 allowFullScreen
               ></iframe>
             ) : (
-                ""
-              )}
+              ""
+            )}
           </div>
         </Fade>
       </Modal>

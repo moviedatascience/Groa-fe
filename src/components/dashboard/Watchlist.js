@@ -1,10 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 // tools
 import { connect } from "react-redux";
-import {
-  getWatchlistAction,
-  setFilter,
-} from "../../store/actions/index.js";
+import { getWatchlistAction, setFilter } from "../../store/actions/index.js";
 // Screen width util
 import widthFinder from "../../utils/widthFinder.js";
 
@@ -30,13 +27,13 @@ const useStyles = makeStyles((theme) => ({
   },
   movieCard: {
     "&:hover": {
-      transform: 'scale(1.1)',
-      transitionDuration:'.5s'
+      transform: "scale(1.1)",
+      transitionDuration: ".5s",
     },
   },
   [theme.breakpoints.down("xs")]: {
     Title: {
-      fontSize: '2rem'
+      fontSize: "2rem",
     },
   },
 }));
@@ -67,52 +64,52 @@ function Watchlist({
   else
     return (
       <>
-      <h1 className={styles.Title}>My Watchlist</h1>
-      <GridList
-        className={styles.cardGrid}
-        cols={screenWidth ? 2 : 5}
-        cellHeight="auto"
-      >
-        {watchlist
-          .filter((movie) =>
-            searchTerm !== ""
-              ? movie.primary_title
-                .toString()
-                .toLowerCase()
-                .includes(searchTerm.toLowerCase())
-              : true
-          )
-          .map((movie, index) => {   
-          console.log('this is the movie ', movie)
-            let posterURI = movie.poster_url;
-            let unsplashUrl =
-              "https://source.unsplash.com/collection/1736993/500x650";
-            let moviePoster = `https://image.tmdb.org/t/p/w500${posterURI}?api_key=${process.env.REACT_APP_TMDB_API_KEY}`;
-            return (
-              <div className={styles.movieCard} key={index}>
-                <MovieCard
-                  key={index}
-                  name={movie.primary_title}
-                  year={movie.start_year}
-                  trailer={movie.trailer_url}
-                  description={movie.description}
-                  genres={movie.genres}
-                  movie_id={movie.movie_id}
-                  page="watchlist"
-                  image={
-                    !posterURI ||
+        <h1 className={styles.Title}>My Watchlist</h1>
+        <GridList
+          className={styles.cardGrid}
+          cols={screenWidth ? 2 : 5}
+          cellHeight="auto"
+        >
+          {watchlist
+            .filter((movie) =>
+              searchTerm !== ""
+                ? movie.primary_title
+                    .toString()
+                    .toLowerCase()
+                    .includes(searchTerm.toLowerCase())
+                : true
+            )
+            .map((movie, index) => {
+              let posterURI = movie.poster_url;
+              let unsplashUrl =
+                "https://source.unsplash.com/collection/1736993/500x650";
+              let moviePoster = `https://image.tmdb.org/t/p/w500${posterURI}?api_key=${process.env.REACT_APP_TMDB_API_KEY}`;
+              return (
+                <div className={styles.movieCard} key={index}>
+                  <MovieCard
+                    key={index}
+                    name={movie.primary_title}
+                    year={movie.start_year}
+                    trailer={movie.trailer_url}
+                    description={movie.description}
+                    genres={movie.genres}
+                    movie_id={movie.movie_id}
+                    page="watchlist"
+                    image={
+                      !posterURI ||
                       posterURI === "None" ||
                       posterURI === "No poster" ||
                       posterURI === "No Poster" ||
                       posterURI === "Not in table"
-                      ? unsplashUrl
-                      : moviePoster
-                  }
-                />
-              </div>
-            );
-          })};
-      </GridList>
+                        ? unsplashUrl
+                        : moviePoster
+                    }
+                  />
+                </div>
+              );
+            })}
+          ;
+        </GridList>
       </>
     );
 }

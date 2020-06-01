@@ -34,13 +34,6 @@ const useStyles = makeStyles((theme) => ({
   posterImg: {
     width: "100%",
   },
-  movieList: {
-    minWidth: "15%",
-    margin: "10px",
-  },
-  posterImg: {
-    width: "100%",
-  },
   customArrow: {
     display: "flex",
     justifyContent: "center",
@@ -101,7 +94,7 @@ const useStyles = makeStyles((theme) => ({
   },
   movieCard: {
     "&:hover": {
-        transform: 'scale(1.1)',
+      transform: "scale(1.1)",
     },
   },
 }));
